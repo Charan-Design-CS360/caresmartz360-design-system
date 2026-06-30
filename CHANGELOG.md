@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.5.0] - 2026-06-30 -- CORRECTED
+
+### **MAJOR CORRECTION:** Angular Material M3 reinstated as primary component library
+
+- **Stack:** Angular 19 + **Angular Material M3 (PRIMARY)** + Tailwind CSS v4 + SCSS
+- Added `material-theme-overrides.scss` with complete Material M3 theming
+- Updated all documentation to reflect Material M3 priority
+- Updated documentation to reflect Material M3 theming approach (--mdc-* CSS custom properties)
+
+---
+
 ## [2.4.0] - 2026-06-30
 
 ### Breaking Changes
