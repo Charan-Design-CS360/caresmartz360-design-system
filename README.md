@@ -2,10 +2,10 @@
 
 > Figma tokens, component map, AI handoff reference, and export pipeline docs
 
-![Version](https://img.shields.io/badge/version-2.4.0-blue)
+![Version](https://img.shields.io/badge/version-2.5.0-blue)
 ![Status](https://img.shields.io/badge/status-active-green)
 ![License](https://img.shields.io/badge/license-private-red)
-![Stack](https://img.shields.io/badge/stack-Angular%2019%20%2B%20Tailwind%20CSS%20%2B%20SCSS-blueviolet)
+![Stack](https://img.shields.io/badge/stack-Angular%2019%2BAngular%20Material%20M3%2BTailwind%20CSS-blueviolet)
 
 ---
 
@@ -13,7 +13,7 @@
 
 The CareSmartz360 Design System is a comprehensive, token-driven design system for the CareSmartz360 healthcare product. It provides a single source of truth for design tokens, component specifications, and implementation guidelines used across web and mobile platforms.
 
-**Stack (v2.4.0):** Angular 19 standalone components + Tailwind CSS v4 + SCSS custom properties
+**Stack (v2.5.0):** Angular 19 standalone components + **Angular Material M3** (PRIMARY) + Tailwind CSS v4 + SCSS custom properties
 
 ---
 
@@ -23,155 +23,234 @@ The CareSmartz360 Design System is a comprehensive, token-driven design system f
 - **Figma Integration** — All tokens sourced from Figma Variables
 - **Tailwind CSS v4** — Full configuration with design tokens
 - **Angular 19 Standalone** — All components use standalone architecture
+- **Angular Material M3** — Primary component library with CSS custom property overrides
 - **SCSS Token System** — All tokens exposed as CSS custom properties via `var(--color-*)`
-- **AI Handoff Ready** — Structured for AI-assisted development
+- **AI Handoff Readiness** — Structured for AI-assisted development
 - **Automated Versioning** — GitHub Actions for version bumping
 - **ADA Compliant** — WCAG AA (4.5:1) contrast ratios enforced
 - **Google Material Symbols Rounded** — Icon library via `<span class="material-symbols-rounded">`
 
 ---
 
-## Stack Constraints (v2.4.0)
+## Stack Details (v2.5.0 — CORRECTED)
 
-| Rule | Detail |
-|------|--------|
-| **Framework** | Angular 19 standalone components ONLY |
-| **Styling** | Tailwind CSS + SCSS — no CSS-in-JS, no inline styles |
-| **Icons** | Google Material Symbols Rounded only |
-| **Prohibited** | React, JSX, shadcn/ui, Angular Material, PrimeNG |
-| **Token usage** | Always `var(--color-*)` — never hardcoded hex values |
-| **Touch targets** | Minimum 40px (WCAG AA) via `min-h-touch` utility |
+| Layer | Technology | Priority |
+|-------|-----------|----------|
+| Framework | Angular 19 (standalone components) | Required |
+| **Component Library** | **Angular Material M3** | **PRIMARY — use on priority** |
+| Utility CSS | Tailwind CSS | Layout, spacing utilities |
+| Component Styling | SCSS + CSS custom properties | Token-based overrides |
+| Icons | Google Material Symbols Rounded | Required |
+| Fonts | Inter (base), JetBrains Mono (code) | Required |
+| ❌ Prohibited | React, Next.js, Vue, shadcn/ui, PrimeNG | Never use |
+| ❌ Prohibited | Hardcoded hex values, inline styles | Never use |
 
 ---
 
-## Repository Structure
+## Installation
+
+### 1. Install Dependencies
+
+```bash
+npm install @angular/material @angular/cdk
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
+```
+
+### 2. Import Angular Material M3
+
+```typescript
+// app.config.ts
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+export const appConfig = {
+  providers: [
+    provideAnimationsAsync()
+  ]
+};
+```
+
+### 3. Add Material Theme Overrides
+
+```scss
+// styles.scss
+@import '_material-theme-overrides.scss';
+```
+
+### 4. Add Fonts & Icons
+
+```html
+<!-- index.html -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+```
+
+### 5. Configure Tailwind
+
+```javascript
+// tailwind.config.js
+module.exports = {
+  content: ['./src/**/*.{html,ts,scss}'],
+  theme: {
+    extend: {
+      // Use for layout only — colors/spacing from SCSS tokens
+    }
+  }
+}
+```
+
+---
+
+## Quick Start
+
+### Button Component (Angular Material M3)
+
+```typescript
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+@Component({
+  selector: 'app-demo',
+  standalone: true,
+  imports: [MatButtonModule, MatIconModule],
+  template: `
+    <button mat-flat-button color="primary" class="cs-button">
+      <mat-icon fontSet="material-symbols-rounded">check</mat-icon>
+      <span>Save Changes</span>
+    </button>
+  `,
+  styleUrl: './demo.component.scss'
+})
+export class DemoComponent {}
+```
+
+```scss
+// demo.component.scss
+.cs-button {
+  min-height: 40px;
+  border-radius: var(--radius-lg) !important;
+  font-family: var(--font-family-primary);
+}
+```
+
+---
+
+## Token Usage
+
+### SCSS Tokens (PRIMARY METHOD)
+
+```scss
+.card {
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  color: var(--text-primary);
+}
+```
+
+### Tailwind (LAYOUT ONLY)
+
+```html
+<div class="flex gap-md items-center">
+  <span>Layout utilities only</span>
+</div>
+```
+
+---
+
+## Project Structure
 
 ```
 caresmartz360-design-system/
-├── README.md                      # This file
-├── CHANGELOG.md                   # Version history
-├── AI-TOOLS-GUIDE.md              # Guide for AI-assisted development
-├── CARESMARTZ360-DS-REFERENCE.md  # Full AI handoff reference
-├── ds-tokens-latest.json          # Current token export (always latest)
-├── ds-tokens-v2.4.0.json          # Versioned token snapshot
-├── tailwind.config.js             # Tailwind CSS v4 configuration
-├── components/
-│   └── component-mapping.json     # Component → Figma node ID map
-└── .github/
-    └── workflows/
-        └── version-bump.yml       # Auto version bump on token changes
+├── design-tokens/
+│   ├── agency-semantic-layer.md
+│   └── agency-styles.scss
+├── components/               (future)
+├── ds-tokens-v2.5.0.json
+├── ds-tokens-latest.json
+├── tailwind.config.js
+├── _material-theme-overrides.scss  (NEW in v2.5.0)
+├── CARESMARTZ360-DS-REFERENCE.md
+├── AI-TOOLS-GUIDE.md
+├── CHANGELOG.md
+└── README.md
 ```
 
 ---
 
-## Token Architecture
+## Material M3 Override Pattern
 
-### 3-Tier System
-
-```
-Primitives (ds-tokens-latest.json)
-  └── Raw values: colors, spacing, radius, shadow, typography
-
-Semantic Layer
-  └── Named roles: brand.primary, status.error, surface.default, text.primary
-  └── Always reference primitives — never hardcode
-
-Component Layer
-  └── Component-specific overrides: button.bg, input.border, badge.text
-```
-
-### SCSS Usage Pattern
+All Angular Material components are themed via CSS custom properties, NOT via the M3 theme object:
 
 ```scss
-// ✅ CORRECT — always use semantic token via CSS custom property
-.btn-primary {
-  background-color: var(--color-brand-primary);
-  color: var(--color-text-inverse);
-  min-height: var(--spacing-touch); // 40px
+// _material-theme-overrides.scss
+.mat-mdc-button.mat-primary {
+  --mdc-filled-button-container-color: var(--action-primary-bg);
+  --mdc-filled-button-label-text-color: var(--action-primary-text-neutral);
 }
 
-// ❌ WRONG — never hardcode values
-.btn-primary {
-  background-color: #2563EB;
-  color: #FFFFFF;
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-outline-color: var(--field-border-default);
+  --mdc-outlined-text-field-focus-outline-color: var(--field-border-focus);
 }
 ```
-
-### Tailwind Usage Pattern
-
-```html
-<!-- ✅ CORRECT -->
-<button class="bg-brand-primary text-text-inverse min-h-touch rounded-lg">
-  Save
-</button>
-
-<!-- ✅ Icon pattern -->
-<span class="material-symbols-rounded text-icon-primary">check_circle</span>
-```
-
----
-
-## Component Map
-
-See [`components/component-mapping.json`](./components/component-mapping.json) for the full Figma node ID map.
-
-Key components tracked:
-
-| Component | Figma Node | Status |
-|-----------|-----------|--------|
-| Button | 1:100 | Active |
-| Input Field | 1:200 | Active |
-| Dropdown | 1:300 | Active |
-| Badge / Tag | 1:400 | Active |
-| Modal / Dialog | 1:500 | Active |
-| Data Table | 1:600 | Active |
-| Navigation / Sidebar | 1:700 | Active |
-| Form | 1:800 | Active |
-| Card | 1:900 | Active |
-| Toast / Alert | 1:1000 | Active |
-
----
-
-## Accessibility
-
-- All color pairs meet **WCAG AA** (4.5:1 contrast ratio)
-- Focus states use `var(--color-border-focus)` — `#3B82F6`
-- Status colors always paired with background for full context
-- Minimum touch target: **40×40px** enforced via Tailwind `min-h-touch`
-- All interactive components require `aria-` attributes
-
----
-
-## Versioning
-
-This repo uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-- **Current Version:** `2.4.0`
-- Version bumps are automated via GitHub Actions (`.github/workflows/version-bump.yml`)
-- Each version creates a snapshot: `ds-tokens-v{version}.json`
-- `ds-tokens-latest.json` always reflects the current version
 
 ---
 
 ## Documentation
 
-| Document | Description |
-|----------|-------------|
-| [CHANGELOG.md](./CHANGELOG.md) | Full version history with breaking changes |
-| [AI-TOOLS-GUIDE.md](./AI-TOOLS-GUIDE.md) | Guide for AI-assisted Angular 19 development |
-| [CARESMARTZ360-DS-REFERENCE.md](./CARESMARTZ360-DS-REFERENCE.md) | Full AI handoff reference |
-| [component-mapping.json](./components/component-mapping.json) | Figma node ID mappings |
+- **[CARESMARTZ360-DS-REFERENCE.md](./CARESMARTZ360-DS-REFERENCE.md)** — Complete AI handoff reference
+- **[AI-TOOLS-GUIDE.md](./AI-TOOLS-GUIDE.md)** — AI code generation patterns
+- **[CHANGELOG.md](./CHANGELOG.md)** — Version history
+- **[design-tokens/agency-semantic-layer.md](./design-tokens/agency-semantic-layer.md)** — Agency Portal tokens
 
 ---
 
-## Contributing
+## Versioning
 
-This repository is maintained by the CareSmartz360 UX team.
+This project uses semantic versioning via GitHub Actions:
 
-1. Export updated tokens from Figma Variables
-2. Replace `ds-tokens-latest.json` with new export
-3. Push to `main` — GitHub Actions will auto-bump the version
-4. Update `CHANGELOG.md` with changes
-5. **Never** use React, shadcn/ui, Angular Material, or inline styles
-6. All components must be Angular 19 standalone
-7. All icons must use `<span class="material-symbols-rounded">`
+```bash
+git commit -m "feat: add new component"
+git push origin main
+# Triggers version-bump.yml workflow
+```
+
+**Current Version:** 2.5.0 (Angular Material M3 reinstated as primary)
+
+---
+
+## License
+
+Private — CareSmartz360 Internal Use Only
+
+---
+
+## Changelog
+
+### v2.5.0 (2026-06-30) — CORRECTED
+
+- **MAJOR CORRECTION:** Angular Material M3 reinstated as primary component library
+- Added `_material-theme-overrides.scss` with complete Material M3 theming
+- Updated all documentation to reflect Material M3 priority
+- Stack: Angular 19 + **Angular Material M3** (PRIMARY) + Tailwind CSS + SCSS
+
+### v2.4.0 (2026-06-30)
+
+- Added Agency Portal semantic layer (140+ tokens, Light/Dark themes)
+- Real Figma variables from `Agency DS (v1)` file
+- Created `design-tokens/agency-semantic-layer.md`
+- Created `design-tokens/agency-styles.scss`
+
+### v2.3.0 (2026-06-29)
+
+- Initial AI-consumable manifest published
+- 3-tier token architecture established
+
+---
+
+**Maintained by:** Singh, Senior UX/UI Consultant  
+**Repository:** github.com/Charanjeetsingh360/caresmartz360-design-system  
+**Stack:** Angular 19 + Angular Material M3 (PRIMARY) + Tailwind CSS + SCSS
