@@ -1,0 +1,32 @@
+/**
+ * Angular Material M3 Theme Overrides
+ * Version: 2.5.0
+ * 
+ * This file provides CSS custom property overrides for Angular Material M3 components.
+ * DO NOT use M3 theme objects - override via --mdc-* CSS custom properties only.
+ */
+
+// Import design tokens
+@import 'tokens';
+
+// Material M3 Component Overrides
+:root {
+  // Primary Color Overrides
+  --mdc-theme-primary: var(--color-brand-primary);
+  --mdc-theme-on-primary: var(--color-text-inverse);
+  
+  // Surface Overrides  
+  --mdc-theme-surface: var(--color-surface-default);
+  --mdc-theme-on-surface: var(--color-text-primary);
+  
+  // Background Overrides
+  --mdc-theme-background: var(--color-bg-default);
+  
+  // Border Radius
+  --mdc-shape-small: var(--border-radius-sm);
+  --mdc-shape-medium: var(--border-radius-md);
+  --mdc-shape-large: var(--border-radius-lg);
+  
+  // Typography
+  --mdc-typography-font-family: var(--font-family-base);
+}
