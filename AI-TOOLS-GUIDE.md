@@ -1,6 +1,6 @@
 # AI Tools Guide — CareSmartz360 Design System
 
-> Version: 2.4.0 | Stack: Angular 19 + Tailwind CSS + SCSS
+> Version: 2.5.0 | Stack: Angular 19 + Angular Material M3 (PRIMARY) + Tailwind CSS + SCSS
 
 This guide provides AI assistants and developers with structured context for working with the CareSmartz360 design system. Read this before generating any component code.
 
@@ -19,7 +19,7 @@ Before generating any code, these rules are **non-negotiable**:
 | Hardcoded hex values | NEVER use |
 | React / JSX | NEVER use |
 | shadcn/ui | NEVER use |
-| Angular Material | NEVER use |
+| **Component Library** | **Angular Material M3 (PRIMARY)** - Use for all UI components |
 | PrimeNG | NEVER use |
 | CSS-in-JS | NEVER use |
 | `!important` | NEVER use |
@@ -252,6 +252,7 @@ Generate a [COMPONENT_NAME] component with:
 
 | Version | Date | Stack |
 |---------|------|-------|
+| 2.5.0 | 2026-06-30 | Angular 19 + Angular Material M3 (PRIMARY) + Tailwind CSS + SCSS |
 | 2.4.0 | 2026-06-30 | Angular 19 + Tailwind CSS + SCSS |
 | 2.3.0 | 2025-01-01 | Tailwind CSS v4 + full token system |
 | 2.0.0 | 2024-06-01 | Initial structured system |
