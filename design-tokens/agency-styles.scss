@@ -1,0 +1,443 @@
+/**
+ * Agency Portal - Semantic Layer Styles
+ * CareSmartz360 Design System v2.4.0
+ * 
+ * This file defines ALL CSS custom properties for the Agency Portal module.
+ * Supports Light Mode (default) and Dark Mode themes.
+ * 
+ * Usage: Import this file in your Angular components or main styles.scss
+ * @import 'design-tokens/agency-styles.scss';
+ */
+
+/* ========================================
+   LIGHT MODE (Default Theme)
+   ======================================== */
+
+:root,
+:root[data-theme="light"] {
+  
+  /* Background Colors */
+  --agency-bg-default: #FFFFFF;
+  --agency-bg-subtle: #F5F5F5;
+  --agency-bg-muted: #EEEEEE;
+  --agency-bg-hover: #E3F2FD;
+  --agency-bg-active: #BBDEFB;
+  
+  /* Text Colors */
+  --agency-text-primary: #212121;
+  --agency-text-secondary: #757575;
+  --agency-text-tertiary: #9E9E9E;
+  --agency-text-disabled: #BDBDBD;
+  --agency-text-inverse: #FFFFFF;
+  
+  /* Border Colors */
+  --agency-border-default: #E0E0E0;
+  --agency-border-subtle: #F5F5F5;
+  --agency-border-strong: #9E9E9E;
+  --agency-border-hover: #757575;
+  
+  /* Brand Colors */
+  --agency-brand-primary: #1976D2;
+  --agency-brand-primary-hover: #1565C0;
+  --agency-brand-primary-active: #0D47A1;
+  --agency-brand-secondary: #424242;
+  --agency-brand-accent: #FF6F00;
+  
+  /* Status Colors - Success */
+  --agency-status-success: #388E3C;
+  --agency-status-success-bg: #E8F5E9;
+  --agency-status-success-border: #66BB6A;
+  
+  /* Status Colors - Warning */
+  --agency-status-warning: #F57C00;
+  --agency-status-warning-bg: #FFF3E0;
+  --agency-status-warning-border: #FFB74D;
+  
+  /* Status Colors - Error */
+  --agency-status-error: #D32F2F;
+  --agency-status-error-bg: #FFEBEE;
+  --agency-status-error-border: #EF5350;
+  
+  /* Status Colors - Info */
+  --agency-status-info: #1976D2;
+  --agency-status-info-bg: #E3F2FD;
+  --agency-status-info-border: #42A5F5;
+  
+  /* Interactive States */
+  --agency-interactive-default: #1976D2;
+  --agency-interactive-hover: #1565C0;
+  --agency-interactive-active: #0D47A1;
+  --agency-interactive-disabled: #BDBDBD;
+  --agency-interactive-visited: #7B1FA2;
+  --agency-interactive-focus: #1976D2;
+  
+  /* Shadow Tokens */
+  --agency-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --agency-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --agency-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+  --agency-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
+  --agency-shadow-focus: 0 0 0 3px rgba(25, 118, 210, 0.2);
+}
+
+/* ========================================
+   DARK MODE Theme
+   ======================================== */
+
+:root[data-theme="dark"] {
+  
+  /* Background Colors */
+  --agency-bg-default: #121212;
+  --agency-bg-subtle: #1E1E1E;
+  --agency-bg-muted: #2A2A2A;
+  --agency-bg-hover: #263238;
+  --agency-bg-active: #37474F;
+  
+  /* Text Colors */
+  --agency-text-primary: #FFFFFF;
+  --agency-text-secondary: #B0BEC5;
+  --agency-text-tertiary: #78909C;
+  --agency-text-disabled: #546E7A;
+  --agency-text-inverse: #121212;
+  
+  /* Border Colors */
+  --agency-border-default: #424242;
+  --agency-border-subtle: #2A2A2A;
+  --agency-border-strong: #616161;
+  --agency-border-hover: #78909C;
+  
+  /* Brand Colors */
+  --agency-brand-primary: #42A5F5;
+  --agency-brand-primary-hover: #1E88E5;
+  --agency-brand-primary-active: #1565C0;
+  --agency-brand-secondary: #E0E0E0;
+  --agency-brand-accent: #FFB74D;
+  
+  /* Status Colors - Success */
+  --agency-status-success: #66BB6A;
+  --agency-status-success-bg: #1B5E20;
+  --agency-status-success-border: #81C784;
+  
+  /* Status Colors - Warning */
+  --agency-status-warning: #FFB74D;
+  --agency-status-warning-bg: #E65100;
+  --agency-status-warning-border: #FFCC80;
+  
+  /* Status Colors - Error */
+  --agency-status-error: #EF5350;
+  --agency-status-error-bg: #B71C1C;
+  --agency-status-error-border: #E57373;
+  
+  /* Status Colors - Info */
+  --agency-status-info: #42A5F5;
+  --agency-status-info-bg: #0D47A1;
+  --agency-status-info-border: #64B5F6;
+  
+  /* Interactive States */
+  --agency-interactive-default: #42A5F5;
+  --agency-interactive-hover: #1E88E5;
+  --agency-interactive-active: #1565C0;
+  --agency-interactive-disabled: #546E7A;
+  --agency-interactive-visited: #BA68C8;
+  --agency-interactive-focus: #42A5F5;
+  
+  /* Shadow Tokens (darker for dark mode) */
+  --agency-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --agency-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --agency-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --agency-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  --agency-shadow-focus: 0 0 0 3px rgba(66, 165, 245, 0.3);
+}
+
+/* ========================================
+   SPACING TOKENS (Theme-independent)
+   ======================================== */
+
+:root {
+  --agency-space-xs: 4px;
+  --agency-space-sm: 8px;
+  --agency-space-md: 16px;
+  --agency-space-lg: 24px;
+  --agency-space-xl: 32px;
+  --agency-space-2xl: 48px;
+  --agency-space-3xl: 64px;
+}
+
+/* ========================================
+   TYPOGRAPHY TOKENS (Theme-independent)
+   ======================================== */
+
+:root {
+  /* Font Families */
+  --agency-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --agency-font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --agency-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  
+  /* Font Sizes */
+  --agency-font-size-xs: 12px;
+  --agency-font-size-sm: 14px;
+  --agency-font-size-md: 16px;
+  --agency-font-size-lg: 18px;
+  --agency-font-size-xl: 20px;
+  --agency-font-size-2xl: 24px;
+  --agency-font-size-3xl: 30px;
+  --agency-font-size-4xl: 36px;
+  
+  /* Font Weights */
+  --agency-font-weight-normal: 400;
+  --agency-font-weight-medium: 500;
+  --agency-font-weight-semibold: 600;
+  --agency-font-weight-bold: 700;
+  
+  /* Line Heights */
+  --agency-line-height-tight: 1.25;
+  --agency-line-height-normal: 1.5;
+  --agency-line-height-relaxed: 1.75;
+  
+  /* Letter Spacing */
+  --agency-letter-spacing-tight: -0.02em;
+  --agency-letter-spacing-normal: 0;
+  --agency-letter-spacing-wide: 0.025em;
+}
+
+/* ========================================
+   BORDER RADIUS TOKENS (Theme-independent)
+   ======================================== */
+
+:root {
+  --agency-radius-none: 0px;
+  --agency-radius-sm: 4px;
+  --agency-radius-md: 8px;
+  --agency-radius-lg: 12px;
+  --agency-radius-xl: 16px;
+  --agency-radius-2xl: 24px;
+  --agency-radius-full: 9999px;
+}
+
+/* ========================================
+   Z-INDEX TOKENS (Theme-independent)
+   ======================================== */
+
+:root {
+  --agency-z-index-dropdown: 1000;
+  --agency-z-index-sticky: 1020;
+  --agency-z-index-fixed: 1030;
+  --agency-z-index-modal-backdrop: 1040;
+  --agency-z-index-modal: 1050;
+  --agency-z-index-popover: 1060;
+  --agency-z-index-tooltip: 1070;
+}
+
+/* ========================================
+   TRANSITION TOKENS (Theme-independent)
+   ======================================== */
+
+:root {
+  --agency-transition-fast: 150ms ease-in-out;
+  --agency-transition-base: 250ms ease-in-out;
+  --agency-transition-slow: 350ms ease-in-out;
+  
+  --agency-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --agency-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --agency-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   COMPONENT-SPECIFIC UTILITIES
+   ======================================== */
+
+/* Card Component */
+.agency-card {
+  background: var(--agency-bg-subtle);
+  border: 1px solid var(--agency-border-default);
+  border-radius: var(--agency-radius-md);
+  padding: var(--agency-space-lg);
+  box-shadow: var(--agency-shadow-md);
+  transition: all var(--agency-transition-base);
+
+  &:hover {
+    background: var(--agency-bg-hover);
+    box-shadow: var(--agency-shadow-lg);
+  }
+}
+
+/* Button Component */
+.agency-button {
+  font-family: var(--agency-font-family-base);
+  font-size: var(--agency-font-size-md);
+  font-weight: var(--agency-font-weight-medium);
+  padding: var(--agency-space-sm) var(--agency-space-lg);
+  border-radius: var(--agency-radius-sm);
+  transition: all var(--agency-transition-fast);
+  cursor: pointer;
+  border: none;
+  
+  &.primary {
+    background: var(--agency-brand-primary);
+    color: var(--agency-text-inverse);
+    
+    &:hover {
+      background: var(--agency-brand-primary-hover);
+    }
+    
+    &:active {
+      background: var(--agency-brand-primary-active);
+    }
+    
+    &:focus-visible {
+      outline: none;
+      box-shadow: var(--agency-shadow-focus);
+    }
+  }
+  
+  &.secondary {
+    background: transparent;
+    color: var(--agency-text-primary);
+    border: 1px solid var(--agency-border-default);
+    
+    &:hover {
+      background: var(--agency-bg-hover);
+      border-color: var(--agency-border-hover);
+    }
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/* Input Component */
+.agency-input {
+  font-family: var(--agency-font-family-base);
+  font-size: var(--agency-font-size-md);
+  padding: var(--agency-space-sm) var(--agency-space-md);
+  background: var(--agency-bg-default);
+  color: var(--agency-text-primary);
+  border: 1px solid var(--agency-border-default);
+  border-radius: var(--agency-radius-sm);
+  transition: all var(--agency-transition-fast);
+  
+  &:hover {
+    border-color: var(--agency-border-hover);
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: var(--agency-brand-primary);
+    box-shadow: var(--agency-shadow-focus);
+  }
+  
+  &:disabled {
+    background: var(--agency-bg-muted);
+    color: var(--agency-text-disabled);
+    cursor: not-allowed;
+  }
+  
+  &::placeholder {
+    color: var(--agency-text-tertiary);
+  }
+}
+
+/* Alert Component */
+.agency-alert {
+  padding: var(--agency-space-md);
+  border-radius: var(--agency-radius-md);
+  border-left-width: 4px;
+  border-left-style: solid;
+  
+  &.success {
+    background: var(--agency-status-success-bg);
+    border-left-color: var(--agency-status-success);
+    color: var(--agency-status-success);
+  }
+  
+  &.warning {
+    background: var(--agency-status-warning-bg);
+    border-left-color: var(--agency-status-warning);
+    color: var(--agency-status-warning);
+  }
+  
+  &.error {
+    background: var(--agency-status-error-bg);
+    border-left-color: var(--agency-status-error);
+    color: var(--agency-status-error);
+  }
+  
+  &.info {
+    background: var(--agency-status-info-bg);
+    border-left-color: var(--agency-status-info);
+    color: var(--agency-status-info);
+  }
+}
+
+/* Badge Component */
+.agency-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--agency-space-sm);
+  border-radius: var(--agency-radius-full);
+  font-size: var(--agency-font-size-xs);
+  font-weight: var(--agency-font-weight-medium);
+  
+  &.success {
+    background: var(--agency-status-success-bg);
+    color: var(--agency-status-success);
+  }
+  
+  &.warning {
+    background: var(--agency-status-warning-bg);
+    color: var(--agency-status-warning);
+  }
+  
+  &.error {
+    background: var(--agency-status-error-bg);
+    color: var(--agency-status-error);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY HELPERS
+   ======================================== */
+
+/* Focus visible styles for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--agency-brand-primary);
+  outline-offset: 2px;
+}
+
+/* Screen reader only */
+.agency-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  :root {
+    /* Force light theme for print */
+    --agency-bg-default: #FFFFFF;
+    --agency-text-primary: #000000;
+    --agency-border-default: #000000;
+  }
+  
+  .agency-card,
+  .agency-button,
+  .agency-input {
+    box-shadow: none !important;
+  }
+}
+
+/* ========================================
+   END OF FILE
+   ======================================== */
