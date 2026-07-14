@@ -1,0 +1,56 @@
+// =============================================================================
+// TIER 1 — PRIMITIVES: Typography
+//
+// SOURCE OF TRUTH (Figma): same file as colors — see _colors.scss header.
+// Verified 2026-07-08.
+// =============================================================================
+
+:root {
+  // --- Font family ---
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; // verified
+  --font-family-mono: 'JetBrains Mono', monospace; // ⚠️ used elsewhere in this repo's docs but NOT present in the live Figma primitives STRING collection — confirm before relying on it structurally
+
+  // --- Font size (verified) ---
+  --font-size-9:  0.5625rem; // 9px
+  --font-size-10: 0.625rem;  // 10px
+  --font-size-12: 0.75rem;   // 12px
+  --font-size-14: 0.875rem;  // 14px
+  --font-size-16: 1rem;      // 16px
+  --font-size-18: 1.125rem;  // 18px
+  --font-size-20: 1.25rem;   // 20px
+  --font-size-24: 1.5rem;    // 24px
+  --font-size-28: 1.75rem;   // 28px
+  --font-size-30: 1.875rem;  // 30px
+  --font-size-32: 2rem;      // 32px
+  --font-size-36: 2.25rem;   // 36px
+  --font-size-40: 2.5rem;    // 40px
+  --font-size-48: 3rem;      // 48px
+  --font-size-60: 3.75rem;   // 60px
+  --font-size-72: 4.5rem;    // 72px
+
+  // --- Font weight (verified) ---
+  --font-weight-light:     300;
+  --font-weight-regular:   400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
+  --font-weight-extrabold: 800;
+
+  // --- Line height / leading (verified, unitless multipliers) ---
+  --leading-none:    1;
+  --leading-tight:   1.25;
+  --leading-snug:    1.375;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose:   2;
+
+  // --- Letter spacing / tracking (verified values; em unit assumed —
+  // Figma did not specify a unit on these, confirm with a developer before
+  // shipping if precision matters) ---
+  --tracking-tighter: -0.05em;
+  --tracking-tight:   -0.024em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.025em;
+  --tracking-wider:   0.05em; // ⚠️ present in Figma as "tracking-05" — value ambiguous, confirm
+  --tracking-widest:  0.1em;
+}

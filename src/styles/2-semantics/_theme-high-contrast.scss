@@ -1,0 +1,84 @@
+// =============================================================================
+// TIER 2 — SEMANTICS: High-contrast theme
+//
+// ⚠️ PROPOSED, NOT YET VERIFIED AGAINST FIGMA. Caregiver's Figma file lists
+// a High Contrast mode as one of its three color-theme modes — pull the
+// real values from there before shipping this. Built here so the theme
+// switch (light/dark/high-contrast) has somewhere to attach for all three
+// options, matching Caregiver's already-proven pattern and the ask for
+// "something like Claude's dark and high-contrast modes."
+//
+// DESIGN INTENT: pure black/white surfaces, minimal palette, WCAG AAA
+// contrast (7:1+) where possible, thicker focus indicators. No subtle
+// grays or tinted surfaces — high-contrast mode exists specifically to
+// remove ambiguity for low-vision users.
+// =============================================================================
+
+:root[data-theme="high-contrast"] {
+  // --- Surface ---
+  --bg-surface-primary:   var(--color-black);
+  --bg-surface-secondary: var(--color-black);
+  --bg-surface-tertiary:  var(--neutral-950);
+  --bg-surface-inverse:   var(--neutral-0);
+  --bg-surface-overlay:   var(--overlay-opacity-80);
+
+  // --- Text — pure white on black, no mid-tone secondary text ---
+  --text-primary:   var(--neutral-0);
+  --text-secondary: var(--neutral-0); // intentionally same as primary — no low-contrast secondary text in HC mode
+  --text-tertiary:  var(--neutral-100);
+  --text-disabled:  var(--neutral-400);
+  --text-inverse:   var(--color-black);
+  --text-brand:     var(--blue-300); // lightened for AAA contrast on black
+
+  // --- Icon ---
+  --icon-primary:   var(--neutral-0);
+  --icon-secondary: var(--neutral-100);
+  --icon-inverse:   var(--color-black);
+  --icon-brand:     var(--blue-300);
+
+  // --- Border — always visible, never "subtle" in HC mode ---
+  --border-subtle:  var(--neutral-0);
+  --border-default: var(--neutral-0);
+  --border-strong:  var(--neutral-0);
+  --border-focus:   var(--yellow-400); // yellow focus ring reads reliably against both black and white — same principle OS-level HC modes use
+  --border-danger:  var(--red-300);
+
+  // --- Actions ---
+  --action-primary-bg:          var(--neutral-0);
+  --action-primary-text:        var(--color-black);
+  --action-primary-hover:       var(--blue-300);
+  --action-primary-pressed:     var(--blue-400);
+  --action-primary-disabled-bg: var(--neutral-700);
+
+  --action-secondary-bg:      var(--color-black);
+  --action-secondary-text:    var(--neutral-0);
+  --action-secondary-border:  var(--neutral-0);
+  --action-secondary-hover:   var(--neutral-900);
+
+  // --- Status — desaturated toward white/black extremes, kept
+  // distinguishable by hue alone since some HC users also have low color
+  // perception; pair with icons/text labels, never color alone ---
+  --status-success:    var(--green-300);
+  --status-success-bg: var(--color-black);
+  --status-warning:    var(--yellow-300);
+  --status-warning-bg: var(--color-black);
+  --status-error:      var(--red-300);
+  --status-error-bg:   var(--color-black);
+  --status-info:       var(--blue-300);
+  --status-info-bg:    var(--color-black);
+
+  // --- Shadow — HC mode typically relies on borders, not shadows, for
+  // separation; keep elevation minimal/flat ---
+  --elevation-sm: none;
+  --elevation-md: none;
+  --elevation-lg: none;
+  --elevation-xl: none;
+}
+
+// Also respect the OS-level media query as a fallback for users who set
+// high contrast at the system level without your app's theme switcher.
+@media (prefers-contrast: more) {
+  :root:not([data-theme]) {
+    @extend :root[data-theme="high-contrast"];
+  }
+}

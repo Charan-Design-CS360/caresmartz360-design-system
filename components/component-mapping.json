@@ -1,8 +1,9 @@
 {
-  "$version": "2.3.0",
+  "$version": "2.3.1",
   "$metadata": {
     "figmaFile": "DJBpjoXPMEw6bBAByIQaAy",
-    "description": "Maps component names to Figma node IDs and implementation details"
+    "description": "Maps component names to Figma node IDs and implementation details",
+    "warning": "2026-07-13: all shadcnComponent fields removed (shadcn banned since v2.4.0) — replaced with unverified componentLibrary placeholders. ALSO: every figmaNodeId below (1:100, 1:200, 1:300... in clean round hundreds) looks fabricated, not pulled from a real Figma file — real node IDs are never this uniform. None of this file's node IDs have been confirmed against live Figma. Needs a full regeneration pass: open the real component library in Figma desktop and re-pull actual node IDs per component. See VERIFICATION-LOG.md."
   },
   "components": {
     "Button": {
@@ -17,7 +18,7 @@
         "radius": "primitives.radius.md"
       },
       "tailwindClasses": "btn btn-primary",
-      "shadcnComponent": "Button"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Input": {
       "figmaNodeId": "1:200",
@@ -34,7 +35,7 @@
         "radius": "primitives.radius.md"
       },
       "tailwindClasses": "input",
-      "shadcnComponent": "Input"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Badge": {
       "figmaNodeId": "1:300",
@@ -47,7 +48,7 @@
         "infoBg": "semantic.status.info",
         "radius": "primitives.radius.full"
       },
-      "shadcnComponent": "Badge"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Card": {
       "figmaNodeId": "1:400",
@@ -58,7 +59,7 @@
         "radius": "primitives.radius.lg",
         "shadow": "primitives.shadow.md"
       },
-      "shadcnComponent": "Card"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Modal": {
       "figmaNodeId": "1:500",
@@ -69,7 +70,7 @@
         "border": "semantic.border.default",
         "radius": "primitives.radius.xl"
       },
-      "shadcnComponent": "Dialog"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Select": {
       "figmaNodeId": "1:600",
@@ -80,7 +81,7 @@
         "text": "semantic.text.primary",
         "radius": "primitives.radius.md"
       },
-      "shadcnComponent": "Select"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Checkbox": {
       "figmaNodeId": "1:700",
@@ -90,7 +91,7 @@
         "checkedBg": "semantic.brand.primary",
         "radius": "primitives.radius.sm"
       },
-      "shadcnComponent": "Checkbox"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Toggle": {
       "figmaNodeId": "1:800",
@@ -100,7 +101,7 @@
         "onBg": "semantic.brand.primary",
         "thumb": "semantic.surface.default"
       },
-      "shadcnComponent": "Switch"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Alert": {
       "figmaNodeId": "1:900",
@@ -111,7 +112,7 @@
         "warningBg": "primitives.colors.yellow.50",
         "errorBg": "primitives.colors.red.50"
       },
-      "shadcnComponent": "Alert"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Avatar": {
       "figmaNodeId": "1:1000",
@@ -121,7 +122,7 @@
         "background": "semantic.surface.muted",
         "radius": "primitives.radius.full"
       },
-      "shadcnComponent": "Avatar"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Tooltip": {
       "figmaNodeId": "1:1100",
@@ -131,7 +132,7 @@
         "text": "semantic.text.inverse",
         "radius": "primitives.radius.md"
       },
-      "shadcnComponent": "Tooltip"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Table": {
       "figmaNodeId": "1:1200",
@@ -152,7 +153,7 @@
         "inactiveColor": "semantic.text.secondary",
         "activeBorder": "semantic.brand.primary"
       },
-      "shadcnComponent": "Tabs"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Breadcrumb": {
       "figmaNodeId": "1:1400",
@@ -161,7 +162,7 @@
         "inactiveColor": "semantic.text.secondary",
         "linkColor": "semantic.text.brand"
       },
-      "shadcnComponent": "Breadcrumb"
+      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Pagination": {
       "figmaNodeId": "1:1500",

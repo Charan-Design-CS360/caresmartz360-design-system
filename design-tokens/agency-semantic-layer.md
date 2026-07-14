@@ -51,11 +51,13 @@ This document defines the **complete semantic token layer** for the **Agency Por
 
 ### 4. Brand Colors
 
+> **Verified 2026-07-08:** Light-mode brand values below were corrected against a live Figma pull (Dev Mode MCP, `DJBpjoXPMEw6bBAByIQaAy` node `89:2`) — see `VERIFICATION-LOG.md`. Dark-mode values are **not yet verified** — primitives collection only has one mode; dark-mode brand shades need an independent semantic-layer pull before trusting them.
+
 | Token | Light Value | Dark Value | Usage |
 |-------|-------------|------------|-------|
-| `--agency-brand-primary` | `#1976D2` | `#42A5F5` | Primary CTA |
-| `--agency-brand-primary-hover` | `#1565C0` | `#1E88E5` | Hover state |
-| `--agency-brand-primary-active` | `#0D47A1` | `#1565C0` | Active state |
+| `--agency-brand-primary` | `#0077FF` ✅ | `#42A5F5` ⚠️ unverified | Primary CTA |
+| `--agency-brand-primary-hover` | `#005CE6` ✅ | `#1E88E5` ⚠️ unverified | Hover state |
+| `--agency-brand-primary-active` | `#0045B3` ✅ | `#1565C0` ⚠️ unverified | Active state |
 | `--agency-brand-secondary` | `#424242` | `#E0E0E0` | Secondary actions |
 | `--agency-brand-accent` | `#FF6F00` | `#FFB74D` | Accent elements |
 
@@ -69,16 +71,16 @@ This document defines the **complete semantic token layer** for the **Agency Por
 | `--agency-status-warning-bg` | `#FFF3E0` | `#E65100` | Warning background |
 | `--agency-status-error` | `#D32F2F` | `#EF5350` | Error states |
 | `--agency-status-error-bg` | `#FFEBEE` | `#B71C1C` | Error background |
-| `--agency-status-info` | `#1976D2` | `#42A5F5` | Info states |
+| `--agency-status-info` | `#0077FF` ✅ | `#42A5F5` ⚠️ unverified | Info states |
 | `--agency-status-info-bg` | `#E3F2FD` | `#0D47A1` | Info background |
 
 ### 6. Interactive States
 
 | Token | Light Value | Dark Value | Usage |
 |-------|-------------|------------|-------|
-| `--agency-interactive-default` | `#1976D2` | `#42A5F5` | Links, buttons |
-| `--agency-interactive-hover` | `#1565C0` | `#1E88E5` | Hover state |
-| `--agency-interactive-active` | `#0D47A1` | `#1565C0` | Active state |
+| `--agency-interactive-default` | `#0077FF` ✅ | `#42A5F5` ⚠️ unverified | Links, buttons |
+| `--agency-interactive-hover` | `#005CE6` ✅ | `#1E88E5` ⚠️ unverified | Hover state |
+| `--agency-interactive-active` | `#0045B3` ✅ | `#1565C0` ⚠️ unverified | Active state |
 | `--agency-interactive-disabled` | `#BDBDBD` | `#546E7A` | Disabled state |
 | `--agency-interactive-visited` | `#7B1FA2` | `#BA68C8` | Visited links |
 

@@ -1,0 +1,42 @@
+// =============================================================================
+// TIER 1 — PRIMITIVES: Effects (shadow, z-index, motion)
+// Not in the original folder sketch — added because these primitives exist
+// live in Figma and had nowhere to go. See "suggestions" in
+// src/styles/README.md for the reasoning.
+//
+// SOURCE OF TRUTH (Figma): same file as colors — see _colors.scss header.
+// Verified 2026-07-08, except shadow (Figma dump didn't expose shadow
+// primitives directly under this collection — values below carried over
+// from ds-tokens-latest.json, ⚠️ not independently re-pulled this session).
+// =============================================================================
+
+:root {
+  // --- Shadow — ⚠️ not re-verified against live Figma variables this pass ---
+  --shadow-sm:   0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md:   0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg:   0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl:   0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-none: none;
+
+  // --- Z-index (verified) ---
+  --z-index-0:  0;
+  --z-index-10: 10;
+  --z-index-20: 20;
+  --z-index-30: 30;
+  --z-index-40: 40;
+  --z-index-50: 50;
+
+  // --- Motion / duration (verified, ms) ---
+  --duration-75:  75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+
+  // --- Easing — not present in the Figma primitives dump; carried over
+  // from existing agency-styles.scss, ⚠️ unverified ---
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}

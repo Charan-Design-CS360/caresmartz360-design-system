@@ -13,55 +13,238 @@ module.exports = {
     extend: {
       colors: {
         // --- Brand Colors (semantic.brand) ---
-        brand: {
-          primary:   '#2563EB', // blue.600
-          secondary: '#DBEAFE', // blue.100
-          hover:     '#1D4ED8', // blue.700
-          active:    '#1E40AF', // blue.800
-          disabled:  '#D1D5DB', // gray.300
+        // VERIFIED 2026-07-08 against live Figma "Brandblue" variable collection
+        // (Dev Mode MCP pull, DJBpjoXPMEw6bBAByIQaAy node 89:2). Previous values
+        // (#2563EB primary, #1D4ED8 hover, #1E40AF active) were Tailwind's stock
+        // blue-600/700/800 — not present anywhere in the real Figma ramp. See
+        // VERIFICATION-LOG.md for the full before/after.
+                'field': {
+          'value': {
+            'primary': 'var(--field-value-primary)',
+            'inverse': 'var(--field-value-inverse)',
+            'link': 'var(--field-value-link)',
+            'placeholder': 'var(--field-value-placeholder)',
+            'disabled': 'var(--field-value-disabled)',
+          },
+          'icon': 'var(--field-icon)',
+          'bg': {
+            'default': 'var(--field-bg-default)',
+            'focus': 'var(--field-bg-focus)',
+            'danger': 'var(--field-bg-danger)',
+            'disabled': 'var(--field-bg-disabled)',
+          },
+          'border': {
+            'default': 'var(--field-border-default)',
+            'focus': 'var(--field-border-focus)',
+            'danger': 'var(--field-border-danger)',
+          },
         },
-        // --- Status Colors (semantic.status) ---
-        status: {
-          success: '#16A34A', // green.600
-          warning: '#EAB308', // yellow.500
-          error:   '#DC2626', // red.600
-          info:    '#2563EB', // blue.600
+        'text': {
+          'brand': 'var(--text-brand)',
+          'primary': 'var(--text-primary)',
+          'secondary': 'var(--text-secondary)',
+          'tertiary': 'var(--text-tertiary)',
+          'inverse': 'var(--text-inverse)',
+          'links': 'var(--text-links)',
+          'disabled': 'var(--text-disabled)',
+          'danger': 'var(--text-danger)',
+          'warning': 'var(--text-warning)',
+          'success': 'var(--text-success)',
         },
-        // --- Surface Colors (semantic.surface) ---
-        surface: {
-          default:  '#FFFFFF', // white
-          subtle:   '#F9FAFB', // gray.50
-          muted:    '#F3F4F6', // gray.100
-          overlay:  '#1F2937', // gray.800
+        'border': {
+          'brand': 'var(--border-brand)',
+          'strong': 'var(--border-strong)',
+          'medium': 'var(--border-medium)',
+          'subtle': 'var(--border-subtle)',
+          'danger': 'var(--border-danger)',
+          'warning': 'var(--border-warning)',
+          'success': 'var(--border-success)',
         },
-        // --- Text Colors (semantic.text) ---
-        text: {
-          primary:   '#111827', // gray.900
-          secondary: '#4B5563', // gray.600
-          disabled:  '#9CA3AF', // gray.400
-          inverse:   '#FFFFFF', // white
-          brand:     '#2563EB', // blue.600
+        'icon': {
+          'primary': 'var(--icon-primary)',
+          'secondary': 'var(--icon-secondary)',
+          'soft': 'var(--icon-soft)',
+          'inverse': 'var(--icon-inverse)',
+          'brand': 'var(--icon-brand)',
+          'disabled': 'var(--icon-disabled)',
+          'danger': 'var(--icon-danger)',
+          'warning': 'var(--icon-warning)',
+          'success': 'var(--icon-success)',
         },
-        // --- Border Colors (semantic.border) ---
-        border: {
-          default: '#E5E7EB', // gray.200
-          strong:  '#9CA3AF', // gray.400
-          focus:   '#3B82F6', // blue.500
-          error:   '#EF4444', // red.500
+        'surface': {
+          'base': 'var(--surface-base)',
+          'secondary': 'var(--surface-secondary)',
+          'tertiary': 'var(--surface-tertiary)',
+          'brand': 'var(--surface-brand)',
+          'danger': 'var(--surface-danger)',
+          'warning': 'var(--surface-warning)',
+          'success': 'var(--surface-success)',
+          'disabled': 'var(--surface-disabled)',
+        },
+        'action': {
+          'primary': {
+            'bg': 'var(--action-primary-bg)',
+            'hover': 'var(--action-primary-hover)',
+            'pressed': 'var(--action-primary-pressed)',
+            'text': {
+              'neutral': 'var(--action-primary-text-neutral)',
+              'hard': 'var(--action-primary-text-hard)',
+            },
+            'outlined': 'var(--action-primary-outlined)',
+          },
+          'secondary': {
+            'bg': 'var(--action-secondary-bg)',
+            'hover': 'var(--action-secondary-hover)',
+            'pressed': 'var(--action-secondary-pressed)',
+            'text': 'var(--action-secondary-text)',
+            'border': 'var(--action-secondary-border)',
+            'outlined': 'var(--action-secondary-outlined)',
+          },
+          'soft': {
+            'bg': 'var(--action-soft-bg)',
+            'hover': 'var(--action-soft-hover)',
+            'pressed': 'var(--action-soft-pressed)',
+            'text': {
+              'neutral': 'var(--action-soft-text-neutral)',
+            },
+            'outlined': 'var(--action-soft-outlined)',
+          },
+          'ghost': {
+            'bg': 'var(--action-ghost-bg)',
+            'hover': 'var(--action-ghost-hover)',
+            'pressed': 'var(--action-ghost-pressed)',
+            'text': {
+              'hard': 'var(--action-ghost-text-hard)',
+            },
+          },
+          'success': {
+            'bg': 'var(--action-success-bg)',
+            'hover': 'var(--action-success-hover)',
+            'pressed': 'var(--action-success-pressed)',
+            'text': {
+              'neutral': 'var(--action-success-text-neutral)',
+              'hard': 'var(--action-success-text-hard)',
+            },
+            'outlined': 'var(--action-success-outlined)',
+          },
+          'warning': {
+            'bg': 'var(--action-warning-bg)',
+            'hover': 'var(--action-warning-hover)',
+            'pressed': 'var(--action-warning-pressed)',
+            'text': {
+              'neutral': 'var(--action-warning-text-neutral)',
+            },
+            'outlined': 'var(--action-warning-outlined)',
+          },
+          'destructive': {
+            'bg': 'var(--action-destructive-bg)',
+            'hover': 'var(--action-destructive-hover)',
+            'pressed': 'var(--action-destructive-pressed)',
+            'text': {
+              'neutral': 'var(--action-destructive-text-neutral)',
+            },
+            'outlined': 'var(--action-destructive-outlined)',
+          },
+          'disabled': {
+            'bg': 'var(--action-disabled-bg)',
+            'text': {
+              'neutral': 'var(--action-disabled-text-neutral)',
+            },
+          },
+          'toggle': {
+            'bg': {
+              'default': 'var(--action-toggle-bg-default)',
+              'hover': 'var(--action-toggle-bg-hover)',
+              'active': 'var(--action-toggle-bg-active)',
+              'partial': 'var(--action-toggle-bg-partial)',
+            },
+            'icon': {
+              'default': 'var(--action-toggle-icon-default)',
+              'hover': 'var(--action-toggle-icon-hover)',
+              'active': 'var(--action-toggle-icon-active)',
+              'partial': 'var(--action-toggle-icon-partial)',
+              'disabled': 'var(--action-toggle-icon-disabled)',
+            },
+          },
+        },
+        'sidebar': {
+          'primary': {
+            'bg': 'var(--sidebar-primary-bg)',
+            'foreground': 'var(--sidebar-primary-foreground)',
+          },
+          'secondary': {
+            'bg': 'var(--sidebar-secondary-bg)',
+            'foreground': 'var(--sidebar-secondary-foreground)',
+          },
+          'accent': {
+            'bg': 'var(--sidebar-accent-bg)',
+            'foreground': 'var(--sidebar-accent-foreground)',
+          },
+          'border': 'var(--sidebar-border)',
+          'ring': 'var(--sidebar-ring)',
+          'text': 'var(--sidebar-text)',
+          'icon': 'var(--sidebar-icon)',
+        },
+        'tags': {
+          'neutral': 'var(--tags-neutral)',
+          'disabled': 'var(--tags-disabled)',
+          'red': 'var(--tags-red)',
+          'yellow': 'var(--tags-yellow)',
+          'green': 'var(--tags-green)',
+          'blue': 'var(--tags-blue)',
+        },
+        'tooltip': {
+          'bg': 'var(--tooltip-bg)',
+          'text': 'var(--tooltip-text)',
+        },
+        'popover': {
+          'secondary': {
+            'bg': 'var(--popover-secondary-bg)',
+            'foreground': 'var(--popover-secondary-foreground)',
+          },
+        },
+        'chart': {
+          '1': 'var(--chart-1)',
+          '2': 'var(--chart-2)',
+          '3': 'var(--chart-3)',
+          '4': 'var(--chart-4)',
+          '5': 'var(--chart-5)',
+        },
+        'status': {
+          'shift': {
+            'open': 'var(--status-shift-open)',
+            'scheduled': 'var(--status-shift-scheduled)',
+            'approved': 'var(--status-shift-approved)',
+          },
+          'meeting': {
+            'approved': 'var(--status-meeting-approved)',
+            'cancelled': 'var(--status-meeting-cancelled)',
+          },
+          'task': {
+            'deferred': 'var(--status-task-deferred)',
+            'not': {
+              'started': 'var(--status-task-not-started)',
+            },
+            'in': {
+              'progress': 'var(--status-task-in-progress)',
+            },
+          },
         },
         // --- Primitive Blue Scale ---
+        // Renamed in intent (not in key, to avoid a breaking rename across the codebase)
+        // to mirror Figma's real "Brandblue" variable collection. Verified 2026-07-08.
         blue: {
-          50:  '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#3B82F6',
-          600: '#2563EB',
-          700: '#1D4ED8',
-          800: '#1E40AF',
-          900: '#1E3A8A',
-          950: '#172554',
+          50:  '#F0F7FF',
+          100: '#E0F0FF',
+          200: '#BADEFF',
+          300: '#8ACCFF',
+          400: '#57B5FF',
+          500: '#2499FF',
+          600: '#0077FF',
+          700: '#005CE6',
+          800: '#0045B3',
+          900: '#003180',
+          950: '#001F52',
         },
         // --- Primitive Gray Scale ---
         gray: {
@@ -115,6 +298,14 @@ module.exports = {
         '3xl':['30px', { lineHeight: '1.25' }],
         '4xl':['36px', { lineHeight: '1.25' }],
       },
+      // NOTE 2026-07-08: these keys use Tailwind's classic index convention
+      // (key '4' = 16px, i.e. index × 4px) — NOT the same as Figma's primitive
+      // naming, which names spacing tokens by their literal pixel value
+      // (Figma's "space-4" = 4px, "space-16" = 16px). Both describe the same
+      // underlying 4/8/12/16/20/24/32/40/48/64/80px scale, just indexed
+      // differently. Left unchanged here because renaming these keys would be
+      // a breaking change to every p-4/gap-4/etc. class already in the app —
+      // needs developer sign-off before remapping. See VERIFICATION-LOG.md.
       spacing: {
         '0':  '0px',
         '1':  '4px',

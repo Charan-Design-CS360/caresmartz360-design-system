@@ -1,0 +1,239 @@
+// =============================================================================
+// TIER 2 — SEMANTICS: Light theme (default)
+// Contextual intent. Maps to Tier 1 primitives only.
+// =============================================================================
+
+:root,
+:root[data-theme="light"] {
+  // ── FIELD / FORM INPUTS ──
+  --field-value-primary: var(--neutral-800);
+  --field-value-inverse: var(--neutral-0);
+  --field-value-link: var(--blue-600);
+  --field-value-placeholder: var(--neutral-400);
+  --field-value-disabled: var(--neutral-300);
+  --field-icon: var(--neutral-400);
+  --field-bg-default: var(--neutral-0);
+  --field-border-default: var(--neutral-200);
+  --field-bg-focus: var(--blue-50);
+  --field-border-focus: var(--blue-600);
+  --field-bg-danger: var(--red-50);
+  --field-border-danger: var(--red-500);
+  --field-bg-disabled: var(--neutral-100);
+
+  // ── TEXT ──
+  --text-brand: var(--blue-600);
+  --text-primary: var(--neutral-800);
+  --text-secondary: var(--neutral-600);
+  --text-tertiary: var(--neutral-400);
+  --text-inverse: var(--neutral-50);
+  --text-links: var(--blue-600);
+  --text-disabled: var(--neutral-400);
+  --text-danger: var(--red-600);
+  --text-warning: var(--yellow-600);
+  --text-success: var(--green-600);
+
+  // ── BORDER ──
+  --border-brand: var(--blue-600);
+  --border-strong: var(--neutral-800);
+  --border-medium: var(--neutral-400);
+  --border-subtle: var(--neutral-200);
+  --border-transparent: var(--opacity-0);
+  --border-danger: var(--red-500);
+  --border-warning: var(--yellow-500);
+  --border-success: var(--green-500);
+
+  // ── ICON ──
+  --icon-primary: var(--neutral-800);
+  --icon-secondary: var(--neutral-400);
+  --icon-soft: var(--neutral-600);
+  --icon-inverse: var(--neutral-0);
+  --icon-brand: var(--blue-600);
+  --icon-disabled: var(--neutral-300);
+  --icon-danger: var(--red-500);
+  --icon-warning: var(--yellow-500);
+  --icon-success: var(--green-500);
+
+  // ── SURFACE ──
+  --surface-base: var(--neutral-0);
+  --surface-secondary: var(--neutral-50);
+  --surface-tertiary: var(--neutral-100);
+  --surface-brand: var(--blue-600);
+  --surface-brand-hover: var(--blue-700);
+  --surface-brand-pressed: var(--blue-800);
+  --surface-brand-bg: var(--blue-50);
+  --surface-danger: var(--red-500);
+  --surface-danger-subtle: var(--red-50);
+  --surface-warning: var(--yellow-500);
+  --surface-warning-subtle: var(--yellow-50);
+  --surface-success: var(--green-500);
+  --surface-success-subtle: var(--green-50);
+  --surface-disabled: var(--neutral-100);
+
+  // ── ACTIONS — PRIMARY ──
+  --action-primary-bg: var(--blue-600);
+  --action-primary-hover: var(--blue-700);
+  --action-primary-pressed: var(--blue-800);
+  --action-primary-text-neutral: var(--neutral-0);
+  --action-primary-text-hard: var(--blue-600);
+  --action-primary-border: var(--opacity-0);
+  --action-primary-outlined: var(--blue-200);
+
+  // ── ACTIONS — SECONDARY ──
+  --action-secondary-bg: var(--blue-50);
+  --action-secondary-hover: var(--blue-100);
+  --action-secondary-pressed: var(--blue-200);
+  --action-secondary-text: var(--blue-600);
+  --action-secondary-border: var(--blue-200);
+  --action-secondary-outlined: var(--blue-200);
+
+  // ── ACTIONS — SOFT ──
+  --action-soft-bg: var(--neutral-50);
+  --action-soft-hover: var(--neutral-100);
+  --action-soft-pressed: var(--neutral-200);
+  --action-soft-text-neutral: var(--neutral-600);
+  --action-soft-border: var(--opacity-0);
+  --action-soft-outlined: var(--neutral-200);
+
+  // ── ACTIONS — GHOST ──
+  --action-ghost-bg: var(--neutral-0);
+  --action-ghost-hover: var(--neutral-100);
+  --action-ghost-pressed: var(--neutral-200);
+  --action-ghost-text-hard: var(--blue-800);
+  --action-ghost-border: var(--opacity-0);
+
+  // ── ACTIONS — SUCCESS ──
+  --action-success-bg: var(--green-600);
+  --action-success-hover: var(--green-700);
+  --action-success-pressed: var(--green-800);
+  --action-success-text-neutral: var(--neutral-0);
+  --action-success-text-hard: var(--green-600);
+  --action-success-border: var(--opacity-0);
+  --action-success-outlined: var(--green-200);
+
+  // ── ACTIONS — WARNING ──
+  --action-warning-bg: var(--yellow-500);
+  --action-warning-hover: var(--yellow-600);
+  --action-warning-pressed: var(--yellow-700);
+  --action-warning-text-neutral: var(--yellow-900);
+  --action-warning-border: var(--opacity-0);
+  --action-warning-outlined: var(--yellow-200);
+
+  // ── ACTIONS — DESTRUCTIVE ──
+  --action-destructive-bg: var(--red-500);
+  --action-destructive-hover: var(--red-600);
+  --action-destructive-pressed: var(--red-700);
+  --action-destructive-text-neutral: var(--neutral-0);
+  --action-destructive-border: var(--opacity-0);
+  --action-destructive-outlined: var(--red-200);
+
+  // ── ACTIONS — DISABLED ──
+  --action-disabled-bg: var(--neutral-100);
+  --action-disabled-text-neutral: var(--neutral-300);
+  --action-disabled-border: var(--opacity-0);
+
+  // ── ACTIONS — FOCUS ──
+  --action-focus-ring: var(--overlay-opacity-40);
+  --action-focus-ring-offset: var(--surface-base);
+
+  // ── ACTIONS — TOGGLE ──
+  --action-toggle-bg-default: var(--neutral-200);
+  --action-toggle-icon-default: var(--neutral-400);
+  --action-toggle-bg-hover: var(--blue-200);
+  --action-toggle-icon-hover: var(--blue-600);
+  --action-toggle-bg-active: var(--green-600);
+  --action-toggle-icon-active: var(--neutral-0);
+  --action-toggle-bg-partial: var(--yellow-500);
+  --action-toggle-icon-partial: var(--neutral-0);
+  --action-toggle-icon-disabled: var(--neutral-300);
+  --action-toggle-border: var(--opacity-0);
+  --action-toggle-focus-ring: var(--overlay-opacity-10);
+
+  // ── SIDEBAR ──
+  --sidebar-primary-bg: var(--blue-600);
+  --sidebar-primary-foreground: var(--neutral-0);
+  --sidebar-secondary-bg: var(--neutral-50);
+  --sidebar-secondary-foreground: var(--neutral-600);
+  --sidebar-accent-bg: var(--neutral-100);
+  --sidebar-accent-foreground: var(--neutral-600);
+  --sidebar-border: var(--neutral-200);
+  --sidebar-ring: var(--blue-500);
+  --sidebar-text: var(--neutral-0);
+  --sidebar-text-active: var(--neutral-0);
+  --sidebar-icon: var(--neutral-0);
+  --sidebar-icon-active: var(--neutral-0);
+
+  // ── TAGS ──
+  --tags-neutral: var(--neutral-800);
+  --tags-neutral-bg: var(--neutral-50);
+  --tags-disabled: var(--neutral-400);
+  --tags-red: var(--red-600);
+  --tags-red-bg: var(--red-50);
+  --tags-yellow: var(--yellow-500);
+  --tags-yellow-bg: var(--yellow-50);
+  --tags-green: var(--green-600);
+  --tags-green-bg: var(--green-50);
+  --tags-blue: var(--blue-600);
+  --tags-blue-bg: var(--blue-50);
+  --tags-purple: var(--purple-600);
+  --tags-purple-bg: var(--purple-50);
+
+  // ── TOOLTIP ──
+  --tooltip-bg: var(--neutral-800);
+  --tooltip-text: var(--neutral-0);
+
+  // ── POPOVER ──
+  --popover-secondary-bg: var(--neutral-0);
+  --popover-secondary-foreground: var(--neutral-800);
+
+  // ── ELEVATION ──
+  --elevation-none: var(--opacity-0);
+  --elevation-xs: var(--overlay-opacity-10);
+
+  // ── CHART ──
+  --chart-1: var(--blue-500);
+  --chart-2: var(--green-500);
+  --chart-3: var(--yellow-500);
+  --chart-4: var(--red-400);
+  --chart-5: var(--neutral-600);
+
+  // ── STATUS — SHIFT ──
+  --status-shift-open: var(--red-600);
+  --status-shift-open-bg: var(--red-50);
+  --status-shift-confirmed: var(--purple-600);
+  --status-shift-confirmed-bg: var(--purple-50);
+  --status-shift-need-review: var(--purple-600);
+  --status-shift-need-review-bg: var(--purple-50);
+  --status-shift-scheduled: var(--blue-400);
+  --status-shift-scheduled-bg: var(--blue-50);
+  --status-shift-scheduled-bg-active: var(--yellow-500);
+  --status-shift-approved: var(--green-600);
+  --status-shift-approved-bg: var(--green-50);
+  --status-shift-no-show: var(--gray-500);
+  --status-shift-no-show-bg: var(--gray-100);
+  --status-shift-caregiver-cancelled: var(--gray-500);
+  --status-shift-caregiver-cancelled-bg: var(--gray-100);
+  --status-shift-client-cancelled: var(--gray-500);
+  --status-shift-client-cancelled-bg: var(--gray-100);
+  --status-shift-unapproved: var(--gray-500);
+  --status-shift-unapproved-bg: var(--gray-100);
+  --status-shift-unpublished: var(--gray-500);
+  --status-shift-unpublished-bg: var(--gray-100);
+
+  // ── STATUS — MEETING ──
+  --status-meeting-scheduled: var(--orange-500);
+  --status-meeting-scheduled-bg: var(--orange-50);
+  --status-meeting-approved: var(--green-600);
+  --status-meeting-approved-bg: var(--green-50);
+  --status-meeting-cancelled: var(--red-600);
+  --status-meeting-cancelled-bg: var(--red-50);
+
+  // ── STATUS — TASK ──
+  --status-task-completed: var(--purple-600);
+  --status-task-completed-bg: var(--purple-50);
+  --status-task-deferred: var(--red-600);
+  --status-task-deferred-bg: var(--red-50);
+  --status-task-not-started: var(--neutral-500);
+  --status-task-not-started-bg: var(--neutral-100);
+  --status-task-in-progress: var(--blue-600);
+  --status-task-in-progress-bg: var(--blue-50);
+}

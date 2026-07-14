@@ -1,0 +1,39 @@
+// =============================================================================
+// TIER 2 — SEMANTICS: Accessibility
+// =============================================================================
+
+:root {
+  --focus-ring-width:  2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color:  var(--border-focus);
+  --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color);
+
+  --touch-target-min: 2.5rem; // 40px — WCAG AA
+  --touch-target-lg:  3rem;   // 48px
+}
+
+*:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

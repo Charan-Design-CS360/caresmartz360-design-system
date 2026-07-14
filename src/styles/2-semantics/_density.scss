@@ -1,0 +1,57 @@
+// =============================================================================
+// TIER 2 — SEMANTICS: Density & Layout
+// Contextual intent. Maps to Tier 1 primitives only.
+// =============================================================================
+
+:root {
+  // ── FONT SIZE ──
+  --font-size-display: var(--font-size-36);
+  --font-size-heading-1: var(--font-size-32);
+  --font-size-heading-2: var(--font-size-24);
+  --font-size-heading-3: var(--font-size-20);
+  --font-size-heading-4: var(--font-size-18);
+  --font-size-heading-5: var(--font-size-16);
+  --font-size-body-strong: var(--font-size-16);
+  --font-size-body-base: var(--font-size-14);
+  --font-size-caption: var(--font-size-12);
+  --font-size-micro: var(--font-size-10);
+
+  // ── LINE HEIGHT ──
+  --line-height-heading-1: 28px;
+  --line-height-heading-2: 28px;
+  --line-height-heading-3: 28px;
+  --line-height-heading-4: 24px;
+  --line-height-body-strong: 24px;
+  --line-height-body-base: 20px;
+
+  // ── SPACING ──
+  --spacing-none: var(--space-0);
+  --spacing-xs: var(--space-2);
+  --spacing-sm: var(--space-4);
+  --spacing-md: var(--space-8);
+  --spacing-lg: var(--space-12);
+  --spacing-xl: var(--space-16);
+  --spacing-2xl: var(--space-20);
+  --spacing-3xl: var(--space-24);
+  --spacing-4xl: var(--space-32);
+  
+  // ── FONT WEIGHT ──
+  --font-weight-body-base: var(--font-weight-regular);
+  --font-weight-body-strong: var(--font-weight-medium);
+  --font-weight-heading-base: var(--font-weight-medium);
+  --font-weight-heading-strong: var(--font-weight-semibold);
+
+  // ── FONT FAMILY ──
+  --font-family-primary: var(--font-family-sans);
+
+  // ── BORDER RADIUS ──
+  --rounded-none: var(--radius-0);
+  --rounded-sm: var(--radius-2);
+  --rounded: var(--radius-4);
+  --rounded-md: var(--radius-6);
+  --rounded-lg: var(--radius-8);
+  --rounded-xl: var(--radius-12);
+  --rounded-2xl: var(--radius-16);
+  --rounded-3xl: var(--radius-24);
+  --rounded-full: var(--radius-full);
+}

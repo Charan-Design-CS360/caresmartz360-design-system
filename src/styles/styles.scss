@@ -1,0 +1,26 @@
+// =============================================================================
+// CareSmartz360 Design System — master stylesheet
+// Import order matters: primitives → semantics → components.
+// Never import in reverse — a semantic file referencing an unloaded
+// primitive will silently resolve to nothing.
+// =============================================================================
+
+// Tier 1 — Primitives
+@import '1-primitives/colors';
+@import '1-primitives/spacing';
+@import '1-primitives/typography';
+@import '1-primitives/effects';
+
+// Tier 2 — Semantics
+@import '2-semantics/theme-light';       // default / :root
+@import '2-semantics/theme-dark';        // [data-theme="dark"]
+@import '2-semantics/theme-high-contrast'; // [data-theme="high-contrast"]
+@import '2-semantics/density';           // [data-density="small|medium|large"]
+@import '2-semantics/layout';
+@import '2-semantics/a11y';
+@import '2-semantics/status';
+
+// Tier 3 — Components
+@import '3-components/cards';
+@import '3-components/tables';
+@import '3-components/shift-cards';

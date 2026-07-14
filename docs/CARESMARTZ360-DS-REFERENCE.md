@@ -52,7 +52,7 @@ Foundational raw values. Never reference primitives directly in components — a
 
 | Category | Example Token | Value |
 |----------|---------------|-------|
-| Color | `primitives.colors.blue.600` | `#2563EB` |
+| Color | `primitives.colors.blue.600` | `#0077FF` *(corrected 2026-07-08 — verified against live Figma "Brandblue" collection; was `#2563EB`, which turned out to be Tailwind's stock default, not a real CareSmartz360 color — see `VERIFICATION-LOG.md`)* |
 | Spacing | `primitives.spacing.4` | `16px` |
 | Typography | `primitives.typography.fontSize.base` | `14px` |
 | Radius | `primitives.radius.md` | `4px` |
@@ -64,8 +64,8 @@ Meaning-based tokens referencing primitives.
 
 | Token | References | Usage |
 |-------|------------|-------|
-| `semantic.brand.primary` | `blue.600` | Primary CTA buttons |
-| `semantic.brand.hover` | `blue.700` | Button hover state |
+| `semantic.brand.primary` | `blue.600` → `#0077FF` (verified) | Primary CTA buttons |
+| `semantic.brand.hover` | `blue.700` → `#005CE6` (verified) | Button hover state |
 | `semantic.brand.disabled` | `gray.300` | Disabled interactive elements |
 | `semantic.status.success` | `green.600` | Success states, positive feedback |
 | `semantic.status.warning` | `yellow.500` | Warning states, caution |
@@ -261,6 +261,8 @@ export class ButtonComponent {
 ---
 
 ## Spacing (Real Figma Values)
+
+> **Note (2026-07-08):** these semantic names alias Tailwind's index-based spacing scale (see `tailwind.config.js`), which is indexed differently from Figma's own primitive names. Figma names spacing by literal pixel value (`space-4` = 4px, `space-16` = 16px); Tailwind's classic convention indexes by step (`spacing.4` = 16px). Same underlying scale, different numbering — don't cross-reference the numbers directly between the two without checking this table. Not changed to avoid a breaking rename across live app classes; flagged for a developer decision.
 
 | Token | Value | Usage |
 |-------|-------|-------|

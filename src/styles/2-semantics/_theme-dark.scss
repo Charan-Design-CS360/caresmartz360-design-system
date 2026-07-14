@@ -1,0 +1,238 @@
+// =============================================================================
+// TIER 2 — SEMANTICS: Dark theme
+// Contextual intent. Maps to Tier 1 primitives only.
+// =============================================================================
+
+:root[data-theme="dark"] {
+  // ── FIELD / FORM INPUTS ──
+  --field-value-primary: var(--neutral-0);
+  --field-value-inverse: var(--neutral-900);
+  --field-value-link: var(--blue-400);
+  --field-value-placeholder: var(--neutral-400);
+  --field-value-disabled: var(--neutral-400);
+  --field-icon: var(--neutral-400);
+  --field-bg-default: var(--neutral-900);
+  --field-border-default: var(--neutral-800);
+  --field-bg-focus: var(--blue-900);
+  --field-border-focus: var(--blue-400);
+  --field-bg-danger: var(--red-900);
+  --field-border-danger: var(--red-500);
+  --field-bg-disabled: var(--neutral-800);
+
+  // ── TEXT ──
+  --text-brand: var(--blue-400);
+  --text-primary: var(--neutral-0);
+  --text-secondary: var(--neutral-300);
+  --text-tertiary: var(--neutral-500);
+  --text-inverse: var(--neutral-900);
+  --text-links: var(--blue-400);
+  --text-disabled: var(--neutral-500);
+  --text-danger: var(--red-400);
+  --text-warning: var(--yellow-400);
+  --text-success: var(--green-400);
+
+  // ── BORDER ──
+  --border-brand: var(--blue-400);
+  --border-strong: var(--neutral-200);
+  --border-medium: var(--neutral-600);
+  --border-subtle: var(--neutral-800);
+  --border-transparent: var(--opacity-0);
+  --border-danger: var(--red-400);
+  --border-warning: var(--yellow-400);
+  --border-success: var(--green-400);
+
+  // ── ICON ──
+  --icon-primary: var(--neutral-50);
+  --icon-secondary: var(--neutral-300);
+  --icon-soft: var(--neutral-300);
+  --icon-inverse: var(--neutral-900);
+  --icon-brand: var(--blue-400);
+  --icon-disabled: var(--neutral-400);
+  --icon-danger: var(--red-400);
+  --icon-warning: var(--yellow-400);
+  --icon-success: var(--green-400);
+
+  // ── SURFACE ──
+  --surface-base: var(--neutral-950);
+  --surface-secondary: var(--neutral-900);
+  --surface-tertiary: var(--neutral-800);
+  --surface-brand: var(--blue-600);
+  --surface-brand-hover: var(--blue-500);
+  --surface-brand-pressed: var(--blue-700);
+  --surface-brand-bg: var(--blue-950);
+  --surface-danger: var(--red-500);
+  --surface-danger-subtle: var(--red-950);
+  --surface-warning: var(--yellow-500);
+  --surface-warning-subtle: var(--yellow-950);
+  --surface-success: var(--green-500);
+  --surface-success-subtle: var(--green-950);
+  --surface-disabled: var(--neutral-800);
+
+  // ── ACTIONS — PRIMARY ──
+  --action-primary-bg: var(--blue-600);
+  --action-primary-hover: var(--blue-500);
+  --action-primary-pressed: var(--blue-400);
+  --action-primary-text-neutral: var(--neutral-0);
+  --action-primary-text-hard: var(--blue-600);
+  --action-primary-border: var(--opacity-0);
+  --action-primary-outlined: var(--action-primary-bg);
+
+  // ── ACTIONS — SECONDARY ──
+  --action-secondary-bg: var(--blue-900);
+  --action-secondary-hover: var(--blue-900);
+  --action-secondary-pressed: var(--blue-800);
+  --action-secondary-text: var(--blue-400);
+  --action-secondary-border: var(--neutral-600);
+  --action-secondary-outlined: var(--action-primary-bg);
+
+  // ── ACTIONS — SOFT ──
+  --action-soft-bg: var(--neutral-800);
+  --action-soft-hover: var(--neutral-700);
+  --action-soft-pressed: var(--neutral-600);
+  --action-soft-text-neutral: var(--neutral-300);
+  --action-soft-border: var(--opacity-0);
+  --action-soft-outlined: var(--neutral-300);
+
+  // ── ACTIONS — GHOST ──
+  --action-ghost-bg: var(--neutral-950);
+  --action-ghost-hover: var(--neutral-800);
+  --action-ghost-pressed: var(--neutral-700);
+  --action-ghost-text-hard: var(--blue-400);
+  --action-ghost-border: var(--opacity-0);
+
+  // ── ACTIONS — SUCCESS ──
+  --action-success-bg: var(--green-600);
+  --action-success-hover: var(--green-500);
+  --action-success-pressed: var(--green-700);
+  --action-success-text-neutral: var(--neutral-0);
+  --action-success-text-hard: var(--green-800);
+  --action-success-border: var(--opacity-0);
+  --action-success-outlined: var(--action-success-bg);
+
+  // ── ACTIONS — WARNING ──
+  --action-warning-bg: var(--yellow-600);
+  --action-warning-hover: var(--yellow-400);
+  --action-warning-pressed: var(--yellow-700);
+  --action-warning-text-neutral: var(--neutral-0);
+  --action-warning-border: var(--opacity-0);
+  --action-warning-outlined: var(--action-warning-bg);
+
+  // ── ACTIONS — DESTRUCTIVE ──
+  --action-destructive-bg: var(--red-500);
+  --action-destructive-hover: var(--red-400);
+  --action-destructive-pressed: var(--red-600);
+  --action-destructive-text-neutral: var(--neutral-0);
+  --action-destructive-border: var(--opacity-0);
+  --action-destructive-outlined: var(--action-destructive-bg);
+
+  // ── ACTIONS — DISABLED ──
+  --action-disabled-bg: var(--neutral-800);
+  --action-disabled-text-neutral: var(--neutral-500);
+  --action-disabled-border: var(--opacity-0);
+
+  // ── ACTIONS — FOCUS ──
+  --action-focus-ring: var(--overlay-opacity-40);
+  --action-focus-ring-offset: var(--surface-base);
+
+  // ── ACTIONS — TOGGLE ──
+  --action-toggle-bg-default: var(--neutral-800);
+  --action-toggle-icon-default: var(--neutral-300);
+  --action-toggle-bg-hover: var(--neutral-700);
+  --action-toggle-icon-hover: var(--neutral-300);
+  --action-toggle-bg-active: var(--neutral-700);
+  --action-toggle-icon-active: var(--neutral-300);
+  --action-toggle-bg-partial: var(--neutral-700);
+  --action-toggle-icon-partial: var(--neutral-300);
+  --action-toggle-icon-disabled: var(--neutral-600);
+  --action-toggle-border: var(--opacity-0);
+  --action-toggle-focus-ring: var(--neutral-300);
+
+  // ── SIDEBAR ──
+  --sidebar-primary-bg: var(--neutral-800);
+  --sidebar-primary-foreground: var(--neutral-50);
+  --sidebar-secondary-bg: var(--neutral-800);
+  --sidebar-secondary-foreground: var(--neutral-200);
+  --sidebar-accent-bg: var(--neutral-700);
+  --sidebar-accent-foreground: var(--neutral-200);
+  --sidebar-border: var(--neutral-700);
+  --sidebar-ring: var(--neutral-700);
+  --sidebar-text: var(--neutral-400);
+  --sidebar-text-active: var(--neutral-200);
+  --sidebar-icon: var(--neutral-400);
+  --sidebar-icon-active: var(--neutral-200);
+
+  // ── TAGS ──
+  --tags-neutral: var(--neutral-400);
+  --tags-neutral-bg: var(--neutral-700);
+  --tags-disabled: var(--neutral-400);
+  --tags-red: var(--red-600);
+  --tags-red-bg: var(--red-900);
+  --tags-yellow: var(--yellow-600);
+  --tags-yellow-bg: var(--yellow-900);
+  --tags-green: var(--green-400);
+  --tags-green-bg: var(--green-950);
+  --tags-blue: var(--blue-400);
+  --tags-blue-bg: var(--blue-900);
+  --tags-purple: var(--purple-600);
+  --tags-purple-bg: var(--purple-900);
+
+  // ── TOOLTIP ──
+  --tooltip-bg: var(--neutral-700);
+  --tooltip-text: var(--neutral-0);
+
+  // ── POPOVER ──
+  --popover-secondary-bg: var(--neutral-800);
+  --popover-secondary-foreground: var(--neutral-50);
+
+  // ── ELEVATION ──
+  --elevation-none: var(--opacity-0);
+  --elevation-xs: var(--overlay-opacity-10);
+
+  // ── CHART ──
+  --chart-1: var(--blue-400);
+  --chart-2: var(--green-400);
+  --chart-3: var(--yellow-400);
+  --chart-4: var(--red-300);
+  --chart-5: var(--neutral-400);
+
+  // ── STATUS — SHIFT ──
+  --status-shift-open: var(--red-600);
+  --status-shift-open-bg: var(--red-950);
+  --status-shift-confirmed: var(--purple-600);
+  --status-shift-confirmed-bg: var(--purple-900);
+  --status-shift-need-review: var(--purple-600);
+  --status-shift-need-review-bg: var(--purple-900);
+  --status-shift-scheduled: var(--blue-400);
+  --status-shift-scheduled-bg: var(--blue-950);
+  --status-shift-scheduled-bg-active: var(--yellow-900);
+  --status-shift-approved: var(--green-600);
+  --status-shift-approved-bg: var(--green-950);
+  --status-shift-no-show: var(--gray-500);
+  --status-shift-no-show-bg: var(--neutral-800);
+  --status-shift-caregiver-cancelled: var(--gray-500);
+  --status-shift-caregiver-cancelled-bg: var(--neutral-800);
+  --status-shift-client-cancelled: var(--gray-500);
+  --status-shift-client-cancelled-bg: var(--neutral-800);
+  --status-shift-unapproved: var(--gray-500);
+  --status-shift-unapproved-bg: var(--neutral-800);
+  --status-shift-unpublished: var(--gray-500);
+  --status-shift-unpublished-bg: var(--neutral-800);
+
+  // ── STATUS — MEETING ──
+  --status-meeting-scheduled: var(--orange-500);
+  --status-meeting-scheduled-bg: var(--orange-950);
+  --status-meeting-approved: var(--green-600);
+  --status-meeting-approved-bg: var(--green-950);
+  --status-meeting-cancelled: var(--red-600);
+  --status-meeting-cancelled-bg: var(--red-950);
+
+  // ── STATUS — TASK ──
+  --status-task-completed: var(--purple-600);
+  --status-task-completed-bg: var(--purple-900);
+  --status-task-deferred: var(--red-400);
+  --status-task-deferred-bg: var(--red-950);
+  --status-task-not-started: var(--neutral-500);
+  --status-task-not-started-bg: var(--neutral-800);
+  --status-task-in-progress: var(--blue-400);
+  --status-task-in-progress-bg: var(--blue-950);
+}

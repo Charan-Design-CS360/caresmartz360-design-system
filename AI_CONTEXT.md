@@ -19,5 +19,14 @@ We are adopting a strict, enterprise-grade **3-Tier Design Token Architecture** 
 *   **If UI/App Repo:** This repo consumes the SSOT tokens. Components must only use Tier 2 Semantic variables.
 
 ## 5. Relevant Links
-*   [Figma Master File] (Insert Link)
-*   [Jira Epic - UI Architecture Standardization] (Insert Link)
+*   [Figma Master File](https://www.figma.com/design/DJBpjoXPMEw6bBAByIQaAy/--Primitives--CS360--V2.0) — confirmed live 2026-07-08
+*   [Jira Epic - Design System CS360](https://netsmartz.atlassian.net/browse/C360-3526) — status: **On Hold** as of 2026-07-13
+
+## 6. Open Conflict — Rule 3 vs. existing Agency token layer
+Rule 3 above ("NO PREFIXES") directly conflicts with the `--agency-*` prefixed
+tokens already in production use in `design-tokens/agency-styles.scss` and
+`agency-semantic-layer.md`. This was not reconciled when this file was added.
+Needs a decision: either amend Rule 3 to permit portal-scoped prefixes, or
+plan a rename of the Agency (and future Caregiver/Client/Staff) token layers
+to prefix-free global names with theme-switching instead. See
+`VERIFICATION-LOG.md` for detail. — flagged by Claude, 2026-07-13

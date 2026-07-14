@@ -1,0 +1,33 @@
+// =============================================================================
+// TIER 3 — COMPONENTS: Tables
+// =============================================================================
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-density-body);
+
+  th {
+    background: var(--bg-surface-secondary);
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-medium);
+    text-align: left;
+    padding: var(--space-density-sm) var(--space-density-md);
+    border-bottom: var(--border-width-1) solid var(--border-default);
+  }
+
+  td {
+    color: var(--text-primary);
+    padding: var(--space-density-sm) var(--space-density-md);
+    border-bottom: var(--border-width-1) solid var(--border-subtle);
+  }
+
+  &--striped tbody tr:nth-child(even) {
+    background: var(--bg-surface-tertiary);
+  }
+
+  &--compact th,
+  &--compact td {
+    padding: var(--space-density-xs) var(--space-density-sm);
+  }
+}
