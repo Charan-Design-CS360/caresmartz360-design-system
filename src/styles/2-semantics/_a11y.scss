@@ -3,13 +3,13 @@
 // =============================================================================
 
 :root {
-  --focus-ring-width:  2px;
-  --focus-ring-offset: 2px;
-  --focus-ring-color:  var(--border-focus);
+  --focus-ring-width:  var(--border-width-2);
+  --focus-ring-offset: var(--space-2);
+  --focus-ring-color:  var(--field-border-focus);
   --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color);
 
-  --touch-target-min: 2.5rem; // 40px — WCAG AA
-  --touch-target-lg:  3rem;   // 48px
+  --touch-target-min: var(--space-40);
+  --touch-target-lg:  var(--space-48);
 }
 
 *:focus-visible {
@@ -19,10 +19,10 @@
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: var(--border-width-1);
+  height: var(--border-width-1);
   padding: 0;
-  margin: -1px;
+  margin: var(--space-negative-1);
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -31,9 +31,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    animation-duration: var(--duration-reduced-motion);
+    animation-iteration-count: 1;
+    transition-duration: var(--duration-reduced-motion);
+    scroll-behavior: auto;
   }
 }

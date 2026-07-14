@@ -1,82 +1,244 @@
 // =============================================================================
 // TIER 2 — SEMANTICS: High-contrast theme
-//
-// ⚠️ PROPOSED, NOT YET VERIFIED AGAINST FIGMA. Caregiver's Figma file lists
-// a High Contrast mode as one of its three color-theme modes — pull the
-// real values from there before shipping this. Built here so the theme
-// switch (light/dark/high-contrast) has somewhere to attach for all three
-// options, matching Caregiver's already-proven pattern and the ask for
-// "something like Claude's dark and high-contrast modes."
-//
-// DESIGN INTENT: pure black/white surfaces, minimal palette, WCAG AAA
-// contrast (7:1+) where possible, thicker focus indicators. No subtle
-// grays or tinted surfaces — high-contrast mode exists specifically to
-// remove ambiguity for low-vision users.
+// Contextual intent. Maps to Tier 1 primitives only.
 // =============================================================================
 
 :root[data-theme="high-contrast"] {
-  // --- Surface ---
-  --bg-surface-primary:   var(--color-black);
-  --bg-surface-secondary: var(--color-black);
-  --bg-surface-tertiary:  var(--neutral-950);
-  --bg-surface-inverse:   var(--neutral-0);
-  --bg-surface-overlay:   var(--overlay-opacity-80);
+  // ── FIELD / FORM INPUTS ──
+  --field-value-primary: var(--neutral-0);
+  --field-value-inverse: var(--color-black);
+  --field-value-link: var(--blue-300);
+  --field-value-placeholder: var(--neutral-300);
+  --field-value-disabled: var(--neutral-500);
+  --field-icon: var(--neutral-0);
+  --field-bg-default: var(--color-black);
+  --field-border-default: var(--neutral-0);
+  --field-bg-focus: var(--color-black);
+  --field-border-focus: var(--yellow-400);
+  --field-bg-danger: var(--color-black);
+  --field-border-danger: var(--red-300);
+  --field-bg-disabled: var(--neutral-900);
 
-  // --- Text — pure white on black, no mid-tone secondary text ---
-  --text-primary:   var(--neutral-0);
-  --text-secondary: var(--neutral-0); // intentionally same as primary — no low-contrast secondary text in HC mode
-  --text-tertiary:  var(--neutral-100);
-  --text-disabled:  var(--neutral-400);
-  --text-inverse:   var(--color-black);
-  --text-brand:     var(--blue-300); // lightened for AAA contrast on black
+  // ── TEXT ──
+  --text-brand: var(--blue-300);
+  --text-primary: var(--neutral-0);
+  --text-secondary: var(--neutral-0);
+  --text-tertiary: var(--neutral-100);
+  --text-inverse: var(--color-black);
+  --text-links: var(--blue-300);
+  --text-disabled: var(--neutral-400);
+  --text-danger: var(--red-300);
+  --text-warning: var(--yellow-300);
+  --text-success: var(--green-300);
 
-  // --- Icon ---
-  --icon-primary:   var(--neutral-0);
+  // ── BORDER ──
+  --border-brand: var(--blue-300);
+  --border-strong: var(--neutral-0);
+  --border-medium: var(--neutral-0);
+  --border-subtle: var(--neutral-0);
+  --border-transparent: var(--opacity-0);
+  --border-danger: var(--red-300);
+  --border-warning: var(--yellow-300);
+  --border-success: var(--green-300);
+
+  // ── ICON ──
+  --icon-primary: var(--neutral-0);
   --icon-secondary: var(--neutral-100);
-  --icon-inverse:   var(--color-black);
-  --icon-brand:     var(--blue-300);
+  --icon-soft: var(--neutral-0);
+  --icon-inverse: var(--color-black);
+  --icon-brand: var(--blue-300);
+  --icon-disabled: var(--neutral-500);
+  --icon-danger: var(--red-300);
+  --icon-warning: var(--yellow-300);
+  --icon-success: var(--green-300);
 
-  // --- Border — always visible, never "subtle" in HC mode ---
-  --border-subtle:  var(--neutral-0);
-  --border-default: var(--neutral-0);
-  --border-strong:  var(--neutral-0);
-  --border-focus:   var(--yellow-400); // yellow focus ring reads reliably against both black and white — same principle OS-level HC modes use
-  --border-danger:  var(--red-300);
+  // ── SURFACE ──
+  --surface-base: var(--color-black);
+  --surface-transparent: var(--opacity-0);
+  --surface-secondary: var(--color-black);
+  --surface-tertiary: var(--neutral-950);
+  --surface-brand: var(--neutral-0);
+  --surface-brand-hover: var(--neutral-100);
+  --surface-brand-pressed: var(--neutral-200);
+  --surface-brand-bg: var(--color-black);
+  --surface-danger: var(--neutral-0);
+  --surface-danger-subtle: var(--color-black);
+  --surface-warning: var(--neutral-0);
+  --surface-warning-subtle: var(--color-black);
+  --surface-success: var(--neutral-0);
+  --surface-success-subtle: var(--color-black);
+  --surface-disabled: var(--neutral-800);
 
-  // --- Actions ---
-  --action-primary-bg:          var(--neutral-0);
-  --action-primary-text:        var(--color-black);
-  --action-primary-hover:       var(--blue-300);
-  --action-primary-pressed:     var(--blue-400);
-  --action-primary-disabled-bg: var(--neutral-700);
+  // ── ACTIONS — PRIMARY ──
+  --action-primary-bg: var(--neutral-0);
+  --action-primary-hover: var(--blue-300);
+  --action-primary-pressed: var(--blue-400);
+  --action-primary-text-neutral: var(--color-black);
+  --action-primary-text-hard: var(--blue-300);
+  --action-primary-border: var(--neutral-0);
+  --action-primary-outlined: var(--neutral-0);
 
-  --action-secondary-bg:      var(--color-black);
-  --action-secondary-text:    var(--neutral-0);
-  --action-secondary-border:  var(--neutral-0);
-  --action-secondary-hover:   var(--neutral-900);
+  // ── ACTIONS — SECONDARY ──
+  --action-secondary-bg: var(--color-black);
+  --action-secondary-hover: var(--neutral-900);
+  --action-secondary-pressed: var(--neutral-800);
+  --action-secondary-text: var(--neutral-0);
+  --action-secondary-border: var(--neutral-0);
+  --action-secondary-outlined: var(--neutral-0);
 
-  // --- Status — desaturated toward white/black extremes, kept
-  // distinguishable by hue alone since some HC users also have low color
-  // perception; pair with icons/text labels, never color alone ---
-  --status-success:    var(--green-300);
-  --status-success-bg: var(--color-black);
-  --status-warning:    var(--yellow-300);
-  --status-warning-bg: var(--color-black);
-  --status-error:      var(--red-300);
-  --status-error-bg:   var(--color-black);
-  --status-info:       var(--blue-300);
-  --status-info-bg:    var(--color-black);
+  // ── ACTIONS — SOFT ──
+  --action-soft-bg: var(--color-black);
+  --action-soft-hover: var(--neutral-900);
+  --action-soft-pressed: var(--neutral-800);
+  --action-soft-text-neutral: var(--neutral-0);
+  --action-soft-border: var(--neutral-0);
+  --action-soft-outlined: var(--neutral-0);
 
-  // --- Shadow — HC mode typically relies on borders, not shadows, for
-  // separation; keep elevation minimal/flat ---
-  --elevation-sm: none;
-  --elevation-md: none;
-  --elevation-lg: none;
-  --elevation-xl: none;
+  // ── ACTIONS — GHOST ──
+  --action-ghost-bg: var(--color-black);
+  --action-ghost-hover: var(--neutral-900);
+  --action-ghost-pressed: var(--neutral-800);
+  --action-ghost-text-hard: var(--blue-300);
+  --action-ghost-border: var(--opacity-0);
+
+  // ── ACTIONS — SUCCESS ──
+  --action-success-bg: var(--neutral-0);
+  --action-success-hover: var(--green-300);
+  --action-success-pressed: var(--green-400);
+  --action-success-text-neutral: var(--color-black);
+  --action-success-text-hard: var(--green-300);
+  --action-success-border: var(--neutral-0);
+  --action-success-outlined: var(--neutral-0);
+
+  // ── ACTIONS — WARNING ──
+  --action-warning-bg: var(--neutral-0);
+  --action-warning-hover: var(--yellow-300);
+  --action-warning-pressed: var(--yellow-400);
+  --action-warning-text-neutral: var(--color-black);
+  --action-warning-border: var(--neutral-0);
+  --action-warning-outlined: var(--neutral-0);
+
+  // ── ACTIONS — DESTRUCTIVE ──
+  --action-destructive-bg: var(--neutral-0);
+  --action-destructive-hover: var(--red-300);
+  --action-destructive-pressed: var(--red-400);
+  --action-destructive-text-neutral: var(--color-black);
+  --action-destructive-border: var(--neutral-0);
+  --action-destructive-outlined: var(--neutral-0);
+
+  // ── ACTIONS — DISABLED ──
+  --action-disabled-bg: var(--neutral-700);
+  --action-disabled-text-neutral: var(--neutral-400);
+  --action-disabled-border: var(--opacity-0);
+
+  // ── ACTIONS — FOCUS ──
+  --action-focus-ring: var(--yellow-400);
+  --action-focus-ring-offset: var(--surface-base);
+
+  // ── ACTIONS — TOGGLE ──
+  --action-toggle-bg-default: var(--neutral-700);
+  --action-toggle-icon-default: var(--neutral-300);
+  --action-toggle-bg-hover: var(--blue-900);
+  --action-toggle-icon-hover: var(--blue-300);
+  --action-toggle-bg-active: var(--neutral-0);
+  --action-toggle-icon-active: var(--color-black);
+  --action-toggle-bg-partial: var(--neutral-0);
+  --action-toggle-icon-partial: var(--color-black);
+  --action-toggle-icon-disabled: var(--neutral-600);
+  --action-toggle-border: var(--neutral-0);
+  --action-toggle-focus-ring: var(--yellow-400);
+
+  // ── SIDEBAR ──
+  --sidebar-primary-bg: var(--color-black);
+  --sidebar-primary-foreground: var(--neutral-0);
+  --sidebar-secondary-bg: var(--color-black);
+  --sidebar-secondary-foreground: var(--neutral-0);
+  --sidebar-accent-bg: var(--neutral-900);
+  --sidebar-accent-foreground: var(--neutral-0);
+  --sidebar-border: var(--neutral-0);
+  --sidebar-ring: var(--yellow-400);
+  --sidebar-text: var(--neutral-0);
+  --sidebar-text-active: var(--neutral-0);
+  --sidebar-icon: var(--neutral-0);
+  --sidebar-icon-active: var(--neutral-0);
+
+  // ── TAGS ──
+  --tags-neutral: var(--neutral-0);
+  --tags-neutral-bg: var(--color-black);
+  --tags-disabled: var(--neutral-400);
+  --tags-red: var(--neutral-0);
+  --tags-red-bg: var(--color-black);
+  --tags-yellow: var(--neutral-0);
+  --tags-yellow-bg: var(--color-black);
+  --tags-green: var(--neutral-0);
+  --tags-green-bg: var(--color-black);
+  --tags-blue: var(--neutral-0);
+  --tags-blue-bg: var(--color-black);
+  --tags-purple: var(--neutral-0);
+  --tags-purple-bg: var(--color-black);
+
+  // ── TOOLTIP ──
+  --tooltip-bg: var(--neutral-0);
+  --tooltip-text: var(--color-black);
+
+  // ── POPOVER ──
+  --popover-secondary-bg: var(--color-black);
+  --popover-secondary-foreground: var(--neutral-0);
+
+  // ── ELEVATION ──
+  --elevation-none: none;
+  --elevation-xs: none;
+
+  // ── CHART ──
+  --chart-1: var(--neutral-0);
+  --chart-2: var(--neutral-100);
+  --chart-3: var(--neutral-200);
+  --chart-4: var(--neutral-300);
+  --chart-5: var(--neutral-400);
+
+  // ── STATUS — SHIFT ──
+  --status-shift-open: var(--neutral-0);
+  --status-shift-open-bg: var(--color-black);
+  --status-shift-confirmed: var(--neutral-0);
+  --status-shift-confirmed-bg: var(--color-black);
+  --status-shift-need-review: var(--neutral-0);
+  --status-shift-need-review-bg: var(--color-black);
+  --status-shift-scheduled: var(--neutral-0);
+  --status-shift-scheduled-bg: var(--color-black);
+  --status-shift-scheduled-bg-active: var(--neutral-0);
+  --status-shift-approved: var(--neutral-0);
+  --status-shift-approved-bg: var(--color-black);
+  --status-shift-no-show: var(--neutral-400);
+  --status-shift-no-show-bg: var(--color-black);
+  --status-shift-caregiver-cancelled: var(--neutral-400);
+  --status-shift-caregiver-cancelled-bg: var(--color-black);
+  --status-shift-client-cancelled: var(--neutral-400);
+  --status-shift-client-cancelled-bg: var(--color-black);
+  --status-shift-unapproved: var(--neutral-400);
+  --status-shift-unapproved-bg: var(--color-black);
+  --status-shift-unpublished: var(--neutral-400);
+  --status-shift-unpublished-bg: var(--color-black);
+
+  // ── STATUS — MEETING ──
+  --status-meeting-scheduled: var(--neutral-0);
+  --status-meeting-scheduled-bg: var(--color-black);
+  --status-meeting-approved: var(--neutral-0);
+  --status-meeting-approved-bg: var(--color-black);
+  --status-meeting-cancelled: var(--neutral-0);
+  --status-meeting-cancelled-bg: var(--color-black);
+
+  // ── STATUS — TASK ──
+  --status-task-completed: var(--neutral-0);
+  --status-task-completed-bg: var(--color-black);
+  --status-task-deferred: var(--neutral-0);
+  --status-task-deferred-bg: var(--color-black);
+  --status-task-not-started: var(--neutral-400);
+  --status-task-not-started-bg: var(--color-black);
+  --status-task-in-progress: var(--neutral-0);
+  --status-task-in-progress-bg: var(--color-black);
 }
 
-// Also respect the OS-level media query as a fallback for users who set
-// high contrast at the system level without your app's theme switcher.
+// Respect system prefers-contrast media query
 @media (prefers-contrast: more) {
   :root:not([data-theme]) {
     @extend :root[data-theme="high-contrast"];

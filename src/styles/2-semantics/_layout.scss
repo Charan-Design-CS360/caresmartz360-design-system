@@ -16,6 +16,14 @@
   --gap-inline-md: var(--space-8);
   --gap-inline-lg: var(--space-12);
 
+  // Component foundations: semantic intent consumed by Tier 3.
+  --border-width-default: var(--border-width-1);
+  --border-width-accent: var(--border-width-4);
+  --elevation-card: var(--shadow-sm);
+  --elevation-card-hover: var(--shadow-md);
+  --motion-hover-duration: var(--duration-150);
+  --motion-hover-easing: var(--ease-out);
+
   // --- Breakpoints — not in the original sketch; every component-based
   // system eventually needs these. Values follow common Tailwind-adjacent
   // conventions since this repo already uses Tailwind for layout. ⚠️ Not

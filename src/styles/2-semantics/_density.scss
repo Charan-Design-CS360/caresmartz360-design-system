@@ -3,7 +3,8 @@
 // Contextual intent. Maps to Tier 1 primitives only.
 // =============================================================================
 
-:root {
+:root,
+:root[data-density="default"] {
   // ── FONT SIZE ──
   --font-size-display: var(--font-size-36);
   --font-size-heading-1: var(--font-size-32);
@@ -17,12 +18,12 @@
   --font-size-micro: var(--font-size-10);
 
   // ── LINE HEIGHT ──
-  --line-height-heading-1: 28px;
-  --line-height-heading-2: 28px;
-  --line-height-heading-3: 28px;
-  --line-height-heading-4: 24px;
-  --line-height-body-strong: 24px;
-  --line-height-body-base: 20px;
+  --line-height-heading-1: var(--line-height-28);
+  --line-height-heading-2: var(--line-height-28);
+  --line-height-heading-3: var(--line-height-28);
+  --line-height-heading-4: var(--line-height-24);
+  --line-height-body-strong: var(--line-height-24);
+  --line-height-body-base: var(--line-height-20);
 
   // ── SPACING ──
   --spacing-none: var(--space-0);
@@ -43,6 +44,7 @@
 
   // ── FONT FAMILY ──
   --font-family-primary: var(--font-family-sans);
+  --letter-spacing-label: var(--tracking-wide);
 
   // ── BORDER RADIUS ──
   --rounded-none: var(--radius-0);
@@ -54,4 +56,17 @@
   --rounded-2xl: var(--radius-16);
   --rounded-3xl: var(--radius-24);
   --rounded-full: var(--radius-full);
+}
+
+// Agency density modes verified in Figma AI Token SSO, frame 13:1121.
+// Only the values explicitly documented by Figma vary here; no inferred
+// scaling ratios are introduced.
+:root[data-density="compact"] {
+  --spacing-md: var(--space-6);
+  --font-size-body-base: var(--font-size-12);
+}
+
+:root[data-density="comfortable"] {
+  --spacing-md: var(--space-12);
+  --font-size-body-base: var(--font-size-15);
 }

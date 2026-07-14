@@ -12,17 +12,16 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-stack-sm);
-  background: var(--bg-surface-primary);
-  border: var(--border-width-1) solid var(--border-subtle);
-  border-left: var(--border-width-4) solid var(--status-shift-scheduled); // default state
-  border-radius: var(--radius-8);
-  padding: var(--space-density-md);
-  min-height: var(--control-height-density);
-  box-shadow: var(--elevation-sm);
-  transition: box-shadow var(--duration-150) var(--ease-out);
+  background: var(--surface-base);
+  border: var(--border-width-default) solid var(--border-subtle);
+  border-left: var(--border-width-accent) solid var(--status-shift-scheduled); // default state
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-md);
+  box-shadow: var(--elevation-card);
+  transition: box-shadow var(--motion-hover-duration) var(--motion-hover-easing);
 
   &:hover {
-    box-shadow: var(--elevation-md);
+    box-shadow: var(--elevation-card-hover);
   }
 
   &__header {
@@ -33,13 +32,13 @@
   }
 
   &__title {
-    font-size: var(--font-size-density-body);
-    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-body-base);
+    font-weight: var(--font-weight-body-strong);
     color: var(--text-primary);
   }
 
   &__time {
-    font-size: var(--font-size-12);
+    font-size: var(--font-size-caption);
     color: var(--text-secondary);
   }
 
@@ -47,7 +46,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--gap-stack-sm);
-    font-size: var(--font-size-12);
+    font-size: var(--font-size-caption);
     color: var(--text-secondary);
   }
 
@@ -55,10 +54,10 @@
     display: inline-flex;
     align-items: center;
     gap: var(--gap-inline-sm);
-    padding: 2px var(--gap-inline-md);
-    border-radius: var(--radius-full);
-    font-size: var(--font-size-10);
-    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--rounded-full);
+    font-size: var(--font-size-micro);
+    font-weight: var(--font-weight-body-strong);
   }
 
   // --- Status variants — border-left accent + badge color/background ---
@@ -97,7 +96,6 @@
   &--no-show,
   &--cancelled {
     border-left-color: var(--status-shift-no-show);
-    opacity: 0.75;
     .shift-card__status-badge {
       color: var(--status-shift-no-show);
       background: var(--status-shift-no-show-bg);

@@ -4,24 +4,24 @@
 // =============================================================================
 
 .card {
-  background: var(--bg-surface-primary);
-  border: var(--border-width-1) solid var(--border-subtle);
-  border-radius: var(--radius-8);
-  padding: var(--padding-container);
-  box-shadow: var(--elevation-sm);
-  transition: box-shadow var(--duration-150) var(--ease-out);
+  background: var(--surface-base);
+  border: var(--border-width-default) solid var(--border-subtle);
+  border-radius: var(--rounded-lg);
+  padding: var(--spacing-3xl);
+  box-shadow: var(--elevation-card);
+  transition: box-shadow var(--motion-hover-duration) var(--motion-hover-easing);
 
   &:hover {
-    box-shadow: var(--elevation-md);
+    box-shadow: var(--elevation-card-hover);
   }
 
   &--outlined {
     box-shadow: none;
-    border-color: var(--border-default);
+    border-color: var(--border-medium);
   }
 
   &--elevated {
     border: none;
-    box-shadow: var(--elevation-lg);
+    box-shadow: var(--elevation-card-hover);
   }
 }

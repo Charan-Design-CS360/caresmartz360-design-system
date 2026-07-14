@@ -14,7 +14,8 @@
 // Tier 2 — Semantics
 @import '2-semantics/theme-light';       // default / :root
 @import '2-semantics/theme-dark';        // [data-theme="dark"]
-@import '2-semantics/theme-high-contrast'; // [data-theme="high-contrast"]
+// High contrast is intentionally not imported until its proposed token
+// dialect is replaced with a Figma-verified current-schema mapping.
 @import '2-semantics/density';           // [data-density="small|medium|large"]
 @import '2-semantics/layout';
 @import '2-semantics/a11y';

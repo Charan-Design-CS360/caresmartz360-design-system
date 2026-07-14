@@ -1,31 +1,7 @@
 // =============================================================================
-// TIER 2 — SEMANTICS: Status (domain-specific — shift/schedule states)
+// TIER 2 — SEMANTICS: Status ownership
 //
-// Generic status colors (success/warning/error/info) live per-theme in
-// _theme-light.scss / _theme-dark.scss / _theme-high-contrast.scss instead,
-// since they need to adapt per mode. The tokens below are CareSmartz360-
-// specific shift/schedule states, which the original Agency semantic layer
-// treats as flat (non-themed) values.
-//
-// ⚠️ VERIFICATION STATUS: carried over from the caresmartz-design Claude
-// skill (agency-portal.md), not independently re-pulled from Figma this
-// session. Cross-check against the real Agency semantic Figma file before
-// treating these as final: https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/--Design-System--Agency--V2.0
+// Status tokens are theme-dependent and are defined by _theme-light.scss and
+// _theme-dark.scss. This file intentionally declares no values so it cannot
+// overwrite the active theme after the theme files load.
 // =============================================================================
-
-:root {
-  --status-shift-confirmed:     var(--shift-confirmed);
-  --status-shift-confirmed-bg:  #F3EBFE; // ⚠️ unverified — light tint of shift-confirmed
-  --status-shift-scheduled:     var(--shift-scheduled);
-  --status-shift-scheduled-bg:  #EAEEF8; // ⚠️ unverified
-  --status-shift-open:          var(--shift-open);
-  --status-shift-open-bg:       #FCECED; // ⚠️ unverified
-  --status-shift-approved:      var(--shift-approved);
-  --status-shift-approved-bg:   #EBF7F1; // ⚠️ unverified
-  --status-shift-no-show:       var(--shift-no-show);
-  --status-shift-no-show-bg:    #F4F4F4; // ⚠️ unverified
-  --status-shift-cancelled:     var(--shift-no-show); // same grey per source skill file
-  --status-shift-cancelled-bg:  #F4F4F4;
-  --status-meeting-scheduled:    var(--shift-meeting-scheduled);
-  --status-meeting-scheduled-bg: #FDF7EC; // ⚠️ unverified
-}
