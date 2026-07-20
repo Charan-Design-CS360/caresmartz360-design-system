@@ -170,3 +170,47 @@ Also respect the OS-level `prefers-contrast: more` media query as a fallback for
 
 ---
 *Generated from the current codebase draft (`poc-design-system`'s `_theme-high-contrast.scss`, the more structurally complete of two existing drafts) on 2026-07-15. Not yet pulled from or verified against a live Figma High Contrast frame — that verification is this document's entire purpose.*
+
+---
+
+## HC Light Mode (Added v2.6.0)
+
+### Overview
+HC Light is the 5th theme mode — high contrast on a **light** background. Designed for users who need maximum readability without dark backgrounds.
+
+### Design Principles
+- **White backgrounds** (`neutral-0`) — clean, glare-free base
+- **Black text** (`neutral-950`) — maximum contrast against white
+- **Darkened brand colors** — Brandblue-900 (#003180) instead of Brandblue-600
+- **Yellow focus indicators** — same as HC dark for consistency (`yellow-400`)
+
+### Key Mappings
+
+| Token | HC Light Value | Alias | Rationale |
+|-------|---------------|-------|-----------|
+| surface/base | #ffffff | neutral-0 | White base |
+| text/primary | #020617 | neutral-950 | Near-black text |
+| text/brand | #003180 | Brandblue-900 | Darkened brand for contrast on white |
+| action/primary/bg | #020617 | neutral-950 | High contrast primary button |
+| action/primary/text-neutral | #ffffff | neutral-0 | White text on dark button |
+| border/focus | #003180 | Brandblue-900 | Darkened focus ring |
+| sidebar/primary-bg | #f1f5f9 | neutral-100 | Light sidebar |
+
+### CSS Implementation
+
+```css
+:root[data-theme="hc-light"] {
+  /* All 204 tokens with HC Light values */
+  --surface-base: #ffffff;
+  --text-primary: #020617;
+  --text-brand: #003180;
+  /* ... */
+}
+```
+
+### Figma Mode Details
+
+* **Mode name**: `HC Light`
+* **Mode ID**: `26629:0`
+* **Collection**: Color Theme (`VariableCollectionId:25445:12641`)
+* **Total variables**: 204 (same set as all other modes)
