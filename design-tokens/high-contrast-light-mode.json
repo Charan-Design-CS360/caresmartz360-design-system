@@ -1,0 +1,44 @@
+{
+  "colors": {
+    "background-high-contrast-light": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 1,
+        "hex": "#FFFFFF"
+      },
+      "$description": "Background for high‑contrast light mode"
+    },
+    "surface-high-contrast-light": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.95, 0.95, 0.95],
+        "alpha": 1,
+        "hex": "#F2F2F2"
+      },
+      "$description": "Surface for high‑contrast light mode"
+    },
+    "overlay-high-contrast-light": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 0.6,
+        "hex": "#000000"
+      },
+      "$description": "Overlay for high‑contrast light mode"
+    },
+    "text-high-contrast-light": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0, 0, 0],
+        "alpha": 1,
+        "hex": "#000000"
+      },
+      "$description": "Primary text for high‑contrast light mode"
+    }
+  }
+}

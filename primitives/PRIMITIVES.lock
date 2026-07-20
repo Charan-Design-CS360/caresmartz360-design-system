@@ -1,0 +1,30 @@
+###############################################################
+#  🔒 PRIMITIVES FILE — LOCKED
+###############################################################
+LOCKED FILE : design-system/primitives/Primitives.CS360.V2.0.tokens.json
+FIGMA SOURCE: DJBpjoXPMEw6bBAByIQaAy  ("Primitives · CS360 · V2.0")
+SYSTEM VER  : 1.0.0  (system/version token)
+LOCKED BY   : Singh (charanjeet.singh@caresmartz360.com)
+LOCKED ON   : 2026-07-07
+STATUS      : 🔒 LOCKED — read-only until Singh's next MANUAL push
+
+--------------------------------------------------------------
+GUARDRAIL — applies to ALL AI tools (Claude, Codex, Antigravity,
+Copilot, Cursor, Perplexity, Gemini) + humans:
+--------------------------------------------------------------
+1. This token file is the SINGLE SOURCE OF TRUTH for primitives.
+2. NO AI tool may edit, overwrite, regenerate, reformat, "fix",
+   or delete this file — not even to correct a known gap —
+   WITHOUT Singh's explicit written approval in chat FIRST.
+3. Known gaps are logged in PRIMITIVES-ANALYSIS-2026-07-01.md.
+   They are fixed ONLY by Singh in Figma → re-export → manual push.
+4. To change: Singh unlocks explicitly ("unlock primitives"),
+   states the change, then pushes. AI tools then update the copy
+   + bump this lock's date + LOCKED ON line.
+5. Any tool that finds this file changed without a matching
+   "unlock" in chat MUST halt and open an INVESTIGATION entry
+   in Agency/AI-Debate.md (per ECOSYSTEM-RULES §6).
+6. 264 tokens verified 2026-07-07 (183 color / 79 number / 2 string).
+   SHA-256 of the locked file is recorded below for tamper-check.
+###############################################################
+SHA256 : 78580c4bf607f26faad8d319c002729768f4e76aa135fa587fa855488ea63c04
