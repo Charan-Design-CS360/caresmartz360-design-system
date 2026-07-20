@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.6.0] — 2026-07-20
+
+### Added
+- **HC Light mode** — 5th theme mode (white bg, black text, darkened brand colors) for users who need high contrast on light backgrounds
+- **20 new semantic tokens:**
+  - `surface/overlay`, `surface/scrim` — modal/dialog overlays
+  - `border/focus` — dedicated focus ring color (yellow in HC modes)
+  - `field/bg-success`, `field/border-success`, `field/bg-warning`, `field/border-warning` — field validation states
+  - `text/links-hover`, `text/links-visited` — link interaction states
+  - `surface/skeleton`, `surface/skeleton-active` — loading skeleton animations
+  - `action/focus/ring`, `action/focus/ring-offset` — focus ring system
+  - `action/toggle/*` (11 tokens) — checkbox/switch/radio toggle states
+  - `elevation/sm`, `elevation/md`, `elevation/lg`, `elevation/xl` — MD3 tonal elevation scale
+  - `chart/6` through `chart/10` — extended chart palette (purple, orange, cyan, forest, light blue)
+
+### Changed
+- **Light mode remappings (6):**
+  - `action/primary/bg`: Brandblue-500 → Brandblue-600 (better contrast)
+  - `action/primary/hover`: Brandblue-600 → Brandblue-700
+  - `action/primary/pressed`: Brandblue-700 → Brandblue-800
+  - `action/primary/text-hard`: Brandblue-500 → Brandblue-600
+  - `action/ghost/text-hard`: Brandblue-600 → Brandblue-800
+  - `text/tertiary`: neutral-400 → neutral-500 (WCAG AA fix)
+- **Dark mode remappings (16):** Full dark mode audit — button labels, border scale, surface tiers, status backgrounds all corrected to proper Figma primitive aliases
+- **Naming cleanup (13 renames):** `action/Toggle/*` → `action/toggle/*` (lowercase), `tool-tip/*` → `tooltip/*`
+
+### Fixed
+- Button label contrast in Dark mode — `action/primary/text-neutral` now resolves to neutral-950 (#020617) instead of neutral-0
+- `border/subtle` Dark mode — neutral-400 → neutral-500 for better visibility
+- `action/disabled/text-neutral` HC mode — neutral-300 → neutral-200 for WCAG compliance
+- All status background tokens Dark mode — corrected from wrong -900 to proper -950 primitives
+
+### Verified
+- 204 COLOR variables × 5 modes = 1,020 values
+- 840 alias references, 0 broken
+- Visual QA passed on 7 component pages
+- WCAG AA contrast verified for all text/bg pairs
+
+---
+
 ## [2.5.0] - 2026-06-30 -- CORRECTED
 
 ### **MAJOR CORRECTION:** Angular Material M3 reinstated as primary component library
