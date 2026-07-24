@@ -1,101 +1,103 @@
-# CareSmartz360 Design System — Color Tokens v2.6.0
+# CareSmartz360 Design System (v3.0.0)
 
-Semantic color token system for CareSmartz360, exported from Figma and consumed by Angular 19 + Angular Material M3 + Tailwind CSS v4 + SCSS.
+Single Source of Truth (SSOT) design token repository for the CareSmartz360 ecosystem — exported from Figma and consumed by Angular 19 + Angular Material M3 + Tailwind CSS v4 + SCSS.
 
-## Overview
+---
 
-| Metric | Value |
-|--------|-------|
-| Total tokens | 204 |
-| Theme modes | 5 (Light, Dark, High Contrast, Warm Dark, HC Light) |
-| Total declarations | 1,020 (204 × 5) |
-| Alias references | 840 |
-| Broken aliases | 0 |
+## 🏛️ Portal Registry
 
-## Token Groups (13)
+| Portal | Scope | Figma Collection | Total Vars | Status | Directory | Jira |
+|--------|-------|------------------|------------|--------|-----------|------|
+| **Agency Portal** | Web App | `Color Modes` | 204 vars (5 modes) | ✅ Active (v2.6) | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
+| **Caregiver Portal** | Web + Mobile | `Color Theme` | 171 vars (3 modes) | ✅ Active (v3.0) | `portals/caregiver/` | [C360-44333](https://netsmartz.atlassian.net/browse/C360-44333) |
+| **Staff Portal** | Web App | *TBD* | *In Progress* | 🟡 Planned | `portals/staff/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
+| **Client Portal** | Mobile App | *TBD* | *In Progress* | 🟡 Planned | `portals/client/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
 
-| Group | Count | Purpose |
-|-------|-------|---------|
-| field | 13 | Form field backgrounds, borders, text, icons |
-| text | 11 | Typography colors — primary, secondary, links, status |
-| border | 8 | Border colors — brand, strong, subtle, status |
-| icon | 9 | Icon colors across states |
-| action | 52 | Button variants — primary, secondary, soft, ghost, destructive, warning, success, toggle, focus, outlined |
-| surface | 19 | Background surfaces — base, brand, status, overlays, skeleton |
-| tooltip | 2 | Tooltip background and text |
-| status | 30 | Shift, meeting, task status colors and backgrounds |
-| sidebar | 13 | Sidebar navigation colors |
-| tags | 12 | Tag/badge colors by semantic meaning |
-| elevation | 6 | MD3 tonal elevation scale (none/xs/sm/md/lg/xl) |
-| popover | 2 | Popover/dropdown colors |
-| chart | 10 | Data visualization palette |
+---
 
-## Theme Modes
+## 📐 3-Tier Token Architecture
 
-| Mode | Selector | Description |
-|------|----------|-------------|
-| Light | `:root`, `[data-theme="light"]` | Default mode |
-| Dark | `[data-theme="dark"]` | Dark theme with proper Figma primitive aliases |
-| High Contrast | `[data-theme="high-contrast"]` | WCAG AAA — black bg, white text, yellow focus |
-| Warm Dark | `[data-theme="warm-dark"]` | Warm earthy tones (ON HOLD for primitives) |
-| HC Light | `[data-theme="hc-light"]` | High contrast on light bg — white bg, black text, darkened brand |
-
-## Files
-
-| File | Purpose |
-|------|---------|
-| `ds-tokens-v2.6.0.json` | DTCG format token manifest — all 204 vars × 5 modes |
-| `ds-tokens-latest.json` | Always points to latest version |
-| `semantic-tokens.scss` | Prefix-free SCSS with CSS custom properties |
-| `agency-styles.scss` | DEPRECATED — old 2-mode file with wrong prefix |
-
-## Usage
-
-```scss
-// Import in your SCSS
-@use 'semantic-tokens';
-
-// Use tokens as CSS custom properties
-.card {
-  background: var(--surface-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
-}
-
-.btn-primary {
-  background: var(--action-primary-bg);
-  color: var(--action-primary-text-neutral);
-}
+```
+Tier 1: Primitives (primitives/)   → Shared global scale (colors, fonts, radius, shadow)
+                                        ↓
+Tier 2: Semantics (portals/)      → Portal-scoped semantic meaning (surface, text, action)
+                                        ↓
+Tier 3: Components (src/styles/)   → UI component bindings (buttons, cards, tables)
 ```
 
-## Accessibility
+### Mandatory Architecture Rules:
+1. **Components reference Tier 2 ONLY**: Tier 3 component styles must bind to Tier 2 semantic variables (e.g. `var(--surface-base)`), NEVER directly to Tier 1 primitives.
+2. **Prefix-Free Custom Properties**: All CSS variables use clean naming (e.g. `--text-primary`), strictly omitting legacy portal prefixes like `--agency-`.
+3. **Portal Exclusivity**: Keep portal semantic layers strictly separated under `portals/`.
 
-* All text/background pairs meet WCAG AA (4.5:1) minimum
-* High Contrast mode targets WCAG AAA (7:1)
-* HC modes use yellow focus indicators for visibility
-* Disabled states maintain minimum 3:1 contrast
+---
 
-## Auto Theme Switching
+## 📊 Portal Comparison Matrix
 
-```scss
-// Auto dark mode
-@media (prefers-color-scheme: dark) { ... }
+| Feature / Property | Agency Portal | Caregiver Portal |
+|--------------------|---------------|------------------|
+| Primary Figma File | `4bh29laapcuKBTghfaRXF0` | `TSOq0ugv6zfr6gFZh5zYrP` |
+| Primary Collection | `Color Modes` | `Color Theme` |
+| Total Variables | 204 | 171 |
+| Theme Modes | 5 (Light, Dark, High Contrast, Warm Dark, HC Light) | 3 (Light Mode, Soothing Dark, High Contrast) |
+| Density Modes | 1 (Default) | 3 (Default, Large, Small) |
+| Chart Tokens | Yes (10 series) | No |
+| Elevation Scale | Yes (6 MD3 levels) | No |
+| Attention Action | No | Yes (5 tokens) |
 
-// Auto high contrast
-@media (prefers-contrast: more) { ... }
+---
 
-// Print forces light mode
-@media print { ... }
+## 📁 Repository Directory Structure
+
+```
+caresmartz360-design-system/
+├── README.md                      # Main multi-portal documentation
+├── AI_CONTEXT.md                  # Mandatory AI agent context & guidelines
+├── GUARDRAILS.md                  # Repository scope boundaries & contribution rules
+├── CHANGELOG.md                   # Complete version history
+├── semantic-tokens.scss           # Agency prefix-free SCSS custom properties
+├── ds-tokens-latest.json          # Agency DTCG format token manifest (v2.6)
+├── ds-tokens-v2.6.0.json          # Agency DTCG v2.6.0 snapshot
+├── primitives/                    # Shared Tier 1 primitive definitions
+│   ├── PRIMITIVES.lock
+│   └── Primitives.CS360.V2.0.tokens.json
+├── portals/                       # Tier 2 Portal-Scoped Semantic Layers
+│   ├── agency/
+│   │   └── README.md              # Agency portal semantic reference
+│   └── caregiver/
+│       ├── README.md              # Caregiver portal semantic reference
+│       └── semantic-tokens.json   # Complete Caregiver DTCG 171-var manifest
+└── src/styles/                    # 3-Tier SCSS styles source tree
+    ├── 1-primitives/              # SCSS primitive tokens
+    ├── 2-semantics/               # SCSS theme stylesheets
+    └── 3-components/              # Component SCSS implementations
 ```
 
-## Audit Trail
+---
 
-| Date | Version | Audit | Result |
-| --- | --- | --- | --- |
-| 2026-07-20 | 2.6.0 | Pass 11 — Full 5-mode audit | 204 vars, 0 broken, 7 pages QA'd |
+## 💬 Figma Query Hub Integration
 
-## References
+For queries requiring complex Figma context, page hierarchy verification, or architecture alignment beyond MCP capabilities, log to the **Figma Query Hub**:
 
-* **Figma**: [CareSmartz360 V2 Design System](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0)
-* **Jira Audit**: C360-44027
-* **Jira Repo Bridge**: C360-44235
+🔗 **Jira Ticket:** [C360-44222 — Figma Queries & AI Synchronization Hub](https://netsmartz.atlassian.net/browse/C360-44222)
+
+---
+
+## 🛡️ Repository Guardrails
+
+This repository contains **design system assets ONLY**.
+- ❌ NO application-level view code or business logic
+- ❌ NO unverified ad-hoc tokens outside Figma variable exports
+- ❌ NO cross-pollination of portal-specific semantic tokens
+
+See [GUARDRAILS.md](GUARDRAILS.md) for full compliance guidelines.
+
+---
+
+## 🔗 Key References
+
+- **Design System Epic:** [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526)
+- **Figma AI Bridge Ticket:** [C360-44235](https://netsmartz.atlassian.net/browse/C360-44235)
+- **Color Audit Ticket:** [C360-44027](https://netsmartz.atlassian.net/browse/C360-44027)
+- **Figma Master File (Agency):** [CareSmartz360 V2](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0)
+- **Figma Master File (Caregiver):** [CareSmartz360 V2 — Caregiver](https://www.figma.com/design/TSOq0ugv6zfr6gFZh5zYrP)

@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.0.0] — 2026-07-24
+
+### Added
+- **Multi-Portal Support**: Restructured repository architecture to support multi-portal semantic isolation (`portals/agency/`, `portals/caregiver/`).
+- **Caregiver Portal Semantic Tokens (`portals/caregiver/semantic-tokens.json`)**: Complete 171 variables across 3 collections (Color Theme 134, Density Modes 23, General 14) extracted directly from Figma file `TSOq0ugv6zfr6gFZh5zYrP`.
+- **Caregiver Portal Documentation (`portals/caregiver/README.md`)**: Complete token group breakdown, 3-mode color theme guide, density scale documentation, and known issues.
+- **Agency Portal Documentation (`portals/agency/README.md`)**: Agency-exclusive semantic layer reference (204 variables across 5 modes).
+- **Repository Guardrails (`GUARDRAILS.md`)**: Enforced scope boundaries, allowed vs prohibited repo content rules, and portal isolation guidelines.
+- **Figma Query Hub Integration**: Integrated direct cross-reference to Jira C360-44222 for complex AI Figma queries.
+
+### Changed
+- **`README.md`**: Updated with multi-portal architecture overview, portal registry table, 3-tier rules, and portal comparison matrix.
+- **`AI_CONTEXT.md`**: Updated with strict portal exclusivity rules, 7 mandatory AI rules, query hub instructions, and data source priorities.
+
+### Removed
+- **Obsolete Files (10)**: Deleted legacy handoff docs (`CODEX-HANDOFF-primitives-integration.md`, `HANDOFF-PLAN.md`, `HIGH-CONTRAST-FIGMA-HANDOFF.md`, `REPO-VERIFICATION-2026-07-07.md`, `VERIFICATION-LOG.md`) and outdated version snapshots (`ds-tokens-v2.4.4.json`, `ds-tokens-v2.4.5.json`, `ds-tokens-v2.4.6.json`, `ds-tokens-v2.4.7.json`, `ds-tokens-v2.4.9.json`).
+
+---
+
 ## [2.6.0] — 2026-07-20
 
 ### Added
