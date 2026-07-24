@@ -24,6 +24,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - **Obsolete Files (10)**: Deleted legacy handoff docs (`CODEX-HANDOFF-primitives-integration.md`, `HANDOFF-PLAN.md`, `HIGH-CONTRAST-FIGMA-HANDOFF.md`, `REPO-VERIFICATION-2026-07-07.md`, `VERIFICATION-LOG.md`) and outdated version snapshots (`ds-tokens-v2.4.4.json`, `ds-tokens-v2.4.5.json`, `ds-tokens-v2.4.6.json`, `ds-tokens-v2.4.7.json`, `ds-tokens-v2.4.9.json`).
 
+## [2.6.2] — 2026-07-24
+
+### Added
+- Agency Density Modes documentation (29 variables: font-size, line-height, spacing, letter-spacing).
+- Agency General collection documentation (14 variables: border-radius, font-weight, font-family).
+- Warm Dark mode HOLD status documentation (180/204 raw hex values pending warm primitive palette).
+
+### Changed
+- **Portal Registry**: Agency total updated from 204 → 247 across 3 collections (Color Modes 204 × 5 modes, Density Modes 29 × 1 mode, General 14 × 1 mode).
+- **`portals/agency/README.md`**: Expanded to cover all 3 collections and 247 total variables.
+
 ---
 
 ## [2.6.0] — 2026-07-20

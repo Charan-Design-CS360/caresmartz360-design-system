@@ -8,7 +8,7 @@ Single Source of Truth (SSOT) design token repository for the CareSmartz360 ecos
 
 | Portal | Scope | Figma Collection | Total Vars | Status | Directory | Jira |
 |--------|-------|------------------|------------|--------|-----------|------|
-| **Agency Portal** | Web App | `Color Modes` | 204 vars (5 modes) | ✅ Active (v2.6) | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
+| **Agency Portal** | Web App | `Color Modes`, `Density Modes`, `General` | 247 vars across 3 collections (Color Modes 204 × 5 modes, Density Modes 29 × 1 mode, General 14 × 1 mode) | ✅ Active (v2.6) | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
 | **Caregiver Portal** | Web + Mobile | `Color Theme` | 171 vars (3 modes) | ✅ Active (v3.0) | `portals/caregiver/` | [C360-44333](https://netsmartz.atlassian.net/browse/C360-44333) |
 | **Staff Portal** | Web App | *TBD* | *In Progress* | 🟡 Planned | `portals/staff/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
 | **Client Portal** | Mobile App | *TBD* | *In Progress* | 🟡 Planned | `portals/client/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
