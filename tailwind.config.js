@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 // CareSmartz360 Design System — Tailwind CSS v4 Configuration
-// Version: 2.4.0
+// Version: 2.6.2
 // Stack: Angular 19 + Tailwind CSS + SCSS
 // Auto-generated from ds-tokens-latest.json
 
@@ -32,11 +32,15 @@ module.exports = {
             'focus': 'var(--field-bg-focus)',
             'danger': 'var(--field-bg-danger)',
             'disabled': 'var(--field-bg-disabled)',
+            'success': 'var(--field-bg-success)',
+            'warning': 'var(--field-bg-warning)',
           },
           'border': {
             'default': 'var(--field-border-default)',
             'focus': 'var(--field-border-focus)',
             'danger': 'var(--field-border-danger)',
+            'success': 'var(--field-border-success)',
+            'warning': 'var(--field-border-warning)',
           },
         },
         'text': {
@@ -45,7 +49,11 @@ module.exports = {
           'secondary': 'var(--text-secondary)',
           'tertiary': 'var(--text-tertiary)',
           'inverse': 'var(--text-inverse)',
-          'links': 'var(--text-links)',
+          'links': {
+            'DEFAULT': 'var(--text-links)',
+            'hover': 'var(--text-links-hover)',
+            'visited': 'var(--text-links-visited)',
+          },
           'disabled': 'var(--text-disabled)',
           'danger': 'var(--text-danger)',
           'warning': 'var(--text-warning)',
@@ -56,9 +64,11 @@ module.exports = {
           'strong': 'var(--border-strong)',
           'medium': 'var(--border-medium)',
           'subtle': 'var(--border-subtle)',
+          'transparent': 'var(--border-transparent)',
           'danger': 'var(--border-danger)',
           'warning': 'var(--border-warning)',
           'success': 'var(--border-success)',
+          'focus': 'var(--border-focus)',
         },
         'icon': {
           'primary': 'var(--icon-primary)',
@@ -71,16 +81,6 @@ module.exports = {
           'warning': 'var(--icon-warning)',
           'success': 'var(--icon-success)',
         },
-        'surface': {
-          'base': 'var(--surface-base)',
-          'secondary': 'var(--surface-secondary)',
-          'tertiary': 'var(--surface-tertiary)',
-          'brand': 'var(--surface-brand)',
-          'danger': 'var(--surface-danger)',
-          'warning': 'var(--surface-warning)',
-          'success': 'var(--surface-success)',
-          'disabled': 'var(--surface-disabled)',
-        },
         'action': {
           'primary': {
             'bg': 'var(--action-primary-bg)',
@@ -90,6 +90,7 @@ module.exports = {
               'neutral': 'var(--action-primary-text-neutral)',
               'hard': 'var(--action-primary-text-hard)',
             },
+            'border': 'var(--action-primary-border)',
             'outlined': 'var(--action-primary-outlined)',
           },
           'secondary': {
@@ -107,6 +108,7 @@ module.exports = {
             'text': {
               'neutral': 'var(--action-soft-text-neutral)',
             },
+            'border': 'var(--action-soft-border)',
             'outlined': 'var(--action-soft-outlined)',
           },
           'ghost': {
@@ -116,6 +118,7 @@ module.exports = {
             'text': {
               'hard': 'var(--action-ghost-text-hard)',
             },
+            'border': 'var(--action-ghost-border)',
           },
           'success': {
             'bg': 'var(--action-success-bg)',
@@ -125,6 +128,7 @@ module.exports = {
               'neutral': 'var(--action-success-text-neutral)',
               'hard': 'var(--action-success-text-hard)',
             },
+            'border': 'var(--action-success-border)',
             'outlined': 'var(--action-success-outlined)',
           },
           'warning': {
@@ -134,6 +138,7 @@ module.exports = {
             'text': {
               'neutral': 'var(--action-warning-text-neutral)',
             },
+            'border': 'var(--action-warning-border)',
             'outlined': 'var(--action-warning-outlined)',
           },
           'destructive': {
@@ -143,12 +148,20 @@ module.exports = {
             'text': {
               'neutral': 'var(--action-destructive-text-neutral)',
             },
+            'border': 'var(--action-destructive-border)',
             'outlined': 'var(--action-destructive-outlined)',
           },
           'disabled': {
             'bg': 'var(--action-disabled-bg)',
             'text': {
               'neutral': 'var(--action-disabled-text-neutral)',
+            },
+            'border': 'var(--action-disabled-border)',
+          },
+          'focus': {
+            'ring': {
+              'DEFAULT': 'var(--action-focus-ring)',
+              'offset': 'var(--action-focus-ring-offset)',
             },
           },
           'toggle': {
@@ -164,6 +177,135 @@ module.exports = {
               'active': 'var(--action-toggle-icon-active)',
               'partial': 'var(--action-toggle-icon-partial)',
               'disabled': 'var(--action-toggle-icon-disabled)',
+            },
+            'border': 'var(--action-toggle-border)',
+            'focus': {
+              'ring': 'var(--action-toggle-focus-ring)',
+            },
+          },
+        },
+        'surface': {
+          'base': 'var(--surface-base)',
+          'secondary': 'var(--surface-secondary)',
+          'tertiary': 'var(--surface-tertiary)',
+          'brand': {
+            'DEFAULT': 'var(--surface-brand)',
+            'hover': 'var(--surface-brand-hover)',
+            'pressed': 'var(--surface-brand-pressed)',
+            'bg': 'var(--surface-brand-bg)',
+          },
+          'danger': {
+            'DEFAULT': 'var(--surface-danger)',
+            'subtle': 'var(--surface-danger-subtle)',
+          },
+          'warning': {
+            'DEFAULT': 'var(--surface-warning)',
+            'subtle': 'var(--surface-warning-subtle)',
+          },
+          'success': {
+            'DEFAULT': 'var(--surface-success)',
+            'subtle': 'var(--surface-success-subtle)',
+          },
+          'disabled': 'var(--surface-disabled)',
+          'overlay': 'var(--surface-overlay)',
+          'scrim': 'var(--surface-scrim)',
+          'skeleton': {
+            'DEFAULT': 'var(--surface-skeleton)',
+            'active': 'var(--surface-skeleton-active)',
+          },
+        },
+        'tooltip': {
+          'bg': 'var(--tooltip-bg)',
+          'text': 'var(--tooltip-text)',
+        },
+        'status': {
+          'shift': {
+            'open': {
+              'DEFAULT': 'var(--status-shift-open)',
+              'bg': 'var(--status-shift-open-bg)',
+            },
+            'client': {
+              'cancelled': {
+                'DEFAULT': 'var(--status-shift-client-cancelled)',
+                'bg': 'var(--status-shift-client-cancelled-bg)',
+              },
+            },
+            'confirmed': {
+              'DEFAULT': 'var(--status-shift-confirmed)',
+              'bg': 'var(--status-shift-confirmed-bg)',
+            },
+            'need': {
+              'review': {
+                'DEFAULT': 'var(--status-shift-need-review)',
+                'bg': 'var(--status-shift-need-review-bg)',
+              },
+            },
+            'scheduled': {
+              'DEFAULT': 'var(--status-shift-scheduled)',
+              'bg': {
+                'DEFAULT': 'var(--status-shift-scheduled-bg)',
+                'active': 'var(--status-shift-scheduled-bg-active)',
+              },
+            },
+            'approved': {
+              'DEFAULT': 'var(--status-shift-approved)',
+              'bg': 'var(--status-shift-approved-bg)',
+            },
+            'no': {
+              'show': {
+                'DEFAULT': 'var(--status-shift-no-show)',
+                'bg': 'var(--status-shift-no-show-bg)',
+              },
+            },
+            'caregiver': {
+              'cancelled': {
+                'DEFAULT': 'var(--status-shift-caregiver-cancelled)',
+                'bg': 'var(--status-shift-caregiver-cancelled-bg)',
+              },
+            },
+            'unapproved': {
+              'DEFAULT': 'var(--status-shift-unapproved)',
+              'bg': 'var(--status-shift-unapproved-bg)',
+            },
+            'unpublished': {
+              'bg': 'var(--status-shift-unpublished-bg)',
+              'DEFAULT': 'var(--status-shift-unpublished)',
+            },
+          },
+          'meeting': {
+            'scheduled': {
+              'DEFAULT': 'var(--status-meeting-scheduled)',
+              'bg': 'var(--status-meeting-scheduled-bg)',
+            },
+            'approved': {
+              'DEFAULT': 'var(--status-meeting-approved)',
+              'bg': 'var(--status-meeting-approved-bg)',
+            },
+            'cancelled': {
+              'DEFAULT': 'var(--status-meeting-cancelled)',
+              'bg': 'var(--status-meeting-cancelled-bg)',
+            },
+          },
+          'task': {
+            'completed': {
+              'DEFAULT': 'var(--status-task-completed)',
+              'bg': 'var(--status-task-completed-bg)',
+            },
+            'deferred': {
+              'DEFAULT': 'var(--status-task-deferred)',
+              'bg': 'var(--status-task-deferred-bg)',
+            },
+            'not': {
+              'started': {
+                'DEFAULT': 'var(--status-task-not-started)',
+                'bg': 'var(--status-task-not-started-bg)',
+              },
+            },
+            'in': {
+              'progress': {
+                'DEFAULT': 'var(--status-task-in-progress)',
+                'bg': 'var(--status-task-in-progress-bg)',
+              },
             },
           },
         },
@@ -182,20 +324,49 @@ module.exports = {
           },
           'border': 'var(--sidebar-border)',
           'ring': 'var(--sidebar-ring)',
-          'text': 'var(--sidebar-text)',
-          'icon': 'var(--sidebar-icon)',
+          'text': {
+            'DEFAULT': 'var(--sidebar-text)',
+            'active': 'var(--sidebar-text-active)',
+          },
+          'icon': {
+            'DEFAULT': 'var(--sidebar-icon)',
+            'active': 'var(--sidebar-icon-active)',
+          },
         },
         'tags': {
-          'neutral': 'var(--tags-neutral)',
+          'neutral': {
+            'DEFAULT': 'var(--tags-neutral)',
+            'bg': 'var(--tags-neutral-bg)',
+          },
           'disabled': 'var(--tags-disabled)',
-          'red': 'var(--tags-red)',
-          'yellow': 'var(--tags-yellow)',
-          'green': 'var(--tags-green)',
-          'blue': 'var(--tags-blue)',
+          'red': {
+            'DEFAULT': 'var(--tags-red)',
+            'bg': 'var(--tags-red-bg)',
+          },
+          'yellow': {
+            'DEFAULT': 'var(--tags-yellow)',
+            'bg': 'var(--tags-yellow-bg)',
+          },
+          'green': {
+            'DEFAULT': 'var(--tags-green)',
+            'bg': 'var(--tags-green-bg)',
+          },
+          'blue': {
+            'DEFAULT': 'var(--tags-blue)',
+            'bg': 'var(--tags-blue-bg)',
+          },
+          'purple': {
+            'DEFAULT': 'var(--tags-purple)',
+            'bg': 'var(--tags-purple-bg)',
+          },
         },
-        'tooltip': {
-          'bg': 'var(--tooltip-bg)',
-          'text': 'var(--tooltip-text)',
+        'elevation': {
+          'none': 'var(--elevation-none)',
+          'xs': 'var(--elevation-xs)',
+          'sm': 'var(--elevation-sm)',
+          'md': 'var(--elevation-md)',
+          'lg': 'var(--elevation-lg)',
+          'xl': 'var(--elevation-xl)',
         },
         'popover': {
           'secondary': {
@@ -209,26 +380,11 @@ module.exports = {
           '3': 'var(--chart-3)',
           '4': 'var(--chart-4)',
           '5': 'var(--chart-5)',
-        },
-        'status': {
-          'shift': {
-            'open': 'var(--status-shift-open)',
-            'scheduled': 'var(--status-shift-scheduled)',
-            'approved': 'var(--status-shift-approved)',
-          },
-          'meeting': {
-            'approved': 'var(--status-meeting-approved)',
-            'cancelled': 'var(--status-meeting-cancelled)',
-          },
-          'task': {
-            'deferred': 'var(--status-task-deferred)',
-            'not': {
-              'started': 'var(--status-task-not-started)',
-            },
-            'in': {
-              'progress': 'var(--status-task-in-progress)',
-            },
-          },
+          '6': 'var(--chart-6)',
+          '7': 'var(--chart-7)',
+          '8': 'var(--chart-8)',
+          '9': 'var(--chart-9)',
+          '10': 'var(--chart-10)',
         },
         // --- Primitive Blue Scale ---
         // Renamed in intent (not in key, to avoid a breaking rename across the codebase)

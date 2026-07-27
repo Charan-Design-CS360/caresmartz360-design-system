@@ -17,7 +17,7 @@ This repository (`caresmartz360-design-system`) is the **Single Source of Truth 
 
 | Portal | Figma File Key | Primary Collection | Repo Directory | Jira Reference |
 |--------|---------------|-------------------|----------------|----------------|
-| **Agency Portal** | `4bh29laapcuKBTghfaRXF0` | `Color Modes` (204 vars, 5 modes) | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
+| **Agency Portal** | `4bh29laapcuKBTghfaRXF0` | `Color Modes, Density Modes, General` (247 vars, 3 collections) | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
 | **Caregiver Portal** | `TSOq0ugv6zfr6gFZh5zYrP` | `Color Theme` (171 vars, 3 modes) | `portals/caregiver/` | [C360-44333](https://netsmartz.atlassian.net/browse/C360-44333) |
 | **Staff Portal** | *In Progress* | *In Progress* | `portals/staff/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
 | **Client Portal** | *In Progress* | *In Progress* | `portals/client/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |

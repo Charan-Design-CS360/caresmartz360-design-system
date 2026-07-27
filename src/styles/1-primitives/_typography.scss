@@ -46,9 +46,14 @@
   --leading-loose:   2;
 
   // --- Fixed line heights used by Agency semantic typography ---
+  --line-height-14: 0.875rem;
+  --line-height-16: 1rem;
   --line-height-20: 1.25rem;
   --line-height-24: 1.5rem;
   --line-height-28: 1.75rem;
+  --line-height-32: 2rem;
+  --line-height-40: 2.5rem;
+  --line-height-44: 2.75rem;
 
   // --- Letter spacing / tracking (verified values; em unit assumed —
   // Figma did not specify a unit on these, confirm with a developer before

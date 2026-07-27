@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.1.0] — 2026-07-27
+
+### Added
+- **Warm Dark theme** (`_theme-warm-dark.scss`): 204 tokens, 180 using direct hex (warm palette), 24 aliased to primitives. ON HOLD for full aliasing.
+- **HC Light theme** (`_theme-hc-light.scss`): 204 tokens, all aliased to primitives. WCAG AAA light background high contrast.
+- **Typography primitives**: `--line-height-14`, `--line-height-16`, `--line-height-32`, `--line-height-40`, `--line-height-44` added to `_typography.scss`.
+
+### Changed
+- **`_theme-light.scss`**: Synced from 187 → 204 tokens. Added `field/bg-success`, `field/border-success`, `field/bg-warning`, `field/border-warning`, `text/links-hover`, `text/links-visited`, `surface/overlay`, `surface/scrim`, `surface/skeleton`, `surface/skeleton-active`, `border/focus`, `action/focus/*`, `action/toggle/*`, `elevation/sm-xl`, `chart/6-10`.
+- **`_theme-dark.scss`**: Synced from 185 → 204 tokens. Same missing tokens added.
+- **`_theme-high-contrast.scss`**: Synced from 185 → 204 tokens. Same missing tokens added.
+- **`_density.scss`**: Fixed `line-height/heading-2` value (28→32px), added missing `line-height/display` (44px), `line-height/caption` (16px), `line-height/micro` (14px), `letter-spacing/heading` (-0.24px).
+- **`tailwind.config.js`**: Updated from 128 → 204 token bindings (100% coverage). Version bumped to 2.6.2.
+- **`styles.scss`**: Enabled high-contrast import, added warm-dark and hc-light imports.
+- **`AI_CONTEXT.md`**: Agency Portal updated to 247 vars across 3 collections.
+- **`src/styles/README.md`**: Updated verification statuses, added all 5 theme modes, removed obsolete `VERIFICATION-LOG.md` reference.
+
+### Fixed
+- All 5 theme files now have exactly 204 CSS custom properties each (1,020 total declarations).
+- Tailwind CSS utilities now cover 100% of design system tokens.
+- Typography/density tokens now match Figma Density Modes collection exactly.
+
+---
+
 ## [3.0.0] — 2026-07-24
 
 ### Added

@@ -5,6 +5,10 @@
 
 :root[data-theme="dark"] {
   // ── FIELD / FORM INPUTS ──
+  --field-bg-success: var(--neutral-900);
+  --field-border-success: var(--green-700);
+  --field-bg-warning: var(--neutral-900);
+  --field-border-warning: var(--yellow-400);
   --field-value-primary: var(--neutral-0);
   --field-value-inverse: var(--neutral-900);
   --field-value-link: var(--blue-400);
@@ -20,6 +24,8 @@
   --field-bg-disabled: var(--neutral-800);
 
   // ── TEXT ──
+  --text-links-hover: var(--blue-600);
+  --text-links-visited: var(--blue-700);
   --text-brand: var(--blue-400);
   --text-primary: var(--neutral-0);
   --text-secondary: var(--neutral-300);
@@ -32,6 +38,7 @@
   --text-success: var(--green-400);
 
   // ── BORDER ──
+  --border-focus: var(--blue-600);
   --border-brand: var(--blue-400);
   --border-strong: var(--neutral-200);
   --border-medium: var(--neutral-600);
@@ -53,8 +60,11 @@
   --icon-success: var(--green-400);
 
   // ── SURFACE ──
+  --surface-overlay: var(--neutral-950);
+  --surface-scrim: var(--neutral-950);
+  --surface-skeleton: var(--neutral-700);
+  --surface-skeleton-active: var(--neutral-800);
   --surface-base: var(--neutral-950);
-  --surface-transparent: var(--opacity-0);
   --surface-secondary: var(--neutral-900);
   --surface-tertiary: var(--neutral-800);
   --surface-brand: var(--blue-600);
@@ -186,10 +196,19 @@
   --popover-secondary-foreground: var(--neutral-50);
 
   // ── ELEVATION ──
+  --elevation-sm: var(--neutral-800);
+  --elevation-md: var(--neutral-700);
+  --elevation-lg: var(--neutral-600);
+  --elevation-xl: var(--neutral-500);
   --elevation-none: var(--opacity-0);
   --elevation-xs: var(--overlay-opacity-10);
 
   // ── CHART ──
+  --chart-6: var(--purple-600);
+  --chart-7: var(--shift-meeting-scheduled);
+  --chart-8: var(--shift-scheduled);
+  --chart-9: var(--green-800);
+  --chart-10: var(--blue-300);
   --chart-1: var(--blue-400);
   --chart-2: var(--green-400);
   --chart-3: var(--yellow-400);

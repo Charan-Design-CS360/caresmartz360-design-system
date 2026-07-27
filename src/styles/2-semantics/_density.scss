@@ -18,12 +18,15 @@
   --font-size-micro: var(--font-size-10);
 
   // ── LINE HEIGHT ──
+  --line-height-display: var(--line-height-44);
   --line-height-heading-1: var(--line-height-28);
-  --line-height-heading-2: var(--line-height-28);
+  --line-height-heading-2: var(--line-height-32);
   --line-height-heading-3: var(--line-height-28);
   --line-height-heading-4: var(--line-height-24);
   --line-height-body-strong: var(--line-height-24);
   --line-height-body-base: var(--line-height-20);
+  --line-height-caption: var(--line-height-16);
+  --line-height-micro: var(--line-height-14);
 
   // ── SPACING ──
   --spacing-none: var(--space-0);
@@ -45,6 +48,7 @@
   // ── FONT FAMILY ──
   --font-family-primary: var(--font-family-sans);
   --letter-spacing-label: var(--tracking-wide);
+  --letter-spacing-heading: -0.015rem;
 
   // ── BORDER RADIUS ──
   --rounded-none: var(--radius-0);

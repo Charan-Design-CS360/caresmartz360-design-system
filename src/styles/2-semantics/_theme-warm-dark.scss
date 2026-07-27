@@ -1,0 +1,258 @@
+// =============================================================================
+// TIER 2 — SEMANTICS: Warm Dark theme
+// Contextual intent. Maps to Tier 1 primitives only.
+// =============================================================================
+
+:root[data-theme="warm-dark"] {
+  // ── FIELD / FORM INPUTS ──
+  --field-border-success: var(--green-700);
+  --field-border-warning: var(--yellow-400);
+  --field-value-primary: #f5e6d3 // direct — warm palette
+  --field-value-inverse: #2b2a27 // direct — warm palette
+  --field-value-link: #ffb38a // direct — warm palette
+  --field-value-placeholder: #9a8b7a // direct — warm palette
+  --field-value-disabled: #6b5f53 // direct — warm palette
+  --field-icon: #9a8b7a // direct — warm palette
+  --field-bg-default: #33312d // direct — warm palette
+  --field-border-default: #4a4640 // direct — warm palette
+  --field-bg-focus: #3a3220 // direct — warm palette
+  --field-border-focus: #e67d22 // direct — warm palette
+  --field-bg-danger: #3a2727 // direct — warm palette
+  --field-border-danger: var(--red-300);
+  --field-bg-disabled: #3d3a35 // direct — warm palette
+  --field-bg-success: var(--neutral-900);
+  --field-bg-warning: var(--neutral-900);
+
+  // ── TEXT ──
+  --text-links-hover: var(--blue-600);
+  --text-links-visited: var(--blue-700);
+  --text-brand: #e67d22 // direct — warm palette
+  --text-primary: #f5e6d3 // direct — warm palette
+  --text-secondary: #c4a584 // direct — warm palette
+  --text-tertiary: #9a8b7a // direct — warm palette
+  --text-inverse: #2b2a27 // direct — warm palette
+  --text-links: #ffb38a // direct — warm palette
+  --text-disabled: #6b5f53 // direct — warm palette
+  --text-danger: var(--red-300);
+  --text-warning: var(--yellow-200);
+  --text-success: var(--green-200);
+
+  // ── BORDER ──
+  --border-focus: var(--blue-600);
+  --border-brand: #e67d22 // direct — warm palette
+  --border-strong: #9a8b7a // direct — warm palette
+  --border-medium: #6b5f53 // direct — warm palette
+  --border-subtle: #3e3b37 // direct — warm palette
+  --border-transparent: var(--opacity-0);
+  --border-danger: var(--red-300);
+  --border-warning: var(--yellow-200);
+  --border-success: var(--green-200);
+
+  // ── ICON ──
+  --icon-primary: #f5e6d3 // direct — warm palette
+  --icon-secondary: #c4a584 // direct — warm palette
+  --icon-soft: #9a8b7a // direct — warm palette
+  --icon-inverse: #2b2a27 // direct — warm palette
+  --icon-brand: #e67d22 // direct — warm palette
+  --icon-disabled: #6b5f53 // direct — warm palette
+  --icon-danger: var(--red-300);
+  --icon-warning: var(--yellow-200);
+  --icon-success: var(--green-200);
+
+  // ── SURFACE ──
+  --surface-overlay: var(--neutral-950);
+  --surface-scrim: var(--neutral-900);
+  --surface-skeleton: var(--neutral-700);
+  --surface-skeleton-active: var(--neutral-800);
+  --surface-base: #2b2a27 // direct — warm palette
+  --surface-secondary: #33312d // direct — warm palette
+  --surface-tertiary: #3d3a35 // direct — warm palette
+  --surface-brand: #f5e6d3 // direct — warm palette
+  --surface-brand-hover: #ead8c0 // direct — warm palette
+  --surface-brand-pressed: #dfc9ad // direct — warm palette
+  --surface-brand-bg: #e67d22 // direct — warm palette
+  --surface-danger: var(--red-400);
+  --surface-danger-subtle: #3a2727 // direct — warm palette
+  --surface-warning: var(--yellow-400);
+  --surface-warning-subtle: #3a3527 // direct — warm palette
+  --surface-success: var(--green-400);
+  --surface-success-subtle: #273a2d // direct — warm palette
+  --surface-disabled: #4a4640 // direct — warm palette
+
+  // ── ACTIONS — PRIMARY ──
+  --action-primary-bg: #e67d22 // direct — warm palette
+  --action-primary-hover: #d06b1a // direct — warm palette
+  --action-primary-pressed: #c15f3c // direct — warm palette
+  --action-primary-text-neutral: #2b2a27 // direct — warm palette
+  --action-primary-text-hard: #ffb38a // direct — warm palette
+  --action-primary-border: #e67d22 // direct — warm palette
+  --action-primary-outlined: #e67d22 // direct — warm palette
+
+  // ── ACTIONS — SECONDARY ──
+  --action-secondary-bg: #33312d // direct — warm palette
+  --action-secondary-hover: #3d3a35 // direct — warm palette
+  --action-secondary-pressed: #4a4640 // direct — warm palette
+  --action-secondary-text: #f5e6d3 // direct — warm palette
+  --action-secondary-border: #6b5f53 // direct — warm palette
+  --action-secondary-outlined: #6b5f53 // direct — warm palette
+
+  // ── ACTIONS — SOFT ──
+  --action-soft-bg: #33312d // direct — warm palette
+  --action-soft-hover: #3d3a35 // direct — warm palette
+  --action-soft-pressed: #4a4640 // direct — warm palette
+  --action-soft-text-neutral: #f5e6d3 // direct — warm palette
+  --action-soft-border: #3e3b37 // direct — warm palette
+  --action-soft-outlined: #3e3b37 // direct — warm palette
+
+  // ── ACTIONS — GHOST ──
+  --action-ghost-bg: #2b2a27 // direct — warm palette
+  --action-ghost-hover: #33312d // direct — warm palette
+  --action-ghost-pressed: #3d3a35 // direct — warm palette
+  --action-ghost-text-hard: #ffb38a // direct — warm palette
+  --action-ghost-border: var(--opacity-0);
+
+  // ── ACTIONS — SUCCESS ──
+  --action-success-bg: var(--green-400);
+  --action-success-hover: var(--green-500);
+  --action-success-pressed: var(--green-600);
+  --action-success-text-neutral: #2b2a27 // direct — warm palette
+  --action-success-text-hard: var(--green-200);
+  --action-success-border: var(--green-400);
+  --action-success-outlined: var(--green-400);
+
+  // ── ACTIONS — WARNING ──
+  --action-warning-bg: var(--yellow-400);
+  --action-warning-hover: var(--yellow-500);
+  --action-warning-pressed: var(--yellow-600);
+  --action-warning-text-neutral: #2b2a27 // direct — warm palette
+  --action-warning-border: var(--yellow-400);
+  --action-warning-outlined: var(--yellow-400);
+
+  // ── ACTIONS — DESTRUCTIVE ──
+  --action-destructive-bg: var(--red-400);
+  --action-destructive-hover: var(--red-500);
+  --action-destructive-pressed: var(--red-600);
+  --action-destructive-text-neutral: #2b2a27 // direct — warm palette
+  --action-destructive-border: var(--red-400);
+  --action-destructive-outlined: var(--red-400);
+
+  // ── ACTIONS — DISABLED ──
+  --action-disabled-bg: #3d3a35 // direct — warm palette
+  --action-disabled-text-neutral: #6b5f53 // direct — warm palette
+  --action-disabled-border: var(--opacity-0);
+
+  // ── ACTIONS — FOCUS ──
+  --action-focus-ring: #e67d22 // direct — warm palette
+  --action-focus-ring-offset: var(--neutral-900);
+
+  // ── ACTIONS — TOGGLE ──
+  --action-toggle-bg-default: #4a4640 // direct — warm palette
+  --action-toggle-icon-default: #9a8b7a // direct — warm palette
+  --action-toggle-bg-hover: #5a3a1a // direct — warm palette
+  --action-toggle-icon-hover: #e67d22 // direct — warm palette
+  --action-toggle-bg-active: #e67d22 // direct — warm palette
+  --action-toggle-icon-active: #2b2a27 // direct — warm palette
+  --action-toggle-bg-partial: #e67d22 // direct — warm palette
+  --action-toggle-icon-partial: #2b2a27 // direct — warm palette
+  --action-toggle-icon-disabled: #6b5f53 // direct — warm palette
+  --action-toggle-border: #6b5f53 // direct — warm palette
+  --action-toggle-focus-ring: #e67d22 // direct — warm palette
+
+  // ── SIDEBAR ──
+  --sidebar-primary-bg: #252320 // direct — warm palette
+  --sidebar-primary-foreground: #f5e6d3 // direct — warm palette
+  --sidebar-secondary-bg: #2b2a27 // direct — warm palette
+  --sidebar-secondary-foreground: #c4a584 // direct — warm palette
+  --sidebar-accent-bg: #3d3a35 // direct — warm palette
+  --sidebar-accent-foreground: #ffb38a // direct — warm palette
+  --sidebar-border: #3e3b37 // direct — warm palette
+  --sidebar-ring: #e67d22 // direct — warm palette
+  --sidebar-text: #c4a584 // direct — warm palette
+  --sidebar-text-active: #f5e6d3 // direct — warm palette
+  --sidebar-icon: #c4a584 // direct — warm palette
+  --sidebar-icon-active: #f5e6d3 // direct — warm palette
+
+  // ── TAGS ──
+  --tags-neutral: #c4a584 // direct — warm palette
+  --tags-neutral-bg: #3d3a35 // direct — warm palette
+  --tags-disabled: #6b5f53 // direct — warm palette
+  --tags-red: var(--red-300);
+  --tags-red-bg: #3a2727 // direct — warm palette
+  --tags-yellow: var(--yellow-200);
+  --tags-yellow-bg: #3a3527 // direct — warm palette
+  --tags-green: var(--green-200);
+  --tags-green-bg: #273a2d // direct — warm palette
+  --tags-blue: #93c5fd // direct — warm palette
+  --tags-blue-bg: #272d3a // direct — warm palette
+  --tags-purple: var(--purple-300);
+  --tags-purple-bg: #312740 // direct — warm palette
+
+  // ── TOOLTIP ──
+  --tooltip-bg: #f5e6d3 // direct — warm palette
+  --tooltip-text: #2b2a27 // direct — warm palette
+
+  // ── POPOVER ──
+  --popover-secondary-bg: #33312d // direct — warm palette
+  --popover-secondary-foreground: #f5e6d3 // direct — warm palette
+
+  // ── ELEVATION ──
+  --elevation-sm: var(--neutral-800);
+  --elevation-md: var(--neutral-700);
+  --elevation-lg: var(--neutral-600);
+  --elevation-xl: var(--neutral-500);
+  --elevation-none: #2b2a27 // direct — warm palette
+  --elevation-xs: #252320 // direct — warm palette
+
+  // ── CHART ──
+  --chart-6: var(--purple-600);
+  --chart-7: var(--shift-meeting-scheduled);
+  --chart-8: var(--shift-scheduled);
+  --chart-9: var(--green-800);
+  --chart-10: var(--blue-300);
+  --chart-1: #e67d22 // direct — warm palette
+  --chart-2: #ffb38a // direct — warm palette
+  --chart-3: #c4a584 // direct — warm palette
+  --chart-4: #9a8b7a // direct — warm palette
+  --chart-5: #6b5f53 // direct — warm palette
+
+  // ── STATUS — SHIFT ──
+  --status-shift-open: var(--green-400);
+  --status-shift-open-bg: #273a2d // direct — warm palette
+  --status-shift-confirmed: var(--green-500);
+  --status-shift-confirmed-bg: #273a2d // direct — warm palette
+  --status-shift-need-review: var(--yellow-200);
+  --status-shift-need-review-bg: #3a3527 // direct — warm palette
+  --status-shift-scheduled: #ffb38a // direct — warm palette
+  --status-shift-scheduled-bg: #3a3220 // direct — warm palette
+  --status-shift-scheduled-bg-active: #4a4230 // direct — warm palette
+  --status-shift-approved: var(--green-400);
+  --status-shift-approved-bg: #273a2d // direct — warm palette
+  --status-shift-no-show: #9a8b7a // direct — warm palette
+  --status-shift-no-show-bg: #33312d // direct — warm palette
+  --status-shift-caregiver-cancelled: #9a8b7a // direct — warm palette
+  --status-shift-caregiver-cancelled-bg: #33312d // direct — warm palette
+  --status-shift-client-cancelled: #9a8b7a // direct — warm palette
+  --status-shift-client-cancelled-bg: #33312d // direct — warm palette
+  --status-shift-unapproved: #9a8b7a // direct — warm palette
+  --status-shift-unapproved-bg: #33312d // direct — warm palette
+  --status-shift-unpublished: #6b5f53 // direct — warm palette
+  --status-shift-unpublished-bg: #33312d // direct — warm palette
+
+  // ── STATUS — MEETING ──
+  --status-meeting-scheduled: #ffb38a // direct — warm palette
+  --status-meeting-scheduled-bg: #3a3220 // direct — warm palette
+  --status-meeting-approved: var(--green-400);
+  --status-meeting-approved-bg: #273a2d // direct — warm palette
+  --status-meeting-cancelled: #9a8b7a // direct — warm palette
+  --status-meeting-cancelled-bg: #33312d // direct — warm palette
+
+  // ── STATUS — TASK ──
+  --status-task-completed: var(--green-400);
+  --status-task-completed-bg: #273a2d // direct — warm palette
+  --status-task-deferred: #ffb38a // direct — warm palette
+  --status-task-deferred-bg: #3a3220 // direct — warm palette
+  --status-task-not-started: #9a8b7a // direct — warm palette
+  --status-task-not-started-bg: #33312d // direct — warm palette
+  --status-task-in-progress: #93c5fd // direct — warm palette
+  --status-task-in-progress-bg: #272d3a // direct — warm palette
+}

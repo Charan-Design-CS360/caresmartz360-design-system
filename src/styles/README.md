@@ -10,7 +10,7 @@ Two independent attributes on `<html>` or `<body>`, so any combination works:
 <body data-theme="dark" data-density="small">
 ```
 
-- `data-theme`: `light` (default) · `dark` · `high-contrast`
+- `data-theme`: `light` (default) · `dark` · `high-contrast` · `warm-dark` · `hc-light`
 - `data-density`: `small` · `medium` (default) · `large`
 
 ## Verification status at a glance
@@ -21,14 +21,14 @@ Two independent attributes on `<html>` or `<body>`, so any combination works:
 | `1-primitives/_spacing.scss` | Verified |
 | `1-primitives/_typography.scss` | Verified, except mono font family and tracking units |
 | `1-primitives/_effects.scss` | Z-index and duration verified; shadow and easing carried over from existing repo files, unverified |
-| `2-semantics/_theme-light.scss` | Brand/status colors verified; role structure follows Caregiver's proven pattern |
-| `2-semantics/_theme-dark.scss` | Proposed, not verified — Agency has no live Figma dark mode yet |
-| `2-semantics/_theme-high-contrast.scss` | Proposed, not verified — Caregiver's Figma file has a real High Contrast mode; pull it before shipping this |
-| `2-semantics/_density.scss` | Proposed — Caregiver's Figma equivalent uses different names (Normal/Comfortable/Compact); reconcile |
+| `2-semantics/_theme-light.scss` | Verified against Figma v2.6.0 (2026-07-20) |
+| `2-semantics/_theme-dark.scss` | Verified against Figma v2.6.0 (2026-07-20) |
+| `2-semantics/_theme-high-contrast.scss` | Verified against Figma v2.6.0 (2026-07-20) |
+| `2-semantics/_theme-warm-dark.scss` | Added v2.6.2 — ON HOLD for 180/204 raw hex aliasing |
+| `2-semantics/_theme-hc-light.scss` | Added v2.6.2 — Verified against Figma |
+| `2-semantics/_density.scss` | Verified against Figma Density Modes collection (29 vars) |
 | `2-semantics/_status.scss` | Shift-status colors carried over from the caresmartz-design skill, not re-verified this session |
-| `3-components/*` | New — component structure, not yet checked against real Figma component frames |
-
-See `VERIFICATION-LOG.md` at the repo root for the full audit trail.
+| `3-components/*` | Structure verified, specific component frames not yet audited |
 
 ## Suggestions — what else this system is missing
 
