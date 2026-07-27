@@ -39,6 +39,7 @@ This repository (`caresmartz360-design-system`) is the **Single Source of Truth 
 | 5 | **Jira Audit Footers (§23)** | Every Jira comment added or updated by an AI tool MUST include the mandatory Section 23 audit log footer. |
 | 6 | **Figma Query Hub** | If Figma context or node verification is required, query or log to the Figma Query Hub ticket ([C360-44222](https://netsmartz.atlassian.net/browse/C360-44222)). |
 | 7 | **Source Hierarchy** | Data priority: GitHub Repo (`main`) > Figma Live Variables > Jira Tickets. |
+| 8 | **Naming Convention Freeze** | Tier 1 (Primitives) and Tier 2 (Semantics) token names are PERMANENTLY FROZEN as of v3.1.0 to ensure safe Dev Team handoff. Only underlying values can be updated. Do not suggest renames. |
 
 ---
 

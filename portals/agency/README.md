@@ -75,7 +75,7 @@ This directory contains documentation and assets specific to the **Agency Portal
 | `font-weight/body-strong` | FLOAT | alias | `fonts/weight/medium-500` | 500 |
 | `font-weight/heading-base` | FLOAT | alias | `fonts/weight/medium-500` | 500 |
 | `font-weight/heading-strong` | FLOAT | alias | `fonts/weight/semibold-600` | 600 |
-| `font-family/primary-font` | STRING | alias | `fonts/family/font-family-sans` | Inter |
+| `font-family/primary` | STRING | alias | `fonts/family/font-family-sans` | Inter |
 | `border-radius/rounded-none` | FLOAT | alias | `radius/radius-0` | 0 |
 | `border-radius/rounded-sm` | FLOAT | alias | `radius/radius-2` | 2 |
 | `border-radius/rounded` | FLOAT | alias | `radius/radius-4` | 4 |
