@@ -1,71 +1,73 @@
-# CareSmartz360 Design System — AI Context & Guidelines
+# CareSmartz360 Design System — mandatory AI entrypoint
 
-> **Target Audience:** All AI Agents (Figma AI, Antigravity, Codex, Claude, Cursor) working in this repository.
+Every AI tool and human contributor must read this file before using or
+changing variables. There is no portal fallback and no permission to guess.
 
----
+## Authority
 
-## 1. Core Purpose & Scope
+- `/Users/netsmartz/Documents/Variables` is the only variable input authority.
+  It contains owner-maintained exports downloaded from Figma.
+- Published delivery authority: reviewed GitHub artifacts and
+  `config/variable-export-manifest.json`.
+- Jira: governance, status, decisions, and evidence only. Jira never overrides
+  a variable value.
+- AI tools must not query Figma, infer a value, merge portals, or use a stale
+  root-level token file as variable truth.
+- If the local authority folder is unavailable, use the committed artifacts but
+  report that local byte parity could not be checked. Never fabricate parity.
 
-This repository (`caresmartz360-design-system`) is the **Single Source of Truth (SSOT)** for design system tokens, variables, SCSS stylesheets, and component styles across all CareSmartz360 products.
+## Required portal routing
 
-- **Scope Restriction:** Design system tokens, SCSS architecture, and core component styles ONLY.
-- **No App Code:** Application logic, page routing, and screen layouts belong in product consumer repos (`poc-design-system`, `Aegis`, `CGPortal`).
+Identify the consumer portal before reading Layer 2 or later.
+If the portal is unknown, stop and request it.
 
----
+| Scope | Canonical repository path | Logical variables | Jira |
+| --- | --- | ---: | --- |
+| Shared Primitives | `shared/primitives/tokens/` | 264 | C360-43755 |
+| Agency Semantics | `portals/agency/semantics/` | 251 | C360-44253 |
+| Caregiver Semantics | `portals/caregiver/semantics/` | 171 | C360-44333 |
+| Staff Semantics | Not registered | 0 verified | C360-3526 |
 
-## 2. Portal Identification & Exclusivity Rules
+Agency owns `Color Modes` (208 variables, five modes), `Density Modes` (29),
+and `General` (14). Caregiver owns `Color Theme` (134 variables, three modes),
+`Density Modes` (23 variables, three modes), and `General` (14).
 
-| Portal | Figma File Key | Primary Collection | Repo Directory | Jira Reference |
-|--------|---------------|-------------------|----------------|----------------|
-| **Agency Portal** | `4bh29laapcuKBTghfaRXF0` | `Color Modes, Density Modes, General` (247 vars, 3 collections) | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
-| **Caregiver Portal** | `TSOq0ugv6zfr6gFZh5zYrP` | `Color Theme` (171 vars, 3 modes) | `portals/caregiver/` | [C360-44333](https://netsmartz.atlassian.net/browse/C360-44333) |
-| **Staff Portal** | *In Progress* | *In Progress* | `portals/staff/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
-| **Client Portal** | *In Progress* | *In Progress* | `portals/client/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
+The word `caregiver` in an Agency scheduling token such as
+`status.shift.caregiver-cancelled` describes an Agency business state. It does
+not authorize an import from `portals/caregiver`.
 
-### Identification Guide:
-- If Figma collection name is `"Color Modes"` → You are in **Agency Portal**.
-- If Figma collection name is `"Color Theme"` → You are in **Caregiver Portal**.
+## Four-layer dependency contract
 
----
-
-## 3. Mandatory AI Rules
-
-| # | Rule | Requirement |
-|---|------|-------------|
-| 1 | **Prefix-Free Tokens** | Use `--surface-base`, `--text-primary` dialect. NEVER use `--agency-` or `--caregiver-` prefixes in CSS custom properties. |
-| 2 | **3-Tier Architecture** | Tier 1 (Primitives) → Tier 2 (Semantic) → Tier 3 (Components). Components must ONLY reference Tier 2 variables. |
-| 3 | **Portal Isolation** | Keep portal semantic tokens strictly inside their designated `portals/<name>/` directories. |
-| 4 | **No Direct Hex in Tier 2** | Semantic tokens MUST alias primitive variables (e.g. `var(--neutral-800)`), never hardcoded hex codes outside documented exception modes. |
-| 5 | **Jira Audit Footers (§23)** | Every Jira comment added or updated by an AI tool MUST include the mandatory Section 23 audit log footer. |
-| 6 | **Figma Query Hub** | If Figma context or node verification is required, query or log to the Figma Query Hub ticket ([C360-44222](https://netsmartz.atlassian.net/browse/C360-44222)). |
-| 7 | **Source Hierarchy** | Data priority: GitHub Repo (`main`) > Figma Live Variables > Jira Tickets. |
-| 8 | **Naming Convention Freeze** | Tier 1 (Primitives) and Tier 2 (Semantics) token names are PERMANENTLY FROZEN as of v3.1.0 to ensure safe Dev Team handoff. Only underlying values can be updated. Do not suggest renames. |
-
----
-
-## 4. Query Hub Instructions ([C360-44222](https://netsmartz.atlassian.net/browse/C360-44222))
-
-When an AI tool needs clarification or data from Figma that connectors/plugins cannot deliver, post a structured query on Jira issue **C360-44222**:
-
-```markdown
-### ❓ Figma Query — [Tool Name] — [Topic]
-* **Target Portal:** [Agency / Caregiver / Shared]
-* **Figma File / Node:** [URL or Node ID]
-* **Query:** [Detailed description of information needed]
-* **Blocking Status:** [YES / NO]
-
----
-Modified or Created by [Tool Name] on [ISO Timestamp]
-related to [File Name]
-Purpose [Short statement]
+```text
+Shared Primitives
+  ├── Agency Semantics → Agency Components → Agency Patterns/Templates
+  ├── Caregiver Semantics → Caregiver Components → Caregiver Patterns/Templates
+  └── Staff Semantics → Staff Components → Staff Patterns/Templates
 ```
 
----
+Only Primitives are shared. Layers 2–4 are portal-owned. A portal may depend on
+`shared/primitives` and its own `portals/<portal>` tree only.
 
-## 5. Key References
+## Zero-tolerance workflow
 
-- **Master Epic:** [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526)
-- **Shared Primitives:** [C360-43755](https://netsmartz.atlassian.net/browse/C360-43755)
-- **Figma Query Hub:** [C360-44222](https://netsmartz.atlassian.net/browse/C360-44222)
-- **Figma AI Bridge Ticket:** [C360-44235](https://netsmartz.atlassian.net/browse/C360-44235)
-- **Guardrails:** [GUARDRAILS.md](file:///Users/netsmartz/Documents/GitHub/caresmartz360-design-system/GUARDRAILS.md)
+1. State the target portal.
+2. Read its `portal-manifest.json` and this file.
+3. Read variables only from the canonical paths above.
+4. After the owner replaces a local export, run `npm run sync:variables`.
+5. Run `npm run verify:variables` and `npm run validate`.
+6. Treat any byte mismatch, count drift, schema error, alias cycle, placeholder,
+   or cross-portal dependency as a blocking error.
+7. Commit the exact exports and updated SHA-256 manifest together.
+8. Record branch, commit, checksums, counts, and validation evidence in Jira.
+
+Do not silently normalize, rename, repair, or reinterpret an exported variable.
+Propose corrections to the owner; the next local export is the only valid input.
+
+## Status boundary
+
+The variable layer is exact and auditable. Component and Pattern/Template
+delivery has separate evidence gates and must not be called complete merely
+because variables pass.
+
+Master governance: C360-3526. Executable workflow:
+`docs/VARIABLE-AUTHORITY-WORKFLOW.md`.

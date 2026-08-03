@@ -1,5 +1,11 @@
 # AI Tools Guide — CareSmartz360 Design System
 
+> **Variable authority notice:** `AI_CONTEXT.md`,
+> `docs/VARIABLE-AUTHORITY-WORKFLOW.md`, and
+> `config/variable-export-manifest.json` govern portal routing and values. Any
+> older root-file examples in this guide are historical and must not be used as
+> current variable truth.
+
 > Version: 2.5.0 | Stack: Angular 19 + Angular Material M3 (PRIMARY) + Tailwind CSS + SCSS
 
 This guide provides AI assistants and developers with structured context for working with the CareSmartz360 design system. Read this before generating any component code.

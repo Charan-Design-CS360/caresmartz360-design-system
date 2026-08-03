@@ -57,25 +57,19 @@ Layer 4: Patterns/Templates       → Portal-scoped reusable workflows and layou
 ```
 caresmartz360-design-system/
 ├── README.md                      # Main multi-portal documentation
-├── AI_CONTEXT.md                  # Mandatory AI agent context & guidelines
+├── AI_CONTEXT.md                  # Mandatory zero-tolerance AI routing
 ├── GUARDRAILS.md                  # Repository scope boundaries & contribution rules
-├── CHANGELOG.md                   # Complete version history
-├── semantic-tokens.scss           # Agency prefix-free SCSS custom properties
-├── ds-tokens-latest.json          # Agency DTCG format token manifest (v2.6)
-├── ds-tokens-v2.6.0.json          # Agency DTCG v2.6.0 snapshot
-├── primitives/                    # Shared Tier 1 primitive definitions
-│   ├── PRIMITIVES.lock
-│   └── Primitives.CS360.V2.0.tokens.json
-├── portals/                       # Tier 2 Portal-Scoped Semantic Layers
+├── config/variable-export-manifest.json # Exact archive/artifact hashes
+├── shared/primitives/tokens/      # Canonical shared Primitives export
+├── portals/                       # Portal-owned Layers 2–4
 │   ├── agency/
-│   │   └── README.md              # Agency portal semantic reference
+│   │   ├── portal-manifest.json
+│   │   └── semantics/             # Canonical Agency exports
 │   └── caregiver/
-│       ├── README.md              # Caregiver portal semantic reference
-│       └── semantic-tokens.json   # Complete Caregiver DTCG 171-var manifest
-└── src/styles/                    # 3-Tier SCSS styles source tree
-    ├── 1-primitives/              # SCSS primitive tokens
-    ├── 2-semantics/               # SCSS theme stylesheets
-    └── 3-components/              # Component SCSS implementations
+│       ├── portal-manifest.json
+│       └── semantics/             # Canonical Caregiver exports
+├── scripts/                       # Sync, parity, isolation, release gates
+└── legacy root JSON/SCSS          # Migration inputs, never variable authority
 ```
 
 ---

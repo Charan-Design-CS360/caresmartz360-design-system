@@ -1,51 +1,43 @@
-# CareSmartz360 Design System — Repository Guardrails
+# CareSmartz360 Design System — repository guardrails
 
-> **Purpose:** Strict scope boundaries and contribution rules for any AI tool (Figma AI, Antigravity, Codex, Claude, Cursor) or human developer working in this repository.
+## Non-negotiable boundaries
 
----
+1. The architecture is Primitives → Portal Semantics → Components →
+   Patterns/Templates.
+2. Only `shared/primitives` is shared.
+3. Agency, Caregiver, Staff, and future portals own separate Layers 2–4.
+4. A portal must never import, alias, copy, or fall back to another portal.
+5. `/Users/netsmartz/Documents/Variables` is the only variable input authority.
+6. GitHub publishes reviewed exact copies; Jira records evidence and status.
+7. No AI tool may guess, synthesize, rename, or silently repair variable data.
 
-## 1. Scope Restriction Statement
+## Canonical locations
 
-This repository is **EXCLUSIVELY** for Design System assets:
-- Tier 1 Primitives (`primitives/`)
-- Tier 2 Portal Semantic Layers (`portals/agency/`, `portals/caregiver/`)
-- Tier 3 Design System Components (`src/styles/3-components/`)
-- Global Token Manifests (`ds-tokens-latest.json`, `semantic-tokens.scss`)
-- Design System Documentation (`README.md`, `AI_CONTEXT.md`, `CHANGELOG.md`, `portals/*/README.md`)
+| Artifact | Location |
+| --- | --- |
+| Shared primitive exports | `shared/primitives/tokens/` |
+| Agency semantic exports | `portals/agency/semantics/` |
+| Caregiver semantic exports | `portals/caregiver/semantics/` |
+| Portal manifests | `portals/<portal>/portal-manifest.json` |
+| Variable provenance | `config/variable-export-manifest.json` |
 
-⚠️ **PROHIBITED CONTENT:** Application-level code, screen mockups, Figma frame node ID maps, portal-specific app logic, database schemas, or API endpoints. App code belongs in product repositories (e.g. `poc-design-system`, `Aegis`, `CGPortal`).
+Root-level legacy JSON/SCSS files remain migration inputs only. They are not
+authoritative and must not be selected when a canonical portal export exists.
 
----
+## Required checks
 
-## 2. Allowed vs Prohibited Content
+- `npm run verify:variables`: byte parity with the current owner exports.
+- `npm run validate:portal-manifests`: registered ownership and paths.
+- `npm run validate:portal-isolation`: no cross-portal dependencies.
+- `npm run audit:tokens`: DTCG leaves, counts, placeholders, and cycles.
+- `npm run validate`: complete non-release audit and automated tests.
+- `npm run release:check`: strict four-layer release evidence.
 
-| Content Category | Status | Target Location |
-|------------------|--------|-----------------|
-| Shared Primitives | ✅ ALLOWED | `primitives/` |
-| Agency Semantic Tokens | ✅ ALLOWED | `portals/agency/` or root `semantic-tokens.scss` |
-| Caregiver Semantic Tokens | ✅ ALLOWED | `portals/caregiver/` |
-| Staff / Client Semantic Layers | ✅ ALLOWED (future) | `portals/staff/`, `portals/client/` |
-| Component SCSS Styles | ✅ ALLOWED | `src/styles/3-components/` |
-| Token Build Scripts | ✅ ALLOWED | `scripts/` or `tools/` |
-| App Page Layouts / Views | ❌ PROHIBITED | Product Repos |
-| Product Screen Designs / Frames | ❌ PROHIBITED | Figma Desktop / Product Repos |
-| One-Time Debug / Handoff Docs | ❌ PROHIBITED | Temporary Jira Attachments |
+Any failure blocks publication or release. Do not bypass a gate or weaken it to
+accept current data.
 
----
+## Scope
 
-## 3. Portal Exclusivity Rules
-
-1. **Agency Portal** uses variable collection name `"Color Modes"` (`4bh29laapcuKBTghfaRXF0`). Its semantic definitions live under `portals/agency/`.
-2. **Caregiver Portal** uses variable collection name `"Color Theme"` (`TSOq0ugv6zfr6gFZh5zYrP`). Its semantic definitions live under `portals/caregiver/`.
-3. **NEVER CROSS-APPLY**: Never mix Agency tokens into Caregiver assets, or vice versa.
-4. **Shared Foundation**: Both portals inherit from common Tier 1 Primitives (`C360-43755`).
-
----
-
-## 4. AI Tool Checklist Before Making Changes
-
-- [ ] Verify you are targeting the correct portal (`portals/agency` vs `portals/caregiver`)
-- [ ] Ensure token names use prefix-free convention (e.g., `--surface-base`, NOT `--agency-surface-base`)
-- [ ] Verify DTCG JSON validity before committing
-- [ ] Post/update progress in the Figma Query Hub ([C360-44222](https://netsmartz.atlassian.net/browse/C360-44222)) if architectural clarification is needed
-- [ ] Append the mandatory Section 23 audit log footer to any Jira comment created/edited
+Allowed: four-layer design-system assets, schemas, validators, documentation,
+and provenance. Product business logic, routes, APIs, databases, and one-off
+application screens belong in consumer repositories.
