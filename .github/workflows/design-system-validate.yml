@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/design-system-validate.yml"
       - "package.json"
+      - "config/**"
       - "portals/**"
       - "schemas/**"
       - "scripts/**"
@@ -17,6 +18,7 @@ on:
     paths:
       - ".github/workflows/design-system-validate.yml"
       - "package.json"
+      - "config/**"
       - "portals/**"
       - "schemas/**"
       - "scripts/**"

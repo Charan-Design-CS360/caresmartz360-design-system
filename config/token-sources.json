@@ -1,0 +1,35 @@
+{
+  "sources": [
+    {
+      "id": "shared-primitives",
+      "portal": "shared",
+      "file": "primitives/Primitives.CS360.V2.0.tokens.json",
+      "roots": ["$document"],
+      "claimedTotal": 264
+    },
+    {
+      "id": "agency-semantics",
+      "portal": "agency",
+      "file": "ds-tokens-latest.json",
+      "roots": ["semantic"],
+      "modeNames": ["light", "dark", "high-contrast", "warm-dark", "hc-light"],
+      "claimedTotalPath": "$metadata.totalVariables"
+    },
+    {
+      "id": "caregiver-semantics",
+      "portal": "caregiver",
+      "file": "portals/caregiver/semantic-tokens.json",
+      "roots": ["colorTheme", "densityModes", "general"],
+      "modeNames": [
+        "light",
+        "soothing-dark",
+        "high-contrast",
+        "default",
+        "large",
+        "small",
+        "mode-1"
+      ],
+      "claimedTotalPath": "$metadata.totalVariables"
+    }
+  ]
+}
