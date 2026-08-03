@@ -1,0 +1,14 @@
+{
+  "name": "@caresmartz360/design-system",
+  "version": "0.0.0-development",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "npm run validate:portal-manifests && npm run validate:portal-isolation",
+    "validate:portal-manifests": "node scripts/validate-portal-manifests.mjs",
+    "validate:portal-isolation": "node scripts/validate-portal-isolation.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
