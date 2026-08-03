@@ -1,0 +1,7 @@
+{
+  "legacyFiles": [
+    "components/component-mapping.json"
+  ],
+  "portalFileName": "component-mapping.json",
+  "requiredForStatuses": ["pilot", "stable"]
+}

@@ -6,11 +6,12 @@
   "scripts": {
     "test": "node --test tests/*.test.mjs",
     "audit:tokens": "node scripts/audit-token-contract.mjs",
-    "validate": "npm run validate:portal-manifests && npm run validate:portal-isolation && npm run validate:figma-snapshots && npm run audit:tokens && npm test",
+    "audit:components": "node scripts/audit-component-mappings.mjs",
+    "validate": "npm run validate:portal-manifests && npm run validate:portal-isolation && npm run validate:figma-snapshots && npm run audit:tokens && npm run audit:components && npm test",
     "validate:figma-snapshots": "node scripts/validate-figma-snapshots.mjs",
     "validate:portal-manifests": "node scripts/validate-portal-manifests.mjs",
     "validate:portal-isolation": "node scripts/validate-portal-isolation.mjs",
-    "release:check": "DS_REQUIRE_FRESH_SNAPSHOTS=true DS_REQUIRE_DTCG_TOKENS=true npm run validate"
+    "release:check": "DS_REQUIRE_FRESH_SNAPSHOTS=true DS_REQUIRE_DTCG_TOKENS=true DS_REQUIRE_COMPONENT_MAPPINGS=true npm run validate"
   },
   "engines": {
     "node": ">=20"

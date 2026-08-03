@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caresmartz360.com/design-system/component-mapping.schema.json",
+  "title": "CareSmartz360 portal component mapping",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "portal", "figmaFileKey", "components"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "portal": { "type": "string", "minLength": 1 },
+    "figmaFileKey": { "type": "string", "minLength": 1 },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "componentKey",
+          "nodeId",
+          "maturity",
+          "semanticDependencies",
+          "contractPath",
+          "jiraIssue",
+          "snapshotRef"
+        ],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "componentKey": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "nodeId": { "type": "string", "pattern": "^[0-9]+:[0-9]+$" },
+          "maturity": {
+            "enum": [
+              "discovered",
+              "draft",
+              "reviewed",
+              "pilot",
+              "stable",
+              "deprecated"
+            ]
+          },
+          "semanticDependencies": {
+            "type": "array",
+            "items": { "type": "string" },
+            "uniqueItems": true
+          },
+          "contractPath": { "type": "string", "minLength": 1 },
+          "jiraIssue": {
+            "type": "string",
+            "pattern": "^C360-[0-9]+$"
+          },
+          "snapshotRef": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
