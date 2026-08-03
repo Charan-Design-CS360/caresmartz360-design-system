@@ -17,15 +17,17 @@ Templates must not reference another portal.
 
 ## Authority and evidence
 
-- Figma and Figma AI describe what is defined in Figma.
+- Owner-maintained exports in `/Users/netsmartz/Documents/Variables` are the
+  only input authority for primitive and semantic variable values.
+- Figma evidence remains applicable to visual designs, components, and patterns;
+  AI tools do not query it for variable truth.
 - GitHub contains reviewed, versioned, consumable delivery artifacts.
 - Jira records ownership, decisions, status, and links to evidence.
-- Automated parity checks must prove that an approved Figma snapshot and the
-  corresponding GitHub release agree.
+- Automated byte-parity checks must prove that the local variable exports and
+  corresponding GitHub artifacts agree.
 
-When live Figma access is unavailable, consumers may use only the latest
-attested snapshot committed to GitHub. They must report its timestamp and must
-not claim that it represents unverified live Figma state.
+Consumers use the reviewed GitHub variable artifacts and their SHA-256 manifest.
+Visual/component/pattern claims still require the applicable snapshot evidence.
 
 ## Portal manifest
 

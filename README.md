@@ -1,6 +1,9 @@
 # CareSmartz360 Design System (v3.0.0)
 
-Single Source of Truth (SSOT) design token repository for the CareSmartz360 ecosystem — exported from Figma and consumed by Angular 19 + Angular Material M3 + Tailwind CSS v4 + SCSS.
+Reviewed, versioned delivery source for the CareSmartz360 design system. Its
+variable input authority is the owner-maintained export folder
+`/Users/netsmartz/Documents/Variables`; exact copies and checksums are published
+here for Angular, React Native, and other consumers.
 
 ---
 
@@ -8,21 +11,23 @@ Single Source of Truth (SSOT) design token repository for the CareSmartz360 ecos
 
 | Portal | Scope | Figma Collection | Total Vars | Status | Directory | Jira |
 |--------|-------|------------------|------------|--------|-----------|------|
-| **Agency Portal** | Web App | `Color Modes`, `Density Modes`, `General` | 247 vars across 3 collections (Color Modes 204 × 5 modes, Density Modes 29 × 1 mode, General 14 × 1 mode) | ✅ Active (v2.6) | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
+| **Agency Portal** | Web App | `Color Modes`, `Density Modes`, `General` | 251 vars across 3 collections (Color Modes 208 × 5 modes, Density Modes 29 × 1 mode, General 14 × 1 mode) | Active audit | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
 | **Caregiver Portal** | Web + Mobile | `Color Theme` | 171 vars (3 modes) | ✅ Active (v3.0) | `portals/caregiver/` | [C360-44333](https://netsmartz.atlassian.net/browse/C360-44333) |
 | **Staff Portal** | Web App | *TBD* | *In Progress* | 🟡 Planned | `portals/staff/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
 | **Client Portal** | Mobile App | *TBD* | *In Progress* | 🟡 Planned | `portals/client/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
 
 ---
 
-## 📐 3-Tier Token Architecture
+## 📐 Four-layer architecture
 
 ```
-Tier 1: Primitives (primitives/)   → Shared global scale (colors, fonts, radius, shadow)
+Layer 1: Primitives                → Shared global scale (colors, fonts, radius, shadow)
                                         ↓
-Tier 2: Semantics (portals/)      → Portal-scoped semantic meaning (surface, text, action)
+Layer 2: Portal Semantics         → Portal-scoped semantic meaning (surface, text, action)
                                         ↓
-Tier 3: Components (src/styles/)   → UI component bindings (buttons, cards, tables)
+Layer 3: Components               → Portal-scoped component contracts
+                                        ↓
+Layer 4: Patterns/Templates       → Portal-scoped reusable workflows and layouts
 ```
 
 ### Mandatory Architecture Rules:
@@ -38,7 +43,7 @@ Tier 3: Components (src/styles/)   → UI component bindings (buttons, cards, ta
 |--------------------|---------------|------------------|
 | Primary Figma File | `4bh29laapcuKBTghfaRXF0` | `TSOq0ugv6zfr6gFZh5zYrP` |
 | Primary Collection | `Color Modes` | `Color Theme` |
-| Total Variables | 204 | 171 |
+| Total Variables | 251 | 171 |
 | Theme Modes | 5 (Light, Dark, High Contrast, Warm Dark, HC Light) | 3 (Light Mode, Soothing Dark, High Contrast) |
 | Density Modes | 1 (Default) | 3 (Default, Large, Small) |
 | Chart Tokens | Yes (10 series) | No |

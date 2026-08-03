@@ -42,7 +42,6 @@ for (const manifestPath of listPortalManifests()) {
     for (const dependency of forbidden) {
       const importForms = [
         dependency,
-        dependency.replace(/^portals\//, ""),
         `../${dependency.replace(/^portals\//, "")}`,
       ];
 

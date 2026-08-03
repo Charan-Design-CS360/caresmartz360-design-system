@@ -2,8 +2,12 @@
 
 ## Purpose
 
-Figma and Figma AI are authoritative for what is defined in Figma. Other AI
-tools may be temporarily unable to query Figma. They need a durable,
+This contract applies to visual, component, and pattern evidence. Variable
+values are governed separately by `docs/VARIABLE-AUTHORITY-WORKFLOW.md`: the
+owner-maintained local exports are their only input authority, and AI tools do
+not query Figma for variable truth.
+
+For non-variable design evidence, an approved snapshot provides a durable,
 machine-readable record without pretending that an old export is live truth.
 
 An approved snapshot is evidence of Figma state at one specific time. It is not

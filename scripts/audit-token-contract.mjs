@@ -7,7 +7,22 @@ import {
 
 const strict = process.env.DS_REQUIRE_DTCG_TOKENS === "true";
 const configPath = path.join(repositoryRoot, "config", "token-sources.json");
-const config = readJson(configPath);
+const exportManifestPath = path.join(
+  repositoryRoot,
+  "config",
+  "variable-export-manifest.json",
+);
+const config = fs.existsSync(exportManifestPath)
+  ? {
+      sources: readJson(exportManifestPath).artifacts.map((artifact) => ({
+        id: `${artifact.authority}:${artifact.sourceMember}`,
+        portal: artifact.authority.replace("-semantics", "").replace("shared-primitives", "shared"),
+        file: artifact.repositoryPath,
+        roots: ["$document"],
+        claimedTotal: artifact.tokenDefinitions,
+      })),
+    }
+  : readJson(configPath);
 const reports = [];
 const strictErrors = [];
 

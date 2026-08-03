@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
+    "sync:variables": "node scripts/sync-owner-variable-exports.mjs",
+    "verify:variables": "node scripts/verify-owner-variable-exports.mjs",
     "audit:tokens": "node scripts/audit-token-contract.mjs",
     "audit:components": "node scripts/audit-component-mappings.mjs",
     "audit:layer-4": "node scripts/audit-layer-4.mjs",
-    "validate": "npm run validate:portal-manifests && npm run validate:portal-isolation && npm run validate:figma-snapshots && npm run audit:tokens && npm run audit:components && npm run audit:layer-4 && npm test",
+    "validate": "npm run verify:variables && npm run validate:portal-manifests && npm run validate:portal-isolation && npm run validate:figma-snapshots && npm run audit:tokens && npm run audit:components && npm run audit:layer-4 && npm test",
     "validate:figma-snapshots": "node scripts/validate-figma-snapshots.mjs",
     "validate:portal-manifests": "node scripts/validate-portal-manifests.mjs",
     "validate:portal-isolation": "node scripts/validate-portal-isolation.mjs",
