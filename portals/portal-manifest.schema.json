@@ -10,7 +10,8 @@
     "figma",
     "layers",
     "allowedDependencies",
-    "forbiddenDependencies"
+    "forbiddenDependencies",
+    "snapshotPolicy"
   ],
   "properties": {
     "$schema": { "type": "string" },
@@ -60,6 +61,19 @@
       "type": "array",
       "items": { "type": "string" },
       "uniqueItems": true
+    },
+    "snapshotPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredForStatuses", "maxAgeDays"],
+      "properties": {
+        "requiredForStatuses": {
+          "type": "array",
+          "items": { "enum": ["pilot", "stable"] },
+          "uniqueItems": true
+        },
+        "maxAgeDays": { "type": "integer", "minimum": 1 }
+      }
     }
   }
 }

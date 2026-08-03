@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caresmartz360.com/design-system/figma-snapshot.schema.json",
+  "title": "CareSmartz360 attested Figma snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "portal",
+    "figma",
+    "inventory",
+    "checksums",
+    "attestation"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "portal": { "type": "string", "minLength": 1 },
+    "figma": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileKey",
+        "libraryKey",
+        "exportedAt",
+        "exportedBy",
+        "sourceAuthority"
+      ],
+      "properties": {
+        "fileKey": { "type": "string", "minLength": 1 },
+        "libraryKey": { "type": "string", "minLength": 1 },
+        "exportedAt": { "type": "string", "format": "date-time" },
+        "exportedBy": { "const": "Figma AI" },
+        "sourceAuthority": { "const": "figma" }
+      }
+    },
+    "inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["collections", "components"],
+      "properties": {
+        "collections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "key", "modes", "variableCount"],
+            "properties": {
+              "name": { "type": "string" },
+              "key": { "type": "string" },
+              "modes": {
+                "type": "array",
+                "items": { "type": "string" },
+                "uniqueItems": true
+              },
+              "variableCount": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "componentKey"],
+            "properties": {
+              "name": { "type": "string" },
+              "componentKey": { "type": "string" },
+              "nodeId": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "checksums": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "tokens", "components"],
+      "properties": {
+        "algorithm": { "const": "sha256" },
+        "tokens": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "components": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "attestedBy", "statement", "jiraIssue"],
+      "properties": {
+        "status": { "const": "attested" },
+        "attestedBy": { "const": "Figma AI" },
+        "statement": { "type": "string", "minLength": 1 },
+        "jiraIssue": { "type": "string", "pattern": "^C360-[0-9]+$" }
+      }
+    }
+  }
+}

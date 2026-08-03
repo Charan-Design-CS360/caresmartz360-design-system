@@ -21,5 +21,9 @@
   "forbiddenDependencies": [
     "portals/caregiver",
     "portals/staff"
-  ]
+  ],
+  "snapshotPolicy": {
+    "requiredForStatuses": ["pilot", "stable"],
+    "maxAgeDays": 30
+  }
 }

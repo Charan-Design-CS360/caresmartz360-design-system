@@ -97,6 +97,18 @@ for (const manifestPath of manifests) {
     }
   }
 
+  const snapshotPolicy = manifest.snapshotPolicy;
+  if (
+    !snapshotPolicy ||
+    !Array.isArray(snapshotPolicy.requiredForStatuses) ||
+    !Number.isInteger(snapshotPolicy.maxAgeDays) ||
+    snapshotPolicy.maxAgeDays < 1
+  ) {
+    errors.push(
+      `${relative(manifestPath)}: invalid or missing snapshotPolicy.`,
+    );
+  }
+
   if (manifest.status === "awaiting-source-registration") {
     const registered = requiredFigmaFields.some(
       (field) => manifest.figma?.[field] !== null,

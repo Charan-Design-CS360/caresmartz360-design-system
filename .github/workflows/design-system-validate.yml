@@ -6,8 +6,10 @@ on:
       - ".github/workflows/design-system-validate.yml"
       - "package.json"
       - "portals/**"
+      - "schemas/**"
       - "scripts/**"
       - "shared/**"
+      - "snapshots/**"
       - "tests/**"
   push:
     branches:
@@ -16,8 +18,10 @@ on:
       - ".github/workflows/design-system-validate.yml"
       - "package.json"
       - "portals/**"
+      - "schemas/**"
       - "scripts/**"
       - "shared/**"
+      - "snapshots/**"
       - "tests/**"
 
 permissions:
@@ -42,5 +46,5 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Validate manifests, isolation, and negative tests
+      - name: Validate manifests, isolation, snapshots, and negative tests
         run: npm run validate
