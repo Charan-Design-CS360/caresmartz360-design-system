@@ -1,0 +1,5 @@
+{
+  "fileName": "layer-4-index.json",
+  "requiredForStatuses": ["pilot", "stable"],
+  "stableMinimumFlows": 2
+}

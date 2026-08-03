@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caresmartz360.com/design-system/layer-4-index.schema.json",
+  "title": "CareSmartz360 portal Layer-4 index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "portal", "figmaFileKey", "patterns", "templates"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "portal": { "type": "string", "minLength": 1 },
+    "figmaFileKey": { "type": "string", "minLength": 1 },
+    "patterns": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/layer4Item" }
+    },
+    "templates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/layer4Item" }
+    }
+  },
+  "$defs": {
+    "layer4Item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "owner",
+        "maturity",
+        "figmaKey",
+        "nodeId",
+        "userGoal",
+        "whenToUse",
+        "whenNotToUse",
+        "componentDependencies",
+        "semanticDependencies",
+        "states",
+        "responsiveBehavior",
+        "contentRules",
+        "accessibility",
+        "successSignal",
+        "evidence"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "minLength": 1 },
+        "maturity": {
+          "enum": [
+            "discovered",
+            "draft",
+            "reviewed",
+            "pilot",
+            "stable",
+            "deprecated"
+          ]
+        },
+        "figmaKey": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+        "nodeId": { "type": "string", "pattern": "^[0-9]+:[0-9]+$" },
+        "userGoal": { "type": "string", "minLength": 1 },
+        "whenToUse": { "type": "array", "items": { "type": "string" } },
+        "whenNotToUse": { "type": "array", "items": { "type": "string" } },
+        "componentDependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "semanticDependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        },
+        "states": { "type": "array", "items": { "type": "string" } },
+        "responsiveBehavior": { "type": "string", "minLength": 1 },
+        "contentRules": { "type": "array", "items": { "type": "string" } },
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["keyboard", "screenReader", "focus", "touch"],
+          "properties": {
+            "keyboard": { "type": "string", "minLength": 1 },
+            "screenReader": { "type": "string", "minLength": 1 },
+            "focus": { "type": "string", "minLength": 1 },
+            "touch": { "type": "string", "minLength": 1 }
+          }
+        },
+        "successSignal": { "type": "string", "minLength": 1 },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["jiraIssue", "snapshotRef", "usedInFlows"],
+          "properties": {
+            "jiraIssue": {
+              "type": "string",
+              "pattern": "^C360-[0-9]+$"
+            },
+            "snapshotRef": { "type": "string", "minLength": 1 },
+            "usedInFlows": {
+              "type": "array",
+              "items": { "type": "string" },
+              "uniqueItems": true
+            },
+            "singleFlowException": {
+              "type": ["string", "null"],
+              "pattern": "^C360-[0-9]+$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
