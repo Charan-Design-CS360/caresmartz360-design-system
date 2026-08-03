@@ -6,7 +6,7 @@
     "fileKey": "TSOq0ugv6zfr6gFZh5zYrP",
     "semanticJira": "C360-44333",
     "componentJira": "C360-45158",
-    "patternJira": null
+    "patternJira": "C360-45160"
   },
   "layers": {
     "semantics": "portals/caregiver/semantics",
