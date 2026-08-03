@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "validate": "npm run validate:portal-manifests && npm run validate:portal-isolation",
+    "test": "node --test tests/*.test.mjs",
+    "validate": "npm run validate:portal-manifests && npm run validate:portal-isolation && npm test",
     "validate:portal-manifests": "node scripts/validate-portal-manifests.mjs",
     "validate:portal-isolation": "node scripts/validate-portal-isolation.mjs"
   },

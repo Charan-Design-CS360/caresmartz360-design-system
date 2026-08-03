@@ -2,10 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-export const repositoryRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  "..",
-);
+export const repositoryRoot = process.env.DS_REPOSITORY_ROOT
+  ? path.resolve(process.env.DS_REPOSITORY_ROOT)
+  : path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 export const portalRoot = path.join(repositoryRoot, "portals");
 

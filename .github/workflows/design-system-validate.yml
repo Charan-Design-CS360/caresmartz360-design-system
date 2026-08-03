@@ -1,0 +1,46 @@
+name: Validate Design System
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/design-system-validate.yml"
+      - "package.json"
+      - "portals/**"
+      - "scripts/**"
+      - "shared/**"
+      - "tests/**"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/design-system-validate.yml"
+      - "package.json"
+      - "portals/**"
+      - "scripts/**"
+      - "shared/**"
+      - "tests/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: design-system-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  portal-contract:
+    name: Portal manifest and isolation contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate manifests, isolation, and negative tests
+        run: npm run validate
