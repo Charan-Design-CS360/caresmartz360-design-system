@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caresmartz360.com/design-system/portal-manifest.schema.json",
+  "title": "CareSmartz360 portal manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "portal",
+    "status",
+    "figma",
+    "layers",
+    "allowedDependencies",
+    "forbiddenDependencies"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "portal": { "type": "string", "minLength": 1 },
+    "status": {
+      "enum": [
+        "awaiting-source-registration",
+        "active-audit",
+        "pilot",
+        "stable",
+        "deprecated"
+      ]
+    },
+    "figma": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileKey",
+        "semanticJira",
+        "componentJira",
+        "patternJira"
+      ],
+      "properties": {
+        "fileKey": { "type": ["string", "null"] },
+        "semanticJira": { "type": ["string", "null"] },
+        "componentJira": { "type": ["string", "null"] },
+        "patternJira": { "type": ["string", "null"] }
+      }
+    },
+    "layers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["semantics", "components", "patterns", "templates"],
+      "properties": {
+        "semantics": { "type": "string" },
+        "components": { "type": "string" },
+        "patterns": { "type": "string" },
+        "templates": { "type": "string" }
+      }
+    },
+    "allowedDependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "forbiddenDependencies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    }
+  }
+}

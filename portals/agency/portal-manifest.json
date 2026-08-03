@@ -1,0 +1,25 @@
+{
+  "$schema": "../portal-manifest.schema.json",
+  "portal": "agency",
+  "status": "active-audit",
+  "figma": {
+    "fileKey": "4bh29laapcuKBTghfaRXF0",
+    "semanticJira": "C360-44253",
+    "componentJira": "C360-44737",
+    "patternJira": null
+  },
+  "layers": {
+    "semantics": "portals/agency/semantics",
+    "components": "portals/agency/components",
+    "patterns": "portals/agency/patterns",
+    "templates": "portals/agency/templates"
+  },
+  "allowedDependencies": [
+    "shared/primitives",
+    "portals/agency"
+  ],
+  "forbiddenDependencies": [
+    "portals/caregiver",
+    "portals/staff"
+  ]
+}

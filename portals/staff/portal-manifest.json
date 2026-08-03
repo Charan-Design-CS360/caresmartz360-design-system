@@ -1,0 +1,25 @@
+{
+  "$schema": "../portal-manifest.schema.json",
+  "portal": "staff",
+  "status": "awaiting-source-registration",
+  "figma": {
+    "fileKey": null,
+    "semanticJira": null,
+    "componentJira": null,
+    "patternJira": null
+  },
+  "layers": {
+    "semantics": "portals/staff/semantics",
+    "components": "portals/staff/components",
+    "patterns": "portals/staff/patterns",
+    "templates": "portals/staff/templates"
+  },
+  "allowedDependencies": [
+    "shared/primitives",
+    "portals/staff"
+  ],
+  "forbiddenDependencies": [
+    "portals/agency",
+    "portals/caregiver"
+  ]
+}

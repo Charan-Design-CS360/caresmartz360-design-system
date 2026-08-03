@@ -1,0 +1,25 @@
+{
+  "$schema": "../portal-manifest.schema.json",
+  "portal": "caregiver",
+  "status": "active-audit",
+  "figma": {
+    "fileKey": "TSOq0ugv6zfr6gFZh5zYrP",
+    "semanticJira": "C360-44333",
+    "componentJira": "C360-45158",
+    "patternJira": null
+  },
+  "layers": {
+    "semantics": "portals/caregiver/semantics",
+    "components": "portals/caregiver/components",
+    "patterns": "portals/caregiver/patterns",
+    "templates": "portals/caregiver/templates"
+  },
+  "allowedDependencies": [
+    "shared/primitives",
+    "portals/caregiver"
+  ],
+  "forbiddenDependencies": [
+    "portals/agency",
+    "portals/staff"
+  ]
+}
