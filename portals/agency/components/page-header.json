@@ -3,16 +3,16 @@
   "$meta": {
     "component": "Page Header",
     "portal": "agency",
-    "contractVersion": "0.1.0",
+    "contractVersion": "1.0.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Taken from portals/agency/portal-manifest.json (figma.fileKey) and the URL supplied by the design owner. Must be confirmed.",
     "figmaSectionNodeId": "27232:63236",
     "figmaSectionName": "page headers",
     "figmaComponentSetNodeId": "14160:189662",
-    "nodeIdRelationship": "27232:63236 is the SECTION 'page headers'. It contains the component set 14160:189662 'page header' (4 size variants) plus three composed symbols: 27232:65797 'pageheader component' (header + action row), 27232:65760 'Search & Filetrs' (filter bar), and 27232:65833 'complete header' (the two stacked). The section CONTAINS these; they are not alternatives.",
+    "nodeIdRelationship": "27232:63236 is the SECTION 'page headers'. It contains the component set 14160:189662 'page header' (4 size variants, measured here) plus three composed symbols: 27232:65797 'pageheader component', 27232:65760 'Search & Filetrs', 27232:65833 'complete header'. The section CONTAINS these; they are not alternatives.",
     "measuredOn": "2026-08-25",
     "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
-    "measurementMethod": "figma-desktop MCP: get_metadata on 27232:63236 and 14160:189662, get_variable_defs on 14160:189662 and 27232:65833, get_screenshot on 14160:189662, 27232:65797, 27232:65760, 27232:65833. get_design_context FAILED on every attempt (see readThisFirst) so no interior geometry was read.",
+    "measurementMethod": "figma-desktop MCP live reads. get_metadata on 27232:63236 + 14160:189662; get_variable_defs on 14160:189662 + 27232:65833; get_screenshot on all four variants and the three composed symbols; get_design_context on all four variants (14160:189673, 14160:189692, 14160:189722, 26077:19290). Heights independently cross-checked by arithmetic against the measured frame heights — all four reconcile exactly.",
     "jiraParent": "C360-44737",
     "humanContract": "./page-header.md",
     "markerLegend": {
@@ -21,91 +21,128 @@
       "RAW": "real value but NOT bound to any token present in the owner's variable export",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "THIS CONTRACT IS DELIBERATELY INCOMPLETE AND MUST NOT BE BUILT FROM AS-IS. contractVersion is 0.1.0 for that reason. get_design_context — the only call that returns padding, gap, and which type style each size binds — failed four times (one transport drop, two 300-second timeouts, one further drop) while get_metadata, get_variable_defs and get_screenshot all responded instantly. So OUTER dimensions and the full token vocabulary are MEASURED, but ALL interior geometry is UNVERIFIED. Nothing was inferred from arithmetic: several different type pairings produce the same frame height, and L and XL are both 44px tall while XL's title is visibly larger, which cannot be resolved from heights alone. Additionally FOUR bound token names do not exist in the owner's export — see defects; three of them are Figma-side naming errors with a known correct name."
+    "readThisFirst": "Figma's own component description for this set is INCOMPLETE in one direction and the file is richer than it claims: the description says '4 sizes with optional description text, left/right action icons, help tooltip, and timezone info' but does not say that size S supports NONE of those options, nor that the timezone chip exists on L and XL but not M. Trust the measured variant props below, not the prose. Separately: FIVE bound token names do not exist in the owner's 2026-08-24 export — three are Figma-side naming errors whose correct name IS in the authority. See defects."
   },
 
   "anatomy": {
-    "elements": ["title", "sub-heading"],
-    "note": "Screenshot-confirmed for the 4-variant component set 14160:189662: two stacked, left-aligned text rows — a title above a lighter, smaller sub-heading. No icon, action, breadcrumb or divider appears in any of the four size variants.",
+    "elements": ["container", "title row", "title text", "description (optional)"],
+    "titleRowMayAlsoContain": ["leftToys group (optional)", "rightToys group (optional)", "help icon (optional)", "info/timezone chip (optional)"],
+    "note": "Two stacked rows: a title row and an optional description. All four sizes share one container spec. Everything that varies is the title's type scale, the title-row gap, and which optional elements the size exposes.",
+    "figmaDescription": "Page header atom component. Positioned in the top-left section of page headers, this serves as the title and description block within the complete header layout. Available in 4 sizes (S, M, L, XL) with optional description text, left/right action icons, help tooltip, and timezone info.",
     "composedForms": [
-      {
-        "name": "pageheader component",
-        "nodeId": "27232:65797",
-        "size": "1388 x 44",
-        "adds": "A right-aligned row of 6 action buttons — 5 filled blue icon buttons plus 1 filled green button carrying a '+' glyph.",
-        "marker": ["MEASURED"],
-        "note": "Screenshot-confirmed. The individual glyphs were NOT resolved to Material Symbols names — see notVerified."
-      },
-      {
-        "name": "Search & Filetrs",
-        "nodeId": "27232:65760",
-        "size": "1388 x 30",
-        "contains": "search field, a 'Filter_Name : [Value]' select, a toggle, a checkbox, an Apply button, a Reset button, and a right-aligned 'Column(s)' control",
-        "marker": ["MEASURED"],
-        "note": "The Figma layer name is misspelled 'Filetrs'. Recorded verbatim because it is the real node name a tool will match on."
-      },
-      {
-        "name": "complete header",
-        "nodeId": "27232:65833",
-        "size": "1388 x 110",
-        "composition": "the pageheader component stacked directly above the Search & Filetrs bar",
-        "marker": ["MEASURED"],
-        "note": "THIS is the Layer-4 pattern candidate — it composes multiple components to serve a page-level goal. See layer4Classification."
-      }
+      { "name": "pageheader component", "nodeId": "27232:65797", "size": "1388 x 44", "adds": "a right-aligned row of 6 action buttons — 5 filled blue icon buttons plus 1 filled green '+' button", "marker": ["MEASURED"] },
+      { "name": "Search & Filetrs", "nodeId": "27232:65760", "size": "1388 x 30", "contains": "search field, 'Filter_Name : [Value]' select, toggle, checkbox, Apply, Reset, right-aligned 'Column(s)'", "marker": ["MEASURED"], "note": "Figma layer name is misspelled 'Filetrs' — recorded verbatim because it is the real name a tool matches on." },
+      { "name": "complete header", "nodeId": "27232:65833", "size": "1388 x 110", "composition": "the pageheader component stacked above the Search & Filetrs bar", "marker": ["MEASURED"], "note": "The Layer-4 Pattern candidate. See layer4Classification." }
     ]
   },
 
   "geometry": {
-    "outerDimensions": {
-      "sizeS":  { "width": 560, "height": 32, "unit": "px", "token": null, "marker": ["MEASURED"], "nodeId": "14160:189673" },
-      "sizeM":  { "width": 560, "height": 40, "unit": "px", "token": null, "marker": ["MEASURED"], "nodeId": "14160:189692" },
-      "sizeL":  { "width": 560, "height": 44, "unit": "px", "token": null, "marker": ["MEASURED"], "nodeId": "14160:189722" },
-      "sizeXL": { "width": 560, "height": 44, "unit": "px", "token": null, "marker": ["MEASURED"], "nodeId": "26077:19290" },
-      "note": "Widths are the Figma frame width (layout context), not a component constraint. The heights are real but their internal composition is unread.",
-      "unresolved": "L and XL are BOTH 44px tall, yet the screenshot shows XL's title as visibly larger than L's. That cannot be explained from height alone and is the clearest single reason the type mapping must be read rather than derived."
+    "container": {
+      "display":        { "value": "flex", "token": null, "marker": ["MEASURED"], "nodeId": "14160:189673" },
+      "flexDirection":  { "value": "column", "token": null, "marker": ["MEASURED"], "nodeId": "14160:189673" },
+      "alignItems":     { "value": "flex-start", "token": null, "marker": ["MEASURED"], "nodeId": "14160:189673" },
+      "gap":            { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"], "nodeId": "14160:189673", "note": "Identical in all four sizes — this is the title-to-description gap." },
+      "padding":        { "value": 0, "unit": "px", "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"], "nodeId": "14160:189673", "note": "Zero in all four sizes. The component contributes no padding of its own; height comes entirely from its two text rows plus the 4px gap." },
+      "overflow":       { "value": "clip", "token": null, "marker": ["MEASURED"], "nodeId": "14160:189673" },
+      "frameWidth":     { "value": 560, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "14160:189673", "note": "Figma frame width = layout context, NOT a component constraint. The component is fluid; do not hardcode 560." }
     },
-    "padding":   { "value": null, "token": null, "marker": ["UNVERIFIED"], "note": "Not read. get_design_context unavailable. spacing/none (0) and spacing/sm (4) are both bound to the frame, so one is padding and one is the gap — which is which is unknown." },
-    "gap":       { "value": null, "token": null, "marker": ["UNVERIFIED"], "note": "Not read. Same two candidates as padding." },
-    "typeMappingPerSize": { "value": null, "token": null, "marker": ["UNVERIFIED"], "note": "Which type style the title and sub-heading bind AT EACH SIZE is unread. Candidates present on the frame are listed under typography.availableStyles. Deliberately not guessed." },
-    "actionRowGeometry": { "value": null, "token": null, "marker": ["UNVERIFIED"], "note": "Spacing, sizing and glyphs of the 6-button action row on 27232:65797 were not read." },
-    "filterBarGeometry": { "value": null, "token": null, "marker": ["UNVERIFIED"], "note": "Interior geometry of the Search & Filetrs bar on 27232:65760 was not read." }
+    "titleRow": {
+      "display": { "value": "flex", "token": null, "marker": ["MEASURED"] },
+      "alignItems": { "value": "center", "token": null, "marker": ["MEASURED"] },
+      "width": { "value": "100%", "token": null, "marker": ["MEASURED"] },
+      "gapPerSize": {
+        "S":  { "value": null, "token": null, "marker": ["MEASURED"], "note": "No gap — S has no optional elements, so the row holds only the title. Figma emits justify-content:center on this row for S only." },
+        "M":  { "value": 6, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "14160:189694", "note": "6px is OFF the spacing scale (the scale is 0/4/8/12/16/...). See defects." },
+        "L":  { "value": 8, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "14160:189723", "note": "8 equals spacing/md but is emitted as a raw literal, not bound." },
+        "XL": { "value": 8, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "26077:19291", "note": "Same as L — raw, not bound." }
+      }
+    },
+    "totalHeightPerSize": {
+      "S":  { "value": 32, "unit": "px", "marker": ["MEASURED", "DERIVED"], "nodeId": "14160:189673", "arithmetic": "title line-height 14 + gap 4 + description line-height 14 = 32" },
+      "M":  { "value": 40, "unit": "px", "marker": ["MEASURED", "DERIVED"], "nodeId": "14160:189692", "arithmetic": "20 + 4 + 16 = 40" },
+      "L":  { "value": 44, "unit": "px", "marker": ["MEASURED", "DERIVED"], "nodeId": "14160:189722", "arithmetic": "24 + 4 + 16 = 44" },
+      "XL": { "value": 44, "unit": "px", "marker": ["MEASURED", "DERIVED"], "nodeId": "26077:19290", "arithmetic": "24 + 4 + 16 = 44" },
+      "note": "Every one of the four reconciles exactly against its independently measured frame height. Heights are NOT set anywhere — they emerge from line-height + gap, because container padding is 0. Do not set a height.",
+      "lAndXlResolved": "L and XL are BOTH 44px because both title styles carry line-height 24 (L: 16px/24, XL: 18px/24). The glyphs differ, the line box does not. This is why the mapping had to be read and could not be derived from height."
+    },
+    "optionalElementGeometry": {
+      "leftToys": {
+        "availableOn": ["M", "L", "XL"], "absentOn": ["S"],
+        "gap": { "value": 16, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "Raw 16 — while rightToys binds spacing/xl for the same value. See defects." },
+        "children": ["arrow_circle_left (20x20)", "an element literally named 'missing' (16 tall x 30 wide)", "expand_more (20x20)", "expand_more rotated 180deg (20x20)"],
+        "marker": ["MEASURED"]
+      },
+      "rightToys": {
+        "availableOn": ["M", "L", "XL"], "absentOn": ["S"],
+        "gap": { "value": 16, "unit": "px", "token": "spacing/xl", "cssVar": "--spacing-xl", "marker": ["MEASURED"] },
+        "height": { "value": 20, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+        "children": ["cached (20x20)"],
+        "marker": ["MEASURED"]
+      },
+      "help": {
+        "availableOn": ["M", "L", "XL"], "absentOn": ["S"],
+        "size": { "value": 16, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+        "assetName": "help_black_18dp",
+        "marker": ["MEASURED"],
+        "note": "Asset is named 18dp but renders at 16px. See defects."
+      },
+      "infoTimezone": {
+        "availableOn": ["L", "XL"], "absentOn": ["S", "M"],
+        "background": { "value": "rgba(51,74,101,0.05)", "token": null, "marker": ["MEASURED", "RAW"] },
+        "textColour":  { "value": "#334a65", "token": null, "marker": ["MEASURED", "RAW"] },
+        "fontSize":    { "value": 12, "unit": "px", "token": "font-size/caption", "cssVar": "--font-size-caption", "marker": ["MEASURED"] },
+        "lineHeight":  { "value": "1.4 (UNITLESS MULTIPLIER, not a token)", "token": null, "marker": ["MEASURED", "RAW"] },
+        "height":      { "value": 20, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+        "paddingInline": { "value": 4, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+        "paddingBlock":  { "value": 2, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+        "gap":         { "value": 4, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+        "borderRadius":{ "value": 4, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+        "content": "This information below is in Eastern Time",
+        "marker": ["MEASURED"],
+        "note": "ENTIRELY UNBOUND — not one of its eight values uses a token, and #334a65 / rgba(51,74,101,0.05) do not appear in the Agency palette. The single least token-compliant element in this component. See defects."
+      }
+    }
   },
 
   "typography": {
-    "availableStyles": {
-      "note": "These are the type styles BOUND TO THE FRAMES, measured via get_variable_defs. Which one applies to which size and which row is UNVERIFIED — see geometry.typeMappingPerSize.",
-      "Heading/h4": { "fontSize": 18, "lineHeight": 24, "weight": 500, "tracking": -0.24, "marker": ["MEASURED"] },
-      "Heading/h5": { "fontSize": 16, "lineHeight": 24, "weight": 500, "tracking": -0.24, "marker": ["MEASURED"] },
-      "Heading/h6": { "fontSize": 14, "lineHeight": 20, "weight": 500, "tracking": -0.24, "marker": ["MEASURED"] },
-      "Body/small": { "fontSize": 12, "lineHeight": 16, "weight": 400, "tracking": 0, "marker": ["MEASURED"] },
-      "Body/micro": { "fontSize": 10, "lineHeight": 14, "weight": 400, "tracking": 0, "marker": ["MEASURED"] },
-      "Label/small": { "fontSize": 10, "lineHeight": 14, "weight": 500, "tracking": 0, "marker": ["MEASURED"] },
-      "Button/label": { "fontSize": 12, "lineHeight": 16, "weight": 500, "tracking": 0, "marker": ["MEASURED"] },
-      "Fields/value": { "fontSize": 12, "lineHeight": 16, "weight": 400, "tracking": 0, "marker": ["MEASURED"] },
-      "Fields/Title 12M": { "fontSize": 12, "lineHeight": "1.2 (UNITLESS MULTIPLIER, not a token)", "weight": 500, "tracking": -0.24, "marker": ["MEASURED"], "defect": "The only text style here that does NOT bind a line-height token, and it also binds a malformed font-family name. See defects." }
+    "note": "Title and description bind a DIFFERENT type style at every size. This is the mapping that could not be derived and had to be read.",
+    "perSize": {
+      "S": {
+        "title":       { "figmaStyle": "Label/small", "fontSize": 10, "sizeToken": "font-size/micro", "lineHeight": 14, "lineHeightToken": "line-height/micro", "weight": 500, "weightToken": "font-weight/heading-base", "tracking": 0, "trackingToken": "fonts/tracking/X-tracking-0", "colour": "text/primary", "marker": ["MEASURED"] },
+        "description": { "figmaStyle": "Body/micro", "fontSize": 10, "sizeToken": "font-size/micro", "lineHeight": 14, "lineHeightToken": "line-height/micro", "weight": 400, "weightToken": "font-weight/body-base", "tracking": 0, "trackingToken": "fonts/tracking/X-tracking-0", "colour": "text/secondary", "marker": ["MEASURED"] }
+      },
+      "M": {
+        "title":       { "figmaStyle": "Heading/h6", "fontSize": 14, "sizeToken": "font-size/body-base", "lineHeight": 20, "lineHeightToken": "line-height/body-base", "weight": 500, "weightToken": "font-weight/heading-base", "tracking": -0.24, "trackingToken": "letter-spacing/heading", "colour": "text/primary", "marker": ["MEASURED"] },
+        "description": { "figmaStyle": "Body/small", "fontSize": 12, "sizeToken": "font-size/caption", "lineHeight": 16, "lineHeightToken": "line-height/caption", "weight": 400, "weightToken": "font-weight/body-base", "tracking": 0, "trackingToken": "fonts/tracking/X-tracking-0", "colour": "text/secondary", "marker": ["MEASURED"] }
+      },
+      "L": {
+        "title":       { "figmaStyle": "Heading/h5", "fontSize": 16, "sizeToken": "font-size/heading-5", "lineHeight": 24, "lineHeightToken": "line-height/body-strong", "weight": 500, "weightToken": "font-weight/heading-base", "tracking": -0.24, "trackingToken": "letter-spacing/heading", "colour": "text/primary", "marker": ["MEASURED"] },
+        "description": { "figmaStyle": "Body/small", "fontSize": 12, "sizeToken": "font-size/caption", "lineHeight": 16, "lineHeightToken": "line-height/caption", "weight": 400, "weightToken": "font-weight/body-base", "tracking": 0, "trackingToken": "fonts/tracking/X-tracking-0", "colour": "text/secondary", "marker": ["MEASURED"] }
+      },
+      "XL": {
+        "title":       { "figmaStyle": "Heading/h4", "fontSize": 18, "sizeToken": "font-size/heading-4", "lineHeight": 24, "lineHeightToken": "line-height/heading-4", "weight": 500, "weightToken": "font-weight/heading-base", "tracking": -0.24, "trackingToken": "letter-spacing/heading", "colour": "text/primary", "marker": ["MEASURED"] },
+        "description": { "figmaStyle": "Body/small", "fontSize": 12, "sizeToken": "font-size/caption", "lineHeight": 16, "lineHeightToken": "line-height/caption", "weight": 400, "weightToken": "font-weight/body-base", "tracking": 0, "trackingToken": "fonts/tracking/X-tracking-0", "colour": "text/secondary", "marker": ["MEASURED"] }
+      }
     },
-    "fontFamily": { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] }
+    "fontFamily": { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] },
+    "observations": [
+      "S is the odd one out in three ways: it is the only size whose title is a Label style rather than a Heading style, the only one with tracking 0 instead of -0.24, and the only one whose description is 10px rather than 12px.",
+      "The description is Body/small (12/16) at M, L and XL — identical across all three. Only the title scales.",
+      "L uses line-height/body-strong (24) while XL uses line-height/heading-4 (24). Same number, two different tokens."
+    ]
   },
 
   "colourFormula": {
-    "pattern": "Title uses text/primary; sub-heading uses text/secondary. The action row and filter bar reuse the standard action/*, field/*, icon/* and border/* namespaces.",
-    "title":      { "value": "#1e293b", "token": "text/primary",   "cssVar": "--text-primary",   "marker": ["MEASURED"] },
-    "subHeading": { "value": "#475569", "token": "text/secondary", "cssVar": "--text-secondary", "marker": ["MEASURED"] },
-    "actionRow": {
-      "filledPrimaryBg": { "value": "#0077ff", "token": "action/primary/bg", "cssVar": "--action-primary-bg", "marker": ["MEASURED"] },
-      "filledSuccessBg": { "value": "#16a34a", "token": "action/success/bg", "cssVar": "--action-success-bg", "marker": ["MEASURED"] },
-      "iconOnFilled":    { "value": "#ffffff", "token": "icon/inverse",      "cssVar": "--icon-inverse",      "marker": ["MEASURED"] }
-    },
-    "filterBar": {
-      "fieldBg":          { "value": "#ffffff", "token": "field/bg-default",        "cssVar": "--field-bg-default",        "marker": ["MEASURED"] },
-      "fieldBorder":      { "value": "#e2e8f0", "token": "field/border-default",    "cssVar": "--field-border-default",    "marker": ["MEASURED"] },
-      "fieldBgFocus":     { "value": "#f0f7ff", "token": "field/bg-focus",          "cssVar": "--field-bg-focus",          "marker": ["MEASURED"] },
-      "fieldBorderFocus": { "value": "#0077ff", "token": "field/border-focus",      "cssVar": "--field-border-focus",      "marker": ["MEASURED"] },
-      "placeholder":      { "value": "#94a3b8", "token": "field/value-placeholder", "cssVar": "--field-value-placeholder", "marker": ["MEASURED"] },
-      "toggleOffBg":      { "value": "#e2e8f0", "token": "action/toggle/bg-default","cssVar": "--action-toggle-bg-default","marker": ["MEASURED"] }
+    "pattern": "Title = text/primary. Description = text/secondary. Identical at every size.",
+    "title":       { "value": "#1e293b", "token": "text/primary",   "cssVar": "--text-primary",   "marker": ["MEASURED"] },
+    "description": { "value": "#475569", "token": "text/secondary", "cssVar": "--text-secondary", "marker": ["MEASURED"] },
+    "namingException": {
+      "case": "info/timezone chip",
+      "detail": "Its background rgba(51,74,101,0.05) and text #334a65 are raw literals bound to no token, and neither colour appears in the Agency palette. A generator following the title/description pattern will find nothing to bind here.",
+      "impact": "Do not attempt to infer a token for the timezone chip. It has none."
     },
     "alphaIsLoadBearing": {
-      "warning": "action/toggle/border resolves to #00000000 — fully transparent (alpha 0). A pipeline that reads only the hex field and discards alpha will render a solid black border around every toggle in the filter bar.",
+      "warning": "The info/timezone chip background is rgba(51,74,101,0.05) — 5% alpha. A pipeline that reads only a hex value and drops alpha renders it as a solid slate block instead of a barely-tinted chip.",
       "requirement": "emit rgba() whenever alpha < 1"
     }
   },
@@ -115,54 +152,67 @@
     "old": {
       "values": ["No"],
       "marker": ["MEASURED"],
-      "note": "Every variant in this set is old=No, which means old=Yes variants exist elsewhere in the file and were NOT read. Consistent with the separately-recorded finding that a legacy 'X-Head old' header is formally deprecated. The deprecated set should be located and either documented or retired."
-    }
+      "note": "Every variant in this set is old=No, so old=Yes variants exist elsewhere in the file and were NOT read. Consistent with the separate finding that a legacy 'X-Head old' header is formally deprecated. The deprecated set should be located and either documented or retired."
+    },
+    "booleanProps": {
+      "showDescription": { "default": true,  "availableOn": ["S", "M", "L", "XL"], "marker": ["MEASURED"] },
+      "leftToys":        { "default": false, "availableOn": ["M", "L", "XL"], "marker": ["MEASURED"] },
+      "rightToys":       { "default": false, "availableOn": ["M", "L", "XL"], "marker": ["MEASURED"] },
+      "showHelp":        { "default": false, "availableOn": ["M", "L", "XL"], "marker": ["MEASURED"] },
+      "showInfoTimezone":{ "default": false, "availableOn": ["L", "XL"], "marker": ["MEASURED"], "note": "NOT available on M — an asymmetry Figma's own description does not mention." }
+    },
+    "apiAsymmetry": "S exposes only showDescription. M adds leftToys/rightToys/showHelp. L and XL add showInfoTimezone on top. So the component's API grows with size rather than being uniform — a consumer cannot assume a prop exists at every size."
   },
 
   "layer4Classification": {
-    "finding": "'complete header' (27232:65833) composes the page-header component, a 6-button action row, and the Search & Filetrs bar into one page-level region. Under docs/LAYER-4-PATTERN-TEMPLATE-CONTRACT.md that is a Pattern, not a Component — it composes components to serve a page-level user goal.",
-    "whyItIsNotPublishedAsOne": "schemas/layer-4-index.schema.json requires `figmaKey` matching ^[a-f0-9]{40}$ — a 40-character Figma COMPONENT key. The MCP tools return node ids (e.g. 27232:65833), never component keys. A valid Layer-4 index entry therefore cannot be authored from MCP measurement alone, and fabricating a 40-hex string would be exactly the kind of invented provenance this repo has already been burned by.",
-    "recommendation": "Publish the 4-size header as a COMPONENT (this file). Register 'complete header' as an Agency Layer-4 Pattern under C360-45159 once a real component key can be supplied, or once the owner rules that node ids are acceptable for figmaKey and the schema is amended accordingly.",
-    "status": "OPEN — needs the design owner's decision, recorded rather than assumed."
+    "finding": "'complete header' (27232:65833) composes this page-header component, a 6-button action row and the Search & Filetrs bar into one page-level region. Under docs/LAYER-4-PATTERN-TEMPLATE-CONTRACT.md that is a Pattern, not a Component.",
+    "blocker": "schemas/layer-4-index.schema.json requires figmaKey matching ^[a-f0-9]{40}$ — a 40-character Figma COMPONENT key. The MCP tools used here return node ids only. NOTE: portals/agency/components/component-mapping.json DOES carry real 40-hex component keys for Button and Fields, so such keys are obtainable by some means; the method is not documented and was not available to this session.",
+    "recommendation": "Keep the 4-size header as a component (this file). Register 'complete header' as an Agency Layer-4 Pattern under C360-45159 once a component key for it can be supplied by whatever method produced the Button and Fields keys.",
+    "status": "OPEN — needs the design owner's decision plus the key-sourcing method."
   },
 
   "accessibility": {
-    "headingSemantics": { "concern": "Figma applies a text STYLE named Heading/h4-h6. It does not record whether the title should be a real heading element, nor at what level. A page header is the most likely place for the page's h1.", "status": "UNVERIFIED — implementation decision" },
-    "actionRowLabels": { "concern": "The 6 action buttons in 27232:65797 are icon-only. Icon-only controls need accessible names, and none is recorded in the design.", "status": "RAISED — needs names defined before implementation" },
-    "iconOnlyTargetSize": { "concern": "Icon-only buttons must meet a minimum target size. The action row's geometry was not read, so target size could not be checked.", "status": "UNVERIFIED" },
-    "contrastNotMeasured": "No contrast ratios were computed. Token pairings are recorded so they can be checked; the check was not run."
+    "headingSemantics": { "concern": "Figma applies a text STYLE (Label/small, Heading/h4-h6). It does not record whether the title should be a real heading element or at what level. A page header is the most likely home for the page's h1. Note S's title uses a LABEL style, not a heading style, which may indicate it is not intended as a page title at all.", "status": "UNVERIFIED — implementation decision" },
+    "iconOnlyControls": { "concern": "leftToys, rightToys and help are all icon-only with no accessible names recorded anywhere in the design. arrow_circle_left, expand_more, expand_more-rotated and cached all need names, and the rotated expand_more needs a name distinct from the unrotated one since they look and mean different things.", "status": "RAISED — names must be defined before implementation" },
+    "targetSize": { "concern": "The interactive icons are 20x20 and the help icon 16x16. Both are below the 24x24 minimum target size unless spacing exemptions apply. leftToys spaces its children 16px apart, which may or may not satisfy the spacing exception.", "status": "RAISED — needs a ruling, and pairs with the existing 18px-chip target-size flag" },
+    "sizeSTitleIsTenPx": { "concern": "Size S renders BOTH title and description at 10px. That is below the 12px body-copy floor recorded elsewhere in this design system, which has exactly one approved exception.", "status": "RAISED — S may need an exception record or a different size" },
+    "contrastNotMeasured": "No contrast ratios were computed. Token pairings are recorded so they can be checked; the check was not run. The timezone chip's #334a65 on a 5%-alpha slate background is the most likely to fail and the least likely to have been reviewed, since neither value is a token."
   },
 
   "defects": [
-    "font-family/font-family/primary-font — a MALFORMED token name with a doubled path segment. The owner's export contains exactly one font-family token, `font-family/primary`. This name exists nowhere in the authority. Bound by the Fields/Title 12M text style. Correct name: font-family/primary.",
-    "Fields/Title 12M binds a raw unitless line-height of 1.2000000476837158 instead of a line-height token. Every other text style on these frames binds a real line-height token. This is the only style that does not, so a token-completeness check would flag it alone.",
-    "fonts/tracking/X-tracking-neg-024 — legacy X- prefixed name, absent from the export. Correct name: fonts/tracking/tracking-neg-024 (same -0.24 value).",
-    "fonts/tracking/X-tracking-0 — legacy X- prefixed name, absent from the export. Correct name: fonts/tracking/tracking-0. Now confirmed in a FOURTH component family (Button, Empty States, page header, complete header), so this is systematic Figma-side naming rather than per-component drift.",
-    "control/height-default = 30 is bound but does not exist in the owner's export, which has no control/* group at all. Second independent sighting (the empty-state buttons bound it too). If an export refresh confirms it, the button min-height gap recorded elsewhere is a BINDING problem, not a missing-token problem.",
-    "The Figma layer name 'Search & Filetrs' (27232:65760) is misspelled — 'Filetrs' for 'Filters'. A tool searching the file for 'Filters' will not find this node.",
-    "action/toggle/border is fully transparent (#00000000, alpha 0). Any pipeline dropping alpha paints a solid black toggle border. Recorded under colourFormula.alphaIsLoadBearing."
+    "An element literally named 'missing' (16 tall x 30 wide) ships inside the leftToys group on ALL THREE sizes that offer it (M, L, XL). It has no content and no name beyond 'missing'. Either a placeholder that was never filled or a broken instance — it should not be in a published component.",
+    "The info/timezone chip is entirely token-free: background rgba(51,74,101,0.05), text #334a65, radius 4, padding 4/2, gap 4, height 20 — eight values, zero tokens. Neither colour appears in the Agency palette. It is the least compliant element in the component.",
+    "The info/timezone chip uses a unitless line-height of 1.4 instead of a line-height token — the same defect class already recorded for the Fields/Title 12M text style.",
+    "Title-row gap is inconsistent AND off-scale: M uses 6px, L and XL use 8px. 6 is not a value on the spacing scale (0/4/8/12/16/...), so it cannot be bound to any token even in principle.",
+    "leftToys gap is a raw 16 while rightToys gap binds spacing/xl for the SAME value of 16. One bound, one not, in the same row of the same component.",
+    "The help asset is named help_black_18dp but renders at 16x16. The name misstates its own size.",
+    "font-family/font-family/primary-font — MALFORMED token name with a doubled path segment, bound via the Fields/Title 12M style in the composed header. The export contains exactly one font-family token: font-family/primary.",
+    "fonts/tracking/X-tracking-0 — legacy X- prefixed name, absent from the export. Correct name: fonts/tracking/tracking-0. Now confirmed across FIVE component families, so this is systematic Figma-side naming, not per-component drift.",
+    "fonts/tracking/X-tracking-neg-024 — legacy X- prefixed name, absent from the export. Correct name: fonts/tracking/tracking-neg-024.",
+    "control/height-default = 30 is bound in the composed header but no control/* group exists in the export at all. Second independent sighting.",
+    "The Figma layer name 'Search & Filetrs' (27232:65760) is misspelled — a search for 'Filters' will not find it.",
+    "Figma's own component description is incomplete: it lists the optional elements without saying that S supports none of them, or that the timezone chip is absent from M. A tool trusting the prose would build the wrong API."
   ],
 
   "structureIsIdenticalAcrossStates": false,
   "stateChangeIsTokenSwapOnly": false,
 
   "openTokenDecision": {
-    "status": "OPEN — four bound names have no backing in the owner's export",
-    "gate": "Design-owner approval required. Three are Figma-side naming corrections with a known-correct target name; one (control/height-default) is a possible new token.",
-    "proposal": "1) In Figma, rename font-family/font-family/primary-font to font-family/primary. 2) Rename X-tracking-0 to tracking-0 and X-tracking-neg-024 to tracking-neg-024. 3) Give Fields/Title 12M a real line-height token instead of the unitless 1.2. 4) Refresh the Agency export so control/height-default either appears or is confirmed absent. 5) Fix the 'Filetrs' layer-name typo.",
-    "untilApproved": "No token was added, changed or proposed in the repo. Every affected value is recorded as a defect with its correct name, not silently substituted. Recording a name here is NOT permission to bind it."
+    "status": "OPEN — five bound names have no backing in the owner's export",
+    "gate": "Design-owner approval required. Three are Figma-side renames with a known-correct target; one is a possible new token; one is the unbound timezone-chip palette.",
+    "proposal": "1) In Figma rename font-family/font-family/primary-font to font-family/primary. 2) Rename X-tracking-0 to tracking-0 and X-tracking-neg-024 to tracking-neg-024. 3) Refresh the Agency export so control/height-default either appears or is confirmed absent. 4) Decide whether the info/timezone chip gets real tokens or is retired. 5) Give the timezone chip and Fields/Title 12M real line-height tokens instead of unitless multipliers. 6) Remove or name the 'missing' element. 7) Fix the 'Filetrs' typo and the help_black_18dp size mismatch.",
+    "untilApproved": "No token was added, changed or proposed in the repo. Every affected value is published RAW with its correct name recorded as a defect. Recording a name here is NOT permission to bind it."
   },
 
   "notVerified": [
-    "ALL interior geometry — padding, gap, and the per-size type mapping for title and sub-heading. get_design_context failed four times; this is the single largest gap and the reason contractVersion is 0.1.0.",
     "The Figma file key was not measured — the MCP server does not report it.",
-    "The 6 action-button glyphs on 27232:65797 were not resolved to Material Symbols names.",
+    "The old=Yes (deprecated) variants — their existence is proven by the variant axis, but none was read.",
+    "The 6 action-button glyphs on the composed 'pageheader component' (27232:65797) were not resolved to Material Symbols names.",
     "Interior geometry and per-control tokens of the Search & Filetrs bar (27232:65760).",
-    "Whether the sub-heading is an optional boolean property or always present.",
-    "The old=Yes (deprecated) variants — located by inference from the variant axis, never read.",
-    "Dark, High Contrast, Warm Dark and HC Light rendering. Default light mode only.",
-    "Density-mode behaviour.",
-    "Contrast ratios for every recorded token pairing.",
-    "Whether any product screen currently uses any of these header forms."
+    "What the 'missing' element in leftToys was meant to be.",
+    "Dark, High Contrast, Warm Dark and HC Light rendering. Default light mode only, though every colour here binds a token that exists in all five modes except the timezone chip, which binds none.",
+    "Density-mode behaviour. Container padding is spacing/none (0) in all sizes, so density cannot change it; the type tokens could change but were not tested under a non-default density.",
+    "Contrast ratios for every recorded pairing, including the timezone chip.",
+    "Whether any product screen currently uses any of these header forms or optional elements."
   ]
 }
