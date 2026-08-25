@@ -33,7 +33,7 @@ confirmed:
 |---|---|---|---|
 | Checkbox (multi-select) | `7926:11855` | 5 | 30px |
 | Checkbox + drag handle (reorderable) | `13095:43335` | 6 | 30px |
-| Radio (single-select) | `7926:11856` | 4 | **32px** |
+| Radio (single-select) | `7926:11856` | 4 | 30px ✅ *(was 32 — fixed 2026-08-25)* |
 
 **Single pieces:** `Dropdown Heading primary` (`1678:633`, 125×30) · `drag_indicator_black_18dp`
 (`10391:14128`, 18×18)
@@ -43,28 +43,27 @@ radio w/ footer buttons (`11961:30613`, 260×330)
 
 ---
 
-## 3. The row-height finding — corrected
+## 3. The row-height finding — reported, then FIXED ✅
 
 **Figma AI said:** *"Row height inconsistency — checkbox 30px, radio 32px. Recommended: standardize
 to a single row height (30px)."*
 
-**What's actually true:** **both rows declare `min-height: 30px`.** Neither sets a fixed height. The
-32px is a *result*, not a setting:
+**What was actually true:** both rows already declared `min-height: 30px`. Neither set a fixed
+height. The 32px was a *result* — the radio row's vertical padding was `spacing/sm` (4px), and a
+24px control plus 4+4 exceeds the 30px floor.
 
-| | control | vertical padding | total | renders at |
-|---|---|---|---|---|
-| Checkbox row | 24px | `spacing/xs` = **2px** | 24+2+2 = 28 → under the 30 floor | **30px** |
-| Radio row | 24px | `spacing/sm` = **4px** | 24+4+4 = **32** → over the floor | **32px** |
+**Fixed 2026-08-25 by the owner, the right way:** he changed the radio row's vertical padding to
+`spacing/xs` (2px) and **left `min-height: 30` in place.** All row types now render at 30px.
 
-**So the cause is one padding token, not a height.** Setting a height wouldn't fix it — it would
-break the min-height mechanism that makes rows grow for long labels. **The real fix is to change the
-radio row's vertical padding from `spacing/sm` to `spacing/xs`**, or decide the difference is
-deliberate.
+Re-measured to confirm: `18384:9431` now binds `spacing/xs` and still carries `min-h-[30px]`. All
+four radio variants are 30px, the set frame went 178 → 170px, and `Dropdown/Menu (radio)` went
+330 → 314px.
 
-**Also wrong in the audit:** it says group headings are 32px. Figma's own metadata says
-`Dropdown Heading primary` is **30px**.
+**Why this mattered:** the original recommendation — set a single fixed height — would have removed
+the mechanism that lets a row grow when a label is long. The padding fix keeps it.
 
----
+**Still wrong in the audit:** it says group headings are 32px. Figma says `Dropdown Heading primary`
+is **30px**.
 
 ## 4. A worse inconsistency the audit missed
 
@@ -77,7 +76,8 @@ deliberate.
 To a user, that's far more visible than a 2px height difference: pick a checkbox option and the row
 lights up; pick a radio option and nothing does. Worth a ruling on which is correct.
 
-Minor sibling: the checkbox row has a `max-height` of 36px; the radio row has none.
+Minor sibling, still open: the checkbox row has a `max-height` of 36px; the radio row has none. Now that
+both share min-height and padding, this is the last geometric difference between them.
 
 ---
 
@@ -132,4 +132,5 @@ convention.
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-08-25 | **1.1.0** — row-height inconsistency RESOLVED: owner changed the radio row's vertical padding to `spacing/xs`, keeping `min-height:30`. Re-measured and confirmed. |
 | 2026-08-25 | 1.0.0 — row atoms measured (checkbox + radio in full), section structure and all 11 node ids recorded, Figma AI's audit corrected in four places, renames held pending owner ruling. | C360-40765 + owner instruction 2026-08-25 |
