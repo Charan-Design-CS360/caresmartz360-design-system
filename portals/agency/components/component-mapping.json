@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "portal": "agency",
+  "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+  "components": [
+    {
+      "name": "Button",
+      "componentKey": "3db16e6d1c87cd2bbf26189ef94be6a24eb872a9",
+      "nodeId": "26938:66536",
+      "maturity": "draft",
+      "semanticDependencies": [
+        "shared/primitives",
+        "portals/agency/semantics/color-modes",
+        "portals/agency/semantics/density-modes"
+      ],
+      "contractPath": "portals/agency/components/button.md",
+      "jiraIssue": "C360-44256",
+      "snapshotRef": "measured-live-figma-2026-08-24"
+    },
+    {
+      "name": "Fields",
+      "componentKey": "e2b8bc625076cfbb42c55490a0f023be6ff8152c",
+      "nodeId": "26955:66554",
+      "maturity": "draft",
+      "semanticDependencies": [
+        "shared/primitives",
+        "portals/agency/semantics/color-modes",
+        "portals/agency/semantics/density-modes"
+      ],
+      "contractPath": "portals/agency/components/field-type-1.md",
+      "jiraIssue": "C360-44847",
+      "snapshotRef": "measured-live-figma-2026-08-24"
+    }
+  ]
+}

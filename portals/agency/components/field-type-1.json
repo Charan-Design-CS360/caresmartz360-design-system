@@ -1,0 +1,143 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Fields type 1",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
+    "figmaComponentSetNodeId": "26938:65997",
+    "figmaComponentSetName": "field-set-type1",
+    "figmaSectionNodeId": "26955:66554",
+    "nodeIdRelationship": "26955:66554 is the SECTION; 26938:65997 is its child COMPONENT SET. Parent/child, not a conflict. Record the component-set id for mappings.",
+    "measuredOn": "2026-08-24",
+    "measuredBy": "Fable-DESIGN-SYSTEM (C360-3526)",
+    "jiraParent": "C360-44737",
+    "jiraComponent": "C360-44847",
+    "humanContract": "./field-type-1.md",
+    "readThisFirst": "Figma's generated docs for this component say '6 variants' and omit state=ai; they also state line-height 120% / letter-spacing -0.24px, which the bound variables contradict. Trust the bound variables."
+  },
+
+  "geometry": {
+    "display": "grid",
+    "gridTemplateRows": { "value": [26, 34], "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+    "totalHeight": { "value": 62, "unit": "px", "token": null, "marker": ["MEASURED"], "note": "all 7 symbols are exactly 360 x 62" },
+    "padding": {
+      "value": 0, "token": "spacing/none", "marker": ["MEASURED"],
+      "promotedFrom": "DERIVED",
+      "why": "Figma codegen emitted p-[var(--spacing/none,1px)] — a spacing/none token with a misleading 1px FALLBACK. Arithmetic ruled it out (1+26+34+1=62 matches all 7 symbols; padding:1 gives 64). Now confirmed by Figma's own spec text: 'Padding 0px all sides'.",
+      "generalTrap": "A Figma codegen fallback is not a token value."
+    },
+    "border": { "width": 1, "style": "solid", "alignment": "inside", "marker": ["MEASURED"] },
+    "borderRadius": { "value": 0, "token": "border-radius/rounded-none", "cssVar": "--border-radius-rounded-none", "marker": ["MEASURED"] },
+    "width": { "value": 360, "treatAs": "100% of parent", "marker": ["MEASURED"], "note": "360 is the variant's own width; the component description says 100% width" },
+    "labelRow":  { "rowHeight": 26, "contentHeight": 22, "paddingLeft": 8, "paddingLeftToken": "spacing/md", "paddingBlock": 0, "alignSelf": "start", "marker": ["MEASURED", "RAW"] },
+    "labelGapSlack": {
+      "value": 4, "marker": ["DERIVED"],
+      "arithmetic": "row 1 is 26px, label content is 22px -> 4px empty row below the label",
+      "warning": "The designer's documented 'Gap 4px between top and bottom' is REAL but is grid slack, NOT a CSS gap property. Do not implement it as `gap`."
+    },
+    "inputRow":  { "rowHeight": 34, "textBoxHeight": 20, "paddingLeft": 8, "paddingLeftToken": "spacing/md", "paddingRight": 0, "paddingBlock": 0, "alignItems": "center", "marker": ["MEASURED", "RAW"] },
+    "docExemplarTopRowGap": { "value": 10, "token": null, "marker": ["MEASURED", "RAW"], "note": "documentation exemplar 26938:65494 only" },
+    "transition": { "properties": ["background-color", "border-color", "color"], "duration": "150ms", "easing": "ease", "marker": ["MEASURED"] }
+  },
+
+  "variantAxis": {
+    "name": "state",
+    "count": 7,
+    "values": ["default", "focus", "error", "success", "warning", "ai", "disabled"],
+    "absentAxes": ["Size", "Compact", "Required", "Help", "Cell Structure"],
+    "figmaDocsClaim": 6,
+    "figmaDocsOmits": "ai",
+    "resolution": "Trust the 7 — measured from the component set's symbol children."
+  },
+
+  "states": [
+    { "state": "default",  "nodeId": "26938:65991", "bg": { "token": "field/bg-default",  "hex": "#ffffff" }, "border": { "token": "field/border-default", "hex": "#e2e8f0" }, "valueText": { "token": "field/value-placeholder", "hex": "#64748b" }, "marker": ["MEASURED"] },
+    { "state": "focus",    "nodeId": "26938:65992", "bg": { "token": "field/bg-focus",    "hex": "#f0f7ff" }, "border": { "token": "field/border-focus",   "hex": "#0077ff" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "error",    "nodeId": "26938:65993", "bg": { "token": "field/bg-danger",   "hex": "#fef2f2" }, "border": { "token": "field/border-danger",  "hex": "#ef4444" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "success",  "nodeId": "26938:65994", "bg": { "token": "field/bg-success",  "hex": "#f0fdf4" }, "border": { "token": "field/border-success", "hex": "#15803d" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "warning",  "nodeId": "26938:65995", "bg": { "token": "field/bg-warning",  "hex": "#fefce8" }, "border": { "token": "field/border-warning", "hex": "#facc15" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "ai",       "nodeId": "27079:10664", "bg": { "token": "field/bg-ai",       "hex": "#faf5ff" }, "border": { "token": "field/border-ai",      "hex": "#9333ea" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "disabled", "nodeId": "26938:65996", "bg": null, "border": { "token": "field/border-default", "hex": "#e2e8f0" }, "valueText": { "token": "field/value-disabled", "hex": "#64748b" }, "marker": ["MEASURED"],
+      "defect": "NO background is emitted. Figma codegen: ${isDisabled ? \"\" : 'bg-[var(--field/bg-default,white)]'} — the disabled branch is an empty string. Renders white/transparent, not grey.",
+      "doNotFix": "Do not apply #f1f5f9 or field/bg-disabled. That would invent a look Figma does not show. Needs a design decision." }
+  ],
+
+  "structureIsIdenticalAcrossStates": true,
+  "stateChangeIsTokenSwapOnly": true,
+
+  "typography": {
+    "label": { "style": "Fields/label", "family": "Inter", "weightName": "Medium", "fontSize": 12, "fontSizeToken": "font-size/caption", "lineHeight": 16, "lineHeightToken": "line-height/caption", "fontWeight": 500, "fontWeightToken": "font-weight/body-strong", "letterSpacing": 0, "letterSpacingToken": "fonts/tracking/X-tracking-0", "colour": { "token": "text/primary", "hex": "#1e293b" }, "marker": ["MEASURED"], "measuredFrom": "26938:65991" },
+    "value": { "style": "Fields/value", "family": "Inter", "weightName": "Regular", "fontSize": 12, "fontSizeToken": "font-size/caption", "lineHeight": 16, "lineHeightToken": "line-height/caption", "fontWeight": 400, "fontWeightToken": "font-weight/body-base", "letterSpacing": 0, "marker": ["MEASURED"] },
+    "contradictsFigmaProse": {
+      "figmaProseClaims": "line-height 120%, letter-spacing -0.24px",
+      "boundVariablesSay": "line-height/caption = 16, X-tracking-0 = 0",
+      "arithmetic": "120% of 12px = 14.4px, not 16px",
+      "resolution": "The bound variables win. Figma's prose is stale."
+    },
+    "tokenGap": "G2 — fonts/tracking/X-tracking-0 is bound in Figma but ABSENT from tokens.css"
+  },
+
+  "optionalElements": {
+    "requiredMarker": { "wrapper": { "w": 8, "h": 16 }, "iconBox": { "w": 8, "h": 8 }, "innerVector": { "w": 5.162, "h": 5.6 }, "fill": { "token": "icon/danger", "hex": "#ef4444" }, "gap": 4, "gapToken": "spacing/sm", "presentInVariants": false, "marker": ["MEASURED"] },
+    "helpAffordance": { "box": { "w": 16, "h": 16 }, "drawnVector": { "w": 12, "h": 12 }, "fill": { "token": "icon/brand", "hex": "#0077ff" }, "presentInVariants": false, "marker": ["MEASURED"] },
+    "blocker": "Both exist in the sub-component but are OFF in all 7 published variants. There is currently NO supported way to show a required marker on this component — a hard blocker for clinical forms with mandatory fields. Needs Singh's decision."
+  },
+
+  "sizeChoice": {
+    "hasSizeAxis": false,
+    "totalHeight": 62,
+    "inputRowHeight": 34,
+    "explicitly_not": [30, 40, 50],
+    "note": "SPEC-12's 30/40px pair belongs to a DIFFERENT component and does not apply here."
+  },
+
+  "implementationRisk": {
+    "severity": "HIGHEST",
+    "issue": "A Material mat-form-field appearance=\"outline\" CANNOT produce this layout.",
+    "why": "Material renders the label as a floating notch that INTERRUPTS the top border. Fields type 1 renders it as a static full-width 22px row stacked ABOVE the input, inside an UNBROKEN border. Different structures, not different skins.",
+    "consequence": "No amount of token overriding converts one into the other.",
+    "decisionRequired": "Either build a custom control, or redraw the design to match Material. Decide BEFORE producing an implementation diff.",
+    "goodNews": "The 17 --field-* semantic tokens already exist in every theme file. Tier 2 is complete; only a correctly-structured Tier 3 consumer has ever been missing."
+  },
+
+  "defects": [
+    "disabled variant emits no background (see states[disabled])",
+    "no hover state exists on the axis — building one would be an invention",
+    "no error/helper message row exists — the error state is fill + border only, with nowhere to put the message",
+    "required marker and help icon are OFF in all 7 variants",
+    "Figma's generated docs claim 6 variants and omit 'ai'",
+    "Figma's Dev Mode link points at node-id=26581-38709, a different node from the 26938-65997 it documents"
+  ],
+
+  "accessibility": {
+    "inputRowSize": { "value": 34, "wcag258AA": "PASS", "floor": "24 CSS px" },
+    "labelAssociation": "use <label for> or aria-labelledby — the label is a real row, so this is straightforward",
+    "errorState": "needs aria-invalid + aria-describedby, BUT there is no message row to point at (defect)",
+    "required": "needs aria-required, BUT no visual marker is available (defect)",
+    "disabled": "use disabled + aria-disabled. NOTE: readonly is INERT on <select> — emit disabled there instead",
+    "focusRing": { "value": null, "marker": ["UNVERIFIED"], "note": "only a border-colour + background change is specified; whether an additional ring is intended is unknown" }
+  },
+
+  "notVerified": [
+    "whether field/bg-disabled SHOULD apply (the missing background is a defect, but the intended look is unknown)",
+    "focus ring/outline in addition to the border colour change",
+    "textarea / multi-line behaviour",
+    "read-only vs disabled as distinct states",
+    "required-marker vertical alignment (SPEC-17 marks its own reading provisional)",
+    "tooltip content for the help affordance",
+    "dark / high-contrast / warm-dark / hc-light values (light mode only)",
+    "icon SVG PATH DATA — referenced via ephemeral localhost:3845 URLs, never saved. Box sizes and fill tokens verified; path geometry is not. This component has NO archived SVGs.",
+    "the other 12 variants of Global/Atom/Fields Toys (trailing controls)",
+    "full variant matrix of atom/text_field lables"
+  ],
+
+  "openTokenDecision": {
+    "status": "GATED",
+    "gate": "Design-System/00-TOKEN-LAYER-GATE.md",
+    "rawValues": [26, 34, 22, 20, 10],
+    "promotionRule": "3+ distinct consumers earns a global token (Curtis's rule)",
+    "assessment": "34px currently has 2 consumers (this input row + the table header) — BELOW the threshold, so it stays component-local rather than becoming a global token."
+  }
+}

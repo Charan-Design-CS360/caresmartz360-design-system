@@ -1,0 +1,158 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Button",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key. Value taken from the repo's own Agency component mapping. Must be confirmed by Singh.",
+    "figmaSectionNodeId": "26938:66536",
+    "figmaSectionName": "AI Button component",
+    "measuredOn": "2026-08-24",
+    "measuredBy": "Fable-DESIGN-SYSTEM (C360-3526)",
+    "measurementMethod": "figma-desktop MCP: get_design_context + get_variable_defs + get_metadata, live reads",
+    "jiraParent": "C360-44737",
+    "jiraComponent": "C360-44256",
+    "humanContract": "./button.md",
+    "measurementLog": "../../../MEASUREMENT-LOG.md",
+    "markerLegend": {
+      "MEASURED": "read directly from live Figma; nodeId given",
+      "DERIVED": "computed from measured values; arithmetic given in button.md",
+      "RAW": "real value but NOT bound to any Figma design token",
+      "UNVERIFIED": "not read — do not build from it"
+    },
+    "readThisFirst": "Figma's own descriptions for this component are provably wrong (they advertise an S/M/L size axis and a 'loading' state that do not exist). Read bound variables and node structure; treat Figma prose as unverified."
+  },
+
+  "anatomy": {
+    "elements": ["container", "icon (optional)", "label"],
+    "note": "One anatomy for all 8 types. Verified at set level across 8 of 8 sets: every set binds identical geometry and typography tokens; only the colour namespace differs."
+  },
+
+  "geometry": {
+    "minHeight": {
+      "standard": 30, "compact": 24, "unit": "px",
+      "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "5703:7088",
+      "note": "THE design-system gap. Height is set by min-height ONLY — padding-block is spacing/none = 0, which is 0 in every density mode, so height can never emerge from padding.",
+      "cssProperty": "min-height",
+      "neverUse": "height",
+      "whyNotFixedHeight": "Figma emits the min- form; W3C C42 recommends min-height for target sizing; W3C C28 warns fixed units clip text when users enlarge type. Split is the only type using fixed height and cannot grow (defect F-008)."
+    },
+    "minWidth": {
+      "withIcon": 80, "labelOnly": 60, "iconOnly": "= minHeight (square)",
+      "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "5703:7088"
+    },
+    "paddingBlock": { "value": 0, "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"] },
+    "paddingInline": {
+      "iconSide":  { "value": 8,  "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+      "labelSide": { "value": 12, "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
+      "iconOnly":  { "value": 4,  "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
+      "rule": "8px on the icon side, 12px on the label side. Mirrors with icon position."
+    },
+    "gap": {
+      "iconToLabel": { "value": 4, "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
+      "labelOnly":   { "value": 0, "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"] }
+    },
+    "borderRadius": { "value": 4, "token": "border-radius/rounded", "cssVar": "--border-radius-rounded", "marker": ["MEASURED"] },
+    "iconBox": { "width": 18, "height": 18, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"],
+      "note": "Wrapper and glyph are both size-[18px]. Will NOT scale with density because it is unbound." },
+    "alignment": { "alignItems": "center", "justifyContent": "center", "textAlign": "center", "whiteSpace": "nowrap" }
+  },
+
+  "paddingMirror": [
+    { "icon": "Leading",  "minWidth": 80,             "paddingLeft": 8,  "paddingRight": 12, "gap": 4 },
+    { "icon": "Trailing", "minWidth": 80,             "paddingLeft": 12, "paddingRight": 8,  "gap": 4 },
+    { "icon": "Only",     "minWidth": "= minHeight",  "paddingLeft": 4,  "paddingRight": 4,  "gap": null },
+    { "icon": "None",     "minWidth": 60,             "paddingLeft": 12, "paddingRight": 12, "gap": 0 }
+  ],
+
+  "typography": {
+    "fontFamily":    { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] },
+    "fontSize":      { "value": 12, "token": "font-size/caption", "cssVar": "--font-size-caption", "marker": ["MEASURED"] },
+    "lineHeight":    { "value": 16, "token": "line-height/caption", "cssVar": "--line-height-caption", "marker": ["MEASURED"] },
+    "fontWeight":    { "value": 500, "token": "font-weight/body-strong", "cssVar": "--font-weight-body-strong", "marker": ["MEASURED"] },
+    "letterSpacing": { "value": 0, "token": "fonts/tracking/X-tracking-0", "cssVar": null, "marker": ["MEASURED"],
+                       "gap": "G2 — bound in Figma but ABSENT from tokens.css" },
+    "compactChangesTypography": false
+  },
+
+  "compactDelta": {
+    "note": "get_variable_defs on standard 5703:7088 and compact 5703:7158 returns BYTE-IDENTICAL output.",
+    "onlyDifference": "raw min-height 30 -> 24",
+    "iconUnchanged": true, "paddingUnchanged": true, "radiusUnchanged": true, "typographyUnchanged": true,
+    "isPerInstanceNotAMode": true,
+    "why": "Compact and standard buttons appear on the same screen, so this cannot be modelled as a global density mode."
+  },
+
+  "colourFormula": {
+    "pattern": "action/{type}/{role}",
+    "filled":   { "background": "action/{type}/bg",       "labelAndIcon": "action/{type}/text-neutral" },
+    "outlined": { "border": "action/{type}/outlined",     "labelAndIcon": "action/{type}/text-hard", "background": "none" },
+    "focusAdds":     { "token": "action/focus/ring", "strokeWeight": 2, "opacity": 0.4 },
+    "disabledUses":  { "background": "action/disabled/bg", "labelAndIcon": "action/disabled/text-neutral", "stroke": "border/transparent" },
+    "oneTokenForLabelAndIcon": true,
+    "alphaIsLoadBearing": {
+      "warning": "action/focus/ring = #00000066 (40%), border/transparent = #00000000 (0%). A pipeline that reads only the hex field and drops alpha renders every focus ring a solid black bar and every disabled border a solid black line.",
+      "requirement": "emit rgba() whenever alpha < 1"
+    },
+    "namingException": {
+      "type": "secondary",
+      "usesInstead": "action/secondary/text",
+      "impact": "A generic 'build the token name from the type name' helper WILL break on Secondary."
+    },
+    "figmaCardsAreWrong": "Figma's doc cards print action/{type}/text. That name is correct for Secondary ONLY."
+  },
+
+  "types": [
+    { "name": "primary",     "setNodeId": "5703:7087",   "bg": "#0077ff", "hover": "#005ce6", "pressed": "#0045b3", "labelFilled": "text-neutral", "labelOutlined": "text-hard", "outlined": "#0077ff", "bgSoft": null, "marker": ["MEASURED"] },
+    { "name": "secondary",   "setNodeId": "27098:1282",  "bg": "#f0f7ff", "hover": "#e0f0ff", "pressed": "#badeff", "labelFilled": "text", "labelOutlined": null, "outlined": "#00000000", "bgSoft": null, "marker": ["MEASURED"], "defects": ["outlined token is fully transparent"] },
+    { "name": "ghost",       "setNodeId": "5703:7709",   "bg": null, "hover": "#f1f5f9", "pressed": "#e2e8f0", "labelFilled": null, "labelOutlined": "text-hard", "outlined": null, "bgSoft": null, "marker": ["MEASURED"], "note": "bg intentionally absent (transparent); no outline column" },
+    { "name": "soft",        "setNodeId": "5703:8495",   "bg": "#f8fafc", "hover": "#f1f5f9", "pressed": "#e2e8f0", "labelFilled": "text-neutral", "labelOutlined": null, "outlined": "#e2e8f0", "bgSoft": null, "marker": ["MEASURED"] },
+    { "name": "warning",     "setNodeId": "26781:44955", "bg": "#eab308", "hover": "#ca8a04", "pressed": "#a16207", "labelFilled": "text-neutral", "labelOutlined": null, "outlined": "#713f12", "bgSoft": "#fef9c3", "marker": ["MEASURED"], "note": "no text-hard token" },
+    { "name": "destructive", "setNodeId": "5703:7501",   "bg": "#b91c1c", "hover": "#dc2626", "pressed": "#b91c1c", "labelFilled": "text-neutral", "labelOutlined": "text-hard", "outlined": "#dc2626", "bgSoft": "#fef2f2", "marker": ["MEASURED"], "defects": ["pressed is identical to bg — invisible", "hover is lighter than bg — wrong direction"] },
+    { "name": "success",     "setNodeId": "10356:17309", "bg": "#16a34a", "hover": null, "pressed": "#166534", "labelFilled": "text-neutral", "labelOutlined": "text-hard", "outlined": "#16a34a", "bgSoft": "#dcfce7", "marker": ["MEASURED"], "defects": ["action/success/hover does not exist"] },
+    { "name": "split",       "setNodeId": "26767:45640", "bg": "action/primary/bg", "hover": "action/primary/hover", "pressed": null, "labelFilled": "action/primary/text-neutral", "labelOutlined": null, "outlined": "action/primary/outlined", "bgSoft": null, "marker": ["MEASURED"], "note": "different anatomy — see button.md", "defects": ["uses fixed height, cannot grow", "divider is raw rgba(255,255,255,0.3)"], "unexplained": "set also binds field/value-inverse, a field token inside a button" },
+    { "name": "ai",          "setNodeId": "27116:1359",  "bg": null, "hover": null, "pressed": null, "labelFilled": "action/ai/text-neutral", "labelOutlined": null, "outlined": null, "bgSoft": null, "marker": ["MEASURED"], "note": "NEWLY DISCOVERED 2026-08-24 — absent from every prior spec. 20 variants at 27116:1155..1351.", "defects": ["fill is a raw two-stop gradient #7c3aed -> #2563eb, not a token", "contains a nested <button> inside its icon slot — invalid HTML", "binds only 1 of the 8 action/ai/* tokens"] }
+  ],
+
+  "sharedTokens": {
+    "action/focus/ring": "#00000066",
+    "action/disabled/bg": "#f1f5f9",
+    "action/disabled/text-neutral": "#475569",
+    "border/transparent": "#00000000"
+  },
+
+  "variantAxes": {
+    "State":   { "values": ["Default", "Hover", "Active", "Focus", "Disabled"], "note": "no 'loading' state exists" },
+    "Icon":    { "values": ["Leading", "Trailing", "Only", "None"], "note": "AI set offers Leading and Only only" },
+    "Compact": { "values": ["No", "Yes"], "note": "196 of 392 symbols are Compact=Yes — a strict x2 multiplier" },
+    "Outline": { "values": ["No", "Yes"], "note": "Ghost has no outline column" },
+    "Type":    { "isDerivedLabel": true, "warning": "NOT an orthogonal axis. Do not model type and state as independent enums — a disabled button has no type, and an outlined button's type IS 'outlined'." },
+    "absentAxes": { "Size": "0 occurrences across 392 symbols, despite Figma's description claiming S/M/L" }
+  },
+
+  "accessibility": {
+    "targetSizeStandard": { "size": "30x30", "wcag258AA": "PASS", "wcag255AAA": "FAIL", "floor": "24x24 CSS px" },
+    "targetSizeCompact":  { "size": "24x24", "wcag258AA": "PASS — exactly at the floor, no margin", "wcag255AAA": "FAIL" },
+    "iconOnlyRequires": "aria-label; glyph is aria-hidden",
+    "focusRingAlignment": { "value": null, "marker": ["UNVERIFIED"], "impact": "inside vs outside changes layout — a 2px outside ring grows 30px to 34px" }
+  },
+
+  "notVerified": [
+    "focus-ring stroke alignment (inside vs outside) — CHANGES LAYOUT",
+    "Type=Soft CSS for warning/destructive/success (26882:17447, 26879:9525, 26882:17369)",
+    "the 20 Type=AI variants beyond Default/Leading",
+    "per-state token mapping for the 7 non-Primary types (set-level binding IS measured; state-by-state was read for Primary only, and the one non-Primary state checked — Success hover — broke the inferred pattern)",
+    "dark / high-contrast / warm-dark / hc-light theme values (light :root only)",
+    "behaviour: transition timing, keyboard interaction, loading",
+    "Split internal padding and Outline=Yes composition",
+    "the 32-symbol gap between SPEC-07b's 360 total and the live 392"
+  ],
+
+  "openTokenDecision": {
+    "status": "GATED — awaiting Singh's GO",
+    "gate": "Design-System/00-TOKEN-LAYER-GATE.md",
+    "proposal": "4 raw number tokens in the Density Modes collection, scope WIDTH_HEIGHT, zero primitives and zero aliases: control/min-height=30, control/min-height-compact=24, control/min-width=80, control/min-width-label=60",
+    "untilApproved": "This contract records 30px as a measured, UNBOUND design-system gap. It does NOT authorise hardcoding it in Tier 3."
+  }
+}
