@@ -25,16 +25,21 @@ was a gap in what we published, not a mistake by whoever was building.
 | | Head cell | Data cell |
 |---|---|---|
 | Node | `26938:52865` (set `26938:61726`) | `26938:52924` (set `26938:61725`) |
-| Height | **34px** — `min-height`, can grow | **30px** — `height`, **fixed, cannot grow** |
+| Height | **34px** — a minimum, can grow | **30px** — a **minimum**, grows with content *(ruled)* |
 | Background | `surface/tertiary` (#f1f5f9) | `field/bg-default` (#ffffff) |
 | Border | 1px `border/subtle` | 1px `field/border-default` |
-| Padding | 8px sides · **0 top/bottom** *(disputed — §4)* | 8px sides · 0 top/bottom |
+| Padding | **8px sides · 0 top/bottom** *(ruled)* | **8px sides · 0 top/bottom** *(ruled)* |
 | Gap | 4px (`spacing/sm`) | 4px (`spacing/sm`) |
 | Text | Inter **500**, 12/16 | Inter **400**, 12/16 |
 | Colour | `field/value-primary` | `field/value-primary` |
 
-**Composition** (from the sample layout `27002:78668`): one 34px header above N 30px data rows,
-columns 200px wide in the sample.
+**Composition** (from the sample layout `27002:78668`): one 34px header above N data rows of 30px
+*or taller*, columns 200px wide in the sample.
+
+**A long value grows the whole row, not one cell.** Ruled 2026-08-25. In a real `<table>` you get
+this for free — `height` on a cell is treated as a minimum and sibling cells stretch to the tallest.
+If you build the table out of `div`s, the row needs `align-items: stretch`. Never give one cell its
+own independent height.
 
 **The header is NOT uppercase.** The component renders "Title" in sentence case. Rendering headers in
 CAPS is wrong against the design system — the local stylesheet reached the same conclusion and
@@ -59,63 +64,81 @@ borders double up.
 
 ---
 
-## 3b. 🔴 Two header components — possibly three — and it isn't settled which one is right
+## 3b. ✅ Which header is canonical — settled
 
-**This is the most important thing on this contract, and a strong candidate for the actual root cause.**
+**Build from `table_head` — set `26938:61726`, variant `26938:52865`.**
 
-| Header | Node | Height | Where it's treated as authoritative |
-|---|---|---|---|
-| `table_head` | `26938:61726` | 34px | section `26955:66556` — what the owner pointed at, and what this contract measures |
-| `Head / Tiltes for tables` | `5865:162` | 34px | the local `table.css` calls **this** one canonical |
-| `X-Head old` | — | — | formally dead: Figma's own description reads *"Do not cosider this compoent"* |
+Ruled by the design-system owner on 2026-08-25. He linked that exact node and said it *"include all
+actions what it needed to show and hide example, Sorting, Information etc."*
 
-Both live ones are **34px**, so this is not a size conflict — they are **separate components**.
+| Component | Node | Status |
+|---|---|---|
+| `table_head` | `26938:61726` / `26938:52865` | ✅ **CANONICAL — build from this** |
+| `Head / Tiltes for tables` | `5865:162` | ⛔ **Retired** — an alias of the above. The local `table.css` used to call this one canonical; it has been corrected. |
+| `X-Head old` | — | ⛔ **Dead.** Figma's own description reads, verbatim: "Do not cosider this compoent". |
 
-**The telling detail:** section `26955:66556`'s own sample layout instantiates nodes named
-**`Head / Tiltes for tables`** — the *other* header — not its own `table_head` set. So the section
-that defines `table_head` doesn't use it in its own example.
+Nothing about the geometry changed — both headers measured 34px, so this was a **provenance** fix,
+not a visual one. That is also why the mismatch survived so long unnoticed.
 
-**Why this matters:** anyone building a table has to guess which header to follow, and until today
-GitHub published **neither**. That is a much more likely cause of builds not matching than any single
-measurement being wrong.
-
-**Needs your ruling, or Figma AI's:** declare one canonical header and retire or alias the other.
+**One loose end, on the Figma side only:** the section's own sample layout (`27002:78668`) still
+places the *retired* header, so the section that defines the canonical one doesn't use it in its own
+example. Raised to Figma AI. It is a cleanup task — **not** a reason to re-open the ruling.
 
 ---
 
-## 4. One disagreement between Figma and your local file
+## 4. ✅ Figma vs your local file — now in agreement
 
-Everything else matches. This one doesn't:
+There was one open disagreement. Your ruling on 2026-08-25 closed it, and applying it turned up two
+more problems in the local file that were never disagreements at all — just gaps.
 
-| | Head cell vertical padding |
-|---|---|
-| **Figma today** | `spacing/none` = **0** |
-| **Your local `table.css`** (line 115) | `spacing/sm` = **4** |
+**Your ruling:** *"8px left right, 0 top bottom and with hug height properties with minimum height of
+30px."* Figma was right; the local file was wrong.
 
-**Why it matters a little:** your local file explains the 34px as `1 + 4 + 24 + 4 + 1`. That needs the
-4px padding. With Figma's current 0, the sum is 26 — so the 34 comes from `min-height` alone, not from
-the box model.
+| What | Was | Now |
+|---|---|---|
+| Head cell top/bottom padding | local file had `spacing/sm` (4) | `spacing/none` (**0**) — matches Figma |
+| Data cell left/right padding | **missing entirely** in the local file | `spacing/md` (**8**) |
+| Data cell `white-space` | `nowrap` — which silently blocked all row growth | wraps, so a long value can raise the row |
+| The 34px explanation | "`1 + 4 + 24 + 4 + 1`" | 34 is a **floor** over 26px of content, not a sum |
 
-**Why it matters barely at all visually:** `min-height: 34` plus vertically-centred content puts the
-label in the same place either way.
+**The `nowrap` was the real bug.** Your row-growth rule couldn't have worked with it in place — the
+text could never wrap, so nothing could ever get taller, whatever the height keyword said.
 
-**I have not picked a winner.** Figma is the design authority and I measured it today; your local file
-was written earlier from SPEC-08b and may predate a Figma edit. **Needs your word, or Figma AI's.**
+**The header still says `nowrap`, deliberately.** Your ruling was about the data cell, so I didn't
+widen it to headers without your word. Column titles staying on one line looks intentional. Say if
+you want headers wrapping too.
 
-**Everything that does agree:** the 34/30 heights, horizontal padding 8, gap 4, 1px borders all
+**Everything else agreed all along:** the 34/30 heights, horizontal padding 8, gap 4, 1px borders all
 round, weight 500 vs 400, 12/16 type, no uppercase, and the codegen-trap conclusion.
 
 ---
 
-## 5. Defects — 11 recorded
+## 4b. States — one ruled out, two waiting on you
+
+| State | Status |
+|---|---|
+| **Zebra striping** | ⛔ **Ruled out.** *"Zebra we are not following."* A decision, not a gap — don't log it as missing again. |
+| **Cell hover** | ⏳ **Waiting on you.** You asked for it to follow the field states, then the semantic layer. Neither has one to follow: Fields has no hover variant, and the Agency semantic layer's only `*hover` tokens are for buttons, brand and links — nothing for a field or table surface. Your call: *"if hover is not available then raise this point again tomorrow."* |
+| **Selected / sorted-active** | ⏳ **Waiting on you.** Neither exists in Figma. Worth noting the header already ships a working 4-variant Sort control with no active state wired to it. |
+| Disabled / error | Genuinely unaddressed. |
+
+No unruled state is published here. Building one in code would be an invention.
+
+---
+
+## 5. Defects — 12 recorded, 2 now resolved
 
 The three worth acting on first:
 
-1. **The data cell has a fixed height.** `height: 30` — not `min-height`. So a data cell **cannot
-   grow**; long values only truncate with an ellipsis. The head cell uses `min-height`, and so does
+1. ✅ **RESOLVED — the data cell's fixed height.** Figma binds `height: 30` with ellipsis truncation,
+   so a cell could not grow. Your ruling of 2026-08-25 makes 30 a **minimum** with row-level growth.
+   This contract now follows the ruling; **Figma still shows the old fixed height** and is queued to
+   be updated, so don't "correct" this back from a fresh measurement. For reference, the head cell
+   already used `min-height`, and so does
    every other component measured in this design system. This is the one I'd fix.
-2. **No states exist at all.** One variant each (`type=Default`). No hover, selected, sorted-active,
-   zebra, disabled or error anywhere — despite the header shipping an interactive Sort control and a
+2. **No states exist in Figma.** One variant each (`type=Default`) — see §4b for which of these you
+   have now ruled on. Nothing for hover, selected, sorted-active,
+   disabled or error anywhere — despite the header shipping an interactive Sort control and a
    help affordance. Anything built for those states today is invented.
 3. **The in-Figma guidelines page is an empty shell.** It reports its own coverage as
    **"Annotations 0/2 — Incomplete"** and "No measurements added". Its Dev Mode link also points at
@@ -137,7 +160,11 @@ closes seven.
 - Whether a tooltip is intended for truncated values. The design truncates and says nothing more.
 - Gridline/`border-collapse` strategy.
 - Dark / High Contrast / Warm Dark / HC Light — light mode only.
-- Density behaviour — note the fixed `height:30` couldn't respond to density even if tokens did.
+- Density behaviour. Worth re-checking now: the old fixed `height:30` couldn't have responded to
+  density even if the tokens did; a minimum height can.
+- Whether the **head** cell should wrap too. Your ruling covered the data cell only.
+- Whether a wrapped multi-line value needs a line cap or a tooltip. The ruling said the row grows;
+  it didn't say how far.
 - Contrast ratios — pairings recorded, check not run.
 
 ---
@@ -146,5 +173,6 @@ closes seven.
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-08-25 | **2.0.0** — four owner rulings applied. `table_head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
 | 2026-08-25 | **1.1.0** — recorded that TWO live header components exist (`table_head` 26938:61726 vs `Head / Tiltes for tables` 5865:162, both 34px), plus a third that is formally dead; and that this section's own sample layout uses the other one. Found while syncing against the local stylesheet. |
 | 2026-08-25 | 1.0.0 — first table contract in this repo. Both sets measured from section `26955:66556`, cross-checked against the local copy-from stylesheet and the owner's variable export. Created because the absence of any published table geometry was blocking feature work. | Owner instruction, 2026-08-25 |

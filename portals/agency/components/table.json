@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Table — head cell & data cell",
     "portal": "agency",
-    "contractVersion": "1.1.0",
+    "contractVersion": "2.0.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP never reports a file key. Taken from portals/agency/portal-manifest.json and the URL supplied by the design owner.",
     "figmaSectionNodeId": "26955:66556",
@@ -19,9 +19,11 @@
       "classIds": [
         "CS-TBL-01",
         "CS-TBL-02",
-        "CS-TBL-03"
+        "CS-TBL-03",
+        "CS-TBL-08"
       ],
-      "note": "The copy-from stylesheet a project pastes into its own CSS. That file is the CODE; this contract is the MEASUREMENT. They must agree — one disagreement is currently open, see contractVsLocalCss."
+      "syncedOn": "2026-08-25",
+      "note": "The copy-from stylesheet a project pastes into its own CSS. That file is the CODE; this contract is the MEASUREMENT. As of 2026-08-25 they AGREE on every value: the head cell's vertical padding was corrected from 4 to 0 there, the data cell gained the 8px inline padding it was missing entirely, and its `white-space: nowrap` was removed so the row-growth ruling can actually take effect."
     },
     "markerLegend": {
       "MEASURED": "read directly from live Figma; nodeId given",
@@ -29,7 +31,9 @@
       "RAW": "real value but NOT bound to any token present in the owner's variable export",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "⚠️ TWO HEADER COMPONENTS — POSSIBLY THREE — AND IT IS NOT SETTLED WHICH IS CANONICAL. This contract measures table_head 26938:61726 / table_cell 26938:61725 from section 26955:66556, which the owner identified as where the table is defined. But the document-level copy-from stylesheet (Universal Html Rules/02-components/table.css) builds from a DIFFERENTLY NAMED, differently numbered header: 'Head / Tiltes for tables' 5865:162, which it calls canonical. Both measure 34px, so this is not a size conflict — they are separate components. And this section's OWN sample layout (27002:78668) instantiates nodes named 'Head / Tiltes for tables', i.e. the stylesheet's source rather than its own table_head set. With 'X-Head old' already formally dead per that stylesheet, that is potentially three header components in one Figma file. A feature session cannot be expected to pick correctly — this is a strong candidate for why table builds have not matched the design system. RESOLVE THIS FIRST. Also: until 2026-08-25 there was no table contract here at all while the repo's only table stylesheet (src/styles/3-components/_tables.scss, 33 lines) had zero height declarations, so tools reading GitHub for table geometry got nothing. And note Figma prints WRONG padding fallbacks on the head cell (9 where spacing/md is 8, 1 where spacing/none is 0) while printing the same tokens correctly on the data cell — bind the token, never the printed fallback."
+    "readThisFirst": "✅ THE HEADER QUESTION IS SETTLED. The canonical table header is `table_head` 26938:61726, variant 26938:52865 — ruled by the design-system owner on 2026-08-25, who linked that exact node and said it \"include all actions what it needed to show and hide example, Sorting, Information etc.\" `Head / Tiltes for tables` 5865:162 is RETIRED as an alias of it, and `X-Head old` stays formally dead. Build from 26938:61726. Do not re-open this from the fact that the section's own sample layout (27002:78668) still instantiates the retired name — that is a Figma-side cleanup item, not evidence of a live competing component. Three more rulings landed the same day and are all recorded in `ownerRulings` below: padding is 8px inline / 0px block on BOTH cells; the data cell's 30px is a MINIMUM and a long value grows the WHOLE ROW; zebra striping is ruled out entirely. One thing is deliberately still open — cell hover — because the Agency semantic layer has no hover token for a field or table surface to follow. It is deferred to the owner, not invented here.",
+    "ruledOn": "2026-08-25",
+    "ruledBy": "Singh (design-system owner)"
   },
   "anatomy": {
     "componentSets": [
@@ -139,7 +143,7 @@
         ],
         "cssProperty": "min-height",
         "neverUse": "height",
-        "note": "Set explicitly. NOT derivable from the box model — see contractVsLocalCss, where the local stylesheet's 1+4+24+4+1 arithmetic requires a 4px vertical padding that Figma does not currently bind."
+        "note": "A FLOOR, not a sum. Ruled 2026-08-25 (TBL-R2): with padding-block 0 the content measures 1+0+24+0+1 = 26px, and min-height 34 holds the cell open past it. The local stylesheet's old '1+4+24+4+1' arithmetic was retired by that ruling. Centred content places the label identically either way, which is why the 4-vs-0 discrepancy went unnoticed for so long."
       },
       "paddingInline": {
         "value": 8,
@@ -149,7 +153,7 @@
         "marker": [
           "MEASURED"
         ],
-        "note": "Figma's payload prints a 9px FALLBACK here. The export value of spacing/md is 8. Bind the token; the 9 is a codegen artefact."
+        "note": "CONFIRMED by owner ruling TBL-R2 (\"8px left right\"). Figma's payload prints a 9px FALLBACK here. The export value of spacing/md is 8. Bind the token; the 9 is a codegen artefact and is not even stable between reads — another read printed 5, then 1."
       },
       "paddingBlock": {
         "value": 0,
@@ -159,7 +163,7 @@
         "marker": [
           "MEASURED"
         ],
-        "note": "Figma's payload prints a 1px FALLBACK here. The export value of spacing/none is 0. DISAGREES with the local stylesheet, which binds spacing/sm (4) — see contractVsLocalCss."
+        "note": "CONFIRMED by owner ruling TBL-R2 (\"0 top bottom\"). Figma's payload prints a 1px FALLBACK here; the export value of spacing/none is 0. The local stylesheet bound spacing/sm (4) and was corrected to match on 2026-08-25."
       },
       "border": {
         "value": "1px solid",
@@ -190,7 +194,8 @@
           "RAW"
         ],
         "note": "Layout context, not a constraint. The sample layout uses 200px columns."
-      }
+      },
+      "canonicalNodeId": "26938:61726 (set) / 26938:52865 (variant) — ruled canonical 2026-08-25"
     },
     "dataCell": {
       "sourceNodeId": "26938:52924",
@@ -217,16 +222,24 @@
           "MEASURED"
         ]
       },
-      "height": {
+      "minHeight": {
         "value": 30,
         "unit": "px",
         "token": null,
         "marker": [
-          "MEASURED",
-          "RAW"
+          "RULED"
         ],
-        "cssProperty": "height",
-        "note": "⚠️ A FIXED height, not min-height — unlike the head cell and unlike every other measured component in this design system. A data cell therefore CANNOT grow for a long or wrapped value. Recorded as a defect, not normalised."
+        "cssProperty": "min-height",
+        "alsoDeclare": "height: 30px — in the CSS table model `height` on a table-cell is itself treated as a minimum, so declaring both keeps a real <table> and a div-based table behaving identically.",
+        "neverUse": "a fixed height that clips content",
+        "note": "⚠️ RULED, NOT MEASURED. Figma currently binds a FIXED height:30 on 26938:52924. Owner ruling TBL-R3 on 2026-08-25 overrides that: 30 is a MINIMUM, a long value grows the cell, and that growth raises the ENTIRE ROW — never one cell independently. Figma is scheduled to be updated to match; see figmaSideChangesRequired."
+      },
+      "rowGrowth": {
+        "value": "the row is the growth unit, not the cell",
+        "marker": [
+          "RULED"
+        ],
+        "note": "Native in a real <table>: sibling cells stretch to the tallest in the row, so row-level growth needs no extra CSS. For a div-based table, the row needs align-items: stretch. Do NOT give a cell its own independent height."
       },
       "paddingInline": {
         "value": 8,
@@ -236,7 +249,7 @@
         "marker": [
           "MEASURED"
         ],
-        "note": "Fallback printed correctly as 8 here — unlike the head cell."
+        "note": "CONFIRMED by owner ruling TBL-R2 (\"8px left right\"). Fallback printed correctly as 8 here, unlike the head cell. The local stylesheet had NO inline padding on this cell at all — a genuine omission, added 2026-08-25."
       },
       "paddingBlock": {
         "value": 0,
@@ -246,7 +259,7 @@
         "marker": [
           "MEASURED"
         ],
-        "note": "Fallback printed correctly as 0 here — unlike the head cell."
+        "note": "CONFIRMED by owner ruling TBL-R2 (\"0 top bottom\"). Fallback printed correctly as 0 here, unlike the head cell."
       },
       "border": {
         "value": "1px solid",
@@ -276,13 +289,15 @@
         ]
       },
       "truncation": {
-        "value": "single line, overflow hidden, text-ellipsis, white-space nowrap",
+        "value": "wraps — content is NOT truncated",
         "token": null,
         "marker": [
-          "MEASURED"
+          "RULED"
         ],
-        "note": "Values truncate with an ellipsis — they never wrap. Consistent with the fixed height, and it means long content is silently cut with no tooltip recorded in the design."
-      }
+        "supersedes": "MEASURED value on 26938:52924 was: single line, overflow hidden, text-ellipsis, white-space nowrap.",
+        "note": "⚠️ RULED, NOT MEASURED. Owner ruling TBL-R3 requires a value to be able to grow the row, which an ellipsis makes impossible. So the data cell WRAPS (overflow-wrap: break-word) and `white-space: nowrap` must not be restored. Note the header cell KEEPS nowrap — the ruling covered the data cell only and was not widened. The inline-edit field's single-line value also keeps its ellipsis for the same reason."
+      },
+      "canonicalNodeId": "26938:61725 (set) / 26938:52924 (variant)"
     },
     "composition": {
       "marker": [
@@ -464,16 +479,19 @@
       "marker": [
         "MEASURED"
       ],
-      "note": "ONE variant each. No hover, no selected, no sorted-active, no zebra, no disabled, no error state exists on either set. Any such state built in code would be an invention — see notVerified."
+      "note": "ONE variant each in Figma (type=Default). No hover, selected, sorted-active, disabled or error state exists on either set. As of 2026-08-25: zebra striping is RULED OUT by the owner (TBL-R4) and is not a gap; hover and selected/sorted-active are DEFERRED to him (TBL-D1, TBL-D2) because neither Figma nor the semantic layer offers anything to follow. Until he rules, building any of these in code is an invention."
     }
   },
   "contractVsLocalCss": {
-    "status": "ONE OPEN DISAGREEMENT — recorded, not silently resolved",
-    "item": "head cell vertical padding",
-    "figmaToday": "py binds spacing/none (0). Measured 2026-08-25 on 26938:52865.",
-    "localStylesheet": "Universal Html Rules/02-components/table.css line 115 binds var(--spacing-sm) (4), commented '4 8 — the token values, NOT the payload's 9/5'.",
-    "consequence": "Low visual impact — min-height 34 and align-items:center mean the label sits in the same place either way. But the local file's stated 34px arithmetic (1+4+24+4+1) REQUIRES the 4px padding; with Figma's current 0 the arithmetic gives 26 and the 34 comes from min-height alone.",
-    "whoIsRight": "Not resolved here. Figma is the design authority and was measured today; the local file was written earlier from SPEC-08b and may predate a Figma edit. Needs the owner or Figma AI to confirm which is intended.",
+    "status": "RESOLVED 2026-08-25 — no open disagreement remains.",
+    "item": "head cell vertical padding, plus two further gaps found while applying the ruling",
+    "resolution": "Owner ruling TBL-R2: \"8px left right, 0 top bottom\". Figma was right; the local stylesheet was wrong and has been corrected.",
+    "changesMadeToLocalStylesheet": [
+      "head cell padding-block: spacing/sm (4) → spacing/none (0), matching Figma and this contract.",
+      "data cell: gained padding-inline spacing/md (8), which it was missing entirely — not a disagreement, an omission.",
+      "data cell: `white-space: nowrap` removed and min-height declared, so ruling TBL-R3's row growth can actually happen.",
+      "the '1+4+24+4+1 = 34' arithmetic comment retired — 34 is a floor, not a sum."
+    ],
     "agreements": [
       "head min-height 34 and data-cell height 30 — both files agree exactly",
       "horizontal padding 8 (spacing/md) — agree",
@@ -487,8 +505,8 @@
   },
   "defects": [
     "NO TABLE CONTRACT EXISTED IN THIS REPO UNTIL NOW, while the repo's only table stylesheet (src/styles/3-components/_tables.scss, 33 lines) contains ZERO height declarations. Every AI tool is instructed to read GitHub for component truth, so every tool asking 'how tall is a table row?' got no answer. This is the most likely cause of a feature session being unable to build tables to the design system.",
-    "TWO LIVE HEADER COMPONENTS, possibly three. This contract measures table_head 26938:61726; the document-level stylesheet builds 'Head / Tiltes for tables' 5865:162 and calls IT canonical; 'X-Head old' is a third, formally dead. Both live ones are 34px. Worse, section 26955:66556's own sample layout instantiates the OTHER header, not its own table_head set. See competingHeaderComponents.",
-    "The data cell uses a FIXED height:30 while the head cell uses min-height:34. Inconsistent mechanisms in one family, and the fixed height means a data cell cannot grow — it can only truncate. Every other component measured in this design system uses min-height.",
+    "RESOLVED 2026-08-25 (owner ruling TBL-R1). Was: two live header components, possibly three. table_head 26938:61726 is now canonical; 'Head / Tiltes for tables' 5865:162 is retired as an alias; 'X-Head old' is dead. One residual Figma-side cleanup remains — the section's sample layout still instantiates the retired name.",
+    "RESOLVED 2026-08-25 (owner ruling TBL-R3). Was: the data cell used a FIXED height:30 while the head cell used min-height:34, so a data cell could not grow. 30px is now a MINIMUM and growth is row-level, bringing the family in line with the rest of the system. Figma still binds the fixed height and is scheduled to be updated — this contract follows the ruling, not the stale measurement.",
     "Figma's generated payload prints WRONG padding fallbacks on the head cell: 9px where spacing/md is 8, and 1px where spacing/none is 0. The sibling data cell prints the same tokens correctly as 8 and 0. So the same two tokens print correctly in one component and incorrectly in the other.",
     "Two token namespaces for the same border colour: head binds border/subtle, data cell binds field/border-default, both #e2e8f0.",
     "The header's text colour binds field/value-primary — a FIELD token for a non-field element.",
@@ -497,15 +515,19 @@
     "The generated guidelines frame (26938:66226) reports its own annotation coverage as '0/2 — Incomplete' and 'No measurements added'. So the in-Figma guidelines for the table family are an empty shell — a tool reading them learns almost nothing.",
     "That same guidelines frame's Dev Mode link points at node-id=26581-38709, which is NOT a table node — it is the same wrong link already recorded as a defect on the Fields contract. One broken link is being copied into generated guidelines.",
     "fonts/tracking/X-tracking-0 bound on both text styles — legacy name, absent from the export. Correct name: fonts/tracking/tracking-0. This is now a SEVENTH component family with the same defect.",
-    "Only ONE variant exists on each set (type=Default). There is no hover, selected, sorted-active, zebra, disabled or error state anywhere in the table family, despite the head cell shipping an interactive Sort control and a help affordance."
+    "Only ONE variant exists on each set (type=Default). Of the six states once listed as missing, zebra is now RULED OUT (TBL-R4, not a gap), and hover plus selected/sorted-active are DEFERRED to the owner (TBL-D1, TBL-D2) because neither Figma nor the semantic layer offers anything to follow. Disabled and error remain genuinely unaddressed. Building any unruled state in code is an invention."
   ],
   "structureIsIdenticalAcrossStates": true,
   "stateChangeIsTokenSwapOnly": false,
   "openTokenDecision": {
-    "status": "OPEN",
+    "status": "PARTIALLY RESOLVED — 2 of 5 items closed by owner rulings on 2026-08-25.",
+    "closed": [
+      "Item 1 (head cell vertical padding) — CLOSED by TBL-R2: spacing/none (0). Figma was right.",
+      "Item 2 (fixed height → min-height so a row can grow) — CLOSED by TBL-R3: min-height 30, growth is row-level."
+    ],
+    "stillOpen": "3) Settle one border namespace for the family — head binds border/subtle, data cell binds field/border-default, both #e2e8f0. 4) Rename fonts/tracking/X-tracking-0 to tracking-0 — one Figma rename closes seven component families. 5) Decide whether 34 and 30 deserve real tokens; they are the two most repeated numbers in the product and are raw in both Figma and the stylesheet. Note control/height-default = 30 already exists in Figma but is absent from the export, and may already cover the data-cell case.",
     "gate": "Design-owner approval required before any of these become bindings.",
-    "proposal": "1) Decide the head cell's vertical padding — spacing/none (Figma today) or spacing/sm (local stylesheet). 2) Change the data cell from height:30 to min-height:30 so a row can grow, matching the head cell and the rest of the system. 3) Settle one border namespace for the family. 4) Rename X-tracking-0 to tracking-0 (one Figma rename closes seven component families). 5) Consider whether 34 and 30 deserve real tokens — they are the two most repeated numbers in the product and are currently raw in both Figma and the local stylesheet. Note control/height-default = 30 already exists in Figma but not in the export, which may already cover the data-cell case.",
-    "untilApproved": "Every affected value is published RAW with the disagreement recorded. Recording a value here is NOT permission to hardcode it."
+    "untilApproved": "Every still-open value is published RAW with the disagreement recorded. Recording a value here is NOT permission to hardcode it."
   },
   "notVerified": [
     "The Figma file key was not measured.",
@@ -520,11 +542,26 @@
     "Dark, High Contrast, Warm Dark and HC Light rendering. Light mode only.",
     "Density-mode behaviour. Note the fixed height:30 on the data cell could not respond to a density change even if the tokens did.",
     "Contrast ratios. The head label (#1e293b on #f1f5f9) and cell value (#1e293b on #ffffff) pairings are recorded so they can be checked; the check was not run.",
-    "The 3-column sample layout's own container tokens (27002:78668) — only its composition pattern and row counts were read."
+    "The 3-column sample layout's own container tokens (27002:78668) — only its composition pattern and row counts were read.",
+    "Whether the HEAD cell should also wrap. Owner ruling TBL-R3 covered the DATA cell only; the head cell keeps white-space: nowrap and that was deliberately not widened without his word.",
+    "Whether a wrapped multi-line value needs a max line count or a tooltip. The ruling established that the row grows; it did not cap how far."
   ],
   "competingHeaderComponents": {
-    "status": "OPEN — highest-priority item on this contract",
-    "candidates": [
+    "status": "RESOLVED 2026-08-25 by owner ruling TBL-R1.",
+    "canonical": "table_head — set 26938:61726, variant 26938:52865",
+    "retired": [
+      {
+        "name": "Head / Tiltes for tables",
+        "nodeId": "5865:162",
+        "disposition": "RETIRED as an alias of the canonical header. Was cited as canonical by the local stylesheet, which is now corrected."
+      },
+      {
+        "name": "X-Head old",
+        "nodeId": null,
+        "disposition": "DEAD — Figma's own component description reads verbatim 'Do not cosider this compoent'."
+      }
+    ],
+    "candidatesAsMeasured": [
       {
         "name": "table_head",
         "setNodeId": "26938:61726",
@@ -559,11 +596,102 @@
         "note": "Formally dead — Figma's own component description reads verbatim 'Do not cosider this compoent'. Listed only so the count is honest."
       }
     ],
-    "theTellingDetail": "Section 26955:66556's own sample layout (27002:78668) instantiates nodes named 'Head / Tiltes for tables' (27002:78670, 27002:78681, 27002:78692) — the stylesheet's source — NOT its own table_head set. So the section that defines table_head does not use it in its own example.",
-    "consequence": "Two live 34px header components with different names and node ids, plus one dead one. Any tool or person building a table must guess which to follow, and GitHub published none of them until today.",
-    "ask": "Owner or Figma AI to declare one canonical header, and either retire or explicitly alias the other. Until then this contract measures table_head because that is the section the owner pointed at, and says so rather than implying it is the only one.",
+    "residualFigmaCleanup": "Section 26955:66556's own sample layout (27002:78668) still instantiates nodes named 'Head / Tiltes for tables' (27002:78670, 27002:78681, 27002:78692) rather than its own table_head set. That is now a Figma-side cleanup task, NOT evidence of a live competing component — see figmaSideChangesRequired.",
     "marker": [
-      "MEASURED"
+      "RULED"
+    ]
+  },
+  "ownerRulings": {
+    "ruledOn": "2026-08-25",
+    "ruledBy": "Singh (design-system owner)",
+    "standing": "These four are DECISIONS. A later session may not re-open them from measurement alone — live Figma still contradicts two of them and is scheduled to be updated to match, not the reverse.",
+    "rulings": [
+      {
+        "id": "TBL-R1",
+        "subject": "canonical header",
+        "quote": "this is the exact header selection link which include alla ctiosn what it needed to show and hdie example, Sorting, Information etc.",
+        "decision": "`table_head` 26938:61726 (variant 26938:52865) is canonical. `Head / Tiltes for tables` 5865:162 is retired as an alias. `X-Head old` is dead.",
+        "effect": "Resolves competingHeaderComponents. No geometry changed — both headers measured 34px, so this is a provenance fix, not a visual one."
+      },
+      {
+        "id": "TBL-R2",
+        "subject": "padding on both cells",
+        "quote": "8px left right, 0 top bottom and with hug heigh propeties with minimum height of 30px",
+        "decision": "padding-inline = spacing/md (8) and padding-block = spacing/none (0), on the head cell AND the data cell. Height hugs content above the stated minimum.",
+        "effect": "CONFIRMS live Figma. CORRECTS the local stylesheet, which bound spacing/sm (4) vertically on the head cell, and which had NO inline padding on the data cell at all. Also retires the old '1+4+24+4+1 = 34' arithmetic: 34 is a floor over 26px of content, not a sum."
+      },
+      {
+        "id": "TBL-R3",
+        "subject": "data cell height and growth",
+        "quote": "yes, It can increase but this will increase the entire row height not a cell independently. The minium heigh is 30px",
+        "decision": "30px is a MINIMUM. A long value grows the cell, and that growth raises the entire row — never one cell on its own.",
+        "effect": "Overrides the measured FIXED height:30 and the measured ellipsis truncation on 26938:52924. In a real <table> the row-level behaviour is native: `height` on a table-cell is treated as a minimum and siblings stretch to the tallest. The actual blocker was `white-space: nowrap`, which stopped the text wrapping so nothing could grow — removed. Figma must be updated to match; see figmaSideChangesRequired."
+      },
+      {
+        "id": "TBL-R4",
+        "subject": "zebra striping",
+        "quote": "one thign i am sure, Zebra we are not following",
+        "decision": "No zebra striping. Rows are not alternately shaded.",
+        "effect": "This is a DECISION, not a gap. Stop logging it as a missing state."
+      }
+    ],
+    "deferred": [
+      {
+        "id": "TBL-D1",
+        "subject": "cell hover state",
+        "askedFor": "Owner: \"For table cell , Follow the hover states simialr to field states\", then on being told fields have none: \"followo the variables deifned at sematic layer, follwo thsoe , If hover is not available then rasie this point again tomorrow to me. For now let it go.\"",
+        "whyBlocked": "Neither source exists. The Fields component has NO hover variant (its axis is default/focus/error/success/warning/ai/disabled). And the Agency semantic layer has no hover token for a field or table surface: the only *hover tokens are action/{primary,secondary,ghost,soft,ai,success,warning,destructive}/hover, action/toggle/{bg,icon}-hover, surface/brand-hover and text/links-hover — all button, brand or link tokens, wrong layer for a data cell.",
+        "status": "DEFERRED to the owner. No hover is published. Building one would be an invention.",
+        "marker": [
+          "UNVERIFIED"
+        ]
+      },
+      {
+        "id": "TBL-D2",
+        "subject": "selected and sorted-active states",
+        "askedFor": "Owner: \"ask me alla gain tomorrow\".",
+        "whyBlocked": "Neither exists in Figma. The header already ships a working Sort affordance with 4 variants, but nothing wires an ACTIVE sort state to the cell.",
+        "status": "DEFERRED to the owner.",
+        "marker": [
+          "UNVERIFIED"
+        ]
+      }
+    ]
+  },
+  "figmaSideChangesRequired": {
+    "status": "OPEN — raised to Figma AI on the Figma Queries ticket, 2026-08-25",
+    "why": "Three of the owner's rulings put this contract AHEAD of live Figma. Recording that plainly so no later session 'corrects' the contract back to the stale measurement.",
+    "items": [
+      {
+        "id": "FIG-TBL-1",
+        "nodeId": "5865:162",
+        "change": "Retire or explicitly alias 'Head / Tiltes for tables' to the canonical table_head 26938:61726. Also fix the typo 'Tiltes' if the node survives as an alias.",
+        "ruling": "TBL-R1"
+      },
+      {
+        "id": "FIG-TBL-2",
+        "nodeId": "27002:78668 (children 27002:78670, 27002:78681, 27002:78692)",
+        "change": "Re-point the section's own sample layout at its own table_head set instead of the retired 'Head / Tiltes for tables'. Today the section that defines the canonical header does not use it in its own example.",
+        "ruling": "TBL-R1"
+      },
+      {
+        "id": "FIG-TBL-3",
+        "nodeId": "26938:52924",
+        "change": "Change the data cell from a FIXED height:30 to a MIN height of 30 with hug/auto sizing, and drop the ellipsis truncation so a long value wraps and raises the row.",
+        "ruling": "TBL-R3"
+      },
+      {
+        "id": "FIG-TBL-4",
+        "nodeId": "26938:66226",
+        "change": "Update the written table guidelines to state the ruled padding (8 inline / 0 block on both cells) and the min-height-30 row-growth rule. The owner asked for this explicitly: \"same need to be udpated in figma gulinies also\". That frame also reports its own annotation coverage as '0/2 — Incomplete'.",
+        "ruling": "TBL-R2, TBL-R3"
+      },
+      {
+        "id": "FIG-TBL-5",
+        "nodeId": "26938:52865 and 26938:52924",
+        "change": "No hover/selected/sorted-active variant exists, and the Agency semantic layer has no field or table hover token to bind. Needs an owner decision first (TBL-D1) — listed here so it is not lost, NOT as an approved change.",
+        "ruling": "deferred"
+      }
     ]
   }
 }
