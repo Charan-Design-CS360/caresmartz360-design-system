@@ -1,0 +1,261 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Empty States",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Value taken from portals/agency/portal-manifest.json (figma.fileKey) and from the URL the design owner supplied when commissioning this contract. Must be confirmed by the design owner.",
+    "figmaSectionNodeId": "27218:64329",
+    "figmaSectionName": "empty states",
+    "nodeIdRelationship": "27218:64329 is the SECTION. It contains frame 27218:64326 ('section sample'), which contains two independent component sets — 11380:24914 (inline empty states, 8 variants) and 5775:5916 (popup empty states, 3 variants) — plus a shared icon set 12428:28265. The section CONTAINS the sets; they are not alternatives.",
+    "measuredOn": "2026-08-25",
+    "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
+    "measurementMethod": "figma-desktop MCP live reads: get_metadata on 27218:64329, get_design_context on 11380:24914 and 5775:5916, get_variable_defs on 11380:24914, get_screenshot on 11380:24914 for visual confirmation of all 8 inline variants.",
+    "jiraParent": "C360-44737",
+    "humanContract": "./empty-states.md",
+    "markerLegend": {
+      "MEASURED": "read directly from live Figma; nodeId given",
+      "DERIVED": "computed from measured values; arithmetic shown in empty-states.md",
+      "RAW": "real value but NOT bound to any token present in the owner's variable export",
+      "UNVERIFIED": "not read — do not build from it"
+    },
+    "readThisFirst": "TWO token names bound by these components do NOT exist in the owner's 2026-08-24 Agency/Primitives export, which is the input authority: (1) control/height-default = 30 — live Figma returns it, the export has no control/* group at all; (2) fonts/tracking/X-tracking-0 — live Figma returns it, the export ships fonts/tracking/tracking-0 without the legacy X- prefix. Neither is usable as a binding until the export is refreshed and the design owner confirms. Every geometry value they would have covered is recorded RAW here, deliberately, rather than claiming a token the authority cannot back."
+  },
+
+  "anatomy": {
+    "families": [
+      {
+        "name": "inline",
+        "setNodeId": "11380:24914",
+        "elements": ["container", "icon (optional)", "heading", "body", "actions (optional)"],
+        "variantAxes": { "state": ["No Records", "Search", "Good News", "First Time"], "background": ["grey", "white"] },
+        "variantCount": 8,
+        "booleanProps": ["showIcons", "showActions"],
+        "usage": "Displayed in place of content when no data is available — empty tables, missing field information, blank calendars, or any view where records have not yet been added. Figma component description, read 2026-08-25."
+      },
+      {
+        "name": "popup",
+        "setNodeId": "5775:5916",
+        "elements": ["container", "heading", "body (optional)", "message (optional)", "actions"],
+        "variantAxes": { "type": ["Primary", "Primary + default", "Link"] },
+        "variantCount": 3,
+        "booleanProps": ["showMessage"],
+        "usage": "Non-dismissible modal shown when required data must be filled before the user can proceed. Remains visible until the user acts via a provided button. Figma component description, read 2026-08-25.",
+        "externalDocumentation": "https://atlaskit.atlassian.com/packages/design-system/empty-state"
+      }
+    ],
+    "note": "Two independent component sets sharing a visual language, NOT one set with a variant axis. They differ in three measured respects — container gap, heading colour, and primary-action colour — documented under variantAxes.familyDifferences."
+  },
+
+  "geometry": {
+    "inlineContainer": {
+      "display": { "value": "flex", "token": null, "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "flexDirection": { "value": "column", "token": null, "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "alignItems": { "value": "center", "token": null, "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "justifyContent": { "value": "center", "token": null, "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "gap": { "value": 24, "unit": "px", "token": "spacing/3xl", "cssVar": "--spacing-3xl", "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "padding": { "value": 24, "unit": "px", "token": "spacing/3xl", "cssVar": "--spacing-3xl", "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "borderRadius": { "value": 12, "unit": "px", "token": "border-radius/rounded-xl", "cssVar": "--border-radius-rounded-xl", "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "maxWidth": { "value": 800, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "11380:24914", "note": "Unbound. Same 800 appears on the popup family — a shared intent with no token behind it." },
+      "minWidth": { "value": 100, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "11380:24914" },
+      "frameWidth": { "value": 600, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "11380:24914", "note": "The Figma frame width, i.e. layout context, NOT a component constraint. Do not hardcode it; the component is fluid between minWidth and maxWidth." },
+      "overflow": { "value": "clip", "token": null, "marker": ["MEASURED"], "nodeId": "11380:24914" },
+      "textAlign": { "value": "center", "token": null, "marker": ["MEASURED"], "nodeId": "11380:24914" }
+    },
+    "popupContainer": {
+      "gap": { "value": 16, "unit": "px", "token": "spacing/xl", "cssVar": "--spacing-xl", "marker": ["MEASURED"], "nodeId": "5775:5916", "note": "16, NOT the inline family's 24. A measured difference between the two families, not an error." },
+      "padding": { "value": 24, "unit": "px", "token": "spacing/3xl", "cssVar": "--spacing-3xl", "marker": ["MEASURED"], "nodeId": "5775:5916" },
+      "borderRadius": { "value": 12, "unit": "px", "token": "border-radius/rounded-xl", "cssVar": "--border-radius-rounded-xl", "marker": ["MEASURED"], "nodeId": "5775:5916" },
+      "background": { "value": "#ffffff", "token": "surface/base", "cssVar": "--surface-base", "marker": ["MEASURED"], "nodeId": "5775:5916", "note": "Popups are always white — there is no grey background axis on this family." },
+      "maxWidth": { "value": 800, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "5775:5916" },
+      "minWidth": { "value": 100, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "5775:5916" },
+      "frameWidth": { "value": 530, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "5775:5916", "note": "Layout context, not a constraint." }
+    },
+    "iconBlock": {
+      "appearsOn": ["Search", "Good News"],
+      "absentOn": ["No Records", "First Time"],
+      "containerSize": { "value": 48, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "12428:28265" },
+      "containerPadding": { "value": 4, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "12428:28265", "note": "Emitted as a raw 4px, NOT bound to spacing/sm even though spacing/sm = 4 exists in the export." },
+      "glyphSize": { "value": 46, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "12428:28265", "note": "GEOMETRIC INCONSISTENCY: a 48px box with 4px padding leaves a 40px content area, but the glyph is 46px — it overflows its own padding by 6px. Recorded as measured; see defects." },
+      "willNotScaleWithDensity": true
+    },
+    "actionButtons": {
+      "note": "Buttons inside both families reuse the Button component. Only what these empty states actually bind is recorded here; the full button contract is authoritative for everything else.",
+      "minHeight": {
+        "value": 30, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "19545:43250",
+        "cssProperty": "min-height",
+        "neverUse": "height",
+        "note": "Emitted RAW in every button across all 11 variants. A candidate token control/height-default = 30 IS returned by live Figma for this frame but does NOT exist in the owner's 2026-08-24 export — so it cannot be cited as a binding yet. This is the same gap the Button contract records, and it is a BINDING gap rather than a missing-token gap if the export refresh confirms the token. Blocked pending the design owner."
+      },
+      "minWidth": { "value": 60, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "19545:43250" },
+      "paddingInline": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"], "nodeId": "19545:43250" },
+      "paddingBlock": { "value": 0, "unit": "px", "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"], "nodeId": "19545:43250" },
+      "borderRadius": { "value": 4, "unit": "px", "token": "border-radius/rounded", "cssVar": "--border-radius-rounded", "marker": ["MEASURED"], "nodeId": "19545:43250" },
+      "gapBetweenButtons": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"], "nodeId": "19545:43249" },
+      "fixedWidths": {
+        "inlineAddNew": { "value": 100, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "19545:43250" },
+        "popupLinkGhost": { "value": 84, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "1961:2664" },
+        "note": "Fixed widths on individual buttons alongside a min-width. Recorded because they are real; flagged in defects because a fixed width can clip a translated or user-enlarged label."
+      }
+    },
+    "headingWidth": {
+      "value": 552, "unit": "px", "token": null, "marker": ["DERIVED"], "nodeId": "11380:24914",
+      "arithmetic": "frameWidth 600 - (padding 24 x 2) = 552",
+      "note": "DERIVED, not a design decision. It is the content width that falls out of the frame width; it must not be reproduced as a fixed value in code."
+    }
+  },
+
+  "typography": {
+    "heading": {
+      "figmaTextStyle": "Heading/h4",
+      "fontFamily": { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] },
+      "fontSize": { "value": 18, "unit": "px", "token": "font-size/heading-4", "cssVar": "--font-size-heading-4", "marker": ["MEASURED"] },
+      "lineHeight": { "value": 24, "unit": "px", "token": "line-height/heading-4", "cssVar": "--line-height-heading-4", "marker": ["MEASURED"] },
+      "fontWeight": { "value": 500, "token": "font-weight/heading-base", "cssVar": "--font-weight-heading-base", "marker": ["MEASURED"] },
+      "letterSpacing": { "value": -0.24, "unit": "px", "token": "letter-spacing/heading", "cssVar": "--letter-spacing-heading", "marker": ["MEASURED"], "note": "Figma reports -0.23999999463558197; the export's primitive is tracking-neg-024. Treat as -0.24." }
+    },
+    "body": {
+      "figmaTextStyle": "Body/base",
+      "fontFamily": { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] },
+      "fontSize": { "value": 14, "unit": "px", "token": "font-size/body-base", "cssVar": "--font-size-body-base", "marker": ["MEASURED"] },
+      "lineHeight": { "value": 20, "unit": "px", "token": "line-height/body-base", "cssVar": "--line-height-body-base", "marker": ["MEASURED"] },
+      "fontWeight": { "value": 400, "token": "font-weight/body-base", "cssVar": "--font-weight-body-base", "marker": ["MEASURED"] },
+      "letterSpacing": {
+        "value": 0, "unit": "px", "token": null, "cssVar": null, "marker": ["MEASURED", "RAW"],
+        "note": "Live Figma binds fonts/tracking/X-tracking-0. The X- prefix marks a LEGACY token and that exact name is absent from the owner's export, which ships fonts/tracking/tracking-0 instead. Recorded RAW because the bound name has no backing in the authority. Replace with the non-prefixed token once the design owner confirms they are the same value."
+      }
+    },
+    "buttonLabel": {
+      "figmaTextStyle": "Button/label",
+      "fontSize": { "value": 12, "unit": "px", "token": "font-size/caption", "cssVar": "--font-size-caption", "marker": ["MEASURED"] },
+      "lineHeight": { "value": 16, "unit": "px", "token": "line-height/caption", "cssVar": "--line-height-caption", "marker": ["MEASURED"] },
+      "fontWeight": { "value": 500, "token": "font-weight/body-strong", "cssVar": "--font-weight-body-strong", "marker": ["MEASURED"] }
+    }
+  },
+
+  "colourFormula": {
+    "pattern": "Background switches on the `background` axis; all text is a text/* token; icons are icon/* tokens; actions follow the Button contract's action/{type}/{role} pattern.",
+    "inlineBackground": {
+      "grey": { "value": "#f1f5f9", "token": "surface/tertiary", "cssVar": "--surface-tertiary", "marker": ["MEASURED"] },
+      "white": { "value": "#ffffff", "token": "surface/base", "cssVar": "--surface-base", "marker": ["MEASURED"] }
+    },
+    "inlineHeadingColour": { "value": "#475569", "token": "text/secondary", "cssVar": "--text-secondary", "marker": ["MEASURED"] },
+    "popupHeadingColour": { "value": "#1e293b", "token": "text/primary", "cssVar": "--text-primary", "marker": ["MEASURED"], "note": "text/primary, NOT the inline family's text/secondary. A real measured difference between families." },
+    "bodyColour": { "value": "#475569", "token": "text/secondary", "cssVar": "--text-secondary", "marker": ["MEASURED"], "note": "Identical in both families." },
+    "icons": {
+      "search": { "value": "#eab308", "token": "icon/warning", "cssVar": "--icon-warning", "marker": ["MEASURED"], "glyph": "warning" },
+      "goodNews": { "value": "#1e293b", "token": "icon/primary", "cssVar": "--icon-primary", "marker": ["MEASURED"], "glyph": "info" }
+    },
+    "alphaIsLoadBearing": {
+      "warning": "The popup family's shadow-lg effect is two drop shadows whose colours both carry alpha below 1: #0000000D (5%) and #0000001A (10%). A pipeline that reads only the hex field and discards alpha renders both as solid black, turning a soft elevation into two hard black bars.",
+      "requirement": "emit rgba() whenever alpha < 1"
+    },
+    "namingException": {
+      "case": "inline First Time primary action",
+      "detail": "The filled 'Add New' button binds action/success/bg for its background but action/primary/text-neutral for its label. The Button contract's formula says a filled button of type T uses action/T/text-neutral, so this should be action/success/text-neutral. Both resolve to white, so there is NO visual defect — but a code generator built on the formula will emit the wrong token name here.",
+      "impact": "Do not infer the label token from the background token for this button."
+    }
+  },
+
+  "variantAxes": {
+    "familyDifferences": [
+      { "property": "container gap", "inline": "spacing/3xl (24px)", "popup": "spacing/xl (16px)" },
+      { "property": "heading colour", "inline": "text/secondary #475569", "popup": "text/primary #1e293b" },
+      { "property": "primary action background", "inline": "action/success/bg #16a34a (green)", "popup": "action/primary/bg #0077ff (blue)" },
+      { "property": "background axis", "inline": "grey / white", "popup": "white only" },
+      { "property": "elevation", "inline": "none", "popup": "shadow-lg, two stacked drop shadows" }
+    ],
+    "unresolved": "The same button, with the same label 'Add New', is GREEN in the inline family and BLUE in the popup family. Both are measured and correct as drawn. Which is intended is a design-owner decision, not something this contract resolves."
+  },
+
+  "states": [
+    { "name": "No Records",  "family": "inline", "greyNodeId": "15696:731215", "whiteNodeId": "15696:731219", "height": 72,  "icon": null, "actions": false, "heading": "No Record(s) Found.", "marker": ["MEASURED"] },
+    { "name": "Search",      "family": "inline", "greyNodeId": "10682:19314", "whiteNodeId": "12428:28274", "height": 144, "icon": "warning", "actions": false, "heading": "No Record(s) Found.", "marker": ["MEASURED"], "defects": ["grey variant heading is not token-bound — see defects list"] },
+    { "name": "Good News",   "family": "inline", "greyNodeId": "11380:24913", "whiteNodeId": "12428:28280", "height": 144, "icon": "info", "actions": false, "heading": "All Good! No new information", "marker": ["MEASURED"] },
+    { "name": "First Time",  "family": "inline", "greyNodeId": "19545:43246", "whiteNodeId": "19545:43252", "height": 126, "icon": null, "actions": true, "heading": "No Record(s) Added.", "marker": ["MEASURED"] },
+    { "name": "Primary",           "family": "popup", "setNodeId": "1961:2391", "height": 174, "actions": "1 filled — 'Add files'", "marker": ["MEASURED"] },
+    { "name": "Primary + default", "family": "popup", "setNodeId": "1961:2598", "height": 174, "actions": "2 — filled 'Add New' + outlined 'Learn How'", "marker": ["MEASURED"] },
+    { "name": "Link",              "family": "popup", "setNodeId": "1961:2824", "height": 154, "actions": "1 ghost — 'Learn how', action/ghost/text-hard #005ce6", "marker": ["MEASURED"] }
+  ],
+
+  "sharedTokens": {
+    "spacing/3xl": 24,
+    "spacing/xl": 16,
+    "spacing/lg": 12,
+    "spacing/md": 8,
+    "spacing/none": 0,
+    "border-radius/rounded-xl": 12,
+    "border-radius/rounded": 4,
+    "surface/base": "#ffffff",
+    "surface/tertiary": "#f1f5f9",
+    "text/primary": "#1e293b",
+    "text/secondary": "#475569",
+    "icon/primary": "#1e293b",
+    "icon/warning": "#eab308",
+    "action/primary/bg": "#0077ff",
+    "action/primary/outlined": "#0077ff",
+    "action/primary/text-hard": "#0077ff",
+    "action/primary/text-neutral": "#ffffff",
+    "action/success/bg": "#16a34a",
+    "action/ghost/text-hard": "#005ce6"
+  },
+
+  "optionalElements": {
+    "showIcons": { "family": "inline", "default": true, "affects": ["Search", "Good News"], "marker": ["MEASURED"] },
+    "showActions": { "family": "inline", "default": true, "affects": ["First Time"], "marker": ["MEASURED"] },
+    "showMessage": { "family": "popup", "default": true, "affects": ["Primary + default"], "marker": ["MEASURED"] }
+  },
+
+  "accessibility": {
+    "nonDismissibleModal": {
+      "concern": "Figma's own description states the popup family is non-dismissible and remains visible until the user acts. A modal with no escape route conflicts with the expectation that a user can always dismiss or defer a dialog, and needs an explicit accessible path — a focus trap with no exit is a known barrier.",
+      "status": "RAISED, NOT RESOLVED — needs the design owner's ruling on whether Escape/close must be provided."
+    },
+    "iconMeaning": {
+      "concern": "Search uses the warning glyph and Good News uses info. In both, colour plus glyph carry the meaning while the heading text repeats it, so meaning is not conveyed by colour alone.",
+      "status": "PASSES the never-colour-alone rule on inspection of the measured structure."
+    },
+    "headingSemantics": {
+      "concern": "Figma draws the heading with the Heading/h4 text style. Whether it should be a real heading element in the accessibility tree, and at what level, is not something Figma records.",
+      "status": "UNVERIFIED — implementation decision, not measurable from the design."
+    },
+    "fixedButtonWidth": {
+      "concern": "The inline 'Add New' button carries a fixed 100px width and the popup ghost button 84px, alongside min-width. Fixed-width text containers can clip a longer translation or user-enlarged text.",
+      "status": "RAISED — see defects."
+    },
+    "contrastNotMeasured": "No contrast ratios were computed for this contract. The token pairings are recorded so they can be checked, but the check was not run."
+  },
+
+  "defects": [
+    "Search / grey variant (10682:19314): the heading is NOT token-bound. Its parent carries text-[0px] and leading-[0], and the visible text is three child spans each hardcoding #475569, 18px, 24px line-height and -0.24px tracking. The white sibling (12428:28274) binds the same values through tokens correctly. So one variant of one state bypasses the token layer entirely — a code generator copying the grey variant would emit raw hex.",
+    "Icon geometry: 48px container with 4px padding gives a 40px content box, but the glyph is 46px — a 6px overflow of its own padding. Present on both icon-bearing states.",
+    "Filled 'Add New' in inline First Time mixes namespaces: background action/success/bg with label action/primary/text-neutral. No visual defect (both are white) but it breaks the action/{type}/{role} formula.",
+    "Same-label colour divergence: 'Add New' is green (action/success/bg) inline and blue (action/primary/bg) in the popup family.",
+    "Fixed widths alongside min-width: 100px on the inline filled button, 84px on the popup ghost button.",
+    "Container padding of 4px on the icon block is emitted raw rather than bound to spacing/sm, which exists in the export at the same value.",
+    "Popup shadow has two conflicting descriptions in one Figma payload: the effect metadata gives radius 6 spread -2 and radius 15 spread -3, while the generated CSS approximates them as 3px and 7.5px blur with no spread. The effect metadata is authoritative; the generated approximation must not be copied.",
+    "Body copy in all 8 inline variants is the identical placeholder string 'Create a new file or import from your existing tools to start collaborating with your team.' The popup copy references downloading a 'repertory' (probably 'repository'), pull requests and code review. This is developer-tool placeholder text, not home-care product copy — content, not design, but it will ship as-is if nobody replaces it."
+  ],
+
+  "structureIsIdenticalAcrossStates": false,
+  "stateChangeIsTokenSwapOnly": false,
+
+  "openTokenDecision": {
+    "status": "OPEN — two bound names have no backing in the owner's export",
+    "gate": "Design-owner approval required before either name may be used as a binding.",
+    "proposal": "1) Refresh the Agency export from Figma so control/height-default (=30) either appears or is confirmed absent; if it appears, the button min-height across this and the Button contract becomes a binding fix rather than a new-token request. 2) Confirm whether fonts/tracking/X-tracking-0 in live Figma is the same value as fonts/tracking/tracking-0 in the export, and if so retire the X- prefixed name in Figma.",
+    "untilApproved": "Every affected value is published RAW in this contract. Recording a RAW value is NOT permission to hardcode it in shipped CSS."
+  },
+
+  "notVerified": [
+    "The Figma file key was not measured — the MCP server does not report it. Asserted from portal-manifest.json and the supplied URL.",
+    "Hover, focus, pressed and disabled states — the empty-state sets do not define interactive states for the container; only the nested buttons have them, and those belong to the Button contract.",
+    "Dark, High Contrast, Warm Dark and HC Light rendering. All measurements were taken in the default light mode only. The bound tokens exist in all five modes, but no mode-specific value was read.",
+    "Density-mode behaviour. Nothing here was measured under a non-default density, and the icon block plus the raw min-heights are unbound so they would not respond.",
+    "Contrast ratios for every token pairing recorded above — pairings captured, ratios not computed.",
+    "Responsive/reflow behaviour between minWidth 100px and maxWidth 800px was not observed; only the 600px and 530px frame widths were seen.",
+    "The 6 icons in set 12428:28265 (check_circle, Congratulation, info, lightbulb, warning, In Progress) were enumerated by name but only warning and info were traced to a consuming variant. The other four were not resolved to Material Symbols names.",
+    "Whether the popup family's non-dismissible behaviour is implemented anywhere, and whether any product screen currently uses any of these 11 variants."
+  ]
+}

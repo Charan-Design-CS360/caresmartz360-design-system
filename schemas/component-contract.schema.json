@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caresmartz360.com/design-system/component-contract.schema.json",
+  "title": "CareSmartz360 component contract",
+  "description": "Machine-readable half of a component contract. Its whole purpose is that every published value carries PROVENANCE, so drift is caught by a script instead of by eye, and so a derived value can never be mistaken for a measured one. A value object without a `marker` is invalid by design.",
+  "type": "object",
+  "required": ["$meta", "geometry"],
+  "properties": {
+    "$schema": { "type": "string" },
+
+    "$meta": {
+      "type": "object",
+      "description": "Provenance for the contract as a whole. Deliberately strict: a contract that cannot say WHERE and WHEN it was measured is not evidence.",
+      "required": [
+        "component", "portal", "contractVersion",
+        "figmaFileKey", "figmaFileKeyProvenance",
+        "measuredOn", "measuredBy", "humanContract", "readThisFirst"
+      ],
+      "properties": {
+        "component": { "type": "string", "minLength": 1 },
+        "portal": { "enum": ["agency", "caregiver", "staff", "client"] },
+        "contractVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+        "figmaFileKey": { "type": "string", "minLength": 1 },
+        "figmaFileKeyProvenance": {
+          "type": "string", "minLength": 1,
+          "description": "REQUIRED because the Figma desktop MCP serves whatever tab is active and never reports a file key. If the key was not measured, this field must say so."
+        },
+        "figmaSectionNodeId": { "$ref": "#/$defs/nodeId" },
+        "figmaComponentSetNodeId": { "$ref": "#/$defs/nodeId" },
+        "nodeIdRelationship": {
+          "type": "string",
+          "description": "When both a section and a component-set id are recorded, state which is which. A section CONTAINS a set; they are not alternatives."
+        },
+        "measuredOn": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "measuredBy": { "type": "string", "minLength": 1 },
+        "measurementMethod": { "type": "string" },
+        "jiraParent": { "$ref": "#/$defs/jiraIssue" },
+        "jiraComponent": { "$ref": "#/$defs/jiraIssue" },
+        "humanContract": { "type": "string", "minLength": 1 },
+        "measurementLog": { "type": "string" },
+        "markerLegend": { "type": "object" },
+        "readThisFirst": {
+          "type": "string", "minLength": 1,
+          "description": "REQUIRED. Any known way this component's own Figma documentation contradicts the file, so a reader is warned before trusting prose over bound variables."
+        }
+      }
+    },
+
+    "anatomy": { "type": "object" },
+
+    "geometry": {
+      "type": "object",
+      "description": "Every leaf that carries a design value SHOULD be a valueWithProvenance. A bare number is not publishable.",
+      "minProperties": 1
+    },
+
+    "paddingMirror": { "type": "array", "items": { "type": "object" } },
+    "typography": { "type": "object" },
+    "compactDelta": { "type": "object" },
+
+    "colourFormula": {
+      "type": "object",
+      "properties": {
+        "pattern": { "type": "string" },
+        "alphaIsLoadBearing": {
+          "type": "object",
+          "description": "Present whenever any bound colour has alpha < 1. A pipeline reading only the `hex` field silently flattens translucency — this is the field that warns it.",
+          "required": ["warning", "requirement"],
+          "properties": {
+            "warning": { "type": "string" },
+            "requirement": { "type": "string" }
+          }
+        },
+        "namingException": {
+          "type": "object",
+          "description": "Where the formula does NOT hold. A formula published without its exceptions is a trap for code generators."
+        }
+      }
+    },
+
+    "types": { "type": "array", "items": { "$ref": "#/$defs/typeEntry" } },
+    "states": { "type": "array", "items": { "type": "object" } },
+    "sharedTokens": { "type": "object" },
+    "variantAxes": { "type": "object" },
+    "variantAxis": { "type": "object" },
+    "optionalElements": { "type": "object" },
+    "sizeChoice": { "type": "object" },
+    "implementationRisk": { "type": "object" },
+    "defects": { "type": "array", "items": { "type": "string" } },
+    "accessibility": { "type": "object" },
+    "structureIsIdenticalAcrossStates": { "type": "boolean" },
+    "stateChangeIsTokenSwapOnly": { "type": "boolean" },
+
+    "notVerified": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "REQUIRED, and an empty array is a strong claim. Anything not read goes here rather than being filled with a plausible value."
+    },
+
+    "openTokenDecision": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "type": "string" },
+        "gate": { "type": "string" },
+        "proposal": { "type": "string" },
+        "untilApproved": {
+          "type": "string",
+          "description": "What a reader may and may not do while the decision is open. Recording a RAW value is not permission to hardcode it."
+        }
+      }
+    }
+  },
+
+  "required_note": "notVerified is required in practice; see allOf below.",
+  "allOf": [
+    {
+      "description": "A contract must declare what it did NOT verify.",
+      "required": ["notVerified"]
+    }
+  ],
+
+  "$defs": {
+    "nodeId": {
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$",
+      "description": "Real Figma node ids are not uniform. Round-hundred ids such as 1:100 are the fabrication signature this repo has already been burned by."
+    },
+    "jiraIssue": { "type": "string", "pattern": "^C360-[0-9]+$" },
+    "marker": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "enum": ["MEASURED", "DERIVED", "RAW", "UNVERIFIED"] },
+      "description": "MEASURED = read from live Figma. DERIVED = computed from measured values, arithmetic shown in the .md. RAW = real value but bound to no token. UNVERIFIED = not read. MEASURED and UNVERIFIED are mutually exclusive."
+    },
+    "valueWithProvenance": {
+      "type": "object",
+      "required": ["marker"],
+      "properties": {
+        "value": {},
+        "unit": { "enum": ["px", "rem", "%", "ms", null] },
+        "token": { "type": ["string", "null"], "description": "null means genuinely unbound — a design-system gap, not an omission." },
+        "cssVar": { "type": ["string", "null"] },
+        "marker": { "$ref": "#/$defs/marker" },
+        "nodeId": { "$ref": "#/$defs/nodeId" },
+        "note": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "description": "A RAW value must not claim a token.",
+          "if":   { "properties": { "marker": { "contains": { "const": "RAW" } } }, "required": ["marker"] },
+          "then": { "properties": { "token": { "const": null } } }
+        },
+        {
+          "description": "A value cannot be MEASURED and UNVERIFIED at once.",
+          "if":   { "properties": { "marker": { "contains": { "const": "MEASURED" } } }, "required": ["marker"] },
+          "then": { "properties": { "marker": { "not": { "contains": { "const": "UNVERIFIED" } } } } }
+        }
+      ]
+    },
+    "typeEntry": {
+      "type": "object",
+      "required": ["name", "setNodeId", "marker"],
+      "properties": {
+        "name": { "type": "string" },
+        "setNodeId": { "$ref": "#/$defs/nodeId" },
+        "bg": { "type": ["string", "null"] },
+        "hover": { "type": ["string", "null"], "description": "null is a MEASURED ABSENCE — the set does not bind it. Not 'unknown'." },
+        "pressed": { "type": ["string", "null"] },
+        "labelFilled": { "type": ["string", "null"] },
+        "labelOutlined": { "type": ["string", "null"] },
+        "outlined": { "type": ["string", "null"] },
+        "bgSoft": { "type": ["string", "null"] },
+        "marker": { "$ref": "#/$defs/marker" },
+        "note": { "type": "string" },
+        "defects": { "type": "array", "items": { "type": "string" } },
+        "unexplained": { "type": "string" }
+      }
+    }
+  }
+}
