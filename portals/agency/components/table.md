@@ -59,6 +59,30 @@ borders double up.
 
 ---
 
+## 3b. 🔴 Two header components — possibly three — and it isn't settled which one is right
+
+**This is the most important thing on this contract, and a strong candidate for the actual root cause.**
+
+| Header | Node | Height | Where it's treated as authoritative |
+|---|---|---|---|
+| `table_head` | `26938:61726` | 34px | section `26955:66556` — what the owner pointed at, and what this contract measures |
+| `Head / Tiltes for tables` | `5865:162` | 34px | the local `table.css` calls **this** one canonical |
+| `X-Head old` | — | — | formally dead: Figma's own description reads *"Do not cosider this compoent"* |
+
+Both live ones are **34px**, so this is not a size conflict — they are **separate components**.
+
+**The telling detail:** section `26955:66556`'s own sample layout instantiates nodes named
+**`Head / Tiltes for tables`** — the *other* header — not its own `table_head` set. So the section
+that defines `table_head` doesn't use it in its own example.
+
+**Why this matters:** anyone building a table has to guess which header to follow, and until today
+GitHub published **neither**. That is a much more likely cause of builds not matching than any single
+measurement being wrong.
+
+**Needs your ruling, or Figma AI's:** declare one canonical header and retire or alias the other.
+
+---
+
 ## 4. One disagreement between Figma and your local file
 
 Everything else matches. This one doesn't:
@@ -122,4 +146,5 @@ closes seven.
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-08-25 | **1.1.0** — recorded that TWO live header components exist (`table_head` 26938:61726 vs `Head / Tiltes for tables` 5865:162, both 34px), plus a third that is formally dead; and that this section's own sample layout uses the other one. Found while syncing against the local stylesheet. |
 | 2026-08-25 | 1.0.0 — first table contract in this repo. Both sets measured from section `26955:66556`, cross-checked against the local copy-from stylesheet and the owner's variable export. Created because the absence of any published table geometry was blocking feature work. | Owner instruction, 2026-08-25 |

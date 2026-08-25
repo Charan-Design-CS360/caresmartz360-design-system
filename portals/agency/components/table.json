@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Table — head cell & data cell",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP never reports a file key. Taken from portals/agency/portal-manifest.json and the URL supplied by the design owner.",
     "figmaSectionNodeId": "26955:66556",
@@ -16,7 +16,11 @@
     "humanContract": "./table.md",
     "cssReference": {
       "file": "Universal Html Rules/02-components/table.css",
-      "classIds": ["CS-TBL-01", "CS-TBL-02", "CS-TBL-03"],
+      "classIds": [
+        "CS-TBL-01",
+        "CS-TBL-02",
+        "CS-TBL-03"
+      ],
       "note": "The copy-from stylesheet a project pastes into its own CSS. That file is the CODE; this contract is the MEASUREMENT. They must agree — one disagreement is currently open, see contractVsLocalCss."
     },
     "markerLegend": {
@@ -25,57 +29,265 @@
       "RAW": "real value but NOT bound to any token present in the owner's variable export",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "WHY THIS CONTRACT EXISTS: until 2026-08-25 there was NO table contract in this repo, while the repo's only table stylesheet (src/styles/3-components/_tables.scss, 33 lines) contains ZERO height declarations. Any tool sent to GitHub for table geometry — which is what every AI tool is instructed to do — found nothing. The correct 34/30 heights existed only in Figma and in the local copy-from stylesheet. That gap is the most likely reason a feature session could not build tables to the design system. TWO THINGS TO KNOW BEFORE BUILDING: (1) the head cell grows (min-height 34) but the data cell does NOT (height 30, fixed) — they use different mechanisms; (2) Figma's generated payload prints WRONG padding fallbacks on the head cell (9px where spacing/md is 8, 1px where spacing/none is 0). Bind the token, never the printed fallback."
+    "readThisFirst": "⚠️ TWO HEADER COMPONENTS — POSSIBLY THREE — AND IT IS NOT SETTLED WHICH IS CANONICAL. This contract measures table_head 26938:61726 / table_cell 26938:61725 from section 26955:66556, which the owner identified as where the table is defined. But the document-level copy-from stylesheet (Universal Html Rules/02-components/table.css) builds from a DIFFERENTLY NAMED, differently numbered header: 'Head / Tiltes for tables' 5865:162, which it calls canonical. Both measure 34px, so this is not a size conflict — they are separate components. And this section's OWN sample layout (27002:78668) instantiates nodes named 'Head / Tiltes for tables', i.e. the stylesheet's source rather than its own table_head set. With 'X-Head old' already formally dead per that stylesheet, that is potentially three header components in one Figma file. A feature session cannot be expected to pick correctly — this is a strong candidate for why table builds have not matched the design system. RESOLVE THIS FIRST. Also: until 2026-08-25 there was no table contract here at all while the repo's only table stylesheet (src/styles/3-components/_tables.scss, 33 lines) had zero height declarations, so tools reading GitHub for table geometry got nothing. And note Figma prints WRONG padding fallbacks on the head cell (9 where spacing/md is 8, 1 where spacing/none is 0) while printing the same tokens correctly on the data cell — bind the token, never the printed fallback."
   },
-
   "anatomy": {
     "componentSets": [
-      { "name": "table_head", "setNodeId": "26938:61726", "variantNodeId": "26938:52865", "variants": 1, "variantAxis": "type=Default", "renderedSize": "250 x 34", "marker": ["MEASURED"],
+      {
+        "name": "table_head",
+        "setNodeId": "26938:61726",
+        "variantNodeId": "26938:52865",
+        "variants": 1,
+        "variantAxis": "type=Default",
+        "renderedSize": "250 x 34",
+        "marker": [
+          "MEASURED"
+        ],
         "figmaDescription": "Table header cell component. Styled for the header row with distinct background and typography treatment. 1 variant: type=Default. Composable with table_cell to build full data tables. Part of the Table component family.",
-        "children": ["Title row (26938:52850, h=24)", "label text (26938:52851)", "required/emergency icon 8px (10495:19244)", "Sort control 10x16 (26938:52853, from set 5865:154)", "help icon 16px (26938:52854)"] },
-      { "name": "table_cell", "setNodeId": "26938:61725", "variantNodeId": "26938:52924", "variants": 1, "variantAxis": "type=Default", "renderedSize": "250 x 30", "marker": ["MEASURED"],
+        "children": [
+          "Title row (26938:52850, h=24)",
+          "label text (26938:52851)",
+          "required/emergency icon 8px (10495:19244)",
+          "Sort control 10x16 (26938:52853, from set 5865:154)",
+          "help icon 16px (26938:52854)"
+        ]
+      },
+      {
+        "name": "table_cell",
+        "setNodeId": "26938:61725",
+        "variantNodeId": "26938:52924",
+        "variants": 1,
+        "variantAxis": "type=Default",
+        "renderedSize": "250 x 30",
+        "marker": [
+          "MEASURED"
+        ],
         "figmaDescription": "Table body data cell component. Standard cell for table rows displaying data values. 1 variant: type=Default. Composable with table_head to build full data tables. Part of the Table component family.",
-        "children": ["value text (26938:52922), single line, ellipsis-truncated"] }
+        "children": [
+          "value text (26938:52922), single line, ellipsis-truncated"
+        ]
+      }
     ],
     "supporting": [
-      { "name": "column_actions", "nodeId": "26938:61850", "size": "44 x 20", "children": ["filter_list 26938:61851 (20x20)", "drag_indicator 26938:61854 (20x20)"], "marker": ["MEASURED", "UNVERIFIED"], "note": "Structure and sizes only — token bindings NOT read." },
-      { "name": "sample-layout_table", "nodeId": "27002:78668", "size": "598 x 266", "structure": "3 x table_column, each = 1 head (34px) + table_data frame with 8 data rows at 30px", "marker": ["MEASURED"], "note": "Confirms the intended composition: one 34px header row above N 30px data rows, columns 200px wide in the sample." }
+      {
+        "name": "column_actions",
+        "nodeId": "26938:61850",
+        "size": "44 x 20",
+        "children": [
+          "filter_list 26938:61851 (20x20)",
+          "drag_indicator 26938:61854 (20x20)"
+        ],
+        "marker": [
+          "MEASURED",
+          "UNVERIFIED"
+        ],
+        "note": "Structure and sizes only — token bindings NOT read."
+      },
+      {
+        "name": "sample-layout_table",
+        "nodeId": "27002:78668",
+        "size": "598 x 266",
+        "structure": "3 x table_column, each = 1 head (34px) + table_data frame with 8 data rows at 30px",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Confirms the intended composition: one 34px header row above N 30px data rows, columns 200px wide in the sample."
+      }
     ],
-    "guidelinesFrame": { "nodeId": "26938:66226", "generatedBy": "AI Component Guidelines Plugin v1", "date": "2026-07-29", "marker": ["MEASURED"] }
+    "guidelinesFrame": {
+      "nodeId": "26938:66226",
+      "generatedBy": "AI Component Guidelines Plugin v1",
+      "date": "2026-07-29",
+      "marker": [
+        "MEASURED"
+      ]
+    }
   },
-
   "geometry": {
     "headCell": {
       "sourceNodeId": "26938:52865",
-      "display":       { "value": "flex", "token": null, "marker": ["MEASURED"] },
-      "alignItems":    { "value": "center", "token": null, "marker": ["MEASURED"] },
-      "gap":           { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
-      "minHeight":     { "value": 34, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "cssProperty": "min-height", "neverUse": "height",
-                         "note": "Set explicitly. NOT derivable from the box model — see contractVsLocalCss, where the local stylesheet's 1+4+24+4+1 arithmetic requires a 4px vertical padding that Figma does not currently bind." },
-      "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"],
-                         "note": "Figma's payload prints a 9px FALLBACK here. The export value of spacing/md is 8. Bind the token; the 9 is a codegen artefact." },
-      "paddingBlock":  { "value": 0, "unit": "px", "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"],
-                         "note": "Figma's payload prints a 1px FALLBACK here. The export value of spacing/none is 0. DISAGREES with the local stylesheet, which binds spacing/sm (4) — see contractVsLocalCss." },
-      "border":        { "value": "1px solid", "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "1px on ALL FOUR sides. Width is a raw literal; only the colour is tokenised." },
-      "titleRowHeight":{ "value": 24, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "26938:52850" },
-      "frameWidth":    { "value": 250, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "Layout context, not a constraint. The sample layout uses 200px columns." }
+      "display": {
+        "value": "flex",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "alignItems": {
+        "value": "center",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gap": {
+        "value": 4,
+        "unit": "px",
+        "token": "spacing/sm",
+        "cssVar": "--spacing-sm",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "minHeight": {
+        "value": 34,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "cssProperty": "min-height",
+        "neverUse": "height",
+        "note": "Set explicitly. NOT derivable from the box model — see contractVsLocalCss, where the local stylesheet's 1+4+24+4+1 arithmetic requires a 4px vertical padding that Figma does not currently bind."
+      },
+      "paddingInline": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Figma's payload prints a 9px FALLBACK here. The export value of spacing/md is 8. Bind the token; the 9 is a codegen artefact."
+      },
+      "paddingBlock": {
+        "value": 0,
+        "unit": "px",
+        "token": "spacing/none",
+        "cssVar": "--spacing-none",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Figma's payload prints a 1px FALLBACK here. The export value of spacing/none is 0. DISAGREES with the local stylesheet, which binds spacing/sm (4) — see contractVsLocalCss."
+      },
+      "border": {
+        "value": "1px solid",
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "1px on ALL FOUR sides. Width is a raw literal; only the colour is tokenised."
+      },
+      "titleRowHeight": {
+        "value": 24,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "nodeId": "26938:52850"
+      },
+      "frameWidth": {
+        "value": 250,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "Layout context, not a constraint. The sample layout uses 200px columns."
+      }
     },
     "dataCell": {
       "sourceNodeId": "26938:52924",
-      "display":       { "value": "flex", "token": null, "marker": ["MEASURED"] },
-      "alignItems":    { "value": "center", "token": null, "marker": ["MEASURED"] },
-      "gap":           { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
-      "height":        { "value": 30, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "cssProperty": "height",
-                         "note": "⚠️ A FIXED height, not min-height — unlike the head cell and unlike every other measured component in this design system. A data cell therefore CANNOT grow for a long or wrapped value. Recorded as a defect, not normalised." },
-      "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"], "note": "Fallback printed correctly as 8 here — unlike the head cell." },
-      "paddingBlock":  { "value": 0, "unit": "px", "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"], "note": "Fallback printed correctly as 0 here — unlike the head cell." },
-      "border":        { "value": "1px solid", "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "1px all four sides, raw width." },
-      "textBlockHeight": { "value": 20, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "nodeId": "26938:52922" },
-      "overflow":      { "value": "clip", "token": null, "marker": ["MEASURED"] },
-      "truncation":    { "value": "single line, overflow hidden, text-ellipsis, white-space nowrap", "token": null, "marker": ["MEASURED"], "note": "Values truncate with an ellipsis — they never wrap. Consistent with the fixed height, and it means long content is silently cut with no tooltip recorded in the design." }
+      "display": {
+        "value": "flex",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "alignItems": {
+        "value": "center",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gap": {
+        "value": 4,
+        "unit": "px",
+        "token": "spacing/sm",
+        "cssVar": "--spacing-sm",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "height": {
+        "value": 30,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "cssProperty": "height",
+        "note": "⚠️ A FIXED height, not min-height — unlike the head cell and unlike every other measured component in this design system. A data cell therefore CANNOT grow for a long or wrapped value. Recorded as a defect, not normalised."
+      },
+      "paddingInline": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Fallback printed correctly as 8 here — unlike the head cell."
+      },
+      "paddingBlock": {
+        "value": 0,
+        "unit": "px",
+        "token": "spacing/none",
+        "cssVar": "--spacing-none",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Fallback printed correctly as 0 here — unlike the head cell."
+      },
+      "border": {
+        "value": "1px solid",
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "1px all four sides, raw width."
+      },
+      "textBlockHeight": {
+        "value": 20,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "nodeId": "26938:52922"
+      },
+      "overflow": {
+        "value": "clip",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "truncation": {
+        "value": "single line, overflow hidden, text-ellipsis, white-space nowrap",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Values truncate with an ellipsis — they never wrap. Consistent with the fixed height, and it means long content is silently cut with no tooltip recorded in the design."
+      }
     },
     "composition": {
-      "marker": ["MEASURED"],
+      "marker": [
+        "MEASURED"
+      ],
       "sourceNodeId": "27002:78668",
       "rule": "One 34px head cell per column, above N 30px data cells. Borders are 1px on all four sides of every cell, so adjacent cells double up unless collapsed.",
       "sampleColumnWidth": 200,
@@ -83,48 +295,178 @@
       "note": "The 1px-all-sides border on every cell is worth attention in implementation: without border-collapse or a negative-margin strategy, a table renders 2px internal gridlines. The design does not record which approach is intended."
     }
   },
-
   "typography": {
     "headLabel": {
       "figmaTextStyle": "Table/header",
-      "fontFamily": { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] },
-      "fontSize":   { "value": 12, "unit": "px", "token": "font-size/caption", "cssVar": "--font-size-caption", "marker": ["MEASURED"] },
-      "lineHeight": { "value": 16, "unit": "px", "token": "line-height/caption", "cssVar": "--line-height-caption", "marker": ["MEASURED"] },
-      "fontWeight": { "value": 500, "token": "font-weight/heading-base", "cssVar": "--font-weight-heading-base", "marker": ["MEASURED"] },
-      "letterSpacing": { "value": 0, "token": null, "marker": ["MEASURED", "RAW"], "note": "Binds fonts/tracking/X-tracking-0 — legacy name absent from the export. Correct name: fonts/tracking/tracking-0." },
-      "textTransform": { "value": "none", "token": null, "marker": ["MEASURED"], "note": "NO uppercase treatment. The component set renders 'Title' in sentence case. Rendering header labels in CAPS is wrong against the design system — the local stylesheet reaches the same conclusion and verified it three independent ways." }
+      "fontFamily": {
+        "value": "Inter",
+        "token": "font-family/primary",
+        "cssVar": "--font-family-primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "fontSize": {
+        "value": 12,
+        "unit": "px",
+        "token": "font-size/caption",
+        "cssVar": "--font-size-caption",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "lineHeight": {
+        "value": 16,
+        "unit": "px",
+        "token": "line-height/caption",
+        "cssVar": "--line-height-caption",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "fontWeight": {
+        "value": 500,
+        "token": "font-weight/heading-base",
+        "cssVar": "--font-weight-heading-base",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "letterSpacing": {
+        "value": 0,
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "Binds fonts/tracking/X-tracking-0 — legacy name absent from the export. Correct name: fonts/tracking/tracking-0."
+      },
+      "textTransform": {
+        "value": "none",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "NO uppercase treatment. The component set renders 'Title' in sentence case. Rendering header labels in CAPS is wrong against the design system — the local stylesheet reaches the same conclusion and verified it three independent ways."
+      }
     },
     "cellValue": {
       "figmaTextStyle": "Table/value",
-      "fontFamily": { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] },
-      "fontSize":   { "value": 12, "unit": "px", "token": "font-size/caption", "cssVar": "--font-size-caption", "marker": ["MEASURED"], "note": "Figma's payload ALSO emits a raw text-[12px] on the same element, duplicating the token. Bind the token only." },
-      "lineHeight": { "value": 16, "unit": "px", "token": "line-height/caption", "cssVar": "--line-height-caption", "marker": ["MEASURED"] },
-      "fontWeight": { "value": 400, "token": "font-weight/body-base", "cssVar": "--font-weight-body-base", "marker": ["MEASURED"] },
-      "letterSpacing": { "value": 0, "token": null, "marker": ["MEASURED", "RAW"], "note": "Same X-tracking-0 legacy binding." }
+      "fontFamily": {
+        "value": "Inter",
+        "token": "font-family/primary",
+        "cssVar": "--font-family-primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "fontSize": {
+        "value": 12,
+        "unit": "px",
+        "token": "font-size/caption",
+        "cssVar": "--font-size-caption",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Figma's payload ALSO emits a raw text-[12px] on the same element, duplicating the token. Bind the token only."
+      },
+      "lineHeight": {
+        "value": 16,
+        "unit": "px",
+        "token": "line-height/caption",
+        "cssVar": "--line-height-caption",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "fontWeight": {
+        "value": 400,
+        "token": "font-weight/body-base",
+        "cssVar": "--font-weight-body-base",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "letterSpacing": {
+        "value": 0,
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "Same X-tracking-0 legacy binding."
+      }
     },
     "difference": "Head and cell share size (12), line-height (16) and family. Only the WEIGHT differs — 500 for the header, 400 for the value."
   },
-
   "colourFormula": {
     "pattern": "The head cell uses surface/* and border/*; the data cell uses field/*. Both text colours use field/value-primary.",
-    "headBackground": { "value": "#f1f5f9", "token": "surface/tertiary", "cssVar": "--surface-tertiary", "marker": ["MEASURED"] },
-    "headBorder":     { "value": "#e2e8f0", "token": "border/subtle", "cssVar": "--border-subtle", "marker": ["MEASURED"] },
-    "headText":       { "value": "#1e293b", "token": "field/value-primary", "cssVar": "--field-value-primary", "marker": ["MEASURED"], "note": "A FIELD token used for header text — see namingException." },
-    "cellBackground": { "value": "#ffffff", "token": "field/bg-default", "cssVar": "--field-bg-default", "marker": ["MEASURED"] },
-    "cellBorder":     { "value": "#e2e8f0", "token": "field/border-default", "cssVar": "--field-border-default", "marker": ["MEASURED"] },
-    "cellText":       { "value": "#1e293b", "token": "field/value-primary", "cssVar": "--field-value-primary", "marker": ["MEASURED"] },
+    "headBackground": {
+      "value": "#f1f5f9",
+      "token": "surface/tertiary",
+      "cssVar": "--surface-tertiary",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "headBorder": {
+      "value": "#e2e8f0",
+      "token": "border/subtle",
+      "cssVar": "--border-subtle",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "headText": {
+      "value": "#1e293b",
+      "token": "field/value-primary",
+      "cssVar": "--field-value-primary",
+      "marker": [
+        "MEASURED"
+      ],
+      "note": "A FIELD token used for header text — see namingException."
+    },
+    "cellBackground": {
+      "value": "#ffffff",
+      "token": "field/bg-default",
+      "cssVar": "--field-bg-default",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "cellBorder": {
+      "value": "#e2e8f0",
+      "token": "field/border-default",
+      "cssVar": "--field-border-default",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "cellText": {
+      "value": "#1e293b",
+      "token": "field/value-primary",
+      "cssVar": "--field-value-primary",
+      "marker": [
+        "MEASURED"
+      ]
+    },
     "namingException": {
       "case": "two token namespaces for one border, and field/* used for header text",
       "detail": "The head border binds border/subtle while the data-cell border binds field/border-default. BOTH resolve to #e2e8f0 — identical colour, two different token names, in one component family. Separately, the header's TEXT binds field/value-primary rather than a text/* token, even though the header is not a form field.",
       "impact": "No visual defect. But a generator inferring 'header uses border/*, cell uses field/*' will be right by accident, and a theme change to only one of the two namespaces would split a table's gridlines."
     }
   },
-
   "variantAxes": {
-    "type": { "values": ["Default"], "marker": ["MEASURED"],
-      "note": "ONE variant each. No hover, no selected, no sorted-active, no zebra, no disabled, no error state exists on either set. Any such state built in code would be an invention — see notVerified." }
+    "type": {
+      "values": [
+        "Default"
+      ],
+      "marker": [
+        "MEASURED"
+      ],
+      "note": "ONE variant each. No hover, no selected, no sorted-active, no zebra, no disabled, no error state exists on either set. Any such state built in code would be an invention — see notVerified."
+    }
   },
-
   "contractVsLocalCss": {
     "status": "ONE OPEN DISAGREEMENT — recorded, not silently resolved",
     "item": "head cell vertical padding",
@@ -143,9 +485,9 @@
       "the codegen fallback trap — the local file already documents it (it saw 9/5, this measurement saw 9/1), and both conclude: bind the token, never the printed fallback"
     ]
   },
-
   "defects": [
     "NO TABLE CONTRACT EXISTED IN THIS REPO UNTIL NOW, while the repo's only table stylesheet (src/styles/3-components/_tables.scss, 33 lines) contains ZERO height declarations. Every AI tool is instructed to read GitHub for component truth, so every tool asking 'how tall is a table row?' got no answer. This is the most likely cause of a feature session being unable to build tables to the design system.",
+    "TWO LIVE HEADER COMPONENTS, possibly three. This contract measures table_head 26938:61726; the document-level stylesheet builds 'Head / Tiltes for tables' 5865:162 and calls IT canonical; 'X-Head old' is a third, formally dead. Both live ones are 34px. Worse, section 26955:66556's own sample layout instantiates the OTHER header, not its own table_head set. See competingHeaderComponents.",
     "The data cell uses a FIXED height:30 while the head cell uses min-height:34. Inconsistent mechanisms in one family, and the fixed height means a data cell cannot grow — it can only truncate. Every other component measured in this design system uses min-height.",
     "Figma's generated payload prints WRONG padding fallbacks on the head cell: 9px where spacing/md is 8, and 1px where spacing/none is 0. The sibling data cell prints the same tokens correctly as 8 and 0. So the same two tokens print correctly in one component and incorrectly in the other.",
     "Two token namespaces for the same border colour: head binds border/subtle, data cell binds field/border-default, both #e2e8f0.",
@@ -157,19 +499,18 @@
     "fonts/tracking/X-tracking-0 bound on both text styles — legacy name, absent from the export. Correct name: fonts/tracking/tracking-0. This is now a SEVENTH component family with the same defect.",
     "Only ONE variant exists on each set (type=Default). There is no hover, selected, sorted-active, zebra, disabled or error state anywhere in the table family, despite the head cell shipping an interactive Sort control and a help affordance."
   ],
-
   "structureIsIdenticalAcrossStates": true,
   "stateChangeIsTokenSwapOnly": false,
-
   "openTokenDecision": {
     "status": "OPEN",
     "gate": "Design-owner approval required before any of these become bindings.",
     "proposal": "1) Decide the head cell's vertical padding — spacing/none (Figma today) or spacing/sm (local stylesheet). 2) Change the data cell from height:30 to min-height:30 so a row can grow, matching the head cell and the rest of the system. 3) Settle one border namespace for the family. 4) Rename X-tracking-0 to tracking-0 (one Figma rename closes seven component families). 5) Consider whether 34 and 30 deserve real tokens — they are the two most repeated numbers in the product and are currently raw in both Figma and the local stylesheet. Note control/height-default = 30 already exists in Figma but not in the export, which may already cover the data-cell case.",
     "untilApproved": "Every affected value is published RAW with the disagreement recorded. Recording a value here is NOT permission to hardcode it."
   },
-
   "notVerified": [
     "The Figma file key was not measured.",
+    "'Head / Tiltes for tables' 5865:162 — the header the document-level stylesheet calls canonical — was NOT measured by this contract. Its 34px is quoted from that stylesheet, not read from Figma. Whether it and table_head are token-identical is unknown.",
+    "The masters behind the sample layout's header instances (27002:78670, 27002:78681, 27002:78692) were inferred from their layer NAME matching 'Head / Tiltes for tables'. The instance→master link was not read, so the identification is by name, not proven.",
     "column_actions (26938:61850) and its two 20x20 icons (26938:61851 filter_list, 26938:61854 drag_indicator) — structure and sizes only, no token bindings read.",
     "The Sort control's four variants (set 5865:154). Only the default rendering inside the head cell was seen — the ascending/descending/active states were not read.",
     "The required/emergency icon (10495:19244) and help icon (10495:19340) beyond their 8px and 16px box sizes.",
@@ -180,5 +521,49 @@
     "Density-mode behaviour. Note the fixed height:30 on the data cell could not respond to a density change even if the tokens did.",
     "Contrast ratios. The head label (#1e293b on #f1f5f9) and cell value (#1e293b on #ffffff) pairings are recorded so they can be checked; the check was not run.",
     "The 3-column sample layout's own container tokens (27002:78668) — only its composition pattern and row counts were read."
-  ]
+  ],
+  "competingHeaderComponents": {
+    "status": "OPEN — highest-priority item on this contract",
+    "candidates": [
+      {
+        "name": "table_head",
+        "setNodeId": "26938:61726",
+        "variantNodeId": "26938:52865",
+        "height": 34,
+        "source": "section 26955:66556, identified by the owner 2026-08-25 as where the table is defined",
+        "measuredHere": true,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "Head / Tiltes for tables",
+        "nodeId": "5865:162",
+        "height": 34,
+        "source": "cited as CANONICAL by Universal Html Rules/02-components/table.css, built from SPEC-08b",
+        "measuredHere": false,
+        "marker": [
+          "UNVERIFIED"
+        ],
+        "note": "NOT measured by this contract. Its 34px height is quoted from the stylesheet, not read."
+      },
+      {
+        "name": "X-Head old",
+        "nodeId": null,
+        "height": null,
+        "source": "embedded in legacy TC/* column stacks",
+        "measuredHere": false,
+        "marker": [
+          "UNVERIFIED"
+        ],
+        "note": "Formally dead — Figma's own component description reads verbatim 'Do not cosider this compoent'. Listed only so the count is honest."
+      }
+    ],
+    "theTellingDetail": "Section 26955:66556's own sample layout (27002:78668) instantiates nodes named 'Head / Tiltes for tables' (27002:78670, 27002:78681, 27002:78692) — the stylesheet's source — NOT its own table_head set. So the section that defines table_head does not use it in its own example.",
+    "consequence": "Two live 34px header components with different names and node ids, plus one dead one. Any tool or person building a table must guess which to follow, and GitHub published none of them until today.",
+    "ask": "Owner or Figma AI to declare one canonical header, and either retire or explicitly alias the other. Until then this contract measures table_head because that is the section the owner pointed at, and says so rather than implying it is the only one.",
+    "marker": [
+      "MEASURED"
+    ]
+  }
 }
