@@ -13,6 +13,7 @@ against [`../../../schemas/component-contract.schema.json`](../../../schemas/com
 |---|---|---|---|
 | Empty States (8 inline + 3 popup variants) | [`empty-states.md`](./empty-states.md) · [`empty-states.json`](./empty-states.json) | `27218:64329` | 2026-08-25 |
 | Page Header (4 sizes) | [`page-header.md`](./page-header.md) · [`page-header.json`](./page-header.json) | `27232:63236` | 2026-08-25 |
+| DDM — Dropdown Menu (rows + 3 menus) | [`ddm-dropdown-menu.md`](./ddm-dropdown-menu.md) · [`ddm-dropdown-menu.json`](./ddm-dropdown-menu.json) | `27245:67562` | 2026-08-25 |
 | Button (9 types) | [`button.md`](./button.md) · [`button.json`](./button.json) | `26938:66536` | 2026-08-24 |
 | Fields — type 1 | [`field-type-1.md`](./field-type-1.md) · [`field-type-1.json`](./field-type-1.json) | `26955:66554` | 2026-08-24 |
 

@@ -1,0 +1,202 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "DDM — Dropdown Menu",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP server never reports a file key. Taken from portals/agency/portal-manifest.json and from Figma AI's own audit on C360-40765, which cites the same key.",
+    "figmaSectionNodeId": "27245:67562",
+    "figmaSectionName": "Inline Dropdwon Patterns",
+    "nodeIdRelationship": "27245:67562 is the SECTION (name misspelled 'Dropdwon' in Figma). It contains 3 row-level component sets, 2 single components, and 3 assembled menu symbols. All node ids below were measured; Figma AI's audit on C360-40765 supplied none.",
+    "measuredOn": "2026-08-25",
+    "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
+    "measurementMethod": "figma-desktop MCP: get_metadata on the section (structure, node ids, rendered sizes for all 11 members); get_design_context on the checkbox row 5817:6336 and the radio row 18384:9431 (token bindings, padding, props). The drag-feature rows and the 3 assembled menus are STRUCTURE-ONLY — see notVerified.",
+    "jiraParent": "C360-44737",
+    "jiraSource": "C360-40765",
+    "humanContract": "./ddm-dropdown-menu.md",
+    "markerLegend": {
+      "MEASURED": "read directly from live Figma; nodeId given",
+      "DERIVED": "computed from measured values; arithmetic shown in the .md",
+      "RAW": "real value but NOT bound to any token present in the owner's variable export",
+      "UNVERIFIED": "not read — do not build from it"
+    },
+    "readThisFirst": "This contract CORRECTS Figma AI's audit on C360-40765 in four places, most importantly its headline recommendation. Figma AI reported 'row height inconsistency: checkbox 30px, radio 32px — standardize to 30px'. Measured: BOTH row types declare min-height 30. The 32px is a RENDERED result, not a declared height — the radio row uses py spacing/sm (4px) while the checkbox row uses py spacing/xs (2px), and a 24px control plus 4+4 padding exceeds the 30px minimum. So the fix is to align the PADDING token, not the height. Changing a height would not fix it and would break the min-height mechanism."
+  },
+
+  "anatomy": {
+    "layers": "Figma AI's 3-layer atomic read is confirmed: row atoms -> single components -> assembled menus.",
+    "rowAtoms": [
+      { "name": "ddm rows - checkboxes", "setNodeId": "7926:11855", "variants": 5, "renderedRowHeight": 30, "measured": "FULL — 5817:6336 read", "marker": ["MEASURED"] },
+      { "name": "ddm rows - checkboxes + drag feature", "setNodeId": "13095:43335", "variants": 6, "renderedRowHeight": 30, "measured": "STRUCTURE ONLY", "marker": ["MEASURED", "UNVERIFIED"] },
+      { "name": "atom/radio / Dropdown sleections", "setNodeId": "7926:11856", "variants": 4, "renderedRowHeight": 32, "measured": "FULL — 18384:9431 read", "marker": ["MEASURED"], "note": "Figma layer name misspelled 'sleections'." }
+    ],
+    "singleComponents": [
+      { "name": "Dropdown Heading primary", "nodeId": "1678:633", "size": "125 x 30", "marker": ["MEASURED"], "note": "30px tall. Figma AI's audit says group headings are 32px — that is INCORRECT per the section metadata." },
+      { "name": "drag_indicator_black_18dp", "nodeId": "10391:14128", "size": "18 x 18", "marker": ["MEASURED"] }
+    ],
+    "assembledMenus": [
+      { "name": "Dropdown/Menu (group heading)", "nodeId": "1728:1", "size": "360 x 940", "structure": "search bar -> group heading -> repeating checkbox rows", "marker": ["MEASURED", "UNVERIFIED"] },
+      { "name": "Dropdown/Menu (group heading Side by side)", "nodeId": "10296:16501", "size": "500 x 240", "structure": "two side-by-side columns, each heading + items", "marker": ["MEASURED", "UNVERIFIED"] },
+      { "name": "Dropdown/Menu (radio)", "nodeId": "11961:30613", "size": "260 x 330", "structure": "group heading -> radio rows -> action-button footer", "marker": ["MEASURED", "UNVERIFIED"] }
+    ]
+  },
+
+  "geometry": {
+    "checkboxRow": {
+      "sourceNodeId": "5817:6336",
+      "display":       { "value": "flex", "token": null, "marker": ["MEASURED"] },
+      "alignItems":    { "value": "center", "token": null, "marker": ["MEASURED"] },
+      "gap":           { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
+      "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+      "paddingBlock":  { "value": 2, "unit": "px", "token": "spacing/xs", "cssVar": "--spacing-xs", "marker": ["MEASURED"], "note": "spacing/xs — THIS is what makes it render at 30 rather than 32." },
+      "minHeight":     { "value": 30, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "cssProperty": "min-height", "neverUse": "height", "note": "Raw 30. Equals the value of control/height-default, which is bound in Figma but absent from the export — see openTokenDecision." },
+      "maxHeight":     { "value": 36, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "The radio row has NO max-height. Asymmetry between the two row types." },
+      "overflow":      { "value": "clip", "token": null, "marker": ["MEASURED"] },
+      "frameWidth":    { "value": 220, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "Layout context, not a constraint." }
+    },
+    "radioRow": {
+      "sourceNodeId": "18384:9431",
+      "display":       { "value": "flex", "token": null, "marker": ["MEASURED"] },
+      "alignItems":    { "value": "center", "token": null, "marker": ["MEASURED"] },
+      "gap":           { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
+      "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+      "paddingBlock":  { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"], "note": "spacing/sm — 4px, DOUBLE the checkbox row's spacing/xs. This single token is the entire cause of the 30-vs-32 difference." },
+      "minHeight":     { "value": 30, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "cssProperty": "min-height", "neverUse": "height" },
+      "maxHeight":     { "value": null, "token": null, "marker": ["MEASURED"], "note": "ABSENT — unlike the checkbox row." },
+      "background":    { "value": "#ffffff", "token": "field/bg-default", "cssVar": "--field-bg-default", "marker": ["MEASURED"] },
+      "overflow":      { "value": "clip", "token": null, "marker": ["MEASURED"] },
+      "frameWidth":    { "value": 220, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] }
+    },
+    "rowHeightResolution": {
+      "figmaAiClaim": "checkbox 30px, radio 32px — a row-height inconsistency; standardize to 30px",
+      "measuredReality": "BOTH declare min-height: 30px. Neither sets a fixed height.",
+      "arithmetic": "control is 24px in both. checkbox: 24 + (2+2) = 28, under the 30 floor, so it renders 30. radio: 24 + (4+4) = 32, over the floor, so it renders 32.",
+      "correctFix": "Align the vertical padding token — set the radio row to spacing/xs (2px) to match the checkbox row, or accept the difference deliberately. Changing a 'height' would not fix it and would defeat the min-height mechanism.",
+      "marker": ["MEASURED", "DERIVED"]
+    },
+    "controlHitArea": {
+      "checkbox": { "hitArea": 24, "visualBox": 14, "borderWidth": 1.5, "borderRadius": 4, "unit": "px", "marker": ["MEASURED"], "note": "Matches the shared checkbox spec (14x14 box centred in a 24px hit area)." },
+      "radio":    { "hitArea": 24, "unit": "px", "marker": ["MEASURED"], "note": "Delivered as an SVG asset, so the inner circle geometry was not readable from the payload." }
+    }
+  },
+
+  "typography": {
+    "optionLabel": {
+      "figmaTextStyle": "Fields/value",
+      "fontFamily":  { "value": "Inter", "token": "font-family/primary", "cssVar": "--font-family-primary", "marker": ["MEASURED"] },
+      "fontSize":    { "value": 12, "unit": "px", "token": "font-size/caption", "cssVar": "--font-size-caption", "marker": ["MEASURED"] },
+      "lineHeight":  { "value": 16, "unit": "px", "token": "line-height/caption", "cssVar": "--line-height-caption", "marker": ["MEASURED"] },
+      "fontWeight":  { "value": 400, "token": "font-weight/body-base", "cssVar": "--font-weight-body-base", "marker": ["MEASURED"] },
+      "letterSpacing": { "value": 0, "token": null, "marker": ["MEASURED", "RAW"], "note": "Live Figma binds fonts/tracking/X-tracking-0, a legacy name absent from the export. Correct name: fonts/tracking/tracking-0. SIXTH component family with this defect." }
+    },
+    "countLabel": {
+      "example": "3/3",
+      "fontSize": { "value": 12, "unit": "px", "token": "font-size/caption", "cssVar": "--font-size-caption", "marker": ["MEASURED"] },
+      "colour":   { "value": "#334a65", "token": null, "marker": ["MEASURED", "RAW"], "note": "RAW HEX, no token. This exact colour also appears in the page-header info/timezone chip — SECOND independent sighting of an unbound #334a65, which makes it a candidate for a real token rather than a one-off." }
+    }
+  },
+
+  "colourFormula": {
+    "pattern": "Rows bind field/* tokens: field/bg-default for the resting background, field/bg-focus for the selected background, field/value-primary for the label.",
+    "checkboxRow": {
+      "backgroundDefault":  { "value": "#ffffff", "token": "field/bg-default", "cssVar": "--field-bg-default", "marker": ["MEASURED"] },
+      "backgroundSelected": { "value": "#f0f7ff", "token": "field/bg-focus",   "cssVar": "--field-bg-focus",   "marker": ["MEASURED"] },
+      "labelDefault":       { "value": "#1e293b", "token": "field/value-primary", "cssVar": "--field-value-primary", "marker": ["MEASURED"] },
+      "labelSelected":      { "value": "#0077ff", "token": "field/value-link",    "cssVar": "--field-value-link",    "marker": ["MEASURED"], "note": "The selected checkbox row turns its label BLUE." }
+    },
+    "radioRow": {
+      "backgroundDefault": { "value": "#ffffff", "token": "field/bg-default", "cssVar": "--field-bg-default", "marker": ["MEASURED"] },
+      "labelDefault":      { "value": "#1e293b", "token": "field/value-primary", "cssVar": "--field-value-primary", "marker": ["MEASURED"] },
+      "labelSelected":     { "value": "#1e293b", "token": "field/value-primary", "cssVar": "--field-value-primary", "marker": ["MEASURED"], "note": "STAYS dark when selected — it does NOT turn blue, and the row background does NOT change to field/bg-focus. Inconsistent with the checkbox row's selected treatment." }
+    },
+    "checkboxControl": {
+      "background":  { "value": "#ffffff", "token": "field/bg-default", "cssVar": "--field-bg-default", "marker": ["MEASURED"] },
+      "borderColour":{ "value": "#94a3b8", "token": "border/medium",    "cssVar": "--border-medium",    "marker": ["MEASURED"] }
+    },
+    "namingException": {
+      "case": "count label",
+      "detail": "The '3/3' count binds no colour token — it is a raw #334a65. A generator following the field/* pattern will find nothing to bind.",
+      "impact": "Do not infer a token for the count label. It has none."
+    }
+  },
+
+  "variantAxes": {
+    "checkboxRow": {
+      "figmaProperties": ["Default", "Active", "Selected", "Nesting"],
+      "propertyType": "four independent BOOLEANS",
+      "measuredVariants": [
+        "Default=Yes, Active=No, Selected=No, Nesting=No  (5817:6338)",
+        "Default=No, Active=Yes, Selected=No, Nesting=No  (5817:6340)",
+        "Default=No, Active=No, Selected=Yes, Nesting=No  (5817:6336)",
+        "Default=Yes, Active=No, Selected=Yes, Nesting=No (5817:6333)",
+        "Default=Yes, Active=No, Selected=No, Nesting=Yes (25963:8341)"
+      ],
+      "marker": ["MEASURED"],
+      "issue": "Default / Active / Selected are mutually exclusive in practice but modelled as independent booleans, so the set permits nonsense combinations (e.g. Default=Yes AND Active=Yes) that are not drawn. Figma AI's recommendation to collapse them into a State enum is sound — but it is a RENAME, which is gated. See openTokenDecision."
+    },
+    "radioRow": {
+      "figmaProperties": ["State (Default/Active/Hover/Selected)", "Selected (Yes/No)", "Default Selection (Yes/No)"],
+      "marker": ["MEASURED"],
+      "issue": "State=Selected and Selected=Yes encode the same fact twice. Figma AI's recommendation to drop the redundant boolean is sound — also a rename, also gated."
+    },
+    "dragRow": {
+      "figmaProperties": ["State (Default/Active/Hover)", "unChecked (Yes/No)"],
+      "variants": 6,
+      "marker": ["MEASURED"],
+      "note": "This set uses the State-enum shape the other two lack — so the cleaner convention already exists in the file and could be the model rather than a new invention."
+    },
+    "booleanProps": {
+      "showCheckboxAtomic": { "on": "checkbox row", "default": true, "marker": ["MEASURED"] },
+      "showCount":          { "on": "checkbox row", "default": false, "marker": ["MEASURED"] },
+      "showRadio":          { "on": "radio row", "default": true, "marker": ["MEASURED"] }
+    }
+  },
+
+  "defects": [
+    "FIGMA AI'S HEADLINE FINDING IS MISDIAGNOSED. It reported 'row height inconsistency: checkbox 30, radio 32; standardize to 30'. Both rows declare min-height 30. The 32 is rendered, caused by the radio row using py spacing/sm (4px) where the checkbox row uses spacing/xs (2px): a 24px control plus 4+4 exceeds the 30px floor. Fix the padding token, not a height.",
+    "Figma AI states group headings are 32px tall. Section metadata gives 'Dropdown Heading primary' (1678:633) as 125 x 30 — THIRTY, not 32.",
+    "Selected-state treatment is inconsistent between the two row types. The checkbox row changes BOTH its background (field/bg-focus) and its label colour (field/value-link, blue). The radio row changes NEITHER — background stays field/bg-default and the label stays field/value-primary. Figma AI did not report this, and it is a more visible inconsistency to a user than the 2px height difference.",
+    "The checkbox row has max-height 36; the radio row has no max-height at all.",
+    "The '3/3' count label is a raw #334a65 with no token. The same unbound colour appears in the page-header info/timezone chip — two independent sightings, which makes it a token candidate rather than a one-off.",
+    "Section name is misspelled in Figma: 'Inline Dropdwon Patterns' (27245:67562).",
+    "Component name is misspelled in Figma: 'atom/radio / Dropdown sleections' (7926:11856).",
+    "Checkbox-row variant properties are four independent booleans for three mutually exclusive states, permitting undrawn combinations.",
+    "Radio-row properties encode selection twice (State=Selected and Selected=Yes).",
+    "Naming conventions differ across the five components in one section: 'ddm rows - checkboxes' (lowercase-dashes), 'atom/radio / Dropdown sleections' (mixed case, spaced slashes), 'Dropdown/Menu (group heading)' (title case, slashes, parens).",
+    "fonts/tracking/X-tracking-0 bound again — legacy name, absent from the export, correct name fonts/tracking/tracking-0. SIXTH component family.",
+    "No variant in any of the three sets carries a description, so a consumer cannot tell from Figma what 'Active' versus 'Hover' is meant to mean."
+  ],
+
+  "structureIsIdenticalAcrossStates": false,
+  "stateChangeIsTokenSwapOnly": false,
+
+  "openTokenDecision": {
+    "status": "OPEN — renames requested by Figma AI are GATED, plus two unbacked names",
+    "gate": "Component and variant-property RENAMES are frozen by owner instruction ('we cannot change the naming again and again'). Figma AI's recommendations 2 and 4 on C360-40765 are both renames and must NOT be applied without the owner's explicit ruling.",
+    "renamesAwaitingRuling": [
+      "Collapse checkbox-row booleans into a State enum (Figma AI rec 2)",
+      "Drop the redundant Selected boolean on the radio row (Figma AI rec 2)",
+      "Standardise component names to DDM/Row/Checkbox, DDM/Row/Radio, DDM/Menu/Grouped (Figma AI rec 4)",
+      "Fix the 'Dropdwon' and 'sleections' typos (Figma AI rec 1) — these are the least contentious since they correct errors rather than change a convention"
+    ],
+    "unbackedNames": [
+      "fonts/tracking/X-tracking-0 — correct name exists in the export as fonts/tracking/tracking-0",
+      "control/height-default = 30 — bound elsewhere in the file, absent from the export; equals both rows' min-height, so confirming it would let both bind a token instead of a raw 30"
+    ],
+    "untilApproved": "No rename was applied and no token was added, changed or proposed. Every unbacked value is published RAW with its correct name recorded."
+  },
+
+  "notVerified": [
+    "The Figma file key was not measured.",
+    "The drag-feature row set (13095:43335, 6 variants) — structure and 30px rendered height only. No token bindings, padding or gap were read.",
+    "All three assembled menus (1728:1, 10296:16501, 11961:30613) — node ids and outer sizes only. Their internal padding, item spacing, search-bar and footer geometry, elevation and max-height/scroll behaviour are all unread. The 940px height of Dropdown/Menu (group heading) suggests a scrolling container, but no scroll or max-height rule was measured.",
+    "The radio control's inner geometry — it is delivered as a flattened SVG asset, so only its 24px hit area was readable.",
+    "Active and Hover state values for either row type. Only Default and Selected were read.",
+    "The Nesting variant's indent amount (25963:8341) was not measured.",
+    "Keyboard interaction, focus order, and whether the menus trap focus.",
+    "Contrast ratios, including the raw #334a65 count label.",
+    "Dark, High Contrast, Warm Dark and HC Light rendering. Light mode only.",
+    "Whether any product screen currently uses these DDM patterns."
+  ]
+}
