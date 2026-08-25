@@ -8,9 +8,25 @@
   "components": {
     "Button": {
       "figmaNodeId": "1:100",
-      "variants": ["primary", "secondary", "ghost", "danger", "link"],
-      "sizes": ["sm", "md", "lg"],
-      "states": ["default", "hover", "active", "disabled", "loading"],
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger",
+        "link"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "active",
+        "disabled",
+        "loading"
+      ],
       "tokens": {
         "background": "semantic.brand.primary",
         "text": "semantic.text.inverse",
@@ -22,9 +38,24 @@
     },
     "Input": {
       "figmaNodeId": "1:200",
-      "variants": ["default", "error", "success", "disabled"],
-      "sizes": ["sm", "md", "lg"],
-      "states": ["default", "focus", "filled", "error", "disabled"],
+      "variants": [
+        "default",
+        "error",
+        "success",
+        "disabled"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "filled",
+        "error",
+        "disabled"
+      ],
       "tokens": {
         "background": "semantic.surface.default",
         "border": "semantic.border.default",
@@ -39,8 +70,18 @@
     },
     "Badge": {
       "figmaNodeId": "1:300",
-      "variants": ["default", "success", "warning", "error", "info", "outline"],
-      "sizes": ["sm", "md"],
+      "variants": [
+        "default",
+        "success",
+        "warning",
+        "error",
+        "info",
+        "outline"
+      ],
+      "sizes": [
+        "sm",
+        "md"
+      ],
       "tokens": {
         "successBg": "semantic.status.success",
         "warningBg": "semantic.status.warning",
@@ -52,7 +93,11 @@
     },
     "Card": {
       "figmaNodeId": "1:400",
-      "variants": ["default", "outlined", "elevated"],
+      "variants": [
+        "default",
+        "outlined",
+        "elevated"
+      ],
       "tokens": {
         "background": "semantic.surface.default",
         "border": "semantic.border.default",
@@ -63,7 +108,11 @@
     },
     "Modal": {
       "figmaNodeId": "1:500",
-      "variants": ["default", "wide", "fullscreen"],
+      "variants": [
+        "default",
+        "wide",
+        "fullscreen"
+      ],
       "tokens": {
         "background": "semantic.surface.default",
         "overlay": "semantic.surface.overlay",
@@ -74,7 +123,11 @@
     },
     "Select": {
       "figmaNodeId": "1:600",
-      "variants": ["default", "error", "disabled"],
+      "variants": [
+        "default",
+        "error",
+        "disabled"
+      ],
       "tokens": {
         "background": "semantic.surface.default",
         "border": "semantic.border.default",
@@ -85,7 +138,12 @@
     },
     "Checkbox": {
       "figmaNodeId": "1:700",
-      "variants": ["unchecked", "checked", "indeterminate", "disabled"],
+      "variants": [
+        "unchecked",
+        "checked",
+        "indeterminate",
+        "disabled"
+      ],
       "tokens": {
         "border": "semantic.border.default",
         "checkedBg": "semantic.brand.primary",
@@ -95,7 +153,11 @@
     },
     "Toggle": {
       "figmaNodeId": "1:800",
-      "variants": ["off", "on", "disabled"],
+      "variants": [
+        "off",
+        "on",
+        "disabled"
+      ],
       "tokens": {
         "offBg": "semantic.neutral.300",
         "onBg": "semantic.brand.primary",
@@ -105,7 +167,12 @@
     },
     "Alert": {
       "figmaNodeId": "1:900",
-      "variants": ["info", "success", "warning", "error"],
+      "variants": [
+        "info",
+        "success",
+        "warning",
+        "error"
+      ],
       "tokens": {
         "infoBg": "primitives.colors.blue.50",
         "successBg": "primitives.colors.green.50",
@@ -116,8 +183,18 @@
     },
     "Avatar": {
       "figmaNodeId": "1:1000",
-      "variants": ["image", "initials", "icon"],
-      "sizes": ["xs", "sm", "md", "lg", "xl"],
+      "variants": [
+        "image",
+        "initials",
+        "icon"
+      ],
+      "sizes": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
       "tokens": {
         "background": "semantic.surface.muted",
         "radius": "primitives.radius.full"
@@ -126,7 +203,10 @@
     },
     "Tooltip": {
       "figmaNodeId": "1:1100",
-      "variants": ["default", "info"],
+      "variants": [
+        "default",
+        "info"
+      ],
       "tokens": {
         "background": "semantic.surface.overlay",
         "text": "semantic.text.inverse",
@@ -136,18 +216,25 @@
     },
     "Table": {
       "figmaNodeId": "1:1200",
-      "variants": ["default", "striped", "compact"],
+      "variants": [
+        "default",
+        "compact"
+      ],
       "tokens": {
         "headerBg": "semantic.surface.subtle",
         "rowBg": "semantic.surface.default",
-        "stripedBg": "semantic.surface.muted",
         "border": "semantic.border.default",
         "text": "semantic.text.primary"
-      }
+      },
+      "zebraStriping": "RULED OUT 2026-08-25 by the design-system owner (ruling TBL-R4, portals/agency/components/table.json): 'Zebra we are not following.' The striped variant and stripedBg token were removed from this entry and from src/styles/3-components/_tables.scss. Do not re-add. NOTE: this whole entry is still legacy placeholder data — figmaNodeId 1:1200 is fabricated; the real sets are table_head 26938:61726 and table_cell 26938:61725."
     },
     "Tabs": {
       "figmaNodeId": "1:1300",
-      "variants": ["default", "pills", "underline"],
+      "variants": [
+        "default",
+        "pills",
+        "underline"
+      ],
       "tokens": {
         "activeColor": "semantic.brand.primary",
         "inactiveColor": "semantic.text.secondary",

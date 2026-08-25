@@ -89,7 +89,11 @@ example. Raised to Figma AI. It is a cleanup task — **not** a reason to re-ope
 ## 4. ✅ Figma vs your local file — now in agreement
 
 There was one open disagreement. Your ruling on 2026-08-25 closed it, and applying it turned up two
-more problems in the local file that were never disagreements at all — just gaps.
+more problems that were never disagreements at all — just gaps.
+
+**The table below is about the copy-from kit** (`Universal Html Rules/02-components/table.css`) — the
+file a developer pastes into a project. The repo's own stylesheet
+(`src/styles/3-components/_tables.scss`) is a **separate file** and was rewritten the same day; see §4c.
 
 **Your ruling:** *"8px left right, 0 top bottom and with hug height properties with minimum height of
 30px."* Figma was right; the local file was wrong.
@@ -110,6 +114,29 @@ you want headers wrapping too.
 
 **Everything else agreed all along:** the 34/30 heights, horizontal padding 8, gap 4, 1px borders all
 round, weight 500 vs 400, 12/16 type, no uppercase, and the codegen-trap conclusion.
+
+---
+
+## 4c. The repo's own stylesheet — rewritten the same day
+
+`src/styles/3-components/_tables.scss` is not the same file as the copy-from kit. It is what anyone
+using this repo's compiled CSS actually gets, and it **contradicted you on almost everything**.
+
+It was written **2026-07-14, six weeks before this table was ever measured**, during a token-extraction
+pass — so it was never based on the Figma component at all. It had **no row heights whatsoever**, the
+4px vertical padding you overruled, a zebra-striping rule you ruled out, `border-bottom` only instead
+of borders on four sides, and 14px body text instead of 12px caption.
+
+Since every AI tool is told to read this repo for component truth, **this is the most likely reason a
+feature session could not build a table to the design system.**
+
+**The one change you will actually see:** cells used to have a bottom border only, so a table drew
+horizontal rules and *no vertical gridlines*. Every cell now has a full 1px box, so tables gain
+vertical gridlines and an outer border — which is what the design draws.
+
+Scope is deliberately narrow: head cell and data cell only. Header internals — the 24px row holding
+the sort control, required marker and help icon — are **not** in it, because they can't live on a
+`<th>` without breaking table layout and this repo ships no markup to attach them to.
 
 ---
 
@@ -173,6 +200,7 @@ closes seven.
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-08-25 | **2.1.0** — recorded that TWO stylesheets implement this contract, and rewrote the repo's own `src/styles/3-components/_tables.scss` against it (it predated the measurement by six weeks and had no row heights at all). Also recorded four **namespace divergences** that were previously papered over, including a dead `--border-radius-*` variable family that is live on Button and Empty States and produces square corners where 4px and 12px were intended. | Owner instruction, 2026-08-25 |
 | 2026-08-25 | **2.0.0** — four owner rulings applied. `table_head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
 | 2026-08-25 | **1.1.0** — recorded that TWO live header components exist (`table_head` 26938:61726 vs `Head / Tiltes for tables` 5865:162, both 34px), plus a third that is formally dead; and that this section's own sample layout uses the other one. Found while syncing against the local stylesheet. |
 | 2026-08-25 | 1.0.0 — first table contract in this repo. Both sets measured from section `26955:66556`, cross-checked against the local copy-from stylesheet and the owner's variable export. Created because the absence of any published table geometry was blocking feature work. | Owner instruction, 2026-08-25 |

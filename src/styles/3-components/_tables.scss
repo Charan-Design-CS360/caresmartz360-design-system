@@ -1,33 +1,168 @@
 // =============================================================================
 // TIER 3 — COMPONENTS: Tables
+// Rewritten 2026-08-25 against the published contract
+// portals/agency/components/table.json v2.0.0 and the owner rulings recorded
+// there (TBL-R1..R4). The previous version of this file was written 2026-07-14
+// during token extraction, six weeks BEFORE the table component was ever
+// measured — it was never based on the Figma component, and diverged from it
+// on padding, type, colour, borders and heights alike.
+//
+// Consumes Tier 2 tokens only, except the two raw heights flagged below.
+//
+// ⚠️ ONE VALUE HERE LEADS LIVE FIGMA — do NOT "correct" it back from a fresh
+// Figma read. Ruling TBL-R3: the data cell's 30px is a MINIMUM and a long
+// value grows the WHOLE ROW. Figma still binds a fixed height with ellipsis
+// truncation and is queued to be changed (C360-44222, FIG-TBL-3).
+// The other rulings do NOT lead Figma: TBL-R2's 8/0 padding CONFIRMS what
+// Figma already binds and corrects only this file, and TBL-R4's no-zebra
+// exists in neither. Overstating which values are protected is how a future
+// session ends up refusing to reconcile something Figma already agrees with.
+//
+// ⚠️ SCOPE — this file styles the head cell and the data cell only. It is
+// scoped entirely to `th` / `td`, so div/ARIA-based table markup gets nothing
+// from it. Header INTERNALS are deliberately out of scope: the canonical
+// header (TBL-R1) hosts a sort control, a required marker and a help icon
+// inside a 24px flex row with a 4px gap, and none of that can live on a `th`
+// without destroying table layout — it needs a wrapper element this repo has
+// no markup for. See the reference implementation at
+// Universal Html Rules/02-components/table.css [CS-TBL-03] onward.
 // =============================================================================
 
 .table {
   width: 100%;
+  font-family: var(--font-family-primary);
+  // On the root as well as the cells so a <caption>, <colgroup> or wrapper
+  // inherits a token-backed size instead of the document default.
+  font-size: var(--font-size-caption);
+  // ⚠️ UNRULED — gridline strategy, and the one thing in this file a reviewer
+  // will SEE change: cells previously had `border-bottom` only, so tables drew
+  // horizontal rules and no vertical gridlines. Every cell now has a full 1px
+  // box, so assembled tables gain vertical gridlines and an outer border.
+  // `collapse` is carried over unchanged and merges adjacent boxes into shared
+  // 1px lines. The contract instead describes every cell owning its own
+  // four-sided box, and flags twice (defect 7, and notVerified) that no
+  // collapse strategy was ever recorded. `separate` + `border-spacing: 0`
+  // would be literal to the contract but renders 2px internal lines. That is a
+  // visible design outcome, so it is left as found and raised with the owner.
   border-collapse: collapse;
-  font-size: var(--font-size-body-base);
 
+  // --- Head cell — canonical component `table_head` 26938:61726 (TBL-R1) ---
   th {
+    box-sizing: border-box;
+    // ⚠️ [RAW] — no Tier 2 token exists; the _density.scss ramp has no size
+    // scale, and openTokenDecision item 5 already proposes control/height-default.
+    // `height` is the load-bearing declaration, NOT `min-height`: CSS 2.1 §10.7
+    // makes min-height on a table-cell explicitly UNDEFINED (Blink and WebKit
+    // ignore it, Gecko honours it), while §17.5.3 makes a cell's `height` act
+    // as a MINIMUM in every engine. min-height is kept only as a belt-and-braces
+    // declaration for anything that is not a table-cell. A FLOOR, not a sum —
+    // with 0 block padding this CSS produces 18px of content (16px line + 2px
+    // borders), and the contract's 26px assumes Figma's 24px title row, so 34
+    // is a floor over both.
+    height: 34px;
+    min-height: 34px;
+    padding: var(--spacing-none) var(--spacing-md);
     background: var(--surface-tertiary);
-    color: var(--text-secondary);
-    font-weight: var(--font-weight-body-strong);
-    text-align: left;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-bottom: var(--border-width-default) solid var(--border-subtle);
-  }
-
-  td {
+    border: var(--border-width-default) solid var(--border-subtle);
+    // The contract measures field/value-primary here — a FIELD token on a
+    // non-field element, which it records as a namingException defect rather
+    // than an intended binding. --text-primary is bound instead: identical
+    // value (#1E293B) in every theme in this repo, correct namespace. Unifying
+    // the two namespaces is an open owner decision, so this is disclosed rather
+    // than silently normalised. It replaces --text-secondary (#475569), which
+    // was simply wrong under both the contract and the reference CSS.
     color: var(--text-primary);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-bottom: var(--border-width-default) solid var(--border-subtle);
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-caption);
+    font-weight: var(--font-weight-heading-base);
+    text-align: left;
+    vertical-align: middle;
+    // Never uppercase. Verified three ways: the component set renders "Title",
+    // production usage renders "City" / "Zip Code", and no textCase appears in
+    // any header payload. Declared so a global reset cannot reintroduce it.
+    text-transform: none;
+    // ⚠️ NEWLY DECLARED, not preserved — the old file set no white-space at
+    // all. This is MEASURED on 26938:52865, but whether a long column title
+    // SHOULD stay on one line is listed under notVerified, and TBL-R3's wrap
+    // ruling covered the data cell only. Queued for the owner: with this in
+    // force a long header is clipped by its column rather than wrapping.
+    white-space: nowrap;
   }
 
-  &--striped tbody tr:nth-child(even) {
-    background: var(--surface-secondary);
+  // --- Data cell — `table_cell` 26938:61725 ---
+  td {
+    box-sizing: border-box;
+    // ⚠️ [RULED] TBL-R3 — 30px is a MINIMUM. Same mechanism as the head cell:
+    // `height` on a table-cell is treated as a floor and every sibling cell in
+    // the row stretches to the tallest, which IS the row-level growth the
+    // ruling describes ("it can increase but this will increase the entire row
+    // height not a cell independently"). Never a fixed height that clips.
+    height: 30px;
+    min-height: 30px;
+    padding: var(--spacing-none) var(--spacing-md);
+    background: var(--field-bg-default);
+    // Measured as field/border-default on the data cell and border/subtle on
+    // the head cell. Both resolve to #E2E8F0 here. Two namespaces for one
+    // colour is openTokenDecision item 3, gated on owner approval — so each
+    // cell keeps the namespace it was measured with rather than this file
+    // picking a winner.
+    border: var(--border-width-default) solid var(--field-border-default);
+    color: var(--text-primary);
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-caption);
+    font-weight: var(--font-weight-body-base);
+    vertical-align: middle;
+    // TBL-R3: a long value WRAPS and raises the whole row. `white-space` is
+    // the load-bearing property and is declared explicitly so a global reset
+    // cannot reintroduce nowrap; `overflow-wrap` additionally breaks a single
+    // unbroken token. Never restore `nowrap` and never add text-overflow:
+    // ellipsis — either one makes the ruling unreachable. The contract's
+    // MEASURED `overflow: clip` is deliberately not carried for the same
+    // reason, and is on the Figma-side change list.
+    white-space: normal;
+    overflow-wrap: break-word;
   }
 
+  // --- Density variant ---
+  // ⚠️ UNRULED, kept as found and deliberately not re-valued — but it no
+  // longer does what its name says, and that is a real change: its padding
+  // (2/4) OVERRIDES the ruled 8/0 while active, and the new 30px floor on td
+  // means a compact row can no longer be shorter than 30px, where before it
+  // was roughly 22px. So compact now shrinks padding only, not row height.
+  // No density axis exists in Figma for the table (Size=L/M is a demo-length
+  // switch, verified three ways), the contract lists density behaviour as NOT
+  // VERIFIED, and TBL-R2 ruled the default cells only. Raised with the owner,
+  // not silently reconciled in either direction.
   &--compact th,
   &--compact td {
     padding: var(--spacing-xs) var(--spacing-sm);
   }
+
+  // --- Removed 2026-08-25 ---
+  // `&--striped` (tbody tr:nth-child(even) → --surface-secondary) is gone.
+  // Zebra striping is ruled OUT by TBL-R4, in the owner's words: "Zebra we are
+  // not following." No stylesheet or markup consumer existed in this repo or
+  // its git history — but components/component-mapping.json still declared the
+  // variant and a stripedBg token, and that declaration is removed in the same
+  // change so the ruling is not contradicted by a file AI tools read as truth.
+  // This is a decision, not a gap — do not re-add it.
+  //
+  // No hover, selected, sorted-active, disabled or error state is shipped.
+  // None exists in Figma, and the Agency semantic layer has no field or table
+  // hover token to bind — its only *hover tokens are action/*, toggle,
+  // surface/brand and text/links, all wrong layer for a data-cell surface.
+  // Deferred to the owner (TBL-D1, TBL-D2). Building one would be an invention.
+  // NOTE for whoever implements hover: data cells now paint an opaque
+  // background, so a tr-level hover will be painted over — it will need a
+  // td-level override.
+  //
+  // ⚠️ TWO KNOWN GAPS, recorded rather than papered over:
+  // 1. --spacing-md is DENSITY-VARIABLE in this repo (_density.scss:69,74 —
+  //    6px compact, 12px comfortable), so TBL-R2's ruled 8px holds only at
+  //    default density. Binding the token is still correct; whether the ruled
+  //    padding may move with density is unruled.
+  // 2. The table is now DENSITY-INVARIANT for type. --font-size-body-base is
+  //    re-valued by every density mode; --font-size-caption is re-valued by
+  //    none. 12px is the MEASURED value so it stays, but the density response
+  //    the old 14px binding happened to have is genuinely lost.
 }

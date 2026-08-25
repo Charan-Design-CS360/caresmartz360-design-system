@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Table — head cell & data cell",
     "portal": "agency",
-    "contractVersion": "2.0.0",
+    "contractVersion": "2.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP never reports a file key. Taken from portals/agency/portal-manifest.json and the URL supplied by the design owner.",
     "figmaSectionNodeId": "26955:66556",
@@ -15,15 +15,35 @@
     "jiraParent": "C360-44737",
     "humanContract": "./table.md",
     "cssReference": {
-      "file": "Universal Html Rules/02-components/table.css",
-      "classIds": [
-        "CS-TBL-01",
-        "CS-TBL-02",
-        "CS-TBL-03",
-        "CS-TBL-08"
-      ],
-      "syncedOn": "2026-08-25",
-      "note": "The copy-from stylesheet a project pastes into its own CSS. That file is the CODE; this contract is the MEASUREMENT. As of 2026-08-25 they AGREE on every value: the head cell's vertical padding was corrected from 4 to 0 there, the data cell gained the 8px inline padding it was missing entirely, and its `white-space: nowrap` was removed so the row-growth ruling can actually take effect."
+      "note": "TWO stylesheets implement this contract, for different audiences. Do not confuse them — they are separate files with separate jobs, and a change to one is not a change to the other.",
+      "copyFromKit": {
+        "file": "Universal Html Rules/02-components/table.css",
+        "audience": "a developer starting a screen, who pastes it into their own project",
+        "classIds": [
+          "CS-TBL-01",
+          "CS-TBL-02",
+          "CS-TBL-03",
+          "CS-TBL-08"
+        ],
+        "scope": "the full component — head cell, data cell, sort atom, control cells, empty header, inline-edit row, link cell",
+        "syncedOn": "2026-08-25",
+        "outsideThisRepo": true
+      },
+      "repoStylesheet": {
+        "file": "src/styles/3-components/_tables.scss",
+        "audience": "anyone consuming this repo's compiled stylesheet directly",
+        "selectors": [
+          ".table",
+          ".table th",
+          ".table td",
+          ".table--compact"
+        ],
+        "scope": "head cell and data cell ONLY. Scoped to th/td, so div or ARIA-based table markup gets nothing from it. Header internals (the 24px flex title row with its 4px gap, sort control, required marker and help icon) are deliberately out of scope — they cannot live on a `th` without destroying table layout, and this repo ships no markup to hang a wrapper class on.",
+        "rewrittenOn": "2026-08-25",
+        "previouslyWritten": "2026-07-14, during token extraction — six weeks BEFORE this component was ever measured. It was never based on the Figma component. It had ZERO height declarations, 4px vertical padding, a zebra-striping rule, border-bottom only, and 14px body type instead of 12px caption. Since every AI tool is instructed to read this repo for component truth, that is the most likely root cause of feature sessions being unable to build tables to the design system.",
+        "verified": "compiles clean with sass 1.77.8; all 15 var() references resolve to definitions inside src/styles/; npm run validate green; 30/30 tests pass"
+      },
+      "agreementStatus": "The two stylesheets and this contract agree on every value they share. Where they name different tokens for the same colour, the divergence is disclosed in both files rather than silently normalised — see knownNamespaceDivergences."
     },
     "markerLegend": {
       "MEASURED": "read directly from live Figma; nodeId given",
@@ -33,7 +53,13 @@
     },
     "readThisFirst": "✅ THE HEADER QUESTION IS SETTLED. The canonical table header is `table_head` 26938:61726, variant 26938:52865 — ruled by the design-system owner on 2026-08-25, who linked that exact node and said it \"include all actions what it needed to show and hide example, Sorting, Information etc.\" `Head / Tiltes for tables` 5865:162 is RETIRED as an alias of it, and `X-Head old` stays formally dead. Build from 26938:61726. Do not re-open this from the fact that the section's own sample layout (27002:78668) still instantiates the retired name — that is a Figma-side cleanup item, not evidence of a live competing component. Three more rulings landed the same day and are all recorded in `ownerRulings` below: padding is 8px inline / 0px block on BOTH cells; the data cell's 30px is a MINIMUM and a long value grows the WHOLE ROW; zebra striping is ruled out entirely. One thing is deliberately still open — cell hover — because the Agency semantic layer has no hover token for a field or table surface to follow. It is deferred to the owner, not invented here.",
     "ruledOn": "2026-08-25",
-    "ruledBy": "Singh (design-system owner)"
+    "ruledBy": "Singh (design-system owner)",
+    "knownNamespaceDivergences": [
+      "Text colour: this contract MEASURES field/value-primary on both cells. Both stylesheets bind text/primary instead — identical value (#1E293B) in every theme in the repo, and the correct namespace for a non-field element. The contract's own namingException records the field-token-on-a-header as a defect, so binding text/primary is following the defect note, not ignoring the measurement. Unifying the namespaces is an open owner decision.",
+      "Border colour: MEASURED as border/subtle on the head cell and field/border-default on the data cell. Both resolve to #E2E8F0. The repo stylesheet now binds each cell the namespace it was measured with, so it does not pre-empt openTokenDecision item 3.",
+      "border-radius: the copy-from kit declares var(--border-radius-rounded-none). That name is NOT DEFINED in this repo's shipped CSS — the prefix-free name here is --rounded-none. Harmless for a 0 radius, but the same mistake is live on values that matter: button.json:56 and empty-states.json:59/:69/:94 claim --border-radius-rounded and --border-radius-rounded-xl, and a dead var() there means square corners where 4px and 12px were intended. Repo names: --rounded, --rounded-xl. The mapping JSON is wrong, not the CSS.",
+      "Density: the ruled 8px padding binds spacing/md, which this repo re-values per density mode (6px compact, 12px comfortable), so TBL-R2's 8px holds only at default density. And swapping type from font-size/body-base to the MEASURED font-size/caption made the table density-invariant, because caption is re-valued by no density mode. Both are unruled and going to the owner."
+    ]
   },
   "anatomy": {
     "componentSets": [
@@ -692,6 +718,7 @@
         "change": "No hover/selected/sorted-active variant exists, and the Agency semantic layer has no field or table hover token to bind. Needs an owner decision first (TBL-D1) — listed here so it is not lost, NOT as an approved change.",
         "ruling": "deferred"
       }
-    ]
+    ],
+    "raisedAs": "C360-44222 comments 629355 (the 5-item list) and 629359 (the owner's direct instruction to update the guidelines and the component)"
   }
 }
