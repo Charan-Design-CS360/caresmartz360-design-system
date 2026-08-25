@@ -14,6 +14,7 @@ against [`../../../schemas/component-contract.schema.json`](../../../schemas/com
 | Empty States (8 inline + 3 popup variants) | [`empty-states.md`](./empty-states.md) · [`empty-states.json`](./empty-states.json) | `27218:64329` | 2026-08-25 |
 | Page Header (4 sizes) | [`page-header.md`](./page-header.md) · [`page-header.json`](./page-header.json) | `27232:63236` | 2026-08-25 |
 | DDM — Dropdown Menu (rows + 3 menus) | [`ddm-dropdown-menu.md`](./ddm-dropdown-menu.md) · [`ddm-dropdown-menu.json`](./ddm-dropdown-menu.json) | `27245:67562` | 2026-08-25 |
+| Table — head cell & data cell | [`table.md`](./table.md) · [`table.json`](./table.json) | `26955:66556` | 2026-08-25 |
 | Button (9 types) | [`button.md`](./button.md) · [`button.json`](./button.json) | `26938:66536` | 2026-08-24 |
 | Fields — type 1 | [`field-type-1.md`](./field-type-1.md) · [`field-type-1.json`](./field-type-1.json) | `26955:66554` | 2026-08-24 |
 
@@ -45,3 +46,19 @@ It carries real 40-character Figma component keys — not node ids, and not plac
 It is distinct from the repo-root `components/component-mapping.json`, which is a **legacy unscoped**
 file that the audit script reports as carrying 15 placeholder node IDs and as unable to satisfy
 portal release readiness. Do not read the legacy file for Agency work.
+
+## Paired copy-from code
+
+Some contracts have a matching copy-from stylesheet in the document-level
+`Universal Html Rules/02-components/` folder, which is what a project pastes into its own CSS.
+Where that pairing exists the contract records it in `$meta.cssReference` with the class IDs that
+implement it.
+
+The two are **not** duplicates and neither replaces the other:
+
+- **The contract** is the measurement. It carries provenance, node ids, and — crucially — it is
+  allowed to say *"this was not verified"*.
+- **The stylesheet** is the code. It cannot say "unknown"; it either sets a value or does not render.
+
+When they disagree, the contract records the disagreement rather than silently picking a side. See
+`table.json` → `contractVsLocalCss` for the current live example.
