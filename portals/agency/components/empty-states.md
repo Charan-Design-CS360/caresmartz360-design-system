@@ -96,7 +96,9 @@ frame width and must never be reproduced as a fixed number.
 
 ## Defects found
 
-Nine, in rough order of how much they'd hurt:
+Eight are listed in the machine twin's `defects` array, in rough order of how much they'd hurt. A
+ninth issue — the shadow's sub-1 alpha — is recorded in the twin's `colourFormula.alphaIsLoadBearing`
+field instead, because the schema has a dedicated place for it. Both are described below.
 
 1. **The grey Search variant's heading bypasses the token layer completely.** Node `10682:19314`
    renders it as three text spans that hardcode `#475569`, `18px`, `24px` and `-0.24px` directly. Its
