@@ -26,6 +26,7 @@ was a gap in what we published, not a mistake by whoever was building.
 |---|---|---|
 | Node | `26938:52865` (set `26938:61726`) | `26938:52924` (set `26938:61725`) |
 | Height | **34px** — a minimum, can grow | **30px** — a **minimum**, grows with content *(ruled)* |
+| | *declared as `height`, not `min-height` — see §4d* | *same* |
 | Background | `surface/tertiary` (#f1f5f9) | `field/bg-default` (#ffffff) |
 | Border | 1px `border/subtle` | 1px `field/border-default` |
 | Padding | **8px sides · 0 top/bottom** *(ruled)* | **8px sides · 0 top/bottom** *(ruled)* |
@@ -140,6 +141,23 @@ the sort control, required marker and help icon — are **not** in it, because t
 
 ---
 
+## 4d. One bug caught by review, worth knowing about
+
+The first version of this fix looked right and rendered wrong.
+
+Both stylesheets originally held the header open with `min-height: 34px`. That property is **not
+defined** for table cells — Chrome, Edge and Safari ignore it completely; only Firefox obeys it.
+Measured in a real browser: the header came out **17px**, against its own **30px** data rows. The
+header was shorter than the body, which is the opposite of your design.
+
+The fix is `height: 34px`. In a table, `height` acts as a **floor**, not a ceiling — so your ruling is
+untouched: a long value still grows the cell and raises the whole row.
+
+Fixed in both stylesheets and in this contract, which had been telling future sessions to *never* use
+`height` on the header — advice that would have silently reintroduced the bug.
+
+---
+
 ## 4b. States — one ruled out, two waiting on you
 
 | State | Status |
@@ -200,6 +218,7 @@ closes seven.
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-08-25 | **2.1.1** — adversarial review found the 34px header floor was enforced by `min-height`, which browsers may ignore on a table cell; measured at **17px** in Chrome, shorter than its own 30px rows. Fixed to `height` in both stylesheets, and this contract's `neverUse: "height"` corrected — as written it would have made a future session undo the fix. Also retracted a false claim that declaring both properties made real and div-based tables behave alike. | Verification, 2026-08-25 |
 | 2026-08-25 | **2.1.0** — recorded that TWO stylesheets implement this contract, and rewrote the repo's own `src/styles/3-components/_tables.scss` against it (it predated the measurement by six weeks and had no row heights at all). Also recorded four **namespace divergences** that were previously papered over, including a dead `--border-radius-*` variable family that is live on Button and Empty States and produces square corners where 4px and 12px were intended. | Owner instruction, 2026-08-25 |
 | 2026-08-25 | **2.0.0** — four owner rulings applied. `table_head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
 | 2026-08-25 | **1.1.0** — recorded that TWO live header components exist (`table_head` 26938:61726 vs `Head / Tiltes for tables` 5865:162, both 34px), plus a third that is formally dead; and that this section's own sample layout uses the other one. Found while syncing against the local stylesheet. |

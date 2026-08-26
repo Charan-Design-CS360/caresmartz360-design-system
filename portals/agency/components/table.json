@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Table — head cell & data cell",
     "portal": "agency",
-    "contractVersion": "2.1.0",
+    "contractVersion": "2.1.1",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP never reports a file key. Taken from portals/agency/portal-manifest.json and the URL supplied by the design owner.",
     "figmaSectionNodeId": "26955:66556",
@@ -58,7 +58,8 @@
       "Text colour: this contract MEASURES field/value-primary on both cells. Both stylesheets bind text/primary instead — identical value (#1E293B) in every theme in the repo, and the correct namespace for a non-field element. The contract's own namingException records the field-token-on-a-header as a defect, so binding text/primary is following the defect note, not ignoring the measurement. Unifying the namespaces is an open owner decision.",
       "Border colour: MEASURED as border/subtle on the head cell and field/border-default on the data cell. Both resolve to #E2E8F0. The repo stylesheet now binds each cell the namespace it was measured with, so it does not pre-empt openTokenDecision item 3.",
       "border-radius: the copy-from kit declares var(--border-radius-rounded-none). That name is NOT DEFINED in this repo's shipped CSS — the prefix-free name here is --rounded-none. Harmless for a 0 radius, but the same mistake is live on values that matter: button.json:56 and empty-states.json:59/:69/:94 claim --border-radius-rounded and --border-radius-rounded-xl, and a dead var() there means square corners where 4px and 12px were intended. Repo names: --rounded, --rounded-xl. The mapping JSON is wrong, not the CSS.",
-      "Density: the ruled 8px padding binds spacing/md, which this repo re-values per density mode (6px compact, 12px comfortable), so TBL-R2's 8px holds only at default density. And swapping type from font-size/body-base to the MEASURED font-size/caption made the table density-invariant, because caption is re-valued by no density mode. Both are unruled and going to the owner."
+      "Density: the ruled 8px padding binds spacing/md, which this repo re-values per density mode (6px compact, 12px comfortable), so TBL-R2's 8px holds only at default density. And swapping type from font-size/body-base to the MEASURED font-size/caption made the table density-invariant, because caption is re-valued by no density mode. Both are unruled and going to the owner.",
+      "Verification note, 2026-08-25: an adversarial review of the rewritten repo stylesheet raised 2 BLOCK findings, both about the height mechanism, and both were CONFIRMED by empirical measurement in headless Chrome rather than argument — see geometry.headCell.minHeight.alsoDeclare. Both are fixed in both stylesheets and in this contract. Partial coverage caveat: 7 of the 40 verification agents died on a session limit, all in the browser-correctness lens, so that lens's lower-severity findings were never independently judged."
     ]
   },
   "anatomy": {
@@ -167,9 +168,10 @@
           "MEASURED",
           "RAW"
         ],
-        "cssProperty": "min-height",
-        "neverUse": "height",
-        "note": "A FLOOR, not a sum. Ruled 2026-08-25 (TBL-R2): with padding-block 0 the content measures 1+0+24+0+1 = 26px, and min-height 34 holds the cell open past it. The local stylesheet's old '1+4+24+4+1' arithmetic was retired by that ruling. Centred content places the label identically either way, which is why the 4-vs-0 discrepancy went unnoticed for so long."
+        "cssProperty": "height AND min-height — declare both",
+        "neverUse": "a fixed height that clips content. NOTE: this does NOT mean 'never write the `height` property' — that was the previous wording and it was wrong. In the table model `height` IS a floor, so declaring it is what makes the 34px real, and content taller than 34 still grows the row. Do not strip `height: 34px` out of either stylesheet on the strength of this field.",
+        "note": "A FLOOR, not a sum. Ruled 2026-08-25 (TBL-R2): with padding-block 0 the content measures 1+0+24+0+1 = 26px, and min-height 34 holds the cell open past it. The local stylesheet's old '1+4+24+4+1' arithmetic was retired by that ruling. Centred content places the label identically either way, which is why the 4-vs-0 discrepancy went unnoticed for so long.",
+        "alsoDeclare": "height: 34px. THIS IS THE LOAD-BEARING DECLARATION. min-height on a display:table-cell box is EXPLICITLY UNDEFINED by CSS 2.1 §10.7 — Blink and WebKit ignore it, Gecko honours it — while §17.5.3 makes a cell's `height` the maximum of specified and content height, i.e. a MINIMUM, in every engine. Measured in headless Chrome on the shipped rules: min-height:34 alone renders 17px (identical to declaring nothing); height:34 renders 34px. So min-height alone left the header SHORTER than its own 30px data rows, inverting the design."
       },
       "paddingInline": {
         "value": 8,
@@ -256,7 +258,7 @@
           "RULED"
         ],
         "cssProperty": "min-height",
-        "alsoDeclare": "height: 30px — in the CSS table model `height` on a table-cell is itself treated as a minimum, so declaring both keeps a real <table> and a div-based table behaving identically.",
+        "alsoDeclare": "height: 30px — the load-bearing declaration, for the same reason as the head cell: CSS 2.1 §10.7 makes min-height undefined on a table-cell, §17.5.3 makes `height` a floor. ⚠️ CORRECTION to this contract's earlier wording: declaring both does NOT make a real <table> and a div-based table behave identically. That claim was wrong. On a flex or block box `height: 30px` is a FIXED height and CLIPS instead of growing — the opposite of ruling TBL-R3. A div-based build needs min-height only, plus align-items: stretch on the row. Both published stylesheets are scoped to real table elements (th/td and .cs-table__*), so neither covers div-based markup at all.",
         "neverUse": "a fixed height that clips content",
         "note": "⚠️ RULED, NOT MEASURED. Figma currently binds a FIXED height:30 on 26938:52924. Owner ruling TBL-R3 on 2026-08-25 overrides that: 30 is a MINIMUM, a long value grows the cell, and that growth raises the ENTIRE ROW — never one cell independently. Figma is scheduled to be updated to match; see figmaSideChangesRequired."
       },
