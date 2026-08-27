@@ -19,6 +19,18 @@
   --field-bg-danger: var(--red-50);
   --field-border-danger: var(--red-500);
   --field-bg-disabled: var(--neutral-100);
+  // Added 2026-08-27 — Figma has 7 field states, this file had 4. Verified
+  // against live Figma variable defs (field/bg-success #F0FDF4 etc.) and
+  // matched to existing primitives exactly — no new primitive values added.
+  // Light mode only: dark/high-contrast modes were not verified against
+  // Figma for these 3 states and are intentionally left untouched rather
+  // than guessed. See VERIFICATION-LOG.md, 2026-08-27.
+  --field-bg-success: var(--green-50);
+  --field-border-success: var(--green-700);
+  --field-bg-warning: var(--yellow-50);
+  --field-border-warning: var(--yellow-400);
+  --field-bg-ai: var(--purple-50);
+  --field-border-ai: var(--purple-600);
 
   // ── TEXT ──
   --text-brand: var(--blue-600);

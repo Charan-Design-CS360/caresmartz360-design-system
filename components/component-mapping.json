@@ -21,21 +21,39 @@
       "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Input": {
-      "figmaNodeId": "1:200",
-      "variants": ["default", "error", "success", "disabled"],
-      "sizes": ["sm", "md", "lg"],
-      "states": ["default", "focus", "filled", "error", "disabled"],
+      "_fixed": "2026-08-27 — every field below is real and verified, replacing the fabricated placeholder this entry had (figmaNodeId 1:200, in the round-hundreds pattern this file's own $metadata.warning already flags as unconfirmed). Verified via get_design_context/get_variable_defs on the live Figma node, not guessed. The other 14 entries in this file were NOT touched — they still have the same fabricated-looking pattern and still need the regeneration pass $metadata.warning calls for.",
+      "figmaFile": "4bh29laapcuKBTghfaRXF0",
+      "figmaFileNote": "Different file than this JSON's top-level $metadata.figmaFile (DJBpjoXPMEw6bBAByIQaAy, the Primitives file) — the real Field component lives in the Design System Agency V2.0 file instead. Confirm whether other entries in this file have the same silent file mismatch before trusting their node IDs.",
+      "figmaNodeId": "26938:65997",
+      "figmaNodeName": "field-set-type1 (component set, page \"Fields type 1\")",
+      "variants": ["default", "focus", "error", "success", "warning", "ai", "disabled"],
+      "states": ["default", "focus", "error", "success", "warning", "ai", "disabled"],
+      "structure": {
+        "_note": "No other component in this file has a structure block — every other entry is color/radius tokens only. Adding this because the missing structural spec was the actual root cause of a real bug (see VERIFICATION-LOG.md, 2026-08-27) — a consuming app had no source for these values and reverse-engineered them wrong from a live instance.",
+        "containerPaddingPx": 0,
+        "containerGapPx": 4,
+        "containerBorderRadiusPx": 0,
+        "topSectionHeightPx": 22,
+        "topSectionPaddingPx": 0,
+        "bottomSectionHeightPx": 34,
+        "bottomSectionPaddingPx": "0 0 0 8",
+        "totalHeightPx": 62
+      },
       "tokens": {
-        "background": "semantic.surface.default",
-        "border": "semantic.border.default",
-        "borderFocus": "semantic.border.focus",
-        "borderError": "semantic.border.error",
-        "text": "semantic.text.primary",
-        "placeholder": "semantic.text.disabled",
-        "radius": "primitives.radius.md"
+        "background": "field.bg-default",
+        "border": "field.border-default",
+        "borderFocus": "field.border-focus",
+        "borderError": "field.border-danger",
+        "borderSuccess": "field.border-success",
+        "borderWarning": "field.border-warning",
+        "borderAi": "field.border-ai",
+        "backgroundAi": "field.bg-ai",
+        "text": "field.value-primary",
+        "placeholder": "field.value-placeholder",
+        "radius": "border-radius/rounded-none"
       },
       "tailwindClasses": "input",
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+      "componentLibrary": "Not verified by this fix — do not assume Angular Material M3 without checking the actual consuming app's implementation"
     },
     "Badge": {
       "figmaNodeId": "1:300",
