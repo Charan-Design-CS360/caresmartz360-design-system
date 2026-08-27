@@ -25,3 +25,35 @@ We are adopting a strict, enterprise-grade **3-Tier Design Token Architecture** 
 ## 6. Architecture Status
 *   **Resolved:** The conflict between Rule 3 (No Prefixes) and the `--agency-*` prefix system has been resolved. All portal-specific prefixes (like `--agency-`) have been stripped from semantic tokens in favor of a prefix-free global naming convention (`--action-primary-bg`, etc.) with theme switching, fully complying with Rule 3.
 
+## 7. Mandatory Discovery Order Before Building Any Component
+
+**PROPOSED 2026-08-27 — drafted by an AI session working the CareSmartz360
+Legacy Assessment project, staged for Singh's review, not yet confirmed as
+policy.** Root cause: a consuming-app session spent several hours
+reverse-engineering component structure (padding, gaps, radius) from
+individual Figma *instances* in a feature file, getting some values wrong,
+before discovering this repo and the dedicated Design System Figma file
+existed and had the exact spec all along — despite both being reachable the
+entire time via the `caresmartz-design` skill family. Full incident:
+`Office_Work/LegacyAssessment/PROJECT-HISTORY.md`, 2026-08-27 entries.
+
+Before any AI agent defines CSS, structure, spacing, or tokens for a
+CareSmartz360 component, in this order:
+
+1.  **Check the relevant `caresmartz-design` skill first** (e.g.
+    `agency-portal`, `portal-context`) for the portal's semantic-layer Figma
+    file, module files, and known-issues list.
+2.  **Check this repo** — `component-mapping.json` for an existing component
+    entry, and the versioned token exports — before writing any new token or
+    class.
+3.  **Check the Design System Figma file's guideline pages** (e.g. "Form
+    Fields Guidelines," "Text field/Headers") for an authored spec. These
+    pages are written explicitly for AI-tool consumption — exact padding,
+    gaps, heights, and a 3-tier token mapping, not just a visual reference.
+4.  **Only if no canonical spec exists at any of the above** — reverse-engineer
+    from a live Figma instance (`get_design_context` on a real usage in a
+    feature file), and flag the gap so step 2 or 3 can be filled in for next
+    time, rather than leaving every future agent to re-derive the same thing.
+
+Skipping straight to step 4 is the failure mode this rule exists to prevent.
+

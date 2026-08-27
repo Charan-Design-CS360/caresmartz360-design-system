@@ -51,6 +51,73 @@ Dev Mode MCP Server is now enabled and working. Pulled live data from the "🤖 
 
 ---
 
+## 2026-07-30 (Scheduled Task — Completion Sprint Run)
+
+### Status Summary
+**Lane A Progress:** A1 blocked by Jira context size; A2–A4 already done (2026-07-23); A5 not started; A6 completed this run.
+
+### Completed This Run
+
+**A6 — Token Export Authoritative File + Naming Mismatch Note**
+- Created `/Users/netsmartz/Documents/Office_Work/G-DS-TOKEN-EXPORT-SSOT.md`
+- **Declaration:** `ds-tokens-latest.json` (v2.6.0, 2026-07-20 export) is the single SSOT for all portal consumption.
+- **Rationale:** Complete tier coverage (Tier 1 primitives, Tier 2 semantic, Tier 3 component structure); already in CI scope; versioning decay pattern documented.
+- **Primitives naming mismatch noted:** `Brandblue-*` (Figma / tokens) vs. `--blue-*` (legacy references). Not renamed because: (1) 23+ downstream bindings, (2) CamelCase name is intentional/distinct, (3) design decision (if rename needed) belongs to Singh via epic debate, not autonomous rename.
+- **Archive plan:** Next export will archive old versions with README explaining deprecation.
+
+### Already Complete (From 2026-07-23 snapshot)
+- **A2:** DS capability audit (`G-DS-CAPABILITY-AUDIT.md`) — 14-item checklist, 9 HAVE/HAVE-fixing, 5 PARTIAL/GAP, fastest path to completion ordered.
+- **A3:** Angular integration assessment (`G-ANGULAR-INTEGRATION.md`) — token-flow pipeline, Material M3 bridge fix, 5-step turnkey plan, blockers listed.
+- **A4:** Claude Design Kit artifacts (3 files in `/design-kit/`) — onboarding pointer, token export + BA how-to, starter-file spec.
+
+### Not Yet Started
+- **A5:** Epic C360-3526 live dashboard artifact (Cowork live artifact for Tier 1/2/3 + portal statuses) — requires Figma AI decision on color remaps before productionizing.
+- **Lane C:** Blocked on Figma AI replies to C360-44027 comments 619238/619239 (color WCAG gap answers).
+
+### Blocker: Jira Context Size
+A1 task (poll C360-44027 for Figma AI reply) returned 193K+ characters, exceeding context limit. File saved but not accessible from scheduled task environment. **Fallback:** Skipped to next Lane A item and advanced A6 instead. Cannot complete A1 until Jira query context is tuned (e.g., exclude changelog, limit comments to last 50) or run from an interactive session.
+
+### For Next Run
+1. **A1 retry:** Use `expand=` parameter with Jira fetch to exclude unnecessary fields (e.g., no full changelog). Focus only on recent comments (last 10–20) to detect new Figma AI replies.
+2. **A5 prep:** Design epic dashboard artifact structure (Figma file link, 3-tier legend, portal cards, status indicators, link to C360-44027 for live color sync status).
+3. **Lane C watch:** Monitor C360-44027 for Figma AI's WCAG gap resolution — when replied, A1 can verify and sync to repo.
+
+### References
+- Completion plan: `/Users/netsmartz/Documents/Office_Work/G-COMPLETION-PLAN-2026-07-23.md`
+- Token SSOT doc (new): `/Users/netsmartz/Documents/Office_Work/G-DS-TOKEN-EXPORT-SSOT.md`
+- Ecosystem rules: `/Users/netsmartz/Documents/Office_Work/ECOSYSTEM-RULES.md` (§23 audit footer, §24 Jira bus rules)
+
+---
+
+## 2026-08-04 (Scheduled Task — Completion Sprint Run #2)
+
+### Status Summary
+**Lane A Complete.** All autonomous-safe items done. Lane C waiting on Figma AI.
+
+### Attempted This Run
+- **A1 Poll Retry:** Called `getJiraIssue(C360-44027)` to check for Figma AI replies to comments 619238/619239.
+  - Result: Query succeeded but returned 236K+ characters (exceeds scheduled context limit).
+  - **Fallback:** Cannot safely parse Jira comments in scheduled environment; manual Jira check needed in interactive session.
+  - **Decision:** Per plan fallback, skipped to Lane A work. A1 cannot complete unattended due to context limits.
+
+### Lane A Final Status
+| Item | Status | Notes |
+|------|--------|-------|
+| A1 | Blocked on Jira context | Query returns too large; needs interactive session or filtered query |
+| A2 | ✅ Done (2026-07-23) | DS capability audit checklist in `G-DS-CAPABILITY-AUDIT.md` |
+| A3 | ✅ Done (2026-07-23) | Angular integration assessment in `G-ANGULAR-INTEGRATION.md` |
+| A4 | ✅ Done (2026-07-23) | Claude Design Kit artifacts (3 files) in `/design-kit/` |
+| A5 | Blocked on Figma AI | Epic C360-3526 dashboard artifact waiting on color WCAG gap resolution |
+| A6 | ✅ Done (2026-07-30) | Token export SSOT declared in `G-DS-TOKEN-EXPORT-SSOT.md` |
+
+### Lane C Status
+**Waiting on Figma AI** — C360-44027 comments 619238/619239 (color remaps + WCAG gap answers). Until replied, A5 (epic dashboard) cannot be productionized.
+
+### Recommendation
+**Lane A is effectively complete** (A5 is gated by Figma AI, same as Lane C). Safe to pause the scheduled runs until Figma AI replies to C360-44027. **Next human action:** Singh should check C360-44027 comments for Figma AI's WCAG gap resolution; when replied, trigger A1 verification + A5 dashboard artifact creation in an interactive session (to handle Jira context size and design decisions).
+
+---
+
 ## 2026-07-13 — third pass (fixes applied + repo drift discovered)
 
 ### Fixes applied (uncommitted — see "needs a decision" below)
@@ -218,3 +285,72 @@ Per DONE-GATE (§14) — did not accept the summary at face value, re-checked li
 
 ### Verification Method
 Programmatic — `evaluate_script` with full collection traversal, alias chain resolution, and hex value export. No manual inspection needed for data accuracy.
+
+---
+
+## 2026-08-27 — Consuming-project gap: canonical spec unused for several hours
+
+**Tool:** Claude (session working `Office_Work/LegacyAssessment/`, a
+CareSmartz360 Agency-portal prototype — not this repo's own maintenance)
+
+### Real gap found — available discovery tools went unchecked
+Building a clickable AI-form-filling prototype against the Assessment Figma
+file (`SEV8hgY5gLTZpK1KMlRkPI`), several component-structure values (field
+top-section height, inter-section gap, border-radius, padding distribution)
+were reverse-engineered from live component *instances* via
+`get_design_context`, rather than from an authored spec. Two values came out
+wrong this way (top-section height 26px vs. the correct 22px; a missing 4px
+inter-section gap) and were only caught because Singh compared the built
+result directly against his own Figma selection and asked why it didn't
+match.
+
+Two resources that would have caught this from the start were available the
+entire session and never invoked:
+- The `caresmartz-design:agency-portal` / `caresmartz-design:portal-context`
+  skills, which name this repo, the Design System Figma file
+  (`4bh29laapcuKBTghfaRXF0`), and its page list.
+- This repo itself, plus the Design System Figma file's "Form Fields
+  Guidelines" page (node `26938:65458`), which contains an exhaustive,
+  deliberately AI-tool-authored spec — exact gap/padding/height values,
+  a "3-tier" resolution order, and a section literally titled
+  "INSTRUCTIONS FOR AI TOOLS" for exactly this situation.
+
+### Also found — a doc-vs-live-component disagreement inside the spec itself
+The same "Form Fields Guidelines" page states field-label letter-spacing
+should be `-0.24px`. The actual field component instance (checked earlier
+the same session, node `21002:38744` in the Assessment file) exports
+`tracking-0` (`0px`) on the real, live label. Not resolved here — flagged so
+whoever owns this page can reconcile the written spec against the actual
+component binding.
+
+### Figma vs. this repo — full comparison, requested by Singh before committing
+Checked every field-relevant file in this repo (`src/styles/1-primitives/`,
+`src/styles/2-semantics/_theme-light.scss`, `design-tokens/agency-*`,
+`components/component-mapping.json`) against the Figma values above.
+
+| Property | Figma | This repo | Verdict |
+|---|---|---|---|
+| Container gap / padding / radius | 4px / 0 / 0 | Not present — no field-structure file exists anywhere in this repo | Figma is the only source; nothing to reconcile |
+| Top/bottom section height | 22px / 34px | Not present | Figma is the only source |
+| bg/border: default, focus, danger, disabled (4 states) | `#FFFFFF`/`#E2E8F0`, `#F0F7FF`/`#0077FF`, `#FEF2F2`/`#EF4444`, `#F1F5F9` | Identical, resolved through `_theme-light.scss` → `_colors.scss` primitives (`neutral-0/100/200`, `blue-50/600`, `red-50/500`) | **Exact match, all 4 states** |
+| bg/border: success, warning, ai (3 states) | `#F0FDF4`/`#15803D`, `#FEFCE8`/`#FACC15`, `#FAF5FF`/`#9333EA` | **Missing entirely** from `_theme-light.scss` | Repo is behind Figma, not contradicting it |
+| Label letter-spacing | Doc: `-0.24px` · live component: `0px` | `--tracking-tight: -0.024em` primitive exists (≈`-0.288px` @ 12px) — a third, distinct number, not proven bound to this label | Still unresolved — three sources, three numbers |
+
+**Conclusion:** everywhere this repo currently defines a field token, it agrees
+with Figma exactly — zero contradictions found. The gap is coverage, not
+accuracy: no structural spec exists here at all, and 3 of 7 color states are
+missing. That's the case for building out §7's discovery order and for
+extending this repo's field tokens to match Figma's full 7-state set — not
+evidence that either source is currently "wrong."
+
+### Fix proposed, not yet applied
+A new §7 in `AI_CONTEXT.md`, "Mandatory Discovery Order Before Building Any
+Component," requiring the skill → this repo → the Figma guideline pages →
+only-then-reverse-engineer sequence for any AI agent building a CareSmartz360
+component in a consuming app. Drafted in that file, staged uncommitted,
+pending Singh's confirmation before commit — this repo is shared across the
+AI ecosystem, so a policy change here isn't this session's call alone.
+
+### Status
+`OPEN` — awaiting Singh's review of the proposed `AI_CONTEXT.md` §7 and a
+decision on the letter-spacing discrepancy. Not committed to git.
