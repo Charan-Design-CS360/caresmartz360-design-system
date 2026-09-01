@@ -1,63 +1,105 @@
 # Column Arrangement — Agency pattern contract
 
 **Portal:** Agency · **Layer:** 4 (Pattern, filed under Components — see layer4Classification) · **Jira parent:** C360-44737
-**Measured:** 2026-09-01, live Figma · **Pattern node:** `27311:46254` · **Linked atom:** `13095:43335`
-**Contract version:** `1.0.0` — first measurement.
+**Measured:** 2026-09-01, live Figma · **Ruled:** 2026-09-01, Singh · **Pattern node:** `27311:46254` · **Linked atom:** `13095:43335`
+**Contract version:** `2.0.0` — full behaviour spec added after Singh's ruling. Supersedes `1.0.0`.
 **Machine twin:** [`column-arrangement.json`](./column-arrangement.json)
+
+---
+
+## 0. Purpose — why this exists
+
+Lets someone decide **which columns a table shows, and in what order** — without a developer
+changing code. Two real problems it solves:
+
+- A table that ships every possible column becomes unreadable on a real screen. This lets each
+  person keep only the columns they actually use.
+- A table's column order is normally whatever the person who built it chose. This lets the person
+  *using* the table choose their own order — including which single column stays pinned in view
+  while the rest scrolls.
 
 ---
 
 ## 1. What it is, in plain language
 
-A side panel that lets someone decide **which columns a data table shows, and in what order.**
-
-Singh's own words are the whole functional spec: *"in data table, user can shuffle or rearrange the
-columns as per their design, so accordingly from this popup user can select the columns he want to
-see in table + he can also rearrange the table columns by simply drag and drop the columns from 6
-dots."* Everything below just measures how that idea is actually built in Figma.
-
-The panel has four parts, stacked top to bottom:
+A side panel with four parts, stacked top to bottom:
 
 | Part | What it does |
 |---|---|
 | **Header** | Title "Column(s)" + a close (×) button. Reused, not new. |
 | **Search** | Type to filter the column list. Reused, not new. |
-| **Column list** | One row per column. Check to show/hide. Drag the 6-dot handle to reorder. |
+| **Column list** | One row per column, in two groups: **Selected** and **Not selected**. |
 | **Footer** | Reset (left) · Cancel / Apply (right). |
 
-**Nothing here is a new visual language.** Every piece — the header, the search bar, the row, the
-group label, the buttons — is an **existing, already-published Agency component.** This contract's
-real job is documenting how they're **assembled**, not inventing new parts.
+Every visible part is an **existing, already-published Agency component** — the header, the search
+bar, the row, the group label, the buttons. This contract's job is documenting how they're
+**assembled and how they behave**, not inventing new parts.
 
 ---
 
-## 2. The column list — the part that actually matters
+## 2. How it behaves — every action, and its effect
+
+This section exists because Singh asked for it directly: *"Make sure with every component you have
+complete behavioural and action related information and how it works."*
+
+| Do this | What happens |
+|---|---|
+| **Type in Search** | Filters both groups to columns whose name matches. Doesn't change any checkbox. |
+| **Check a row** | Column moves into **Selected columns**, added to the **bottom** of the current order. |
+| **Uncheck a row** | Column moves into **Not selected columns**. It disappears from the table on Apply, and stops being draggable — order means nothing for a hidden column. |
+| **Drag a Selected row** | Changes that column's left-to-right position in the table. Only Selected rows are draggable. |
+| **Press Apply** | Commits everything — which columns show, and their order — to the real table. **Nothing changes on the table until this is pressed.** |
+| **Press Cancel** or **×** | Throws away whatever was changed in this session. Table untouched. |
+| **Press Reset** | Goes further than Cancel — restores the table's **default** column set and order, even undoing a customization that was saved earlier. |
+
+---
+
+## 3. The frozen column — not a new idea, an existing rule applied here
+
+**Whichever column sits FIRST in "Selected columns" becomes the table's frozen column** — pinned to
+the left edge while the rest of the table scrolls. Singh, 2026-09-01: *"The first selected column on
+top will be always the freezed column in the table."*
+
+**This is not new.** Your table system already has this rule — `[CS-TBL-13]` in
+`Universal Html Rules/02-components/table.css`, which you ruled on 2026-08-26: *"in every table, the
+first and last column must always be freezed."* It's already built and tested in Wound Management.
+**This picker is simply how someone CHOOSES which column that is** — drag any column to the top of
+the Selected list, and it becomes the frozen one.
+
+One honest gap: **nothing in the picker currently shows which row is the frozen one.** The first row
+looks exactly like every other checked row — no lock icon, no highlight. Worth knowing: Figma already
+has an unused "Pin" icon sitting in the file that could mark it. Not built into anything yet — just
+flagging that the piece exists if you want to add that cue later.
+
+---
+
+## 4. The column list — measured detail
 
 Two kinds of row, and the difference between them is the whole point of the pattern:
 
-| | Currently shown | Available |
+| | Selected | Not selected |
 |---|---|---|
 | Checkbox | ✅ Checked | ☐ Unchecked |
 | Drag handle | Yes — 6 dots, left of the checkbox | No |
 | What it means | This column is on the table right now, **in this order** | This column exists but isn't showing |
 
-Check a row to add its column. Uncheck to remove it. **Drag only works on checked rows** — that's
-the design's own logic: an unchecked column isn't on the table, so there's no position to drag it
-into yet.
+**Measured instance:** a group of **12 checked, draggable rows**, then a second group of **6
+unchecked rows** — 18 columns total. That count matters — an early look at the screenshot alone said
+11, and it took redoing the arithmetic (12 rows × 30px = 360, which is exactly what the frame height
+requires) to catch the miscount. Worth remembering: **count from the numbers, not the eye.**
 
-**Measured instance:** 1 row on its own (unclear purpose — see §5), then a group of **12 checked,
-draggable rows**, then a second group of **6 unchecked rows**. That count matters — an early look at
-the screenshot alone said 11, and it took redoing the arithmetic (12 rows × 30px = 360, which is
-exactly what the frame height requires) to catch the miscount. Worth remembering: **count from the
-numbers, not the eye.**
+There used to be a stray, ungrouped checkbox row sitting above both groups. Singh, 2026-09-01: *"The
+top checkbox alongside the header is the one was by mistake, Removed now."* Re-verified live the same
+day — it's now switched off in the Figma file (hidden, not deleted). Don't build it, and don't
+re-open what it might have meant.
 
 ---
 
-## 3. Sizes, in one place
+## 5. Sizes, in one place
 
 | | Value |
 |---|---|
-| Panel width | 400px (no responsive variant exists — see §5) |
+| Panel width | 400px (no responsive variant exists — see §7) |
 | Header height | 52px |
 | Search height | 30px, fixed |
 | Row height | 30px minimum |
@@ -72,49 +114,43 @@ canvas margin in Figma, not part of the component.** Don't build a 900px panel.
 
 ---
 
-## 4. Four real defects found while measuring this
+## 6. Defects found — two resolved, three still open
 
-1. **Two different Figma components share the exact same name.** The atom Singh linked (`13095:43335`)
-   is the OLDER of two components both called *"ddm rows - checkboxes + drag feature."* The pattern
-   actually uses a NEWER one (`27307:43097`) for the ungrouped row and the six "available" rows, and
-   the linked one only for the twelve "visible" rows. Build from the atom Singh linked alone and
-   you'd get half the pattern right and half missing.
+1. **RESOLVED.** ~~A code-vs-render mismatch on a stray top row.~~ That row was a Figma mistake —
+   Singh removed it on 2026-09-01, confirmed live: it's now hidden in the file, not deleted.
 
-2. **A property is named backwards.** On the linked atom, the toggle is called `unChecked`. Setting
-   `unChecked = Yes` — the DEFAULT — actually shows the row as **checked**. `unChecked = No` shows it
-   **unchecked**. Confirmed straight from the six variant names in Figma, not a guess. Don't carry
-   this name into a real build; call it `checked`/`selected` instead, the right way round.
+2. **Still open — two Figma components share one name.** The atom Singh originally linked
+   (`13095:43335`) is the OLDER of two components both called *"ddm rows - checkboxes + drag
+   feature."* The pattern still uses the NEWER one (`27307:43097`) for the six "Not selected" rows.
+   Build from the linked atom alone and you'd be missing half the pattern.
 
-3. **No way to reorder without a mouse.** Nothing in Figma shows a keyboard alternative to the drag
-   handle — no "move up/down" buttons, no documented keyboard behaviour. As designed, someone who
-   can't use a mouse can't reorder columns at all. **This is the most important gap in this
-   contract** — it needs a real answer before this pattern ships, not just a note.
+3. **Still open — a property is named backwards.** On the linked atom, `unChecked = Yes` — the
+   DEFAULT — actually shows the row as **checked**. Confirmed straight from the six variant names.
 
-4. **Two legacy token names, adding to the pile already found elsewhere:** the tracking token
-   (`X-tracking-0`) — now spotted in an 8th place — and the Apply button's blue, which is bound to a
-   legacy-prefixed name (`X-Brandblue-600`) instead of the normal brand token, despite being the exact
-   same colour (`#0077ff`) used everywhere else.
+4. **Still open — two legacy token names**, the tracking token (now spotted in an **8th** place) and
+   the Apply button's blue, bound to a legacy-prefixed name instead of the normal brand token.
 
-Full list, including two smaller ones (icon slightly too big for its own padding, and the search
-placeholder using a heavier font-weight than a normal field placeholder) is in the JSON's `defects`.
+5. **New, minor — a third unused row hiding in the file.** A leftover instance sits switched off in
+   the middle of the Selected group. No visual effect, just untidy — the same kind of leftover that
+   caused defect 1 before it was cleaned up.
+
+Full list, all four smaller items included, is in the JSON's `defects`.
 
 ---
 
-## 5. What Figma doesn't say — genuinely open, not guessed
+## 7. What's still genuinely open
 
-- **What the two group headings mean.** Both say the placeholder text "GROUP HEADING" — nobody ever
-  typed real category names. This contract assumes "currently shown" / "available", because that's
-  the standard shape for this exact kind of column picker — but that's an assumption, not something
-  Figma or Singh actually said.
-- **What that one row above the groups is for.** No annotation anywhere. Could be a "select all", a
-  column that's always shown and can't be hidden (like a checkbox or actions column), or something
-  else.
-- **Where a newly-checked column lands in the order.** Assumed: it's added to the end of the visible
-  list and can then be dragged like anything else — again, the standard convention, not a measured
-  fact.
-- **Whether the list scrolls.** The measured example has 18 rows and fits without scrolling. A real
-  table could easily have more columns than that, and no maximum height or scroll behaviour was ever
-  specified.
+- **No keyboard way to reorder.** Dragging is the only way to reorder columns — there's no
+  documented alternative for someone who can't use a mouse. This is the single biggest gap in the
+  contract, not a minor one.
+- **Real category names for the groups.** Figma itself still shows the placeholder text "GROUP
+  HEADING" on both — the labels "Selected columns" / "Not selected columns" used throughout this doc
+  are your ruling, not something typed into Figma yet.
+- **Whether the panel's own list scrolls.** 18 rows fit today with no scrollbar. A real table could
+  have far more columns than that — the copy-from CSS adds a scroll cap as a judgement call, since
+  Figma never specified one.
+- **Whether the 400px panel width is fixed or should respond to screen size.** No variant for that
+  exists in Figma.
 
 ---
 
@@ -122,4 +158,5 @@ placeholder using a heavier font-weight than a normal field placeholder) is in t
 
 | Date | Change | Authority |
 |---|---|---|
-| 2026-09-01 | **1.0.0** — first measurement. Built from the pattern node Singh linked (`27311:46254`) plus the atom node he linked (`13095:43335`), cross-checked against `get_design_context`'s full reference code and a rendered screenshot. Four defects found and flagged, four items left genuinely open rather than guessed. | Singh's request, 2026-09-01 |
+| 2026-09-01 | **2.0.0** — Singh ruled on all four open questions from 1.0.0 and asked for complete behaviour documentation on every component going forward. Added a full behaviour table (§2), connected the frozen-column rule to the existing `[CS-TBL-13]` table contract rather than treating it as new (§3), removed the stray top row he confirmed was a Figma mistake, and closed 2 of the original 4 defects. | Singh's ruling, 2026-09-01 |
+| 2026-09-01 | 1.0.0 — first measurement. Built from the pattern node Singh linked (`27311:46254`) plus the atom node he linked (`13095:43335`). | Singh's request, 2026-09-01 |

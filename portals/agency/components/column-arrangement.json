@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Column Arrangement — side flyout popover",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "2.0.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Taken from the URL Singh supplied.",
     "figmaPatternNodeId": "27311:46254",
@@ -23,7 +23,9 @@
       "ASSUMED": "not specified anywhere in Figma or by the owner — the standard convention for this exact UI pattern, used elsewhere in comparable products. Flagged for confirmation, not silently treated as fact.",
       "UNVERIFIED": "not read, or read and found contradictory — do not build from it without resolving first"
     },
-    "readThisFirst": "Singh's own instructions already carry most of the functional spec, verbatim: \"user can select the columns he want to see in table\" + \"rearrange the table columns by simply drag and drop the columns from 6 dots.\" That is followed literally below. What Figma does NOT specify and this contract had to leave open: what the two group headings represent (real category names were never entered — every one reads the placeholder \"GROUP HEADING\"), what the single ungrouped row above them means, where a newly-checked column lands in the visible order, and whether the panel scrolls past a fixed height. All four are recorded under notVerified, not guessed."
+    "readThisFirst": "Singh ruled on all four open questions from v1.0.0 the same day it was measured, and gave a standing instruction that applies to every future contract, not just this one: \"Make sure with every component you have complete behavioural and action related information and how it works, and what's the purpose of this component.\" Everything under `behavior` below exists because of that instruction. Two structural changes from v1.0.0: the stray ungrouped row is GONE — Singh confirmed it was a Figma authoring mistake and removed it live, re-verified directly against Figma (now hidden=true, not deleted, in the node tree). And the frozen-column behavior is NOT a new concept — it is [CS-TBL-13] from Universal Html Rules/02-components/table.css, ruled by Singh on 2026-08-26 and already shipped and tested in Wound Management, applied here through this picker's own mechanism: whichever column a user drags to position 1 in the 'Selected columns' group becomes the table's frozen-left column.",
+    "ruledOn": "2026-09-01",
+    "ruledBy": "Singh (design-system owner)"
   },
   "anatomy": {
     "elements": [
@@ -69,7 +71,8 @@
         "reuse": "TWO DIFFERENT Figma components with the identical name are both used in this one pattern — see defect D1. Do not treat them as interchangeable without reading D1 first.",
         "marker": [
           "MEASURED"
-        ]
+        ],
+        "note": "TWO DIFFERENT Figma components with the identical name are both used in this pattern — see defect D1. As of 2026-09-01 this is now node 27307:43097 for the six 'Not selected' rows only (its other use, the stray top row, is gone); node 13095:43335 for the twelve 'Selected' rows. Do not treat them as interchangeable without reading D1 first."
       },
       {
         "name": "Button/Secondary",
@@ -92,16 +95,16 @@
     ],
     "listComposition": {
       "observedInMeasuredInstance": [
-        "1 ungrouped row (unchecked, no drag handle in the render — see defect D2 for a code-vs-render discrepancy)",
-        "1 group heading (\"GROUP HEADING\" placeholder text)",
-        "12 rows, checked + draggable — read as \"columns currently shown in the table, in their current left-to-right order\"",
-        "1 group heading (\"GROUP HEADING\" placeholder text)",
-        "6 rows, unchecked + not draggable — read as \"columns available to add, order not meaningful yet\""
+        "1 group heading — \"Selected columns\" (Singh's naming, 2026-09-01; Figma still shows the placeholder text \"GROUP HEADING\" — see notVerified)",
+        "12 rows, checked + draggable — columns currently shown in the table, in table order. The FIRST of these is always the frozen column — see behavior.frozenColumn.",
+        "1 group heading — \"Not selected columns\" (Singh's naming)",
+        "6 rows, unchecked + not draggable — columns available to add"
       ],
-      "countVerification": "12 checked rows, not 11 — cross-checked twice: once by counting named instances in get_metadata (y=30 to y=360 in 30px steps = 12), once by reconciling frame heights by arithmetic (30 header + 12x30 rows + 30 header2 + 6x30 rows = 600, matching the measured sub-frame height exactly). A first visual read of the screenshot alone under-counted by one row — recorded as a reminder to verify contested counts by arithmetic, not by eye.",
+      "countVerification": "12 checked rows, not 11 — cross-checked twice: once by counting named instances in get_metadata (y=30 to y=360 in 30px steps = 12), once by reconciling frame heights by arithmetic (30 header + 12x30 rows + 30 header2 + 6x30 rows = 600, matching the measured sub-frame height exactly). A first visual read of the screenshot alone under-counted by one row — recorded as a reminder to verify contested counts by arithmetic, not by eye. Re-confirmed 2026-09-01 after the row removal: still exactly 12 and 6 — the removal did not touch either group's row count.",
       "marker": [
         "MEASURED"
-      ]
+      ],
+      "resolvedHistory": "v1.0.0 recorded a stray ungrouped checkbox row above the first group heading, with its meaning unresolved. Singh, 2026-09-01: \"The top checkbox alongside the header is the one was by mistake, Removed now.\" Re-verified live the same day: the two Figma instances that formed it (27311:46260, 27311:46261) are now both hidden=true in the node tree — not deleted, just switched off. Do not build this row; do not re-open its purpose as an open question."
     }
   },
   "geometry": {
@@ -546,27 +549,102 @@
     }
   },
   "defects": [
-    "D1 — TWO DIFFERENT FIGMA COMPONENTS SHARE THE IDENTICAL NAME 'ddm rows - checkboxes + drag feature': node 13095:43335 (the one Singh linked — older, references legacy checkbox nodes 77:16/72:599, always renders checked+draggable with no exposed toggle in this usage) and node 27307:43097 (newer, references current Checkbox atom 27194:66388, has the confusingly-named unChecked toggle — see D3). The pattern uses BOTH in the same list: 27307:43097 for the top ungrouped row and the six 'available' rows, 13095:43335 for the twelve 'visible' rows. Any tool building from 'the atom Singh linked' alone would build only half the pattern correctly. Needs Figma AI to either retire one as an alias of the other, or document why two exist.",
-    "D2 — CODE-VS-RENDER DISCREPANCY on the ungrouped top row. The generated reference code's conditional logic implies a drag handle should render on that row (unChecked=false, drag defaults true), but the actual rendered screenshot shows no drag handle on it — visually flush-left, aligned differently from the twelve draggable rows below. Recorded as observed rather than resolved; the screenshot was trusted over the generated code's branching, consistent with this session's standing practice, but this needs a live Figma confirmation, not an assumption.",
+    "D1 — TWO DIFFERENT FIGMA COMPONENTS SHARE THE IDENTICAL NAME 'ddm rows - checkboxes + drag feature': node 13095:43335 (the one Singh linked — older, references legacy checkbox nodes 77:16/72:599, always renders checked+draggable with no exposed toggle in this usage) and node 27307:43097 (newer, references current Checkbox atom 27194:66388, has the confusingly-named unChecked toggle — see D3). The pattern uses BOTH in the same list: 27307:43097 for the top ungrouped row and the six 'available' rows, 13095:43335 for the twelve 'visible' rows. Any tool building from 'the atom Singh linked' alone would build only half the pattern correctly. Needs Figma AI to either retire one as an alias of the other, or document why two exist. STILL OPEN as of 2026-09-01 — re-verified live: node 27307:43097 is still in active use for the six 'Not selected' rows even after the top-row mistake was fixed.",
+    "D2 — RESOLVED 2026-09-01. Was: a code-vs-render discrepancy on the ungrouped top row (generated code implied a drag handle; the screenshot showed none). Moot — Singh has since confirmed that row was a Figma authoring mistake and removed it. No further action.",
     "D3 — THE 'unChecked' VARIANT PROPERTY IS NAMED BACKWARDS on node 13095:43335. 'unChecked=Yes' (the default) renders a CHECKED row; 'unChecked=No' renders an UNCHECKED row. Confirmed directly from the six variant names in the component set (State=Default/Active/Hover x unChecked=Yes/No) cross-read against the generated JSX's conditional branches. This is the same class of defect as inverted booleans found elsewhere in this system (e.g. the DDM checkbox/radio selected-state work) — flag to Figma AI, do not propagate the backwards name into any built implementation.",
     "D4 — fonts/tracking/X-tracking-0 is bound throughout (header title, search placeholder, row labels, group heading, footer buttons) — the same legacy name found system-wide this session, now confirmed present in an 8th place. One Figma rename still closes all of them.",
     "D5 — the Apply button binds colors/X-Brandblue-600 rather than action/primary/bg for the identical #0077ff value — another legacy-prefixed name, not previously seen in this exact form on another Agency component contract this session.",
     "D6 — control/height-default (=30) is bound on the search field and implied on rows/footer buttons, but is absent from the owner's variable export — the same known gap recorded on Button, Fields, Empty States and the DDM backlog.",
     "D7 — the header close button's 22px glyph sits inside a 24px hit area with 3px padding (18px of clear space) — a 2px-per-side overflow of the icon past its own padding. Small, but the same defect class (icon overflowing its padding box) already flagged once this session on a different component (empty-states icon, +6px overflow) — worth a single Figma-side fix pass across all icon-in-padded-box instances rather than one-off patches.",
-    "D8 — no group category was ever entered. Both group headings in the measured instance read the literal placeholder text 'GROUP HEADING' — real category names (e.g. 'Visible Columns' / 'Available Columns', or per-table category names) were never authored in Figma, so this contract cannot publish real copy — see notVerified."
+    "D8 — no group category was ever entered. Both group headings in the measured instance read the literal placeholder text 'GROUP HEADING' — real category names (e.g. 'Visible Columns' / 'Available Columns', or per-table category names) were never authored in Figma, so this contract cannot publish real copy — see notVerified.",
+    "D9 — a THIRD hidden, unused instance of the row atom (27311:46268) sits mid-tree inside the 'Selected columns' group, between the rows at y=150 and y=180. Hidden, no visual effect, but it is dead weight in the frame — the same kind of leftover that produced D2's stray row before it was cleaned up. Worth a single pass to remove genuinely unused hidden instances from this frame."
   ],
   "openTokenDecision": {
     "status": "OPEN",
-    "proposal": "1) Resolve D1 — one canonical row atom, not two. 2) Fix D3's inverted boolean name. 3) Rename fonts/tracking/X-tracking-0 (D4) and colors/X-Brandblue-600 (D5) to their non-legacy equivalents — both renames already requested elsewhere in this backlog, this is now an 8th and a 1st sighting respectively. 4) Decide whether control/height-default (D6) should enter the export.",
+    "proposal": "1) Resolve D1 — one canonical row atom, not two. 2) Fix D3's inverted boolean name. 3) Rename fonts/tracking/X-tracking-0 (D4) and colors/X-Brandblue-600 (D5) to their non-legacy equivalents — both renames already requested elsewhere in this backlog, this is now an 8th and a 1st sighting respectively. 4) Decide whether control/height-default (D6) should enter the export. 5) Consider adding the existing but unused Figma 'Pin' icon component (22225:132827) to the first row of 'Selected columns' as a visual cue for which column will freeze — currently there is none.",
     "gate": "Design-owner approval required before any of these become bindings.",
     "untilApproved": "Every affected value is published RAW with the defect recorded. Recording a value here is NOT permission to hardcode it."
   },
   "notVerified": [
-    "What the two group headings represent in real use. Singh's instructions describe checked+draggable vs unchecked+non-draggable clearly, but not what CATEGORY divides the groups — read here as 'currently shown' vs 'available', which is the standard convention for this exact UI pattern (Notion/Airtable/Linear-style column pickers), but that is an assumption, not something Figma or Singh specified. Confirm before shipping copy.",
-    "What the single ungrouped row above the groups means. Could be a 'select all' control, a pinned/always-visible column (e.g. a row-selection or actions column that can't be hidden), or something else. Not documented anywhere in Figma — no annotation exists on this row.",
-    "Where a newly-checked 'available' column lands once checked. Assumed: appended to the end of the visible list, then draggable like any other visible row — the standard convention, not a measured or stated behaviour.",
     "Whether the panel has a maximum height with internal scrolling once the column list is long. The measured instance shows 12+6=18 rows fitting inside a 900px demo frame with no scroll affordance visible or documented. A real table could have far more columns than that. No max-height was measured — same class of gap already flagged on a DDM assembled-menu node (1728:1) earlier in this backlog.",
     "Whether 400px is a fixed panel width or should respond to viewport size. No breakpoint variant exists in Figma.",
-    "Any state for a row when its column is currently sorted, pinned, or otherwise not a plain show/hide/reorder case (e.g. a required column that cannot be hidden). Not present in the measured instance."
-  ]
+    "Any state for a row when its column is currently sorted, pinned, or otherwise not a plain show/hide/reorder case (e.g. a required column that cannot be hidden). Not present in the measured instance.",
+    "The exact real-world category names for the two groups beyond 'Selected columns' / 'Not selected columns' — e.g. whether there should be sub-categories within 'Not selected' for a table with many candidate columns. Not asked, not needed yet at 18 columns."
+  ],
+  "purpose": "Lets someone decide which columns a data table shows, and in what order, without needing a developer to change the table's code. Two problems it solves: tables that ship every possible column become unreadable on a real screen — this lets each person keep only what they use. And a table's column ORDER is opinionated by default (whoever built it chose an order) — this lets the person using the table choose their own, including which single column stays pinned in view while the rest scrolls.",
+  "behavior": {
+    "searchField": {
+      "action": "Type to filter",
+      "effect": "Narrows the row list in both groups to columns whose name matches what's typed. Does not change any checkbox state — filtering and selecting are independent.",
+      "marker": [
+        "ASSUMED"
+      ],
+      "note": "Standard convention for this exact search-in-a-picker pattern; not separately specified by Singh, but not contested either."
+    },
+    "checkboxRow": {
+      "action": "Check a row in either group",
+      "effect": "Marks that column as selected. It moves to (or stays in) the 'Selected columns' group, at the BOTTOM of the current order — appended, never inserted at a specific position automatically.",
+      "marker": [
+        "RULED",
+        "ASSUMED"
+      ],
+      "note": "The GROUP membership (selected vs not) is Singh's ruling, 2026-09-01: 'the first one is for those the selected columns and second is for those who are not selected.' WHERE in the selected list a newly-checked column lands (appended to the end) is still this contract's assumption, not separately confirmed — but it is now the only behavior consistent with the freeze rule: inserting a newly-checked column at position 1 would silently change which column is frozen, which nothing in Singh's instructions suggests should happen from a simple checkbox tick."
+    },
+    "uncheckRow": {
+      "action": "Uncheck a row in the 'Selected columns' group",
+      "effect": "Moves that column to 'Not selected columns'. It stops being shown in the table once Apply is pressed, and stops being draggable (order is meaningless for a hidden column).",
+      "marker": [
+        "RULED"
+      ]
+    },
+    "dragReorder": {
+      "action": "Drag a row in 'Selected columns' by its 6-dot handle",
+      "effect": "Changes that column's position in the visible table's left-to-right order. Only rows in the 'Selected columns' group are draggable — order has no meaning for a column that isn't shown.",
+      "marker": [
+        "RULED"
+      ]
+    },
+    "frozenColumn": {
+      "rule": "Whichever column sits FIRST in the 'Selected columns' group becomes the table's frozen-left column, automatically, with no separate toggle.",
+      "source": "Singh, 2026-09-01, verbatim: \"The first selected column on top will be always the freezed column in the table.\"",
+      "crossReference": "This is not a new concept. [CS-TBL-13] in Universal Html Rules/02-components/table.css already rules, 2026-08-26: \"in every table, the first and last column must always be freezed. Only in between area is scrollable if the number of columns are more than the width view port.\" That rule is shipped and E2E-verified in Wound Management (Office_Work/Wound Management/00-OVERRIDE-LEDGER.md rows 46/49/57). This picker is simply the mechanism by which a user CHOOSES which column occupies that always-frozen first position — drag it to the top.",
+      "actionsColumnNote": "CS-TBL-13 also freezes the LAST column (normally Actions), and CS-TBL-14 exempts the Actions column from the picker's width bands entirely. Read together, this implies the Actions column is a fixed, always-present system column that does NOT appear as a checkable row in this picker at all — it isn't something the user selects or reorders. NOT independently confirmed with Singh; flagged as the consistent reading of two existing rulings, not a third one.",
+      "visualIndicator": "NONE exists in the picker today. Re-verified live 2026-09-01: the first row of the 'Selected columns' group is visually IDENTICAL to every other checked row — same background token, no lock/pin icon, no badge, no border, no tooltip. A user has no way to tell from the picker alone which column will freeze. Worth knowing: Figma already has an unused 'Pin' icon component set (`22225:132827`, 3 variants, per Office_Work/Wound Management/05-Specs/components/SPEC-08b-table-header-and-row.md) that exists for exactly this kind of affordance but has never been pulled into any spec. Flagged to Figma AI as a suggestion, not committed as required scope.",
+      "marker": [
+        "RULED",
+        "DERIVED"
+      ]
+    },
+    "applyButton": {
+      "action": "Press Apply",
+      "effect": "Commits the current checkbox selections AND their order to the actual table — the table's visible columns change to match, in the order shown in 'Selected columns', with the first one becoming frozen per the rule above. Nothing changes on the table before this is pressed.",
+      "marker": [
+        "RULED"
+      ],
+      "note": "Singh, 2026-09-01, verbatim: \"the selected columns will be visible on the table after saving from the component.\""
+    },
+    "cancelButton": {
+      "action": "Press Cancel",
+      "effect": "Discards every unsaved change made in this session of the panel (checks, unchecks, drags) and closes it. The table is unaffected.",
+      "marker": [
+        "ASSUMED"
+      ],
+      "note": "Standard convention, not separately confirmed — distinguished from Reset per the ruling below."
+    },
+    "resetButton": {
+      "action": "Press Reset",
+      "effect": "Returns the column set and order to the table's DEFAULT — discarding even a PREVIOUSLY SAVED customization, not just the current session's unsaved edits. This is the real distinction from Cancel.",
+      "marker": [
+        "RULED"
+      ],
+      "note": "Singh's ruling, 2026-09-01, choosing explicitly between two readings offered: Reset restores the original default column set, Cancel merely discards the current session's unsaved edits."
+    },
+    "closeButton": {
+      "action": "Press the × in the header",
+      "effect": "Same as Cancel — closes without saving.",
+      "marker": [
+        "ASSUMED"
+      ]
+    }
+  }
 }
