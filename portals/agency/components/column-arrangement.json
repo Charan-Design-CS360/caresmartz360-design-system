@@ -1,0 +1,572 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Column Arrangement — side flyout popover",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Taken from the URL Singh supplied.",
+    "figmaPatternNodeId": "27311:46254",
+    "figmaPatternNodeName": "columnarrangement",
+    "figmaAtomNodeId": "13095:43335",
+    "figmaAtomNodeName": "ddm rows - checkboxes + drag feature",
+    "nodeIdRelationship": "27311:46254 is the composed PATTERN — a full side-panel flyout. It reuses four already-published Agency atoms/molecules (Popover Header 2025, Nav Search, Dropdown Heading primary, Button/Secondary + Button/Primary) plus the row atom Singh linked (13095:43335). Critically, the pattern does NOT use only the atom Singh linked — see defect D1.",
+    "measuredOn": "2026-09-01",
+    "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
+    "measurementMethod": "figma-desktop MCP live reads: get_metadata on 27311:46254 (full instance tree, reconciled by arithmetic) and 13095:43335 (atom variant set); get_design_context on 27311:46254 (full reference code + inline screenshot); get_variable_defs on 27311:46254, cross-checked against values already verified earlier in this same session from the owner's Design-System/Variables export. Token values corroborate; no fallback-trap discrepancy found (contrast with the Table contract, which did have one).",
+    "jiraParent": "C360-44737",
+    "humanContract": "./column-arrangement.md",
+    "markerLegend": {
+      "MEASURED": "read directly from live Figma; nodeId given",
+      "DERIVED": "computed from measured values; arithmetic shown in column-arrangement.md",
+      "RAW": "real value but NOT bound to any token present in the owner's variable export",
+      "ASSUMED": "not specified anywhere in Figma or by the owner — the standard convention for this exact UI pattern, used elsewhere in comparable products. Flagged for confirmation, not silently treated as fact.",
+      "UNVERIFIED": "not read, or read and found contradictory — do not build from it without resolving first"
+    },
+    "readThisFirst": "Singh's own instructions already carry most of the functional spec, verbatim: \"user can select the columns he want to see in table\" + \"rearrange the table columns by simply drag and drop the columns from 6 dots.\" That is followed literally below. What Figma does NOT specify and this contract had to leave open: what the two group headings represent (real category names were never entered — every one reads the placeholder \"GROUP HEADING\"), what the single ungrouped row above them means, where a newly-checked column lands in the visible order, and whether the panel scrolls past a fixed height. All four are recorded under notVerified, not guessed."
+  },
+  "anatomy": {
+    "elements": [
+      "panel container",
+      "header (reused atom)",
+      "search (reused atom)",
+      "column list",
+      "footer actions"
+    ],
+    "panelContainerNote": "A flex column, 400px wide in the measured frame, background surface/base, drop-shadow only (no border) on all four sides. Four direct children stacked with an 8px gap: header, search, list, footer.",
+    "composedFrom": [
+      {
+        "name": "Popover Header 2025",
+        "nodeId": "10412:15843",
+        "role": "title + close button",
+        "reuse": "EXISTING published atom — 2 variants. Do not redefine; reference it.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "Nav Search",
+        "nodeId": "14170:190109",
+        "role": "filters the column list by typing",
+        "reuse": "EXISTING published atom — 3 state variants (idle/focused/filled). Do not redefine; reference it.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "Dropdown Heading primary",
+        "nodeId": "27307:43122",
+        "role": "uppercase group-category label above a run of rows",
+        "reuse": "EXISTING published atom.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "ddm rows - checkboxes + drag feature",
+        "nodeId": "13095:43335 AND 27307:43097",
+        "role": "one row = one column: checkbox to show/hide, 6-dot handle to reorder",
+        "reuse": "TWO DIFFERENT Figma components with the identical name are both used in this one pattern — see defect D1. Do not treat them as interchangeable without reading D1 first.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "Button/Secondary",
+        "nodeId": "27002:74042",
+        "role": "Reset (left), Cancel (right)",
+        "reuse": "EXISTING published atom.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "Button/Primary",
+        "nodeId": "27307:42225",
+        "role": "Apply (right, brand blue)",
+        "reuse": "EXISTING published atom.",
+        "marker": [
+          "MEASURED"
+        ]
+      }
+    ],
+    "listComposition": {
+      "observedInMeasuredInstance": [
+        "1 ungrouped row (unchecked, no drag handle in the render — see defect D2 for a code-vs-render discrepancy)",
+        "1 group heading (\"GROUP HEADING\" placeholder text)",
+        "12 rows, checked + draggable — read as \"columns currently shown in the table, in their current left-to-right order\"",
+        "1 group heading (\"GROUP HEADING\" placeholder text)",
+        "6 rows, unchecked + not draggable — read as \"columns available to add, order not meaningful yet\""
+      ],
+      "countVerification": "12 checked rows, not 11 — cross-checked twice: once by counting named instances in get_metadata (y=30 to y=360 in 30px steps = 12), once by reconciling frame heights by arithmetic (30 header + 12x30 rows + 30 header2 + 6x30 rows = 600, matching the measured sub-frame height exactly). A first visual read of the screenshot alone under-counted by one row — recorded as a reminder to verify contested counts by arithmetic, not by eye.",
+      "marker": [
+        "MEASURED"
+      ]
+    }
+  },
+  "geometry": {
+    "panel": {
+      "width": {
+        "value": 400,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "No responsive/breakpoint variant exists in Figma. Whether 400px is a fixed panel width or should flex is not specified — see notVerified."
+      },
+      "display": {
+        "value": "flex",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "flexDirection": {
+        "value": "column",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gapBetweenSections": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Between header/search/list/footer — the four direct children."
+      },
+      "paddingInline": {
+        "value": 12,
+        "unit": "px",
+        "token": "spacing/lg",
+        "cssVar": "--spacing-lg",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Left AND right, on the outer panel. All four children sit inset by this — including the header, whose own extra 24px padding stacks on top of it (title text sits 36px from the true left edge)."
+      },
+      "paddingBlock": {
+        "value": 0,
+        "unit": "px",
+        "token": "spacing/none",
+        "cssVar": "--spacing-none",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "background": {
+        "value": "#ffffff",
+        "token": "surface/base",
+        "cssVar": "--surface-base",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "shadow": {
+        "value": "0 4px 6px -2px rgba(0,0,0,0.05), 0 10px 15px -3px rgba(0,0,0,0.1)",
+        "token": "shadow-lg (effect style)",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "The panel's only edge treatment. No border. Matches the system's shared drop-shadow effect style, not a one-off value."
+      },
+      "border": {
+        "value": "none",
+        "token": null,
+        "marker": [
+          "MEASURED"
+        ]
+      }
+    },
+    "header": {
+      "nodeId": "10412:15843 (reused atom — not re-measured in full, see anatomy)",
+      "height": {
+        "value": 52,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ]
+      },
+      "bottomHairline": {
+        "value": "0px 1px 0px #e2e3e3",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "Implemented as a drop-shadow, not a border — a technique convention worth carrying into the copy-from CSS as-is (box-shadow: 0 1px 0 #e2e3e3), not converted to border-bottom, since a border would add to the box height and a shadow does not."
+      },
+      "titlePaddingLeft": {
+        "value": 24,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "The header atom's OWN padding, additional to the panel's 12px inset. Title sits 36px from the true panel edge."
+      },
+      "titleText": "Column(s)",
+      "titleStyle": {
+        "value": "Heading/h5: Inter Medium 16px / line-height 24 / letter-spacing -0.24, colour text/primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "closeButton": {
+        "hitArea": {
+          "value": "24x24, 3px padding, 16px border-radius",
+          "marker": [
+            "MEASURED",
+            "RAW"
+          ]
+        },
+        "glyph": {
+          "value": "22x22 Material Symbol 'close'",
+          "marker": [
+            "MEASURED",
+            "RAW"
+          ],
+          "note": "22px glyph inside a 24px box with 3px padding leaves only 18px of clear space (24 - 2x3) — the glyph as specified overflows its own padding by roughly 2px per side. Flagged as defect D7, not silently corrected."
+        }
+      }
+    },
+    "search": {
+      "nodeId": "14170:190109 (reused atom)",
+      "height": {
+        "value": 30,
+        "unit": "px",
+        "token": "control/height-default",
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "Pinned — min-height, max-height and height are all set to the same 30px, i.e. genuinely fixed, not a floor. control/height-default exists in Figma but is absent from the owner's variable export — same known gap as elsewhere in this system."
+      },
+      "background": {
+        "value": "#f8fafc",
+        "token": "action/soft/bg",
+        "cssVar": "--action-soft-bg",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "borderRadius": {
+        "value": 4,
+        "unit": "px",
+        "token": "border-radius/rounded",
+        "cssVar": "--rounded",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Repo custom-property name is --rounded, not --border-radius-rounded — see the naming gap already recorded on the Table contract; same trap applies here."
+      },
+      "paddingInline": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gap": {
+        "value": 4,
+        "unit": "px",
+        "token": "spacing/sm",
+        "cssVar": "--spacing-sm",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Between the search icon and placeholder text."
+      },
+      "icon": {
+        "value": "18x18 Material Symbol 'search'",
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ]
+      },
+      "placeholderText": "Search",
+      "placeholderStyle": {
+        "value": "Inter Medium 12px / line-height 16, colour field/value-placeholder (#64748b)",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Medium (500) weight, not the field family's usual Regular (400) body-base — a real, small typographic distinction worth preserving exactly, not normalised to match ordinary field placeholders."
+      }
+    },
+    "row": {
+      "nodeIds": {
+        "checkedVariant": "13095:43335 (state set) / 13095:43336 (default)",
+        "unrelatedDuplicate": "27307:43097 — see defect D1"
+      },
+      "minHeight": {
+        "value": 30,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ]
+      },
+      "paddingBlock": {
+        "value": 2,
+        "unit": "px",
+        "token": "spacing/xs",
+        "cssVar": "--spacing-xs",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "paddingInlineLeft": {
+        "value": 0,
+        "unit": "px",
+        "token": "spacing/none",
+        "cssVar": "--spacing-none",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "paddingInlineRight": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gap": {
+        "value": 4,
+        "unit": "px",
+        "token": "spacing/sm",
+        "cssVar": "--spacing-sm",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Between drag handle, checkbox and label."
+      },
+      "background": {
+        "value": "#ffffff",
+        "token": "field/bg-default",
+        "cssVar": "--field-bg-default",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "dragHandle": {
+        "value": "18x18 Material Symbol 'drag_indicator', present ONLY on checked/reorderable rows in the measured instance",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "checkbox": {
+        "value": "24x24, shared Checkbox atom (Default/Checked states)",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "labelStyle": {
+        "value": "Inter Regular 12px / line-height 16, colour field/value-primary (#1e293b), single line, no wrap",
+        "marker": [
+          "MEASURED"
+        ]
+      }
+    },
+    "groupHeading": {
+      "nodeId": "27307:43122 (reused atom)",
+      "minHeight": {
+        "value": 30,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ]
+      },
+      "paddingInline": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "paddingBlock": {
+        "value": 4,
+        "unit": "px",
+        "token": "spacing/sm",
+        "cssVar": "--spacing-sm",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "style": {
+        "value": "Inter Semi Bold 10px / line-height 14, uppercase, colour text/primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "placeholderTextObserved": "GROUP HEADING"
+    },
+    "footer": {
+      "nodeId": "27311:46298",
+      "height": {
+        "value": 54,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ]
+      },
+      "paddingBlockTop": {
+        "value": 12,
+        "unit": "px",
+        "token": "spacing/lg",
+        "cssVar": "--spacing-lg",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gapBetweenLeftAndRightGroup": {
+        "value": 20,
+        "unit": "px",
+        "token": "spacing/2xl",
+        "cssVar": "--spacing-2xl",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "resetButton": {
+        "value": "Button/Secondary, fills its flex-1 slot (w-full), min-height 30, min-width 60, label 'Reset'",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "cancelButton": {
+        "value": "Button/Secondary, fixed 70px, label 'Cancel'",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "applyButton": {
+        "value": "Button/Primary, fixed 70px, background brand blue, label 'Apply'",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Bound via the LEGACY token name colors/X-Brandblue-600 (#0077ff) rather than action/primary/bg — see defect D5."
+      }
+    },
+    "heightReconciliation": {
+      "value": "header 52 + gap 8 + search 30 + gap 8 + list 630 + gap 8 + footer 54 = 790px of real content, inside a 900px demo frame. The extra 110px is canvas margin around the artboard in Figma, not part of the component — do not build a 900px panel.",
+      "marker": [
+        "DERIVED"
+      ]
+    }
+  },
+  "typography": {
+    "note": "No new type styles. Every text element in this pattern reuses an existing style already bound elsewhere in the system: Heading/h5 (panel title), Fields/value (row labels, search placeholder — though see the row/search weight note above), Label/overline (group headings), Button/label (footer buttons).",
+    "marker": [
+      "MEASURED"
+    ]
+  },
+  "colourFormula": {
+    "pattern": "The panel itself uses surface/base + text/primary only. Every interactive element inside it (search, rows, buttons) inherits its colour scheme entirely from its own already-published contract — this pattern introduces no new colour bindings of its own except the header's bottom hairline (#e2e3e3, RAW) and the two legacy-named tokens flagged in defects D5/D6.",
+    "marker": [
+      "MEASURED"
+    ]
+  },
+  "variantAxes": {
+    "row": {
+      "values": [
+        "Default",
+        "Active",
+        "Hover"
+      ],
+      "checkedAxis": "unChecked=Yes/No on the 13095:43335 atom — CONFUSINGLY NAMED, see defect D3. 'unChecked=Yes' renders the CHECKED look; 'unChecked=No' renders the UNCHECKED look. Inverted from what the name says.",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "search": {
+      "value": "idle / focused / filled — 3 states on the reused Nav Search atom, not re-measured here",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "header": {
+      "value": "2 variants on the reused Popover Header 2025 atom, not re-measured here",
+      "marker": [
+        "UNVERIFIED"
+      ]
+    }
+  },
+  "layer4Classification": {
+    "finding": "This is unambiguously a Pattern under docs/LAYER-4-PATTERN-TEMPLATE-CONTRACT.md's own definition: 'a reusable, evidence-backed solution to a user goal... composes components and describes behavior across an interaction.' Filed under components/ to match the page-header precedent, not because it belongs there structurally.",
+    "blocker": "Same as page-header: schemas/layer-4-index.schema.json requires a 40-character Figma component key. The MCP tools used here return node ids only.",
+    "recommendation": "Register as an Agency Layer-4 Pattern once a component key can be sourced by whatever method produced the real keys already present for Button and Fields in component-mapping.json.",
+    "status": "OPEN — same blocker as page-header.json, not a new one."
+  },
+  "accessibility": {
+    "searchField": {
+      "value": "Needs a programmatic label (aria-label or a visually-hidden <label>) beyond the placeholder — placeholder text alone is not an accessible name.",
+      "marker": [
+        "ASSUMED"
+      ],
+      "note": "Not specified in Figma; standard WCAG requirement, not a design choice."
+    },
+    "rowSemantics": {
+      "value": "Each row is a checkbox with a visible label — <input type=\"checkbox\"> + <label>, not a styled <div> — consistent with UIG-008 in this design system's own CSS rules.",
+      "marker": [
+        "ASSUMED"
+      ]
+    },
+    "dragReorderKeyboardAlternative": {
+      "value": "NO KEYBOARD-ACCESSIBLE ALTERNATIVE TO DRAG EXISTS IN THIS FIGMA MEASUREMENT. Drag-and-drop reordering by mouse/touch only, with no visible 'move up' / 'move down' control or documented keyboard interaction, fails WCAG 2.1 SC 2.1.1 (Keyboard) as designed. This is the single most important gap in this contract.",
+      "marker": [
+        "UNVERIFIED"
+      ],
+      "severity": "BLOCKER for an accessible build"
+    },
+    "closeButtonTouchTarget": {
+      "value": "24x24 hit area is below the system's own documented --touch-target-min convention (referenced elsewhere in this design system). See defect D7.",
+      "marker": [
+        "MEASURED"
+      ]
+    }
+  },
+  "defects": [
+    "D1 — TWO DIFFERENT FIGMA COMPONENTS SHARE THE IDENTICAL NAME 'ddm rows - checkboxes + drag feature': node 13095:43335 (the one Singh linked — older, references legacy checkbox nodes 77:16/72:599, always renders checked+draggable with no exposed toggle in this usage) and node 27307:43097 (newer, references current Checkbox atom 27194:66388, has the confusingly-named unChecked toggle — see D3). The pattern uses BOTH in the same list: 27307:43097 for the top ungrouped row and the six 'available' rows, 13095:43335 for the twelve 'visible' rows. Any tool building from 'the atom Singh linked' alone would build only half the pattern correctly. Needs Figma AI to either retire one as an alias of the other, or document why two exist.",
+    "D2 — CODE-VS-RENDER DISCREPANCY on the ungrouped top row. The generated reference code's conditional logic implies a drag handle should render on that row (unChecked=false, drag defaults true), but the actual rendered screenshot shows no drag handle on it — visually flush-left, aligned differently from the twelve draggable rows below. Recorded as observed rather than resolved; the screenshot was trusted over the generated code's branching, consistent with this session's standing practice, but this needs a live Figma confirmation, not an assumption.",
+    "D3 — THE 'unChecked' VARIANT PROPERTY IS NAMED BACKWARDS on node 13095:43335. 'unChecked=Yes' (the default) renders a CHECKED row; 'unChecked=No' renders an UNCHECKED row. Confirmed directly from the six variant names in the component set (State=Default/Active/Hover x unChecked=Yes/No) cross-read against the generated JSX's conditional branches. This is the same class of defect as inverted booleans found elsewhere in this system (e.g. the DDM checkbox/radio selected-state work) — flag to Figma AI, do not propagate the backwards name into any built implementation.",
+    "D4 — fonts/tracking/X-tracking-0 is bound throughout (header title, search placeholder, row labels, group heading, footer buttons) — the same legacy name found system-wide this session, now confirmed present in an 8th place. One Figma rename still closes all of them.",
+    "D5 — the Apply button binds colors/X-Brandblue-600 rather than action/primary/bg for the identical #0077ff value — another legacy-prefixed name, not previously seen in this exact form on another Agency component contract this session.",
+    "D6 — control/height-default (=30) is bound on the search field and implied on rows/footer buttons, but is absent from the owner's variable export — the same known gap recorded on Button, Fields, Empty States and the DDM backlog.",
+    "D7 — the header close button's 22px glyph sits inside a 24px hit area with 3px padding (18px of clear space) — a 2px-per-side overflow of the icon past its own padding. Small, but the same defect class (icon overflowing its padding box) already flagged once this session on a different component (empty-states icon, +6px overflow) — worth a single Figma-side fix pass across all icon-in-padded-box instances rather than one-off patches.",
+    "D8 — no group category was ever entered. Both group headings in the measured instance read the literal placeholder text 'GROUP HEADING' — real category names (e.g. 'Visible Columns' / 'Available Columns', or per-table category names) were never authored in Figma, so this contract cannot publish real copy — see notVerified."
+  ],
+  "openTokenDecision": {
+    "status": "OPEN",
+    "proposal": "1) Resolve D1 — one canonical row atom, not two. 2) Fix D3's inverted boolean name. 3) Rename fonts/tracking/X-tracking-0 (D4) and colors/X-Brandblue-600 (D5) to their non-legacy equivalents — both renames already requested elsewhere in this backlog, this is now an 8th and a 1st sighting respectively. 4) Decide whether control/height-default (D6) should enter the export.",
+    "gate": "Design-owner approval required before any of these become bindings.",
+    "untilApproved": "Every affected value is published RAW with the defect recorded. Recording a value here is NOT permission to hardcode it."
+  },
+  "notVerified": [
+    "What the two group headings represent in real use. Singh's instructions describe checked+draggable vs unchecked+non-draggable clearly, but not what CATEGORY divides the groups — read here as 'currently shown' vs 'available', which is the standard convention for this exact UI pattern (Notion/Airtable/Linear-style column pickers), but that is an assumption, not something Figma or Singh specified. Confirm before shipping copy.",
+    "What the single ungrouped row above the groups means. Could be a 'select all' control, a pinned/always-visible column (e.g. a row-selection or actions column that can't be hidden), or something else. Not documented anywhere in Figma — no annotation exists on this row.",
+    "Where a newly-checked 'available' column lands once checked. Assumed: appended to the end of the visible list, then draggable like any other visible row — the standard convention, not a measured or stated behaviour.",
+    "Whether the panel has a maximum height with internal scrolling once the column list is long. The measured instance shows 12+6=18 rows fitting inside a 900px demo frame with no scroll affordance visible or documented. A real table could have far more columns than that. No max-height was measured — same class of gap already flagged on a DDM assembled-menu node (1728:1) earlier in this backlog.",
+    "Whether 400px is a fixed panel width or should respond to viewport size. No breakpoint variant exists in Figma.",
+    "Any state for a row when its column is currently sorted, pinned, or otherwise not a plain show/hide/reorder case (e.g. a required column that cannot be hidden). Not present in the measured instance."
+  ]
+}
