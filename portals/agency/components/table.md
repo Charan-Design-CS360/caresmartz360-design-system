@@ -158,6 +158,74 @@ Fixed in both stylesheets and in this contract, which had been telling future se
 
 ---
 
+## 4e. Column widths — three sizes, ruled 2026-09-01
+
+**This is new — nothing in the GitHub repo defined column widths before today.** Your words:
+*"A- column-size=L (this will be default) Minimum width 140px, max width 240px. B- column-size=M:
+Minimum width 80px, max width 140px. C- column-size=XL: Minimum width 240px, max width 400px."*
+
+| Size | Min | Max | Use it for |
+|---|---|---|---|
+| **M** | 80px | 140px | Short values — numbers, phone numbers, dates, tags, chips, statuses |
+| **L** ⭐ | 140px | 240px | **The default.** Names, locations, address line 1 — anything single-line that runs long |
+| **XL** | 240px | 400px | Notes, briefs, descriptions, free text |
+
+Every column stretches to fill space within its band. Only M and XL need declaring — a column that
+says nothing gets L.
+
+**The names match Figma on purpose.** A designer says `column-size=L`, and the code says
+`column-size="L"` — same word on both sides. That was the point of naming them M/L/XL instead of the
+old generic/wide/longform.
+
+**⚠ One thing to expect: the default got bigger.** The old default was the *smallest* band (80px
+minimum). The new default is L, at 140px — so any column you don't label gains 60px of minimum
+width. A table that used to just fit its screen may now start scrolling sideways. Nothing breaks —
+the first and last columns stay frozen and the middle scrolls, exactly as your 26 August rule says —
+but it's worth glancing at existing tables after this lands.
+
+**Also better:** the three bands now line up end to end (80→140→240→400) with no overlap. The old
+three overlapped each other, which meant two different bands could both look correct for the same
+column.
+
+The Actions column is exempt — it's sized by its buttons, not by a band.
+
+---
+
+## 4f. Density — settled
+
+You confirmed: *"The table padding is already managed though variables and variable change with
+Density modes change."*
+
+So the question I'd raised — "does the ruled 8px still hold when density changes it to 6px or 12px?"
+— is answered: **that's the mechanism working, not the ruling breaking.** Binding the token is
+correct precisely *because* the token shifts with density. Don't hardcode 8px to "protect" the
+ruling; that would break density instead.
+
+**One half of this is still open, and it's not what you ruled on.** Padding responds to density.
+The table's *text size* no longer does — it's bound to a caption size that no density mode changes,
+where the size it replaced did change (12/14/15px). So today: padding shrinks in compact mode, text
+doesn't. The 12px is the correctly measured value so it stays, but whether a density-aware caption
+size should exist is still unanswered.
+
+---
+
+## 4g. States — checked, and they're genuinely missing
+
+You asked whether states were already defined on GitHub, and to flag it if not. **They're not** —
+and it's worth being precise about why, because this isn't a paperwork gap.
+
+There is no hover, selected, sorted-active, disabled or error state for the table **anywhere**: not
+in Figma, not in this contract, and not in the Agency colour tokens. The only `hover` colours that
+exist belong to buttons, brand surfaces and links — none of them valid for a data cell.
+
+So this can't be closed by writing documentation. **The states have to be designed first.** Flagged
+to Figma AI on C360-44222. The most visible symptom: the table header already ships a working sort
+control with four variants, and nothing lights up when a column is actually sorted.
+
+Zebra striping stays ruled out — that one's a decision, not a gap.
+
+---
+
 ## 4b. States — one ruled out, two waiting on you
 
 | State | Status |
@@ -218,6 +286,7 @@ closes seven.
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-09-01 | **3.0.0** — three column-width bands ruled and published for the first time (M 80-140, **L 140-240 default**, XL 240-400), named to match the Figma `column-size` variant. Supersedes the local `[CS-TBL-14]` bands on both naming and values, and moves the default up a size. Density confirmed as working-as-designed for padding (TBL-R6); the type-scale half left open. Table states checked on the owner's instruction and formally flagged as a genuine design gap, not a documentation one. | **Owner ruling, 2026-09-01** |
 | 2026-08-25 | **2.1.1** — adversarial review found the 34px header floor was enforced by `min-height`, which browsers may ignore on a table cell; measured at **17px** in Chrome, shorter than its own 30px rows. Fixed to `height` in both stylesheets, and this contract's `neverUse: "height"` corrected — as written it would have made a future session undo the fix. Also retracted a false claim that declaring both properties made real and div-based tables behave alike. | Verification, 2026-08-25 |
 | 2026-08-25 | **2.1.0** — recorded that TWO stylesheets implement this contract, and rewrote the repo's own `src/styles/3-components/_tables.scss` against it (it predated the measurement by six weeks and had no row heights at all). Also recorded four **namespace divergences** that were previously papered over, including a dead `--border-radius-*` variable family that is live on Button and Empty States and produces square corners where 4px and 12px were intended. | Owner instruction, 2026-08-25 |
 | 2026-08-25 | **2.0.0** — four owner rulings applied. `table_head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
