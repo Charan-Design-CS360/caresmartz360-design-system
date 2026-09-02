@@ -52,7 +52,7 @@
       "UNVERIFIED": "not read — do not build from it"
     },
     "readThisFirst": "✅ THE HEADER QUESTION IS SETTLED. The canonical table header is `table_head` 26938:61726, variant 26938:52865 — ruled by the design-system owner on 2026-08-25, who linked that exact node and said it \"include all actions what it needed to show and hide example, Sorting, Information etc.\" `Head / Tiltes for tables` 5865:162 is RETIRED as an alias of it, and `X-Head old` stays formally dead. Build from 26938:61726. Do not re-open this from the fact that the section's own sample layout (27002:78668) still instantiates the retired name — that is a Figma-side cleanup item, not evidence of a live competing component. Three more rulings landed the same day and are all recorded in `ownerRulings` below: padding is 8px inline / 0px block on BOTH cells; the data cell's 30px is a MINIMUM and a long value grows the WHOLE ROW; zebra striping is ruled out entirely. One thing is deliberately still open — cell hover — because the Agency semantic layer has no hover token for a field or table surface to follow. It is deferred to the owner, not invented here.",
-    "ruledOn": "2026-09-01",
+    "ruledOn": "2026-09-02",
     "ruledBy": "Singh (design-system owner)",
     "knownNamespaceDivergences": [
       "Text colour: this contract MEASURES field/value-primary on both cells. Both stylesheets bind text/primary instead — identical value (#1E293B) in every theme in the repo, and the correct namespace for a non-field element. The contract's own namingException records the field-token-on-a-header as a defect, so binding text/primary is following the defect note, not ignoring the measurement. Unifying the namespaces is an open owner decision.",
@@ -507,7 +507,7 @@
       "marker": [
         "MEASURED"
       ],
-      "note": "ONE variant each in Figma (type=Default). No hover, selected, sorted-active, disabled or error state exists on either set. Zebra striping is RULED OUT (TBL-R4) and is not a gap. ⚠ FLAGGED 2026-09-01 on the owner's instruction — he asked whether states were already defined here and said to flag it if not. They are NOT: this contract has never carried a hover, selected or sorted-active state, because nothing exists in Figma to measure and the Agency semantic layer has no hover token for a field or table surface (its only *hover tokens are action/*, toggle, surface/brand and text/links — all wrong layer for a data-cell surface). So this is a genuine DESIGN gap, not a documentation gap: it cannot be closed by writing a contract, only by the states being designed. Raised to Figma AI on C360-44222. Until then, building any of these in code is an invention."
+      "note": "ONE variant each in Figma (type=Default). No hover, selected, sorted-active, disabled or error state exists on either set. Zebra striping is RULED OUT (TBL-R4) and is not a gap. ⚠ FLAGGED 2026-09-02 on the owner's instruction — he asked whether states were already defined here and said to flag it if not. They are NOT: this contract has never carried a hover, selected or sorted-active state, because nothing exists in Figma to measure and the Agency semantic layer has no hover token for a field or table surface (its only *hover tokens are action/*, toggle, surface/brand and text/links — all wrong layer for a data-cell surface). So this is a genuine DESIGN gap, not a documentation gap: it cannot be closed by writing a contract, only by the states being designed. Raised to Figma AI on C360-44222. Until then, building any of these in code is an invention."
     }
   },
   "contractVsLocalCss": {
@@ -544,7 +544,7 @@
     "That same guidelines frame's Dev Mode link points at node-id=26581-38709, which is NOT a table node — it is the same wrong link already recorded as a defect on the Fields contract. One broken link is being copied into generated guidelines.",
     "fonts/tracking/X-tracking-0 bound on both text styles — legacy name, absent from the export. Correct name: fonts/tracking/tracking-0. This is now a SEVENTH component family with the same defect.",
     "Only ONE variant exists on each set (type=Default). Of the six states once listed as missing, zebra is now RULED OUT (TBL-R4, not a gap), and hover plus selected/sorted-active are DEFERRED to the owner (TBL-D1, TBL-D2) because neither Figma nor the semantic layer offers anything to follow. Disabled and error remain genuinely unaddressed. Building any unruled state in code is an invention.",
-    "D10 — TABLE STATES ARE UNDEFINED SYSTEM-WIDE, formally flagged 2026-09-01 on the owner's instruction. No hover, selected, sorted-active, disabled or error state exists for the table in Figma, in this contract, or in the Agency semantic layer's token set. The header ships a working 4-variant Sort control with no active state wired to anything, which is the most visible symptom. This is a design gap requiring the states to be authored in Figma — it cannot be resolved by documentation. Raised to Figma AI on C360-44222."
+    "D10 — TABLE STATES ARE UNDEFINED SYSTEM-WIDE, formally flagged 2026-09-02 on the owner's instruction. No hover, selected, sorted-active, disabled or error state exists for the table in Figma, in this contract, or in the Agency semantic layer's token set. The header ships a working 4-variant Sort control with no active state wired to anything, which is the most visible symptom. This is a design gap requiring the states to be authored in Figma — it cannot be resolved by documentation. Raised to Figma AI on C360-44222."
   ],
   "structureIsIdenticalAcrossStates": true,
   "stateChangeIsTokenSwapOnly": false,
@@ -740,7 +740,7 @@
     "raisedAs": "C360-44222 comments 629355 (the 5-item list) and 629359 (the owner's direct instruction to update the guidelines and the component)"
   },
   "columnWidths": {
-    "status": "RULED 2026-09-01 by the design-system owner (TBL-R5). NEW to this repo — no column-width guidance existed here before.",
+    "status": "RULED 2026-09-02 by the design-system owner (TBL-R5). NEW to this repo — no column-width guidance existed here before.",
     "namingRationale": "The band names M / L / XL deliberately match a Figma variant property called `column-size`, so a designer and a developer say the identical word. In CSS the size is declared as a data attribute (`data-column-size=\"M|L|XL\"`) rather than a BEM class, because this design system already uses data attributes for variant axes (data-theme, data-density) and BEM classes for structural modifiers — a column's size is a variant axis.",
     "pickBy": "CONTENT, not column name.",
     "bands": {

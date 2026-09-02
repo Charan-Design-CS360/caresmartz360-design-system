@@ -158,7 +158,7 @@ Fixed in both stylesheets and in this contract, which had been telling future se
 
 ---
 
-## 4e. Column widths — three sizes, ruled 2026-09-01
+## 4e. Column widths — three sizes, ruled 2026-09-02
 
 **This is new — nothing in the GitHub repo defined column widths before today.** Your words:
 *"A- column-size=L (this will be default) Minimum width 140px, max width 240px. B- column-size=M:
@@ -286,7 +286,7 @@ closes seven.
 
 | Date | Change | Authority |
 |---|---|---|
-| 2026-09-01 | **3.0.0** — three column-width bands ruled and published for the first time (M 80-140, **L 140-240 default**, XL 240-400), named to match the Figma `column-size` variant. Supersedes the local `[CS-TBL-14]` bands on both naming and values, and moves the default up a size. Density confirmed as working-as-designed for padding (TBL-R6); the type-scale half left open. Table states checked on the owner's instruction and formally flagged as a genuine design gap, not a documentation one. | **Owner ruling, 2026-09-01** |
+| 2026-09-02 | **3.0.0** — three column-width bands ruled and published for the first time (M 80-140, **L 140-240 default**, XL 240-400), named to match the Figma `column-size` variant. Supersedes the local `[CS-TBL-14]` bands on both naming and values, and moves the default up a size. Density confirmed as working-as-designed for padding (TBL-R6); the type-scale half left open. Table states checked on the owner's instruction and formally flagged as a genuine design gap, not a documentation one. | **Owner ruling, 2026-09-01** |
 | 2026-08-25 | **2.1.1** — adversarial review found the 34px header floor was enforced by `min-height`, which browsers may ignore on a table cell; measured at **17px** in Chrome, shorter than its own 30px rows. Fixed to `height` in both stylesheets, and this contract's `neverUse: "height"` corrected — as written it would have made a future session undo the fix. Also retracted a false claim that declaring both properties made real and div-based tables behave alike. | Verification, 2026-08-25 |
 | 2026-08-25 | **2.1.0** — recorded that TWO stylesheets implement this contract, and rewrote the repo's own `src/styles/3-components/_tables.scss` against it (it predated the measurement by six weeks and had no row heights at all). Also recorded four **namespace divergences** that were previously papered over, including a dead `--border-radius-*` variable family that is live on Button and Empty States and produces square corners where 4px and 12px were intended. | Owner instruction, 2026-08-25 |
 | 2026-08-25 | **2.0.0** — four owner rulings applied. `table_head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
