@@ -1,0 +1,145 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Tabs — Primary (underline) + Secondary (segmented)",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP never reports a file key. Taken from the URLs Singh supplied (Design System Agency V2.0).",
+    "figmaNodes": {
+      "tabsSection": "27329:70491  (name: 'Tabs')",
+      "primary": "5775:8556  (name: 'primary tab' — states: Default 2134:1185 · Hover 7876:7143 · Selected 2134:1209 · disabled 27334:72865 · Empty 25991:46733)",
+      "primaryPreview": "27329:70502",
+      "secondary": "27329:70805  (name: 'secondary tab' — axes: Size=S · Active=No/Yes · Status=Start/Mid/End · State=Default/Hover; 27 variants total)",
+      "secondaryPreview": "27329:70869"
+    },
+    "measuredOn": "2026-09-03",
+    "measuredBy": "Claude (DESIGN-SYSTEM lane)",
+    "measurementMethod": "figma-desktop MCP live reads with the tabs page fronted: get_metadata on 27329:70491 + 5775:8556; get_design_context on 5775:8556 (Default/Hover/Selected/Empty), 27334:72865 (disabled), 27329:70805 (segmented variant set); get_variable_defs on 27329:70491. Every token cross-verified resolvable in the repo on 2026-09-03 (src/styles/2-semantics/_theme-light.scss + 1-primitives/_spacing.scss) — one VALUE mismatch found and flagged (defect T1), no name was a phantom.",
+    "jiraParent": "TBD — Agency component epic; link on ratification.",
+    "humanContract": "./tabs.md",
+    "kitCss": "Universal Html Rules/02-components/tabs.css",
+    "markerLegend": {
+      "MEASURED": "read directly from live Figma; nodeId given",
+      "RAW": "real value but NOT bound to any token in the owner's export",
+      "ASSUMED": "standard convention for this UI pattern; flagged, not treated as fact",
+      "RULED": "Singh decided it, 2026-09-03; verbatim quote kept",
+      "ADDED": "not drawn in Figma; added because a real tab component requires it (keyboard, roles)",
+      "UNVERIFIED": "not read, or read and contradictory — resolve before building"
+    },
+    "readThisFirst": "Singh's 2026-09-03 request: build the global Tabs component styles. He RULED both styles are in scope and named them PRIMARY (underline, 5775:8556) and SECONDARY (segmented, 27329:70805), and he ADDED a disabled state to Primary (27334:72865) during the session. Per his standing instruction, the `behavior` and `purpose` blocks are mandatory. One value discrepancy was found on the new disabled token — see defect T1; it is flagged, not silently resolved.",
+    "ruledOn": "2026-09-03",
+    "ruledBy": "Singh (design-system owner)"
+  },
+  "purpose": "Two official tab styles for the whole product. PRIMARY (underline) switches between top-level sections of a page or record — a row of text tabs where the current one is marked by a brand-blue underline. SECONDARY (segmented) is a compact joined pill group for nested tabs, sub-sections, or on/off filter groups — the selected segment fills solid blue. Using one shared pair everywhere keeps tabbing consistent across every screen.",
+  "anatomy": {
+    "primary": {
+      "role": "Underline tab row for top-level sections.",
+      "parts": ["tab row", "each tab = label + 2px baseline", "optional Empty filler that extends the baseline to the row's end"],
+      "states": ["Default", "Hover", "Selected", "Disabled", "Empty (filler, not a real tab)"],
+      "marker": ["MEASURED", "RULED"]
+    },
+    "secondary": {
+      "role": "Segmented pill group for nested / sub / filter tabs.",
+      "parts": ["group", "each segment = centered label; corners round only at the row's Start and End"],
+      "axes": "Size=S · Active=No/Yes · Status=Start/Mid/End · State=Default/Hover",
+      "marker": ["MEASURED", "RULED"]
+    }
+  },
+  "geometry": {
+    "primary": {
+      "tab": {
+        "paddingTop": { "value": 16, "token": "spacing/xl", "cssVar": "--spacing-xl", "marker": ["MEASURED"] },
+        "paddingBottom": { "value": 4, "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
+        "gapLabelToBaseline": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+        "labelRightGap": { "value": 16, "token": "spacing/xl", "cssVar": "--spacing-xl", "marker": ["MEASURED"], "note": "right padding on the label = the gap to the next tab." },
+        "height": { "value": 50, "unit": "px", "marker": ["MEASURED", "RAW"], "note": "16 + 20 (label lh) + 8 + 2 (baseline) + 4 = 50." },
+        "labelType": { "value": "Fields/header — Inter Medium 14 / line-height 20", "marker": ["MEASURED"] },
+        "baseline": { "value": "2px full-width line under the label", "marker": ["MEASURED"] }
+      },
+      "states": {
+        "default": { "label": "text/secondary (#475569)", "cssVarLabel": "--text-secondary", "baseline": "field/border-default (#e2e8f0)", "cssVarBaseline": "--field-border-default", "marker": ["MEASURED"] },
+        "hover": { "label": "text/primary (#1e293b)", "cssVarLabel": "--text-primary", "baseline": "border/focus (#0077ff)", "cssVarBaseline": "--border-focus", "marker": ["MEASURED"] },
+        "selected": { "label": "text/brand (#0077ff)", "cssVarLabel": "--text-brand", "baseline": "action/primary/bg (#0077ff)", "cssVarBaseline": "--action-primary-bg", "marker": ["MEASURED"] },
+        "disabled": { "label": "action/disabled/text-neutral", "cssVarLabel": "--action-disabled-text-neutral", "baseline": "action/disabled/bg (#f1f5f9)", "cssVarBaseline": "--action-disabled-bg", "interactive": false, "marker": ["MEASURED"], "note": "Added by Singh 2026-09-03 (node 27334:72865). VALUE MISMATCH on the label token — see defect T1." },
+        "empty": { "value": "22px filler, grey baseline (field/border-default), no label — extends the underline past the last tab.", "marker": ["MEASURED"] }
+      }
+    },
+    "secondary": {
+      "segment": {
+        "height": { "value": 24, "unit": "px", "marker": ["MEASURED", "RAW"] },
+        "minWidth": { "value": 40, "unit": "px", "marker": ["MEASURED", "RAW"] },
+        "paddingInline": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+        "cornerRadius": { "value": 4, "token": "border-radius/rounded", "cssVar": "--rounded", "marker": ["MEASURED"], "note": "Only at the row Start (first) and End (last); Mid segments are square." },
+        "labelType": { "value": "Fields/value — Inter Regular 12 / line-height 16", "marker": ["MEASURED"] }
+      },
+      "states": {
+        "inactiveDefault": { "border": "border/subtle (#e2e8f0)", "cssVarBorder": "--border-subtle", "text": "text/primary (#1e293b)", "cssVarText": "--text-primary", "fill": "none", "marker": ["MEASURED"] },
+        "inactiveHover": { "fill": "action/secondary/hover (#e0f0ff)", "cssVarFill": "--action-secondary-hover", "border": "border/brand (#0077ff)", "cssVarBorder": "--border-brand", "text": "action/secondary/text (#005ce6)", "cssVarText": "--action-secondary-text", "marker": ["MEASURED"] },
+        "active": { "fill": "action/primary/bg (#0077ff)", "cssVarFill": "--action-primary-bg", "text": "action/primary/text-neutral (#ffffff)", "cssVarText": "--action-primary-text-neutral", "border": "none", "marker": ["MEASURED"] }
+      },
+      "statusToCorner": { "Start": "round left corners", "Mid": "square (joins neighbours)", "End": "round right corners", "marker": ["MEASURED"] }
+    }
+  },
+  "typography": {
+    "note": "Primary uses Fields/header (Inter Medium 14/20). Secondary uses Fields/value (Inter Regular 12/16). No new type styles.",
+    "marker": ["MEASURED"]
+  },
+  "colourFormula": {
+    "pattern": "Primary label goes text/secondary → text/primary (hover) → text/brand (selected) → action/disabled/text-neutral (disabled); its baseline goes field/border-default → border/focus → action/primary/bg → action/disabled/bg. Secondary segment is border/subtle+text/primary (inactive) → action/secondary/hover fill + border/brand + action/secondary/text (hover) → action/primary/bg fill + action/primary/text-neutral (active). Every token resolves in the repo with dark/hc/warm variants — verified 2026-09-03; the only value discrepancy is defect T1.",
+    "marker": ["MEASURED"]
+  },
+  "variantAxes": {
+    "primary": { "values": ["Default", "Hover", "Selected", "Disabled", "Empty"], "marker": ["MEASURED", "RULED"] },
+    "secondary": { "size": ["S"], "active": ["No", "Yes"], "status": ["Start", "Mid", "End"], "state": ["Default", "Hover"], "marker": ["MEASURED"] }
+  },
+  "accessibility": {
+    "roles": { "value": "Both styles are role=\"tablist\" of role=\"tab\"; the current tab is aria-selected=\"true\" (drives the Selected/active visual), tied to its panel via aria-controls. Disabled primary tabs get aria-disabled=\"true\" + tabindex=\"-1\".", "marker": ["ADDED"] },
+    "keyboard": { "value": "Arrow keys move between tabs with a roving tabindex; Home/End jump to first/last — the standard WAI-ARIA tabs pattern. Not drawn in Figma but required.", "marker": ["ADDED"] },
+    "contrast": { "value": "Secondary hover text (action/secondary/text → blue-700) is contrast-verified 5.30:1 AA (token comment). Primary selected/brand text on white passes. Disabled contrast depends on T1's resolution — flag.", "marker": ["MEASURED"] },
+    "focusVisible": { "value": "Every tab/segment keeps a visible focus ring.", "marker": ["ADDED"] }
+  },
+  "defects": [
+    "T1 — DISABLED LABEL VALUE MISMATCH (Primary). The new disabled variant (27334:72865) binds action/disabled/text-neutral, whose Figma-resolved value reads #475569 — identical to text/secondary, i.e. a disabled tab's label would look the same colour as a normal Default tab's label. The repo, however, resolves --action-disabled-text-neutral to neutral-300 (a lighter grey), which is the more sensible disabled look. Figma and the repo disagree on this token's value. The CSS binds the TOKEN name (correct); Singh / Figma AI must reconcile the intended value. Do not hardcode either side.",
+    "T2 — LEGACY TOKEN NAME: letter-spacing binds fonts/tracking/X-tracking-0 (X- legacy prefix) on both styles — the same system-wide legacy-name cleanup already tracked. Do not propagate the X- name; the kit uses semantic vars.",
+    "T3 — SECONDARY 'badge indicators' NOT MEASURED. The component reports 27 variants 'covering states and badge indicators', but only Size=S × Active × Status × Default/Hover were read. Any count-badge variant on a segment was not captured — read it before using badges on secondary tabs.",
+    "T4 — SECONDARY is size S only in the read set. If a larger (M/L) segmented size is needed, it was not found and must be measured.",
+    "T5 — SECONDARY has no measured Active+Hover combo and no disabled segment; PRIMARY has no measured Active+Hover-of-a-different-tab nuance. States beyond those listed are not defined in Figma — treat as out of scope until drawn."
+  ],
+  "notVerified": [
+    "Whether the Primary tab row scrolls or wraps when tabs overflow the width — none specified; the kit adds overflow-x:auto (a judgement call).",
+    "Whether Secondary segments are equal-width or content-width in real use (min-width 40 measured; the preview mixes widths).",
+    "The exact 'badge indicator' secondary variants (T3).",
+    "Any Secondary size other than S (T4).",
+    "Disabled behaviour for Secondary segments (not drawn).",
+    "Visual behaviour across all 9 theme×density combos — tokens carry theme variants but the assembled component was not rendered in each."
+  ],
+  "behavior": {
+    "primarySelect": {
+      "action": "Click a Primary tab.",
+      "effect": "Switches the page/record to that section; the clicked tab becomes Selected (brand-blue label + underline) and its panel shows. Only one tab is Selected at a time.",
+      "marker": ["MEASURED"]
+    },
+    "primaryDisabled": {
+      "action": "A Primary tab is disabled.",
+      "effect": "Shown greyed with a faint baseline and is not clickable or focusable. Used when a section isn't available for this record/context.",
+      "marker": ["RULED"],
+      "note": "Singh added this state 2026-09-03."
+    },
+    "primaryEmpty": {
+      "action": "n/a (not interactive).",
+      "effect": "The Empty filler simply continues the grey baseline to the end of the row so the underline spans the full width even past the last real tab.",
+      "marker": ["MEASURED"]
+    },
+    "secondarySelect": {
+      "action": "Click a Secondary segment.",
+      "effect": "Selects that segment (solid blue fill, white text); the others stay outlined. One active at a time. Used for nested sub-tabs or a single-choice filter group.",
+      "marker": ["MEASURED"]
+    },
+    "hover": {
+      "action": "Hover a non-selected tab/segment.",
+      "effect": "Primary: label darkens and the baseline turns blue. Secondary: segment fills light-blue with a blue border and blue text. Signals it's clickable.",
+      "marker": ["MEASURED"]
+    }
+  }
+}
