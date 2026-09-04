@@ -2,7 +2,7 @@
 
 **Portal:** Agency · **Layer:** 3 (Components) · **Jira parent:** C360-44737
 **Measured:** 2026-08-25, live Figma · **Section:** `27232:63236` · **Set:** `14160:189662`
-**Contract version:** `1.0.0` — complete. Supersedes the `0.1.0` partial published earlier the same day.
+**Contract version:** `1.1.0` — adds the complete-header molecule's self-owned 12px gutter (Singh ruling 2026-09-04). Supersedes `1.0.0`.
 **Machine twin:** [`page-header.json`](./page-header.json)
 
 ---
@@ -123,9 +123,14 @@ method. That method isn't documented and wasn't available to this session. Once 
 
 ---
 
+## Complete header gutter — the molecule owns 12px (Singh ruling, 2026-09-04)
+
+The page-header **atom** has **zero padding** — unchanged. Singh changed the **complete header** molecule (`27232:65833`) so it now **owns a uniform gutter**: **12px (`--spacing-lg`) padding on all four sides** (this is the left/right gutter you changed), a 12px row gap, white (`--surface-base`) background. It is **self-contained** — place it at the top of the content area and it provides its own gutter; **pages must NOT add their own left/right header margin** on top (double-padding is a defect). Any AI tool building a page reuses this component and its gutter rather than reinventing the header margin. Full spec: `page-header.json` → `completeHeader`.
+
 ## Version history
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-09-04 | **1.1.0 — complete-header gutter.** The complete-header molecule now owns a uniform 12px (`--spacing-lg`) padding on all sides; the atom stays 0-padding. Pages must not double-pad. Measured live from Figma. | Singh ruling, 2026-09-04 |
 | 2026-08-25 | **1.0.0 — complete.** All four variants measured via `get_design_context` after the Figma stall cleared. Type mapping per size resolved; all four heights independently reconciled by arithmetic; five optional-element props and six new defects recorded. | Owner instruction, 2026-08-25 |
 | 2026-08-25 | 0.1.0 — partial. Structure and tokens only; interior geometry unread after `get_design_context` failed four times. | Owner instruction, 2026-08-25 |

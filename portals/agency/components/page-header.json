@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Page Header",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Taken from portals/agency/portal-manifest.json (figma.fileKey) and the URL supplied by the design owner. Must be confirmed.",
     "figmaSectionNodeId": "27232:63236",
@@ -32,8 +32,22 @@
     "composedForms": [
       { "name": "pageheader component", "nodeId": "27232:65797", "size": "1388 x 44", "adds": "a right-aligned row of 6 action buttons — 5 filled blue icon buttons plus 1 filled green '+' button", "marker": ["MEASURED"] },
       { "name": "Search & Filetrs", "nodeId": "27232:65760", "size": "1388 x 30", "contains": "search field, 'Filter_Name : [Value]' select, toggle, checkbox, Apply, Reset, right-aligned 'Column(s)'", "marker": ["MEASURED"], "note": "Figma layer name is misspelled 'Filetrs' — recorded verbatim because it is the real name a tool matches on." },
-      { "name": "complete header", "nodeId": "27232:65833", "size": "1388 x 110", "composition": "the pageheader component stacked above the Search & Filetrs bar", "marker": ["MEASURED"], "note": "The Layer-4 Pattern candidate. See layer4Classification." }
+      { "name": "complete header", "nodeId": "27232:65833", "size": "1388 x 110", "composition": "the pageheader component stacked above the Search & Filetrs bar", "marker": ["MEASURED"], "note": "The Layer-4 Pattern candidate. See layer4Classification. Its self-owned gutter is specified in the completeHeader section below (Singh ruling 2026-09-04)." }
     ]
+  },
+
+  "completeHeader": {
+    "note": "The complete header MOLECULE (27232:65833) — the fully-assembled header placed at the top of every content page. UPDATED 2026-09-04 (Singh ruling): it now OWNS a uniform gutter and is SELF-CONTAINED. Pages must NOT add their own left/right header margin on top of it. The page-header ATOM (geometry.container below) is unchanged and still contributes 0 padding of its own.",
+    "padding": { "value": 12, "unit": "px", "sides": "all four (left = right = top = bottom)", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"], "measuredOn": "2026-09-04", "note": "Figma root binds p-[var(--spacing/lg,12px)]. This is the header left/right gutter Singh changed — 12px, uniform." },
+    "rowGap": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"], "note": "Between row 1 (page-header bar) and row 2 (Search & Filters bar); also the internal gap inside each row." },
+    "background": { "value": "#ffffff", "token": "surface/base", "cssVar": "--surface-base", "marker": ["MEASURED"] },
+    "rows": [
+      { "row": 1, "name": "pageheader component", "nodeId": "27232:65797", "content": "left: page title (Heading/h4 18) + sub-heading + refresh; right: primary action icon-buttons (30px)", "marker": ["MEASURED"] },
+      { "row": 2, "name": "Search & Filetrs", "nodeId": "27232:65760", "content": "left: search (140) + filter pills (dropdown/toggle/checkbox) + Apply/Reset; right: Client Columns preset + view switchers", "marker": ["MEASURED"] }
+    ],
+    "rule": "Place this molecule at the top of the content area; it provides its own 12px (--spacing-lg) gutter on all sides. Do NOT wrap it in additional left/right padding — double-padding is a defect. Any AI tool defining a page must reuse this component and its self-owned gutter, not reinvent the header margin.",
+    "supersedes": "Prior page layouts where the page/data-container provided the header's left/right inset. The gutter now lives on the header component itself.",
+    "ruledBy": "Singh (design-system owner), 2026-09-04"
   },
 
   "geometry": {
