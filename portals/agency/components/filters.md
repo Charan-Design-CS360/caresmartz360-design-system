@@ -2,7 +2,7 @@
 
 **Portal:** Agency · **Layer:** 3 (Component) · **Jira parent:** C360-44737
 **Measured:** 2026-09-04, live Figma · **Section node:** `27356:74769` "filters compoents"
-**Contract version:** `1.0.0` — first measurement.
+**Contract version:** `1.1.0` — Singh's usage ruling: dropdown is the default, toggle/checkbox are the special binary case (§3). Supersedes `1.0.0`.
 **Machine twin:** [`filters.json`](./filters.json)
 
 ---
@@ -54,19 +54,22 @@ though its fill is the same blue tint.
 
 ---
 
-## 3. The finding worth reading — the control does not reflect the value
+## 3. When to use each type — Singh's ruling (2026-09-04)
 
-Verified straight from the Active variants' bound tokens (2026-09-04):
+The three types are **final — follow the design exactly**. Which one you use is decided by the
+**value type**:
 
-- **Filter_Toggle Active** still binds `action/toggle/bg-default` (the **OFF** grey track) — the
-  switch does **not** turn on.
-- **Filter_checkbox Active** still binds a white box with a grey border and **no** check fill — the
-  box stays **unchecked**.
+| Type | When to use | The value is… |
+|---|---|---|
+| **Dropdown** | **The default.** A normal filter that picks one value out of many. | shown inline as " : [Value]" |
+| **Toggle** | **Special case** — only when the value is a single **binary** (on / off). | the toggle's own active/inactive |
+| **Checkbox** | **Special case** — only when the value is a single **binary** (include / exclude). | the checkbox's own checked/unchecked |
 
-So on a toggle or checkbox filter, the *only* signal that a value is applied is the container going
-blue. The switch stays off; the box stays empty. Only the **dropdown** actually shows its value
-(as text). **This is an open UX question for you, not a settled rule** — see §7 q1. It is recorded
-exactly as measured; nothing was "corrected."
+So on a toggle or checkbox filter the **control's own active/inactive state is the value** — that
+is what makes them binary filters. The container's blue (Active) is a *separate* cue that the filter
+is applied. (Earlier I flagged that the published Active variant shows the toggle off / box
+unchecked; Singh's ruling settles it — that is intentional, the control carries the binary value, do
+**not** redesign it.)
 
 ---
 
@@ -127,9 +130,10 @@ only holds its own value; the row commits it.
 
 ## 7. Open questions for you (one at a time when you're ready)
 
-1. **Should the control show the value?** On toggle and checkbox filters, when a value is applied
-   the switch stays **off** and the box stays **unchecked** — only the container turns blue. Is that
-   intended, or should the toggle switch on / the checkbox check? (Finding F-FILTER-01.)
+1. ~~**Should the control show the value?**~~ **RESOLVED 2026-09-04 (Singh):** the three types are
+   final — follow exactly. Dropdown is the default multi-value filter; toggle/checkbox are
+   special-case binary filters (single value, active/inactive) whose own control state **is** the
+   value. Not a defect. (Finding F-FILTER-01 — resolved; see §3.)
 2. **Hover with no value.** Only "hover an *applied* filter" is drawn. Is there a hover state for a
    filter that has no value yet?
 3. **Real names.** The three are placeholders (Filter_Name). What real filters and value types map
@@ -152,4 +156,5 @@ only holds its own value; the row commits it.
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-09-04 | **1.1.0 — usage ruling.** Singh ruled the three types are final: dropdown is the default (multi-value) filter; toggle & checkbox are special-case binary filters (single value, active/inactive) whose control state is the value. Resolves F-FILTER-01 / q1; adds §usageGuidance. | Singh's ruling, 2026-09-04 |
 | 2026-09-04 | 1.0.0 — first measurement of the three filter atoms, their three states, the per-state colour model, and the connection up through the Search & Filters row into the complete header. Closes the "Search & Filters interior geometry" gap that page-header.json listed as notVerified. | Singh's request, 2026-09-04 |

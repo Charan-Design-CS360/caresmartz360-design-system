@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Filters",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma MCP serves whatever tab is active and never reports a file key. Taken from the URL supplied by the design owner (Singh, 2026-09-04) and portals/agency/portal-manifest.json. Confirm before relying on it.",
     "figmaSectionNodeId": "27356:74769",
@@ -19,7 +19,7 @@
       "RAW": "real value but NOT bound to any token in the owner's variable export",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "Three sibling filter atoms — Filter_dropdown, Filter_Toggle, Filter_checkbox — share ONE container spec and ONE per-state colour model. They differ only in the control they carry (chevron / toggle / checkbox) and in whether the applied value is shown. IMPORTANT, verified 2026-09-04: in the Active (Value=Yes) state the toggle control stays OFF and the checkbox stays UNCHECKED — the 'a value is applied' signal is carried ENTIRELY by the container (blue fill + blue border), never by the control glyph. Only the dropdown surfaces its value (as ' : [Value]' text). See openQuestions.q1 — this is an unresolved UX point for the owner, not a settled rule."
+    "readThisFirst": "Three sibling filter atoms — Filter_dropdown, Filter_Toggle, Filter_checkbox — share ONE container spec and ONE per-state colour model. RULED by Singh 2026-09-04: the three types are FINAL — follow the design exactly. The DROPDOWN is the default filter (multi-value; shows its selected value inline as ' : [Value]'). TOGGLE and CHECKBOX are SPECIAL-CASE filters, used ONLY when the value is a single binary with active/inactive states — the control's own on/off (checked/unchecked) IS the value. The container's State (Default/Active/Hover) marks whether the filter is applied or hovered and is a SEPARATE concern from the control's value. See usageGuidance and criticalFinding (resolved)."
   },
 
   "purpose": "A row of compact, single-line filter controls that sit in a table's Search & Filters bar and let someone narrow the rows below. Each atom names ONE filter and carries the control appropriate to that filter's value type: a dropdown (pick one of many), a toggle (on/off), or a checkbox (include/exclude). They do not filter on their own — the row's Apply button commits them; Reset clears them.",
@@ -77,7 +77,7 @@
   },
 
   "controls": {
-    "note": "Each atom embeds one already-published control component. The control's own state does NOT change with the filter's Value — see the criticalFinding.",
+    "note": "Each atom embeds one already-published control component. Per Singh's ruling (usageGuidance): toggle/checkbox are binary filters — the control's own active/inactive IS the value, and the container's State is a separate applied/hover cue.",
     "dropdown": {
       "asset": "expand_more", "role": "chevron/affordance",
       "size": { "value": 18, "unit": "px", "marker": ["MEASURED"], "note": "18x18 action frame at x=80." },
@@ -99,12 +99,23 @@
     }
   },
 
+  "usageGuidance": {
+    "ruledBy": "Singh (design-system owner), 2026-09-04",
+    "rule": "The three filter types are intentional and FINAL — follow the design exactly; do not add, drop or re-style states.",
+    "whenToUseEach": {
+      "dropdown": "The DEFAULT filter. Use for a normal filter that picks one value out of many; it shows the chosen value inline as ' : [Value]'.",
+      "toggle": "SPECIAL CASE. Use ONLY when the filter's value is a single binary — an active / inactive (on / off) choice. The toggle's own on/off is the value.",
+      "checkbox": "SPECIAL CASE. Use ONLY when the filter's value is a single binary — include / exclude (checked / unchecked). The checkbox's own state is the value."
+    },
+    "pickBy": "Value type decides the control: many possible values → dropdown (default); one binary value → toggle or checkbox."
+  },
+
   "criticalFinding": {
     "id": "F-FILTER-01",
-    "title": "The control glyph does not reflect the applied value on toggle and checkbox filters.",
-    "evidence": "Verified via get_variable_defs on the Active (Value=Yes) symbols: Filter_Toggle Active (26938:65220) still binds action/toggle/bg-default (#e2e8f0, the OFF track) with an icon/secondary knob; Filter_checkbox Active (26938:65447) still binds field/bg-default box fill + border/medium border with NO check fill. Neither control switches to an on/checked appearance.",
-    "consequence": "For toggle and checkbox filters, the only signal that a value is applied is the container's blue fill + blue border. A toggle filter that is 'active' still shows an OFF switch; a checkbox filter that is 'active' still shows an EMPTY box. Only the dropdown surfaces its value (as ' : [Value]' text).",
-    "status": "OPEN — needs the design owner's ruling. See openQuestions.q1. Recorded as measured; not corrected."
+    "title": "Toggle/checkbox filters are binary (single-value) filters — RESOLVED, not a defect.",
+    "measured": "On the published Active (Value=Yes) symbols the toggle binds action/toggle/bg-default (the off track, 26938:65220) and the checkbox binds field/bg-default + border/medium with no check fill (26938:65447); the container carries the blue applied-cue. Flagged as a possible defect on 2026-09-04.",
+    "resolution": "RESOLVED 2026-09-04 (Singh): the three types are intentional — follow exactly. Dropdown is the DEFAULT (multi-value) filter; Toggle and Checkbox are SPECIAL-CASE filters used ONLY when the value is a single binary with active/inactive (on/off, checked/unchecked) states — the control's own state IS the value. The container's State (Default/Active/Hover) and the control's value are SEPARATE concerns. Not a defect; do not redesign the control. See usageGuidance.",
+    "status": "RESOLVED"
   },
 
   "composition": {
@@ -150,7 +161,7 @@
     "note": "Singh's standing rule: every component carries its behaviour, not just its look.",
     "table": [
       { "do": "Open a dropdown filter and pick a value", "happens": "Atom moves to Active: blue fill + blue border, and the label becomes 'Filter_Name : [Value]'. The table does NOT change yet." },
-      { "do": "Turn on a toggle filter / tick a checkbox filter", "happens": "Atom moves to Active: blue fill + blue border. The control glyph does NOT visibly change (see criticalFinding). The table does NOT change yet." },
+      { "do": "Turn on a toggle filter / tick a checkbox filter", "happens": "The control's own active/inactive IS the value (these are binary filters per usageGuidance). The container also moves to Active (blue fill + blue border) to mark it applied. The table does NOT change yet." },
       { "do": "Hover an applied filter", "happens": "Blue fill stays; border goes grey (Hover state)." },
       { "do": "Press Apply (Button/Primary)", "happens": "Commits every engaged filter to the table below. Nothing filters until this is pressed." },
       { "do": "Press Reset (Button/Soft)", "happens": "Clears all filters back to Default (no value)." }
@@ -169,7 +180,7 @@
   },
 
   "openQuestions": [
-    { "id": "q1", "question": "On toggle and checkbox filters, should the control reflect the applied value (toggle switches ON, checkbox becomes CHECKED) when Active, or is the container's blue styling the only intended cue? Today the control stays OFF/UNCHECKED even when a value is applied.", "gate": "Design-owner (Singh) ruling. Do not implement an on/checked control until ruled.", "raisedTo": "Singh, 2026-09-04" },
+    { "id": "q1", "question": "On toggle and checkbox filters, should the control reflect the applied value, or is the container's blue styling the only cue?", "status": "RESOLVED 2026-09-04 (Singh): the three types are final — follow exactly. Dropdown is the default multi-value filter; toggle/checkbox are special-case binary filters (single value, active/inactive) whose own control state IS the value. See usageGuidance + criticalFinding." },
     { "id": "q2", "question": "Is there a Hover state for a filter with NO value applied ((Hover, No))? Only (Hover, Yes) is published. A no-value filter presumably still needs hover feedback.", "gate": "Design-owner ruling / Figma-side addition." },
     { "id": "q3", "question": "The three atoms are named Filter_dropdown / Filter_Toggle / Filter_checkbox with placeholder 'Filter_Name'. What real filter names/value types map to each in the Agency product?", "gate": "BA / product content — not a design-system decision." }
   ],
