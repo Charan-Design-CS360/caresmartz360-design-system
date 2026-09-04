@@ -2,7 +2,7 @@
 
 **Portal:** Agency · **Layer:** 4 (Pattern, filed under Components — see layer4Classification) · **Jira parent:** C360-44737
 **Measured:** 2026-09-01, live Figma · **Ruled:** 2026-09-01, Singh · **Pattern node:** `27311:46254` · **Linked atom:** `13095:43335`
-**Contract version:** `2.0.0` — full behaviour spec added after Singh's ruling. Supersedes `1.0.0`.
+**Contract version:** `2.1.0` — adds the **"Column(s)" trigger button** that opens the panel (Singh, 2026-09-04). Supersedes `2.0.0`.
 **Machine twin:** [`column-arrangement.json`](./column-arrangement.json)
 
 ---
@@ -36,6 +36,19 @@ bar, the row, the group label, the buttons. This contract's job is documenting h
 **assembled and how they behave**, not inventing new parts.
 
 ---
+
+## 1b. The trigger button — "Column(s)" (added v2.1.0)
+
+The panel doesn't float on its own — it's opened by a **"Column(s)" button** (Figma "Columns action button tigger" `10373:16081`) that lives in a table's **Search & Filters row** (right side). It's a standard field-style button: white with a grey border, the word "Column(s)" + a small list icon, 30px tall, 4px radius.
+
+| State | Look |
+|---|---|
+| **Default** | white bg, grey border, dark text/icon |
+| **Hover** | light-blue bg (`--field-bg-focus`) |
+| **Active / Selected** | **blue border + blue text** — stays highlighted **while the panel is open** |
+| **Disabled** | greyed, non-clickable (used when the table has no configurable columns) |
+
+Clicking it **opens** the panel; clicking again — or Apply / Cancel / close — **dismisses** it and the button returns to Default. (This is the same button shown as "Client Columns (Finalized)" in the page-setup demo.)
 
 ## 2. How it behaves — every action, and its effect
 
