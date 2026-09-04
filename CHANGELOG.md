@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.0] — 2026-09-04
+
+Component & pattern contract layer for the **Agency** portal. Every component below
+consumes semantic tokens only (no `--p-*` primitives, no hardcoded hex) and holds in
+light / dark / high-contrast. This is the shared source other AI tools must build from —
+do not reinvent these structures.
+
+### Added — components (Layer 3)
+- **Profile Side Navigation** (`portals/agency/components/profile-side-navigation.*`) — the grey record-nav rail: top actions (48h), profile card (70px avatar + camera badge, name/timezone, full-width **View Notes**, 5 contact rows at 18px icons), then the nav list (30px rows, 8px inset). **v1.1.0** adds the card **click model** (Singh, 2026-09-04): *expanded* → every action is individually clickable; *collapsed* → only the avatar shows and the **whole rail** is one tap target that expands the card.
+- **Primary Side Navigation** (`primary-side-navigation.*`) — the blue rail, **48 collapsed / 158 expanded**, full height (outermost, left of the header): white logo header (52h), toggle, nav icons (40h; first selected uses `--sidebar-ring`), copyright. Includes a focus-ring WCAG fix (`:focus-visible` → `--sidebar-text`, not `--sidebar-ring`) and selected-icon token wiring (`--sidebar-icon-active`).
+- **Tabs** (`tabs.*`) — **Primary** (underline) + **Secondary** (segmented).
+
+### Added — patterns (Layer 4)
+- **Side Navigation pattern** (`patterns/side-navigation.md`) — how Primary (blue) and Profile (grey) rails compose and when each is used.
+- **Page Setup pattern** (`patterns/page-setup.md`) — the **basic page skeleton** every content page reuses: grid `Primary 48/158 + Shell 1392` → `Global header 52` over `[Profile 240 | Content = shell−240]`, content stack `Tabs → Data container → Page info`, **12px (`--spacing-lg`) gutter** on every content block. Grid reconciles 16/16 by dry-run. **Status: assembled, visual sign-off pending.**
+
+### Changed — header structure (gutter ruling)
+- **Page Header** (`page-header.*`) — **v1.1.0**: new **`completeHeader`** molecule that owns a self-contained **12px (`--spacing-lg`) gutter on all four sides** (header left/right margin ruling, Figma node `27232:65833`). The header *atom* stays 0-padding; pages must **not** add page-level padding on top of the complete header.
+
+### Changed — column setting
+- **Column Arrangement** (`column-arrangement.*`) — **v2.1.0**: adds the **"Column(s)" trigger button** (field-style, 30px, 4 states: default / hover / active-selected / disabled) that opens the column-setting panel and stays highlighted while it is open. Full behaviour spec (search / check / drag / Apply / Cancel / Reset); frozen column = first row in "Selected", tied to the existing table rule **CS-TBL-13**.
+- **Table** (`table.*`) — **v3.0.0**: column-width bands ruled, density settled, **frozen-left + scrollable + frozen-right** structure (CS-TBL-13: first & last columns frozen).
+
+### Verified
+- Component CSS token-purity: `validate-design-components-dryrun.sh` — 9 components, semantic tokens only, 0 primitives / 0 hardcoded hex.
+- Page-setup grid + 12px gutter: `validate-page-setup-dryrun.sh` — 16/16 sums reconcile against measured Figma.
+
+---
+
 ## [3.1.0] — 2026-07-27
 
 ### Added
