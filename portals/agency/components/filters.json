@@ -1,0 +1,192 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Filters",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma MCP serves whatever tab is active and never reports a file key. Taken from the URL supplied by the design owner (Singh, 2026-09-04) and portals/agency/portal-manifest.json. Confirm before relying on it.",
+    "figmaSectionNodeId": "27356:74769",
+    "figmaSectionName": "filters compoents",
+    "measuredOn": "2026-09-04",
+    "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
+    "measurementMethod": "Figma MCP live reads. get_metadata on 27356:74769 (section) + each atom frame + each state symbol for interior geometry; get_screenshot on the section and each atom frame; get_variable_defs on the section and on every state symbol of Filter_dropdown (default 26360:67681, active 26360:67693, hover 27352:74661) and the Active symbols of Filter_Toggle (26938:65220) and Filter_checkbox (26938:65447). Per-state tokens read directly, not inferred. Width sums cross-checked by arithmetic.",
+    "jiraParent": "C360-44737",
+    "humanContract": "./filters.md",
+    "markerLegend": {
+      "MEASURED": "read directly from live Figma; nodeId given",
+      "DERIVED": "computed from measured values; arithmetic shown in filters.md",
+      "RAW": "real value but NOT bound to any token in the owner's variable export",
+      "UNVERIFIED": "not read — do not build from it"
+    },
+    "readThisFirst": "Three sibling filter atoms — Filter_dropdown, Filter_Toggle, Filter_checkbox — share ONE container spec and ONE per-state colour model. They differ only in the control they carry (chevron / toggle / checkbox) and in whether the applied value is shown. IMPORTANT, verified 2026-09-04: in the Active (Value=Yes) state the toggle control stays OFF and the checkbox stays UNCHECKED — the 'a value is applied' signal is carried ENTIRELY by the container (blue fill + blue border), never by the control glyph. Only the dropdown surfaces its value (as ' : [Value]' text). See openQuestions.q1 — this is an unresolved UX point for the owner, not a settled rule."
+  },
+
+  "purpose": "A row of compact, single-line filter controls that sit in a table's Search & Filters bar and let someone narrow the rows below. Each atom names ONE filter and carries the control appropriate to that filter's value type: a dropdown (pick one of many), a toggle (on/off), or a checkbox (include/exclude). They do not filter on their own — the row's Apply button commits them; Reset clears them.",
+
+  "atoms": [
+    { "name": "Filter_dropdown", "nodeId": "26360:67677", "control": "expand_more chevron", "valueDisplay": "shows the chosen value inline as ' : [Value]' when a value is applied", "widthDefault": 106, "widthApplied": 158, "marker": ["MEASURED"] },
+    { "name": "Filter_Toggle", "nodeId": "26938:65213", "control": "Toggle (switch)", "valueDisplay": "none — label stays 'Filter_Name'; only the container restyles", "widthDefault": 118, "widthApplied": 118, "marker": ["MEASURED"] },
+    { "name": "Filter_checkbox", "nodeId": "26938:65443", "control": "Checkbox (square)", "valueDisplay": "none — label stays 'Filter_Name'; only the container restyles", "widthDefault": 112, "widthApplied": 112, "marker": ["MEASURED"] }
+  ],
+
+  "propertyModel": {
+    "axes": { "State": ["Default", "Active", "Hover"], "Value": ["No", "Yes"] },
+    "publishedVariants": ["(State=Default, Value=No)", "(State=Active, Value=Yes)", "(State=Hover, Value=Yes)"],
+    "note": "Only three of the six State×Value combinations are published. (Hover, No) — hovering a filter that has NO value applied — does not exist as a variant. See openQuestions.q2.",
+    "marker": ["MEASURED"]
+  },
+
+  "geometry": {
+    "note": "SHARED — identical across all three atoms and all states — verified on the Default symbols 26360:67681 / 26938:65214 / 26938:65444 and re-confirmed on the Active symbols. (Per-atom width differences come only from the control width + the dropdown's value text; see atoms[] and controls.)",
+    "height":        { "value": 30, "unit": "px", "token": null, "marker": ["MEASURED"], "note": "Fixed control height. Matches the field/button row height used across the Search & Filters bar." },
+    "borderRadius":  { "value": 4, "unit": "px", "token": "border-radius/rounded", "cssVar": "--border-radius-rounded", "marker": ["MEASURED"] },
+    "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"], "note": "Left = right = 8. Label starts at x=8; the control ends 8px from the right edge in every atom." },
+    "gapLabelToControl": { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"], "note": "Gap between the label text and the control. Verified: label ends x=76, control starts x=80 in all three atoms." },
+    "borderWidth":   { "value": 1, "unit": "px", "token": null, "marker": ["MEASURED"] },
+    "verticalAlign": { "value": "center", "token": null, "marker": ["MEASURED"], "note": "Label (16px tall) sits at y=7 within the 30px height → (30-16)/2 = 7." }
+  },
+
+  "label": {
+    "text": "Filter_Name (placeholder). The dropdown appends ' : [Value]' when a value is applied.",
+    "width": { "value": 68, "unit": "px", "marker": ["MEASURED", "RAW"], "note": "Placeholder measured width; the real label is content-driven, do not hardcode 68." },
+    "typography": { "figmaStyle": "Fields/value", "fontFamily": "Inter", "fontFamilyToken": "font-family/primary", "fontSize": 12, "sizeToken": "font-size/caption", "lineHeight": 16, "lineHeightToken": "line-height/caption", "weight": 400, "weightToken": "font-weight/body-base", "tracking": 0, "trackingToken": "fonts/tracking/X-tracking-0", "marker": ["MEASURED"] },
+    "colour": { "value": "#1e293b", "token": "field/value-primary", "cssVar": "--field-value-primary", "marker": ["MEASURED"] }
+  },
+
+  "stateColourModel": {
+    "note": "The whole point of the component. Verified per-state on the Filter_dropdown symbols; the identical model is confirmed on Filter_Toggle and Filter_checkbox Active symbols. bg = fill; border = 1px stroke.",
+    "states": {
+      "Default": {
+        "meaning": "No value applied — resting.",
+        "bg":     { "value": "#ffffff", "token": "field/bg-default", "cssVar": "--field-bg-default", "marker": ["MEASURED"], "nodeId": "26360:67681" },
+        "border": { "value": "#e2e8f0", "token": "field/border-default", "cssVar": "--field-border-default", "marker": ["MEASURED"], "nodeId": "26360:67681" }
+      },
+      "Active": {
+        "meaning": "A value IS applied. The filter is engaged.",
+        "bg":     { "value": "#f0f7ff", "token": "field/bg-focus", "cssVar": "--field-bg-focus", "marker": ["MEASURED"], "nodeId": "26360:67693" },
+        "border": { "value": "#0077ff", "token": "field/border-focus", "cssVar": "--field-border-focus", "marker": ["MEASURED"], "nodeId": "26360:67693" }
+      },
+      "Hover": {
+        "meaning": "Pointer-over an applied filter. Same blue-tint fill as Active but a GREY border — this is the only visual difference from Active.",
+        "bg":     { "value": "#f0f7ff", "token": "field/bg-focus", "cssVar": "--field-bg-focus", "marker": ["MEASURED"], "nodeId": "27352:74661" },
+        "border": { "value": "#e2e8f0", "token": "field/border-default", "cssVar": "--field-border-default", "marker": ["MEASURED"], "nodeId": "27352:74661" }
+      }
+    },
+    "summaryTable": "Default = white bg + grey border · Active = blue-tint bg + blue border · Hover = blue-tint bg + grey border. Fill is the same for Active and Hover; the BORDER carries the difference."
+  },
+
+  "controls": {
+    "note": "Each atom embeds one already-published control component. The control's own state does NOT change with the filter's Value — see the criticalFinding.",
+    "dropdown": {
+      "asset": "expand_more", "role": "chevron/affordance",
+      "size": { "value": 18, "unit": "px", "marker": ["MEASURED"], "note": "18x18 action frame at x=80." },
+      "colour": { "value": "#1e293b", "token": "icon/primary", "cssVar": "--icon-primary", "marker": ["MEASURED"], "nodeId": "26360:67681", "note": "Measured on Default; the Active symbol did not re-bind an icon colour — treat as inherited." }
+    },
+    "toggle": {
+      "component": "Toggle (switch)",
+      "size": { "value": "30 x 16", "unit": "px", "marker": ["MEASURED"] },
+      "track": { "value": "#e2e8f0", "token": "action/toggle/bg-default", "cssVar": "--action-toggle-bg-default", "marker": ["MEASURED"] },
+      "border": { "value": "#00000000", "token": "action/toggle/border", "cssVar": "--action-toggle-border", "marker": ["MEASURED"], "note": "Transparent border, intentional." },
+      "knob": { "value": "#94a3b8", "token": "icon/secondary", "cssVar": "--icon-secondary", "marker": ["MEASURED"] }
+    },
+    "checkbox": {
+      "component": "Checkbox (square)",
+      "size": { "value": "24 x 24", "unit": "px", "marker": ["MEASURED"] },
+      "boxFill": { "value": "#ffffff", "token": "field/bg-default", "cssVar": "--field-bg-default", "marker": ["MEASURED"] },
+      "boxBorder": { "value": "#94a3b8", "token": "border/medium", "cssVar": "--border-medium", "marker": ["MEASURED"] },
+      "boxRadius": { "value": 0, "unit": "px", "token": "border-radius/rounded-none", "cssVar": "--border-radius-rounded-none", "marker": ["MEASURED"], "note": "Square corners — the box is NOT rounded, unlike the atom container (4px)." }
+    }
+  },
+
+  "criticalFinding": {
+    "id": "F-FILTER-01",
+    "title": "The control glyph does not reflect the applied value on toggle and checkbox filters.",
+    "evidence": "Verified via get_variable_defs on the Active (Value=Yes) symbols: Filter_Toggle Active (26938:65220) still binds action/toggle/bg-default (#e2e8f0, the OFF track) with an icon/secondary knob; Filter_checkbox Active (26938:65447) still binds field/bg-default box fill + border/medium border with NO check fill. Neither control switches to an on/checked appearance.",
+    "consequence": "For toggle and checkbox filters, the only signal that a value is applied is the container's blue fill + blue border. A toggle filter that is 'active' still shows an OFF switch; a checkbox filter that is 'active' still shows an EMPTY box. Only the dropdown surfaces its value (as ' : [Value]' text).",
+    "status": "OPEN — needs the design owner's ruling. See openQuestions.q1. Recorded as measured; not corrected."
+  },
+
+  "composition": {
+    "note": "THE CONNECTION Singh asked to detect. The filter atoms are the leaf; they compose upward through two levels.",
+    "chain": "Filter atom  →  Search & Filters row  →  Complete Header  →  Page Setup",
+    "searchAndFiltersRow": {
+      "name": "Search & Filetrs", "nodeId": "27232:65760", "size": "1388 x 30",
+      "figmaNameNote": "Layer name is misspelled 'Filetrs' — recorded verbatim because tools match on the real name.",
+      "layout": "space-between: a left group (left-aligned) and a right group (the Columns button, right-aligned).",
+      "left": {
+        "width": 672,
+        "children": [
+          { "name": "Nav Search", "nodeId": "27232:64879", "width": 140, "x": 0, "note": "The search field — its own component (field family), not defined here." },
+          { "name": "Filters group", "nodeId": "27232:64880", "width": 524, "x": 148, "gapFromSearch": 8, "gapFromSearchToken": "spacing/md",
+            "children": [
+              { "name": "Filter_dropdown", "instance": "27232:65737", "width": 158, "x": 0 },
+              { "name": "Filter_Toggle", "instance": "27232:65738", "width": 118, "x": 162 },
+              { "name": "Filter_checkbox", "instance": "27232:65739", "width": 112, "x": 284 },
+              { "name": "Apply", "instance": "27232:64885", "component": "Button/Primary", "width": 60, "x": 400 },
+              { "name": "Reset", "instance": "27232:65279", "component": "Button/Soft", "width": 60, "x": 464 }
+            ],
+            "internalGap": { "value": 4, "unit": "px", "token": "spacing/sm", "note": "Between every child. 158+4+118+4+112+4+60+4+60 = 524, reconciles exactly." }
+          }
+        ]
+      },
+      "right": {
+        "width": 704,
+        "children": [
+          { "name": "Client Columns (Finalized)", "nodeId": "27232:64887", "width": 100, "x": 604, "note": "The 'Column(s)' trigger button — see column-arrangement.json §triggerButton (v2.1.0). It opens the column-setting panel. NO view-switcher controls are present in this row (an earlier note in page-header.json speculated 'view switchers'; measurement shows only the Columns button)." }
+        ]
+      },
+      "marker": ["MEASURED"]
+    },
+    "completeHeader": {
+      "name": "complete header", "nodeId": "27232:65833", "size": "1388 x 110",
+      "composition": "pageheader component (44h @ x12,y12) stacked above the Search & Filters row (30h @ x12,y68). The row is placed FLUID at 1364w inside the header (its standalone symbol is 1388w).",
+      "gutter": "12px on all four sides + 12px between the two rows (spacing/lg). See page-header.json §completeHeader (Singh ruling 2026-09-04).",
+      "marker": ["MEASURED"]
+    }
+  },
+
+  "behaviour": {
+    "note": "Singh's standing rule: every component carries its behaviour, not just its look.",
+    "table": [
+      { "do": "Open a dropdown filter and pick a value", "happens": "Atom moves to Active: blue fill + blue border, and the label becomes 'Filter_Name : [Value]'. The table does NOT change yet." },
+      { "do": "Turn on a toggle filter / tick a checkbox filter", "happens": "Atom moves to Active: blue fill + blue border. The control glyph does NOT visibly change (see criticalFinding). The table does NOT change yet." },
+      { "do": "Hover an applied filter", "happens": "Blue fill stays; border goes grey (Hover state)." },
+      { "do": "Press Apply (Button/Primary)", "happens": "Commits every engaged filter to the table below. Nothing filters until this is pressed." },
+      { "do": "Press Reset (Button/Soft)", "happens": "Clears all filters back to Default (no value)." }
+    ],
+    "applyResetOwnership": "Apply and Reset are Button components living in the Search & Filters row, not part of the filter atom. The atom only holds its own value; the row commits it."
+  },
+
+  "structureIsIdenticalAcrossStates": true,
+  "stateChangeIsTokenSwapOnly": true,
+  "stateChangeNote": "Moving between Default / Active / Hover swaps only the bg + border tokens (and, for the dropdown alone, appends the value text). Geometry, control and label are unchanged. This is a clean token-swap component EXCEPT that the dropdown also changes width when a value is shown (106 → 158).",
+
+  "tokenPurity": {
+    "status": "CLEAN for the atoms measured — every fill, border, text and spacing value binds a semantic token that exists in the Agency export. No raw hex in the filter atoms themselves.",
+    "legacyTrackingName": "fonts/tracking/X-tracking-0 is bound (via the Fields/value text style) but the export's real name is fonts/tracking/tracking-0 — the same systematic Figma-side X- prefix defect already recorded on page-header, table and other families. Recorded, not corrected.",
+    "note": "The search field and the Apply/Reset buttons are separate components with their own contracts and are NOT audited here."
+  },
+
+  "openQuestions": [
+    { "id": "q1", "question": "On toggle and checkbox filters, should the control reflect the applied value (toggle switches ON, checkbox becomes CHECKED) when Active, or is the container's blue styling the only intended cue? Today the control stays OFF/UNCHECKED even when a value is applied.", "gate": "Design-owner (Singh) ruling. Do not implement an on/checked control until ruled.", "raisedTo": "Singh, 2026-09-04" },
+    { "id": "q2", "question": "Is there a Hover state for a filter with NO value applied ((Hover, No))? Only (Hover, Yes) is published. A no-value filter presumably still needs hover feedback.", "gate": "Design-owner ruling / Figma-side addition." },
+    { "id": "q3", "question": "The three atoms are named Filter_dropdown / Filter_Toggle / Filter_checkbox with placeholder 'Filter_Name'. What real filter names/value types map to each in the Agency product?", "gate": "BA / product content — not a design-system decision." }
+  ],
+
+  "defects": [
+    "The Search & Filters row layer is misspelled 'Search & Filetrs' (27232:65760) — a search for 'Filters' will not find it. Same typo already logged on page-header.",
+    "fonts/tracking/X-tracking-0 — legacy X-prefixed token name bound via the Fields/value style; the export's real name is fonts/tracking/tracking-0. Systematic Figma-side naming, recorded not corrected.",
+    "The checkbox control uses border-radius/rounded-none (0) — a square box — while its parent atom uses border-radius/rounded (4). Intentional per the measurement, but worth confirming the square checkbox is deliberate."
+  ],
+
+  "notVerified": [
+    "Dark, High Contrast, Warm Dark and HC Light rendering. Default light mode only — though every token bound here exists in all five colour modes.",
+    "Density-mode behaviour (the 30px height and 8/4 spacing could shift under a non-default density; not tested).",
+    "Contrast ratios for label-on-fill in each state (not computed).",
+    "The internal structure and tokens of the embedded Toggle and Checkbox components (measured only their container-level bindings and sizes here; each has its own contract).",
+    "The Nav Search field (27232:64879) and the Apply/Reset Button instances — separate components, not audited here.",
+    "The Figma file key (the MCP does not report it).",
+    "Whether a real product screen currently renders these filters."
+  ]
+}

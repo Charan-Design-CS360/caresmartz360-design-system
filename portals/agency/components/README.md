@@ -9,14 +9,22 @@ Canonical Jira parent: C360-44737.
 Each contract is a pair: a human-readable `.md` and a machine-readable `.json` twin validated
 against [`../../../schemas/component-contract.schema.json`](../../../schemas/component-contract.schema.json).
 
-| Component | Contract | Figma section | Measured |
-|---|---|---|---|
-| Empty States (8 inline + 3 popup variants) | [`empty-states.md`](./empty-states.md) · [`empty-states.json`](./empty-states.json) | `27218:64329` | 2026-08-25 |
-| Page Header (4 sizes) | [`page-header.md`](./page-header.md) · [`page-header.json`](./page-header.json) | `27232:63236` | 2026-08-25 |
-| DDM — Dropdown Menu (rows + 3 menus) | [`ddm-dropdown-menu.md`](./ddm-dropdown-menu.md) · [`ddm-dropdown-menu.json`](./ddm-dropdown-menu.json) | `27245:67562` | 2026-08-25 |
-| Table — head cell & data cell | [`table.md`](./table.md) · [`table.json`](./table.json) | `26955:66556` | 2026-08-25 |
-| Button (9 types) | [`button.md`](./button.md) · [`button.json`](./button.json) | `26938:66536` | 2026-08-24 |
-| Fields — type 1 | [`field-type-1.md`](./field-type-1.md) · [`field-type-1.json`](./field-type-1.json) | `26955:66554` | 2026-08-24 |
+| Component | Contract | Figma section | Measured | Ver |
+|---|---|---|---|---|
+| Button (9 types) | [`button.md`](./button.md) · [`button.json`](./button.json) | `26938:66536` | 2026-08-24 | 1.0.0 |
+| Fields — type 1 | [`field-type-1.md`](./field-type-1.md) · [`field-type-1.json`](./field-type-1.json) | `26955:66554` | 2026-08-24 | 1.0.0 |
+| Filters (dropdown · toggle · checkbox) | [`filters.md`](./filters.md) · [`filters.json`](./filters.json) | `27356:74769` | 2026-09-04 | 1.0.0 |
+| Empty States (8 inline + 3 popup variants) | [`empty-states.md`](./empty-states.md) · [`empty-states.json`](./empty-states.json) | `27218:64329` | 2026-08-25 | 1.0.0 |
+| DDM — Dropdown Menu (rows + 3 menus) | [`ddm-dropdown-menu.md`](./ddm-dropdown-menu.md) · [`ddm-dropdown-menu.json`](./ddm-dropdown-menu.json) | `27245:67562` | 2026-08-25 | 1.1.0 |
+| Table — head cell & data cell | [`table.md`](./table.md) · [`table.json`](./table.json) | `26955:66556` | 2026-08-25 | 3.0.0 |
+| Tabs — Primary (underline) + Secondary (segmented) | [`tabs.md`](./tabs.md) · [`tabs.json`](./tabs.json) | `27329:70491` | 2026-09-03 | 1.0.0 |
+| Page Header (4 sizes) + complete header | [`page-header.md`](./page-header.md) · [`page-header.json`](./page-header.json) | `27232:63236` | 2026-08-25 | 1.2.0 |
+| Column Arrangement (side flyout + Column(s) trigger) | [`column-arrangement.md`](./column-arrangement.md) · [`column-arrangement.json`](./column-arrangement.json) | `27311:46254` | 2026-09-01 | 2.1.0 |
+| Primary Side Navigation (blue left rail, 48/158) | [`primary-side-navigation.md`](./primary-side-navigation.md) · [`primary-side-navigation.json`](./primary-side-navigation.json) | `27337:73592` | 2026-09-04 | 1.0.0 |
+| Profile Side Navigation (record sidebar) | [`profile-side-navigation.md`](./profile-side-navigation.md) · [`profile-side-navigation.json`](./profile-side-navigation.json) | `27328:70399` | 2026-09-03 | 1.1.0 |
+
+Patterns that compose these live in [`../patterns/`](../patterns/) — `side-navigation.md` and
+`page-setup.md`.
 
 ## How to read a contract
 

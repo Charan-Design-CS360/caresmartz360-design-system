@@ -2,7 +2,7 @@
 
 **Portal:** Agency · **Layer:** 3 (Components) · **Jira parent:** C360-44737
 **Measured:** 2026-08-25, live Figma · **Section:** `27232:63236` · **Set:** `14160:189662`
-**Contract version:** `1.1.0` — adds the complete-header molecule's self-owned 12px gutter (Singh ruling 2026-09-04). Supersedes `1.0.0`.
+**Contract version:** `1.2.0` — the complete header's second row (Search & Filters) interior is now fully measured and lives in [`filters.json`](./filters.json); this file points to it. Supersedes `1.1.0` (self-owned 12px gutter) and `1.0.0`.
 **Machine twin:** [`page-header.json`](./page-header.json)
 
 ---
@@ -127,10 +127,26 @@ method. That method isn't documented and wasn't available to this session. Once 
 
 The page-header **atom** has **zero padding** — unchanged. Singh changed the **complete header** molecule (`27232:65833`) so it now **owns a uniform gutter**: **12px (`--spacing-lg`) padding on all four sides** (this is the left/right gutter you changed), a 12px row gap, white (`--surface-base`) background. It is **self-contained** — place it at the top of the content area and it provides its own gutter; **pages must NOT add their own left/right header margin** on top (double-padding is a defect). Any AI tool building a page reuses this component and its gutter rather than reinventing the header margin. Full spec: `page-header.json` → `completeHeader`.
 
+## The second row — Search & Filters (measured 2026-09-04)
+
+The complete header's **row 2** is the **Search & Filters** bar (`27232:65760`, misspelled
+"Filetrs" in Figma). It is a space-between bar:
+
+- **Left (672):** Nav Search (140) · **8px** · a Filters group (524) = **dropdown 158 · toggle 118 · checkbox 112 · Apply · Reset**, each **4px** apart.
+- **Right (704):** the **Column(s)** trigger button (100), pinned right — see
+  [`column-arrangement.md`](./column-arrangement.md). There are **no** view-switcher controls here
+  (an earlier note guessed some; measurement shows only Columns).
+
+The three filter pills are the **Filters** component — their states, tokens and the one open UX
+question (does the toggle/checkbox control reflect its value?) are documented in
+[`filters.md`](./filters.md). So the chain is **Filter atom → Search & Filters row → this complete
+header → page**.
+
 ## Version history
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-09-04 | **1.2.0 — Search & Filters row measured.** The complete header's row 2 interior (Nav Search + dropdown/toggle/checkbox filters + Apply/Reset, and the right-pinned Columns trigger) is now fully measured and specified in the new `filters.json`/`.md`; this contract cross-references it and its own notVerified gap for the bar is closed. The "view switchers" guess is corrected — only the Columns button is present. | Singh's request, 2026-09-04 |
 | 2026-09-04 | **1.1.0 — complete-header gutter.** The complete-header molecule now owns a uniform 12px (`--spacing-lg`) padding on all sides; the atom stays 0-padding. Pages must not double-pad. Measured live from Figma. | Singh ruling, 2026-09-04 |
 | 2026-08-25 | **1.0.0 — complete.** All four variants measured via `get_design_context` after the Figma stall cleared. Type mapping per size resolved; all four heights independently reconciled by arithmetic; five optional-element props and six new defects recorded. | Owner instruction, 2026-08-25 |
 | 2026-08-25 | 0.1.0 — partial. Structure and tokens only; interior geometry unread after `get_design_context` failed four times. | Owner instruction, 2026-08-25 |

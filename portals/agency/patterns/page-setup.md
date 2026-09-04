@@ -54,6 +54,7 @@ The header's two rows are **12px** apart; the table's cells follow the table con
 | Grey record nav | Profile Side Navigation | `profile-side-navigation.*` |
 | Tab bar | Tabs (Primary) | `tabs.*` |
 | Header block | Complete Header (12px gutter) | `page-header.*` → `completeHeader` |
+| Search & filters (header row 2) | Filters (dropdown/toggle/checkbox) + Search + Apply/Reset + Columns | `filters.*`, `column-arrangement.*` |
 | Table | Table (frozen-left + scrollable + frozen-right) | `table.*` |
 | Global header, page-messages | (global header + page-messages atoms) | to spec separately |
 
@@ -61,6 +62,7 @@ The header's two rows are **12px** apart; the table's cells follow the table con
 
 - **Data Container (214)** = **Header complete (98)** + **Middle Matter / table (116)**.
 - Header complete (98) = header row (44) + 12px gap + search & filters row (30), inside the 12px gutter — this is the `completeHeader` molecule (page-header.json).
+- The **search & filters row (30)** = Nav Search (140) + Filters group [dropdown 158 · toggle 118 · checkbox 112 · Apply · Reset, 4px apart] on the left, and the **Columns** trigger pinned right. The filter pills are the `filters.*` component (Filter atom → Search & Filters row → complete header); the Columns trigger is `column-arrangement.*`.
 - The table is **frozen-left (Wound No. 115 @ the 12px gutter) + scrollable middle (953) + frozen-right Actions (60)** — exactly the shipped table rule (CS-TBL-13: first & last columns frozen, middle scrolls). Header row 34, data rows 30.
 
 ## 5. Guidelines for any AI tool building a page (Singh's rule: don't reinvent)
