@@ -1,0 +1,153 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Primary Side Navigation — the app's blue left rail",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma MCP never reports a file key. Taken from the URL Singh supplied (Design System Agency V2.0).",
+    "figmaNodes": {
+      "structure": "27337:73592 'Primary side nav structure' (Expanded=Yes 27337:73593 = 158px · Expanded=No 27337:73615 = 48px collapsed)",
+      "navLink": "10441:17045 'primary side nav navigation links' (6 variants: icon No/Yes × selected No/Yes × iconOnly No/Yes)",
+      "copyright": "22906:5650 'primary side nav copyright bottom' (Default expanded / Variant2 collapsed)",
+      "iconSet": "10883:20899 'priamry side nav icons' (41 variants, 24px)",
+      "logo": "27337:73595 (white header + logo image) · toggle 27337:73597 (Expand-Collapse-action)"
+    },
+    "measuredOn": "2026-09-04",
+    "measuredBy": "Claude (DESIGN-SYSTEM lane)",
+    "measurementMethod": "figma MCP live reads (mcp__Figma__), with the section fronted: get_metadata on 27337:73592/73593/73615 (full geometry tree — the forensic spacing map); get_design_context on 10441:17045 (6 nav-link variants), 22906:5650 (copyright), 27337:73595 (logo), 27337:73597 (toggle); get_variable_defs on 27337:73592; get_screenshot on 27337:73592 (both states, reference image for the visual-margin verification). Every token cross-verified resolvable in the repo on 2026-09-04 (src/styles/2-semantics/_theme-light.scss) — the sidebar/inverse family (sidebar-primary-bg → blue-600, sidebar-text/icon/icon-active → neutral-0, sidebar-ring → blue-500, text-inverse → neutral-50).",
+    "jiraParent": "TBD — Agency component epic; link on ratification.",
+    "humanContract": "./primary-side-navigation.md",
+    "kitCss": "Universal Html Rules/02-components/primary-side-navigation.css",
+    "pattern": "portals/agency/patterns/side-navigation.md — ties this blue app rail together with the grey record-level Profile Side Navigation.",
+    "markerLegend": {
+      "MEASURED": "read directly from live Figma; nodeId given",
+      "RAW": "real value but NOT bound to any token in the owner's export",
+      "ASSUMED": "standard convention; flagged, not treated as fact",
+      "RULED": "Singh decided it, 2026-09-04",
+      "ADDED": "not drawn in Figma; added because a real nav requires it (keyboard, hover, aria)",
+      "UNVERIFIED": "not read, or contradictory"
+    },
+    "readThisFirst": "This is the APP-level primary navigation (blue rail on the far left of every page). It is DISTINCT from, and sits to the LEFT of, the record-level grey Profile Side Navigation (profile-side-navigation.json). Singh, 2026-09-04: complete all pending Primary-navigation tasks and verify each measurement (spacing + margin) forensically. Per his standing rule the behavior + purpose blocks are mandatory. The Figma structure timed out on the whole-frame get_design_context (known Figma-MCP stall) so it was measured piece-by-piece from metadata geometry + small-node design contexts — the forensic spacing map is in geometry.spacingMap.",
+    "ruledOn": "2026-09-04",
+    "ruledBy": "Singh (design-system owner)"
+  },
+  "purpose": "The app's primary navigation — the blue rail on the far left of every page that moves the user between the top-level areas of the product (dashboard, clients, caregivers, scheduling, billing, reports…). It carries the company logo (a shortcut home), a collapse toggle to reclaim horizontal space, the section links, and the copyright. It is the OUTERMOST navigation layer: the grey Profile Side Navigation (per record) and the page tabs live to its right.",
+  "anatomy": {
+    "elements": ["rail container", "logo header", "collapse/expand toggle", "nav-links list", "copyright block"],
+    "layoutNote": "Vertical: a TOP block (logo → toggle → nav-links, 8px gaps) flush to the top, and the COPYRIGHT block pinned to the bottom, with flexible space between (justify-content: space-between).",
+    "logo": { "role": "White header holding the CareSmartz360 logo; clickable → home/dashboard.", "marker": ["MEASURED"] },
+    "toggle": { "role": "Collapse/expand the whole rail (158 ↔ 48).", "marker": ["MEASURED"] },
+    "navLinks": { "role": "Top-level section links; icon + label, one Selected at a time.", "variants": "icon(No/Yes) × selected(No/Yes) × iconOnly(No/Yes) = 6", "marker": ["MEASURED"] },
+    "copyright": { "role": "©-line + 'Developed & Maintained By CareSmartz360' (link).", "marker": ["MEASURED"] }
+  },
+  "geometry": {
+    "rail": {
+      "widthExpanded": { "value": 158, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+      "widthCollapsed": { "value": 48, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+      "height": { "value": "100% (900 in the measured frame)", "marker": ["MEASURED"] },
+      "background": { "value": "#0077ff", "token": "sidebar/primary-bg", "cssVar": "--sidebar-primary-bg", "marker": ["MEASURED"] },
+      "verticalLayout": { "value": "space-between — top block at top, copyright pinned bottom", "marker": ["MEASURED"] }
+    },
+    "spacingMap": {
+      "note": "Forensic, MEASURED from the Expanded=Yes geometry tree (27337:73593). All y/height in px.",
+      "logo": { "y": 0, "h": 102 },
+      "gapLogoToToggle": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md" },
+      "toggle": { "y": 110, "h": 44 },
+      "gapToggleToLinks": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md" },
+      "navLinks": { "y": 162, "h": 360, "note": "9 links × 40px, no gap" },
+      "flexibleSpace": { "fromY": 522, "toY": 826, "value": 304, "note": "space-between fills this" },
+      "copyright": { "y": 826, "h": 74 },
+      "topFrameGap": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "note": "uniform gap between logo, toggle, nav-links" },
+      "marker": ["MEASURED"]
+    },
+    "logo": {
+      "sizeExpanded": { "value": "158 x 102", "marker": ["MEASURED"] },
+      "sizeCollapsed": { "value": "48 x 52", "marker": ["MEASURED"] },
+      "background": { "value": "#ffffff", "token": null, "marker": ["MEASURED", "RAW"], "note": "The logo header is WHITE — NOT the blue rail. No sidebar-surface/on-primary token exists for it. See defect T2." },
+      "hairline": { "value": "inset -1px 0 0 rgba(51,74,101,0.1), inset 0 -1px 0 rgba(51,74,101,0.1)", "token": null, "marker": ["MEASURED", "RAW"], "note": "Right + bottom translucent separator, via box-shadow (not border — keeps the 102px height). No token." },
+      "logoImage": { "value": "CareSmartz360 logo, object-contain", "marker": ["MEASURED"] },
+      "clickable": { "value": "wrapped in <a> → home", "marker": ["MEASURED"] }
+    },
+    "toggle": {
+      "row": { "value": "44px tall, padding 10px, justify-end (expanded) / center (collapsed)", "paddingToken": null, "marker": ["MEASURED", "RAW"], "note": "10px padding is a bare literal — no 10px spacing token." },
+      "button": { "value": "24px icon button, white glyph", "colorToken": "sidebar/icon", "cssVar": "--sidebar-icon", "marker": ["MEASURED"] },
+      "glyph": { "value": "menu/collapse icon — ≡< (collapse) expanded, >≡ (expand) collapsed", "marker": ["MEASURED"] }
+    },
+    "navLink": {
+      "height": { "value": 40, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+      "paddingBlock": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+      "paddingLeft": { "value": 12, "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
+      "paddingRight": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+      "iconLabelGap": { "value": 4, "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
+      "icon": { "value": "24px (from the primary-side-nav icon set 10883:20899). OUTLINE glyph when default, FILLED glyph when selected.", "marker": ["MEASURED"] },
+      "labelStyle": { "value": "Fields/header — Inter Medium 14 / line-height 20", "colorToken": "sidebar/text", "cssVar": "--sidebar-text", "marker": ["MEASURED"] },
+      "iconOnlyCollapsed": { "value": "24px icon centred, gap none, px spacing/lg (12)", "marker": ["MEASURED"] },
+      "states": {
+        "default": { "background": "transparent (blue rail shows through)", "icon": "outline", "text": "sidebar/text (white)", "marker": ["MEASURED"] },
+        "selected": { "background": "sidebar/ring (#2499ff)", "cssVarBg": "--sidebar-ring", "icon": "filled", "text": "white", "marker": ["MEASURED"], "note": "Selected = current section. Lighter-blue full-width highlight + filled icon." }
+      }
+    },
+    "copyright": {
+      "paddingInline": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
+      "paddingBlock": { "value": 16, "token": "spacing/xl", "cssVar": "--spacing-xl", "marker": ["MEASURED"] },
+      "text": { "expanded": "©2026, Developed & Maintained By CareSmartz360 (CareSmartz360 = underlined link)", "collapsed": "© / 2026 (stacked)", "marker": ["MEASURED"] },
+      "style": { "value": "Body/micro — Inter Regular 10 / line-height 14", "colorToken": "text/inverse (#f8fafc)", "cssVar": "--text-inverse", "marker": ["MEASURED"] },
+      "align": { "value": "centred (expanded and collapsed)", "marker": ["MEASURED"] }
+    }
+  },
+  "typography": { "note": "Fields/header (Inter Medium 14/20) for nav labels; Body/micro (Inter Regular 10/14) for copyright. No new type styles.", "marker": ["MEASURED"] },
+  "colourFormula": {
+    "pattern": "Rail = sidebar/primary-bg (#0077ff blue). Everything on it is INVERSE: nav text + icons = sidebar/text / sidebar/icon (white); selected nav = sidebar/ring (#2499ff) fill + sidebar/icon-active (white, filled glyph); copyright = text/inverse (#f8fafc). The ONLY non-inverse element is the logo header, which is white with the logo image. Every token resolves in the repo with dark/hc/warm variants — verified 2026-09-04.",
+    "marker": ["MEASURED"]
+  },
+  "variantAxes": {
+    "rail": { "values": ["expanded (158)", "collapsed (48)"], "marker": ["MEASURED", "RULED"] },
+    "navLink": { "icon": ["No", "Yes"], "selected": ["No", "Yes"], "iconOnly": ["No", "Yes"], "measuredCount": 6, "iconNoRealization": "icon=No (label-only) renders by omitting the .cs-pnav__link-icon element; the label fills the row (flex:1). Selected icon uses --sidebar-icon-active, label uses --sidebar-text (separate tokens).", "marker": ["MEASURED"] },
+    "copyright": { "values": ["Default (expanded)", "Variant2 (collapsed)"], "marker": ["MEASURED"] }
+  },
+  "accessibility": {
+    "navSemantics": { "value": "role tablist is wrong here — this is site navigation: <nav aria-label=\"Primary\"> of links; current section aria-current=\"page\" (drives Selected).", "marker": ["ADDED"] },
+    "collapseToggle": { "value": "A real <button aria-expanded aria-label=\"Collapse/Expand navigation\">.", "marker": ["ADDED"] },
+    "collapsedNames": { "value": "Icon-only collapsed links MUST keep an accessible name (aria-label / tooltip) — the visible label is hidden.", "marker": ["ADDED"], "severity": "must-fix" },
+    "selectedContrast": { "value": "White text/icon on sidebar/ring (#2499ff) is ≈3.0:1 — passes for LARGE text / UI components (3:1) but NOT the 4.5:1 normal-text bar. The nav label is 14px Medium = normal text. FLAG T3 — confirm the selected highlight is intended, or darken the ring for the selected row.", "marker": ["MEASURED"], "severity": "review" },
+    "focusVisible": { "value": "Every link + the toggle needs a visible focus ring. Uses a WHITE ring (--sidebar-text, inset offset -2) — DISTINCT from the --sidebar-ring selected fill, so focus stays visible even on a Selected row (WCAG 2.4.7). Never reuse --sidebar-ring for the focus outline (that would be invisible on the selected row).", "marker": ["ADDED"] }
+  },
+  "defects": [
+    "T1 — NO HOVER STATE in Figma. The nav-link component's only axis is Default (icon/selected/iconOnly) — no Hover variant. A real clickable rail needs a hover affordance; the CSS ADDS one (translucent white over the blue), marked ADDED. Ask Figma AI to draw the official hover.",
+    "T2 — LOGO HEADER HAS NO TOKEN. It is white (#ffffff, RAW) sitting on the blue rail, with a RAW translucent hairline rgba(51,74,101,0.1). Neither binds a token. If the design system wants the logo header themeable, it needs a sidebar-surface / on-primary token; today it is two RAW values.",
+    "T3 — SELECTED CONTRAST. White 14px label on sidebar/ring (#2499ff) ≈ 3.0:1 — below the 4.5:1 normal-text bar. Either accept it as a UI-component highlight (3:1 met) or darken the selected row's blue. Design-owner call.",
+    "T4 — the icon set 'priamry side nav icons' (10883:20899, 41 variants, note the 'priamry' typo) supplies every nav icon at 24px; individual icon↔section mapping is NOT enumerated here — bind per section when the nav is populated.",
+    "T5 — legacy token name fonts/tracking/X-tracking-0 bound on the labels (same system-wide legacy-name cleanup). The kit uses semantic vars.",
+    "T6 — layer-name typo 'priamry' appears in the icon set and its instances; cosmetic, flag to Figma AI."
+  ],
+  "notVerified": [
+    "Whether 158px / 48px are fixed or responsive — no breakpoint variant in Figma.",
+    "The exact per-section icon↔label mapping (icon set has 41 glyphs; the demo uses grid_view placeholder).",
+    "Whether the rail has a hover state on the logo or toggle beyond the added link hover.",
+    "Group headers / dividers inside the primary nav (none measured — it is a flat 9-link list here).",
+    "Behaviour across all 9 theme×density combos — tokens carry theme variants but not visually re-rendered in each."
+  ],
+  "behavior": {
+    "collapseExpand": {
+      "action": "Press the toggle (top-right of the rail).",
+      "effect": "Collapses the rail 158 → 48 (labels hidden, icons only, logo shrinks to 52, copyright to '© / 2026') or expands it back. State is app-owned (--collapsed).",
+      "marker": ["MEASURED", "RULED"]
+    },
+    "selectSection": {
+      "action": "Click a nav-link.",
+      "effect": "Navigates to that top-level section and marks the link Selected (lighter-blue #2499ff fill + filled icon). One Selected at a time (aria-current).",
+      "marker": ["MEASURED"]
+    },
+    "logoHome": {
+      "action": "Click the logo.",
+      "effect": "Goes to home / dashboard (the logo is a link).",
+      "marker": ["MEASURED"]
+    },
+    "copyrightLink": {
+      "action": "Click 'CareSmartz360' in the copyright.",
+      "effect": "Opens the company site (underlined link).",
+      "marker": ["ASSUMED"]
+    }
+  }
+}
