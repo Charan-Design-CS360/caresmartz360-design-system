@@ -13,7 +13,7 @@ against [`../../../schemas/component-contract.schema.json`](../../../schemas/com
 |---|---|---|---|---|
 | Button (9 types) | [`button.md`](./button.md) · [`button.json`](./button.json) | `26938:66536` | 2026-08-24 | 1.0.0 |
 | Fields — type 1 | [`field-type-1.md`](./field-type-1.md) · [`field-type-1.json`](./field-type-1.json) | `26955:66554` | 2026-08-24 | 1.0.0 |
-| Filters (dropdown · toggle · checkbox) | [`filters.md`](./filters.md) · [`filters.json`](./filters.json) | `27356:74769` | 2026-09-04 | 1.0.0 |
+| Filters (dropdown · toggle · checkbox) | [`filters.md`](./filters.md) · [`filters.json`](./filters.json) | `27356:74769` | 2026-09-04 | 1.1.0 |
 | Empty States (8 inline + 3 popup variants) | [`empty-states.md`](./empty-states.md) · [`empty-states.json`](./empty-states.json) | `27218:64329` | 2026-08-25 | 1.0.0 |
 | DDM — Dropdown Menu (rows + 3 menus) | [`ddm-dropdown-menu.md`](./ddm-dropdown-menu.md) · [`ddm-dropdown-menu.json`](./ddm-dropdown-menu.json) | `27245:67562` | 2026-08-25 | 1.1.0 |
 | Table — head cell & data cell | [`table.md`](./table.md) · [`table.json`](./table.json) | `26955:66556` | 2026-08-25 | 3.0.0 |
