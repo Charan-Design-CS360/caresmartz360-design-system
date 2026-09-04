@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Profile Side Navigation — record sidebar (top actions + profile card + section nav)",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Taken from the URLs Singh supplied (Design System Agency V2.0).",
     "figmaNodes": {
@@ -178,7 +178,7 @@
   },
   "defects": [
     "D1 — LAYER-NAME TYPOS in Figma: 'profiel navigation preview' (27325:70008) and 'profiel navigation cllapsed preview' (27331:70994) — 'profiel'/'cllapsed'. Cosmetic, but these become component names; flag to Figma AI for a rename before this is published as a library component.",
-    "D2 — WHOLE-CARD LINK AMBIGUITY: in the assembled example the ENTIRE user profile card is wrapped in an <a> pointing at a prototype (the notes flow). It is unclear whether the whole card is meant to be one click target or only the identity block + the explicit View Notes button. A whole-card link that also contains its own View Notes button and three separate contact links is a nested-interactive conflict. Contract treats identity + View Notes + each contact row as the intended targets; whole-card link flagged for Singh to confirm — see notVerified.",
+    "D2 — RESOLVED 2026-09-04 (Singh ruling). NOT a whole-card link. WHEN EXPANDED, the card has multiple independent actions and EACH is individually clickable — View Notes, address (map), email (mailto), phone (tel), edit-photo. The Figma whole-card <a> is a prototype artifact, NOT the intent; do not wrap the card in a single link (that would be the nested-interactive conflict). WHEN COLLAPSED, only the avatar shows and the WHOLE rail is one tap target that expands the card — after which its individual actions are clickable. Singh, 2026-09-04, verbatim: 'the user profile side navigation has multiple actions so all are clickable when expanded. on collapse we are not showing any information but just the picture, at that moment the whole side bar (collapsed) is clickable and tappable which will expand the entire profile card with all details which is clickable.'",
     "D3 — SINGLE-ACTION ALIGNMENT: the top-actions layout makes the leading action flex-1, which right-aligns any trailing action. For the 'Single Action' variant, confirm whether the lone action sits left (as the back button does) or is meant to be centred/right — the single-action variant's internal alignment was not separately measured.",
     "D4 — HOVER vs ACTIVE ARE CLOSE: a hovered (non-current) nav item and the active (current) nav item share the identical blue text (action/ghost/text-hard); they differ ONLY by background — hover #f1f5f9 vs active #e2e8f0, two adjacent greys. On some monitors these are hard to tell apart, and a hovered item can momentarily look like the current one. Consider a stronger active affordance (e.g. a left accent bar or medium-weight bump) — none exists in Figma today.",
     "D5 — LEGACY TOKEN NAMES in the variable payload: letter-spacing binds 'fonts/tracking/X-tracking-0' and 'fonts/tracking/X-tracking-neg-024' (X- legacy prefix), and a raw primitive 'Neutral (Light) / N500' #42526E appears. Same legacy-name cleanup already tracked system-wide — one Figma rename closes them; do not propagate the X- names into the build (the kit binds --ls-heading / semantic vars instead).",
@@ -187,7 +187,7 @@
   ],
   "notVerified": [
     "Whether 240px is fixed or should respond to viewport width — no breakpoint variant exists in Figma.",
-    "Whether the ENTIRE profile card is a single click target or only the identity + View Notes + contact rows are (see defect D2). Needs Singh's confirmation.",
+    "RESOLVED 2026-09-04 (Singh): expanded = each action individually clickable (NO whole-card link); collapsed = whole rail is one tap target that expands the card. See D2.",
     "The single-action top-bar internal alignment (see D3).",
     "The exact vertical placement of the avatar in the collapsed rail (metadata shows it low-centre in a 900 demo frame; treat as vertically centred until confirmed).",
     "'Nav Project' styling (D7) and any real grouping arrangement (which sections group under which header) — deferred by Singh to 'future'.",
