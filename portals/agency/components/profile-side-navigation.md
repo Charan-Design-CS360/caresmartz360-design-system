@@ -101,7 +101,7 @@ Good news: the blue nav text (`action/ghost/text-hard` → blue-700) is already 
 
 ## 7. Open questions for you (one at a time when you're ready)
 
-1. **Whole card clickable?** In Figma the entire profile card is one link to the notes flow — but it also contains a View Notes button and three separate contact links inside it. Should the *whole card* be clickable, or just the name/photo + the explicit buttons/links? (Defect D2.)
+1. ~~**Whole card clickable?**~~ **RESOLVED 2026-09-04 (Singh):** NOT a whole-card link. **Expanded** → each action is individually clickable (View Notes, address, email, phone, edit-photo) — the card is not one big link. **Collapsed** → only the avatar shows and the *whole rail* is one tap target that expands the card, whose actions are then clickable. (Defect D2 — resolved.)
 2. **Single-action top bar** — when there's only one action, should it sit left (like back) or somewhere else? (Defect D3.)
 3. **Active vs hover** — do you want a stronger "current section" cue given how close the two greys are? (Defect D4.)
 
