@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.3.0] — 2026-09-08
+
+Agency and Caregiver semantic tokens synchronized to the owner's variable exports. The published repo had been behind since 2026-08-24 (Agency) and was 2 values behind the 2026-09-08 Caregiver re-export.
+
+### Added
+- **Agency Color Modes: 208 → 220 tokens per mode**, all five modes. 12 new token paths × 5 = 60 definitions: `action/ai/{bg,bg-soft,border,hover,outlined,pressed,text-hard,text-neutral}`, `field/bg-ai`, `field/border-ai`, `field/border-hard`, `status/shift/text`. Agency logical total 251 → 263.
+
+### Changed
+- **43 existing token-mode values** brought to the exports: Agency Light 3, Dark Theme 12, High Contrast 25, HC Light 1, Warm Dark 0; **Caregiver High Contrast 2** — `popover/primary-foreground` → `colors/neutral-900` and `popover/secondary-foreground` → `colors/neutral-0`, the Figma-side fixes for a white-on-white and a dark-on-dark popover (Jira C360-44333 #628192, 2026-08-20), which reached the export only in the 2026-09-08 re-export.
+- All six token files are **byte-identical** to their owner-export members — copied, never transformed. No token path was deleted.
+- `config/variable-export-manifest.json` — six artifacts' `sha256` + `tokenDefinitions` recomputed, Caregiver + Primitives `sourceArchiveSha256` refreshed, `logicalTotals.agencySemantics` 251 → 263.
+- `scripts/sync-owner-variable-exports.mjs` — the hard-coded authority path `/Users/netsmartz/Documents/Variables` (absent since the 2026-08-24 move) corrected to `/Users/netsmartz/Documents/Design-System/Variables`; hard-coded total 251 → 263.
+- `README.md` — Agency counts 251/208 → 263/220.
+
+### Verified
+- All six repo gates pass. `verify:variables` initially **failed** on the stale manifest hashes — caught by the gate, fixed by recomputing from the files, not by editing the expectation.
+- Independent re-diff (`Design-System/alignment-2026-09-08/ds_diff_v2.py`) against the exports: **every** local↔GitHub row MATCH; primitives 264/264.
+
+---
+
 ## [3.2.1] — 2026-09-08
 
 Live re-verification of measured Figma nodes (the Figma-AI lane had edited them without notice). Contract corrections only.

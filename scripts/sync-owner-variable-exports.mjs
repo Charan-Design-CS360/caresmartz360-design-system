@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourceRoot = path.resolve(
-  process.env.DS_VARIABLE_SOURCE_DIR ?? "/Users/netsmartz/Documents/Variables",
+  process.env.DS_VARIABLE_SOURCE_DIR ?? "/Users/netsmartz/Documents/Design-System/Variables",
 );
 
 const bundles = [
@@ -120,13 +120,13 @@ const manifest = {
   schemaVersion: 1,
   authority: {
     input: "Owner-maintained exports downloaded from Figma",
-    sourceFolder: "/Users/netsmartz/Documents/Variables",
+    sourceFolder: "/Users/netsmartz/Documents/Design-System/Variables",
     comparisonRule: "Repository variable files must byte-match the listed source members.",
     figmaQueryRequired: false,
   },
   logicalTotals: {
     sharedPrimitives: 264,
-    agencySemantics: 251,
+    agencySemantics: 263,
     caregiverSemantics: 171,
   },
   artifacts,

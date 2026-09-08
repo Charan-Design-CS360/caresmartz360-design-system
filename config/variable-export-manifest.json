@@ -8,7 +8,7 @@
   },
   "logicalTotals": {
     "sharedPrimitives": 264,
-    "agencySemantics": 251,
+    "agencySemantics": 263,
     "caregiverSemantics": 171
   },
   "artifacts": [
@@ -27,8 +27,8 @@
       "sourceArchiveSha256": "2e46563148c5107eebcdf1e5cba5dad9a9d2bc26e517056390513e48739251eb",
       "sourceMember": "Light Mode (Default).tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/Light Mode (Default).tokens.json",
-      "sha256": "59290643909790656ff8db0ac00d4fee55668e0a7831de14b2c9cce36db5b03e",
-      "tokenDefinitions": 208
+      "sha256": "d44b8a7bbb82de57c08d4e46cec7fc856a0665f163d386613f576150bc6dd5eb",
+      "tokenDefinitions": 220
     },
     {
       "authority": "agency-semantics",
@@ -36,8 +36,8 @@
       "sourceArchiveSha256": "2e46563148c5107eebcdf1e5cba5dad9a9d2bc26e517056390513e48739251eb",
       "sourceMember": "Dark Theme.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/Dark Theme.tokens.json",
-      "sha256": "29f072fc2fbb9f37cfd528a3d7bd8943614f9d0450ecd822e2d7148c85f26b18",
-      "tokenDefinitions": 208
+      "sha256": "715eb9af04213fdbb3c2615a1e49452f0baa5b312d45713a83d3460ba8ee0859",
+      "tokenDefinitions": 220
     },
     {
       "authority": "agency-semantics",
@@ -45,8 +45,8 @@
       "sourceArchiveSha256": "2e46563148c5107eebcdf1e5cba5dad9a9d2bc26e517056390513e48739251eb",
       "sourceMember": "High Contrast.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/High Contrast.tokens.json",
-      "sha256": "e9230bb11de844510f48e2d6dcc2b4870df3d6e7e9546c31c47b78a97131550e",
-      "tokenDefinitions": 208
+      "sha256": "aa0b0afc817b4f221287354b5940f9afbaee5c2759c648587109856f2bd6bfdf",
+      "tokenDefinitions": 220
     },
     {
       "authority": "agency-semantics",
@@ -54,8 +54,8 @@
       "sourceArchiveSha256": "2e46563148c5107eebcdf1e5cba5dad9a9d2bc26e517056390513e48739251eb",
       "sourceMember": "Warm Dark.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/Warm Dark.tokens.json",
-      "sha256": "97b734c046c66b53748a715d4a369cb92247f28e6fb370248ea2212351e7400b",
-      "tokenDefinitions": 208
+      "sha256": "807421c941def814acc5480b4b42535e32874e889e5ed52b5a5d95945666dabc",
+      "tokenDefinitions": 220
     },
     {
       "authority": "agency-semantics",
@@ -63,8 +63,8 @@
       "sourceArchiveSha256": "2e46563148c5107eebcdf1e5cba5dad9a9d2bc26e517056390513e48739251eb",
       "sourceMember": "HC Light.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/HC Light.tokens.json",
-      "sha256": "6ca46bfbd04624cd3852d9ea9881fb44e4c3e01b10efa73f5a2f308e21dbfa5e",
-      "tokenDefinitions": 208
+      "sha256": "1c1f40c41622745fec28baf252958e01ba185a04aabe38ba7aa04f694a6b9f28",
+      "tokenDefinitions": 220
     },
     {
       "authority": "agency-semantics",
@@ -108,7 +108,7 @@
       "sourceArchiveSha256": "2602f7492c4e6b3b573d5c4b75f23114c59e463a09470d55e842cbe68fa9a78d",
       "sourceMember": "High Contrast.tokens.json",
       "repositoryPath": "portals/caregiver/semantics/color-theme/High Contrast.tokens.json",
-      "sha256": "404cfaa525ef971f26df6b3a8da8aeca28c64ff5a4d7c1e2416f5f50241cd9c0",
+      "sha256": "92f158ffb8a09014d7bcf19b2c43ac2afe57372261e25094b39b787344a604cd",
       "tokenDefinitions": 134
     },
     {
