@@ -63,7 +63,7 @@ The header's two rows are **12px** apart; the table's cells follow the table con
 - **Data Container (214)** = **Header complete (98)** + **Middle Matter / table (116)**.
 - Header complete (98) = header row (44) + 12px gap + search & filters row (30), inside the 12px gutter — this is the `completeHeader` molecule (page-header.json).
 - The **search & filters row (30)** = Nav Search (140) + Filters group [dropdown 158 · toggle 118 · checkbox 112 · Apply · Reset, 4px apart] on the left, and the **Columns** trigger pinned right. The filter pills are the `filters.*` component (Filter atom → Search & Filters row → complete header); the Columns trigger is `column-arrangement.*`.
-- The table is **frozen-left (Wound No. 115 @ the 12px gutter) + scrollable middle (953) + frozen-right Actions (60)** — exactly the shipped table rule (CS-TBL-13: first & last columns frozen, middle scrolls). Header row 34, data rows 30.
+- The table is **frozen-left + scrollable middle + frozen-right** — the shipped table rule (CS-TBL-13: first & last columns frozen, middle scrolls). Header row 34, data rows 30 (adjacent cells share their 1px border). **Sample widths on the demo page as of 2026-09-08 (live Figma):** frozen-left `table_column` **200** @ the 12px gutter · scrollable `sample-layout_table` **598** (3 × 200) · frozen-right `Table/Master Actions` **330** (History + Edit per row) = 1128 + 24 gutter = 1152. *(Measured 2026-09-04 as 115 / 953 / 60 — the Figma-AI lane re-laid the sample table between 4 and 7 Sep; the rule did not change, only the sample.)*
 
 ## 5. Guidelines for any AI tool building a page (Singh's rule: don't reinvent)
 
@@ -79,4 +79,4 @@ The header's two rows are **12px** apart; the table's cells follow the table con
 - Visual: a full-page reproduction (real components + Material Symbols icons) rendered at 1440×900 was compared against Figma `27337:73093`. Singh confirmed the **basic page setup (grid) is correct**; component-internal fidelity (profile nav / header / table / icons) refined 2026-09-04. Final visual sign-off pending.
 
 ## Provenance
-Measured 2026-09-04 from demo page 27337:73093 (get_metadata full tree + get_screenshot). Composes components measured 2026-09-03/04. All widths/gutters bind repo tokens.
+Measured 2026-09-04 from demo page 27337:73093 (get_metadata full tree + get_screenshot). Composes components measured 2026-09-03/04. All widths/gutters bind repo tokens. **Re-verified live 2026-09-08:** the Figma-AI lane had renamed the section to "Page Layout Patterns" and this page to `pattern-page-data-table`, and re-laid the sample table — grid, gutters and composition are unchanged; §4 sample widths updated. Two further pages now exist in the section (`pattern-page-empty-state` 27401:30856, `pattern-page-form-grid` 27401:31504) on the expanded 158 rail (content = 1042, confirming the fluid rule) — to be added as variants of this shell.

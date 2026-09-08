@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.2.1] — 2026-09-08
+
+Live re-verification of measured Figma nodes (the Figma-AI lane had edited them without notice). Contract corrections only.
+
+### Changed
+- **Primary Side Navigation → 1.1.0** — adds the link **Hover** state now present in Figma (3 variants `27364:6859 / 27364:7900 / 27364:7908`, bound to `surface/brand-hover`); nav-link variants 6 → 9; defect T1 resolved. **New defect T7:** that token contrasts with the rail text only in Light (5.72:1) and fails Dark / High Contrast / HC Light / Warm Dark (1.0–1.7:1; HC Light icon 1.00:1 = invisible) — proposed a new `sidebar/primary-hover` token (an add, permitted under the naming lock). T3 extended with all-mode figures (HC selected = 1.92:1).
+- **Page Setup pattern §4** — the demo page's sample table was re-laid in Figma (115 / 953 / 60 → 200 / 598 / 330; same 1128); grid, gutters and the CS-TBL-13 rule are unchanged. The section is now "Page Layout Patterns" and holds two further pages (`pattern-page-empty-state` 27401:30856, `pattern-page-form-grid` 27401:31504) to be added as variants of this shell.
+
+### Notice
+- Figma-side edits to measured nodes (renames, re-layouts, new variants) currently reach no session. Re-verify a contract's nodes live before building from it; report drift through the normal gate.
+
+---
+
 ## [3.2.0] — 2026-09-04
 
 Component & pattern contract layer for the **Agency** portal. Every component below
