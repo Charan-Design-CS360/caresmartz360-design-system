@@ -11,7 +11,7 @@ here for Angular, React Native, and other consumers.
 
 | Portal | Scope | Figma Collection | Total Vars | Status | Directory | Jira |
 |--------|-------|------------------|------------|--------|-----------|------|
-| **Agency Portal** | Web App | `Color Modes`, `Density Modes`, `General` | 251 vars across 3 collections (Color Modes 208 × 5 modes, Density Modes 29 × 1 mode, General 14 × 1 mode) | Active audit | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
+| **Agency Portal** | Web App | `Color Modes`, `Density Modes`, `General` | 263 vars across 3 collections (Color Modes 220 × 5 modes, Density Modes 29 × 1 mode, General 14 × 1 mode) | Active audit | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
 | **Caregiver Portal** | Web + Mobile | `Color Theme` | 171 vars (3 modes) | ✅ Active (v3.0) | `portals/caregiver/` | [C360-44333](https://netsmartz.atlassian.net/browse/C360-44333) |
 | **Staff Portal** | Web App | *TBD* | *In Progress* | 🟡 Planned | `portals/staff/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
 | **Client Portal** | Mobile App | *TBD* | *In Progress* | 🟡 Planned | `portals/client/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
@@ -43,7 +43,7 @@ Layer 4: Patterns/Templates       → Portal-scoped reusable workflows and layou
 |--------------------|---------------|------------------|
 | Primary Figma File | `4bh29laapcuKBTghfaRXF0` | `TSOq0ugv6zfr6gFZh5zYrP` |
 | Primary Collection | `Color Modes` | `Color Theme` |
-| Total Variables | 251 | 171 |
+| Total Variables | 263 | 171 |
 | Theme Modes | 5 (Light, Dark, High Contrast, Warm Dark, HC Light) | 3 (Light Mode, Soothing Dark, High Contrast) |
 | Density Modes | 1 (Default) | 3 (Default, Large, Small) |
 | Chart Tokens | Yes (10 series) | No |

@@ -232,6 +232,35 @@
         }
       }
     },
+    "border-hard": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5803921818733215,
+          0.6392157077789307,
+          0.7215686440467834
+        ],
+        "alpha": 1,
+        "hex": "#94A3B8"
+      },
+      "$description": "Default input border. Default stroke for form field outlines in resting state.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27121:34613",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "TEXT_FILL",
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:fabe11bbc3276a2454d431905006751f1b75ab4a/8:708",
+          "targetVariableName": "colors/neutral-400",
+          "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+          "targetVariableSetName": "Primitives"
+        }
+      }
+    },
     "bg-focus": {
       "$type": "color",
       "$value": {
@@ -443,6 +472,64 @@
         "com.figma.aliasData": {
           "targetVariableId": "VariableID:3e3266a25217ac69897069f4561c45e684020cd4/8:741",
           "targetVariableName": "colors/yellow-400",
+          "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+          "targetVariableSetName": "Primitives"
+        }
+      }
+    },
+    "bg-ai": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9803921580314636,
+          0.9607843160629272,
+          1
+        ],
+        "alpha": 1,
+        "hex": "#FAF5FF"
+      },
+      "$description": "Focused input background tint. Subtle fill applied to input background when focused.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27079:10660",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "TEXT_FILL",
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:ecf2becb8637fdbd69977258c91d713cba2a9171/8:759",
+          "targetVariableName": "colors/purple-50",
+          "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+          "targetVariableSetName": "Primitives"
+        }
+      }
+    },
+    "border-ai": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5764706134796143,
+          0.20000000298023224,
+          0.9176470637321472
+        ],
+        "alpha": 1,
+        "hex": "#9333EA"
+      },
+      "$description": "Focused input border. Apply to input border when the field has keyboard or pointer focus.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27079:10661",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "TEXT_FILL",
+          "STROKE"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:a0ffb88af8ea1e963ebd6e24c910d42e6aff5bed/8:765",
+          "targetVariableName": "colors/purple-600",
           "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
           "targetVariableSetName": "Primitives"
         }
@@ -1383,7 +1470,7 @@
           "alpha": 1,
           "hex": "#0077FF"
         },
-        "$description": "Primary button label color. Use for text and icon content inside primary buttons.",
+        "$description": "Primary outlined button label color. Use for text and icon content inside outlined primary buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26469:17780",
           "com.figma.scopes": [
@@ -1547,7 +1634,7 @@
           "alpha": 1,
           "hex": "#005CE6"
         },
-        "$description": "Secondary button label color.",
+        "$description": "Secondary button label color. Use for text and icon content inside secondary buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16804",
           "com.figma.scopes": [
@@ -1711,7 +1798,7 @@
           "alpha": 1,
           "hex": "#475569"
         },
-        "$description": "Soft button label color.",
+        "$description": "Soft button label color. Use for text and icon content inside soft buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26059:6557",
           "com.figma.scopes": [
@@ -1875,7 +1962,7 @@
           "alpha": 1,
           "hex": "#005CE6"
         },
-        "$description": "Ghost button label color.",
+        "$description": "Ghost button label color. Use for text and icon content inside ghost buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16816",
           "com.figma.scopes": [
@@ -2011,7 +2098,7 @@
           "alpha": 1,
           "hex": "#FFFFFF"
         },
-        "$description": "Success button label color.",
+        "$description": "Success button label color. Use for text and icon content inside success buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16812",
           "com.figma.scopes": [
@@ -2038,7 +2125,7 @@
           "alpha": 1,
           "hex": "#16A34A"
         },
-        "$description": "Success button label color.",
+        "$description": "Success outlined/text-hard button label color. Use for text and icon content.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26469:17781",
           "com.figma.scopes": [
@@ -2228,7 +2315,7 @@
           "alpha": 1,
           "hex": "#713F12"
         },
-        "$description": "Warning button label color.",
+        "$description": "Warning button label color. Use for text and icon content inside warning buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26059:6562",
           "com.figma.scopes": [
@@ -2418,7 +2505,7 @@
           "alpha": 1,
           "hex": "#FFFFFF"
         },
-        "$description": "Destructive button label color.",
+        "$description": "Destructive button label color. Use for text and icon content inside destructive buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16808",
           "com.figma.scopes": [
@@ -2499,7 +2586,7 @@
           "alpha": 1,
           "hex": "#DC2626"
         },
-        "$description": "Destructive button pressed/active background.",
+        "$description": "Destructive outlined/text-hard button label color. Use for text and icon content.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26879:9484",
           "com.figma.scopes": [
@@ -2575,14 +2662,14 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.5803921818733215,
-            0.6392157077789307,
-            0.7215686440467834
+            0.27843138575553894,
+            0.3333333432674408,
+            0.4117647111415863
           ],
           "alpha": 1,
-          "hex": "#94A3B8"
+          "hex": "#475569"
         },
-        "$description": "Disabled button/element label color.",
+        "$description": "Disabled button/element label color. Use for text and icon content inside disabled buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16820",
           "com.figma.scopes": [
@@ -2590,8 +2677,8 @@
             "TEXT_FILL"
           ],
           "com.figma.aliasData": {
-            "targetVariableId": "VariableID:fabe11bbc3276a2454d431905006751f1b75ab4a/8:708",
-            "targetVariableName": "colors/neutral-400",
+            "targetVariableId": "VariableID:4491e9d83a32e7ef2fb1de1b4cade445cde09a1e/8:710",
+            "targetVariableName": "colors/neutral-600",
             "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
             "targetVariableSetName": "Primitives"
           }
@@ -2618,6 +2705,223 @@
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:20fa0d595250512ebc571d02c2212e7a1b758a28/46:5",
             "targetVariableName": "colors/opacity-0",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      }
+    },
+    "ai": {
+      "bg": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5764706134796143,
+            0.20000000298023224,
+            0.9176470637321472
+          ],
+          "alpha": 1,
+          "hex": "#9333EA"
+        },
+        "$description": "AI button default background. Default fill for AI action buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34485",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:a0ffb88af8ea1e963ebd6e24c910d42e6aff5bed/8:765",
+            "targetVariableName": "colors/purple-600",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5764706134796143,
+            0.20000000298023224,
+            0.9176470637321472
+          ],
+          "alpha": 1,
+          "hex": "#9333EA"
+        },
+        "$description": "AI button hover background. Apply on pointer hover over AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34486",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:a0ffb88af8ea1e963ebd6e24c910d42e6aff5bed/8:765",
+            "targetVariableName": "colors/purple-600",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3450980484485626,
+            0.10980392247438431,
+            0.529411792755127
+          ],
+          "alpha": 1,
+          "hex": "#581C87"
+        },
+        "$description": "AI button pressed/active background. Apply on pointer down over AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34487",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:2be09ede20bebcc754aaea5739bd767c34067cd1/8:768",
+            "targetVariableName": "colors/purple-900",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "text-neutral": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#FFFFFF"
+        },
+        "$description": "AI button label color. Use for text and icon content inside AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34488",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:238a1dc86c75324bab6112fb63129580795961b8/8:703",
+            "targetVariableName": "colors/neutral-0",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "text-hard": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5764706134796143,
+            0.20000000298023224,
+            0.9176470637321472
+          ],
+          "alpha": 1,
+          "hex": "#9333EA"
+        },
+        "$description": "AI outlined button label color. Use for text and icon content inside outlined AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34489",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:a0ffb88af8ea1e963ebd6e24c910d42e6aff5bed/8:765",
+            "targetVariableName": "colors/purple-600",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0,
+          "hex": "#000000"
+        },
+        "$description": "AI button border. Typically transparent — use to maintain consistent layout with bordered variants.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34490",
+          "com.figma.scopes": [
+            "TEXT_FILL"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:20fa0d595250512ebc571d02c2212e7a1b758a28/46:5",
+            "targetVariableName": "colors/opacity-0",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "outlined": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5764706134796143,
+            0.20000000298023224,
+            0.9176470637321472
+          ],
+          "alpha": 1,
+          "hex": "#9333EA"
+        },
+        "$description": "AI outlined button stroke color. Use for the outlined variant of the AI button.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34491",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL",
+            "STROKE"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:a0ffb88af8ea1e963ebd6e24c910d42e6aff5bed/8:765",
+            "targetVariableName": "colors/purple-600",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "bg-soft": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9803921580314636,
+            0.9607843160629272,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#FAF5FF"
+        },
+        "$description": "AI soft button background. Light purple tint for subtle AI action buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27118:1218",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:ecf2becb8637fdbd69977258c91d713cba2a9171/8:759",
+            "targetVariableName": "colors/purple-50",
             "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
             "targetVariableSetName": "Primitives"
           }
@@ -3504,6 +3808,31 @@
   },
   "status": {
     "shift": {
+      "text": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#FFFFFF"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27002:73583",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:238a1dc86c75324bab6112fb63129580795961b8/8:703",
+            "targetVariableName": "colors/neutral-0",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
       "open": {
         "$type": "color",
         "$value": {
@@ -4017,32 +4346,6 @@
           }
         }
       },
-      "unpublished-bg": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.95686274766922,
-            0.95686274766922,
-            0.95686274766922
-          ],
-          "alpha": 1,
-          "hex": "#F4F4F4"
-        },
-        "$description": "Unpublished shift background tint.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:26348:6807",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ],
-          "com.figma.aliasData": {
-            "targetVariableId": "VariableID:fd6cfd35dd74563a60ea18499805aaf142fb18d0/8:900",
-            "targetVariableName": "status-color/gray-100",
-            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
-            "targetVariableSetName": "Primitives"
-          }
-        }
-      },
       "unpublished": {
         "$type": "color",
         "$value": {
@@ -4064,6 +4367,32 @@
           "com.figma.aliasData": {
             "targetVariableId": "VariableID:e83dda2bcd3c4de8c8544c973bdc9d8ffdac220e/8:898",
             "targetVariableName": "status-color/gray-500",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
+      "unpublished-bg": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.95686274766922,
+            0.95686274766922,
+            0.95686274766922
+          ],
+          "alpha": 1,
+          "hex": "#F4F4F4"
+        },
+        "$description": "Unpublished shift background tint.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:26348:6807",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:fd6cfd35dd74563a60ea18499805aaf142fb18d0/8:900",
+            "targetVariableName": "status-color/gray-100",
             "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
             "targetVariableSetName": "Primitives"
           }
@@ -4701,12 +5030,12 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          1,
-          1,
+          0,
+          0.46666666865348816,
           1
         ],
         "alpha": 1,
-        "hex": "#FFFFFF"
+        "hex": "#0077FF"
       },
       "$description": "Sidebar active nav item text. Use for the label of the currently selected navigation item.",
       "$extensions": {
@@ -4715,8 +5044,8 @@
           "TEXT_FILL"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:238a1dc86c75324bab6112fb63129580795961b8/8:703",
-          "targetVariableName": "colors/neutral-0",
+          "targetVariableId": "VariableID:480385de33cd04d0bbe9385699715a514ef48458/8:698",
+          "targetVariableName": "colors/Brandblue-600",
           "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
           "targetVariableSetName": "Primitives"
         }
@@ -4928,12 +5257,12 @@
       "$value": {
         "colorSpace": "srgb",
         "components": [
-          0.9176470637321472,
-          0.7019608020782471,
-          0.0313725508749485
+          0.6313725709915161,
+          0.3843137323856354,
+          0.027450980618596077
         ],
         "alpha": 1,
-        "hex": "#EAB308"
+        "hex": "#A16207"
       },
       "$description": "Yellow tag foreground. Use for warning or pending-state tag labels.",
       "$extensions": {
@@ -4945,8 +5274,8 @@
           "STROKE"
         ],
         "com.figma.aliasData": {
-          "targetVariableId": "VariableID:17a308bcbfe412e746928428b56368b763b78615/8:742",
-          "targetVariableName": "colors/yellow-500",
+          "targetVariableId": "VariableID:4e722283e4cc778b7ad7fe869ca2f42c2246c22d/8:744",
+          "targetVariableName": "colors/yellow-700",
           "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
           "targetVariableSetName": "Primitives"
         }

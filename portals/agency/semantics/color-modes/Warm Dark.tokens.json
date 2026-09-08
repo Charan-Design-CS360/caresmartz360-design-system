@@ -184,6 +184,29 @@
         ]
       }
     },
+    "border-hard": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.29019609093666077,
+          0.27450981736183167,
+          0.250980406999588
+        ],
+        "alpha": 1,
+        "hex": "#4A4640"
+      },
+      "$description": "Default input border. Default stroke for form field outlines in resting state.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27121:34613",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "TEXT_FILL",
+          "STROKE"
+        ]
+      }
+    },
     "bg-focus": {
       "$type": "color",
       "$value": {
@@ -374,6 +397,52 @@
           "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
           "targetVariableSetName": "Primitives"
         }
+      }
+    },
+    "bg-ai": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.22745098173618317,
+          0.19607843458652496,
+          0.125490203499794
+        ],
+        "alpha": 1,
+        "hex": "#3A3220"
+      },
+      "$description": "Focused input background tint. Subtle fill applied to input background when focused.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27079:10660",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "TEXT_FILL",
+          "STROKE"
+        ]
+      }
+    },
+    "border-ai": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9019607901573181,
+          0.4901960790157318,
+          0.13333334028720856
+        ],
+        "alpha": 1,
+        "hex": "#E67D22"
+      },
+      "$description": "Focused input border. Apply to input border when the field has keyboard or pointer focus.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27079:10661",
+        "com.figma.scopes": [
+          "FRAME_FILL",
+          "SHAPE_FILL",
+          "TEXT_FILL",
+          "STROKE"
+        ]
       }
     },
     "bg-disabled": {
@@ -1125,7 +1194,7 @@
           "alpha": 1,
           "hex": "#FFB38A"
         },
-        "$description": "Primary button label color. Use for text and icon content inside primary buttons.",
+        "$description": "Primary outlined button label color. Use for text and icon content inside outlined primary buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26469:17780",
           "com.figma.scopes": [
@@ -1253,7 +1322,7 @@
           "alpha": 1,
           "hex": "#F5E6D3"
         },
-        "$description": "Secondary button label color.",
+        "$description": "Secondary button label color. Use for text and icon content inside secondary buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16804",
           "com.figma.scopes": [
@@ -1381,7 +1450,7 @@
           "alpha": 1,
           "hex": "#F5E6D3"
         },
-        "$description": "Soft button label color.",
+        "$description": "Soft button label color. Use for text and icon content inside soft buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26059:6557",
           "com.figma.scopes": [
@@ -1509,7 +1578,7 @@
           "alpha": 1,
           "hex": "#FFB38A"
         },
-        "$description": "Ghost button label color.",
+        "$description": "Ghost button label color. Use for text and icon content inside ghost buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16816",
           "com.figma.scopes": [
@@ -1621,7 +1690,7 @@
           "alpha": 1,
           "hex": "#2B2A27"
         },
-        "$description": "Success button label color.",
+        "$description": "Success button label color. Use for text and icon content inside success buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16812",
           "com.figma.scopes": [
@@ -1642,7 +1711,7 @@
           "alpha": 1,
           "hex": "#BBF7D0"
         },
-        "$description": "Success button label color.",
+        "$description": "Success outlined/text-hard button label color. Use for text and icon content.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26469:17781",
           "com.figma.scopes": [
@@ -1790,7 +1859,7 @@
           "alpha": 1,
           "hex": "#2B2A27"
         },
-        "$description": "Warning button label color.",
+        "$description": "Warning button label color. Use for text and icon content inside warning buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26059:6562",
           "com.figma.scopes": [
@@ -1938,7 +2007,7 @@
           "alpha": 1,
           "hex": "#2B2A27"
         },
-        "$description": "Destructive button label color.",
+        "$description": "Destructive button label color. Use for text and icon content inside destructive buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16808",
           "com.figma.scopes": [
@@ -2001,7 +2070,7 @@
           "alpha": 1,
           "hex": "#DC2626"
         },
-        "$description": "Destructive button pressed/active background.",
+        "$description": "Destructive outlined/text-hard button label color. Use for text and icon content.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26879:9484",
           "com.figma.scopes": [
@@ -2066,7 +2135,7 @@
           "alpha": 1,
           "hex": "#6B5F53"
         },
-        "$description": "Disabled button/element label color.",
+        "$description": "Disabled button/element label color. Use for text and icon content inside disabled buttons.",
         "$extensions": {
           "com.figma.variableId": "VariableID:25511:16820",
           "com.figma.scopes": [
@@ -2099,6 +2168,175 @@
             "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
             "targetVariableSetName": "Primitives"
           }
+        }
+      }
+    },
+    "ai": {
+      "bg": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5759999752044678,
+            0.20000000298023224,
+            0.9179999828338623
+          ],
+          "alpha": 1,
+          "hex": "#9333EA"
+        },
+        "$description": "AI button default background. Default fill for AI action buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34485",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ]
+        }
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.49399998784065247,
+            0.13300000131130219,
+            0.8080000281333923
+          ],
+          "alpha": 1,
+          "hex": "#7E22CE"
+        },
+        "$description": "AI button hover background. Apply on pointer hover over AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34486",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ]
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.41999998688697815,
+            0.1289999932050705,
+            0.6589999794960022
+          ],
+          "alpha": 1,
+          "hex": "#6B21A8"
+        },
+        "$description": "AI button pressed/active background. Apply on pointer down over AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34487",
+          "com.figma.scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ]
+        }
+      },
+      "text-neutral": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.16862745583057404,
+            0.16470588743686676,
+            0.15294118225574493
+          ],
+          "alpha": 1,
+          "hex": "#2B2A27"
+        },
+        "$description": "AI button label color. Use for text and icon content inside AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34488",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ]
+        }
+      },
+      "text-hard": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.847000002861023,
+            0.7059999704360962,
+            0.9959999918937683
+          ],
+          "alpha": 1,
+          "hex": "#D8B4FE"
+        },
+        "$description": "AI outlined button label color. Use for text and icon content inside outlined AI buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34489",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ]
+        }
+      },
+      "border": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5759999752044678,
+            0.20000000298023224,
+            0.9179999828338623
+          ],
+          "alpha": 1,
+          "hex": "#9333EA"
+        },
+        "$description": "AI button border. Typically transparent — use to maintain consistent layout with bordered variants.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34490",
+          "com.figma.scopes": [
+            "TEXT_FILL"
+          ]
+        }
+      },
+      "outlined": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5759999752044678,
+            0.20000000298023224,
+            0.9179999828338623
+          ],
+          "alpha": 1,
+          "hex": "#9333EA"
+        },
+        "$description": "AI outlined button stroke color. Use for the outlined variant of the AI button.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27113:34491",
+          "com.figma.scopes": [
+            "SHAPE_FILL",
+            "TEXT_FILL",
+            "STROKE"
+          ]
+        }
+      },
+      "bg-soft": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9490000009536743,
+            0.9020000100135803,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#F2E6FF"
+        },
+        "$description": "AI soft button background. Light purple tint for subtle AI action buttons.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27118:1218",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
         }
       }
     },
@@ -2814,6 +3052,31 @@
   },
   "status": {
     "shift": {
+      "text": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.007843137718737125,
+            0.0235294122248888,
+            0.09019608050584793
+          ],
+          "alpha": 1,
+          "hex": "#020617"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:27002:73583",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ],
+          "com.figma.aliasData": {
+            "targetVariableId": "VariableID:7c81a91afa91ab194a5e32ab50efe255b02c5644/8:714",
+            "targetVariableName": "colors/neutral-950",
+            "targetVariableSetId": "VariableCollectionId:303841a57768f2b7efb526d283ebf42bb93457e9/8:910",
+            "targetVariableSetName": "Primitives"
+          }
+        }
+      },
       "open": {
         "$type": "color",
         "$value": {
@@ -3213,26 +3476,6 @@
           ]
         }
       },
-      "unpublished-bg": {
-        "$type": "color",
-        "$value": {
-          "colorSpace": "srgb",
-          "components": [
-            0.20000000298023224,
-            0.1921568661928177,
-            0.1764705926179886
-          ],
-          "alpha": 1,
-          "hex": "#33312D"
-        },
-        "$description": "Unpublished shift background tint.",
-        "$extensions": {
-          "com.figma.variableId": "VariableID:26348:6807",
-          "com.figma.scopes": [
-            "ALL_SCOPES"
-          ]
-        }
-      },
       "unpublished": {
         "$type": "color",
         "$value": {
@@ -3248,6 +3491,26 @@
         "$description": "Unpublished shift status color. Use for draft shifts not yet visible to caregivers.",
         "$extensions": {
           "com.figma.variableId": "VariableID:26348:6808",
+          "com.figma.scopes": [
+            "ALL_SCOPES"
+          ]
+        }
+      },
+      "unpublished-bg": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.20000000298023224,
+            0.1921568661928177,
+            0.1764705926179886
+          ],
+          "alpha": 1,
+          "hex": "#33312D"
+        },
+        "$description": "Unpublished shift background tint.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:26348:6807",
           "com.figma.scopes": [
             "ALL_SCOPES"
           ]
