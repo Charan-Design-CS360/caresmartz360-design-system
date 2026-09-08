@@ -3,12 +3,12 @@
   "$meta": {
     "component": "Primary Side Navigation — the app's blue left rail",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma MCP never reports a file key. Taken from the URL Singh supplied (Design System Agency V2.0).",
     "figmaNodes": {
       "structure": "27337:73592 'Primary side nav structure' (Expanded=Yes 27337:73593 = 158px · Expanded=No 27337:73615 = 48px collapsed)",
-      "navLink": "10441:17045 'primary side nav navigation links' (6 variants: icon No/Yes × selected No/Yes × iconOnly No/Yes)",
+      "navLink": "10441:17045 'primary side nav navigation links' (9 variants as of 2026-09-08: icon No/Yes × State Default/Hover × selected No/Yes × iconOnly No/Yes — the 3 Hover variants 27364:6859 / 27364:7900 / 27364:7908 were added by the Figma-AI lane after the 2026-09-04 measurement, resolving T1)",
       "copyright": "22906:5650 'primary side nav copyright bottom' (Default expanded / Variant2 collapsed)",
       "iconSet": "10883:20899 'priamry side nav icons' (41 variants, 24px)",
       "logo": "27337:73595 (white header + logo image) · toggle 27337:73597 (Expand-Collapse-action)"
@@ -85,6 +85,7 @@
       "iconOnlyCollapsed": { "value": "24px icon centred, gap none, px spacing/lg (12)", "marker": ["MEASURED"] },
       "states": {
         "default": { "background": "transparent (blue rail shows through)", "icon": "outline", "text": "sidebar/text (white)", "marker": ["MEASURED"] },
+        "hover": { "background": "surface/brand-hover (#005ce6 in Light → colors/Brandblue-700)", "cssVarBg": "--surface-brand-hover", "icon": "outline (unchanged)", "text": "sidebar/text (white, unchanged)", "perMode": { "Light Mode (Default)": "#005CE6 → colors/Brandblue-700", "Dark Theme": "#2499FF → colors/Brandblue-500", "High Contrast": "#F1F5F9 → colors/neutral-100", "HC Light": "#1E293B → colors/neutral-800", "Warm Dark": "#EAD8C0 (raw hex, no alias)" }, "marker": ["MEASURED"], "measuredOn": "2026-09-08", "nodeIds": "27364:6859 (Icon=No) · 27364:7900 (Icon=Yes) · 27364:7908 (Icon only) — all three bind surface/brand-hover (get_variable_defs, live)", "publishedFor": "Selected=No only; no Hover×Selected variant exists", "note": "Drawn in Figma by the Figma-AI lane after 2026-09-04 in response to T1; supersedes the kit's earlier ADDED translucent-white hover.", "contrastMeasured": "sidebar/text and sidebar/icon on surface/brand-hover, per mode (Aug-24 export, computed 2026-09-08): Light 5.72:1 ✓ · Dark Theme 1.16:1 ✗ · High Contrast 1.10:1 ✗ (white on #F1F5F9) · HC Light text 1.38:1 ✗ / icon 1.00:1 ✗ (icon = fill colour, invisible) · Warm Dark 1.66:1 ✗. Passes only in Light — see defect T7." },
         "selected": { "background": "sidebar/ring (#2499ff)", "cssVarBg": "--sidebar-ring", "icon": "filled", "text": "white", "marker": ["MEASURED"], "note": "Selected = current section. Lighter-blue full-width highlight + filled icon." }
       }
     },
@@ -103,7 +104,7 @@
   },
   "variantAxes": {
     "rail": { "values": ["expanded (158)", "collapsed (48)"], "marker": ["MEASURED", "RULED"] },
-    "navLink": { "icon": ["No", "Yes"], "selected": ["No", "Yes"], "iconOnly": ["No", "Yes"], "measuredCount": 6, "iconNoRealization": "icon=No (label-only) renders by omitting the .cs-pnav__link-icon element; the label fills the row (flex:1). Selected icon uses --sidebar-icon-active, label uses --sidebar-text (separate tokens).", "marker": ["MEASURED"] },
+    "navLink": { "icon": ["No", "Yes"], "state": ["Default", "Hover"], "selected": ["No", "Yes"], "iconOnly": ["No", "Yes"], "measuredCount": 9, "hoverPublishedFor": "Selected=No only — 3 Hover variants (Icon No · Icon Yes · Icon only); no Hover×Selected variant (re-verified live 2026-09-08)", "iconNoRealization": "icon=No (label-only) renders by omitting the .cs-pnav__link-icon element; the label fills the row (flex:1). Selected icon uses --sidebar-icon-active, label uses --sidebar-text (separate tokens).", "marker": ["MEASURED"] },
     "copyright": { "values": ["Default (expanded)", "Variant2 (collapsed)"], "marker": ["MEASURED"] }
   },
   "accessibility": {
@@ -114,9 +115,10 @@
     "focusVisible": { "value": "Every link + the toggle needs a visible focus ring. Uses a WHITE ring (--sidebar-text, inset offset -2) — DISTINCT from the --sidebar-ring selected fill, so focus stays visible even on a Selected row (WCAG 2.4.7). Never reuse --sidebar-ring for the focus outline (that would be invisible on the selected row).", "marker": ["ADDED"] }
   },
   "defects": [
-    "T1 — NO HOVER STATE in Figma. The nav-link component's only axis is Default (icon/selected/iconOnly) — no Hover variant. A real clickable rail needs a hover affordance; the CSS ADDS one (translucent white over the blue), marked ADDED. Ask Figma AI to draw the official hover.",
+    "T1 — RESOLVED 2026-09-08. Figma now has 3 Hover variants (27364:6859 / 27364:7900 / 27364:7908) binding surface/brand-hover, drawn by the Figma-AI lane after the 2026-09-04 measurement. The kit's ADDED translucent-white hover is replaced by var(--surface-brand-hover). The token choice itself is defective — see T7.",
+    "T7 — HOVER TOKEN FAILS CONTRAST IN 4 OF 5 MODES (measured 2026-09-08 from the Aug-24 export). The Hover variants bind surface/brand-hover — a brand-SURFACE hover, not a sidebar token — so it does not co-vary with sidebar/text: text/icon contrast on the hover fill is Light 5.72:1 ✓, Dark Theme 1.16:1 ✗, High Contrast 1.10:1 ✗ (white on #F1F5F9), HC Light text 1.38:1 ✗ / icon 1.00:1 ✗ (icon is the same colour as the fill — invisible), Warm Dark 1.66:1 ✗. No existing sidebar/* token works in all five modes either: accent-bg and secondary-bg are tuned for the grey profile sidebar (Light 1.10 / 1.05), ring fails Light 2.97 / HC 1.92 / Warm 1.24, primary-bg is the rail itself. PROPOSED FIX — an ADD, allowed under the Agency naming lock (C360-44253 #622188 rule 4): a new token sidebar/primary-hover with per-mode values ≥4.5:1 against sidebar/text, and re-bind the three Hover variants to it. Requires the owner's ruling on the values and a Figma-AI re-bind; until then the kit follows Figma (var(--surface-brand-hover)) and carries this warning.",
     "T2 — LOGO HEADER HAS NO TOKEN. It is white (#ffffff, RAW) sitting on the blue rail, with a RAW translucent hairline rgba(51,74,101,0.1). Neither binds a token. If the design system wants the logo header themeable, it needs a sidebar-surface / on-primary token; today it is two RAW values.",
-    "T3 — SELECTED CONTRAST. White 14px label on sidebar/ring (#2499ff) ≈ 3.0:1 — below the 4.5:1 normal-text bar. Either accept it as a UI-component highlight (3:1 met) or darken the selected row's blue. Design-owner call.",
+    "T3 — SELECTED CONTRAST. White 14px label on sidebar/ring (#2499ff) ≈ 3.0:1 in Light — below the 4.5:1 normal-text bar. Either accept it as a UI-component highlight (3:1 met) or darken the selected row's blue. Design-owner call. EXTENDED 2026-09-08 (all modes, sidebar/text on sidebar/ring): Light 2.97:1, Dark 4.04:1, High Contrast 1.92:1 ✗ (white on yellow-500 #EAB308 — fails even the 3:1 component bar), HC Light 13.17:1 ✓, Warm Dark 1.24:1 ✗. The HC and Warm Dark selected states need the owner's attention as much as the hover does.",
     "T4 — the icon set 'priamry side nav icons' (10883:20899, 41 variants, note the 'priamry' typo) supplies every nav icon at 24px; individual icon↔section mapping is NOT enumerated here — bind per section when the nav is populated.",
     "T5 — legacy token name fonts/tracking/X-tracking-0 bound on the labels (same system-wide legacy-name cleanup). The kit uses semantic vars.",
     "T6 — layer-name typo 'priamry' appears in the icon set and its instances; cosmetic, flag to Figma AI."
