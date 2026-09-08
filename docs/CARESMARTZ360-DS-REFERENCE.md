@@ -64,15 +64,51 @@ Meaning-based tokens referencing primitives.
 
 | Token | References | Usage |
 |-------|------------|-------|
-| `semantic.brand.primary` | `blue.600` → `#0077FF` (verified) | Primary CTA buttons |
-| `semantic.brand.hover` | `blue.700` → `#005CE6` (verified) | Button hover state |
+| `action.primary.bg` / `semantic.brand.primary` | `blue.600` → `#0077FF` (verified) | Form save, submit, dialog confirmation CTAs |
+| `action.success.bg` / `semantic.status.success` | `green.600` → `#16A34A` (verified) | **Creation / Addition CTAs** (`Add New`, `Add Client`, `Create`) & positive status |
+| `action.primary.hover` / `semantic.brand.hover` | `blue.700` → `#005CE6` (verified) | Primary button hover state |
+| `action.success.hover` | `green.700` → `#15803D` (verified) | Success button hover state |
 | `semantic.brand.disabled` | `gray.300` | Disabled interactive elements |
-| `semantic.status.success` | `green.600` | Success states, positive feedback |
 | `semantic.status.warning` | `yellow.500` | Warning states, caution |
 | `semantic.status.error` | `red.600` | Error states, destructive actions |
 | `semantic.status.info` | `blue.700` | Info states |
-| `semantic.text.primary` | `gray.00` | Disabled text |
-| `semantic.surface.default` | `white` | Main content areas |
+| `semantic.text.primary` | `gray.900` | High-contrast body text |
+| `semantic.surface.default` | `white` | Main content areas / page canvas |
+
+---
+
+## Component Sources & Discovery Directory
+
+All engineers and AI tools must source component geometries, layout rules, and node definitions from these canonical locations before authoring or modifying code:
+
+| Component | Figma File Key | Figma Node ID | Published Contract / Rule | Canonical CSS Class |
+|---|---|---|---|---|
+| **Buttons (All Variants)** | `4bh29laapcuKBTghfaRXF0` | `5703:7087` (Primary)<br>`10356:17309` (Success)<br>`5703:7709` (Ghost)<br>`5703:8495` (Soft)<br>`27098:1282` (Secondary) | `button.md` v1.0.0 / `buttons.css [CS-BTN-01..16]` | `.cs-btn`<br>`.cs-btn--primary`<br>`.cs-btn--success`<br>`.cs-btn--ghost`<br>`.cs-btn--soft`<br>`.cs-btn--secondary` |
+| **Complete Page Header** | `4bh29laapcuKBTghfaRXF0` | `27232:65833` / `27232:65797` (Pageheader)<br>`27232:64816` (Refresh action 20×20 `cached`) | `page-header.md` / `00-MEASUREMENT-page-header-2026-08-25.md` | `.cs-pheader`<br>`.cs-pheader__top-row`<br>`.cs-pheader__filter-row` |
+| **Table 3.0 System** | `4bh29laapcuKBTghfaRXF0` | `5865:162` (`Head / Tiltes for tables`)<br>`10797:21483` (`global / base / Table / Actions` 60×30)<br>`13147:33749` (Master actions) | `table.md` v1.0.0 / `table.css [CS-TBL-01..16]` | `.cs-table__wrap`<br>`.cs-table`<br>`.cs-table__head-cell`<br>`.cs-table__cell`<br>`.cs-table__actions` |
+| **Checkbox & Radio** | `4bh29laapcuKBTghfaRXF0` | `26938:66000` | `checkbox-radio.css [CS-CHK-01..05]` | `.cs-checkbox`<br>`.cs-radio` |
+| **Nav Search Field** | `4bh29laapcuKBTghfaRXF0` | `26938:65997` (sub-node) | `search-field.css [CS-SRCH-01..03]` | `.cs-search`<br>`.cs-search__input` |
+| **Profile Side Navigation** | `4bh29laapcuKBTghfaRXF0` | `10441:17071` (240px expanded)<br>`10441:17045` (50px collapsed rail) | `profile-side-navigation.css [CS-PNAV-01..06]` | `.pnav`<br>`.pnav-full`<br>`.pnav-rail` |
+| **Primary Side Navigation** | `4bh29laapcuKBTghfaRXF0` | `10441:17045` (158px rail) | `primary-side-navigation.css` | `.cs-snav` |
+| **Tab Navigation Strip** | `4bh29laapcuKBTghfaRXF0` | `base/Tabs/Primary` (1128×46 / 50px canonical) | `tabs.css [CS-TABS-01..03]` | `.cs-tabs`<br>`.cs-tabs__tab` |
+
+### Architectural Rules for Page Construction
+
+#### Rule [DS-HDR-ACT-01] — Creation Action Green Button
+1. **Creation / Addition Actions** (`Add New`, `Add Client`, `Create New`, `New Form`) **MUST use `.cs-btn--success`** (`action/success/bg` `#16a34a` / `var(--action-success-bg)`), accompanied by a leading `add` Material Symbol.
+2. **Confirmation / Save Actions** (`Save`, `Submit`, `Confirm`, `Apply`) use `.cs-btn--primary` (Brand Blue `#0077ff` / `var(--action-primary-bg)`).
+3. **Rationale:** In CareSmartz360, clinical and administrative workflows clearly distinguish "starting a new workflow / record" (Green affirmative creation) from "persisting or acknowledging an existing form" (Blue primary).
+
+#### Rule [DS-TBL-01] — Table Grid & Alignment Standards
+1. **4-Sided Cell Border Grid:** Every `th` and `td` cell carries `border: var(--border-width-default) solid var(--border-subtle)`. Never style row bottoms only.
+2. **Row Actions Sizing & Alignment:** Per-row actions must be 30×30 ghost icon buttons (`.cs-btn.cs-btn--ghost.cs-btn--icon-only`) holding 18×18 icons (`edit` and `more_vert`). They are **RIGHT-ALIGNED** (`justify-content: flex-end`) at the right edge of the table [CS-TBL-15]. Text buttons are strictly forbidden in row action cells.
+3. **No Zebra Striping:** Zebra striping is banned. Rows are solid `#ffffff` (`var(--surface-base)`), transitioning to `var(--surface-tertiary)` on hover.
+4. **Frozen Columns:** First column sticky left (z-index: 2); last column sticky right (z-index: 2) with `flex: 1 0 auto` to absorb remaining container width.
+
+#### Rule [DS-LAY-01] — Container Rhythm & Spacing ([UIG-086])
+1. **Zero Page-Level Double Padding:** Never place outer padding on `.page-content`. The tab bar, header, and data containers butt edge-to-edge.
+2. **Header-to-Table Gap:** The data container (`.cs-data-container`) enforces an explicit 12px vertical rhythm (`gap: var(--spacing-lg)`).
+3. **Side Nav Boundary:** Profile Side Nav (`.pnav`) has **NO drawn border**; it relies purely on flat background contrast (`var(--sidebar-secondary-bg)` `#f8fafc` against the pure white `#ffffff` canvas).
 
 ---
 

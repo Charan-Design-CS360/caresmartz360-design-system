@@ -7,18 +7,50 @@
   },
   "components": {
     "Button": {
-      "figmaNodeId": "1:100",
-      "variants": ["primary", "secondary", "ghost", "danger", "link"],
-      "sizes": ["sm", "md", "lg"],
-      "states": ["default", "hover", "active", "disabled", "loading"],
-      "tokens": {
-        "background": "semantic.brand.primary",
-        "text": "semantic.text.inverse",
-        "border": "semantic.border.default",
-        "radius": "primitives.radius.md"
+      "_fixed": "2026-09-08 — verified against live Figma file 4bh29laapcuKBTghfaRXF0, section 26938:66536 'AI Button component'. Added success green variant and header creation action rule.",
+      "figmaFile": "4bh29laapcuKBTghfaRXF0",
+      "figmaNodeId": "5703:7087",
+      "variantNodeIds": {
+        "primary": "5703:7087",
+        "secondary": "27098:1282",
+        "success": "10356:17309",
+        "ghost": "5703:7709",
+        "soft": "5703:8495",
+        "warning": "26781:44955",
+        "destructive": "5703:7501"
       },
-      "tailwindClasses": "btn btn-primary",
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+      "variants": ["primary", "secondary", "success", "ghost", "soft", "warning", "destructive"],
+      "layoutVariants": ["standard", "compact", "icon-only", "no-icon", "trailing"],
+      "states": ["default", "hover", "active", "disabled", "focus", "outlined"],
+      "creationActionRule": "MANDATORY [DS-HDR-ACT-01]: Any action in a page header or toolbar that creates or adds an entity (Add New, Add Client, Create, New Form) MUST use the success variant (.cs-btn--success, action.success.bg #16a34a). Primary (.cs-btn--primary, action.primary.bg #0077ff) is strictly for saves, submits, and dialog confirmations.",
+      "structure": {
+        "minHeightStandardPx": 30,
+        "minHeightCompactPx": 24,
+        "minWidthIconLabelPx": 80,
+        "minWidthLabelOnlyPx": 60,
+        "minWidthIconOnlyPx": 30,
+        "paddingBlockPx": 0,
+        "paddingIconSidePx": 8,
+        "paddingLabelSidePx": 12,
+        "paddingIconOnlyPx": 4,
+        "gapPx": 4,
+        "borderRadiusPx": 4,
+        "iconBoxPx": 18
+      },
+      "tokens": {
+        "primaryBg": "action.primary.bg",
+        "primaryText": "action.primary.text-neutral",
+        "successBg": "action.success.bg",
+        "successText": "action.success.text-neutral",
+        "secondaryBg": "action.secondary.bg",
+        "secondaryText": "action.secondary.text",
+        "ghostText": "action.ghost.text-hard",
+        "softBg": "action.soft.bg",
+        "softText": "action.soft.text-neutral",
+        "radius": "border-radius.rounded"
+      },
+      "classes": ".cs-btn .cs-btn--primary | .cs-btn--success | .cs-btn--secondary | .cs-btn--ghost | .cs-btn--soft",
+      "componentLibrary": "Angular Material M3 / custom CSS component"
     },
     "Input": {
       "_fixed": "2026-08-27 — every field below is real and verified, replacing the fabricated placeholder this entry had (figmaNodeId 1:200, in the round-hundreds pattern this file's own $metadata.warning already flags as unconfirmed). Verified via get_design_context/get_variable_defs on the live Figma node, not guessed. The other 14 entries in this file were NOT touched — they still have the same fabricated-looking pattern and still need the regeneration pass $metadata.warning calls for.",
@@ -153,15 +185,54 @@
       "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
     },
     "Table": {
-      "figmaNodeId": "1:1200",
-      "variants": ["default", "striped", "compact"],
+      "_fixed": "2026-09-08 — verified against live Figma file 4bh29laapcuKBTghfaRXF0 and table.css [CS-TBL-01..16]. Removed fabricated striped variant (zebra striping strictly banned).",
+      "figmaFile": "4bh29laapcuKBTghfaRXF0",
+      "figmaNodeId": "5865:162",
+      "figmaNodeName": "Head / Tiltes for tables (sic)",
+      "rowActionsNodeId": "10797:21483",
+      "rowActionsNodeName": "global / base / Table / Actions (60x30, more_vert 18x18 + Edit 18x18)",
+      "rules": {
+        "borderGrid": "4-sided border (1px solid var(--border-subtle)) on every th and td cell. Never row-bottom-only.",
+        "zebraStriping": "STRICTLY BANNED. Every row has transparent or surface-base fill; surface-tertiary on hover only.",
+        "headerHeightPx": 34,
+        "rowMinHeightPx": 30,
+        "frozenColumns": "First column sticky left (z-index: 2). Last column sticky right (z-index: 2) with flex: 1 0 auto fill absorption.",
+        "rowActionsAlignment": "MANDATORY [CS-TBL-15]: Row actions (edit and more_vert icon buttons) are RIGHT-ALIGNED (justify-content: flex-end) at table edge."
+      },
       "tokens": {
-        "headerBg": "semantic.surface.subtle",
-        "rowBg": "semantic.surface.default",
-        "stripedBg": "semantic.surface.muted",
-        "border": "semantic.border.default",
-        "text": "semantic.text.primary"
-      }
+        "headerBg": "surface.tertiary",
+        "rowBg": "surface.base",
+        "rowHoverBg": "surface.tertiary",
+        "border": "border.subtle",
+        "text": "text.primary",
+        "linkText": "text.links"
+      },
+      "classes": ".cs-table__wrap, .cs-table, .cs-table__head-cell, .cs-table__cell, .cs-table__actions"
+    },
+    "PageHeader": {
+      "_fixed": "2026-09-08 — verified against live Figma file 4bh29laapcuKBTghfaRXF0, node 27232:65833 (pageheader component).",
+      "figmaFile": "4bh29laapcuKBTghfaRXF0",
+      "figmaNodeId": "27232:65833",
+      "structure": {
+        "totalHeightPx": 110,
+        "paddingPx": 12,
+        "paddingFourSides": true,
+        "row1HeightPx": 44,
+        "row2HeightPx": 30,
+        "rowGapPx": 12
+      },
+      "rules": {
+        "creationButton": "MANDATORY [DS-HDR-ACT-01]: Any action creating or adding an entity (Add New, Add Client, Create) MUST use .cs-btn--success (Green action.success.bg #16a34a).",
+        "refreshAffordance": "20x20 button holding 'cached' Material Symbol, placed inline beside the page title (8px gap).",
+        "filterRow": "30px height, space-between layout: Nav Search (140px, soft bg) + filter dropdowns (4px gap) on left, Columns trigger pinned right."
+      },
+      "tokens": {
+        "background": "surface.base",
+        "titleText": "text.primary",
+        "subtitleText": "text.secondary",
+        "refreshIcon": "icon.secondary"
+      },
+      "classes": ".cs-pheader, .cs-pheader__top-row, .cs-pheader__filter-row, .cs-pheader__filters-group"
     },
     "Tabs": {
       "figmaNodeId": "1:1300",

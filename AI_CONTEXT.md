@@ -57,3 +57,15 @@ CareSmartz360 component, in this order:
 
 Skipping straight to step 4 is the failure mode this rule exists to prevent.
 
+## 8. Persona & Portal Alignment (Canonical Living Benchmark)
+
+All components, tokens, and templates designed in this system must align with the **13 Canonical CareSmartz360 Personas** documented in `docs/PERSONA-DESIGN-REQUIREMENTS.md` and `Office_Work/memory/DEEP-PRODUCT-AND-PERSONA-FORENSICS.md` (Living Rulebook Rule 4.3):
+
+1. **Target Persona Grounding:** Before creating or modifying a component, determine the intended persona tier (e.g., Agency Staff, Direct Caregiver, Senior Client, Payer).
+2. **Density Token Enforcement:** Apply CSS custom properties for density (`--table-row-height`, `--form-field-height`, `--spacing-component-gap`) corresponding to the persona profile (`compact`, `comfortable`, or `spacious`).
+3. **Accessibility Mandates:** Senior Client interfaces must strictly satisfy WCAG AAA (7:1 contrast ratio) and 48px minimum touch targets. High-contrast clinical badges must adhere to Rule 2.2 (`2px #FFFF00` outline on dark backgrounds).
+4. **PHI Masking Compliance:** UIs rendering patient or staff identities must support `displayNameOption` configuration to protect PHI across portals.
+
+## 9. AI Implementation Retrospective & Common Pitfalls
+
+All AI tools and human developers must review `docs/AI-FIGMA-DESIGN-SYSTEM-RETROSPECTIVE.md` before generating or modifying component markup and SCSS. It documents the verified mistakes made during PoC implementation (including creation action green button rule [DS-HDR-ACT-01], table 4-sided borders [DS-TBL-01], and edge-to-edge container rhythm [DS-LAY-01]), provides the canonical Figma node directory, and outlines the action-intent matrix to prevent recurring errors across the team.
