@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Primary Side Navigation — the app's blue left rail",
     "portal": "agency",
-    "contractVersion": "1.1.0",
+    "contractVersion": "1.2.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma MCP never reports a file key. Taken from the URL Singh supplied (Design System Agency V2.0).",
     "figmaNodes": {
@@ -63,7 +63,7 @@
     },
     "logo": {
       "sizeExpanded": { "value": "158 x 102", "marker": ["MEASURED"] },
-      "sizeCollapsed": { "value": "48 x 52", "marker": ["MEASURED"] },
+      "sizeCollapsed": { "value": "48 x 102 SLOT with a 48 x 52 white surface top-aligned inside it", "marker": ["MEASURED"], "measuredOn": "2026-09-09", "nodeIds": "slot 27337:73617 (48x102) · surface 27337:73618 (48x52)", "note": "CORRECTED 1.2.0 — 1.0.0 recorded the surface (52) as the whole slot; a build that collapses the slot to 52 pulls the toggle (y110) and every nav icon (y162) 50px too high. Toggle/link y-offsets are IDENTICAL in both rail states." },
       "background": { "value": "#ffffff", "token": null, "marker": ["MEASURED", "RAW"], "note": "The logo header is WHITE — NOT the blue rail. No sidebar-surface/on-primary token exists for it. See defect T2." },
       "hairline": { "value": "inset -1px 0 0 rgba(51,74,101,0.1), inset 0 -1px 0 rgba(51,74,101,0.1)", "token": null, "marker": ["MEASURED", "RAW"], "note": "Right + bottom translucent separator, via box-shadow (not border — keeps the 102px height). No token." },
       "logoImage": { "value": "CareSmartz360 logo, object-contain", "marker": ["MEASURED"] },
@@ -75,7 +75,8 @@
       "glyph": { "value": "menu/collapse icon — ≡< (collapse) expanded, >≡ (expand) collapsed", "marker": ["MEASURED"] }
     },
     "navLink": {
-      "height": { "value": 40, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
+      "height": { "value": 40, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "Icon=Yes variants. LABEL-ONLY (Icon=No) variants are 36px — see labelOnlyHeight." },
+      "labelOnlyHeight": { "value": 36, "unit": "px", "token": null, "marker": ["MEASURED"], "measuredOn": "2026-09-09", "nodeIds": "10441:17046 · 27364:6859 · 10441:17048 (all 158x36; every Icon=Yes variant is 158x40)", "note": "Added 1.2.0. Kit ships .cs-pnav__link--label-only for it." },
       "paddingBlock": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
       "paddingLeft": { "value": 12, "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
       "paddingRight": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
@@ -119,7 +120,7 @@
     "T7 — HOVER TOKEN FAILS CONTRAST IN 4 OF 5 MODES (measured 2026-09-08 from the Aug-24 export). The Hover variants bind surface/brand-hover — a brand-SURFACE hover, not a sidebar token — so it does not co-vary with sidebar/text: text/icon contrast on the hover fill is Light 5.72:1 ✓, Dark Theme 1.16:1 ✗, High Contrast 1.10:1 ✗ (white on #F1F5F9), HC Light text 1.38:1 ✗ / icon 1.00:1 ✗ (icon is the same colour as the fill — invisible), Warm Dark 1.66:1 ✗. No existing sidebar/* token works in all five modes either: accent-bg and secondary-bg are tuned for the grey profile sidebar (Light 1.10 / 1.05), ring fails Light 2.97 / HC 1.92 / Warm 1.24, primary-bg is the rail itself. PROPOSED FIX — an ADD, allowed under the Agency naming lock (C360-44253 #622188 rule 4): a new token sidebar/primary-hover with per-mode values ≥4.5:1 against sidebar/text, and re-bind the three Hover variants to it. Requires the owner's ruling on the values and a Figma-AI re-bind; until then the kit follows Figma (var(--surface-brand-hover)) and carries this warning.",
     "T2 — LOGO HEADER HAS NO TOKEN. It is white (#ffffff, RAW) sitting on the blue rail, with a RAW translucent hairline rgba(51,74,101,0.1). Neither binds a token. If the design system wants the logo header themeable, it needs a sidebar-surface / on-primary token; today it is two RAW values.",
     "T3 — SELECTED CONTRAST. White 14px label on sidebar/ring (#2499ff) ≈ 3.0:1 in Light — below the 4.5:1 normal-text bar. Either accept it as a UI-component highlight (3:1 met) or darken the selected row's blue. Design-owner call. EXTENDED 2026-09-08 (all modes, sidebar/text on sidebar/ring): Light 2.97:1, Dark 4.04:1, High Contrast 1.92:1 ✗ (white on yellow-500 #EAB308 — fails even the 3:1 component bar), HC Light 13.17:1 ✓, Warm Dark 1.24:1 ✗. The HC and Warm Dark selected states need the owner's attention as much as the hover does.",
-    "T4 — the icon set 'priamry side nav icons' (10883:20899, 41 variants, note the 'priamry' typo) supplies every nav icon at 24px; individual icon↔section mapping is NOT enumerated here — bind per section when the nav is populated.",
+    "T4 — RESOLVED 2026-09-09. The icon↔section mapping IS enumerated in the icon set's own variant names (10883:20899, read live): Dashboard=grid_view · Client=verified_user · Caregiver=people_alt · Scheduling=pending_actions · Accounting=calculate · Training=model_training · Report=assignment · AI Dashboard=psychology · Other=assignment_ind / admin_panel_settings · Home=grid_view · Availability/Unavailability=pending_actions · Cloud Drive=psychology (a Figma reuse worth confirming) · Apps='App Integrations' · Chat Messages='Chat'. Each glyph ships in three variant rows: Minimal=No/Filled=No, Minimal=Yes/Filled=No (default), Minimal=Yes/Filled=Yes (selected). Assets are Material ICONS (*_black_24dp) while the kit loads Material Symbols Rounded — the family standardisation is an OPEN Singh ruling. The 'priamry' layer typo stands (T6).",
     "T5 — legacy token name fonts/tracking/X-tracking-0 bound on the labels (same system-wide legacy-name cleanup). The kit uses semantic vars.",
     "T6 — layer-name typo 'priamry' appears in the icon set and its instances; cosmetic, flag to Figma AI."
   ],

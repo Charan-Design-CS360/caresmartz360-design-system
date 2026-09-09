@@ -10,7 +10,7 @@ Singh ratification pending.
 
 # Primary Side Navigation (the blue rail)
 
-**Contract version:** `1.1.0` — adds the official link **Hover** state (T1 resolved; re-verified live 2026-09-08). Supersedes `1.0.0`.
+**Contract version:** `1.2.0` — live corrections 2026-09-09: the collapsed rail keeps its **102px logo slot** (only the white surface shrinks to 52), label-only links are **36px**, and the icon↔section mapping is now enumerated (T4 resolved). Supersedes `1.1.0`.
 
 **What it is.** The app's main navigation — the **blue rail** on the far left of every page. It moves you between the top-level areas of the product. It's the **outermost** nav layer: the grey Profile Side Navigation (per record) and the page tabs sit to its right.
 
@@ -45,7 +45,7 @@ Padding: `8` top/bottom, `12` left, `8` right; icon↔label gap `4`. Only one is
 
 ## 3. Collapsed rail (48px)
 
-Toggle it and the rail shrinks to **48px**: labels hide (icons only, centred), the logo shrinks to 52px, and the copyright becomes "© / 2026". Same skeleton, icon-only.
+Toggle it and the rail shrinks to **48px**: labels hide (icons only, centred) and the copyright becomes "© / 2026". **The logo SLOT stays 102px tall — only the white box inside shrinks to 52px** (slot 27337:73617, surface 27337:73618), so the toggle and the icon column sit at exactly the same heights as the expanded rail. *(1.0.0 recorded 52 as the slot height — corrected 1.2.0; building it that way lifted everything 50px.)*
 
 ---
 
@@ -77,5 +77,6 @@ No live Angular code touched. Spec + copy-from CSS. GitHub via branch → PR (ne
 
 | Date | Change | Authority |
 |---|---|---|
+| 2026-09-09 | **1.2.0 — live corrections.** Collapsed logo = 102px slot + 52px surface (was recorded as a 52px slot); label-only links measured 36px (Icon=Yes stays 40) with kit modifier `.cs-pnav__link--label-only`; **T4 resolved** — the icon↔section mapping is enumerated in the icon set's variant names (grid_view/verified_user/people_alt/pending_actions/calculate/model_training/assignment/psychology/assignment_ind…), each glyph in outline-default + filled-selected variants. Open Singh ruling: set assets are Material ICONS while the kit loads Material Symbols. | Live Figma re-verification, 2026-09-09 |
 | 2026-09-08 | **1.1.0 — link Hover state.** Figma-AI added 3 Hover variants (27364:6859 / 27364:7900 / 27364:7908) binding `surface/brand-hover`; T1 resolved; variant count 6 → 9; the kit CSS switched from its added translucent white to the token. Found while re-verifying measured nodes live. **New defect T7:** the hover token fails contrast in 4 of 5 modes — proposed `sidebar/primary-hover` (an add). **T3 extended** with all-mode figures (HC 1.92:1). | Live Figma re-verification, 2026-09-08 |
 | 2026-09-04 | 1.0.0 — first measurement (blue rail, 4 parts, states, collapsed rail, a11y additions, defects T1–T6). | Singh's request, 2026-09-04 |

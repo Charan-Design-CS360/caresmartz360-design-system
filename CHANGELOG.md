@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.3.1] — 2026-09-09
+
+Component-fidelity corrections from a 7-auditor kit↔contract↔live-Figma audit (18 confirmed defects), all re-verified live with the Agency file open. The copy-from kit (`Universal Html Rules/02-components`, local) was fixed the same day; this entry records the contract-side corrections and the kit changes for the ecosystem.
+
+### Changed
+- **Primary Side Navigation → 1.2.0** — collapsed rail corrected: the logo **slot stays 48×102** with a 48×52 white surface top-aligned inside it (slot `27337:73617`, surface `27337:73618`); 1.0.0 recorded the surface as the slot, which lifted the toggle and every icon 50px. Label-only (Icon=No) links measured **36px** (Icon=Yes stays 40). **T4 resolved:** the icon↔section mapping is enumerated in the icon set's variant names (`10883:20899`): Dashboard=grid_view · Client=verified_user · Caregiver=people_alt · Scheduling=pending_actions · Accounting=calculate · Training=model_training · Report=assignment · AI Dashboard=psychology · Other=assignment_ind. Open ruling: the set's assets are Material ICONS while the kit loads Material Symbols.
+
+### Kit (local copy-from CSS — not in this repo; recorded here as the durable broadcast)
+- **F-014 fixed:** 21 undefined shorthand custom properties renamed to canonical export tokens; 17 of them (all radius, no fallback) had every rounded corner rendering **square**.
+- **Tabs:** `text-decoration: none` (labels rendered with a UA link underline under the intended 2px baseline) + the row now owns its 12px page gutter (page-setup §2).
+- **Fields:** editable input border corrected to `field/border-hard` #94A3B8 (live `27062:8093`); `form-field-primary` grew 62 → **66px** (header row 30, live `26938:65991`).
+- **Status:** new `.cs-tag` hue modifiers (green/red/yellow/purple) matching the live `Status` component `26535:26277` — 18px uppercase pill, **no dot**; the old `Status/info` dot treatment is marked **LEGACY**. Clinical "Healing" (blue) still has no variant — F-012 stays open.
+- **Primary nav:** collapsed logo slot fix (above) + `.cs-pnav__link--label-only` (36px) + new `[CS-COLPANEL-09] .cs-coltrigger` — the "Column(s)" opener is a field-style control, not a Button (`--action-secondary-outlined` is deliberately transparent).
+
+### Notice
+- Table rendering: `table.css` is scoped to **real `<table>` elements** (its own §203 warning). Two audit claims against it were my reproduction's div markup, not kit defects — corrected on my side, kit untouched.
+
+---
+
 ## [3.3.0] — 2026-09-08
 
 Agency and Caregiver semantic tokens synchronized to the owner's variable exports. The published repo had been behind since 2026-08-24 (Agency) and was 2 values behind the 2026-09-08 Caregiver re-export.
