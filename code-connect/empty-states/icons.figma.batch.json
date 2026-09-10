@@ -1,0 +1,36 @@
+{
+  "name": "EmptyStateIcons",
+  "nodeId": "12428:28265",
+  "icons": [
+    {
+      "name": "Calendar",
+      "icon": "calendar",
+      "component": "app-empty-state-icon"
+    },
+    {
+      "name": "Document",
+      "icon": "document",
+      "component": "app-empty-state-icon"
+    },
+    {
+      "name": "Folder",
+      "icon": "folder",
+      "component": "app-empty-state-icon"
+    },
+    {
+      "name": "User",
+      "icon": "user",
+      "component": "app-empty-state-icon"
+    },
+    {
+      "name": "Chart",
+      "icon": "chart",
+      "component": "app-empty-state-icon"
+    },
+    {
+      "name": "Settings",
+      "icon": "settings",
+      "component": "app-empty-state-icon"
+    }
+  ]
+}
