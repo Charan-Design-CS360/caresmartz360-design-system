@@ -280,7 +280,7 @@
         "value": 4,
         "unit": "px",
         "token": "border-radius/rounded",
-        "cssVar": "--rounded",
+        "cssVar": "--border-radius-rounded",
         "marker": [
           "MEASURED"
         ],

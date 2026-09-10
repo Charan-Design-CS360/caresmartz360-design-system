@@ -7,6 +7,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.5.1] — 2026-09-10 (self-audit pass)
+
+A 5-dimension consistency audit (node-ids · arithmetic/markers · token names · patterns-vs-shell ·
+governance docs) ran across the whole repo, every finding adversarially re-derived before being
+trusted (one dimension's verification pass ran out of budget mid-run — its raw findings are listed
+below without a second confirmation, marked accordingly). 15 confirmed defects; fixed the safe
+ones, flagged the two that need a decision rather than guessing one.
+
+### Fixed
+- **Dead CSS variables in 4 contracts:** `tabs.json`, `profile-side-navigation.json`,
+  `column-arrangement.json` referenced `--rounded` / `--rounded-full`, which do not exist in the
+  shipped kit — the kit was renamed to `--border-radius-rounded*` during KIT-01 (2026-09-02) and
+  these contracts were never updated. Corrected to the real names, verified against
+  `Universal Html Rules/02-components/*.css` and the generated token layer.
+- **table.json's own divergence note was inverted** — it claimed `--border-radius-rounded-none`
+  was undefined and `--rounded`/`--rounded-xl` were correct; it was the other way round (stale
+  since before KIT-01). Corrected with the live evidence.
+- **Wrong variable-authority path in 3 files:** `AI_CONTEXT.md`, `GUARDRAILS.md`, `README.md` all
+  pointed at `/Users/netsmartz/Documents/Variables`, which has not existed since the 2026-08-24
+  move to `/Users/netsmartz/Documents/Design-System/Variables`. Any tool trusting the stated
+  authority path literally could not have found the exports. Fixed in all three.
+- **Root index missing Button entirely** (published, in the portal mapping, contract exists) —
+  added. Also added the previously-unmapped `27232:65797` ("pageheader component") node and noted
+  the page-header naming split (root said "page-header", every contract says "complete header").
+- **Column trigger variant count wrong** in the root index (said 4, contract says Figma reports
+  6) — corrected with a note.
+- **field-input / "Field Atoms (shared)" node-id collision** — the portal mapping's Field Atoms
+  row used field-input's own node id (27062:8145) as if it represented the whole 4-atom family;
+  the family has no single container node. Added `atomNodeIds` listing all four so the row
+  resolves correctly instead of silently hiding 3 of the 4 atoms.
+- **Portal mapping's own entry/null counts were wrong** (said 15/13, file actually has 16/14) —
+  corrected in the file's `$note` and in this CHANGELOG's own 3.5.0 entry above.
+- **`COMPONENT-MAPPING-CONTRACT.md` contradicted the registry it governs** — it required every
+  record to carry a verified component key and rejected `null`/placeholder values outright, with
+  no provision for the Plugin-API-only limitation this session hit. Added an explicit amendment
+  permitting a documented PENDING state pre-pilot.
+- **Version drift:** README (`v3.0.0`) and DS-REFERENCE (`3.0.0`) both lagged the actual latest
+  release; both bumped to track this file.
+
+### Flagged, not guessed (need a decision, not a fix)
+- **`portals/agency/patterns/page-setup.md`'s page-header height (98) contradicts the
+  contract-measured 110** (`page-header.json`, `page-layout-patterns.json` both say 110 for the
+  same node) — the 98 looks like a dropped 12px bottom-padding term, but page-setup.md's own
+  header says it is "ratification pending (visual sign-off)" and the error cascades into its Data
+  Container/content-stack sums. Rewriting cascading arithmetic without Singh's sign-off risks
+  compounding the error — needs a live re-check, not a silent patch.
+- **`control/height-default` and `control/height-compact`** are bound in 3 contracts
+  (column-arrangement.json, profile-side-navigation.json, page-header.json) but exist in **no**
+  export, no generated token file, anywhere — not a naming mismatch, the token itself appears
+  fabricated or the export is missing it. Needs Singh/Figma-AI to confirm which.
+- Arithmetic-markers dimension's raw findings (contract internal math + marker discipline) did
+  not get a second adversarial pass — the verify agents ran out of session budget. Nothing from
+  that batch was applied; treat it as reported-not-confirmed until re-run.
+
+---
+
 ## [3.5.0] — 2026-09-10 (evening)
 
 Five Figma-AI tickets executed in their stated order (C360-47325 + 47326 → 47328 → 47327 → 47329), plus the C360-47183 afternoon comments synced. **Every Figma claim was validated live before it entered a contract** — the afternoon Figma-side changes are real (typography 10/14→12/16 on all field messages, new `comments` type, header-tertiary min 200/max 400, form-section-header rebuilt at 64px); three claims failed validation and are recorded as corrections (a "light blue" section-header fill that is actually `surface/tertiary`; the comments variant's copy-pasted Figma description; the purple Change info-chip surface being un-bound — new defect **F-016**).
@@ -19,7 +75,7 @@ Five Figma-AI tickets executed in their stated order (C360-47325 + 47326 → 473
 
 ### Changed
 - **form-fields → 2.0.0 (family INDEX)** — detail moved into the four member contracts; index keeps hierarchy, the export-verified token chain, and the drift log. field-type-1 banner now routes to all four.
-- **Portal `component-mapping.json` 2 → 15 entries** (C360-47328) — every nodeId grounded (contract-measured or existence-probed live). `componentKey` for 13 entries is **null/PENDING**: Figma's 40-hex component keys are Plugin-API-only — enumeration requested from Figma-AI; no keys were invented.
+- **Portal `component-mapping.json` 2 → 16 entries** (C360-47328; corrected from an earlier 15/13 miscount the same day — self-audit caught it) — every nodeId grounded (contract-measured or existence-probed live). `componentKey` for 14 entries is **null/PENDING**: Figma's 40-hex component keys are Plugin-API-only — enumeration requested from Figma-AI; no keys were invented.
 - **Root `components/component-mapping.json` regenerated as 3.0.0** (C360-47327) — the self-declared round-number IDs and wrong file key replaced by a grounded 10-section index (28 sets/components + 3 patterns + guideline frames), provenance noted per section. It indexes; the portal files stay authoritative.
 - **Guideline frames wired in** (C360-47329) — `figmaGuidelinesFrame` added to 9 existing contracts + a Guidelines section in each `.md` (all 11 frame ids existence-probed live). **DS-REFERENCE → 3.0.0**: token manifest ref corrected to `ds-tokens-v2.6.4.json` (v2.5.0 never existed), `semantic.text.primary` fixed (was "gray.00 / Disabled text"; is `neutral.800 #1E293B` / Primary text).
 

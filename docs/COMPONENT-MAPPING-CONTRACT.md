@@ -36,3 +36,17 @@ Validation rejects:
 
 The legacy root `components/component-mapping.json` remains readable during
 migration, but it cannot satisfy release readiness.
+
+## Amendment 2026-09-10 — componentKey PENDING state
+
+Figma's 40-character component key is only readable via the Plugin API
+(`node.key`); none of the read-only MCP tools available to this repo's AI
+tools return it. A record may carry `"componentKey": null` with
+`"componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)"`
+instead of a fabricated or guessed key. This is not the rejected "missing or
+malformed component key" case — that clause targets a record silently missing
+the field or carrying a bad value; a `null` + explicit PENDING status is a
+documented gap, not a silent one, and blocks nothing in `npm run validate`
+today (the gate warns, it does not fail, while the portal status is
+`active-audit`). A record must move off PENDING before the portal reaches
+`pilot`/`stable`.
