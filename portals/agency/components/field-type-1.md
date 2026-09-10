@@ -19,6 +19,13 @@ SOURCE: component set 26938:65997 "field-set-type1"
 =============================================================================
 -->
 
+> **⚠️ SUPERSEDED 2026-09-10 → [form-fields.md](./form-fields.md).** Figma renamed this set
+> `field-set-type1` → **form-field-primary** and restructured it: height **62→66** (header row
+> 26→30), the header became the real `field-header-primary` component (required marker, help and
+> AI icons now exist), and the disabled variant now binds `field/bg-disabled`. Three of the
+> defects below are resolved by that drift. This file remains the 2026-08-24 historical
+> measurement — **build from form-fields.json**, not from here.
+
 # Fields type 1 — Agency component contract
 
 Canonical Jira parent: **C360-44737**. Component Jira: **C360-44847**.

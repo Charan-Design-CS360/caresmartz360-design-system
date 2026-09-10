@@ -24,7 +24,7 @@ If the portal is unknown, stop and request it.
 | Scope | Canonical repository path | Logical variables | Jira |
 | --- | --- | ---: | --- |
 | Shared Primitives | `shared/primitives/tokens/` | 264 | C360-43755 |
-| Agency Semantics | `portals/agency/semantics/` | 251 | C360-44253 |
+| Agency Semantics | `portals/agency/semantics/` | 263 | C360-44253 |
 | Caregiver Semantics | `portals/caregiver/semantics/` | 171 | C360-44333 |
 | Staff Semantics | Not registered | 0 verified | C360-3526 |
 

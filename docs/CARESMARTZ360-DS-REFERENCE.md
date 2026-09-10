@@ -228,6 +228,13 @@ export class ButtonComponent {
 
 ### Form Field (Angular Material M3)
 
+> **⚠️ 2026-09-10 — the measured Form Fields system lives at
+> `portals/agency/components/form-fields.json` / `.md` (10 components: field-label, three
+> field-headers, field-input, field-message, form-section-header, and the three form-field
+> molecules — Jira C360-47183).** The mat-form-field snippet below is a legacy sketch:
+> `appearance="outline"` structurally cannot produce the measured stacked-header-inside-one-border
+> layout (see the implementationRisk in field-type-1.json). Read the portal contract first.
+
 ```html
 <mat-form-field appearance="outline" class="cs-field w-full">
   <mat-label>{{ label }}</mat-label>

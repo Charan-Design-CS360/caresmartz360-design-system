@@ -14,11 +14,11 @@ test("AI entrypoint declares exact authority and logical totals", () => {
   assert.match(context, /only variable input authority/i);
   assert.match(context, /AI tools must not query Figma/i);
   assert.match(context, /Shared Primitives[^\n]*264/);
-  assert.match(context, /Agency Semantics[^\n]*251/);
+  assert.match(context, /Agency Semantics[^\n]*263/);
   assert.match(context, /Caregiver Semantics[^\n]*171/);
   assert.deepEqual(manifest.logicalTotals, {
     sharedPrimitives: 264,
-    agencySemantics: 251,
+    agencySemantics: 263,
     caregiverSemantics: 171,
   });
 });

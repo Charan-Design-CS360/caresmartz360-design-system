@@ -66,3 +66,14 @@ Every Pattern or Template must record:
 - **Deprecated:** replacement and migration guidance exist.
 
 One-off screens are not automatically Patterns or Templates.
+
+## Documented patterns
+
+The first patterns published under this contract (2026-09-10, Jira C360-47184):
+
+- **Agency — Page Layout Patterns** (`page-layout-shell`, maturity **draft**):
+  `portals/agency/patterns/page-layout-patterns.json` / `.md` — the shared page
+  shell plus three Middle-Matter variants (`pattern-page-data-table`,
+  `pattern-page-empty-state`, `pattern-page-form-grid`), measured live from
+  Figma section `27337:74297`. The shell grid itself is
+  `portals/agency/patterns/page-setup.md`.

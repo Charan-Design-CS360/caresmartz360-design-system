@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.4.0] — 2026-09-10
+
+Q1 tickets **C360-47183** (Form Fields) and **C360-47184** (Page Layout Patterns) delivered — measured live from Figma on 2026-09-10, reconciled against the owner exports, published at the portal-scoped authority paths.
+
+### Added
+- **Form Fields family contract 1.0.0** — `portals/agency/components/form-fields.json` / `.md`: all 10 components (field-label · field-header-primary/secondary/tertiary · field-input · field-message · form-section-header · form-field-primary/secondary/tertiary) with measured geometry, per-state token bindings and behavior spec. Key measurements: form-field-primary 360×**66** (rows 30+34, 7 states incl. `ai`); secondary 56/**76** with message row; tertiary 1036×104 horizontal; field-input 34 base / 30 embedded, radius 4, editable border `field/border-hard`; field-message 20h (18h AI).
+- **Page Layout Patterns 1.0.0 (Layer 4, draft)** — `portals/agency/patterns/page-layout-patterns.json` / `.md`: the shared shell + 3 Middle-Matter variants (`data-table` 27337:73093 · `empty-state` 27401:30856 · `form-grid` 27401:31504). Measured deltas the ticket diagram missed: pattern 1 runs the **collapsed 48px** nav (patterns 2–3 expanded 158) and page-header is **110 with** filter toolbar vs **68 without**. First entries under `LAYER-4-PATTERN-TEMPLATE-CONTRACT.md` (reference section added there).
+
+### Changed
+- **field-type-1 → 1.1.0, SUPERSEDED** by form-fields.json — Figma renamed `field-set-type1` → `form-field-primary` and restructured it (62→**66**, real header component with required/help/AI icons, `field/bg-disabled` now bound — three v1.0.0 defects resolved by drift). File kept as the 2026-08-24 historical measurement.
+- `docs/CARESMARTZ360-DS-REFERENCE.md` — Form Field section now points at the portal contract and marks the mat-form-field snippet as a legacy sketch (structural incompatibility stands).
+
+### Corrections vs the source tickets (recorded per §"verify, don't trust")
+- C360-47183's token table names `gray/200|600|900` primitives — **no `gray/*` exists in any Agency export**; real aliases are `colors/neutral-200|500|800|0` (verified byte-for-byte against `Variables/Agency/Color Modes.zip`).
+- The ticket-promised `docs/FORM-FIELDS-SYSTEM.md` (268 lines) and `components/form-field-mapping.json` (214 lines) exist nowhere; this release is the reconciled replacement. The legacy root `components/component-mapping.json` (self-declared fabricated node IDs) stays untouched — the portal contract is the authoritative mapping.
+
+---
+
 ## [3.3.1] — 2026-09-09
 
 Component-fidelity corrections from a 7-auditor kit↔contract↔live-Figma audit (18 confirmed defects), all re-verified live with the Agency file open. The copy-from kit (`Universal Html Rules/02-components`, local) was fixed the same day; this entry records the contract-side corrections and the kit changes for the ecosystem.
