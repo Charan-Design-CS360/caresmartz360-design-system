@@ -1,6 +1,6 @@
 # CareSmartz360 Design System — AI Handoff Reference
 
-**Version:** 3.0.0 (aligned with the repo version — C360-47329)  
+**Version:** 3.5.0 (tracks the repo/README version, not its own scheme — C360-47329)  
 **Figma File:** `$-Primitives (CS360) V2.0` (**ID:** `DJBpjoXPMEw6bBAByIQaAy`)  
 **Last Updated:** 2026-09-10  
 **Stack:** Angular 19 + **Angular Material M3** + Tailwind CSS + SCSS

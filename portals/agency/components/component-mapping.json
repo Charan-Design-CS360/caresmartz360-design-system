@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "portal": "agency",
   "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
-  "$note": "Expanded 2→15 entries on 2026-09-10 (C360-47328). Every nodeId is grounded: measured in its contract or existence-probed live the same day. componentKey (Figma's 40-hex component key) is only obtainable via the Plugin API — the 13 entries carrying componentKey: null await Figma-AI's enumeration (requested on C360-47328); nodeId is the working identifier until then.",
+  "$note": "Expanded 2→16 entries on 2026-09-10 (C360-47328; count corrected from an earlier 15/13 miscount the same day). Every nodeId is grounded: measured in its contract or existence-probed live the same day. componentKey (Figma's 40-hex component key) is only obtainable via the Plugin API — the 14 entries carrying componentKey: null await Figma-AI's enumeration (requested on C360-47328); nodeId is the working identifier until then.",
   "components": [
     {
       "name": "Button",
@@ -59,6 +59,8 @@
     },
     {
       "name": "Field Atoms (shared)",
+      "nodeIdNote": "corrected 2026-09-10 (audit finding): this row's nodeId names only ONE of the four atoms in field-atoms.md (field-input) — it has no single container node in Figma. The other three atoms live at 27062:10162 (field-label), 27388:28274 (field-header-primary), 11116:25116 (field-message). Use this row to find the contract; use the four node ids above to resolve a specific atom.",
+      "atomNodeIds": { "field-label": "27062:10162", "field-header-primary": "27388:28274", "field-input": "27062:8145", "field-message": "11116:25116" },
       "componentKey": null,
       "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
       "nodeId": "27062:8145",
