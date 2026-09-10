@@ -1,0 +1,539 @@
+/* =============================================================================
+   FILE BRIEF: Generic selection controls for EVERY CareSmartz360 feature —
+   checkbox, radio, toggle, and the one sanctioned way to put a label beside them.
+   A COPY-FROM reference, not an import (00-README.md).
+   SPEC SOURCE: SPEC-11-checkbox-radio-toggle.md
+   FIGMA SOURCE: checkbox 5699:8332 · radio 13149:52616 · toggle 26942:4537 ·
+                 label pairing 16025:366400 ("combo Radio or Checkbox with
+                 lables.")
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   =============================================================================
+
+   THREE THINGS TO KNOW BEFORE YOU COPY ANYTHING FROM THIS FILE
+
+   1. THE TOGGLE'S ON STATE IS GREEN, NOT BLUE (action/toggle/bg-active).
+      SPEC-11 calls getting this wrong "the single most visible toggle error".
+
+   2. THE RADIO IS TWO STACKED FILLED DISCS, NOT A STROKED RING. Figma builds it
+      that way: an outer disc in the "ring" colour and an inner disc in the "hole"
+      colour. Rebuilding it with `border` will make the ring thickness drift,
+      because the ring is 2px thick when unselected and 4px thick when selected —
+      a consequence of the inner disc shrinking from 10px to 6px, not of a border
+      value changing.
+
+   3. INDETERMINATE IS AMBER ACROSS THE WHOLE FAMILY, and the checkbox's
+      indeterminate state uses THE SAME CHECK GLYPH as checked — not a dash. That
+      is a design-system decision, verified variant by variant, not a bug.
+
+   BARE LITERALS IN THIS FILE (Figma has NO token for these):
+     24 × 24px   hit area / variant root, checkbox and radio       §3.1, §4.1
+     14 × 14px   checkbox box and radio outer disc                 §3.1, §4.1
+     4px         checkbox box radius — radius NOT tokenised here   §3.1
+     1.5px       border, unchecked and disabled                    §3.1
+     2px         border, checked and indeterminate                 §3.1
+     10 × 8px    check glyph                                       §3.1
+     10 / 6px    radio inner disc, unselected / selected           §4.1
+     2px         radio selected-hover outside ring                 §4.1
+     30 × 16px   toggle track, size M                              §5.1
+     24 × 12px   toggle track, size S                              §5.1
+     12 / 8px    toggle dot, size M / S                            §5.1
+     2px         toggle track padding                              §5.1
+     14 / 12px   toggle dot travel, M / S (= track − 2·2 − dot)    §5.1
+     9999px      toggle track radius (full pill)                   §5.1
+     16 × 16px   optional help icon box, 12px glyph                §6
+   No raw hex anywhere in this file.
+
+   STATE-CLASS TRANSLATION, declared so a reader can diff this against the spec:
+   SPEC-11's CSS uses `.is-indeterminate` / `.is-partial`. This file uses
+   `--indeterminate` / `--partial` instead, because 01-universal/naming.md UHR-101
+   reserves `--` for exactly this (its own CORRECT example is
+   `pagination__btn--active`, "a true modifier (active state)"), and UHR-104 keeps
+   JS hook classes style-free. Same selectors otherwise, same declarations.
+
+   NOT IN THIS FILE, deliberately:
+   • A toggle FOCUS ring. `action/toggle/focus-ring` exists in the token export but
+     SPEC-11 read no variant that binds it, and the focus ring generally is
+     OPEN-REGISTER O-2. Not invented here.
+   • Text INSIDE the toggle. "ON"/"OFF"/"Active"/"Inactive" are not part of the
+     component, and there is no toggle-with-label component in the set (§5.2).
+     The word goes outside, in .cs-control-row__label.
+   • A disabled+indeterminate CHECKBOX is not in Figma. One rule below covers it,
+     extrapolated from Disabled/Checked and labelled as such at the point of use.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   [CS-CTRL-00]  The shared check glyph, as a masked SVG.
+   TOKENS BOUND: none — this is geometry, and the colour is applied by the
+                 consuming rule through `background-color`, so the glyph inherits
+                 whichever token that rule binds.
+   STATES: n/a.
+   SPEC: SPEC-11 §7 — the exact path `d` exported from Figma, 10 × 8 viewBox.
+   Why a mask and not an <img>: the fill in the exported file is a literal colour.
+   Masking lets the token supply the colour, which is what keeps this file free of
+   raw hex. The `fill="%23000"` inside the data URI is never seen — it is the mask
+   source, and only its alpha matters.
+   -------------------------------------------------------------------------- */
+:root {
+  --cs-check-glyph: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%228%22%20viewBox%3D%220%200%2010%208%22%3E%3Cpath%20d%3D%22M3.54043%208C3.41912%208%203.29781%207.97297%203.17651%207.91891C3.0552%207.86485%202.94408%207.7835%202.84316%207.67486L0.280435%204.9303C0.088285%204.72446%20-0.0051211%204.47261%200.000216385%204.17476C0.00506865%203.87692%200.103569%203.62507%200.295719%203.41923C0.487869%203.21339%200.725387%203.11047%201.00827%203.11047C1.29116%203.11047%201.52868%203.21339%201.72083%203.41923L3.571%205.40124L8.31724%200.316781C8.50939%200.110939%208.73938%200.00541847%209.00723%200.000220431C9.27507%20-0.00549741%209.50992%200.100023%209.71178%200.316781C9.90393%200.522623%2010%200.771609%2010%201.06374C10%201.35639%209.90393%201.60563%209.71178%201.81148L4.23842%207.67486C4.13701%207.7835%204.02565%207.86485%203.90435%207.91891C3.78304%207.97297%203.66173%208%203.54043%208Z%22%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E");
+}
+
+
+/* ═══════════════════════════ CHECKBOX — 5699:8332 ═══════════════════════════ */
+
+/* -----------------------------------------------------------------------------
+   [CS-CHK-01]  .cs-checkbox — the control. DEFAULT state.
+   TOKENS BOUND: --field-bg-default (box fill) · --border-medium (box border)
+                 --text-inverse (glyph, hidden until checked)
+   STATES: default (here) · hover · checked · checked+hover · indeterminate ·
+           indeterminate+hover · disabled · disabled+checked — all 8 read from the
+           payload, all below.
+   SPEC: SPEC-11 §3.1 (anatomy) + §3.2 (all 8 states).
+   ANATOMY: a 24px hit area with NO fill and NO border — pure hit target — holding
+   a 14px box absolutely centred, holding a 10 × 8 check glyph. The 24px root is
+   the touch target; do not shrink it to 14px.
+   `box-sizing: border-box` on the box is load-bearing: the border grows from
+   1.5px to 2px between states and the box must stay 14px.
+   GLYPH TOKEN ATTRIBUTION, quoted from the spec so it is not mistaken for a
+   certainty: the glyph is a flattened SVG, so its binding is not visible on the
+   layer. text/inverse (white glyph) and icon/brand (blue glyph) were derived by
+   ELIMINATION from get_variable_defs on the set. The VALUES are hard facts; the
+   token NAMES are an elimination argument, flagged in SPEC-11 §8.
+   -------------------------------------------------------------------------- */
+.cs-checkbox {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;                                  /* bare literal in Figma, no token exists — hit area */
+  height: 24px;                                 /* bare literal in Figma, no token exists */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+.cs-checkbox::before {                          /* the 14px box */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: 14px;                                  /* bare literal in Figma, no token exists */
+  height: 14px;                                 /* bare literal in Figma, no token exists */
+  border-radius: 4px;                           /* bare literal — the checkbox radius is NOT tokenised (SPEC-11 §3.1) */
+  background: var(--field-bg-default);
+  border: 1.5px solid var(--border-medium);     /* 1.5px is a bare literal — Figma strokeWeight */
+}
+.cs-checkbox::after {                           /* the 10 × 8 check glyph, hidden until on */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;                                  /* bare literal in Figma, no token exists */
+  height: 8px;                                  /* bare literal in Figma, no token exists */
+  opacity: 0;
+  background-color: var(--text-inverse);
+  -webkit-mask-image: var(--cs-check-glyph);
+          mask-image: var(--cs-check-glyph);
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: 10px 8px;
+          mask-size: 10px 8px;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-CHK-02]  Checkbox HOVER (unchecked).
+   TOKENS BOUND: --surface-brand-bg (fill) · --border-brand (border)
+   SPEC: SPEC-11 §3.2, node 7834:8104.
+   -------------------------------------------------------------------------- */
+.cs-checkbox:enabled:hover::before {
+  background: var(--surface-brand-bg);
+  border: 1.5px solid var(--border-brand);      /* 1.5px bare literal */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-CHK-03]  Checkbox CHECKED and CHECKED+HOVER.
+   TOKENS BOUND: --action-primary-bg · --action-primary-hover
+                 --action-primary-pressed
+   SPEC: SPEC-11 §3.2, nodes 77:16 (checked) and 7834:8099 (checked/hover).
+   THE PATTERN WORTH NAMING (it repeats on the radio): hovering an ALREADY-ON
+   control sends the FILL to the `hover` colour and the BORDER to the `pressed`
+   colour. Checked default uses one token for both fill and border.
+   -------------------------------------------------------------------------- */
+.cs-checkbox:checked::before {
+  background: var(--action-primary-bg);
+  border: 2px solid var(--action-primary-bg);   /* 2px bare literal — same token as the fill */
+}
+.cs-checkbox:checked::after { opacity: 1; }
+.cs-checkbox:checked:enabled:hover::before {
+  background: var(--action-primary-hover);
+  border: 2px solid var(--action-primary-pressed);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-CHK-04]  Checkbox INDETERMINATE and INDETERMINATE+HOVER.
+   TOKENS BOUND: --action-warning-bg · --action-warning-hover
+                 --action-warning-pressed
+   SPEC: SPEC-11 §3.2, nodes 79:17 and 7834:8096.
+   ⚠ AMBER, and THE SAME CHECK GLYPH — not a dash, not a smaller mark. Verified
+   in the payload for both variants. "Partial" is signalled by colour across the
+   whole family (checkbox, radio and toggle all go amber).
+   -------------------------------------------------------------------------- */
+.cs-checkbox:indeterminate::before {
+  background: var(--action-warning-bg);
+  border: 2px solid var(--action-warning-bg);   /* 2px bare literal */
+}
+.cs-checkbox:indeterminate::after { opacity: 1; }
+.cs-checkbox:indeterminate:enabled:hover::before {
+  background: var(--action-warning-hover);
+  border: 2px solid var(--action-warning-pressed);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-CHK-05]  Checkbox DISABLED and DISABLED+CHECKED.
+   TOKENS BOUND: --action-disabled-bg · --border-subtle · --surface-brand-bg
+                 --icon-brand
+   SPEC: SPEC-11 §3.2, nodes 77:2 (disabled) and 77:38 (disabled/checked).
+   Disabled+checked is NOT a greyed tick: it is a pale blue box with NO BORDER at
+   all and a BLUE glyph. Reproduce the missing border — `border: 0` is intentional.
+   The last rule covers disabled+indeterminate, which does NOT exist in Figma
+   (SPEC-11 §8); it is extrapolated from disabled+checked and is the only
+   extrapolation in this file.
+   -------------------------------------------------------------------------- */
+.cs-checkbox:disabled { cursor: default; }
+.cs-checkbox:disabled::before {
+  background: var(--action-disabled-bg);
+  border: 1.5px solid var(--border-subtle);     /* 1.5px bare literal */
+}
+.cs-checkbox:disabled:checked::before {
+  background: var(--surface-brand-bg);
+  border: 0;                                    /* Figma draws NO border here — intentional */
+}
+.cs-checkbox:disabled:checked::after {
+  opacity: 1;
+  background-color: var(--icon-brand);
+}
+/* NOT IN FIGMA — extrapolated from Disabled/Checked (SPEC-11 §8). */
+.cs-checkbox:disabled:indeterminate::before { background: var(--surface-brand-bg); border: 0; }
+.cs-checkbox:disabled:indeterminate::after  { opacity: 1; background-color: var(--icon-brand); }
+
+
+/* ════════════════════════════ RADIO — 13149:52616 ════════════════════════════ */
+
+/* -----------------------------------------------------------------------------
+   [CS-RAD-01]  .cs-radio — the control. DEFAULT state.
+   TOKENS BOUND: --border-medium (outer disc) · --field-bg-default (inner disc)
+   STATES: default (here) · hover · selected · selected+hover · indeterminate ·
+           disabled · disabled+selected — all 7 below.
+   SPEC: SPEC-11 §4.1 (anatomy, all sizes derived from the payload's percentage
+         insets on the 24px root) + §4.2 (all 7 states).
+   GEOMETRY: 24px hit area · 14px outer disc (same footprint as the checkbox box)
+   · 10px inner disc when unselected (⇒ a 2px visible ring) · 6px inner dot when
+   selected (⇒ a 4px visible ring). The ring thickness is a CONSEQUENCE of the
+   inner disc size. Never set it with `border`.
+   -------------------------------------------------------------------------- */
+.cs-radio {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;                                  /* bare literal in Figma, no token exists — hit area */
+  height: 24px;                                 /* bare literal in Figma, no token exists */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+.cs-radio::before {                             /* outer disc, 14px */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;                                  /* bare literal in Figma, no token exists */
+  height: 14px;                                 /* bare literal in Figma, no token exists */
+  border-radius: 50%;
+  background: var(--border-medium);
+}
+.cs-radio::after {                              /* inner disc, 10px when unselected */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;                                  /* bare literal in Figma, no token exists */
+  height: 10px;                                 /* bare literal in Figma, no token exists */
+  border-radius: 50%;
+  background: var(--field-bg-default);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-RAD-02]  Radio HOVER (unselected).
+   TOKENS BOUND: --border-brand (outer) · --surface-brand-bg (inner)
+   SPEC: SPEC-11 §4.2, node 15670:596413.
+   -------------------------------------------------------------------------- */
+.cs-radio:enabled:hover::before { background: var(--border-brand); }
+.cs-radio:enabled:hover::after  { background: var(--surface-brand-bg); }
+
+/* -----------------------------------------------------------------------------
+   [CS-RAD-03]  Radio SELECTED and SELECTED+HOVER.
+   TOKENS BOUND: --action-primary-bg · --text-inverse · --action-primary-hover
+                 --action-primary-pressed
+   SPEC: SPEC-11 §4.2, nodes 13149:52615 and 15670:596416.
+   ⚠ SELECTED+HOVER PHYSICALLY GROWS TO 18px. Figma draws the 2px pressed-colour
+   ring OUTSIDE the 14px disc (14 + 2 + 2 = 18). `box-shadow` reproduces that —
+   it also paints outside the box and, unlike a border, cannot reflow a table row.
+   The checkbox shares the fill=hover / ring=pressed pattern but does NOT grow;
+   only the radio does.
+   -------------------------------------------------------------------------- */
+.cs-radio:checked::before { background: var(--action-primary-bg); }
+.cs-radio:checked::after  {
+  width: 6px;                                   /* bare literal in Figma, no token exists — ⇒ 4px ring */
+  height: 6px;                                  /* bare literal in Figma, no token exists */
+  background: var(--text-inverse);
+}
+.cs-radio:checked:enabled:hover::before {
+  background: var(--action-primary-hover);
+  box-shadow: 0 0 0 2px var(--action-primary-pressed);  /* 2px bare literal — an OUTSIDE ring */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-RAD-04]  Radio INDETERMINATE — class-driven, and that is not a shortcut.
+   TOKENS BOUND: --action-warning-bg · --text-inverse
+   SPEC: SPEC-11 §4.2, node 14751:270463.
+   ⚠ DO NOT USE the CSS `:indeterminate` pseudo-class on a radio. A radio matches
+   :indeterminate whenever NO member of its group is checked — which would repaint
+   every untouched group amber on first paint. The modifier class is mandatory here.
+   The amber state is the normal 6px light dot on an amber disc: not a dash, not a
+   smaller dot.
+   -------------------------------------------------------------------------- */
+.cs-radio--indeterminate::before { background: var(--action-warning-bg); }
+.cs-radio--indeterminate::after  {
+  width: 6px;                                   /* bare literal */
+  height: 6px;                                  /* bare literal */
+  background: var(--text-inverse);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-RAD-05]  Radio DISABLED and DISABLED+SELECTED.
+   TOKENS BOUND: --border-subtle · --field-bg-default · --surface-brand-bg
+                 --icon-brand
+   SPEC: SPEC-11 §4.2, nodes 15670:596422 and 15670:596419.
+   -------------------------------------------------------------------------- */
+.cs-radio:disabled { cursor: default; }
+.cs-radio:disabled::before { background: var(--border-subtle); }
+.cs-radio:disabled::after  { background: var(--field-bg-default); width: 10px; height: 10px; }
+.cs-radio:disabled:checked::before { background: var(--surface-brand-bg); }
+.cs-radio:disabled:checked::after  { width: 6px; height: 6px; background: var(--icon-brand); }
+
+
+/* ═══════════════════════════ TOGGLE — 26942:4537 ═══════════════════════════ */
+
+/* -----------------------------------------------------------------------------
+   [CS-TGL-01]  .cs-toggle — the switch. Size M is the default; add --s for S.
+   TOKENS BOUND: --action-toggle-bg-default (track) ·
+                 --action-toggle-icon-default (dot)
+   STATES: off (here) · off+hover · on · on+hover · indeterminate · disabled —
+           6 states × 2 sizes, all below.
+   SPEC: SPEC-11 §5.1 (anatomy) + §5.2 (all 6 states × 2 sizes).
+   GEOMETRY: track 30 × 16 (M) or 24 × 12 (S), 2px padding all round, dot 12 (M)
+   or 8 (S). The travel is arithmetic, not a design value:
+   30 − 2·2 − 12 = 14 (M) and 24 − 2·2 − 8 = 12 (S).
+   ⚠ THE TRACK BORDER IS 0, ON PURPOSE. Figma binds a 1px `action/toggle/border`
+   whose value is fully transparent, and the 16px M height is exactly 2 + 12 + 2 —
+   so the stroke contributes NOTHING to the box. Writing
+   `border: 1px solid var(--action-toggle-border)` was a real trap when an older
+   token export stripped the alpha to opaque black; the current export
+   (re-verified 2026-08-24) has the alpha intact, so the trap is now benign — but
+   the geometry still says `border: 0`, so keep it.
+   -------------------------------------------------------------------------- */
+.cs-toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.cs-toggle__input {                             /* visually hidden, still focusable and still the source of truth */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.cs-toggle__track {
+  box-sizing: border-box;
+  width: 30px;                                  /* bare literal in Figma, no token exists — size M */
+  height: 16px;                                 /* bare literal in Figma, no token exists — 2 + 12 + 2 */
+  padding: 2px;                                 /* bare literal in Figma, no token exists */
+  border: 0;                                    /* see the block note — the Figma stroke is transparent and contributes nothing */
+  border-radius: 9999px;                        /* bare literal — Figma `rounded-[9999px]`, a full pill; no radius token */
+  background: var(--action-toggle-bg-default);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;                  /* the dot sits LEFT in every state except On */
+  transition: background-color .15s ease;
+}
+.cs-toggle__dot {
+  width: 12px;                                  /* bare literal in Figma, no token exists — size M */
+  height: 12px;                                 /* bare literal in Figma, no token exists */
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--action-toggle-icon-default);
+  transition: transform .15s ease, background-color .15s ease;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TGL-02]  Toggle OFF+HOVER.
+   TOKENS BOUND: --action-toggle-bg-hover · --action-toggle-icon-hover
+   SPEC: SPEC-11 §5.2, nodes 26942:44613 / 26942:44619.
+   This is a BIG visual change, not a subtle tint: the track turns pale blue and
+   the dot turns brand blue. That IS the hover affordance. The dot stays LEFT.
+   -------------------------------------------------------------------------- */
+.cs-toggle:hover .cs-toggle__input:enabled + .cs-toggle__track {
+  background: var(--action-toggle-bg-hover);
+}
+.cs-toggle:hover .cs-toggle__input:enabled + .cs-toggle__track .cs-toggle__dot {
+  background: var(--action-toggle-icon-hover);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TGL-03]  Toggle ON — and ON+HOVER, which is pixel-identical to ON.
+   TOKENS BOUND: --action-toggle-bg-active (GREEN) ·
+                 --action-toggle-icon-active (white)
+   SPEC: SPEC-11 §5.2, nodes 26942:4535 / 26942:44607 (On) and
+         26942:44615 / 26942:44621 (On/Hover).
+   ⚠ ON IS GREEN, NOT BLUE. And there is NO darker green for on+hover — the
+   payload is identical to On, same fill, same white dot, same justify-end. The
+   hover rules below restate ON deliberately so that the OFF+HOVER rule above
+   cannot leak pale blue onto a switched-on toggle. Do not invent a darker green.
+   -------------------------------------------------------------------------- */
+.cs-toggle__input:checked + .cs-toggle__track {
+  background: var(--action-toggle-bg-active);
+}
+.cs-toggle__input:checked + .cs-toggle__track .cs-toggle__dot {
+  background: var(--action-toggle-icon-active);
+  transform: translateX(14px);                  /* bare literal — 30 − 2·2 − 12 */
+}
+.cs-toggle:hover .cs-toggle__input:checked:enabled + .cs-toggle__track {
+  background: var(--action-toggle-bg-active);   /* identical to On — verified, not an oversight */
+}
+.cs-toggle:hover .cs-toggle__input:checked:enabled + .cs-toggle__track .cs-toggle__dot {
+  background: var(--action-toggle-icon-active);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TGL-04]  Toggle INDETERMINATE — amber, dot stays LEFT.
+   TOKENS BOUND: --action-toggle-bg-partial · --action-toggle-icon-partial
+   SPEC: SPEC-11 §5.2, nodes 26942:44601 / 26942:44609 — the left-hand dot
+         position was confirmed by screenshotting the node on its own.
+   Only On and On+Hover move the dot right. `transform: none` is therefore load-
+   bearing, not defensive.
+   -------------------------------------------------------------------------- */
+.cs-toggle--partial .cs-toggle__track {
+  background: var(--action-toggle-bg-partial);
+}
+.cs-toggle--partial .cs-toggle__track .cs-toggle__dot {
+  background: var(--action-toggle-icon-partial);
+  transform: none;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TGL-05]  Toggle DISABLED.
+   TOKENS BOUND: --action-toggle-bg-default (same track as Off) ·
+                 --action-toggle-icon-disabled
+   SPEC: SPEC-11 §5.2, nodes 26942:44603 / 26942:44611. The spec records an export
+         mismatch on --action-toggle-icon-disabled (§8) — the TOKEN is bound here
+         regardless, because binding the token is what keeps the control theme-aware.
+   -------------------------------------------------------------------------- */
+.cs-toggle:has(.cs-toggle__input:disabled) { cursor: default; }
+.cs-toggle__input:disabled + .cs-toggle__track {
+  background: var(--action-toggle-bg-default);
+}
+.cs-toggle__input:disabled + .cs-toggle__track .cs-toggle__dot {
+  background: var(--action-toggle-icon-disabled);
+  transform: none;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TGL-06]  .cs-toggle--s — size S.
+   TOKENS BOUND: none (all four values are bare literals).
+   STATES: none — size variant; every state above applies unchanged.
+   SPEC: SPEC-11 §5.1 / §5.2 (Size S column).
+   -------------------------------------------------------------------------- */
+.cs-toggle--s .cs-toggle__track { width: 24px; height: 12px; }   /* bare literals in Figma, no token exists */
+.cs-toggle--s .cs-toggle__dot   { width: 8px;  height: 8px;  }   /* bare literals in Figma, no token exists */
+.cs-toggle--s .cs-toggle__input:checked + .cs-toggle__track .cs-toggle__dot {
+  transform: translateX(12px);                  /* bare literal — 24 − 2·2 − 8 */
+}
+
+
+/* ═════════════════ LABEL PAIRING — 16025:366400 ═════════════════ */
+
+/* -----------------------------------------------------------------------------
+   [CS-CTRL-01]  .cs-control-row — the ONLY Figma-sanctioned way to put text
+   beside a checkbox or radio.
+   TOKENS BOUND: --spacing-sm (4px, control → label)
+   STATES: none.
+   SPEC: SPEC-11 §6 — flex, align-items center, gap spacing/sm 4px, control
+         24 × 24 shrink-0.
+   -------------------------------------------------------------------------- */
+.cs-control-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-CTRL-02]  .cs-control-row__label — the label text. Figma style
+   `Table/value` (yes, the table style — that is what the component binds).
+   TOKENS BOUND: --font-family-primary · --font-weight-body-base (400)
+                 --font-size-caption (12) · --line-height-caption (16)
+                 --text-primary · tracking with 0px fallback
+   STATES: none.
+   SPEC: SPEC-11 §6 (Typography table).
+   `word-break: break-word` is from the spec. The sample instance also carries
+   `white-space: nowrap`, and the spec says explicitly: do NOT copy that nowrap
+   into a wrapping list row. It is therefore not here.
+   Case is as typed — no transform (typography.md UHR-133).
+   -------------------------------------------------------------------------- */
+.cs-control-row__label {
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-base);    /* 400 */
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-CTRL-03]  .cs-control-row__help — the optional help icon in the pairing.
+   TOKENS BOUND: none — SPEC-11 §6 records the box sizes and no colour token for
+                 this instance. Bind --icon-brand at the feature if the design
+                 shows the blue filled help circle (that is what fields.css
+                 [CS-FLD-06] binds, from a node where the fill WAS read).
+   STATES: none. `showHelp` defaults to false in the component.
+   SPEC: SPEC-11 §6 — 16 × 16 box, glyph inset 12.5% → 12 × 12.
+   -------------------------------------------------------------------------- */
+.cs-control-row__help {
+  width: 16px;                                  /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+.cs-control-row__help > svg {
+  width: 12px;                                  /* bare literal — 16 × (1 − 2 × 12.5%) */
+  height: 12px;                                 /* bare literal */
+  fill: currentColor;
+}

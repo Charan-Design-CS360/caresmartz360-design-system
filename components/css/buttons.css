@@ -1,0 +1,433 @@
+/* =============================================================================
+   FILE BRIEF: Generic action-button classes for EVERY CareSmartz360 feature.
+   This is a COPY-FROM reference, not an import — a feature copies the blocks it
+   needs into its own stylesheet (see 00-README.md). Nothing here is
+   wound-specific, page-specific or portal-specific.
+   SPEC SOURCE: Office_Work/Wound Management/05-Specs/components/SPEC-07b-buttons.md
+   FIGMA SOURCE: [Design System] Agency V2.0, section 26938:66536, set 5703:7087
+                 (+ 27098:1282, 5703:7709, 5703:8495, 26781:44955, 5703:7501,
+                 10356:17309) — 8 component sets, 360 live variants.
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling ("generic and atomic level things …
+            must be generic classes for complete caresmartz360").
+   STATUS: ASSEMBLED — Singh ratification pending.
+   ⚠ SPEC-07b was NOT part of the 8-spec adversarial verification pass
+     (README-SPEC-RELIABILITY.md covers the earlier 8 only). Treat its numbers as
+     single-sourced-but-cited, not double-verified.
+   =============================================================================
+
+   HOW TO READ A BLOCK
+   Every rule block below carries: [ID] · what the element is · which tokens it
+   binds · which states it has · the spec section it came from. The [ID] is the
+   anchor the drift check keys on — never renumber an existing ID.
+
+   BARE LITERALS IN THIS FILE (values Figma has NO token for — each is repeated
+   at the point of use so nobody has to come back here):
+     30px  button min-height, standard                  SPEC-07b §3 + §10.1
+     24px  button min-height, compact                   SPEC-07b §3 + §10.1
+     80px  min-width, icon + label                      SPEC-07b §3.1
+     60px  min-width, label only                        SPEC-07b §3.1
+     30/24 min-width, icon only (square = height)       SPEC-07b §3.1
+     18px  icon box (wrapper AND glyph)                 SPEC-07b §3
+     1px   disabled border width                        SPEC-07b §5.1
+     2px   focus ring width                             SPEC-07b §5.1
+   Everything else binds var(--token). No raw hex anywhere in this file.
+
+   OPEN ITEM THAT TOUCHES THIS FILE — do not silently resolve it:
+   button height is 30px in Agency (this file) and 32px in CGPortal
+   (`--btn-min-height`). That is CONTRADICTIONS S4 · OPEN-REGISTER O-14, still
+   OPEN: "may be a legitimate per-portal difference; needs Singh's word before
+   either is called an error." This file encodes the Agency-verified 30px and
+   nothing else. A Caregiver-portal copy must NOT be silently retyped to 32.
+
+   NOT IN THIS FILE, deliberately (named so it is not mistaken for an omission):
+   • Split button (`Button/Split` 26767:45640). Its 1px divider is a raw
+     rgba(255,255,255,0.3) with NO token (SPEC-07b §10.2) — the only hardcoded
+     colour in the whole button system — and Split has no Focus and no Active
+     variant (§5.2). A reference file may not ship a raw colour, so Split stays
+     feature-level until the DS gives the divider a token.
+   • transition / duration. No timing was read from Figma (SPEC-07b §8 item 10).
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-01]  .cs-btn — the button container. Every type of every button
+   starts here; the type modifier only adds colour.
+   TOKENS BOUND: --spacing-none (padding-block) · --spacing-md (icon side)
+                 --spacing-lg (label side) · --spacing-sm (icon↔label gap)
+                 --border-radius-rounded · --font-family-primary
+                 --font-size-caption · --font-weight-body-strong
+                 --line-height-caption
+   STATES: none here. States live in [CS-BTN-08], [CS-BTN-09] and each type block.
+           Geometry is IDENTICAL in every state — only colour tokens swap
+           (SPEC-07b §5.1, "Every state keeps identical geometry").
+   SPEC: SPEC-07b §3 (anatomy), §3.1 (padding mirror), §4 (typography).
+   THE DEFINING DETAIL: padding is ASYMMETRIC — 8px on the ICON side, 12px on the
+   LABEL side. The default below is the leading-icon case; --trailing mirrors it.
+   -------------------------------------------------------------------------- */
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 30px;                             /* bare literal in Figma, no token exists (SPEC-07b §3, §10.1) */
+  min-width: 80px;                              /* bare literal in Figma, no token exists — icon+label width floor (§3.1) */
+
+  padding-block: var(--spacing-none);           /* 0 — height comes from min-height, never from padding */
+  padding-left: var(--spacing-md);              /* 8 — icon side */
+  padding-right: var(--spacing-lg);             /* 12 — label side */
+  gap: var(--spacing-sm);                       /* 4 — icon to label */
+
+  border: none;
+  border-radius: var(--border-radius-rounded);  /* 4 */
+
+  /* Figma composite text style `Button/label` — one style for every type and
+     every state; compact does not change it (SPEC-07b §4). letter-spacing binds
+     the tracking token with a 0px fallback because
+     fonts/tracking/X-tracking-0 is absent from the token export
+     (SPEC-07b §10.3 · typography.md UHR-134 gap note) — value is 0 either way. */
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-size: var(--font-size-caption);          /* 12 */
+  font-weight: var(--font-weight-body-strong);  /* 500 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  white-space: nowrap;
+
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-02]  .cs-btn__icon — the 18px icon slot. Same box for leading,
+   trailing and icon-only.
+   TOKENS BOUND: none. 18px is a bare literal in Figma (both the wrapper and the
+                 glyph are size-[18px]) — no size token exists (SPEC-07b §10.1).
+   STATES: none. The icon takes its colour from the container's `color`, because
+           label and icon share ONE token — see the house rule in [CS-BTN-10].
+   SPEC: SPEC-07b §3 (icon box row).
+   -------------------------------------------------------------------------- */
+.cs-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;                                  /* bare literal in Figma, no token exists */
+  height: 18px;                                 /* bare literal in Figma, no token exists */
+  overflow: clip;
+}
+.cs-btn__icon > svg,
+.cs-btn__icon > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-03]  .cs-btn__label — the label text node.
+   TOKENS BOUND: none of its own; it inherits the whole `Button/label` style and
+                 the shared foreground colour from .cs-btn.
+   STATES: none.
+   SPEC: SPEC-07b §3 (Alignment row: "Label is text-center").
+   NOTE: Figma's Success label box omits nowrap and uses flex:1 0 0, so a long
+   Success label wraps where every other type does not. SPEC-07b §7.4 records
+   that as a defect (Q9) — it is deliberately NOT reproduced here.
+   -------------------------------------------------------------------------- */
+.cs-btn__label {
+  text-align: center;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-04]  .cs-btn--trailing — icon after the label. Exact mirror of the
+   base: the 8px goes to whichever side the icon is on.
+   TOKENS BOUND: --spacing-lg (12, label side) · --spacing-md (8, icon side)
+   STATES: none — this is a layout variant.
+   SPEC: SPEC-07b §3.1 (padding mirror, Trailing row).
+   -------------------------------------------------------------------------- */
+.cs-btn--trailing {
+  padding-left: var(--spacing-lg);              /* 12 — label side */
+  padding-right: var(--spacing-md);             /* 8  — icon side */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-05]  .cs-btn--icon-only — square button, no label. 4px both sides.
+   TOKENS BOUND: --spacing-sm (4, both sides)
+   STATES: none — layout variant.
+   SPEC: SPEC-07b §3.1 (Only row).
+   ACCESSIBILITY: needs an aria-label. Figma has no label node to carry one, so
+   this is an implementation requirement the design cannot express
+   (SPEC-07b §12.1). See PATTERNS.md.
+   -------------------------------------------------------------------------- */
+.cs-btn--icon-only {
+  min-width: 30px;                              /* bare literal in Figma, no token exists — equals min-height, so the box is square */
+  padding-left: var(--spacing-sm);              /* 4 */
+  padding-right: var(--spacing-sm);             /* 4 */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-06]  .cs-btn--no-icon — label only. Symmetric 12px, gap explicitly 0.
+   TOKENS BOUND: --spacing-lg (12, both sides) · --spacing-none (gap 0)
+   STATES: none — layout variant.
+   SPEC: SPEC-07b §3.1 (None row). The gap is SET to 0 in Figma, not defaulted —
+         reproduce it so a future gap change cannot leak in.
+   -------------------------------------------------------------------------- */
+.cs-btn--no-icon {
+  min-width: 60px;                              /* bare literal in Figma, no token exists — label-only width floor */
+  padding-left: var(--spacing-lg);              /* 12 */
+  padding-right: var(--spacing-lg);             /* 12 */
+  gap: var(--spacing-none);                     /* 0 — set, not defaulted */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-07]  .cs-btn--compact — the dense-table height. Changes ONE property.
+   TOKENS BOUND: none (both values are bare literals).
+   STATES: none — size variant.
+   SPEC: SPEC-07b §3 + §5.2 ("Compact really is 30px / 24px", confirmed three
+         ways). Padding, gap, width floor, radius and type size ALL stay put.
+   -------------------------------------------------------------------------- */
+.cs-btn--compact {
+  min-height: 24px;                             /* bare literal in Figma, no token exists */
+}
+.cs-btn--compact.cs-btn--icon-only {
+  min-width: 24px;                              /* bare literal in Figma, no token exists — stays square */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-08]  Focus — shared by every type.
+   TOKENS BOUND: --action-focus-ring
+   STATES: this IS the focus state. It keeps the type's own background: focus does
+           not dim, tint or swap — it adds a ring on top (SPEC-07b §5.1).
+   SPEC: SPEC-07b §5.1 (Focus row, node 5703:7094) + §3.2 (binding card).
+   DO NOT add `opacity` — action/focus/ring is already rgba(0,0,0,0.4) in the
+   token export (verified in tokens.css line 33, 2026-08-24), so the doc card's
+   "strokeWeight 2, opacity 0.4" describes that one value, not two effects.
+   `outline` is used rather than `border` because Figma does not record whether
+   the 2px stroke is inside/centre/outside (SPEC-07b §8 item 2); outline renders
+   identically and cannot shift a table row.
+   ⚠ A UNIVERSAL focus rule does NOT exist — accessibility.md rates the focus
+   ring OPEN-REGISTER O-2 ("no rule can be written until Singh names the token,
+   width and offset"). This block is legitimate only because SPEC-07b read a real
+   bound focus variant on the button itself. Do not copy it onto components whose
+   Figma set has no focus variant.
+   -------------------------------------------------------------------------- */
+.cs-btn:focus-visible {
+  outline: 2px solid var(--action-focus-ring);  /* 2px is a bare literal — Figma strokeWeight, no width token exists */
+  outline-offset: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-09]  Disabled — shared by every type.
+   TOKENS BOUND: --action-disabled-bg · --action-disabled-text-neutral
+                 --border-transparent
+   STATES: this IS the disabled state. Disabled also flips Figma's `Type` variant
+           to NA — a disabled button has no type (SPEC-07b §5.3), which is why
+           this block wins over every type block below.
+   SPEC: SPEC-07b §5.1 (Disabled row, node 5703:7097) + §3.2.
+   The 1px TRANSPARENT border is deliberate, not dead code: it keeps the box model
+   identical to the outlined variant so nothing shifts when a button toggles
+   between them.
+   ⚠ Contrast: --action-disabled-text-neutral resolves lighter in the token export
+   than the Figma value (SPEC-07b §7.8), and the resulting label fails WCAG on this
+   background. Pending Singh Q5 — do not "fix" it by typing a hex.
+   -------------------------------------------------------------------------- */
+.cs-btn:disabled,
+.cs-btn[aria-disabled="true"] {
+  background: var(--action-disabled-bg);
+  color: var(--action-disabled-text-neutral);
+  border: 1px solid var(--border-transparent);  /* 1px is a bare literal — Figma strokeWeight */
+  cursor: not-allowed;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-10]  .cs-btn--primary — the only type whose five states were each read
+   directly from Figma.
+   TOKENS BOUND: --action-primary-bg · --action-primary-hover
+                 --action-primary-pressed · --action-primary-text-neutral
+                 --action-primary-text-hard · --action-primary-outlined
+   STATES: default · hover · active(pressed) · focus [CS-BTN-08]
+           · disabled [CS-BTN-09] · outlined
+   SPEC: SPEC-07b §5.1 (all five nodes) + §5.4 (token scope) + §3.2.
+   ── THE HOUSE RULE, stated twice in Figma's own doc cards (§3.2) ──
+   Label colour = icon colour = ONE semantic variable. That is why `color` is set
+   on the container and the icon inherits it. NEVER colour .cs-btn__icon
+   separately; doing so silently breaks the rule the DS states twice.
+   -------------------------------------------------------------------------- */
+.cs-btn--primary {
+  background: var(--action-primary-bg);
+  color: var(--action-primary-text-neutral);    /* label AND icon */
+}
+.cs-btn--primary:hover:not(:disabled)  { background: var(--action-primary-hover); }
+.cs-btn--primary:active:not(:disabled) { background: var(--action-primary-pressed); }
+
+/* Outlined — no fill AT ALL (not a white fill), 1px border, label recolours to
+   text-hard. Verified for Primary at 11867:25855 (SPEC-07b §5.1, Outline=Yes). */
+.cs-btn--primary.cs-btn--outlined {
+  background: transparent;
+  border: 1px solid var(--action-primary-outlined);  /* 1px bare literal — Figma strokeWeight */
+  color: var(--action-primary-text-hard);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-11]  .cs-btn--secondary
+   TOKENS BOUND: --action-secondary-bg · --action-secondary-hover
+                 --action-secondary-pressed · --action-secondary-text
+                 --action-secondary-outlined
+   STATES: default · hover · active · focus · disabled · outlined
+   SPEC: SPEC-07b §5.4 (token scope, payload §1.2) + §7.1.
+   THREE THINGS THAT MAKE SECONDARY THE ODD ONE OUT:
+   1. It uses --action-secondary-TEXT, not -text-neutral. Any helper that builds
+      a token name from the type name breaks here (§5.4).
+   2. The DS FAQ says this component should not exist and to use Primary +
+      State=Secondary instead — those variants do NOT exist in Figma, so this
+      block targets the real Button/Secondary 27098:1282. Pending Singh Q1 (§7.1).
+   3. --action-secondary-outlined is fully transparent, so the outlined form is
+      invisible AS SPECIFIED. --action-secondary-border is the likely intent.
+      Pending Singh Q4 — reproduced faithfully, not "fixed" here.
+   -------------------------------------------------------------------------- */
+.cs-btn--secondary {
+  background: var(--action-secondary-bg);
+  color: var(--action-secondary-text);
+}
+.cs-btn--secondary:hover:not(:disabled)  { background: var(--action-secondary-hover); }
+.cs-btn--secondary:active:not(:disabled) { background: var(--action-secondary-pressed); }
+.cs-btn--secondary.cs-btn--outlined {
+  background: transparent;
+  border: 1px solid var(--action-secondary-outlined);  /* transparent by token — see note 3 */
+  color: var(--action-secondary-text);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-12]  .cs-btn--ghost
+   TOKENS BOUND: --action-ghost-text-hard · --action-ghost-hover
+                 --action-ghost-pressed
+   STATES: default · hover · active · focus · disabled. NO outlined variant —
+           Ghost's Outline axis is literally `--` on all 40 variants (§5.2).
+   SPEC: SPEC-07b §5.4 (payload §1.3) + §5.2.
+   Figma binds NO background for Ghost: the default is genuinely transparent.
+   --action-ghost-bg EXISTS in the token export but is deliberately not bound —
+   binding it would make Ghost opaque and break it over any tinted surface.
+   -------------------------------------------------------------------------- */
+.cs-btn--ghost {
+  background: transparent;
+  color: var(--action-ghost-text-hard);
+}
+.cs-btn--ghost:hover:not(:disabled)  { background: var(--action-ghost-hover); }
+.cs-btn--ghost:active:not(:disabled) { background: var(--action-ghost-pressed); }
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-13]  .cs-btn--soft
+   TOKENS BOUND: --action-soft-bg · --action-soft-hover · --action-soft-pressed
+                 --action-soft-text-neutral · --action-soft-outlined
+   STATES: default · hover · active · focus · disabled · outlined.
+           Hover/active were NOT individually read from Figma — they follow the
+           documented binding rule (SPEC-07b §8 item 3). Named, not hidden.
+   SPEC: SPEC-07b §5.4 (payload §1.4).
+   -------------------------------------------------------------------------- */
+.cs-btn--soft {
+  background: var(--action-soft-bg);
+  color: var(--action-soft-text-neutral);
+}
+.cs-btn--soft:hover:not(:disabled)  { background: var(--action-soft-hover); }
+.cs-btn--soft:active:not(:disabled) { background: var(--action-soft-pressed); }
+.cs-btn--soft.cs-btn--outlined {
+  background: transparent;
+  border: 1px solid var(--action-soft-outlined);
+  color: var(--action-soft-text-neutral);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-14]  .cs-btn--warning
+   TOKENS BOUND: --action-warning-bg · --action-warning-hover
+                 --action-warning-pressed · --action-warning-text-neutral
+                 --action-warning-outlined
+   STATES: default · hover · active · focus · disabled · outlined
+   SPEC: SPEC-07b §5.4 (payload §1.5).
+   Warning is the one type whose text-neutral is neither white nor slate (it is a
+   dark brown on yellow), it has NO text-hard token, and its `outlined` value is
+   the TEXT colour rather than the fill colour — so an outlined Warning is
+   brown-on-transparent, which is why the outlined block below keeps text-neutral.
+   -------------------------------------------------------------------------- */
+.cs-btn--warning {
+  background: var(--action-warning-bg);
+  color: var(--action-warning-text-neutral);
+}
+.cs-btn--warning:hover:not(:disabled)  { background: var(--action-warning-hover); }
+.cs-btn--warning:active:not(:disabled) { background: var(--action-warning-pressed); }
+.cs-btn--warning.cs-btn--outlined {
+  background: transparent;
+  border: 1px solid var(--action-warning-outlined);
+  color: var(--action-warning-text-neutral);    /* no text-hard token exists for Warning */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-15]  .cs-btn--destructive
+   TOKENS BOUND: --action-destructive-bg · --action-destructive-hover
+                 --action-destructive-pressed · --action-destructive-text-neutral
+                 --action-destructive-text-hard · --action-destructive-outlined
+   STATES: default · hover · active · focus · disabled · outlined
+   SPEC: SPEC-07b §5.4 (payload §1.6) + §7.3.
+   ⚠ TWO REAL TOKEN DEFECTS, reproduced faithfully and reported, not patched:
+     • pressed === bg, so :active produces NO visible change;
+     • hover is LIGHTER than default — the opposite of every other type.
+   Both values match the token export, so this is a token decision, not a binding
+   error. Pending Singh Q2.
+   -------------------------------------------------------------------------- */
+.cs-btn--destructive {
+  background: var(--action-destructive-bg);
+  color: var(--action-destructive-text-neutral);
+}
+.cs-btn--destructive:hover:not(:disabled)  { background: var(--action-destructive-hover); }
+.cs-btn--destructive:active:not(:disabled) { background: var(--action-destructive-pressed); }
+.cs-btn--destructive.cs-btn--outlined {
+  background: transparent;
+  border: 1px solid var(--action-destructive-outlined);
+  color: var(--action-destructive-text-hard);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-BTN-16]  .cs-btn--success
+   TOKENS BOUND: --action-success-bg · --action-success-hover
+                 --action-success-pressed · --action-success-text-neutral
+                 --action-success-text-hard · --action-success-outlined
+   STATES: default · hover · active · focus · disabled · outlined
+   SPEC: SPEC-07b §5.4 (payload §1.7) + §7.2.
+   ⚠ THE ONE PLACE THIS FILE GOES BEYOND FIGMA, declared: Figma's Success hover
+   variant is pixel-identical to its default because action/success/hover is never
+   bound — Success has no hover feedback at all. The token EXISTS in the export,
+   and the hover rule below applies it, because the alternative is shipping a
+   button that does not respond to the pointer. Pending Singh Q3. If Singh rules
+   that Figma is right, delete the hover line — do not change the token.
+   -------------------------------------------------------------------------- */
+.cs-btn--success {
+  background: var(--action-success-bg);
+  color: var(--action-success-text-neutral);
+}
+.cs-btn--success:hover:not(:disabled)  { background: var(--action-success-hover); }   /* NOT bound in Figma — see the block note */
+.cs-btn--success:active:not(:disabled) { background: var(--action-success-pressed); }
+.cs-btn--success.cs-btn--outlined {
+  background: transparent;
+  border: 1px solid var(--action-success-outlined);
+  color: var(--action-success-text-hard);
+}
+
+/* ==========================================================================
+   [CS-BTN-17]  .cs-btn--ai — measured from Figma 27116:1359
+   ========================================================================== */
+.cs-btn--ai {
+  background: linear-gradient(to right, #7c3aed, #2563eb);
+  color: var(--action-ai-text-neutral, #ffffff);
+  border: 1px solid transparent;
+}
+.cs-btn--ai:hover:not(:disabled) {
+  background: linear-gradient(to right, #8b4ff6, #3875f4);
+  color: #ffffff;
+}
+.cs-btn--ai:active:not(:disabled) {
+  background: linear-gradient(to right, #6b29db, #1a52db);
+  color: #ffffff;
+}
+.cs-btn--ai:disabled {
+  background: var(--action-disabled-bg, #f1f5f9);
+  color: var(--action-disabled-text-neutral, #475569);
+  border: 1px solid transparent;
+}
+

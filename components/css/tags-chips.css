@@ -1,0 +1,231 @@
+/* =============================================================================
+   FILE BRIEF: The generic tag / chip and the status-dot treatment for EVERY
+   CareSmartz360 feature. A COPY-FROM reference, not an import (00-README.md).
+   SPEC SOURCE: SPEC-08a-table-cell-text-status-link.md §5 (tag, all four
+                variants, adversarially CONFIRMED) and §6.2 (`Status/info`)
+   FIGMA SOURCE: `badges/other` 14357:226258 (component set, 4 variants) ·
+                 `Status/info` 10313:14623 (3 variants)
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   =============================================================================
+
+   ══ THE ONE THING TO UNDERSTAND BEFORE USING THIS FILE ══
+   THERE IS NO COLOURED STATUS TAG IN THE GENERIC SET. `badges/other` has FOUR
+   variants and its axes are Subtle (only value: Yes) × Disabled (bool) ×
+   BorderMinimalistic (bool). No colour, hue, semantic or severity axis exists on
+   it (SPEC-08a §5.3, verified by a direct grep of the archived document tree plus
+   direct pulls of `badges/other` and `TC/Status Tags`).
+
+   So a green "Healing" tag or a red "Deteriorating" tag CANNOT be built from this
+   file, and must not be improvised by typing a colour into a copy of it. The hue'd
+   tag sets that do exist (Tags/shift_status, Tags/Access levels, badges/Notes and
+   care logs, …) are all scheduling- or domain-specific, none was pulled, and
+   SPEC-08a's list of them carries a verifier warning that the node ids and variant
+   counts in it are UNATTESTED. Which set a clinical status column uses is
+   OPEN-REGISTER O-15 / flag F-003 — a question for Figma via Singh, not a
+   decision for a feature.
+
+   BARE LITERALS IN THIS FILE (Figma has NO token for these):
+     18px  tag height (also min-height — the tag does not grow)   §5.2
+     1px   tag border width                                        §5.2
+     8px   status dot                                              §6.2
+   No raw hex anywhere in this file. The three status-dot COLOURS are raw
+   un-tokenised hexes in Figma (Figma styles `Special/Success Accent`,
+   `Special/Warning Accent`, `Special/Danger Accent`) — see [CS-STAT-02] for how
+   that is handled without typing them.
+
+   STATES THE DESIGN SYSTEM DOES NOT HAVE — named, not invented.
+   SPEC-08a §5.3: "There is no hover, no focus, no pressed and no selected variant
+   on this component." Geometry and typography are identical in all four variants;
+   only the border and the two colours move. A dismissible chip (with an ✕) is
+   likewise not in `badges/other`.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   [CS-TAG-01]  .cs-tag — the tag / chip. DEFAULT variant (Disabled=No,
+   BorderMinimalistic=No), node 14357:226267.
+   TOKENS BOUND: --border-radius-rounded (4) · --tags-neutral (border AND label —
+                 one token for both) · --tags-neutral-bg (fill) ·
+                 --spacing-none / --spacing-sm (padding) · --spacing-sm (gap) ·
+                 --font-family-primary · --font-weight-heading-strong (600) ·
+                 --font-size-micro (10) · --line-height-micro (14)
+   STATES: default (here) · borderless · disabled · disabled+borderless — the
+           four published variants, composed from the two modifiers below.
+   SPEC: SPEC-08a §5.1 (the claim under test, line by line) + §5.2 (full anatomy)
+         + §5.3 (variant table).
+   FIVE THINGS THE OLDER, WRONG DESCRIPTION OF THIS TAG LEFT OUT — all now here:
+     • it has a BACKGROUND (tags/neutral-bg); a transparent borderless tag is wrong
+     • line-height is bound (line-height/micro 14px)
+     • padding is 0 4px and the icon gap is 4px
+     • the label colour is tags/neutral — the SAME token as the border. The
+       #334a65 you may have seen anywhere is an INSTANCE OVERRIDE inside one cell
+       (1957:2310) and is not the component's colour
+     • radius is 4px — IT IS NOT A PILL. Do not "round it properly".
+   The 18px height is fixed with min-height as well, so a long label truncates or
+   overflows rather than growing the tag. Contents are centred, not left-aligned.
+   -------------------------------------------------------------------------- */
+.cs-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);                       /* 4 — icon to label */
+  height: 18px;                                 /* bare literal in Figma, no token exists */
+  min-height: 18px;                             /* bare literal in Figma, no token exists — fixed, does not grow */
+  padding-block: var(--spacing-none);           /* 0 */
+  padding-inline: var(--spacing-sm);            /* 4 */
+  background: var(--tags-neutral-bg);
+  border: 1px solid var(--tags-neutral);        /* 1px is a bare literal — Figma strokeWeight */
+  border-radius: var(--border-radius-rounded);  /* 4 — NOT a pill */
+  box-sizing: border-box;
+
+  /* Figma style `Label/overline` — see type-styles.css [CS-TYP-07]. The uppercase
+     transform is authored INSIDE the Figma text style, which is why it is the one
+     verified text-transform in the system (typography.md UHR-132/UHR-133), and why
+     10px is legitimate here and nowhere else. */
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-heading-strong);  /* 600 — Inter Semi Bold */
+  font-size: var(--font-size-micro);            /* 10 — legitimate ONLY inside the tag */
+  line-height: var(--line-height-micro);        /* 14 */
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--tags-neutral);                   /* same token as the border */
+  white-space: nowrap;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TAG-02]  .cs-tag__icon / .cs-tag__label — the two optional parts.
+   TOKENS BOUND: none of their own; both inherit the tag's colour token, which is
+                 what keeps border, icon and label on ONE token.
+   STATES: none.
+   SPEC: SPEC-08a §5.2 (Layout and Gap rows).
+   -------------------------------------------------------------------------- */
+.cs-tag__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: inherit;
+}
+.cs-tag__icon > svg { display: block; fill: currentColor; }
+.cs-tag__label { color: inherit; }
+
+/* -----------------------------------------------------------------------------
+   [CS-TAG-03]  .cs-tag--borderless — Figma's BorderMinimalistic=Yes
+   (node 26242:19776).
+   TOKENS BOUND: none added — it REMOVES the border and keeps the fill.
+   STATES: composes with --disabled to give the fourth published variant.
+   SPEC: SPEC-08a §5.3 (Borderless row).
+   Keep the background. A borderless tag is a filled tag without a stroke, not a
+   transparent one.
+   -------------------------------------------------------------------------- */
+.cs-tag--borderless {
+  border: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TAG-04]  .cs-tag--disabled — Figma's Disabled=Yes (node 14647:269692),
+   and, composed with --borderless, node 26242:19778.
+   TOKENS BOUND: --tags-disabled (border AND label)
+   STATES: this IS the disabled variant.
+   SPEC: SPEC-08a §5.3 (Disabled and Disabled-borderless rows).
+   ⚠ THE TWO DISABLED VARIANTS DISAGREE ABOUT THE BACKGROUND, and that is what
+   Figma contains: bordered+disabled has NO background (transparent), while
+   borderless+disabled KEEPS tags/neutral-bg. Both are reproduced exactly —
+   the second rule below puts the fill back. Do not "simplify" this into one rule.
+   -------------------------------------------------------------------------- */
+.cs-tag--disabled {
+  background: transparent;                      /* bordered + disabled has no fill in Figma */
+  border-color: var(--tags-disabled);
+  color: var(--tags-disabled);
+}
+.cs-tag--disabled.cs-tag--borderless {
+  background: var(--tags-neutral-bg);           /* borderless + disabled KEEPS the fill — verified variant */
+}
+
+
+/* -----------------------------------------------------------------------------
+   [CS-TAG-04]  .cs-tag hue modifiers — the LIVE `Status` component 26535:26277.
+   Verified live 2026-09-08: 8 types x subtleBorder (active · inactive · Pending ·
+   neutral-tag/Other · Success-Tag · AI_special-tag · Alert · Error-Tag), every one
+   an 18px .cs-tag-shaped pill (text 4px inset, Label/overline Inter Semi Bold
+   10/14, radius 4, NO dot), each binding the generic pair tags/<hue> (border+label)
+   + tags/<hue>-bg (fill) — the pattern recorded in RULE-FLAGS F-012. The base
+   .cs-tag above IS the neutral hue. Type → hue (per F-012's variant map):
+   active/Success-Tag → green · inactive/Error-Tag → red · Pending/Alert → yellow ·
+   neutral-tag/Other → neutral · AI_special-tag → purple. Clinical "Healing" is
+   BLUE and still has NO variant — F-012 stays open (tags/blue + tags/blue-bg exist
+   in all five modes; needs Figma AI to add the variant or Singh's word).
+   -------------------------------------------------------------------------- */
+.cs-tag--green  { background: var(--tags-green-bg);  border-color: var(--tags-green);  color: var(--tags-green); }
+.cs-tag--red    { background: var(--tags-red-bg);    border-color: var(--tags-red);    color: var(--tags-red); }
+.cs-tag--yellow { background: var(--tags-yellow-bg); border-color: var(--tags-yellow); color: var(--tags-yellow); }
+.cs-tag--purple { background: var(--tags-purple-bg); border-color: var(--tags-purple); color: var(--tags-purple); }
+
+/* ══════════════════ STATUS TREATMENT — `Status/info` 10313:14623 ══ LEGACY ═════
+   ⚠ LEGACY (2026-09-08): 10313:14623 is the OLD dot+label treatment. The current
+   status component is `Status` 26535:26277 — an 18px coloured uppercase pill with
+   NO dot, i.e. .cs-tag + a hue modifier above. Do NOT build new status columns
+   from the dot treatment below; it is kept only for screens that still ship it. */
+
+/* -----------------------------------------------------------------------------
+   [CS-STAT-01]  .cs-status — the status treatment. NOT a tag, NOT a pill.
+   TOKENS BOUND: --spacing-sm (gap) · --border-radius-rounded (4)
+                 --font-family-primary · --font-weight-body-base (400)
+                 --font-size-caption (12) · --line-height-caption (16)
+   STATES: three content variants (Active / Inactive / Closed) which differ ONLY
+           in the dot colour — see [CS-STAT-02]. No hover, focus or pressed.
+   SPEC: SPEC-08a §6.2 (the standalone component set) and §6.1 (how it renders
+         inside a status column).
+   WHAT IT IS: an 8px dot plus a label on the row background. No pill, no border,
+   no fill, no uppercase, and the label is Inter REGULAR 12/16 — not the tag's
+   10px semibold. Building a status as a coloured pill is the most common way to
+   get this wrong.
+   Recorded so a reviewer is not surprised: inside a table cell the DS HIDES the
+   dot layer and overrides the label colour (SPEC-08a §6.1). That override is a
+   raw hex, so this file does not encode it; the label colour below is left to the
+   consuming context, and the table cell's own colour token applies.
+   The wrapper's 4px radius comes straight from the node even though nothing is
+   painted — reproduced for fidelity, harmless if a background is ever added.
+   -------------------------------------------------------------------------- */
+.cs-status {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  border-radius: var(--border-radius-rounded);  /* 4 — on the wrapper, as authored */
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-base);    /* 400 — Inter Regular, NOT the tag's 600 */
+  font-size: var(--font-size-caption);          /* 12 — NOT the tag's 10 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-STAT-02]  .cs-status__dot — the 8px dot.
+   TOKENS BOUND: none, and that is the point — see below.
+   STATES: the dot colour IS the variant. Three exist: Active, Inactive, Closed.
+   SPEC: SPEC-08a §6.2 — an 8 × 8 SVG (`<circle r="4">`) delivered as an <img>;
+         the three fills were read out of the served SVG files, so the VALUES are
+         measured. Their Figma style names are `Special/Success Accent`,
+         `Special/Warning Accent` and `Special/Danger Accent`.
+   ⚠ WHY THERE ARE NO VARIANT MODIFIERS HERE. Those three fills are RAW hexes
+   bound to no design token — they are Figma STYLES, not variables, and they are
+   NOT the semantic success/warning/danger values in the token export (they are
+   a different, brighter set). Typing them into this file would put three
+   untokenised colours into the one place every feature copies from, and mapping
+   them onto the semantic tokens would silently change the design. So the dot
+   binds `currentColor` and the feature supplies the colour at the point of use,
+   citing the DS gap.
+   This is a real design-system gap, listed in 00-README.md: the status accents
+   need variables. It is adjacent to, but not the same as, OPEN-REGISTER O-15
+   (the missing coloured clinical tag).
+   -------------------------------------------------------------------------- */
+.cs-status__dot {
+  flex: 0 0 auto;
+  width: 8px;                                   /* bare literal in Figma, no token exists */
+  height: 8px;                                  /* bare literal in Figma, no token exists */
+  border-radius: 50%;                           /* the source is <circle r="4"> in an 8px box */
+  background: currentColor;                     /* colour supplied by the consuming context — see the block note */
+}
+.cs-status__label { color: inherit; }

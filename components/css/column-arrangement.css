@@ -1,0 +1,352 @@
+/* =============================================================================
+   FILE BRIEF: The "Column(s)" side flyout — lets a user show/hide table columns
+   and reorder the visible ones by dragging a 6-dot handle. A COPY-FROM
+   reference, not an import (00-README.md).
+   FIGMA SOURCE: pattern `columnarrangement` 27311:46254 · row atom
+                 `ddm rows - checkboxes + drag feature` 13095:43335 (and a
+                 second, newer component of the identical name, 27307:43097 —
+                 see the SYNC LINK below, defect D1).
+   CREATOR: Claude (DESIGN-SYSTEM lane, C360-3526), on Singh's 2026-09-01
+            request.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   =============================================================================
+
+   ══ SYNC LINK — added 2026-09-01 by Claude (DESIGN-SYSTEM lane) ══
+
+   PAIRED CONTRACT: portals/agency/components/column-arrangement.md + .json on
+   caresmartz360-design-system origin/main. That contract is the MEASUREMENT
+   (provenance, node ids, and what was NOT verified); THIS file is the CODE.
+
+   ⚠ WHAT'S RULED, WHAT'S STILL OPEN — read column-arrangement.md §2/§3/§6/§7
+   before changing anything below. Singh ruled on this pattern 2026-09-01:
+     RULED  the two groups are "Selected columns" (checked, draggable) and
+         "Not selected columns" (unchecked, not draggable) — Figma itself
+         still shows the placeholder "GROUP HEADING" on both.
+     RULED  whichever column sits FIRST in "Selected columns" is always the
+         table's frozen-left column — this is NOT a new rule, it is
+         [CS-TBL-13] in table.css (Singh, 2026-08-26), applied through this
+         picker's own mechanism. See [CS-COLPANEL-06] below. Nothing in this
+         file draws a visual cue for which row that is — none exists in
+         Figma either, confirmed live.
+     RULED  Reset restores the table's DEFAULT column set, discarding even a
+         previously-saved customization. Cancel only discards this session's
+         unsaved edits. The two are NOT interchangeable — see
+         [CS-COLPANEL-08].
+     STILL OPEN  D1 (13095:43335) — two Figma components share one name; this
+         file follows the RENDER (checked rows draggable, unchecked rows
+         not), not either component literally.
+     STILL OPEN  D3 (13095:43335) — Figma's own "unChecked" property is named
+         backwards. This file uses the plain, correct-way-round name:
+         `.cs-colpanel__row--checked`.
+     ADDED, NOT IN FIGMA  no keyboard alternative to drag-reorder exists in
+         the Figma measurement. [CS-COLPANEL-07] below adds one (Move up /
+         Move down buttons, visually hidden until focus) because shipping
+         drag-only reordering fails WCAG 2.1 SC 2.1.1.
+     ADDED, NOT IN FIGMA  no maximum panel height or scroll behaviour was
+         ever measured. [CS-COLPANEL-04] below caps the list and scrolls it —
+         a judgement call. Revisit if Figma specifies a real value.
+   =============================================================================
+
+   ══ ANATOMY ══
+   .cs-colpanel                 the whole flyout — header, search, list, footer
+     .cs-colpanel__header         title + close button (reuses the header atom)
+     .cs-colpanel__search         type-to-filter (reuses the search atom)
+     .cs-colpanel__list           scrollable column list
+       .cs-colpanel__group-heading  uppercase category label
+       .cs-colpanel__row            one row = one column
+         .cs-colpanel__row-drag      6-dot drag handle (checked rows only)
+         .cs-colpanel__row-check     checkbox
+         .cs-colpanel__row-label     column name
+         .cs-colpanel__row-move      keyboard reorder buttons (ADDED — see A11Y)
+     .cs-colpanel__footer         Reset · Cancel · Apply
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-01]  .cs-colpanel — the panel container.
+   TOKENS BOUND: --spacing-lg (inline padding) · --spacing-md (gap between
+                 sections) · --surface-base (fill)
+   SPEC: column-arrangement.md §1, §3.
+   No border — the panel's only edge treatment is a drop-shadow. Width is a
+   bare literal; no responsive variant was ever measured (notVerified item 5).
+   -------------------------------------------------------------------------- */
+.cs-colpanel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);                       /* 8 */
+  width: 400px;                                 /* bare literal in Figma, no token exists — no responsive variant measured */
+  padding: var(--spacing-none) var(--spacing-lg);  /* 0 12 */
+  background: var(--surface-base);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);  /* shadow-lg effect style, no per-value token */
+  border: none;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-02]  .cs-colpanel__header — title + close. Reuses the
+   published "Popover Header 2025" atom (10412:15843) — do not redefine its
+   internals elsewhere; this is that atom, scoped to this pattern's usage.
+   SPEC: column-arrangement.md §1.
+   The bottom hairline is a drop-shadow, not a border — a border would add to
+   the 52px height; the shadow does not. Keep it that way.
+   -------------------------------------------------------------------------- */
+.cs-colpanel__header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;                                 /* bare literal in Figma, no token exists */
+  padding: 2px 0 2px 24px;                      /* bare literal — the atom's own inset, additional to the panel's 12px */
+  background: var(--surface-base);
+  box-shadow: 0 1px 0 #e2e3e3;                  /* bare literal — bottom hairline via shadow, not border */
+}
+.cs-colpanel__header-title {
+  flex: 1 0 0;
+  font-weight: var(--font-weight-heading-base); /* 500 */
+  font-size: var(--font-size-heading-5);        /* 16 */
+  line-height: var(--line-height-body-strong);  /* 24 */
+  letter-spacing: var(--letter-spacing-heading);/* -0.24 */
+  color: var(--text-primary);
+  text-align: center;
+}
+.cs-colpanel__header-close {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;                                  /* bare literal — see D7: the 22px glyph inside 3px padding overflows this box by ~2px/side */
+  height: 24px;
+  padding: 3px;
+  border-radius: 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.cs-colpanel__header-close svg { width: 22px; height: 22px; fill: currentColor; }
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-03]  .cs-colpanel__search — reuses the published "Nav Search"
+   atom (14170:190109). Idle state shown; :focus-within covers the focused
+   variant per this file's own convention of real pseudo-classes over state
+   classes.
+   TOKENS BOUND: --action-soft-bg (fill) · --border-radius-rounded (radius, NOT
+                 --border-radius-rounded — that name does not exist in this
+                 repo's shipped CSS, same trap already recorded on the Table
+                 contract) · --spacing-md (padding) · --spacing-sm (gap)
+   -------------------------------------------------------------------------- */
+.cs-colpanel__search {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  width: 100%;
+  height: 30px;                                 /* pinned — min AND max, genuinely fixed, not a floor */
+  padding: var(--spacing-none) var(--spacing-md);  /* 0 8 */
+  background: var(--action-soft-bg);
+  border-radius: var(--border-radius-rounded);                /* 4 */
+  border: none;
+  cursor: text;
+}
+.cs-colpanel__search:focus-within { outline: 2px solid var(--border-focus, #0077ff); outline-offset: -1px; }
+.cs-colpanel__search-icon { flex-shrink: 0; width: 18px; height: 18px; color: var(--field-icon); }
+.cs-colpanel__search-input {
+  flex: 1 0 0;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-weight: var(--font-weight-body-strong);  /* 500 — NOT body-base/400. A real distinction from ordinary field placeholders; keep it. */
+  font-size: var(--font-size-caption);           /* 12 */
+  line-height: var(--line-height-caption);       /* 16 */
+  color: var(--field-value-primary);
+}
+.cs-colpanel__search-input::placeholder { color: var(--field-value-placeholder); font-weight: inherit; }
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-04]  .cs-colpanel__list — the scrollable column region.
+   ⚠ max-height and overflow are an ADDITION, not a Figma measurement — the
+   contract's notVerified explicitly says no maximum height or scroll
+   behaviour was ever specified. This is a judgement call so a real table with
+   many columns doesn't produce an unbounded panel. Revisit if Figma later
+   specifies a real value.
+   -------------------------------------------------------------------------- */
+.cs-colpanel__list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 420px;                            /* ADDED — not measured. ~14 rows visible before scrolling. */
+  overflow-y: auto;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-05]  .cs-colpanel__group-heading — reuses the published
+   "Dropdown Heading primary" atom (27307:43122).
+   -------------------------------------------------------------------------- */
+.cs-colpanel__group-heading {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 30px;                             /* bare literal in Figma, no token exists */
+  padding: var(--spacing-sm) var(--spacing-md);  /* 4 8 */
+  font-weight: var(--font-weight-heading-strong);/* 600 */
+  font-size: var(--font-size-micro);             /* 10 */
+  line-height: var(--line-height-micro);         /* 14 */
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-06]  .cs-colpanel__row — one row = one table column.
+   Checked rows are draggable and show the 6-dot handle. Unchecked rows are
+   not — Figma's own logic: an unchecked column has no position to drag into.
+   ⚠ D3: Figma's variant property is named backwards ("unChecked=Yes" renders
+   CHECKED). Ignore that name entirely — this file's modifier is named the
+   correct way round.
+   TOKENS BOUND: --field-bg-default (fill) · --spacing-sm (gap, drag→check→
+                 label) · --spacing-xs (block padding) · --spacing-md (inline
+                 padding, right side only — left is spacing-none)
+
+   ⚠ THE FROZEN COLUMN — RULED by Singh 2026-09-01, cross-referencing an
+   EXISTING rule, not a new one. Whichever column sits FIRST inside a checked
+   `.cs-colpanel__row--checked` block (i.e. `:first-of-type` within the
+   Selected group) becomes the table's frozen-left column when Apply is
+   pressed — that is [CS-TBL-13] in table.css (Singh, 2026-08-26: "the first
+   and last column must always be freezed"), and this picker is simply how a
+   user CHOOSES which column that is. This file does NOT draw any visual cue
+   for it — neither does Figma, confirmed live 2026-09-01. If a cue is wanted
+   later, Figma already has an unused "Pin" icon component (22225:132827)
+   that was flagged as a candidate rather than built in here uninvited.
+   -------------------------------------------------------------------------- */
+.cs-colpanel__row {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  min-height: 30px;                             /* bare literal in Figma, no token exists */
+  width: 100%;
+  padding: var(--spacing-xs) var(--spacing-md) var(--spacing-xs) var(--spacing-none);  /* 2 8 2 0 */
+  background: var(--field-bg-default);
+}
+.cs-colpanel__row-drag {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--icon-secondary);
+  cursor: grab;
+  visibility: hidden;                           /* shown only on checked rows — see the modifier below */
+}
+.cs-colpanel__row--checked .cs-colpanel__row-drag { visibility: visible; }
+.cs-colpanel__row-drag:active { cursor: grabbing; }
+.cs-colpanel__row-check { flex-shrink: 0; width: 24px; height: 24px; }
+.cs-colpanel__row-label {
+  flex: 1 0 0;
+  min-width: 0;
+  font-weight: var(--font-weight-body-base);    /* 400 */
+  font-size: var(--font-size-caption);           /* 12 */
+  line-height: var(--line-height-caption);       /* 16 */
+  color: var(--field-value-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-07]  .cs-colpanel__row-move — keyboard reorder buttons.
+   ⚠ NOT IN FIGMA. Added because the measured design has no keyboard
+   alternative to drag-and-drop reordering, which fails WCAG 2.1 SC 2.1.1 as
+   designed (column-arrangement.json accessibility.dragReorderKeyboardAlternative,
+   marked BLOCKER). Visually hidden until the row or its buttons receive
+   focus, so the drag handle stays the primary affordance for mouse/touch.
+   Flag this addition to Singh — it is this file's call, not a Figma one.
+   -------------------------------------------------------------------------- */
+.cs-colpanel__row-move {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.cs-colpanel__row:focus-within .cs-colpanel__row-move,
+.cs-colpanel__row-move:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cs-colpanel__row-move button {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  color: var(--icon-secondary);
+  cursor: pointer;
+}
+.cs-colpanel__row-move button:disabled { color: var(--icon-disabled); cursor: not-allowed; }
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-08]  .cs-colpanel__footer — Reset (left) · Cancel / Apply
+   (right). All three reuse the published Button/Secondary and Button/Primary
+   components — this block only positions them, it does not restyle them.
+   ⚠ D5: Apply binds a legacy-prefixed brand-blue token in Figma
+   (colors/X-Brandblue-600). Use the normal action-primary-bg token here —
+   identical value, correct name.
+   -------------------------------------------------------------------------- */
+.cs-colpanel__footer {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2xl);                      /* 20 */
+  width: 100%;
+  padding: var(--spacing-lg) var(--spacing-none) var(--spacing-none);  /* 12 0 0 */
+}
+.cs-colpanel__footer-left { flex: 1 0 0; display: flex; }
+.cs-colpanel__footer-right { flex: 1 0 0; display: flex; justify-content: flex-end; gap: var(--spacing-sm); }
+/* .cs-btn / .cs-btn--secondary / .cs-btn--primary from buttons.css style the
+   Reset / Cancel / Apply controls themselves — do not duplicate their rules
+   here. */
+
+/* -----------------------------------------------------------------------------
+   [CS-COLPANEL-09]  .cs-coltrigger — the "Column(s)" button that OPENS the panel.
+   Figma "Columns action button tigger" 10373:16081 (layer-name typo is Figma's).
+   Added 2026-09-08. Transcribed from portals/agency/components/column-arrangement.json
+   §triggerButton (MEASURED 2026-09-04, contract v2.1.0). It is a FIELD-style control,
+   NOT a Button component — building it from .cs-btn--secondary--outlined renders a
+   transparent box with an invisible border, because --action-secondary-outlined is
+   rgba(0,0,0,0) ("no border" by design for a filled button).
+   TOKENS: --field-bg-default / --field-border-default / --field-value-primary (default)
+           --field-bg-focus (hover) · --field-border-focus (active-while-panel-open)
+           --spacing-md (8 inline) · --spacing-sm (4 gap) · --border-radius-rounded (4)
+   TYPE: Button/label — Inter Medium 12 / line-height 16.
+   STATES: default · hover · active/selected (stays highlighted WHILE the panel is
+           open — set aria-expanded="true") · disabled.
+   -------------------------------------------------------------------------- */
+.cs-coltrigger {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);                        /* 4 */
+  min-height: 30px;                              /* control height; bare literal, no token exists */
+  padding-block: var(--spacing-none);            /* 0 */
+  padding-inline: var(--spacing-md);             /* 8 */
+  border: 1px solid var(--field-border-default);
+  border-radius: var(--border-radius-rounded);   /* 4 */
+  background: var(--field-bg-default);
+  color: var(--field-value-primary);
+  font-family: var(--font-family-primary), sans-serif;
+  font-size: var(--font-size-caption);           /* 12 */
+  font-weight: var(--font-weight-heading-base);  /* 500 */
+  line-height: var(--line-height-caption);       /* 16 */
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cs-coltrigger__icon { flex: 0 0 auto; width: 20px; height: 20px; }
+.cs-coltrigger:hover { background: var(--field-bg-focus); }
+.cs-coltrigger[aria-expanded="true"] {           /* the panel is open — stays highlighted */
+  background: var(--field-bg-focus);
+  border-color: var(--field-border-focus);
+  color: var(--text-brand);
+}
+.cs-coltrigger:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 1px; }
+.cs-coltrigger:disabled,
+.cs-coltrigger[aria-disabled="true"] {
+  background: var(--action-disabled-bg);
+  border-color: var(--action-disabled-border);
+  color: var(--action-disabled-text-neutral);
+  cursor: not-allowed;
+}

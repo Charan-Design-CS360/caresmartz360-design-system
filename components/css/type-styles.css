@@ -1,0 +1,181 @@
+/* =============================================================================
+   FILE BRIEF: The named type styles of CareSmartz360 as generic classes — the
+   only sanctioned size/weight/line-height combinations. A feature copies the
+   styles it needs; it never assembles its own mix of size + weight.
+   This is a COPY-FROM reference, not an import (see 00-README.md).
+   RULE SOURCE: 01-universal/typography.md — UHR-131 (use the verified named
+                styles), UHR-132 (10px only inside the tag), UHR-133 (no blanket
+                uppercase), UHR-134 (tracking 0 on these five styles),
+                UIG-003/004 (weights and family through tokens only).
+   SPEC SOURCE: SPEC-08a §7 · SPEC-08b §5 · SPEC-12 §7 · SPEC-07b §4 · SPEC-17 §7
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   =============================================================================
+
+   WHY A BASE CLASS PLUS MODIFIERS
+   `.cs-type` alone carries the two properties every UI text style shares — the
+   family and the tracking. Each `--modifier` then sets only weight, size and
+   line-height. That satisfies 01-universal/naming.md UHR-101 (the base class is
+   used on its own and means something; `--` marks a true variant), and it means a
+   family change is one edit in one place for the whole product.
+
+   COLOUR IS DELIBERATELY ABSENT FROM EVERY BLOCK HERE.
+   These are type styles, not text roles. Colour belongs to the component that
+   uses the style, because the DS itself assigns different colours to the same
+   style in different places — e.g. `Fields/label` is text/secondary on
+   10495:19312 but text/primary on the Cell-Structure variants and on
+   `Genric Fields new 2025` (SPEC-12 §4, recorded as its Q3). Encoding one of
+   those here would silently answer an open DS question.
+
+   BARE LITERALS IN THIS FILE: none. Every property binds a token, except
+   letter-spacing, which binds fonts/tracking/X-tracking-0 with a `0px` fallback
+   because that token name is ABSENT from the generated token export
+   (typography.md UHR-134 gap note, re-verified in the export 2026-08-24). The
+   value is 0 either way, so the fallback loses no fidelity.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-01]  .cs-type — the shared base: one family, one tracking.
+   TOKENS BOUND: --font-family-primary · fonts/tracking/X-tracking-0 (fallback 0px)
+   STATES: none — type styles have no states.
+   SPEC/RULE: typography.md UIG-004 + UIG-074 (one family, Inter, bound through
+              the token — BLOCK severity) and UHR-134 (tracking 0 on the five
+              verified UI styles).
+   The literal `Inter, sans-serif` after the var is the fallback STACK, which
+   UIG-004 explicitly permits — it is not a second family.
+   ⚠ SCOPE: tracking 0 is NOT a product-wide rule. The export separately defines
+   letter-spacing/heading = -0.24px for heading styles; heading tracking is
+   outside this file (UHR-134 scope note).
+   -------------------------------------------------------------------------- */
+.cs-type {
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  letter-spacing: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-02]  .cs-type--table-header — Figma style `Table/header`.
+   TOKENS BOUND: --font-weight-heading-base (500) · --font-size-caption (12)
+                 --line-height-caption (16)
+   STATES: none. Weight is constant across default / hover / sorted.
+   SPEC: SPEC-08b §5 (header column) · SPEC-08a §7 · typography.md UHR-131 row 1.
+   NOTE the token: header weight is heading-base, and `Fields/label` uses
+   body-strong. Same numeral 500, DIFFERENT token — bind the one the spec names.
+   NO text-transform. UHR-133 is BLOCK-severity on this: Figma emits no textCase
+   on any header payload, and real production headers render `City`, `Address`,
+   `Zip Code`. Whether the CONTENT string should be caps is a separate, still-open
+   dispute (OPEN-REGISTER O-13) about wording, not about type treatment.
+   -------------------------------------------------------------------------- */
+.cs-type--table-header {
+  font-weight: var(--font-weight-heading-base);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-03]  .cs-type--table-value — Figma style `Table/value`.
+   TOKENS BOUND: --font-weight-body-base (400) · --font-size-caption (12)
+                 --line-height-caption (16)
+   STATES: none.
+   SPEC: SPEC-08b §5 (data row) · SPEC-08a §7 · typography.md UHR-131 row 2.
+   Also the style used for a checkbox/radio label (SPEC-11 §6).
+   -------------------------------------------------------------------------- */
+.cs-type--table-value {
+  font-weight: var(--font-weight-body-base);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-04]  .cs-type--field-label — Figma style `Fields/label`.
+   TOKENS BOUND: --font-weight-body-strong (500) · --font-size-caption (12)
+                 --line-height-caption (16)
+   STATES: none.
+   SPEC: SPEC-12 §4 (label typography) · SPEC-17 §7 · typography.md UHR-131 row 3.
+   Case is as typed — the DS sample string is `Field label`, sentence case, and no
+   text-transform appears on any node pulled.
+   -------------------------------------------------------------------------- */
+.cs-type--field-label {
+  font-weight: var(--font-weight-body-strong);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-05]  .cs-type--field-value — Figma style `Fields/value`.
+   TOKENS BOUND: --font-weight-body-base (400) · --font-size-caption (12)
+                 --line-height-caption (16)
+   STATES: none. The VALUE's colour changes with field state; its type does not.
+   SPEC: SPEC-12 §7 · SPEC-17 §7 · SPEC-08a §7 · typography.md UHR-131 row 4.
+   Identical to Table/value in every property; kept as its own class because the
+   DS names them separately and features should cite the one they mean.
+   -------------------------------------------------------------------------- */
+.cs-type--field-value {
+  font-weight: var(--font-weight-body-base);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-06]  .cs-type--button-label — Figma composite style `Button/label`.
+   TOKENS BOUND: --font-weight-body-strong (500) · --font-size-caption (12)
+                 --line-height-caption (16)
+   STATES: none — ONE type style for every button type and every state; compact
+           does not change it (12/16 at both 30px and 24px).
+   SPEC: SPEC-07b §4.
+   buttons.css declares these properties inline on .cs-btn so a copied button
+   needs no second file. This class exists for anything that must LOOK like a
+   button label without being a button (e.g. a text link in an action bar).
+   -------------------------------------------------------------------------- */
+.cs-type--button-label {
+  font-weight: var(--font-weight-body-strong);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-07]  .cs-type--overline — Figma style `Label/overline`. TAGS ONLY.
+   TOKENS BOUND: --font-weight-heading-strong (600) · --font-size-micro (10)
+                 --line-height-micro (14)
+   STATES: none.
+   SPEC: SPEC-08a §5 (CONFIRMED) · SPEC-17 §7 · typography.md UHR-131 row 5.
+   ⚠ SCOPE IS A BLOCK-SEVERITY RULE (UHR-132): 10px is legitimate ONLY inside the
+   tag component. The 12px body-copy floor (UIG-071, Singh 2026-08-17) governs
+   everywhere else, with exactly one named carve-out (EXCEPTIONS EX-002, the
+   PRAPARE attribution line). Using this class on helper text or a caption is a
+   BLOCK-level violation, not a style choice.
+   The uppercase transform here is the ONE verified text-transform in the whole
+   system — it is authored inside the Figma text style itself, which is why
+   UHR-133's ban does not reach it.
+   -------------------------------------------------------------------------- */
+.cs-type--overline {
+  font-weight: var(--font-weight-heading-strong);
+  font-size: var(--font-size-micro);
+  line-height: var(--line-height-micro);
+  text-transform: uppercase;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TYP-08]  .cs-type--body-micro — Figma style `Body/micro`.
+   TOKENS BOUND: --font-weight-body-base (400) · --font-size-micro (10)
+                 --line-height-micro (14)
+   STATES: none.
+   SPEC: SPEC-12 §7 (third composite row) — the style the DS uses for field
+   help / warning / success MESSAGES.
+   ⚠ READ THIS BEFORE USING IT. This style is 10px, which UIG-071 (BLOCK) forbids
+   in body copy, and a field message IS body copy — the rule's own WRONG example
+   is a 10px helper message. So the DS and the ratified floor disagree here. The
+   class is transcribed because SPEC-12 read it on real nodes; it is NOT cleared
+   for use. Resolving it is Singh's call (OPEN-REGISTER A-3 / SPEC-07 H-16). Until
+   then a field message should use .cs-type--field-value (12/16) and the
+   divergence should be filed in RULE-FLAGS.md.
+   Related recorded inconsistency: the Error severity alone hardcodes 10px and
+   line-height 1.5 (= 15px) instead of the micro pair the other three use
+   (SPEC-12 §5, its Q4) — do not "average" the two.
+   -------------------------------------------------------------------------- */
+.cs-type--body-micro {
+  font-weight: var(--font-weight-body-base);
+  font-size: var(--font-size-micro);
+  line-height: var(--line-height-micro);
+}

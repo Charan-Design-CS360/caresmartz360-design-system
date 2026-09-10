@@ -1,0 +1,39 @@
+<!--
+=============================================================================
+COMPONENT SKELETON: Form Fields (.cs-field / .cs-fieldset)
+PAIRED CSS: ../css/fields.css
+Figma Code Connect: code-connect/form-fields/
+RESOLVES: RULE-FLAGS.md [F-015] (Missing HTML templates)
+=============================================================================
+-->
+
+<!-- Primary Form Field (Default) -->
+<div class="cs-field" data-component="form-field-primary">
+  <label class="cs-field__label" for="primary-input">
+    <span>Field Label</span>
+    <span class="cs-field__required" aria-hidden="true">*</span>
+  </label>
+  <div class="cs-field__control">
+    <input id="primary-input" class="cs-field__input" type="text" placeholder="Enter value" />
+  </div>
+  <p class="cs-field__helper">Helper text explaining the requirement</p>
+</div>
+
+<!-- Form Field with Error State -->
+<div class="cs-field cs-field--error" data-component="form-field-primary">
+  <label class="cs-field__label" for="error-input">
+    <span>Field Label</span>
+    <span class="cs-field__required" aria-hidden="true">*</span>
+  </label>
+  <div class="cs-field__control">
+    <input id="error-input" class="cs-field__input" type="text" value="Invalid input" aria-invalid="true" aria-describedby="error-msg" />
+  </div>
+  <p id="error-msg" class="cs-field__error" role="alert">This field is required</p>
+</div>
+
+<!-- Secondary Field (Compact Table / Drawer Context) -->
+<div class="cs-field cs-field--compact" data-component="form-field-secondary">
+  <div class="cs-field__control">
+    <input class="cs-field__input" type="text" placeholder="Quick search or inline entry" />
+  </div>
+</div>

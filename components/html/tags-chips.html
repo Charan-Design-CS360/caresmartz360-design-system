@@ -1,0 +1,41 @@
+<!--
+=============================================================================
+COMPONENT SKELETON: Tags & Status Chips (.c360-tag / .chip)
+PAIRED CSS: ../css/tags-chips.css
+Figma Source: Status (node 26535:26277)
+RESOLVES: RULE-FLAGS.md [F-012, F-015]
+=============================================================================
+-->
+
+<!-- Status Chip — Active / Success (Green) -->
+<span class="c360-tag c360-tag--success">
+  Active
+</span>
+
+<!-- Status Chip — Inactive / Error (Red) -->
+<span class="c360-tag c360-tag--danger">
+  Inactive
+</span>
+
+<!-- Status Chip — Pending / Alert (Yellow) -->
+<span class="c360-tag c360-tag--warning">
+  Pending
+</span>
+
+<!-- Status Chip — Neutral (Gray) -->
+<span class="c360-tag c360-tag--neutral">
+  Draft
+</span>
+
+<!-- Status Chip — Clinical Blue (Healing / Info per F-012) -->
+<span class="c360-tag c360-tag--blue">
+  Healing
+</span>
+
+<!-- Interactive Action Chip (With Remove Icon) -->
+<span class="chip chip-action">
+  <span class="chip-label">Filter Tag</span>
+  <button type="button" class="chip-remove" aria-label="Remove filter">
+    <svg class="icon icon-14" aria-hidden="true"><use href="/assets/icons/sprite.svg#close"></use></svg>
+  </button>
+</span>

@@ -1,0 +1,253 @@
+/* =============================================================================
+   FILE BRIEF: Generic select / dropdown classes for EVERY CareSmartz360 feature —
+   the closed trigger, the open panel, and the menu item. A COPY-FROM reference,
+   not an import (00-README.md).
+   SPEC SOURCE: SPEC-10-dropdown-filter-and-upload.md
+   FIGMA SOURCE: `Filter_dropdown` 26360:67677 (the canonical trigger) ·
+                 `Dropdown/Menu / simple` 14593:268077 (the current menu item) ·
+                 `atom/DDM` 20163:6103 (the chevron atom)
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   =============================================================================
+
+   WHY THIS FILE IS SHORTER THAN YOU EXPECT
+   SPEC-10 documents FOUR dropdown families. Only one of them is token-bound, and
+   only that one is here:
+
+     KEPT   `Filter_dropdown` 26360:67677 — 30px, radius 4px, every colour bound
+            to a field/* or icon/* token. This is the generic select trigger.
+     LEFT OUT  ` Element before` 8327:334 and `Choices` 5699:5945 (the legacy
+            `Cell Structure=No` families). Their fills are raw alpha colours with
+            NO token — rgba(51,74,101,0.05), rgba(191,221,255,0.5),
+            rgba(9,30,66,0.04) — their labels are raw #334a65 / #afbcc9, and the
+            two disagree with each other on both the disabled fill and the
+            open-trigger radius (3px vs 4px). SPEC-10 records that as an internal
+            DS inconsistency and raises it as its Q1. A reference file may not
+            ship raw colours, so these stay out until Singh rules.
+     LEFT OUT  `atom/Filters/component` 16283:377041 — a stacked title+value
+            block, NOT a pill; its two text colours are raw #96a6b8 / #334a65.
+
+   BARE LITERALS IN THIS FILE (Figma has NO token for these):
+     30px  trigger height (also min-height and max-height — hard-locked)  §4
+     30px  menu-item min-height                                          §6b
+     18px  chevron / expand_more box                                     §4, §5c
+     2px   trigger → panel vertical gap                                  §6a
+     1px   trigger border width                                          §4
+   No raw hex anywhere in this file.
+
+   STATES THE DESIGN SYSTEM DOES NOT HAVE — named, not invented.
+   SPEC-10 §4 lists what exists on the canonical set, and the answer is TWO
+   variants: Default (Value=No) and Active+Value=Yes. There is NO hover, NO focus,
+   NO disabled and NO error variant anywhere on that page (error verified by grep
+   across the whole page 1795:0). So this file ships no hover, focus, disabled or
+   error rule for the trigger. A feature that needs one must file a row in
+   RULE-FLAGS.md and let the question reach Figma — copying the legacy family's
+   raw alpha hover would import an untokenised colour and an inconsistency.
+   The focus ring specifically is OPEN-REGISTER O-2 (no conforming token exists).
+
+   ALSO LEFT OUT OF THE PANEL, each named:
+   • ELEVATION. The panel's shadow is a raw two-layer
+     rgba(9,30,66,0.16) + rgba(66,82,110,0.44) with no token (SPEC-10 §6a). The
+     panel below therefore has NO box-shadow — it will read flat. That is a
+     visible gap, deliberately left visible rather than papered over with a
+     hardcoded shadow. It needs an elevation token; see 00-README.md gap list.
+   • The menu's trailing count (raw #334a65) and `Dropdown Heading primary`
+     (raw #69798a, plus an 11px text node bound to the 12px caption token —
+     SPEC-10 Q4). Both raw, both out.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   [CS-SEL-01]  .cs-select — the closed trigger. Structure is
+   [ label ][ : ][ value ][ ▾ ], where `:` and value render only when active.
+   TOKENS BOUND: --spacing-sm (gap) · --spacing-none / --spacing-md (padding)
+                 --field-border-default · --border-radius-rounded (4)
+                 --field-bg-default
+   STATES: default (here) · active [CS-SEL-04]. Nothing else exists — see the
+           file header.
+   SPEC: SPEC-10 §4 (canonical `Filter_dropdown` 26360:67677 anatomy).
+   The height is hard-locked in Figma as height + min-height + max-height all 30,
+   i.e. it is NOT derived from padding; reproduce all three so a long value cannot
+   grow the control. Width hugs its contents (measured instances 106×30, 158×30).
+   -------------------------------------------------------------------------- */
+.cs-select {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  height: 30px;                                 /* bare literal in Figma, no token exists */
+  min-height: 30px;                             /* bare literal in Figma, no token exists */
+  max-height: 30px;                             /* bare literal in Figma, no token exists */
+  padding: var(--spacing-none) var(--spacing-md);  /* 0 vertical / 8 horizontal */
+  width: max-content;                           /* hug contents */
+  background: var(--field-bg-default);
+  border: 1px solid var(--field-border-default);/* 1px is a bare literal — Figma strokeWeight */
+  border-radius: var(--border-radius-rounded);  /* 4 */
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-SEL-02]  .cs-select__label / __sep / __value — the three text parts.
+   TOKENS BOUND: --font-family-primary · --font-weight-body-base (400)
+                 --font-size-caption (12) · --line-height-caption (16)
+                 --field-value-primary · tracking with 0px fallback
+   STATES: the separator and value are HIDDEN by default and revealed by
+           .cs-select--active [CS-SEL-04]. Their COLOUR does not change.
+   SPEC: SPEC-10 §4 (Label / `:` / Value row) — 12px, field/value-primary,
+         explicitly "same colour in both states".
+   Weight is 400. Never 500 or 700 here: the trigger is not a label.
+   -------------------------------------------------------------------------- */
+.cs-select__label,
+.cs-select__sep,
+.cs-select__value {
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-base);    /* 400 */
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  color: var(--field-value-primary);
+  white-space: nowrap;
+}
+.cs-select__sep,
+.cs-select__value {
+  display: none;                                /* revealed only in the active state */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-SEL-03]  .cs-select__icon — the chevron slot (Material `expand_more`).
+   TOKENS BOUND: --icon-primary
+   STATES: none. The chevron does not recolour or rotate in any variant pulled.
+   SPEC: SPEC-10 §4 (Chevron row) + §5c (`atom/DDM` 20163:6103): 18px square,
+         wrapper `overflow: clip`, `align-items: flex-start`.
+   `atom/DDM` has a second variant (Solid=No) bound to icon/secondary; use
+   .cs-select__icon--soft below when the design shows the lighter chevron.
+   -------------------------------------------------------------------------- */
+.cs-select__icon {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  width: 18px;                                  /* bare literal in Figma, no token exists */
+  height: 18px;                                 /* bare literal in Figma, no token exists */
+  overflow: clip;
+  color: var(--icon-primary);
+}
+.cs-select__icon > svg { width: 100%; height: 100%; display: block; fill: currentColor; }
+
+/* Solid=No variant of `atom/DDM` — the only other chevron the DS defines. */
+.cs-select__icon--soft { color: var(--icon-secondary); }
+
+/* -----------------------------------------------------------------------------
+   [CS-SEL-04]  .cs-select--active — the one real state variant (Value=Yes).
+   TOKENS BOUND: --field-bg-focus · --field-border-focus
+   STATES: this IS the active state (node 26360:67693).
+   SPEC: SPEC-10 §4 (Active variant row).
+   Two details that are easy to get wrong: the TEXT COLOUR DOES NOT CHANGE — the
+   DS keeps field/value-primary in both states — and the active variant is what
+   reveals the `:` separator and the chosen value.
+   -------------------------------------------------------------------------- */
+.cs-select--active {
+  background: var(--field-bg-focus);
+  border-color: var(--field-border-focus);
+  overflow: clip;                               /* the active variant adds this in Figma */
+}
+.cs-select--active .cs-select__sep,
+.cs-select--active .cs-select__value {
+  display: block;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-SEL-05]  .cs-menu — the open panel.
+   TOKENS BOUND: --spacing-sm (padding-block) · --surface-base (fill)
+                 --border-radius-rounded (4)
+   STATES: none — the panel is either mounted or not.
+   SPEC: SPEC-10 §6a (`Dropdown/Menu (element before)` 5845:6433): radius 4px,
+         padding 4px 0, fill white (surface/base resolves to the same value), and
+         a 2px vertical gap from the trigger.
+   ⚠ NO ELEVATION. See the file header: Figma's shadow is a raw two-layer rgba
+   with no token, so it is omitted rather than hardcoded. The panel will look flat
+   until the DS provides an elevation token. Do not add a shadow at the feature
+   either — that is how five features end up with five shadows.
+   The 200px/181px widths in the spec are instance widths, not rules; width comes
+   from the trigger it is attached to.
+   -------------------------------------------------------------------------- */
+.cs-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2px;                              /* bare literal in Figma, no token exists — trigger → panel gap */
+  padding: var(--spacing-sm) var(--spacing-none);  /* 4px block, 0 inline */
+  background: var(--surface-base);
+  border-radius: var(--border-radius-rounded);  /* 4 */
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-SEL-06]  .cs-menu__item + .cs-menu__label — one row of the open menu.
+   TOKENS BOUND: --spacing-md (gap and inline padding) · --spacing-sm (block
+                 padding) · --border-radius-rounded (4) · --field-bg-default
+                 --font-size-body-base (14) · --field-value-primary
+   STATES: default (here) · hover · active · selected — all in [CS-SEL-07].
+   SPEC: SPEC-10 §6b (`Dropdown/Menu / simple` 14593:268077, all 4 variants share
+         this box): min-height 30px, padding 4px 8px, gap 8px, radius 4px,
+         overflow clip.
+   ⚠ THE ITEM LABEL IS 14px, NOT 12px — font-size/body-base — and its tracking is
+   −0.24px (fonts/tracking/X-tracking-neg-024), with line-height 1.2. That is the
+   one place in these reference files where UI text is not 12/16, and it is what
+   the node binds. It is deliberately NOT normalised to the caption pair.
+   The tracking token is bound with a −0.24px fallback because, like the 0-tracking
+   token, it may be absent from a given portal's export.
+   -------------------------------------------------------------------------- */
+.cs-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);                       /* 8 */
+  width: 100%;
+  min-height: 30px;                             /* bare literal in Figma, no token exists */
+  padding: var(--spacing-sm) var(--spacing-md); /* 4 8 */
+  background: var(--field-bg-default);
+  border-radius: var(--border-radius-rounded);  /* 4 */
+  overflow: clip;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.cs-menu__label {
+  flex: 1 0 0;
+  min-width: 0;
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-base);    /* 400 */
+  font-size: var(--font-size-body-base);        /* 14 — not the 12px caption */
+  line-height: 1.2;                             /* bare literal in Figma — a unitless ratio, not a line-height token */
+  letter-spacing: var(--letter-spacing-heading, -0.24px);
+  color: var(--field-value-primary);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-SEL-07]  .cs-menu__item state modifiers.
+   TOKENS BOUND: --field-border-focus (used as a FILL on hover)
+                 --field-value-inverse · --field-bg-focus · --field-value-primary
+   STATES: hover · active · selected. All four variants were read directly.
+   SPEC: SPEC-10 §6b (variant table).
+   ⚠ DO NOT MISS THIS: hover is a SOLID BRAND-BLUE ROW WITH WHITE TEXT — Figma
+   binds field/border-focus as the row FILL. It is not a pale tint. The pale tint
+   (field/bg-focus) is the ACTIVE / SELECTED state. Getting these two the wrong
+   way round is the most likely error when copying this block.
+   `:hover` and the modifier class are both listed: the pseudo-class for live
+   menus, the class for static prototypes and documentation.
+   -------------------------------------------------------------------------- */
+.cs-menu__item:hover,
+.cs-menu__item--hover {
+  background: var(--field-border-focus);        /* a border token used as a fill — that is what Figma binds */
+}
+.cs-menu__item:hover .cs-menu__label,
+.cs-menu__item--hover .cs-menu__label {
+  color: var(--field-value-inverse);
+}
+.cs-menu__item--active,
+.cs-menu__item--selected {
+  background: var(--field-bg-focus);            /* the pale tint */
+}
+.cs-menu__item--active .cs-menu__label,
+.cs-menu__item--selected .cs-menu__label {
+  color: var(--field-value-primary);
+}

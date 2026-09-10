@@ -1,0 +1,663 @@
+/* =============================================================================
+   FILE BRIEF: Generic form-field classes for EVERY CareSmartz360 feature —
+   label, required marker, help affordance, input row, trailing control slot,
+   and the field message. A COPY-FROM reference, not an import (00-README.md).
+   SPEC SOURCE: SPEC-12-textfield-textarea-label.md  (the stacked field: label
+                block + 30px control — `2023/ New-Text field` 14345:224740,
+                `atom/text_field lables` 10495:19313,
+                `Genric Fields new 2025` 14465:221801, `Field / Alerts` 11116:25116)
+                SPEC-17-fields-type-1.md  (Fields type 1 — the ONE bordered block
+                that holds label row + input row inside a single border,
+                component set `field-set-type1` 26938:65997)
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   ⚠ SPEC-17 was NOT part of the 8-spec adversarial verification pass
+     (README-SPEC-RELIABILITY.md covers the earlier 8 only).
+   =============================================================================
+
+   ══ READ THIS FIRST: THESE ARE TWO DIFFERENT FIGMA COMPONENTS ══
+   They are NOT two sizes of one thing, and conflating them is the exact mistake
+   SPEC-17 §10 was written to stop.
+
+     .cs-field     — SPEC-12. Label ABOVE the control, each with its own box.
+                     Control height 30px (Compact=Yes) or 40px (Compact=No).
+                     Radius 4px. Block total 50px = 16 label + 4 gap + 30 control.
+     .cs-fieldset  — SPEC-17. ONE bordered block, 62px tall, containing a 26px
+                     label row and a 34px input row. Radius 0. ONE variant axis
+                     (state, 7 values) and NO compact axis at all.
+
+   Pick by what the design shows. Do not merge them, do not give .cs-field a 34px
+   height, and do not give .cs-fieldset a compact modifier.
+
+   BARE LITERALS IN THIS FILE (Figma has NO token for these):
+     30px  control height, Compact=Yes                       SPEC-12 §3
+     40px  control height, Compact=No                        SPEC-12 §3
+     16px  label row height (Cell Structure=No)              SPEC-12 §4
+     22px  label row height (Cell Structure=Yes)             SPEC-17 §6a
+     20px  inner value line box                              SPEC-12 §3 · SPEC-17 §6d
+     8px   required-marker wrapper width                     SPEC-12 §4 · SPEC-17 §6b
+     16px  required-marker wrapper height, help icon box     SPEC-17 §6b/§6c
+     12px  help glyph drawn size (16 × (1 − 2×12.5%))        SPEC-12 §4 · SPEC-17 §6c
+     5.162 × 5.6px  required-marker inner vector             SPEC-12 §4 · SPEC-17 §6b
+     30 × 30px + 10px padding  trailing control slot         SPEC-12 §3 · SPEC-17 §6e
+     16px  trailing control glyph                            SPEC-12 §3
+     26px / 34px / 62px  Fields-type-1 rows and total        SPEC-17 §4/§6d
+     1px   border width (all fields)                         SPEC-12 §3 · SPEC-17 §4
+   One near-literal, declared: the 2px gap of the label text+marker group is RAW
+   in Figma; it is bound to spacing/xs (also exactly 2px) rather than typed. See
+   [CS-FLD-05] — that substitution is a judgement call, flagged for review.
+   No raw hex anywhere in this file.
+
+   NOT IN THIS FILE, deliberately:
+   • Read-only field (`atom/text field` 7926:10954) and its hover/active — every
+     colour is a raw hex with no token (SPEC-12 §3), plus a raw 6px radius.
+   • Legacy textarea (`atom/Text area` 14466:221724) — get_variable_defs returns
+     typography tokens ONLY, zero colour variables (SPEC-12 §6b).
+   • Textarea generally: the current tokenised atom exists only as
+     `Table Structure=Yes`; using it as a standalone form textarea is a
+     cross-context borrow the DS never demonstrates (SPEC-12 §6a, its Q5).
+     A feature that needs one must file a flag, not copy a guess.
+   • Field HOVER on Fields type 1 — the axis has 7 values and hover is not one of
+     them; building one "would be an invention" (SPEC-17 §5).
+   • FOCUS RING on any field. accessibility.md rates it OPEN-REGISTER O-2: no
+     conforming token exists and no rule can be written until Singh names the
+     token, width and offset. The `focus` STATE below is the DS's own field-focus
+     styling (background + border tokens), which is a different thing from a
+     WCAG 2.4.7 focus indicator. Do not treat one as the other.
+   ============================================================================= */
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PART 1 — .cs-field : the stacked field (SPEC-12)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-01]  .cs-field — the field block: label above, control below.
+   TOKENS BOUND: --spacing-sm (the 4px label→control gap)
+   STATES: none on the block itself; state modifiers live on the control
+           [CS-FLD-09] so the label never recolours with validation.
+   SPEC: SPEC-12 §4, "Label → field gap" (from `Genric Fields new 2025`
+         14465:221801): column flex, align-items flex-start, gap 4px
+         (spacing/sm), total block height 50px = 16 + 4 + 30.
+   The wrapper's own 3px radius in that node is RAW with no token, so it is not
+   reproduced — a wrapper with no fill and no border has nothing to round.
+   -------------------------------------------------------------------------- */
+.cs-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);                       /* 4 — label to control */
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-02]  .cs-field__label-row — the label row (16px).
+   TOKENS BOUND: --spacing-sm (gap AND padding-left) · --spacing-none (padding
+                 block and right)
+   STATES: none.
+   SPEC: SPEC-12 §4, variant `Compact=Yes, Cell Structure=No` (10495:19257 and
+         siblings): height 16px, row, align-items center, gap spacing/sm 4px,
+         padding-left spacing/sm 4px, right 0, block 0.
+   The Cell-Structure=Yes variant is a DIFFERENT row (22px, flex-end, 8px left
+   pad) and belongs to .cs-fieldset — see [CS-FS-02].
+   The Compact=No variant is 32px because the help icon drops to a second line
+   (SPEC-12 §4) — not modelled here; it is a wrap behaviour, not a size token.
+   -------------------------------------------------------------------------- */
+.cs-field__label-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+  padding-left: var(--spacing-sm);              /* 4 */
+  padding-right: var(--spacing-none);           /* 0 */
+  padding-block: var(--spacing-none);           /* 0 */
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-03]  .cs-field__label — the label text. Figma style `Fields/label`.
+   TOKENS BOUND: --font-family-primary · --font-weight-body-strong (500)
+                 --font-size-caption (12) · --line-height-caption (16)
+                 --text-primary (colour) · tracking token with 0px fallback
+   STATES: none. The label does NOT recolour with field state in any node pulled.
+   SPEC: SPEC-12 §4 (label typography) · type-styles.css [CS-TYP-04].
+   ⚠ COLOUR IS A KNOWN DS INCONSISTENCY, not a reading error: this style is
+   text/secondary on 10495:19312 and `View field / Notes`, but text/primary on the
+   Cell-Structure variants and on `Genric Fields new 2025` — the node this block
+   is built from. SPEC-12 raises it as its Q3. text/primary is bound here because
+   that is what the source node binds; if a design shows the softer label, swap to
+   var(--text-secondary) at the feature and note it, rather than editing this file.
+   Case is as typed — no text-transform (typography.md UHR-133, BLOCK).
+   -------------------------------------------------------------------------- */
+.cs-field__label {
+  flex: 0 0 auto;
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-strong);  /* 500 — Inter Medium */
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-04]  .cs-field__required — the required marker.
+   TOKENS BOUND: --icon-danger (fill, via currentColor)
+   STATES: none — presence IS the state.
+   SPEC: SPEC-12 §4 (Required marker) · SPEC-17 §6b.
+   ⚠ IT IS AN 8px SVG GLYPH (`emergency_black_18dp` 10495:19244, a 6-point
+   asterisk burst), NOT a typographic `*`. Substituting a text asterisk changes
+   the metrics and the baseline. The inner vector is 5.162 × 5.6 — those decimals
+   are Figma's, not a rounding artefact.
+   Placement: inside the label text group, 2px after the text in SPEC-12's
+   Cell-Structure=No group (a RAW 2px, no token — hence the group in [CS-FLD-05]).
+   OPEN: whether the marker should also be announced to screen readers is
+   OPEN-REGISTER O-7 (required-marker semantics). Mark it up per PATTERNS.md and
+   do not invent an aria pattern here.
+   -------------------------------------------------------------------------- */
+.cs-field__required {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 8px;                                   /* bare literal in Figma, no token exists */
+  height: 8px;                                  /* bare literal in Figma, no token exists (SPEC-12 §4 box) */
+  overflow: hidden;
+  color: var(--icon-danger);
+}
+.cs-field__required > svg {
+  width: 5.162px;                               /* bare literal — exact inner vector size from Figma */
+  height: 5.6px;                                /* bare literal — exact inner vector size from Figma */
+  fill: currentColor;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-05]  .cs-field__label-text — the text + marker group inside the row.
+   TOKENS BOUND: --spacing-xs (2px) — see the note.
+   STATES: none.
+   SPEC: SPEC-12 §4, "Inner text + marker group" (e.g. 10495:19253): row,
+         align-items center, gap RAW 2px.
+   Figma records that gap as a raw 2px with no token bound. spacing/xs IS exactly
+   2px in the export, so binding it reproduces the geometry without typing a
+   literal. That substitution is a judgement call and is named here so a reviewer
+   can reject it: if the DS later gives the group its own token, this is the line
+   to change.
+   -------------------------------------------------------------------------- */
+.cs-field__label-text {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);                       /* 2 — Figma has this as a raw 2px; spacing/xs is the same value */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-06]  .cs-field__help — the help affordance.
+   TOKENS BOUND: --icon-brand (fill, via currentColor)
+   STATES: none.
+   SPEC: SPEC-12 §4 (Help affordance) · SPEC-17 §6c. `help_black_18dp`
+         10495:19340: 16px box, glyph inset 12.5% → 12px drawn, placed
+         spacing/sm 4px after the text group (the row's gap supplies that).
+   It is a FILLED blue circle with a knocked-out `?`, not an outline icon.
+   Purpose per the Figma docs: "Triggers tooltip or info popover" — but no tooltip
+   content is defined on the node, and accessibility.md is explicit that a help
+   affordance must not be role="dialog", must not trap focus, and must be
+   dismissible with Escape. The behaviour is the feature's to build.
+   -------------------------------------------------------------------------- */
+.cs-field__help {
+  flex: 0 0 auto;
+  width: 16px;                                  /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+  overflow: hidden;
+  color: var(--icon-brand);
+}
+.cs-field__help > svg {
+  width: 12px;                                  /* bare literal — 16 × (1 − 2 × 12.5%) */
+  height: 12px;                                 /* bare literal */
+  fill: currentColor;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-07]  .cs-field__control — the input row. DEFAULT STATE.
+   TOKENS BOUND: --field-bg-default · --field-border-default
+                 --border-radius-rounded (4) · --spacing-md (8, left)
+                 --spacing-none (right and block)
+   STATES: default (here) · hover · focus · filled · disabled · error
+           — all in [CS-FLD-09]. Geometry never changes between them.
+   SPEC: SPEC-12 §3 (canonical `2023/ New-Text field` 14345:224740):
+         height 30px at Compact=Yes ("Use this"), padding-left spacing/md 8px,
+         padding-right 0 (FLUSH, so a 30×30 trailing control butts the edge),
+         padding-block 0 — the height does the vertical centring — radius 4px.
+   Max width 400px exists on the component ("added max width to 400 for settings")
+   and is NOT set here: a width cap belongs to the layout that places the field,
+   not to the atom.
+   -------------------------------------------------------------------------- */
+.cs-field__control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30px;                                 /* bare literal in Figma, no token exists — Compact=Yes */
+  padding-left: var(--spacing-md);              /* 8 */
+  padding-right: var(--spacing-none);           /* 0 — flush */
+  padding-block: var(--spacing-none);           /* 0 */
+  background: var(--field-bg-default);
+  border: 1px solid var(--field-border-hard);   /* FIX 2026-09-08: live field-input state=default (27062:8093) binds field/border-hard #94A3B8 — border-default (#E2E8F0) was three shades too pale. 1px is a bare literal — Figma strokeWeight */
+  border-radius: var(--border-radius-rounded);  /* 4 */
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-08]  .cs-field--compact-no — the 40px control.
+   TOKENS BOUND: none (both heights are bare literals).
+   STATES: none — size variant.
+   SPEC: SPEC-12 §3 (Height — non-compact 40px, `Compact=No` 14345:224749).
+   NAMING: the modifier is named after the Figma axis VALUE, verbatim, rather
+   than an invented density word. Three density vocabularies are live in the
+   ecosystem right now (compact/default/comfortable · small/medium/large ·
+   Default/Large/Small) and picking one is CONTRADICTIONS S10 · OPEN-REGISTER O-17
+   — Singh's call, not this file's. Rename it the day O-17 closes.
+   -------------------------------------------------------------------------- */
+.cs-field--compact-no .cs-field__control {
+  height: 40px;                                 /* bare literal in Figma, no token exists — Compact=No */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-09]  .cs-field__control state modifiers — pure token swaps.
+   TOKENS BOUND: --field-bg-focus · --field-border-focus · --field-bg-disabled
+                 --border-subtle · --field-bg-danger · --field-border-danger
+   STATES: hover · focus · filled · disabled · error. Geometry is identical in
+           every one; only the two colour tokens (and the value colour) move.
+   SPEC: SPEC-12 §3, "Text field — every state actually seen".
+   THREE FACTS THE DS DECIDES DIFFERENTLY FROM MOST SYSTEMS:
+   1. HOVER AND FOCUS ARE THE SAME STYLING. There is no separate focus variant;
+      the DS reuses Hover, which already carries the focus tokens (SPEC-12 C1).
+      Both selectors are listed so the intent is readable in markup.
+   2. FILLED changes only the VALUE colour — background and border are unchanged
+      from Default (inner atom 10496:20041).
+   3. DISABLED's border is `border/subtle`, NOT a field/* token. That is what the
+      node binds (14917:282071); it is not a slip in this file.
+   The `:hover` / `:focus-within` pseudo-classes and the modifier classes are both
+   provided: the pseudo-classes for live inputs, the modifier classes for static
+   prototypes and documentation pages that must render a state on paper.
+   -------------------------------------------------------------------------- */
+.cs-field__control:hover,
+.cs-field__control:focus-within,
+.cs-field--hover .cs-field__control,
+.cs-field--focus .cs-field__control {
+  background: var(--field-bg-focus);
+  border-color: var(--field-border-focus);
+}
+
+.cs-field--filled .cs-field__value {
+  color: var(--field-value-primary);            /* background and border stay at Default */
+}
+
+.cs-field--disabled .cs-field__control {
+  background: var(--field-bg-disabled);
+  border-color: var(--border-subtle);           /* NOT a field/* token — see fact 3 */
+}
+.cs-field--disabled .cs-field__value {
+  color: var(--field-value-disabled);
+}
+
+.cs-field--error .cs-field__control {
+  background: var(--field-bg-danger);
+  border-color: var(--field-border-danger);
+}
+/* ⚠ The DS really does colour the error field's placeholder with `field/icon`,
+   not a text token (24961:5097 and 24961:7135, SPEC-12 §3). Transcribed, not
+   corrected. */
+.cs-field--error .cs-field__value {
+  color: var(--field-icon);
+}
+/* Both Error/Required variants are `Table Structure=Yes` and carry
+   border-radius/rounded-none = 0. For a ROUNDED (non-table) error field the DS
+   shows no variant at all — SPEC-12 Q2. So this modifier does NOT change the
+   radius: squaring it would be right in a table and wrong in a form, and the DS
+   has not said which. A feature in a table context adds
+   `border-radius: var(--border-radius-rounded-none)` itself and cites Q2. */
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-10]  .cs-field__value — the value / placeholder text, and the reset
+   that lets a real <input> take its place.
+   TOKENS BOUND: --font-family-primary · --font-weight-body-base (400)
+                 --font-size-caption (12) · --line-height-caption (16)
+                 --field-value-placeholder (colour) · tracking with 0px fallback
+   STATES: colour only — see [CS-FLD-09]. Type never changes.
+   SPEC: SPEC-12 §3 (inner text wrapper, 20px value box, flex 1 0 0) and §7
+         (Figma style `Fields/value`) · SPEC-17 §6d (overflow behaviour).
+   Single line, truncating with an ellipsis — that is what the node specifies;
+   it is not a defensive default.
+   -------------------------------------------------------------------------- */
+.cs-field__value {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 20px;                                 /* bare literal in Figma, no token exists — line box inside the 30px row */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-base);    /* 400 — Inter Regular */
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  color: var(--field-value-placeholder);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cs-field__value input,
+.cs-field__value select,
+.cs-field__value textarea {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+.cs-field__value input::placeholder {
+  color: var(--field-value-placeholder);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-11]  .cs-field__toy — the trailing control slot (calendar, chevron,
+   clock, currency…). Figma calls the set `Global/Atom/Fields Toys` (13153:32542,
+   13 variants: add, calRange, dateTime, document, dollar, download, dropDown,
+   edit, propDelete, swap, textBtn, time, view — only dropDown defaults true).
+   TOKENS BOUND: none — BOTH the 30×30 box and the 10px padding are raw in Figma.
+   STATES: none in the DS.
+   SPEC: SPEC-12 §3 (Trailing icon slot) · SPEC-17 §6e.
+   It sits flush against the right border because the control's right padding is
+   0 — that is the reason for the asymmetric padding in [CS-FLD-07].
+   -------------------------------------------------------------------------- */
+.cs-field__toy {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 30px;                                  /* bare literal in Figma, no token exists */
+  height: 30px;                                 /* bare literal in Figma, no token exists */
+  padding: 10px;                                /* bare literal in Figma, no token exists */
+  box-sizing: border-box;
+}
+.cs-field__toy > svg {
+  width: 16px;                                  /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FLD-12]  .cs-field__message — the message under a field.
+   TOKENS BOUND: --spacing-sm (gap and the 4px from the control)
+                 --spacing-none (padding) · and per severity:
+                 --text-danger · --text-secondary · --text-warning · --text-success
+   STATES: the four severities are the states — error · help · warning · success.
+   SPEC: SPEC-12 §5 (`Field / Alerts` 11116:25116): flex, align-items center,
+         gap spacing/sm 4px, padding 0, icon box 16 × 16, and 4px from the field.
+   ICON COLOUR: each severity's icon fill, read straight out of the SVG, is the
+   SAME value as its text token (error #DC2626 = text/danger, help #475569 =
+   text/secondary, warning #CA8A04 = text/warning, success #22C55E = icon/success
+   ≈ text/success). So the icon binds `currentColor` and inherits the row's
+   colour — one token per severity, no raw hex, and the pairing cannot drift apart.
+   ⚠ TYPE STYLE IS DELIBERATELY NOT SET HERE. Figma uses `Body/micro` (10px), and
+   the ratified 12px body-copy floor (UIG-071, BLOCK, Singh 2026-08-17) forbids
+   10px in body copy — a field message IS body copy. The two disagree, and this
+   file will not pick a winner. Add .cs-type--field-value (12/16, floor-compliant)
+   or .cs-type--body-micro (10/14, Figma-faithful) at the feature, and file the
+   choice in RULE-FLAGS.md. See type-styles.css [CS-TYP-08] and OPEN-REGISTER A-3.
+   Recorded so nobody "tidies" it: the Error severity alone hardcodes 10px and
+   line-height 1.5 (= 15px) where the other three use the micro pair (SPEC-12 Q4).
+   -------------------------------------------------------------------------- */
+.cs-field__message {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  padding: var(--spacing-none);                 /* 0 */
+  margin-top: var(--spacing-sm);                /* 4 — gap from the control (SPEC-12 §5) */
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-base);    /* 400 */
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.cs-field__message-icon {
+  flex: 0 0 auto;
+  width: 16px;                                  /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+  overflow: hidden;
+  color: inherit;                               /* icon fill == the severity's text token — see the block note */
+}
+.cs-field__message-icon > svg { fill: currentColor; }
+
+.cs-field__message--error   { color: var(--text-danger); }
+.cs-field__message--help    { color: var(--text-secondary); }
+.cs-field__message--warning { color: var(--text-warning); }
+.cs-field__message--success { color: var(--text-success); }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PART 2 — .cs-fieldset : Fields type 1, the single bordered block (SPEC-17)
+   Component set `field-set-type1` 26938:65997. ONE axis: state, 7 values.
+   NO compact axis exists. Do not add one.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* -----------------------------------------------------------------------------
+   [CS-FS-01]  .cs-fieldset — the container: label row and input row inside ONE
+   border.
+   TOKENS BOUND: --field-bg-default · --field-border-default (via the two local
+                 hooks) · --border-radius-rounded-none (0) · --spacing-none
+   STATES: 7, all in [CS-FS-06] — default · focus · error · success · warning
+           · ai · disabled. Each is a pure token swap; geometry never changes.
+   SPEC: SPEC-17 §4 (container anatomy) + §5 (states).
+   GEOMETRY ARITHMETIC, so nobody "improves" it:
+     1px border + 26px label row + 34px input row + 1px border = 62px ✓ (all 7
+     Figma symbols measure 62). Padding is 0 — the payload's 1px fallback does not
+     close either the 62px height or the 358px child width (SPEC-17 §4).
+   RADIUS IS 0, bound to border-radius/rounded-none. This is NOT the 4px of
+   .cs-field. Note also that a tag nested in this container's top row IS 4px
+   (SPEC-17 §6e) — one component, two radii, both correct as drawn.
+   The three local hooks (--cs-fieldset-*) exist so a state modifier rewrites one
+   line instead of three rules. They are NOT design tokens and never leave this
+   component.
+   -------------------------------------------------------------------------- */
+.cs-fieldset {
+  --cs-fieldset-bg: var(--field-bg-default);
+  --cs-fieldset-border: var(--field-border-default);
+  --cs-fieldset-value: var(--field-value-placeholder);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 30px 34px;                /* FIX 2026-09-08: label row 26 → 30 — live form-field-primary (26938:65991) is 360x66: field-header-primary 358x30 @ y1 + bottom 358x34. Bare literals in Figma, no spacing token. Inner label-row internals (22px) not re-measured — flag if it renders short. */
+  width: 100%;                                  /* the Figma variant is 360px; its description says "100% width" */
+  min-height: 66px;                             /* FIX 2026-09-08: 1 + 30 + 34 + 1 — live symbol is 66, was 62 */
+  padding: var(--spacing-none);                 /* 0 — see the arithmetic note */
+  background: var(--cs-fieldset-bg);
+  border: 1px solid var(--cs-fieldset-border);  /* 1px is a bare literal — Figma strokeWeight, inside-aligned */
+  border-radius: var(--border-radius-rounded-none);  /* 0 — square corners */
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FS-02]  .cs-fieldset__label-row — row 1.
+   TOKENS BOUND: --spacing-sm (gap) · --spacing-md (padding-left)
+                 --spacing-none (padding block)
+   STATES: none.
+   SPEC: SPEC-17 §6a — an instance of `atom/text_field lables` at
+         Compact=Yes, Cell Structure=Yes: 22px tall, align-items flex-end (the
+         label sits LOW in its row), gap 4px, padding-left 8px, block 0.
+   ⚠ DO NOT ADD A GAP PROPERTY. The row is 26px and this content is 22px, and
+   `align-self: start` leaves the remaining 4px BELOW the label — that empty 4px
+   IS the documented "gap between top and bottom sections". Adding gap:4px on top
+   of it makes the block 66px and breaks the 62px total.
+   Note the padding-left here is 8px (spacing/md), where .cs-field's label row is
+   4px (spacing/sm) — the two components genuinely differ.
+   -------------------------------------------------------------------------- */
+.cs-fieldset__label-row {
+  grid-row: 1;
+  align-self: start;                            /* leaves the 4px slack below — that IS the gap */
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-sm);                       /* 4 */
+  height: 22px;                                 /* bare literal in Figma, no token exists */
+  min-height: 22px;                             /* bare literal in Figma, no token exists */
+  padding-left: var(--spacing-md);              /* 8 */
+  padding-block: var(--spacing-none);           /* 0 */
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FS-03]  .cs-fieldset__label — row-1 label text. Style `Fields/label`.
+   TOKENS BOUND: same as [CS-FLD-03], colour --text-primary.
+   STATES: none.
+   SPEC: SPEC-17 §6a — the colour token here is text/primary, NOT a field/* token.
+         That is explicit in the spec and is worth re-reading before "fixing" it.
+   -------------------------------------------------------------------------- */
+.cs-fieldset__label {
+  flex: 0 0 auto;
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-strong);  /* 500 — Inter Medium */
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FS-04]  .cs-fieldset__required / .cs-fieldset__help — the optional markers.
+   TOKENS BOUND: --icon-danger · --icon-brand
+   STATES: none.
+   SPEC: SPEC-17 §6b / §6c. Both exist in the sub-component and are OFF in all 7
+   published variants (`required={false}`, `help={false}`); their geometry comes
+   from the documentation exemplar 26938:65494, which is named in the spec as the
+   source. The required wrapper is 8 × 16 in this branch (taller than .cs-field's
+   8 × 8) because it aligns to a flex-end 22px row.
+   -------------------------------------------------------------------------- */
+.cs-fieldset__required {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 8px;                                   /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists — Cell Structure=Yes branch */
+  overflow: hidden;
+  color: var(--icon-danger);
+}
+.cs-fieldset__required > svg {
+  width: 5.162px;                               /* bare literal — exact inner vector */
+  height: 5.6px;                                /* bare literal — exact inner vector */
+  fill: currentColor;
+}
+.cs-fieldset__help {
+  flex: 0 0 auto;
+  width: 16px;                                  /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+  overflow: hidden;
+  color: var(--icon-brand);
+}
+.cs-fieldset__help > svg {
+  width: 12px;                                  /* bare literal — 16 × (1 − 2 × 12.5%) */
+  height: 12px;                                 /* bare literal */
+  fill: currentColor;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FS-05]  .cs-fieldset__input-row + __value — row 2.
+   TOKENS BOUND: --spacing-md (padding-left) · --spacing-none (right and block)
+                 type tokens as [CS-FLD-10]; colour comes from the container hook
+   STATES: colour follows the container's state; geometry does not move.
+   SPEC: SPEC-17 §6d — row 34px, align-items center, padding-left 8px,
+         padding-right 0 (FLUSH, so a 30×30 trailing control butts the border),
+         value line box 20px, single line, truncates.
+   -------------------------------------------------------------------------- */
+.cs-fieldset__input-row {
+  grid-row: 2;
+  display: flex;
+  align-items: center;
+  height: 34px;                                 /* bare literal in Figma, no token exists */
+  padding-left: var(--spacing-md);              /* 8 */
+  padding-right: var(--spacing-none);           /* 0 — flush */
+  padding-block: var(--spacing-none);           /* 0 */
+  box-sizing: border-box;
+}
+.cs-fieldset__value {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 20px;                                 /* bare literal in Figma, no token exists */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-base);    /* 400 — Inter Regular */
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  color: var(--cs-fieldset-value);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cs-fieldset__value input,
+.cs-fieldset__value select,
+.cs-fieldset__value textarea {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+.cs-fieldset__value input::placeholder {
+  color: var(--field-value-placeholder);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-FS-06]  .cs-fieldset state modifiers — all 7, each a pure token swap.
+   TOKENS BOUND: --field-bg-{focus,danger,success,warning,ai}
+                 --field-border-{focus,danger,success,warning,ai,default}
+                 --field-value-primary · --field-value-disabled
+   STATES: the 7 published variants and nothing else. There is NO hover variant
+           on this component set — building one would be an invention (SPEC-17 §5).
+   SPEC: SPEC-17 §5 (state table, all 7 nodes; every background and border is
+         token-bound and every hex matches the export exactly).
+   ⚠ DISABLED HAS NO BACKGROUND, ON PURPOSE-AS-DRAWN. The Figma disabled branch
+   emits an EMPTY STRING for background — the box renders transparent — even
+   though field/bg-disabled is a real token reachable from this very subtree.
+   SPEC-17 calls that a Figma defect (its Q1) and says explicitly: do not silently
+   apply the grey, because that ships a look Figma does not show. The commented
+   line below stays commented until the Figma variant is fixed.
+   Also recorded: the `ai` variant's placeholder STRING in Figma is wrong (it
+   reuses warning's copy). Cosmetic in Figma — do not carry "Warning input value"
+   into an AI field in code.
+   -------------------------------------------------------------------------- */
+.cs-fieldset--focus {
+  --cs-fieldset-bg: var(--field-bg-focus);
+  --cs-fieldset-border: var(--field-border-focus);
+  --cs-fieldset-value: var(--field-value-primary);
+}
+.cs-fieldset--error {
+  --cs-fieldset-bg: var(--field-bg-danger);
+  --cs-fieldset-border: var(--field-border-danger);
+  --cs-fieldset-value: var(--field-value-primary);
+}
+.cs-fieldset--success {
+  --cs-fieldset-bg: var(--field-bg-success);
+  --cs-fieldset-border: var(--field-border-success);
+  --cs-fieldset-value: var(--field-value-primary);
+}
+.cs-fieldset--warning {
+  --cs-fieldset-bg: var(--field-bg-warning);
+  --cs-fieldset-border: var(--field-border-warning);
+  --cs-fieldset-value: var(--field-value-primary);
+}
+.cs-fieldset--ai {
+  --cs-fieldset-bg: var(--field-bg-ai);
+  --cs-fieldset-border: var(--field-border-ai);
+  --cs-fieldset-value: var(--field-value-primary);
+}
+.cs-fieldset--disabled {
+  --cs-fieldset-border: var(--field-border-default);
+  --cs-fieldset-value: var(--field-value-disabled);
+  background: transparent;                      /* faithful to Figma — see the block note */
+  /* --cs-fieldset-bg: var(--field-bg-disabled);   <-- NOT in Figma. Do not enable. */
+}

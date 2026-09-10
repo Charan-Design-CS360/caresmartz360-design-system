@@ -1,0 +1,43 @@
+<!--
+=============================================================================
+COMPONENT SKELETON: Buttons (.cs-btn)
+PAIRED CSS: ../css/buttons.css
+RESOLVES: RULE-FLAGS.md [F-015] (Missing HTML templates)
+=============================================================================
+-->
+
+<!-- Primary Button with Leading Icon -->
+<button type="button" class="cs-btn cs-btn--primary">
+  <svg class="cs-btn__icon" aria-hidden="true"><use href="/assets/icons/sprite.svg#add"></use></svg>
+  <span class="cs-btn__label">Add New</span>
+</button>
+
+<!-- Primary Button (No Icon) -->
+<button type="button" class="cs-btn cs-btn--primary cs-btn--no-icon">
+  <span class="cs-btn__label">Save Changes</span>
+</button>
+
+<!-- Secondary Outlined Button -->
+<button type="button" class="cs-btn cs-btn--secondary cs-btn--outlined">
+  <svg class="cs-btn__icon" aria-hidden="true"><use href="/assets/icons/sprite.svg#filter_list"></use></svg>
+  <span class="cs-btn__label">Filter</span>
+</button>
+
+<!-- Ghost Button -->
+<button type="button" class="cs-btn cs-btn--ghost">
+  <span class="cs-btn__label">Cancel</span>
+</button>
+
+<!-- Icon-Only Button -->
+<button type="button" class="cs-btn cs-btn--ghost cs-btn--icon-only" aria-label="Settings">
+  <svg class="cs-btn__icon" aria-hidden="true"><use href="/assets/icons/sprite.svg#settings"></use></svg>
+</button>
+
+<!-- AI Button (Figma 27116:1359) -->
+<button type="button" class="cs-btn cs-btn--ai">
+  <svg class="cs-btn__icon" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
+    <path d="M7.51762 2.76873C7.6516 2.27748 8.3484 2.27748 8.48238 2.76873L9.42482 6.22435C9.47141 6.39516 9.60484 6.52859 9.77565 6.57518L13.2313 7.51762C13.7225 7.6516 13.7225 8.3484 13.2313 8.48238L9.77565 9.42482C9.60484 9.47141 9.47141 9.60484 9.42482 9.77565L8.48238 13.2313C8.3484 13.7225 7.6516 13.7225 7.51762 13.2313L6.57518 9.77565C6.52859 9.60484 6.39516 9.47141 6.22435 9.42482L2.76873 8.48238C2.27748 8.3484 2.27748 7.6516 2.76873 7.51762L6.22435 6.57518C6.39516 6.52859 6.52859 6.39516 6.57518 6.22435L7.51762 2.76873Z"/>
+    <path d="M12.209 2.16417C12.2847 1.86118 12.7153 1.86119 12.791 2.16417L12.9563 2.82537C12.9832 2.93286 13.0671 3.01679 13.1746 3.04366L13.8358 3.20896C14.1388 3.2847 14.1388 3.7153 13.8358 3.79104L13.1746 3.95634C13.0671 3.98321 12.9832 4.06714 12.9563 4.17463L12.791 4.83583C12.7153 5.13882 12.2847 5.13881 12.209 4.83583L12.0437 4.17463C12.0168 4.06714 11.9329 3.98321 11.8254 3.95634L11.1642 3.79104C10.8612 3.7153 10.8612 3.2847 11.1642 3.20896L11.8254 3.04366C11.9329 3.01679 12.0168 2.93286 12.0437 2.82537L12.209 2.16417Z"/>
+  </svg>
+  <span class="cs-btn__label">Fill with AI</span>
+</button>

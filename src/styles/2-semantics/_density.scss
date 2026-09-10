@@ -60,6 +60,18 @@
   --rounded-2xl: var(--radius-16);
   --rounded-3xl: var(--radius-24);
   --rounded-full: var(--radius-full);
+
+  // ── BORDER RADIUS ALIAS BRIDGE (Universal Components & DTCG Token Parity) ──
+  --border-radius-rounded-none: var(--rounded-none);
+  --border-radius-rounded-sm: var(--rounded-sm);
+  --border-radius-rounded: var(--rounded);
+  --border-radius-rounded-md: var(--rounded-md);
+  --border-radius-rounded-lg: var(--rounded-lg);
+  --border-radius-rounded-xl: var(--rounded-xl);
+  --border-radius-rounded-2xl: var(--rounded-2xl);
+  --border-radius-rounded-3xl: var(--rounded-3xl);
+  --border-radius-rounded-full: var(--rounded-full);
+  --radius-rounded: var(--rounded);
 }
 
 // Agency density modes verified in Figma AI Token SSO, frame 13:1121.
