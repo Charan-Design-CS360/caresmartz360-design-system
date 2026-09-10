@@ -1,39 +1,40 @@
 {
   "$schema": "../../../schemas/component-contract.schema.json",
   "$meta": {
-    "component": "Form Fields (family)",
+    "component": "Form Fields (family index)",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "2.0.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaSectionNodeId": "26955:66554",
     "figmaSectionName": "Form Fields",
-    "measuredOn": "2026-09-10",
-    "secondPass": "2026-09-10 later — ticket comments #633267/#633270 incorporated: field-message 6th variant 'comments' (existence+size re-verified live), tertiary min/max width + left-stack items 5 recorded as ASSERTED pending a live read (the Figma tab closed mid-verification)",
+    "figmaGuidelinesFrame": { "nodeId": "27401:30526", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526" },
+    "measuredOn": "2026-09-10 (morning pass + afternoon re-verification after same-day Figma changes)",
     "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
-    "jiraSource": "C360-47183",
-    "jiraParent": "C360-44737",
+    "jiraSource": "C360-47183 + C360-47325",
     "humanContract": "./form-fields.md",
-    "supersedes": "./field-type-1.json (the old 'Fields type 1' — Figma renamed the set to form-field-primary and restructured it; see driftFromFieldType1)",
-    "readThisFirst": "Every value below was read live from the bound variables and node geometry on 2026-09-10. The Jira ticket's token table (gray/200, gray/600, gray/900) does NOT match the owner exports — the real primitives are colors/neutral-200, colors/neutral-500, colors/neutral-800. Trust the exports, not the ticket prose."
+    "v2Note": "1.0.0 was a single family file carrying every measurement. 2.0.0 splits the detail into per-type contracts (the packaging C360-47325 asked for) and keeps this file as the INDEX: hierarchy, shared tokens, drift record. No measured value lives in two files.",
+    "memberContracts": {
+      "primary": "./field-type-1.json (historical 2026-08-24 record; geometry drift noted there — the live component is form-field-primary, re-measured 2026-09-10 with per-state bindings recorded in CHANGELOG 3.4.0 and the gallery example)",
+      "secondary": "./field-type-2.json",
+      "tertiary": "./field-type-3.json",
+      "sharedAtoms": "./field-atoms.json"
+    }
   },
 
   "atomicHierarchy": {
-    "subAtoms": ["field-label"],
-    "atoms": ["field-header-primary", "field-header-secondary", "field-header-tertiary", "field-input", "field-message", "form-section-header"],
-    "molecules": ["form-field-primary", "form-field-secondary", "form-field-tertiary"],
-    "composition": {
-      "form-field-primary": ["field-header-primary", "value row (34px, borderless value text)"],
-      "form-field-secondary": ["field-header-secondary", "field-input (30px embed)", "field-message (only in error/success/warning/disabled variants)"],
-      "form-field-tertiary": ["field-header-tertiary", "field-input (34px, in a 440px field_info column)"],
-      "field-header-primary": ["field-label content + right icon rail (error/help/AI)"],
-      "field-header-secondary": ["field-label instance + AI icon"],
-      "field-header-tertiary": ["title + description + field-message (AI) + field-message (Error)"]
+    "subAtoms": ["field-label (27062:10162)"],
+    "atoms": ["field-header-primary (27388:28274)", "field-header-secondary (27388:29316)", "field-header-tertiary (27290:41702)", "field-input (27062:8145)", "field-message (11116:25116, 6 types)", "form-section-header (27395:30130)"],
+    "molecules": ["form-field-primary (26938:65997, 7 states)", "form-field-secondary (27062:7663, 6 states)", "form-field-tertiary (27395:30147)"],
+    "typeModel": {
+      "PRIMARY":   { "purpose": "view/display", "context": "grids, tables, list views", "contract": "./field-type-1.json", "height": 66 },
+      "SECONDARY": { "purpose": "edit/input",  "context": "popups, forms, modals",     "contract": "./field-type-2.json", "height": "56 / 76 with message" },
+      "TERTIARY":  { "purpose": "settings",    "context": "settings/config panels",    "contract": "./field-type-3.json", "height": "112 at rest, HUG" }
     }
   },
 
   "sharedTokens": {
-    "note": "Alias chain verified byte-for-byte against Variables/Agency/Color Modes.zip → Light Mode (Default).tokens.json on 2026-09-10. The semantic token is the binding; the primitive is its alias target.",
+    "note": "Alias chain verified byte-for-byte against Variables/Agency/Color Modes.zip → Light Mode (Default).tokens.json on 2026-09-10. The semantic token is the binding; the primitive is its alias target. The source tickets' gray/* names exist in NO Agency export.",
     "bindings": [
       { "semantic": "field/bg-default",        "hex": "#ffffff", "primitive": "colors/neutral-0" },
       { "semantic": "field/border-default",    "hex": "#e2e8f0", "primitive": "colors/neutral-200" },
@@ -51,226 +52,32 @@
       { "semantic": "field/border-warning",    "hex": "#facc15", "primitive": "colors/yellow-400" },
       { "semantic": "field/bg-ai",             "hex": "#faf5ff", "primitive": "colors/purple-50" },
       { "semantic": "field/border-ai",         "hex": "#9333ea", "primitive": "colors/purple-600" },
-      { "semantic": "field/bg-disabled",       "hex": "#f1f5f9", "primitive": "colors/neutral-100" }
+      { "semantic": "field/bg-disabled",       "hex": "#f1f5f9", "primitive": "colors/neutral-100" },
+      { "semantic": "text/links",              "hex": "#0077ff", "primitive": "colors/Brandblue-600", "usedBy": "field-message type=comments" }
     ],
     "typographyStyles": [
-      { "style": "Fields/label",        "family": "Inter", "size": 12, "lineHeight": 16, "weight": 500, "tracking": 0 },
-      { "style": "Fields/value",        "family": "Inter", "size": 12, "lineHeight": 16, "weight": 400, "tracking": 0 },
-      { "style": "Fields/header",       "family": "Inter", "size": 14, "lineHeight": 20, "weight": 500, "tracking": 0 },
-      { "style": "Fields/header-large", "family": "Inter", "size": 16, "lineHeight": 24, "weight": 500, "tracking": 0 },
-      { "style": "Body/small",          "family": "Inter", "size": 12, "lineHeight": 16, "weight": 400, "tracking": 0 },
-      { "style": "Body/micro",          "family": "Inter", "size": 10, "lineHeight": 14, "weight": 400, "tracking": 0 }
+      { "style": "Fields/label",        "spec": "Inter Medium 12/16" },
+      { "style": "Fields/value",        "spec": "Inter Regular 12/16" },
+      { "style": "Fields/header",       "spec": "Inter Medium 14/20" },
+      { "style": "Fields/header-large", "spec": "Inter Medium 16/24" },
+      { "style": "Body/small",          "spec": "Inter Regular 12/16" },
+      { "style": "Body/micro",          "spec": "Inter Regular 10/14 (Size=S descriptions only)" }
     ]
   },
 
-  "components": {
-
-    "field-label": {
-      "nodeId": "27062:10162", "type": "COMPONENT", "size": { "w": 158, "h": 16 },
-      "purpose": "Label text + optional required marker + optional help icon. The sub-atom every header builds on.",
-      "structure": {
-        "labelText": { "typography": "Fields/label", "colour": { "token": "text/primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
-        "requiredMarker": { "box": { "w": 8, "h": 16 }, "gapAfterLabel": 4, "gapToken": "spacing/sm", "fill": { "token": "icon/danger", "hex": "#ef4444" }, "marker": ["MEASURED"] },
-        "helpIcon": { "box": { "w": 16, "h": 16 }, "gapAfterRequired": 4, "gapToken": "spacing/sm", "fill": { "token": "icon/brand", "hex": "#0077ff" }, "marker": ["MEASURED"], "note": "positions: label frame ends x=71, help at x=75" }
-      },
-      "behavior": "Static. Help icon opens a tooltip/guidance note on hover/focus (tooltip content is per-form copy, not part of this contract)."
-    },
-
-    "field-header-primary": {
-      "nodeId": "27388:28274", "type": "COMPONENT", "size": { "w": 358, "h": 30 },
-      "purpose": "LEFT/RIGHT split header row for the PRIMARY (view-mode) field: label cluster left, status-icon rail right.",
-      "structure": {
-        "left": { "x": 0, "y": 5, "w": 270, "h": 24, "labelInsetLeft": 8, "labelInsetLeftToken": "spacing/md", "content": "field-label content (text y=4 within, 16h)", "marker": ["MEASURED"] },
-        "right": { "x": 280, "y": 4, "w": 78, "h": 26, "iconSlots": [
-          { "name": "error", "box": 18, "innerIcon": 16, "fill": "icon/danger" },
-          { "name": "help",  "box": 18, "innerIcon": 16, "fill": "icon/brand" },
-          { "name": "ai",    "box": 18, "innerIcon": 18, "note": "G / icons for switches in field listing" }
-        ], "slotGap": 4, "slotGapToken": "spacing/sm", "marker": ["MEASURED"] }
-      },
-      "behavior": "Icons are per-state affordances: error icon appears in error/warning states, help opens guidance, AI marks auto-populated values. Visibility is variant/boolean-driven in usage."
-    },
-
-    "field-header-secondary": {
-      "nodeId": "27388:29316", "type": "COMPONENT", "size": { "w": 186, "h": 26 },
-      "purpose": "Header for the SECONDARY (edit-mode) field: a field-label instance plus a right-aligned AI icon.",
-      "structure": {
-        "labelInstance": { "x": 0, "y": 5, "w": 160, "h": 16, "marker": ["MEASURED"] },
-        "aiIcon": { "x": 168, "y": 4, "box": 18, "marker": ["MEASURED"] }
-      },
-      "behavior": "AI icon appears only on AI-assisted fields. Label carries required marker / help via field-label."
-    },
-
-    "field-header-tertiary": {
-      "nodeId": "27290:41702", "type": "COMPONENT_SET", "variantAxis": { "name": "Size", "values": ["S", "M", "L"] },
-      "purpose": "Full vertical info block for the TERTIARY (settings) field: title + description + AI note + error message, sized S/M/L.",
-      "variants": [
-        { "size": "S", "nodeId": "27290:41703", "w": 560, "h": 80, "titleRowH": 16, "titleTypography": { "style": "Fields/label 12/16", "marker": ["DERIVED"], "arithmetic": "title row is 16h = line-height/caption" }, "descriptionH": 14, "descriptionTypography": { "style": "Body/micro 10/14", "marker": ["DERIVED"] }, "rows": { "title": [0, 16], "description": [20, 34], "aiMessage": [38, 56], "errorMessage": [60, 80] }, "rowGap": 4, "rowGapToken": "spacing/sm", "marker": ["MEASURED"] },
-        { "size": "M", "nodeId": "27290:41707", "w": 560, "h": 86, "titleRowH": 20, "titleTypography": { "style": "Fields/header 14/20", "marker": ["DERIVED"] }, "descriptionH": 16, "descriptionTypography": { "style": "Body/small 12/16", "marker": ["DERIVED"] }, "rows": { "title": [0, 20], "description": [24, 40], "aiMessage": [44, 62], "errorMessage": [66, 86] }, "rowGap": 4, "rowGapToken": "spacing/sm", "marker": ["MEASURED"] },
-        { "size": "L", "nodeId": "27290:41714", "w": 560, "h": 90, "titleRowH": 24, "titleTypography": { "style": "Fields/header-large 16/24", "marker": ["DERIVED"] }, "descriptionH": 16, "descriptionTypography": { "style": "Body/small 12/16", "marker": ["DERIVED"] }, "rows": { "title": [0, 24], "description": [28, 44], "aiMessage": [48, 66], "errorMessage": [70, 90] }, "rowGap": 4, "rowGapToken": "spacing/sm", "marker": ["MEASURED"] }
-      ],
-      "typographyDerivation": "Title/description styles are DERIVED from row-height ↔ line-height arithmetic (16→caption, 20→body-base, 24→body-strong line heights) plus the styles present in the set's bound variables (Fields/label, Fields/header, Fields/header-large, Body/small, Body/micro). Per-text-node style reads were not taken.",
-      "responsiveConstraints": {
-        "minWidth": 200, "maxWidth": 400, "layoutSizingHorizontal": "FILL", "layoutSizingVertical": "HUG",
-        "marker": ["ASSERTED"], "source": "C360-47183 #633270 (Figma-side change 2026-09-10)",
-        "note": "NOT re-verified live — the Figma tab closed before these auto-layout properties could be read; the variants measured 560 wide at rest this morning, which sits outside the asserted 200–400 range, so verify before building responsive behaviour from this. Height auto-grows as optional rows show/hide (consistent with the measured S/M/L heights)."
-      },
-      "leftSectionStack": {
-        "purpose": "The tertiary left column is an extensible vertical stack (gap 4 / spacing/sm, measured).",
-        "items": [
-          { "n": 1, "item": "title row (Field_Title-S/M/L + required marker)", "optional": false, "marker": ["MEASURED"] },
-          { "n": 2, "item": "description", "optional": true, "marker": ["MEASURED"] },
-          { "n": 3, "item": "field-message type=AI autopopulated", "optional": true, "marker": ["MEASURED"] },
-          { "n": 4, "item": "field-message type=Error/Warning", "optional": true, "marker": ["MEASURED"] },
-          { "n": 5, "item": "field-comment frame (chat icon + comment count) — extended pattern, not in the published S/M/L variants", "optional": true, "marker": ["ASSERTED"], "source": "#633267; reference frame 27507:56751 NOT read live (tab closed)" }
-        ],
-        "extensibilityRule": "future rows follow the same icon + text pattern (16×16 icon, Inter Regular 12px) — ASSERTED (#633267)"
-      },
-      "behavior": "Required marker sits inline after the title (8×8 icon). AI message and error message rows are optional per state."
-    },
-
-    "field-input": {
-      "nodeId": "27062:8145", "type": "COMPONENT_SET",
-      "variantAxis": { "name": "state", "values": ["default", "focus", "error", "success", "warning", "disabled"] },
-      "purpose": "The shared bordered input control. SECONDARY and TERTIARY molecules embed it; PRIMARY does not (view mode has no input box).",
-      "geometry": {
-        "baseSize": { "w": 358, "h": 34, "marker": ["MEASURED"], "from": "27062:8093" },
-        "embeddedHeights": { "inFormFieldSecondary": 30, "inFormFieldTertiary": 34, "marker": ["MEASURED"], "note": "the secondary molecule instances the input at 30px; the set's own variants are 34px" },
-        "paddingLeft": 8, "paddingLeftToken": "spacing/md",
-        "trailingControlSlot": { "w": 30, "h": 30, "x": 328, "y": 2, "name": "Global/Atom/Fields Toys", "marker": ["MEASURED"] },
-        "border": { "width": 1, "style": "solid" },
-        "borderRadius": { "value": 4, "token": "border-radius/rounded", "marker": ["MEASURED"] }
-      },
-      "statesBindTokens": "field/bg-<state> + field/border-<state> exactly as in sharedTokens (danger pair serves the error state). Default border in an editable context is field/border-hard #94a3b8 (kit fix 2026-09-09, live 27062:8093); field/border-default #e2e8f0 is the container/read-only border.",
-      "behavior": "Single-line text entry; trailing 30×30 slot hosts pickers/steppers/clear ('Fields Toys' variants — 12 variants not yet enumerated, see notVerified)."
-    },
-
-    "field-message": {
-      "nodeId": "11116:25116", "type": "COMPONENT_SET",
-      "variantAxis": { "name": "type", "values": ["Error", "Help", "Warning", "Success", "AI autopopulated", "comments"], "count": 6, "note": "6th variant 'comments' added Figma-side 2026-09-10 (ticket C360-47183 #633270); its EXISTENCE and size were re-verified live the same day before the Figma tab closed." },
-      "purpose": "The message row under a field: icon + short text. The comments variant carries a field-level comment count for the tertiary left stack.",
-      "variants": [
-        { "type": "Error",   "nodeId": "11116:24791",   "h": 20, "icon": { "box": 16, "fill": "icon/danger" },  "text": { "token": "text/danger",    "hex": "#dc2626" } },
-        { "type": "Help",    "nodeId": "16549:388669",  "h": 20, "icon": { "box": 16, "fill": "icon/soft" },    "text": { "token": "text/secondary", "hex": "#475569" } },
-        { "type": "Warning", "nodeId": "16549:388678",  "h": 20, "icon": { "box": 16, "fill": "icon/warning" }, "text": { "token": "text/warning",   "hex": "#ca8a04" } },
-        { "type": "Success", "nodeId": "11116:25115",   "h": 20, "icon": { "box": 16, "fill": "icon/success" }, "text": { "token": "text/success",   "hex": "#16a34a" } },
-        { "type": "AI autopopulated", "nodeId": "27291:41761", "h": 18, "icon": { "box": 14, "fill": "action/ai/text-hard", "hex": "#9333ea" }, "text": { "token": "text/secondary", "hex": "#475569" }, "copyPattern": "Auto-populated from [source_name]", "minWidth": { "value": 80, "marker": ["ASSERTED"], "source": "C360-47183 #633270 — not yet read live" } },
-        { "type": "comments", "nodeId": "27507:56752", "w": 80, "h": 18, "marker": ["MEASURED"], "measuredNote": "existence + 80×18 size read live 2026-09-10 from set 11116:25116 (set frame grew 216→254 to hold it)",
-          "icon": { "kind": "chat", "marker": ["ASSERTED"], "source": "#633270" },
-          "text": { "expected": "text/secondary (gray/neutral per ticket)", "marker": ["UNVERIFIED"], "note": "token bindings NOT read — the Figma tab closed before the per-variant read; do not build the colour from this row until verified" },
-          "copyPattern": "0 Comments",
-          "minWidth": { "value": 80, "marker": ["ASSERTED"], "source": "#633270; consistent with the measured 80px natural width" } }
-      ],
-      "geometry": { "iconTextGap": 4, "gapToken": "spacing/sm", "typography": "Body/micro 10/14", "marker": ["MEASURED"], "typographyNote": "verified on the first 5 variants; comments variant presumed same (18h matches the AI variant) but UNVERIFIED" },
-      "behavior": "One message row per field state; AI row can co-exist with an Error row (tertiary header shows both). The comments row opens the field's annotation/discussion surface (interaction target not designed yet)."
-    },
-
-    "form-section-header": {
-      "nodeId": "27395:30130", "type": "COMPONENT", "size": { "w": 1036, "h": 80 },
-      "purpose": "Section heading for tertiary/settings layouts: title + two-line description on a tinted band.",
-      "structure": {
-        "padding": 12, "paddingToken": "spacing/lg",
-        "title": { "h": 20, "typography": "Fields/header 14/20", "colour": { "token": "text/primary" }, "marker": ["MEASURED"] },
-        "description": { "y": 24, "h": 32, "typography": "Body/small 12/16 × 2 lines", "colour": { "token": "field/value-placeholder", "hex": "#64748b", "marker": ["DERIVED"], "note": "field/value-placeholder is the only secondary text token in this node's bindings" } },
-        "titleDescriptionGap": 4, "gapToken": "spacing/sm",
-        "band": { "bg": { "token": "surface/tertiary", "hex": "#f1f5f9" }, "border": { "token": "field/border-default", "hex": "#e2e8f0" }, "radius": { "token": "border-radius/rounded-none", "value": 0 }, "marker": ["MEASURED"] }
-      },
-      "behavior": "Static section divider; groups a run of form-field-tertiary rows."
-    },
-
-    "form-field-primary": {
-      "nodeId": "26938:65997", "type": "COMPONENT_SET", "renamedFrom": "field-set-type1",
-      "variantAxis": { "name": "state", "count": 7, "values": ["default", "focus", "error", "success", "warning", "ai", "disabled"] },
-      "purpose": "Complete VIEW-mode field: grids, tables, list views. Read-first; the value row has no input border of its own — the state colour lives on the container.",
-      "geometry": {
-        "size": { "w": 360, "h": 66, "marker": ["MEASURED"], "note": "all 7 variants exactly 360×66" },
-        "gridRows": { "header": 30, "value": 34, "borders": "1px inside top/bottom", "arithmetic": "1 + 30 + 34 + 1 = 66", "marker": ["MEASURED"] },
-        "headerInstance": { "component": "field-header-primary", "x": 1, "y": 1, "w": 358, "h": 30 },
-        "valueRow": { "x": 1, "y": 31, "w": 358, "h": 34, "textInsetLeft": 8, "textInsetLeftToken": "spacing/md", "textBoxH": 20, "textY": 7 },
-        "borderRadius": { "value": 0, "token": "border-radius/rounded-none", "marker": ["MEASURED"] },
-        "widthRule": "360 is the variant's own width; treat as 100% of parent (pattern-page-form-grid instances it at 254.5px)"
-      },
-      "states": [
-        { "state": "default",  "nodeId": "26938:65991", "bg": "field/bg-default",  "border": "field/border-default", "valueText": "field/value-placeholder", "marker": ["MEASURED"] },
-        { "state": "focus",    "nodeId": "26938:65992", "bg": "field/bg-focus",    "border": "field/border-focus",   "valueText": "field/value-primary", "marker": ["MEASURED"] },
-        { "state": "error",    "nodeId": "26938:65993", "bg": "field/bg-danger",   "border": "field/border-danger",  "valueText": "field/value-primary", "marker": ["MEASURED"] },
-        { "state": "success",  "nodeId": "26938:65994", "bg": "field/bg-success",  "border": "field/border-success", "valueText": "field/value-primary", "marker": ["MEASURED"] },
-        { "state": "warning",  "nodeId": "26938:65995", "bg": "field/bg-warning",  "border": "field/border-warning", "valueText": "field/value-primary", "marker": ["MEASURED"] },
-        { "state": "ai",       "nodeId": "27079:10664", "bg": "field/bg-ai",       "border": "field/border-ai",      "valueText": "field/value-primary", "marker": ["MEASURED"] },
-        { "state": "disabled", "nodeId": "26938:65996", "bg": "field/bg-disabled", "border": "field/border-default", "valueText": "field/value-disabled", "marker": ["MEASURED"], "note": "v1.0.0's 'no background' defect is RESOLVED in Figma — field/bg-disabled is now bound on this variant." }
-      ],
-      "behavior": "Display-mode field. Click/focus moves it to an editable context (secondary) in product flows; the AI state marks auto-populated values and pairs with the header's AI icon + an AI field-message."
-    },
-
-    "form-field-secondary": {
-      "nodeId": "27062:7663", "type": "COMPONENT_SET",
-      "variantAxis": { "name": "state", "count": 6, "values": ["default", "focus", "error", "success", "warning", "disabled"] },
-      "purpose": "Complete EDIT-mode field: popups, forms, modals. Header + bordered input + message row on validation states.",
-      "geometry": {
-        "sizeWithoutMessage": { "w": 360, "h": 56, "states": ["default", "focus"], "marker": ["MEASURED"] },
-        "sizeWithMessage": { "w": 360, "h": 76, "states": ["error", "success", "warning", "disabled"], "marker": ["MEASURED"] },
-        "rows": { "header": { "component": "field-header-secondary", "y": [0, 26] }, "input": { "component": "field-input", "y": [26, 56], "h": 30 }, "message": { "component": "field-message", "y": [56, 76], "h": 20, "optional": true } },
-        "rowGap": 0
-      },
-      "statesBindTokens": "input row binds field/bg-<state> + field/border-<state> (danger pair for error); message row type matches the state.",
-      "behavior": "The editable form control. Message row appears with validation; disabled variant also carries a message slot (76px) in the published set.",
-      "openQuestion": "disabled at 76px implies a message row in disabled state — intended copy for it is unspecified. Flagged, not invented."
-    },
-
-    "form-field-tertiary": {
-      "nodeId": "27395:30147", "type": "COMPONENT", "size": { "w": 1036, "h": 104 },
-      "purpose": "Complete SETTINGS-mode field: horizontal label-block-left / input-right row for settings and configuration panels.",
-      "geometry": {
-        "padding": 12, "paddingToken": "spacing/lg",
-        "headerBlock": { "component": "field-header-tertiary", "w": 560, "h": 80, "x": 0 },
-        "fieldInfo": { "x": 572, "w": 440, "h": 34, "verticallyCentered": "y=23 within the 80px group", "input": { "component": "field-input", "w": 400, "h": 34 } },
-        "columnGap": 12, "columnGapToken": "spacing/lg",
-        "marker": ["MEASURED"]
-      },
-      "behavior": "Settings row; description and messages live in the left block, control on the right. Responsive: blocks stack under narrow widths (Figma shows desktop only — stacking breakpoint UNVERIFIED)."
-    }
-  },
-
-  "driftFromFieldType1": {
-    "measuredDelta": [
-      "component set renamed: field-set-type1 → form-field-primary",
-      "total height 62 → 66 (header row 26 → 30) — already applied to the kit on 2026-09-09 (CHANGELOG 3.3.1)",
-      "header is now a real component (field-header-primary) with required/help/error/AI icon rail — v1.0.0's 'required marker and help icon OFF in all variants' defect is RESOLVED",
-      "disabled variant now binds field/bg-disabled — v1.0.0's 'no background' defect is RESOLVED in Figma",
-      "the family gained a message row (field-message) via the secondary/tertiary molecules — v1.0.0's 'no error message row' defect is RESOLVED at family level (primary itself still has no message row)"
-    ],
-    "unchanged": ["7-state axis incl. ai", "token-swap-only state changes", "Fields/label / Fields/value typography (12/16, tracking 0)", "border-radius 0 on primary"]
-  },
-
-  "ticketDiscrepancies": {
-    "jiraTicket": "C360-47183",
-    "wrongInTicket": [
-      "Token table primitives 'gray/200, gray/600, gray/900, white' — the exports define colors/neutral-200, colors/neutral-500, colors/neutral-800, colors/neutral-0. No gray/* primitives exist in any Agency export.",
-      "The promised docs/FORM-FIELDS-SYSTEM.md (268 lines) and components/form-field-mapping.json (214 lines) exist nowhere — in no repo path, no local folder. This contract is the reconciled replacement, at the portal-scoped authority path.",
-      "'Angular Material M3 integration code' — out of contract scope: field-type-1.json's implementationRisk stands (a mat-form-field outline structurally cannot produce the stacked-header-inside-one-border layout). No Angular code is published from the DS lane.",
-      "components/component-mapping.json 'Input entry replacement' — that root file is legacy with self-declared fabricated node IDs and a different figmaFile key; per the portal architecture the authoritative mapping is THIS file. The legacy file is left untouched."
-    ],
-    "unverifiedFromTicket": [
-      "'descriptions 1,499–4,262 chars each' — component descriptions are prose, not read by this measurement pass",
-      "'Old guideline frames deleted' / 'Design Structure frame updated' — Figma-side housekeeping, not re-verified"
-    ]
-  },
-
-  "defects": [
-    "state=ai variant's value text reads 'Warning input value' — copy slip in the Figma master (cosmetic, Figma-side)",
-    "form-field-primary still has no message row of its own; error state is fill+border only (use secondary when a message must show)",
-    "no hover state exists on any axis — building one would be an invention",
-    "stacking/responsive behaviour of form-field-tertiary under narrow widths is not designed"
+  "driftLog": [
+    { "when": "before 2026-09-10", "what": "field-set-type1 renamed → form-field-primary; 62→66 (header 26→30); header became field-header-primary with required/help/AI icons; disabled binds field/bg-disabled. Resolved 3 of field-type-1 1.0.0's defects.", "recordedIn": "./field-type-1.json (supersededWhy) + CHANGELOG 3.4.0" },
+    { "when": "2026-09-10 afternoon (between the morning and evening passes)", "what": "field-message: typography Body/micro 10/14 → caption 12/16 on all variants, all now 20h; 6th variant type=comments added (icon 16, text/links); field-header-tertiary: min 200 / max 400, variants now 400w (82/88/92); form-field-tertiary re-composed at 1036×112; form-section-header rebuilt 80→64 around a Size=M header instance.", "recordedIn": "./field-atoms.json + ./field-type-3.json + CHANGELOG 3.5.0", "verification": "every change re-measured live the same evening; the two ticket claims that failed verification (a 'light blue' section-header fill; 10px comments text, self-corrected by #633284) are recorded as corrections" }
   ],
 
-  "notVerified": [
-    "field-message type=comments internals: icon geometry, text token, typography (existence + 80×18 verified; the Figma tab closed before the per-variant read)",
-    "field-header-tertiary min-width 200 / max-width 400 / FILL / HUG (asserted by #633270; at-rest width measured 560 this morning — reconcile live)",
-    "left-section reference frame 27507:56751 and the field-comment extended pattern (asserted by #633267)",
-    "dark / high-contrast / warm-dark / hc-light values (light mode only)",
-    "icon SVG path data (box sizes and fill tokens verified; path geometry not archived)",
-    "the 12 variants of Global/Atom/Fields Toys (trailing controls)",
-    "field-header-tertiary per-text-node style bindings (styles DERIVED from line-height arithmetic — see typographyDerivation)",
-    "form-section-header description colour binding (DERIVED, single candidate token)",
-    "tooltip content and interaction for help icons"
-  ]
+  "ticketDiscrepancies": {
+    "jiraTickets": ["C360-47183", "C360-47325"],
+    "wrongInTickets": [
+      "gray/200|500|600|800|900 primitives — no gray/* exists in any Agency export; real aliases are colors/neutral-*",
+      "docs/FORM-FIELDS-SYSTEM.md and components/form-field-mapping.json (the root paths, incl. the '268-line/214-line' claims and #633288's re-request) — never existed; the portal contracts named in memberContracts are the authoritative replacement, and the portal + root component-mapping files index them",
+      "form-section-header 'light blue fill / darker blue stroke' (#633282) — live bindings are surface/tertiary #f1f5f9 + field/border-default #e2e8f0",
+      "Angular Material M3 integration code — out of DS-lane scope; the structural mat-form-field incompatibility recorded in field-type-1.json stands"
+    ],
+    "unverifiedFromTickets": ["component description lengths (1,499–6,268 chars)", "'Old guideline frames deleted' housekeeping claims"]
+  }
 }

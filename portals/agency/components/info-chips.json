@@ -1,0 +1,68 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Info Chips / Page Messages",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
+    "figmaComponentSetNodeId": "11315:24274",
+    "figmaComponentSetName": "page messages",
+    "figmaSectionNodeId": "27255:69606",
+    "figmaGuidelinesFrame": { "nodeId": "27382:20942", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20942", "existenceVerified": "variable-defs probe 2026-09-10" },
+    "measuredOn": "2026-09-10",
+    "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
+    "jiraSource": "C360-47326",
+    "humanContract": "./info-chips.md"
+  },
+
+  "purpose": "Page-level message bars and related-settings chips: contextual information, status updates, alerts, and setting shortcuts. This was the last Figma section with zero GitHub representation.",
+
+  "variantAxis": { "name": "Type", "count": 9 },
+  "anatomyGroups": {
+    "messageBars": {
+      "sharedGeometry": { "width": 800, "widthRule": "100% of content area in patterns (page messages instance measured 800×112 in pattern-page-data-table)", "padding": 8, "paddingToken": "spacing/md", "iconColumn": { "w": 20, "h": 20 }, "contentX": 36, "borderRadius": { "value": 8, "token": "border-radius/rounded-lg" }, "marker": ["MEASURED"], "internalNote": "row-by-row internals measured on the Information variant (81:32): title 20h at y0, description 40h (2 lines) at y28, action label 20h at y76; the 96h variants carry the same anatomy one description line shorter — their internals were not individually measured" },
+      "closeButton": { "box": 20, "hidden": true, "marker": ["MEASURED"], "note": "optional close exists in the master (21280:1557) but ships hidden" },
+      "typography": { "title": { "fonts": "Inter Medium-weight rendering at 12px on a 20px line (bindings: font-size/caption + line-height/body-base)", "colour": "text/primary", "marker": ["DERIVED"], "note": "style-level name not read per text node" }, "body": { "style": "Body/small 12/16", "colour": "text/secondary", "marker": ["MEASURED"] }, "actionLink": { "colour": "text/brand #0077ff", "marker": ["MEASURED"] } },
+      "variants": [
+        { "type": "Information / Tool Tip", "nodeId": "81:32",        "h": 112, "surface": { "token": "surface/secondary", "hex": "#f8fafc" }, "icon": "privacy_tip · icon/secondary", "marker": ["MEASURED"] },
+        { "type": "Tooltip",               "nodeId": "16164:376356", "h": 96,  "surface": { "token": "surface/warning-subtle", "hex": "#fefce8", "marker": ["DERIVED"], "note": "matches the rendered yellow; per-variant binding not read" }, "icon": "lightbulb · icon/warning", "marker": ["MEASURED"] },
+        { "type": "Confirmation",          "nodeId": "1679:155",     "h": 96,  "surface": { "token": "surface/success-subtle", "hex": "#f0fdf4" }, "icon": "check_circle · icon/success", "marker": ["MEASURED"] },
+        { "type": "Warning",               "nodeId": "1679:232",     "h": 96,  "surface": { "token": "surface/warning-subtle", "hex": "#fefce8" }, "icon": "warning · icon/warning", "marker": ["MEASURED"] },
+        { "type": "Alert/Error",           "nodeId": "1679:193",     "h": 96,  "surface": { "token": "surface/danger-subtle", "hex": "#fef2f2" }, "icon": "report/error · icon/danger", "marker": ["MEASURED"] },
+        { "type": "Change",                "nodeId": "1679:250",     "h": 96,  "surface": { "token": null, "rendered": "light purple", "marker": ["MEASURED", "RAW"], "defect": "F-016: the purple surface is NOT variable-bound — the variant's bindings contain no surface token at all. Needs an owner decision (candidate: a new surface/ai-subtle, or field/bg-ai)." }, "icon": "settings-change gear · purple (binding unverified)", "marker": ["MEASURED"] }
+      ]
+    },
+    "settingChips": {
+      "sharedGeometry": { "h": 36, "padding": 8, "iconBox": 20, "titleX": 36, "borderRadius": { "value": 8, "token": "border-radius/rounded-lg" }, "surface": { "token": "surface/secondary", "hex": "#f8fafc" }, "titleColour": "text/brand #0077ff", "icon": "settings gear · icon/secondary", "marker": ["MEASURED"] },
+      "variants": [
+        { "type": "Setting Panel",    "nodeId": "11311:24212", "w": 156, "marker": ["MEASURED"] },
+        { "type": "Variant8",         "nodeId": "12356:28043", "w": 156, "marker": ["MEASURED"], "namingDefect": "the variant is literally named 'Variant8' — visually identical to Setting Panel in the set render; purpose undocumented. Figma-side cleanup candidate." },
+        { "type": "Setting Panel V2", "nodeId": "11315:24273", "w": 333, "marker": ["MEASURED"], "note": "adds a trailing 'View Settings' action (text/brand) after the title" }
+      ]
+    }
+  },
+
+  "behavior": "Message bars sit at the top or bottom of a page's content area (the page-info footer of pattern-page-data-table instances one at 800×112) and carry title + description + one optional action link; the hidden close affordance exists for dismissible messages. Setting chips are compact shortcuts linking to related settings.",
+
+  "accessibility": {
+    "colour": "every bar pairs its colour with an icon + title — colour is never the only signal",
+    "roles": "Alert/Error and Warning bars: role=alert / aria-live; Information/Confirmation: role=status",
+    "actionLink": "the action label is a real link/button, keyboard focusable",
+    "contrast": "text/primary + text/secondary on the subtle surfaces pass AA (dark-on-tint); the Change variant cannot be certified until its surface is token-bound (F-016)"
+  },
+
+  "defects": [
+    "F-016: Change variant's purple surface is not variable-bound (no surface token in its bindings) — owner decision needed",
+    "Variant8 is an undocumented near-duplicate of Setting Panel — naming/dedupe cleanup with Figma-AI",
+    "Tooltip and Warning render on the same warning-subtle yellow — intended distinction is the icon only; confirm with owner",
+    "the 96h bars' internal rows were not individually measured (anatomy verified on the 112h Information variant)"
+  ],
+
+  "notVerified": [
+    "per-variant surface bindings for Tooltip/Confirmation/Warning/Alert (set-level bindings + rendered colours match the named tokens; individual reads not taken)",
+    "icon glyph names beyond privacy_tip/settings (visual identification from the set render)",
+    "dark / high-contrast / warm-dark / hc-light values",
+    "the set description ('626 chars') and guideline frame content"
+  ]
+}

@@ -4,6 +4,7 @@
     "component": "DDM — Dropdown Menu",
     "portal": "agency",
     "contractVersion": "1.1.0",
+    "figmaGuidelinesFrame": { "nodeId": "27382:20718", "name": "Inline Dropdown Patterns — Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20718", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP server never reports a file key. Taken from portals/agency/portal-manifest.json and from Figma AI's own audit on C360-40765, which cites the same key.",
     "figmaSectionNodeId": "27245:67562",

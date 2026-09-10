@@ -158,3 +158,7 @@ only holds its own value; the row commits it.
 |---|---|---|
 | 2026-09-04 | **1.1.0 — usage ruling.** Singh ruled the three types are final: dropdown is the default (multi-value) filter; toggle & checkbox are special-case binary filters (single value, active/inactive) whose control state is the value. Resolves F-FILTER-01 / q1; adds §usageGuidance. | Singh's ruling, 2026-09-04 |
 | 2026-09-04 | 1.0.0 — first measurement of the three filter atoms, their three states, the per-state colour model, and the connection up through the Search & Filters row into the complete header. Closes the "Search & Filters interior geometry" gap that page-header.json listed as notVerified. | Singh's request, 2026-09-04 |
+
+## Figma Guidelines
+
+Designer guideline frame: **Filters — Component Guidelines** — [`27382:19966`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-19966) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

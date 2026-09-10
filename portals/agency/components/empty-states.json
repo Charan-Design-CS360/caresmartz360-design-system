@@ -4,6 +4,7 @@
     "component": "Empty States",
     "portal": "agency",
     "contractVersion": "1.0.0",
+    "figmaGuidelinesFrame": { "nodeId": "27382:20443", "name": "empty states — Component Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20443", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Value taken from portals/agency/portal-manifest.json (figma.fileKey) and from the URL the design owner supplied when commissioning this contract. Must be confirmed by the design owner.",
     "figmaSectionNodeId": "27218:64329",

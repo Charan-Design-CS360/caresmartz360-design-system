@@ -134,3 +134,7 @@ convention.
 |---|---|---|
 | 2026-08-25 | **1.1.0** — row-height inconsistency RESOLVED: owner changed the radio row's vertical padding to `spacing/xs`, keeping `min-height:30`. Re-measured and confirmed. |
 | 2026-08-25 | 1.0.0 — row atoms measured (checkbox + radio in full), section structure and all 11 node ids recorded, Figma AI's audit corrected in four places, renames held pending owner ruling. | C360-40765 + owner instruction 2026-08-25 |
+
+## Figma Guidelines
+
+Designer guideline frame: **Inline Dropdown Patterns — Guidelines** — [`27382:20718`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20718) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.5.0] — 2026-09-10 (evening)
+
+Five Figma-AI tickets executed in their stated order (C360-47325 + 47326 → 47328 → 47327 → 47329), plus the C360-47183 afternoon comments synced. **Every Figma claim was validated live before it entered a contract** — the afternoon Figma-side changes are real (typography 10/14→12/16 on all field messages, new `comments` type, header-tertiary min 200/max 400, form-section-header rebuilt at 64px); three claims failed validation and are recorded as corrections (a "light blue" section-header fill that is actually `surface/tertiary`; the comments variant's copy-pasted Figma description; the purple Change info-chip surface being un-bound — new defect **F-016**).
+
+### Added
+- **field-type-2 1.0.0** (`.json/.md`) — SECONDARY edit-mode field: 360×56/76, header-secondary 186×26, all 6 variant nodes (C360-47325).
+- **field-type-3 1.0.0** — TERTIARY settings field measured POST-restructure: molecule 1036×**112** (header column 400×88, **min 200 / max 400 live-verified**; input column at gap 12), header set S/M/L = 400×**82/88/92** with row arithmetic, left-stack reference `27507:56751` (400×112, field-comment 92×20 on `text/links`), **form-section-header rebuilt 80→64** around a Size=M header instance on `surface/tertiary`. WRAP flag + field_info/input minima recorded as ASSERTED (#633283) pending a constraint read.
+- **field-atoms 1.0.0** — field-label, field-header-primary, field-input, and the 6-type **field-message** (all 20h, caption 12/16 — the same-day Figma change; `type=comments` `27507:56752` 93w, icon 16, `text/links → colors/Brandblue-600` verified vs export).
+- **info-chips 1.0.0** (C360-47326) — the 9-variant `page messages` set (`11315:24274`), measured live: 6 message bars (800w, padding 8, icon 20, radius 8, subtle-surface tokens) + 3 setting chips (36h). Defects: **F-016** Change-variant surface un-bound; "Variant8" duplicate naming.
+
+### Changed
+- **form-fields → 2.0.0 (family INDEX)** — detail moved into the four member contracts; index keeps hierarchy, the export-verified token chain, and the drift log. field-type-1 banner now routes to all four.
+- **Portal `component-mapping.json` 2 → 15 entries** (C360-47328) — every nodeId grounded (contract-measured or existence-probed live). `componentKey` for 13 entries is **null/PENDING**: Figma's 40-hex component keys are Plugin-API-only — enumeration requested from Figma-AI; no keys were invented.
+- **Root `components/component-mapping.json` regenerated as 3.0.0** (C360-47327) — the self-declared round-number IDs and wrong file key replaced by a grounded 10-section index (28 sets/components + 3 patterns + guideline frames), provenance noted per section. It indexes; the portal files stay authoritative.
+- **Guideline frames wired in** (C360-47329) — `figmaGuidelinesFrame` added to 9 existing contracts + a Guidelines section in each `.md` (all 11 frame ids existence-probed live). **DS-REFERENCE → 3.0.0**: token manifest ref corrected to `ds-tokens-v2.6.4.json` (v2.5.0 never existed), `semantic.text.primary` fixed (was "gray.00 / Disabled text"; is `neutral.800 #1E293B` / Primary text).
+
+### Corrections vs the Figma-AI comments (validated, not assumed)
+- form-section-header fill/stroke are `surface/tertiary` #f1f5f9 + `field/border-default` #e2e8f0 — not "light blue / darker blue" (#633282).
+- `field-message type=comments` carries a copy-pasted description (repeats the AI-variant text) — Figma-side prose bug, flagged.
+- The morning contract's Body/micro 10/14 message typography was correct *when measured* and stale by evening — the drift log records both states with timestamps.
+
+---
+
 ## [3.4.0] — 2026-09-10
 
 Q1 tickets **C360-47183** (Form Fields) and **C360-47184** (Page Layout Patterns) delivered — measured live from Figma on 2026-09-10, reconciled against the owner exports, published at the portal-scoped authority paths.

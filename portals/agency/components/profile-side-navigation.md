@@ -110,3 +110,7 @@ Good news: the blue nav text (`action/ghost/text-hard` → blue-700) is already 
 ## 8. What I did NOT change
 
 Nothing was pushed to GitHub and no live Angular code was touched. This is the spec + the copy-from CSS. The GitHub update goes through the proper branch → PR flow (never a direct push to `main`) — say the word and I'll hand Codex the exact files, or open the PR for your approval.
+
+## Figma Guidelines
+
+Designer guideline frame: **user profile side nav — Guidelines** — [`27382:21080`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21080) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

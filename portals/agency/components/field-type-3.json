@@ -1,0 +1,96 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Fields type 3 (TERTIARY — settings/responsive)",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
+    "figmaComponentNodeId": "27395:30147",
+    "figmaSectionNodeId": "26955:66554",
+    "figmaTertiarySectionNodeId": "27395:29519",
+    "figmaGuidelinesFrame": { "nodeId": "27401:30526", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526" },
+    "referenceFrames": { "leftSectionStructure": "27507:56751", "designStructureAndPatterns": "27395:29530 (NOT read live — listed by C360-47183 #633289)" },
+    "measuredOn": "2026-09-10 afternoon — measured AFTER the Figma-side restructure of the same day; supersedes any morning numbers",
+    "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
+    "jiraSource": "C360-47325",
+    "familyIndex": "./form-fields.json",
+    "atomsContract": "./field-atoms.json",
+    "humanContract": "./field-type-3.md",
+    "readThisFirst": "Figma-AI restructured this family on 2026-09-10 between the morning and afternoon passes. Verified live in the afternoon: header column now 400 wide with min 200 / max 400; message rows 20px (12/16 text); form-section-header rebuilt at 64px around a Size=M header instance. Claims that could NOT be machine-read (WRAP flag, field_info/input min-widths) are marked ASSERTED with their Jira source — do not treat them as measured."
+  },
+
+  "purpose": "Complete SETTINGS-mode field: horizontal info-block-left / input-right row for settings and configuration panels, with responsive wrap.",
+
+  "formFieldTertiary": {
+    "nodeId": "27395:30147", "type": "COMPONENT", "tier": "molecule",
+    "geometry": {
+      "size": { "w": 1036, "h": 112, "marker": ["MEASURED"], "note": "default/desktop composition; height HUGs content" },
+      "rootLayout": { "mode": "VERTICAL", "padding": 12, "paddingToken": "spacing/lg", "itemSpacing": 12, "border": { "width": 1, "token": "field/border-default", "hex": "#e2e8f0" }, "background": "transparent", "marker": ["MEASURED"] },
+      "group1": { "nodeId": "27395:30132", "size": { "w": 1012, "h": 88 }, "mode": "HORIZONTAL", "columnGap": 12, "columnGapToken": "spacing/lg", "wrap": { "value": true, "marker": ["ASSERTED"], "source": "C360-47183 #633283" }, "counterAxisAlign": "CENTER (field_info sits at y=27, vertically centered)", "marker": ["MEASURED"] },
+      "headerColumn": { "instanceOf": "field-header-tertiary Size=M", "nodeId": "27395:30180", "size": { "w": 400, "h": 88 }, "minWidth": 200, "maxWidth": 400, "sizing": "FILL / HUG", "marker": ["MEASURED"], "constraintEvidence": "min/max read from live design context (max-w-[400px] min-w-[200px]) 2026-09-10 PM" },
+      "inputColumn": { "frame": "field_info", "nodeId": "27395:30138", "size": { "w": 600, "h": 34 }, "x": 412, "itemSpacing": 8, "minWidth": { "value": 250, "marker": ["ASSERTED"], "source": "#633283" }, "input": { "instanceOf": "field-input state=default", "nodeId": "27395:30236", "size": { "w": 400, "h": 34 }, "minWidth": { "value": 120, "marker": ["ASSERTED"] }, "maxWidth": { "value": 400, "marker": ["ASSERTED"] } }, "marker": ["MEASURED"] }
+    },
+    "responsiveBehavior": {
+      "mechanism": "group1 HORIZONTAL + WRAP [ASSERTED]: below the wrap point the input column stacks under the header column",
+      "wrapBreakpoint": { "value": 462, "unit": "px of group1 width", "marker": ["DERIVED"], "arithmetic": "header min 200 [MEASURED] + gap 12 [MEASURED] + field_info min 250 [ASSERTED] = 462", "warning": "derived partly from ASSERTED inputs — verify the WRAP flag and field_info min-width live before building responsive behaviour" }
+    },
+    "behavior": "Settings row; title, description and messages live in the left block, control on the right. Height auto-grows as optional left-stack rows show/hide."
+  },
+
+  "fieldHeaderTertiary": {
+    "nodeId": "27290:41702", "type": "COMPONENT_SET", "tier": "atom",
+    "variantAxis": { "name": "Size", "values": ["S", "M", "L"] },
+    "constraints": { "minWidth": 200, "maxWidth": 400, "sizing": "FILL / HUG", "marker": ["MEASURED"], "evidence": "live design context on Size=M; the set's variants all render at 400 wide" },
+    "booleanProps": ["showMandatory", "showDescription", "showAiInfo", "errorMessage"],
+    "variants": [
+      { "size": "S", "nodeId": "27290:41703", "w": 400, "h": 82, "titleTypography": "Fields/label 12/16 Medium", "titleRowH": 16, "descriptionTypography": "Body/micro 10/14", "descriptionH": 14, "arithmetic": "16+4+14+4+20+4+20 = 82", "marker": ["MEASURED"] },
+      { "size": "M", "nodeId": "27290:41707", "w": 400, "h": 88, "titleTypography": "Fields/header 14/20 Medium", "titleRowH": 20, "descriptionTypography": "Body/small 12/16", "descriptionH": 16, "arithmetic": "20+4+16+4+20+4+20 = 88", "marker": ["MEASURED"] },
+      { "size": "L", "nodeId": "27290:41714", "w": 400, "h": 92, "titleTypography": "Fields/header-large 16/24 Medium", "titleRowH": 24, "descriptionTypography": "Body/small 12/16", "descriptionH": 16, "arithmetic": "24+4+16+4+20+4+20 = 92", "marker": ["MEASURED"] }
+    ],
+    "rowGap": 4, "rowGapToken": "spacing/sm",
+    "titleColour": "text/primary #1e293b", "descriptionColour": "text/secondary #475569 (verified in live design context — NOT field/value-placeholder as the morning pass derived)"
+  },
+
+  "leftSectionStack": {
+    "referenceFrame": { "nodeId": "27507:56751", "size": { "w": 400, "h": 112 }, "marker": ["MEASURED"], "note": "read live 2026-09-10 PM" },
+    "items": [
+      { "n": 1, "item": "title row — Field_Title-{S/M/L} + 8×8 required marker, gap 4", "optional": "title always; marker optional", "h": "16/20/24 by size", "marker": ["MEASURED"] },
+      { "n": 2, "item": "description — Body/small 12/16 (Body/micro 10/14 in Size=S), text/secondary", "optional": true, "marker": ["MEASURED"] },
+      { "n": 3, "item": "field-message type=AI autopopulated (20h)", "optional": true, "marker": ["MEASURED"] },
+      { "n": 4, "item": "field-message type=Error/Warning (20h)", "optional": true, "marker": ["MEASURED"] },
+      { "n": 5, "item": "field-comment FRAME 27507:56744 (92×20: mark_unread_chat_alt 16 + text 12/16 text/links, gap 4) — extended pattern, a manual frame, NOT yet an instance of field-message type=comments", "optional": true, "marker": ["MEASURED"] }
+    ],
+    "extensibilityRule": "future rows follow icon 16 + text caption 12/16, gap 4, semantic colour per type (Figma component description, confirmed by the measured rows)",
+    "gap": 4
+  },
+
+  "formSectionHeader": {
+    "nodeId": "27395:30130", "type": "COMPONENT", "tier": "atom",
+    "changeLog2026-09-10": "Rebuilt in Figma the same day: 80 → 64px; the internal head1 frame was replaced by a real field-header-tertiary Size=M instance (27513:56814, 1012×40) with only title+description shown.",
+    "geometry": {
+      "size": { "w": 1036, "h": 64, "marker": ["MEASURED"] },
+      "layout": { "mode": "VERTICAL", "padding": 12, "paddingToken": "spacing/lg", "itemSpacing": 12, "itemSpacingToken": "spacing/lg" },
+      "innerInstance": { "component": "field-header-tertiary Size=M", "nodeId": "27513:56814", "size": { "w": 1012, "h": 40 }, "props": "showMandatory=false, showAiInfo=false, errorMessage=false", "arithmetic": "title 20 + gap 4 + description 16 = 40; 12+40+12 = 64", "marker": ["MEASURED"] },
+      "background": { "token": "surface/tertiary", "hex": "#f1f5f9", "marker": ["MEASURED"], "correction": "C360-47183 #633282 called this 'light blue' — the live binding is surface/tertiary (slate-gray). Refuted by design-context read 2026-09-10 PM." },
+      "border": { "width": 1, "token": "field/border-default", "hex": "#e2e8f0", "marker": ["MEASURED"], "correction": "#633282's 'slightly darker blue' is field/border-default (neutral-200 gray)." },
+      "borderRadius": { "value": 0, "token": "border-radius/rounded-none", "marker": ["MEASURED"] }
+    },
+    "typography": { "title": "Fields/header 14/20 Medium text/primary", "description": "Body/small 12/16 Regular text/secondary" },
+    "behavior": "Static section divider; groups a run of form-field-tertiary rows (one per logical section)."
+  },
+
+  "accessibility": {
+    "inputRow": { "value": 34, "wcag258AA": "PASS" },
+    "labelAssociation": "the left column's title is the visible label — associate via aria-labelledby; description via aria-describedby",
+    "messages": "error row gets role=alert / aria-live=polite; comments row is a link (text/links) — needs a focusable element",
+    "stacking": "on wrap, DOM order (header then input) matches visual order — no tab-order inversion"
+  },
+
+  "notVerified": [
+    "group1 WRAP flag, field_info min-width 250, field-input min 120 / max 400 (ASSERTED from #633283 — the remote read that would confirm them hit Figma's rate limit; re-verify before building responsive behaviour)",
+    "Design Structure and Patterns frame 27395:29530",
+    "dark / high-contrast / warm-dark / hc-light values",
+    "the '276px fully stacked' sample the ticket cites"
+  ]
+}

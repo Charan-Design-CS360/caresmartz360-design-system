@@ -2,34 +2,183 @@
   "schemaVersion": "1.0.0",
   "portal": "agency",
   "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+  "$note": "Expanded 2→15 entries on 2026-09-10 (C360-47328). Every nodeId is grounded: measured in its contract or existence-probed live the same day. componentKey (Figma's 40-hex component key) is only obtainable via the Plugin API — the 13 entries carrying componentKey: null await Figma-AI's enumeration (requested on C360-47328); nodeId is the working identifier until then.",
   "components": [
     {
       "name": "Button",
       "componentKey": "3db16e6d1c87cd2bbf26189ef94be6a24eb872a9",
       "nodeId": "26938:66536",
       "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
       "contractPath": "portals/agency/components/button.md",
       "jiraIssue": "C360-44256",
       "snapshotRef": "measured-live-figma-2026-08-24"
     },
     {
-      "name": "Fields",
+      "name": "Form Fields (family index)",
       "componentKey": "e2b8bc625076cfbb42c55490a0f023be6ff8152c",
       "nodeId": "26955:66554",
       "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/form-fields.md",
+      "jiraIssue": "C360-47183",
+      "snapshotRef": "measured-live-figma-2026-09-10"
+    },
+    {
+      "name": "Fields type 1 (PRIMARY, superseded record)",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "26938:65997",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
       "contractPath": "portals/agency/components/field-type-1.md",
       "jiraIssue": "C360-44847",
-      "snapshotRef": "measured-live-figma-2026-08-24"
+      "snapshotRef": "measured-live-figma-2026-08-24; drift re-measured 2026-09-10"
+    },
+    {
+      "name": "Fields type 2 (SECONDARY)",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27062:7663",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/field-type-2.md",
+      "jiraIssue": "C360-47325",
+      "snapshotRef": "measured-live-figma-2026-09-10"
+    },
+    {
+      "name": "Fields type 3 (TERTIARY)",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27395:30147",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/field-type-3.md",
+      "jiraIssue": "C360-47325",
+      "snapshotRef": "measured-live-figma-2026-09-10-pm"
+    },
+    {
+      "name": "Field Atoms (shared)",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27062:8145",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/field-atoms.md",
+      "jiraIssue": "C360-47325",
+      "snapshotRef": "measured-live-figma-2026-09-10-pm"
+    },
+    {
+      "name": "Filters",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27356:74769",
+      "nodeIdNote": "the measured 'filters compoents' section; the Figma-AI enumeration also lists a Filters section 26955:66555 (existence-probed 2026-09-10) — both exist",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/filters.md",
+      "jiraIssue": "C360-3526",
+      "snapshotRef": "measured-live-figma-2026-09-08"
+    },
+    {
+      "name": "Table",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "26955:66556",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/table.md",
+      "jiraIssue": "C360-44737",
+      "snapshotRef": "measured-live-figma-2026-09-01"
+    },
+    {
+      "name": "Empty States",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27218:64329",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/empty-states.md",
+      "jiraIssue": "C360-3526",
+      "snapshotRef": "measured-live-figma-2026-09-05"
+    },
+    {
+      "name": "Page Header",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27232:63236",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/page-header.md",
+      "jiraIssue": "C360-3526",
+      "snapshotRef": "measured-live-figma-2026-09-09"
+    },
+    {
+      "name": "DDM Dropdown Menu",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27245:67562",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/ddm-dropdown-menu.md",
+      "jiraIssue": "C360-3526",
+      "snapshotRef": "measured-live-figma-2026-09-05"
+    },
+    {
+      "name": "Column Arrangement",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27311:46254",
+      "nodeIdNote": "the measured columnarrangement pattern node; the Figma-AI enumeration lists a Column Settings section 27352:74681 (existence-probed 2026-09-10)",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/column-arrangement.md",
+      "jiraIssue": "C360-3526",
+      "snapshotRef": "measured-live-figma-2026-09-06"
+    },
+    {
+      "name": "Info Chips / Page Messages",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "11315:24274",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/info-chips.md",
+      "jiraIssue": "C360-47326",
+      "snapshotRef": "measured-live-figma-2026-09-10"
+    },
+    {
+      "name": "Profile Side Navigation",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27328:70399",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/profile-side-navigation.md",
+      "jiraIssue": "C360-3526",
+      "snapshotRef": "measured-live-figma-2026-09-08; section id existence-probed 2026-09-10"
+    },
+    {
+      "name": "Tabs",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27329:70491",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/tabs.md",
+      "jiraIssue": "C360-3526",
+      "snapshotRef": "measured-live-figma-2026-09-08; section id existence-probed 2026-09-10"
+    },
+    {
+      "name": "Primary Side Navigation",
+      "componentKey": null,
+      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
+      "nodeId": "27337:73592",
+      "maturity": "draft",
+      "semanticDependencies": ["shared/primitives", "portals/agency/semantics/color-modes", "portals/agency/semantics/density-modes"],
+      "contractPath": "portals/agency/components/primary-side-navigation.md",
+      "jiraIssue": "C360-44027",
+      "snapshotRef": "measured-live-figma-2026-09-09 (contract 1.2.0)"
     }
   ]
 }
