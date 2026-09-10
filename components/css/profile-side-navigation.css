@@ -1,0 +1,403 @@
+/* =============================================================================
+   FILE BRIEF: The "Profile Side Navigation" — a record's left sidebar. Three
+   stacked parts on one panel: top actions (back / search…), a user profile card
+   (photo, name, timezone, View Notes, contact rows) and a section nav list whose
+   items open each section of the record (Main Details, Schedule, Billing…). The
+   whole panel collapses to a thin avatar-only rail. A COPY-FROM reference, not an
+   import (00-README.md).
+   FIGMA SOURCE (Design System Agency V2.0, file 4bh29laapcuKBTghfaRXF0):
+     doc section  `user profile side navigation`   27328:70399
+     assembled    `profiel navigation preview`      27325:70008
+     collapsed    `profiel navigation cllapsed…`    27331:70994
+     top actions  `top actions` (Single / 2 actions) 27325:70122
+     card         `user profile card` (Expanded Yes/No) 27325:69934
+     nav item     `Nav Item` (Default/Hover/Active)  5847:7801
+     nav header   `Nav Header`                       5847:6636
+     nav divider  `Nav Divider`                      5847:8404
+   CREATOR: Claude (DESIGN-SYSTEM lane), on Singh's 2026-09-03 request.
+   STATUS: ASSEMBLED — Singh ratification pending; GitHub contract twin staged.
+
+   ══ SYNC LINK ══
+   PAIRED CONTRACT: portals/agency/components/profile-side-navigation.md + .json
+   on caresmartz360-design-system. That contract is the MEASUREMENT (node ids,
+   provenance, what was NOT verified); THIS file is the CODE.
+
+   ⚠ WHAT'S RULED, WHAT'S OPEN — read profile-side-navigation.md before changing
+   anything below. Singh ruled 2026-09-03:
+     RULED  Collapse is IN scope: the ENTIRE side panel collapses to a ~50px rail
+        showing only the avatar; tapping ANYWHERE on the rail re-expands it. See
+        [CS-PROFNAV-11].
+     RULED  The nav list is a FLAT list of Nav Items for v1. Header + separator
+        pieces are SUPPORTED and specced ([CS-PROFNAV-10]) but Singh applies them
+        later "if the case comes" — do not render them by default.
+     RULED  Top actions can be a SINGLE action or MULTIPLE — [CS-PROFNAV-02].
+     ADDED, NOT IN FIGMA  the collapsed rail's expand trigger is a real focusable
+        control, and each nav item is a real link/button — Figma draws the look,
+        not the semantics. See [CS-PROFNAV-12]. Shipping "tap a <div>" only would
+        fail WCAG 2.1 SC 2.1.1 (Keyboard).
+
+   ══ TOKENS — every value below is a repo-resolvable semantic var (verified
+      2026-09-03 against src/styles/2-semantics/_theme-light.scss + _density.scss
+      + 1-primitives/_spacing.scss). NO raw hex, NO !important. ══
+
+   ══ ANATOMY ══
+   .cs-profnav                     the whole sidebar panel (240px)
+     .cs-profnav__top               top actions bar (48px)
+       .cs-profnav__action            one 24px icon action (back, search…)
+     .cs-profnav__card              user profile card
+       .cs-profnav__identity          avatar + name/timezone row
+         .cs-profnav__avatar            70px round photo
+           .cs-profnav__avatar-edit       camera badge (edit photo)
+         .cs-profnav__name              "lastname, firstname"
+         .cs-profnav__timezone          "[timezone]"
+       .cs-profnav__notes             View Notes primary button
+       .cs-profnav__info              contact rows
+         .cs-profnav__info-row          one row = icon + value
+           .cs-profnav__info-icon         18px leading icon
+           .cs-profnav__info-link         blue, actionable (address/email/phone)
+           .cs-profnav__info-text         grey, static (DOB/office)
+     .cs-profnav__nav               section nav list
+       .cs-profnav__item              one section link (Default/Hover/Active)
+         .cs-profnav__item-icon         optional 18px icon
+         .cs-profnav__item-label        section name
+       .cs-profnav__nav-header        group header  (SUPPORTED, future grouping)
+       .cs-profnav__divider           group separator (SUPPORTED, future grouping)
+   .cs-profnav--collapsed           the 50px avatar-only rail state
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-01]  .cs-profnav — the panel container.
+   TOKENS: --sidebar-secondary-bg (fill) · --spacing-none (gap: sections butt
+           together, each section owns its own padding).
+   SPEC: profile-side-navigation.md §1.
+   Width 240px is a bare literal — no responsive/breakpoint variant was measured
+   in Figma (notVerified). No border: the panel is one flat #f8fafc fill; the
+   line you see against the white content area is the colour boundary, not a
+   drawn border (matches the Figma measurement — none was set).
+   -------------------------------------------------------------------------- */
+.cs-profnav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-none);
+  width: 240px;                                  /* bare literal — no token/responsive variant measured */
+  height: 100%;                                  /* fills the record layout's sidebar column */
+  background: var(--sidebar-secondary-bg);
+  overflow: hidden;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-02]  .cs-profnav__top — top actions bar. One OR many actions.
+   TOKENS: --sidebar-secondary-bg (fill) · --spacing-lg (padding 12) ·
+           --spacing-sm (gap 4) · --icon-primary (action glyphs).
+   SPEC: profile-side-navigation.md §2. Height 48 is a fixed literal (measured).
+   A single-action bar keeps the same 48px bar; extra actions push to the right
+   (the leading action is flex-1 so trailing actions right-align). Icons are 24px
+   Material Symbols Rounded (back = arrow_circle_left filled; search = person_search).
+   -------------------------------------------------------------------------- */
+.cs-profnav__top {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  height: 48px;                                  /* fixed literal — measured */
+  padding: var(--spacing-lg);                    /* 12 */
+  background: var(--sidebar-secondary-bg);
+}
+.cs-profnav__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--icon-primary);
+  cursor: pointer;
+}
+.cs-profnav__action:first-child { margin-right: auto; }   /* leading action left, trailing action(s) right */
+.cs-profnav__action > .mi { width: 24px; height: 24px; }  /* inline-SVG icon, fill:currentColor (00-README) */
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-03]  .cs-profnav__card — user profile card.
+   TOKENS: --sidebar-secondary-bg (fill) · --spacing-lg (padding 12 + gap 12).
+   SPEC: profile-side-navigation.md §3. Three stacked blocks: identity, View
+   Notes, contact rows. The whole card links to the person's record in Figma;
+   keep the clickable region to the identity block + the explicit View Notes
+   button rather than the entire card (see md §3 note / notVerified).
+   -------------------------------------------------------------------------- */
+.cs-profnav__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);                        /* 12 */
+  padding: var(--spacing-lg);                    /* 12 */
+  background: var(--sidebar-secondary-bg);
+}
+
+/* [CS-PROFNAV-04]  identity row — avatar + name/timezone. gap 12. */
+.cs-profnav__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);                        /* 12 */
+}
+.cs-profnav__name {
+  /* Heading/h5 — Inter Medium 16 / line-height 24 / tracking -0.24 */
+  margin: 0;
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-heading-5, 16px);
+  font-weight: var(--font-weight-heading-base, 500);
+  line-height: var(--line-height-body-strong, 24px);
+  letter-spacing: var(--letter-spacing-heading, -0.24px);
+  color: var(--text-primary);
+}
+.cs-profnav__timezone {
+  /* Fields/value — Inter Regular 12 / line-height 16 */
+  margin: 0;
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--font-weight-body-base, 400);
+  line-height: var(--line-height-caption, 16px);
+  color: var(--text-secondary);
+}
+
+/* [CS-PROFNAV-05]  avatar + camera edit badge.
+   70px round photo; the 18px camera badge sits bottom-right, bg
+   --action-secondary-bg, glyph --action-secondary-text. */
+.cs-profnav__avatar {
+  position: relative;
+  flex: 0 0 auto;
+  width: 70px;
+  height: 70px;
+  border-radius: var(--border-radius-rounded-full);            /* 9999 */
+  overflow: visible;
+}
+.cs-profnav__avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--border-radius-rounded-full);
+}
+.cs-profnav__avatar-edit {
+  box-sizing: border-box;                        /* fix: without this the 4px padding made the badge 26px, not the measured 18px */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: var(--spacing-sm);                    /* 4 */
+  border: none;
+  border-radius: var(--border-radius-rounded-full);
+  background: var(--action-secondary-bg);
+  color: var(--action-secondary-text);
+  cursor: pointer;
+}
+.cs-profnav__avatar-edit > .mi { width: 12px; height: 12px; }
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-06]  .cs-profnav__notes — the View Notes primary button.
+   TOKENS: --action-primary-bg (fill) · --action-primary-text-neutral (label) ·
+           --spacing-lg (inline padding) · --border-radius-rounded (4).
+   Full width, min-height 24 (control/height-compact). Button/label type: Inter
+   Medium 12 / line-height 16. This is the shared primary Button — reference it
+   in Angular (<button cs-button variant="primary">), styled here for the kit.
+   -------------------------------------------------------------------------- */
+.cs-profnav__notes {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 24px;                              /* control/height-compact */
+  padding: var(--spacing-none) var(--spacing-lg);/* 0 12 */
+  border: none;
+  border-radius: var(--border-radius-rounded);                 /* 4 */
+  background: var(--action-primary-bg);
+  color: var(--action-primary-text-neutral);
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--font-weight-body-strong, 500);
+  line-height: var(--line-height-caption, 16px);
+  cursor: pointer;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-07]  .cs-profnav__info — contact rows.
+   TOKENS: --spacing-md (gap between rows 8, and icon↔text gap 8) ·
+           --icon-soft (18px leading icons) · --text-links (address, email) ·
+           --text-brand (phone) · --text-secondary (DOB, office).
+   SPEC: profile-side-navigation.md §3. Address / email / phone are ACTIONABLE
+   (real <a>: map, mailto:, tel:) and render blue; DOB and office are STATIC grey
+   text. Icons are decorative (aria-hidden) — the row's text carries the meaning.
+   -------------------------------------------------------------------------- */
+.cs-profnav__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);                        /* 8 */
+}
+.cs-profnav__info-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);                        /* 8 */
+}
+.cs-profnav__info-icon {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: var(--icon-soft);
+}
+.cs-profnav__info-icon > .mi { width: 18px; height: 18px; }
+.cs-profnav__info-link,
+.cs-profnav__info-text {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--font-weight-body-base, 400);
+  line-height: var(--line-height-caption, 16px);
+  /* address wraps to 2 lines; the rest stay single-line but may wrap if long */
+  overflow-wrap: anywhere;
+}
+.cs-profnav__info-link { color: var(--text-links); text-decoration: none; }
+.cs-profnav__info-link--phone { color: var(--text-brand); }
+.cs-profnav__info-link:hover { text-decoration: underline; }
+.cs-profnav__info-text { color: var(--text-secondary); }
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-08]  .cs-profnav__nav — the section nav list.
+   TOKENS: --sidebar-secondary-bg (fill) · --spacing-md (inline padding 8) ·
+           --spacing-lg (block padding 12) · --spacing-xs (gap 2 between items).
+   Fills the remaining height and scrolls if the record has many sections.
+   -------------------------------------------------------------------------- */
+.cs-profnav__nav {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--spacing-xs);                        /* 2 */
+  min-height: 0;
+  padding: var(--spacing-lg) var(--spacing-md);  /* 12 8 */
+  background: var(--sidebar-secondary-bg);
+  overflow-y: auto;                              /* ADDED: no max-height was measured; scroll long lists */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-09]  .cs-profnav__item — one section link. Three states.
+   TOKENS: default bg --action-soft-bg + text --text-primary ·
+           hover   bg --action-ghost-hover + text --action-ghost-text-hard ·
+           active  bg --action-ghost-pressed + text --action-ghost-text-hard ·
+           --spacing-md (inline padding 8 + icon gap 8) · --border-radius-rounded (4).
+   Type: Inter Medium 14 / line-height 16 / tracking -0.24. min-height 30.
+   Active is the CURRENT section — mark it aria-current="page" (see A11Y). Hover
+   and active share the same "hard" blue text; only the background separates them.
+   -------------------------------------------------------------------------- */
+.cs-profnav__item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);                        /* 8 */
+  min-height: 30px;
+  padding: var(--spacing-none) var(--spacing-md);/* 0 8 */
+  border: none;
+  border-radius: var(--border-radius-rounded);                 /* 4 */
+  background: var(--action-soft-bg);
+  color: var(--text-primary);
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-body-base, 14px);
+  font-weight: var(--font-weight-heading-base, 500);
+  line-height: var(--line-height-body-strong, 16px);
+  letter-spacing: var(--letter-spacing-heading, -0.24px);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cs-profnav__item-icon { flex: 0 0 auto; width: 18px; height: 18px; color: inherit; }
+.cs-profnav__item-icon > .mi { width: 18px; height: 18px; }
+.cs-profnav__item-label { flex: 1 1 0; min-width: 0; }
+
+.cs-profnav__item:hover {
+  background: var(--action-ghost-hover);
+  color: var(--action-ghost-text-hard);
+}
+.cs-profnav__item--active,
+.cs-profnav__item[aria-current="page"] {
+  background: var(--action-ghost-pressed);
+  color: var(--action-ghost-text-hard);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-10]  Nav Header + Nav Divider — SUPPORTED, future grouping.
+   Singh 2026-09-03: keep these ready; he applies grouping "if the case comes".
+   Do NOT render them in the default flat list.
+   Header: Label/overline — Inter Semi Bold 10 / line-height 14 / UPPERCASE,
+           --text-tertiary, padding-top 12 / padding-bottom 8 / inline 8.
+   Divider: a 2px line (--sidebar-border), 12px block padding, full width.
+   -------------------------------------------------------------------------- */
+.cs-profnav__nav-header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);  /* 12 8 8 */
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-micro, 10px);
+  font-weight: var(--font-weight-heading-strong, 600);
+  line-height: var(--line-height-micro, 14px);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.cs-profnav__divider {
+  padding: var(--spacing-lg) var(--spacing-none); /* 12 0 */
+}
+.cs-profnav__divider::before {
+  content: "";
+  display: block;
+  height: 2px;
+  border-radius: 1px;                            /* bare literal — matches Figma's 1px */
+  background: var(--sidebar-border);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-11]  .cs-profnav--collapsed — the 50px avatar-only rail.
+   RULED (Singh 2026-09-03): the ENTIRE panel collapses to a thin rail showing
+   ONLY the avatar (40px), vertically centred; tapping ANYWHERE on the rail
+   re-expands it. Top actions, card body and nav list are hidden in this state.
+   Toggle by adding/removing --collapsed on .cs-profnav (state is app-owned).
+   -------------------------------------------------------------------------- */
+.cs-profnav--collapsed {
+  width: 50px;                                   /* measured collapsed width */
+  cursor: pointer;                               /* the whole rail is the expand target */
+}
+.cs-profnav--collapsed .cs-profnav__top,
+.cs-profnav--collapsed .cs-profnav__notes,
+.cs-profnav--collapsed .cs-profnav__name,
+.cs-profnav--collapsed .cs-profnav__timezone,
+.cs-profnav--collapsed .cs-profnav__info,
+.cs-profnav--collapsed .cs-profnav__avatar-edit,
+.cs-profnav--collapsed .cs-profnav__nav { display: none; }
+.cs-profnav--collapsed .cs-profnav__card {
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;                                /* centre the avatar vertically in the rail */
+  padding: var(--spacing-lg) var(--spacing-none);
+}
+.cs-profnav--collapsed .cs-profnav__avatar {
+  width: 40px;                                   /* collapsed avatar size (measured) */
+  height: 40px;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PROFNAV-12]  A11Y — added beyond the Figma render (semantics, not looks).
+   • Nav items are real links/buttons inside a <nav aria-label="…"> list; the
+     current section carries aria-current="page" (drives [CS-PROFNAV-09] active).
+   • Contact rows: address→map <a>, email→mailto:, phone→tel:; leading icons are
+     aria-hidden (text carries meaning). DOB/office are plain text, not links.
+   • Collapsed rail: expose a REAL focusable control to expand (e.g. wrap the rail
+     in a <button aria-expanded aria-label="Expand profile">). "Tap anywhere on a
+     <div>" is mouse-only and fails WCAG 2.1 SC 2.1.1; the visible affordance can
+     still be the whole rail.
+   • Focus-visible: every interactive element needs a visible focus ring — inherit
+     the kit's global :focus-visible outline; do not remove it.
+   -------------------------------------------------------------------------- */
+.cs-profnav :focus-visible { outline: 2px solid var(--action-primary-bg); outline-offset: 2px; }

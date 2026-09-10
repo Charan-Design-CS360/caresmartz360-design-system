@@ -1,0 +1,221 @@
+/* =============================================================================
+   FILE BRIEF: Tabs — two official styles.
+     • PRIMARY (underline): top-level section tabs. A row of text tabs with a 2px
+       baseline; the selected tab's baseline turns brand-blue. States: Default,
+       Hover, Selected, Disabled, plus an "Empty" filler that extends the grey
+       baseline past the last tab.
+     • SECONDARY (segmented): a joined pill group for nested / sub / filter tabs.
+       Small 24px segments that butt together; corners round only at the Start and
+       End of the row; the active segment is solid blue, others are outlined.
+   A COPY-FROM reference, not an import (00-README.md).
+   FIGMA SOURCE (Design System Agency V2.0, file 4bh29laapcuKBTghfaRXF0):
+     Tabs section     27329:70491
+     primary tab      5775:8556   (State=Default/Hover/Selected/disabled/Empty)
+     primary preview  27329:70502
+     secondary tab    27329:70805 (Size=S · Active=No/Yes · Status=Start/Mid/End · State=Default/Hover)
+     secondary preview 27329:70869
+   CREATOR: Claude (DESIGN-SYSTEM lane), on Singh's 2026-09-03 request.
+   STATUS: ASSEMBLED — Singh ratification pending; GitHub contract twin staged.
+
+   ══ SYNC LINK ══
+   PAIRED CONTRACT: portals/agency/components/tabs.md + .json. That contract is
+   the MEASUREMENT (node ids, provenance, what was NOT verified); THIS is the CODE.
+
+   ⚠ RULED (Singh, 2026-09-03):
+     • BOTH styles are in scope, officially named PRIMARY (underline, 5775:8556)
+       and SECONDARY (segmented, 27329:70805).
+     • Singh added a DISABLED state to PRIMARY (27334:72865).
+   ⚠ FLAG (defect T1): Figma's disabled label value reads #475569 (same as a
+     normal tab), but the repo token --action-disabled-text-neutral resolves to
+     the lighter neutral-300. This CSS binds the TOKEN (correct); the value
+     mismatch is for Singh / Figma AI to reconcile — see tabs.md §Defects.
+
+   ══ TOKENS — every value below is a repo-resolvable semantic var (verified
+      2026-09-03 against src/styles/2-semantics/_theme-light.scss + _spacing).
+      NO raw hex, NO !important. ══
+
+   ══ ANATOMY ══
+   PRIMARY
+   .cs-tabs                       the tab row
+     .cs-tabs__tab                  one tab (button/link)
+       .cs-tabs__tab-label            the text  (+ ::after = 2px baseline)
+       &--selected / [aria-selected]  current tab
+       &--disabled / [aria-disabled]  non-interactive
+     .cs-tabs__filler               empty slot that extends the grey baseline
+   SECONDARY
+   .cs-segtab                       the segmented group
+     .cs-segtab__item               one segment (button)
+       &--active / [aria-selected]    selected segment (solid blue)
+   ============================================================================= */
+
+/* ============================ PRIMARY (underline) ========================== */
+
+/* -----------------------------------------------------------------------------
+   [CS-TABS-01]  .cs-tabs — the row. Baseline-aligned so every tab's 2px
+   underline sits on one line. Horizontal scroll if the tabs overflow.
+   -------------------------------------------------------------------------- */
+.cs-tabs {
+  display: flex;
+  align-items: flex-end;
+  overflow-x: auto;                              /* ADDED: many tabs → scroll, don't wrap */
+  padding-inline: var(--spacing-lg);             /* FIX 2026-09-08: 12 — the Tab Container owns its own page gutter,
+                                                    per portals/agency/patterns/page-setup.md §2 ("the first tab (x12)")
+                                                    and §5.3 (components own their gutter; pages must not add one).
+                                                    Without it the tab row and its baseline sit 12px left of the page
+                                                    header and the table beneath. */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TABS-02]  .cs-tabs__tab — one tab. States by colour of label + baseline.
+   TOKENS: --spacing-xl (padding-top 16) · --spacing-sm (padding-bottom 4) ·
+           --spacing-md (gap 8 label↔baseline) · --spacing-xl (label right-gap 16) ·
+           default   label --text-secondary  · baseline --field-border-default
+           hover     label --text-primary     · baseline --border-focus
+           selected  label --text-brand       · baseline --action-primary-bg
+           disabled  label --action-disabled-text-neutral · baseline --action-disabled-bg
+   TYPE: Fields/header — Inter Medium 14 / line-height 20.
+   The 2px baseline is the tab's ::after so it colours per state without extra markup.
+   -------------------------------------------------------------------------- */
+.cs-tabs__tab {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);                        /* 8 */
+  padding: var(--spacing-xl) var(--spacing-none) var(--spacing-sm);  /* 16 0 4 */
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-body-base, 14px);
+  font-weight: var(--font-weight-heading-base, 500);
+  line-height: var(--line-height-body-base, 20px);
+  white-space: nowrap;
+  text-decoration: none;                         /* FIX 2026-09-08: a tab is an <a>/<button>; without this the UA draws a
+                                                    link underline UNDER the label, on top of the intended 2px ::after
+                                                    baseline. Matches .cs-pnav__link and .cs-profnav__item, which both
+                                                    already reset it. Visible defect, not a preference. */
+  cursor: pointer;
+}
+.cs-tabs__tab-label { padding-right: var(--spacing-xl); }   /* 16 — gap to the next tab */
+.cs-tabs__tab::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--field-border-default);       /* grey baseline */
+}
+.cs-tabs__tab:hover { color: var(--text-primary); }
+.cs-tabs__tab:hover::after { background: var(--border-focus); }
+
+.cs-tabs__tab--selected,
+.cs-tabs__tab[aria-selected="true"] { color: var(--text-brand); }
+.cs-tabs__tab--selected::after,
+.cs-tabs__tab[aria-selected="true"]::after { background: var(--action-primary-bg); }
+
+.cs-tabs__tab--disabled,
+.cs-tabs__tab[aria-disabled="true"] {
+  color: var(--action-disabled-text-neutral);
+  pointer-events: none;                          /* non-interactive */
+  cursor: default;
+}
+.cs-tabs__tab--disabled::after,
+.cs-tabs__tab[aria-disabled="true"]::after { background: var(--action-disabled-bg); }
+
+/* -----------------------------------------------------------------------------
+   [CS-TABS-03]  .cs-tabs__filler — the "Empty" slot. Takes the remaining width
+   and continues the grey baseline to the end of the row. No label, not focusable.
+   -------------------------------------------------------------------------- */
+.cs-tabs__filler {
+  flex: 1 1 0;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: var(--spacing-sm);             /* 4 — align its baseline with the tabs */
+}
+.cs-tabs__filler::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--field-border-default);
+}
+
+/* =========================== SECONDARY (segmented) ======================== */
+
+/* -----------------------------------------------------------------------------
+   [CS-TABS-04]  .cs-segtab — the joined group.
+   -------------------------------------------------------------------------- */
+.cs-segtab { display: inline-flex; }
+
+/* -----------------------------------------------------------------------------
+   [CS-TABS-05]  .cs-segtab__item — one segment.
+   TOKENS: --spacing-md (inline padding 8) · --border-radius-rounded (corner 4, only at ends) ·
+           inactive  border --border-subtle · text --text-primary · no fill
+           active    fill --action-primary-bg · text --action-primary-text-neutral
+           hover     fill --action-secondary-hover · border --border-brand ·
+                     text --action-secondary-text
+   TYPE: Fields/value — Inter Regular 12 / line-height 16. Height 24, min-width 40.
+   Corners round at the row's Start (first) and End (last) only — Figma's
+   Status=Start/Mid/End maps to :first-child / middle / :last-child. Adjacent
+   borders are collapsed with a -1px margin; the coloured state is raised so its
+   border wins over the neighbour's.
+   -------------------------------------------------------------------------- */
+.cs-segtab__item {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  min-height: 24px;
+  min-width: 40px;
+  padding: var(--spacing-none) var(--spacing-md);/* 0 8 */
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--font-weight-body-base, 400);
+  line-height: var(--line-height-caption, 16px);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.cs-segtab__item + .cs-segtab__item { margin-left: -1px; }   /* collapse shared border (Status=Mid joins) */
+.cs-segtab__item:first-child {                                /* Status=Start */
+  border-top-left-radius: var(--border-radius-rounded);
+  border-bottom-left-radius: var(--border-radius-rounded);
+}
+.cs-segtab__item:last-child {                                 /* Status=End */
+  border-top-right-radius: var(--border-radius-rounded);
+  border-bottom-right-radius: var(--border-radius-rounded);
+}
+.cs-segtab__item:hover:not(.cs-segtab__item--active):not([aria-selected="true"]) {
+  background: var(--action-secondary-hover);
+  border-color: var(--border-brand);
+  color: var(--action-secondary-text);
+  position: relative;
+  z-index: 1;                                    /* raise the coloured border over neighbours */
+}
+.cs-segtab__item--active,
+.cs-segtab__item[aria-selected="true"] {
+  background: var(--action-primary-bg);
+  border-color: var(--action-primary-bg);
+  color: var(--action-primary-text-neutral);
+  position: relative;
+  z-index: 1;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TABS-06]  A11Y — added beyond the Figma render.
+   • PRIMARY: mark up as role="tablist" > role="tab"; the current tab is
+     aria-selected="true" (drives --selected) and its panel via aria-controls.
+     Disabled tabs get aria-disabled="true" (drives --disabled) + tabindex="-1".
+   • SECONDARY: same tablist/tab semantics for a sub-tab group; the active
+     segment is aria-selected="true".
+   • Keyboard: arrow keys move between tabs (roving tabindex) — standard tabs
+     interaction; not drawn in Figma but required for a real tab component.
+   • Focus ring stays visible on every tab/segment.
+   -------------------------------------------------------------------------- */
+.cs-tabs__tab:focus-visible,
+.cs-segtab__item:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }

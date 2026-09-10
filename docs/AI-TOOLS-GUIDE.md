@@ -121,7 +121,7 @@ export class ButtonComponent {
 ```scss
 // ✅ CORRECT — always reference semantic token via CSS custom property
 .btn--primary {
-  background-color: var(--color-brand-primary);   // #2563EB
+  background-color: var(--color-brand-primary);   // #0077FF (CareSmartz360 Brand Blue)
   color:            var(--color-text-inverse);     // #FFFFFF
   border-radius:    var(--radius-md);              // 4px
   min-height:       40px;                          // WCAG touch target
@@ -185,32 +185,30 @@ export class ButtonComponent {
 
 ## Icon Usage
 
-Always use Google Material Symbols Rounded:
+Always use Google Material Symbols Rounded via **Inline SVG sprites** (ruled by Singh, 2026-06-17; avoid CDN web fonts to prevent text leakage on network dropouts):
 
 ```html
-<!-- Size via font-size or Tailwind text-* class -->
-<span class="material-symbols-rounded text-[24px] text-icon-primary">check_circle</span>
-<span class="material-symbols-rounded text-[20px] text-icon-brand">arrow_forward</span>
-<span class="material-symbols-rounded text-[32px] text-icon-danger">error</span>
-```
-
-Required in `index.html`:
-```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+<!-- ✅ CORRECT — Inline SVG sprite referencing Material Symbols Rounded -->
+<svg class="icon icon-24 text-icon-primary" aria-hidden="true">
+  <use href="/assets/icons/sprite.svg#check_circle"></use>
+</svg>
+<svg class="icon icon-20 text-icon-brand" aria-hidden="true">
+  <use href="/assets/icons/sprite.svg#arrow_forward"></use>
+</svg>
+<svg class="icon icon-32 text-icon-danger" aria-hidden="true">
+  <use href="/assets/icons/sprite.svg#error"></use>
+</svg>
 ```
 
 ---
 
 ## Accessibility Requirements
 
-Every component MUST:
-- Have minimum touch target of **40x40px** (`min-h-touch min-w-touch`)
-- Use `aria-label` on all icon-only buttons
-- Use `aria-describedby` for form error states
-- Use `role` attributes for custom interactive elements
-- Meet WCAG AA contrast ratio (4.5:1 for normal text, 3:1 for large text)
-- Support keyboard navigation (`Tab`, `Enter`, `Space`, `Escape`)
-- Show visible focus state with `focus-visible:ring-2`
+All components must meet WCAG 2.1 AA requirements:
+- Contrast ratio: minimum 4.5:1 for normal text, 3:1 for large text
+- Focus states: always visible via `--color-border-focus`
+- Touch targets: minimum 40px (WCAG AAA recommends 44px)
+- Screen readers: use appropriate ARIA attributes
 
 ---
 
@@ -238,7 +236,7 @@ Generate a [COMPONENT_NAME] component with:
 
 | Token Path | CSS Property | Light Value |
 |-----------|-------------|-------------|
-| brand.primary | `var(--color-brand-primary)` | #2563EB |
+| brand.primary | `var(--color-brand-primary)` | #0077FF |
 | brand.hover | `var(--color-brand-hover)` | #1D4ED8 |
 | brand.disabled | `var(--color-brand-disabled)` | #D1D5DB |
 | status.success | `var(--color-status-success)` | #16A34A |

@@ -1,0 +1,892 @@
+/* =============================================================================
+   FILE BRIEF: The generic table for EVERY CareSmartz360 feature — cell structure,
+   header cell, data cell, control cells, the sort affordance and the in-cell
+   inline-edit field. A COPY-FROM reference, not an import (00-README.md).
+   SPEC SOURCE: SPEC-08b-table-header-and-row.md (header, rows, sort, control
+                cells) · SPEC-08a-table-cell-text-status-link.md (cell text,
+                link cell)
+   FIGMA SOURCE: `Head / Tiltes for tables` 5865:162 (the CANONICAL header) ·
+                 `Head` set 26264:29115 (control-column headers) ·
+                 sort 5865:154 · Cell-Structure row cells 23313:411056,
+                 23313:411058, 23374:62819 · link atom 1957:2762
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   =============================================================================
+
+   ══ SYNC LINK — added 2026-08-25 by Claude (DESIGN-SYSTEM lane) ══
+
+   PAIRED CONTRACT: portals/agency/components/table.md + table.json on
+   caresmartz360-design-system origin/main. That contract is the MEASUREMENT
+   (provenance, node ids, and what was NOT verified); THIS file is the CODE.
+   Neither replaces the other — a stylesheet cannot say "unknown", a contract can.
+   The contract's $meta.cssReference points back here at [CS-TBL-01..03].
+
+   ✅ BOTH PREVIOUSLY-OPEN ITEMS WERE RULED BY SINGH ON 2026-08-25. His words are
+   quoted verbatim below so no later session re-opens them from inference.
+
+   RULING 1 — CANONICAL HEADER IS `table_head` 26938:61726, variant 26938:52865.
+   Singh linked that exact node and said it "include all actions what it needed to
+   show and hide example, Sorting, Information etc." `Head / Tiltes for tables`
+   5865:162 — which THIS file was originally built from — is therefore RETIRED as
+   an alias of the above, and `X-Head old` stays formally dead. Three header
+   components existed in one Figma file; one is canonical now. The geometry in this
+   file did not have to change for this: both headers measure 34px, so retiring
+   5865:162 is a provenance correction, not a visual one.
+
+   RULING 2 — PADDING IS 8px LEFT/RIGHT, 0px TOP/BOTTOM, ON BOTH HEADER AND CELL.
+   Singh: "8px left right, 0 top bottom and with hug height properties with minimum
+   height of 30px." This CONFIRMS live Figma (--spacing-md / --spacing-none) and
+   CORRECTS this file, which had bound --spacing-sm (4) vertically. Changed at
+   [CS-TBL-02]. The arithmetic note that used to justify the 4 is rewritten: 34px
+   is now a pure minimum, not a sum. The data cell at [CS-TBL-08] had NO horizontal
+   padding at all — a real omission, not a disagreement — and now binds the 8.
+
+   RULING 3 — A CELL GROWS WITH ITS CONTENT, AND THE WHOLE ROW GROWS WITH IT.
+   Singh: "yes, It can increase but this will increase the entire row height not a
+   cell independently. The minimum height is 30px." The blocker was NOT the height
+   keyword — in the CSS table model `height` on a table-cell is already treated as
+   a MINIMUM, and sibling cells stretch to the tallest, which is exactly the
+   row-level growth he described. The blocker was `white-space: nowrap`, which
+   stopped the text wrapping so nothing could ever grow. That is removed. Both
+   `min-height` and `height` are now declared so the rule also holds if a project
+   builds the table out of divs instead of a real <table>.
+
+   RULING 4 — ZEBRA STRIPING IS NOT USED. Singh, unprompted and definite: "Zebra
+   we are not following." This is a decision, not a gap — do not add it, and do not
+   log it as missing again.
+
+   ⏳ STILL OPEN, DELIBERATELY — CELL HOVER. Singh asked for cell hover to follow
+   the semantic layer's own variables. It cannot be built yet: the Agency semantic
+   layer has NO hover token for a field or table surface. The only `*hover` tokens
+   are action/{primary,secondary,ghost,soft,ai,success,warning,destructive}/hover,
+   action/toggle/{bg,icon}-hover, surface/brand-hover and text/links-hover — all
+   button/brand/link tokens, wrong layer for a data cell. Singh's instruction on
+   that: "If hover is not available then raise this point again tomorrow to me. For
+   now let it go." So no hover is invented here. Selected and sorted-active are
+   likewise deferred to that same conversation.
+
+   ══ A THIRD STYLESHEET EXISTS, AND IT IS NOW ALIGNED TOO (added 2026-08-25) ══
+
+   `src/styles/3-components/_tables.scss` inside the caresmartz360-design-system
+   repo is a SEPARATE table stylesheet from this file. It is what anyone using
+   that repo's compiled CSS actually gets. It was written 2026-07-14 during token
+   extraction — six weeks before this table was ever measured — so it was never
+   based on the Figma component: no row heights at all, 4px vertical padding, a
+   zebra rule, border-bottom only, 14px body type. Since every AI tool is told to
+   read that repo for component truth, that is the likeliest reason a feature
+   session could not build a table to the design system. Rewritten 2026-08-25
+   against the contract and pushed (origin/main 97c8153). Scope there is head
+   cell + data cell only; header internals stay exclusive to THIS file.
+
+   ⚠ ONE THING THIS FILE GETS WRONG, LEFT ALONE PENDING SINGH'S WORD:
+   the `border-radius: var(--border-radius-rounded-none)` below binds a name that
+   does not exist in the design system's shipped CSS. The prefix-free name there
+   is `--border-radius-rounded-none`. Harmless here (a dead var on a 0 radius changes nothing),
+   but the SAME mistake is live where it does matter — `--border-radius-rounded`
+   and `--border-radius-rounded-xl` are referenced by the Button and Empty States
+   contracts, and a dead var there means SQUARE corners where 4px and 12px were
+   intended. Do not fix that by renaming Figma variables; the CSS names are
+   right and the referencing JSON is wrong. Raised for 2026-08-26.
+
+   ⚠ ALSO UNRULED, AND IT QUIETLY WEAKENS RULING 2: `--spacing-md` is
+   density-variable in the design-system repo — 8px default, 6px at compact,
+   12px at comfortable. So the ruled 8px holds only at default density. Binding
+   the token is still right; whether the ruled padding may move with density is
+   Singh's call. Raised for 2026-08-26.
+
+   Everything else agreed exactly all along: the 34/30 heights, horizontal padding
+   8, gap 4, 1px borders on all four sides, weight 500 vs 400, 12/16 type, and no
+   uppercase on the header. Also keep the codegen-fallback trap in mind: this file
+   once recorded 9/5, the 2026-08-25 measurement saw 9/1 — the bogus fallbacks are
+   not even stable between reads, which is the whole reason this file binds the
+   token name and never the printed number.
+   =============================================================================
+
+   ══ THE TWO FINDINGS THAT DECIDE WHAT THIS FILE CONTAINS ══
+
+   1. THERE ARE TWO HEADERS IN FIGMA AND ONE IS FORMALLY DEAD.
+      `X-Head old` is the header embedded in every legacy `TC/*` column stack, and
+      Figma's own component description reads, verbatim: "Do not cosider this
+      compoent". This file builds the canonical `Head / Tiltes for tables`
+      5865:162 (34px, bordered on all four sides) and nothing else.
+
+   2. THE ROW OF RECORD IS 30px; 34px IS THE HEADER.
+      SPEC-08b §6.B corrects an earlier reading: the 34px "display cell" node
+      (14138:189149) is the `Cell Structure=No` variant, so it does not belong to
+      the Cell-Structure=Yes set at all. Real Cell-Structure=Yes usage
+      (23420:129196) renders display rows at 30px. Header 34, row 30, inline-edit
+      row 44.
+
+   Also settled, so nobody rebuilds it: Size=L vs Size=M is NOT a density axis. It
+   is a demo-length switch on the Figma canvas — how many placeholder rows a column
+   shows. Verified three independent ways in SPEC-08a §4. Do not build an "L row"
+   and an "M row" at different heights. Every data row is 30px.
+
+   BARE LITERALS IN THIS FILE (Figma has NO token for these):
+     34px  header cell MINIMUM height (not a sum — see [CS-TBL-02])  §3, §3.1
+     24px  header title-row height                                 §3
+     30px  data row MINIMUM height — rows grow, ruled 2026-08-25    §6.B
+     44px  inline-edit row height                                  §6.B
+     32px  control-column header width, and empty-header min-width  §3.2, §7.1
+     30px  control cell min-width                                   §6.B
+     8px   mandatory marker (inner vector 5.162 × 5.6)              §3
+     16px  help marker box (12px glyph)                             §3
+     10 × 16px  sort container; 10 × 7px each triangle; 9px offset   §4.2
+     2px   sort container radius on hover                            §4.2
+     20px  inline-edit field inner line box                          §6.B
+     1px   every border width                                       §3, §6.B
+     1.5px checkbox box border (see checkbox-radio.css)             SPEC-11 §3.1
+   No raw hex anywhere in this file.
+
+   NOT IN THIS FILE, deliberately — each named:
+   • ZEBRA STRIPING. The legacy tint is rgba(51,74,101,0.05) with NO token
+     (SPEC-08b §6.A, its NOT-VERIFIED item 4), and the same raw value doubles as
+     the rule colour and the footer line. The modern Cell-Structure table does not
+     stripe at all: every cell owns a 1px border/subtle box, so the table reads as
+     a full grid instead of horizontal rules. Copy the grid, not the stripes.
+   • The legacy `TC/*` column stack, its 4px `TC/Margin` gutter column, the 5px
+     `clumn/footer`, and the 40px legacy inline-edit row — all raw-hex, all paired
+     with the dead header (SPEC-08b §6.A, §6.C).
+   • LINK STATES. The link component has ONE variant. Hover, focus, visited, active
+     and disabled are NOT defined in the DS for it (SPEC-08a §8.2), and the greyed
+     #afbcc9 you see on the demo rows is an empty-value treatment on `-`
+     placeholders, not a hover. Nothing invented here; see SPEC-08a Q2.
+   • A FOCUS RING on any cell or control. OPEN-REGISTER O-2.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-01]  .cs-table — the table element.
+   TOKENS BOUND: --font-family-primary · --font-size-caption (12)
+                 --line-height-caption (16) · tracking with 0px fallback
+   STATES: none.
+   SPEC: SPEC-08b §5 (both table text styles are 12/16 Inter; only the weight
+         differs) + §6.B (every cell owns its own border box).
+   `border-collapse: separate` with zero spacing is deliberate: the design gives
+   EACH CELL a 1px border/subtle box, which collapsing would merge away.
+   -------------------------------------------------------------------------- */
+.cs-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+}
+
+/* =============================================================================
+   ⚠ WHY EVERY CELL HERE DECLARES BOTH `height` AND `min-height`
+   Added 2026-08-25 after this was caught rendering wrong.
+
+   `min-height` on a `display: table-cell` box is EXPLICITLY UNDEFINED by
+   CSS 2.1 §10.7. Blink and WebKit (Chrome, Edge, Safari) ignore it outright;
+   Gecko (Firefox) honours it. `height` on a table-cell IS defined — CSS 2.1
+   §17.5.3 makes the used row height the maximum of the specified height and
+   the content height, i.e. a MINIMUM — and every engine implements it.
+
+   Measured in headless Chrome on the exact rules in this file:
+     th { min-height: 34px }  -> 17px   (identical to declaring nothing)
+     th { height: 34px }      -> 34px
+     td { min-height + height }-> 30px, and grows past it with long content
+
+   So with `min-height` alone the header rendered 17px against its own 30px
+   data rows — the header was SHORTER than the body, inverting the design.
+   `height` is therefore the declaration that enforces the floor. `min-height`
+   is kept alongside it only for the case where a cell is not a table-cell.
+
+   This does NOT make the cell a fixed height. In the table model `height` is a
+   floor, so Singh's ruling of 2026-08-25 still holds exactly as written: a long
+   value grows the cell and raises the whole row.
+
+   ⚠ AND DO NOT ASSUME THIS FILE WORKS FOR DIV-BASED TABLES. Every rule here is
+   scoped to .cs-table__* on real table elements. On a flex or block box,
+   `height: 30px` is a FIXED height and would CLIP instead of growing — the
+   opposite of the ruling. A div-based build needs min-height only, plus
+   `align-items: stretch` on the row. An earlier version of this file claimed
+   parity between the two; that claim was wrong and has been removed.
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-02]  .cs-table__head-cell — the canonical header cell.
+   TOKENS BOUND: --spacing-none / --spacing-md (padding 0 / 8) · --surface-tertiary
+                 (fill) · --border-subtle (border) ·
+                 --border-radius-rounded-none (0) · --spacing-sm (gap) ·
+                 --font-weight-heading-base (500) · --text-primary
+   STATES: default (here) · empty [CS-TBL-04]. Sorting is a state of the sort
+           affordance [CS-TBL-06], not of the cell.
+   SPEC: SPEC-08b §3 + §3.1 + §5. CANONICAL NODE: `table_head` 26938:61726,
+   variant 26938:52865, ruled by Singh 2026-08-25. `Head / Tiltes for tables`
+   5865:162 is retired as an alias of it; `X-Head old` is dead.
+   THE 34px IS A MINIMUM, NOT A SUM — corrected by Singh's padding ruling:
+     1px border + 0 pad + 24px title row + 0 pad + 1px border = 26px of content,
+     and min-height:34 holds the cell open past it. Centred content puts the
+     label in the same place either way, which is why 4-vs-0 went unnoticed.
+   THE CODEGEN TRAP, STILL LIVE: Figma's Tailwind payload printed the padding
+   fallbacks as 9px/5px on one read and 9px/1px on another, because the codegen
+   FOLDS THE 1px INSIDE-STROKE INTO THE FALLBACK. Neither is a token value, and
+   they are not even stable between reads. Bind the token; never the number.
+   ⚠ NO text-transform. Verified three independent ways (component set renders
+   `Title`, real production usage renders `City` / `Address` / `Zip Code`, and no
+   textCase appears in any header payload). Rendering `ADMISSION DATE` is wrong
+   against the design system. Whether the CONTENT string should be caps is a
+   separate open dispute — OPEN-REGISTER O-13, where the ticket artefact governs
+   wording and Figma governs treatment. This rule asserts the TREATMENT only.
+   -------------------------------------------------------------------------- */
+.cs-table__head-cell {
+  box-sizing: border-box;
+  height: 34px;                                 /* THE LOAD-BEARING ONE. see the note below — min-height alone renders 17px in Chrome */
+  min-height: 34px;                             /* bare literal in Figma, no token exists — a FLOOR, not a sum (content is 26) */
+  padding: var(--spacing-none) var(--spacing-md);  /* 0 8 — RULED by Singh 2026-08-25; matches live Figma */
+  background: var(--surface-tertiary);
+  border: 1px solid var(--border-subtle);       /* 1px bare literal — all FOUR sides */
+  border-radius: var(--border-radius-rounded-none);  /* 0 */
+  font-weight: var(--font-weight-heading-base); /* 500 — Inter Medium */
+  color: var(--text-primary);
+  text-align: left;
+  text-transform: none;                         /* see the block note — do NOT uppercase */
+  white-space: nowrap;                          /* headers stay one line. Singh's 2026-08-25 wrap ruling covered the DATA cell only — not widened here without his word */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-03]  .cs-table__head-inner + __head-label — the title row inside the
+   header cell.
+   TOKENS BOUND: --spacing-sm (gap 4)
+   STATES: none.
+   SPEC: SPEC-08b §3 (title wrapper: height 24px, flex 1 0 0, min-width 0, inner
+         gap 4px) + §3.2 (child ORDER, which differs per variant).
+   ELEMENT ORDER IS NOT FIXED — read it off the variant you are building:
+     Sorted=No, Help=No, Mandatory=No  → title only, NO sort icon
+     Sorted=Yes                        → title, sort
+     Sorted=Yes + Mandatory=Yes        → title, MANDATORY, sort
+     Sorted=Yes + Help=Yes             → title, sort, help
+     all three                         → title, mandatory, sort, help
+   Two consequences: the default header carries NO sort icon (sorting is opt-in
+   per column, not decoration on every header), and the help marker is ALWAYS last.
+   -------------------------------------------------------------------------- */
+.cs-table__head-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  height: 24px;                                 /* bare literal in Figma, no token exists */
+  flex: 1 0 0;
+  min-width: 0;
+}
+.cs-table__head-label {
+  min-width: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-04]  .cs-table__head-cell--empty — the placeholder header.
+   TOKENS BOUND: none added.
+   STATES: this IS the Empty=Yes variant (node 23304:94203).
+   SPEC: SPEC-08b §3.2 (last row).
+   It is NOT an empty div: it is a 32px-min-width cell whose label is still in the
+   DOM at opacity 0, so column alignment survives. Keep the label element.
+   -------------------------------------------------------------------------- */
+.cs-table__head-cell--empty {
+  min-width: 32px;                              /* bare literal in Figma, no token exists */
+  overflow: hidden;
+}
+.cs-table__head-cell--empty .cs-table__head-label {
+  opacity: 0;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-05]  .cs-table__required + .cs-table__help — the header markers.
+   TOKENS BOUND: --icon-danger · --icon-brand
+   STATES: none — presence is the state.
+   SPEC: SPEC-08b §3 (mandatory marker sits IMMEDIATELY AFTER the title text; help
+         marker is LAST in the row).
+   Same two glyphs as the field markers (`emergency_black_18dp`,
+   `help_black_18dp`) — see fields.css [CS-FLD-04] / [CS-FLD-06]. The mandatory
+   marker is an 8px SVG burst, not a typographic asterisk.
+   -------------------------------------------------------------------------- */
+.cs-table__required {
+  flex: none;
+  width: 8px;                                   /* bare literal in Figma, no token exists */
+  height: 8px;                                  /* bare literal in Figma, no token exists */
+  color: var(--icon-danger);
+}
+.cs-table__required > svg { width: 5.162px; height: 5.6px; fill: currentColor; }  /* bare literals — exact inner vector */
+.cs-table__help {
+  flex: none;
+  width: 16px;                                  /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+  color: var(--icon-brand);
+}
+.cs-table__help > svg { width: 12px; height: 12px; fill: currentColor; }  /* bare literals — 16 × (1 − 2 × 12.5%) */
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-06]  .cs-sort — the sort affordance. Its own atom, reusable anywhere a
+   column can be sorted.
+   TOKENS BOUND: --icon-disabled (both arrows at rest) · --icon-brand (the lit arrow)
+   STATES: default · hover · ascending · descending — all four read from Figma
+           (5865:154). Geometry is identical in all four.
+   SPEC: SPEC-08b §4.2.
+   GEOMETRY: a 10 × 16 container clipping two 10 × 7 triangles, the second offset
+   9px from the top — which leaves the documented 2px gap (16 − 7 − 7).
+   ⚠ ASCENDING AND DESCENDING LOOK INVERTED AGAINST THE USUAL CONVENTION, and this
+   file reproduces exactly what Figma contains: ASCENDING LIGHTS THE BOTTOM ARROW,
+   DESCENDING LIGHTS THE TOP ARROW. The spec flags it as a possible authoring slip
+   (SPEC-08b Q1) and did not silently "fix" it. Neither does this file. If Singh
+   rules it a slip, swap the two `--asc` / `--desc` blocks — nothing else changes.
+   Hover also adds a 2px radius to the container. That is a real, verified detail.
+   The DS authors the two triangles as separate <button> layers, i.e. it intends
+   INDEPENDENT up/down click targets rather than one toggle — and each hit area is
+   only 10 × 7px, which is far below any touch-target guidance (touch target size
+   is OPEN-REGISTER O-3, 24 vs 44px, unresolved). Report it; do not resize it here.
+   -------------------------------------------------------------------------- */
+.cs-sort {
+  position: relative;
+  width: 10px;                                  /* bare literal in Figma, no token exists */
+  height: 16px;                                 /* bare literal in Figma, no token exists */
+  overflow: hidden;
+  flex: none;
+  cursor: pointer;
+}
+.cs-sort__up,
+.cs-sort__down {
+  position: absolute;
+  left: 0;
+  width: 10px;                                  /* bare literal in Figma, no token exists */
+  height: 7px;                                  /* bare literal in Figma, no token exists */
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--icon-disabled);                  /* default: BOTH arrows grey */
+}
+.cs-sort__up   { top: 0; }
+.cs-sort__down { top: 9px; }                    /* bare literal — leaves the 2px gap (16 − 7 − 7) */
+
+.cs-sort:hover { border-radius: 2px; }          /* 2px bare literal — verified hover detail */
+.cs-sort:hover .cs-sort__up,
+.cs-sort:hover .cs-sort__down { color: var(--icon-brand); }
+
+.cs-sort--asc  .cs-sort__down { color: var(--icon-brand); }     /* ascending lights the BOTTOM arrow — as authored */
+.cs-sort--asc  .cs-sort__up   { color: var(--icon-disabled); }
+.cs-sort--desc .cs-sort__up   { color: var(--icon-brand); }     /* descending lights the TOP arrow — as authored */
+.cs-sort--desc .cs-sort__down { color: var(--icon-disabled); }
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-07]  .cs-table__head-cell--control — the header of a checkbox or
+   expand column.
+   TOKENS BOUND: --spacing-sm (4 all round, and the gap) · --surface-tertiary
+                 --border-subtle · --icon-primary (for a 24px glyph inside)
+   STATES: none.
+   SPEC: SPEC-08b §7.1 (`Head` component set 26264:29115).
+   Note this header's padding is 4px on ALL sides (not 4/8) and its content is
+   centred, because it holds a control rather than a title.
+   -------------------------------------------------------------------------- */
+.cs-table__head-cell--control {
+  box-sizing: border-box;
+  width: 32px;                                  /* bare literal in Figma, no token exists */
+  height: 34px;                                 /* THE LOAD-BEARING ONE — see the note above [CS-TBL-02]. Declared here too because
+                                                   this rule redeclares box/background/border, i.e. it is usable standalone rather
+                                                   than only as a modifier on .cs-table__head-cell */
+  min-height: 34px;                             /* bare literal in Figma, no token exists */
+  padding: var(--spacing-sm);                   /* 4 all round */
+  background: var(--surface-tertiary);
+  border: 1px solid var(--border-subtle);       /* 1px bare literal */
+  text-align: center;
+}
+.cs-table__head-cell--control .cs-table__icon-24 { color: var(--icon-primary); }
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-08]  .cs-table__cell — a data cell. THE ROW OF RECORD: 30px MINIMUM.
+   TOKENS BOUND: --spacing-none / --spacing-md (padding 0 / 8) · --border-subtle
+                 (border) · --border-radius-rounded-none (0) ·
+                 --font-weight-body-base (400) · --text-primary
+   CANONICAL NODE: `table_cell` 26938:61725, variant 26938:52924.
+   ⚠ 30px IS A FLOOR, NOT A FIXED HEIGHT — ruled by Singh 2026-08-25: "It can
+   increase but this will increase the entire row height not a cell
+   independently." A real <table> gives that for free: in the CSS table model
+   `height` on a cell is treated as a MINIMUM and every sibling cell stretches to
+   the tallest, so growth is inherently row-level. What used to prevent it was
+   `white-space: nowrap`, now removed. min-height is also declared so the rule
+   survives a div-based table. Live Figma still shows a FIXED 30px with ellipsis
+   truncation on 26938:52924 — flagged to Figma AI; this file follows the ruling.
+   STATES: none buildable yet. Singh asked for cell hover to follow the semantic
+           layer, but no field/table hover token exists there — deferred to him,
+           not invented. Zebra striping is RULED OUT, not missing.
+           --control / --edit / --link below are structural variants, not states.
+   SPEC: SPEC-08b §6.B (Cell-Structure=Yes row cells) + §5 (Table/value style).
+   ⚠ COLOUR CAVEAT, quoted rather than smoothed over: text/primary is present in
+   the variable set for these cells, but every RENDERED data value in the archived
+   payload is a raw #334a65 (SPEC-08b §5 and its NOT-VERIFIED item 15). So the
+   token is bound here — binding the token is what keeps the table theme-aware —
+   while the fact that Figma's rendered demo text does not match it is recorded,
+   not hidden.
+   -------------------------------------------------------------------------- */
+.cs-table__cell {
+  box-sizing: border-box;
+  min-height: 30px;                             /* the FLOOR. bare literal in Figma, no token exists */
+  height: 30px;                                 /* THE LOAD-BEARING ONE — in the table model this IS the minimum. see the note below */
+  padding: var(--spacing-none) var(--spacing-md);  /* 0 8 — RULED by Singh 2026-08-25 */
+  border: 1px solid var(--border-subtle);       /* 1px bare literal — each cell owns its own box */
+  border-radius: var(--border-radius-rounded-none);  /* 0 */
+  font-weight: var(--font-weight-body-base);    /* 400 — Inter Regular */
+  color: var(--text-primary);
+  vertical-align: middle;                       /* content centres in whatever height the row settles at */
+  overflow-wrap: break-word;                    /* long values wrap and RAISE THE ROW — do not restore nowrap */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-09]  .cs-table__cell--control — the checkbox / expand cell.
+   TOKENS BOUND: --spacing-none / --spacing-sm (padding 0 / 4) · --spacing-sm (gap)
+                 --icon-brand (for a 24px glyph inside)
+   STATES: none.
+   SPEC: SPEC-08b §6.B (checkbox cell 23313:411056, expand cell 23313:411058) and
+         §7.3 (the expand chevron's colour differs BY CONTEXT — brand inside a
+         row, primary in a header, which is why the two cells bind different icon
+         tokens here).
+   -------------------------------------------------------------------------- */
+.cs-table__cell--control {
+  min-width: 30px;                              /* bare literal in Figma, no token exists */
+  padding: var(--spacing-none) var(--spacing-sm);  /* 0 4 */
+  text-align: center;
+}
+.cs-table__cell--control .cs-table__icon-24 { color: var(--icon-brand); }
+
+/* .cs-table__icon-24 — the 24px glyph box used by both control cells (SPEC-08b §7.3). */
+.cs-table__icon-24 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;                                  /* bare literal in Figma, no token exists */
+  height: 24px;                                 /* bare literal in Figma, no token exists */
+  flex: none;
+}
+.cs-table__icon-24 > svg { width: 100%; height: 100%; display: block; fill: currentColor; }
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-10]  .cs-table__cell--edit — the inline-edit row.
+   TOKENS BOUND: none added — the height is a bare literal and the field inside
+                 carries the colour tokens [CS-TBL-11].
+   STATES: none.
+   SPEC: SPEC-08b §6.B (`23374:62819`, Cell Structure=Yes): 44px, and the wrapper
+         itself has border-width 0 — the border lives on the FIELD inside it.
+   -------------------------------------------------------------------------- */
+.cs-table__cell--edit {
+  height: 44px;                                 /* bare literal in Figma, no token exists */
+  border-width: 0;                              /* the wrapper has no border; the field inside does */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-11]  .cs-field-inline — the bordered field that fills an inline-edit
+   cell. Its own atom (`atom / New Field / Edit Drop Down field` 23374:62820),
+   reusable in any table.
+   TOKENS BOUND: --field-bg-default · --field-border-default
+                 --border-radius-rounded-none (0) · --spacing-none / --spacing-md
+                 --font-weight-body-base (400) · --field-value-placeholder
+   STATES: none pulled for this atom.
+   SPEC: SPEC-08b §6.B (the field table).
+   ⚠ RADIUS IS 0 HERE, unlike the standalone field's 4px (fields.css
+   [CS-FLD-07]). Both are correct: the two generations disagree, and this one is
+   newer — the component is dated "2 Jun 2025: Introduced Table structure". The
+   legacy 6px radius of the 40px inline-edit row is NOT reproduced anywhere.
+   -------------------------------------------------------------------------- */
+.cs-field-inline {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  width: 100%;
+  padding: var(--spacing-none) var(--spacing-none) var(--spacing-none) var(--spacing-md);  /* 0 0 0 8 */
+  background: var(--field-bg-default);
+  border: 1px solid var(--field-border-default);/* 1px bare literal */
+  border-radius: var(--border-radius-rounded-none);  /* 0 — see the block note */
+}
+.cs-field-inline__value {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 20px;                                 /* bare literal in Figma, no token exists */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--font-weight-body-base);    /* 400 */
+  color: var(--field-value-placeholder);
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-12]  .cs-table__cell--link — a link cell.
+   TOKENS BOUND: --text-links  (font/link — Singh's ruling 2026-09-03; was --text-brand)
+   STATES: NONE EXIST IN THE DS — no hover, focus, visited, active or disabled
+           (SPEC-08a §8.2). Nothing is invented here.
+   SPEC: SPEC-08a §8.1 (link atom 1957:2762) — centred cell, Inter Regular 12/16
+         like ordinary cell text, and NO UNDERLINE (there is no text-decoration
+         anywhere in the payload).
+   COLOUR — RULED by Singh 2026-09-03 (Wound Management artifact thread d28cf692): "if anything
+   is clickable then follow the LINK color which i deifned under fonts colors." That RESOLVES the
+   open question below in favour of font/link (--text-links), NOT text/brand. The two tokens are
+   the same #0077FF in most modes but DIVERGE in Warm Dark (brand #E67D22 vs links #FFB38A), so the
+   distinction is real, not cosmetic. (History: Figma's link atom carries a RAW #0077FF confirmed
+   UNBOUND; this file had bound text/brand as a declared judgement pending Singh's pick between
+   text/brand and field/value-link — he has now picked the link token.)
+   Link cells are horizontally CENTRED while text cells are not — that asymmetry
+   is in the design, not a slip.
+   -------------------------------------------------------------------------- */
+.cs-table__cell--link {
+  text-align: center;
+}
+.cs-table__cell--link a {
+  color: var(--text-links);                     /* font/link — Singh's ruling 2026-09-03 (was text/brand) */
+  text-decoration: none;                        /* the DS shows no underline */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-TBL-13]  Frozen first and last columns — the horizontal-scroll contract.
+   TOKENS BOUND: --surface-tertiary (head) · --field-bg-default (cell) ·
+                 --border-subtle (the two seams)
+   STATES: none — this is layout, not a state.
+   RULE, in Singh's words (2026-08-26): "in every table, the first and last column
+   must always be freezed. Only in between area is scrollable if the number of
+   columns are more than the width view port."
+
+   WHY IT IS WRITTEN HERE AND NOT ELSEWHERE: it was NOT defined anywhere in these
+   rules before today — a grep of 01-universal/*.md and 02-components/* for
+   freeze / frozen / sticky / pinned returned nothing. Singh reported it against a
+   feature build where one table of three obeyed it, and authorised writing it down
+   ("If not then define this in universal html rules for table"). So it is a NEW
+   rule, recorded on his instruction, not a measurement of an existing component.
+
+   THE BEHAVIOUR IS THE RULE; the mechanism below is the reference implementation.
+   What must hold, whatever the markup:
+     · the FIRST column stays visible at the left edge while the middle scrolls
+     · the LAST column stays visible at the right edge (it is normally the actions
+       column, and an actions column that scrolls out of reach is the defect this
+       rule exists to prevent)
+     · ONLY the middle scrolls, and only when the columns out-measure the viewport
+     · a frozen cell needs an OPAQUE background, or scrolled content shows through
+       it — this is the single most common way a sticky column is got wrong
+     · the seam is a border on the frozen cell, not a shadow
+
+   TWO MECHANISMS ARE PERMITTED, because both are already in production:
+     A. STICKY CELLS (below) — row-major markup: every row is a flex/grid line and
+        its first and last cells are `position: sticky`. Use this when rows are the
+        DOM structure.
+     B. COLUMN-MAJOR PANES — three sibling containers (frozen | scrolling | frozen)
+        each holding one column's cells, with only the middle one scrolling. Use
+        this when columns are the DOM structure. It needs no sticky and no z-index,
+        but every pane must render the same number of rows at the same heights or
+        the columns fall out of register.
+   Do not mix them in one table.
+   -------------------------------------------------------------------------- */
+.cs-table__wrap {
+  overflow-x: auto;                             /* the scroll container */
+}
+
+/* THE OTHER HALF OF THE SAME CONTRACT — when the columns are NARROWER than the viewport.
+   Singh, 2026-08-26: "when a width of table is less than the view port then the last action
+   column must be stretched to the fill dimensions to cover the area, and table must be visible
+   end to end." So the two cases are one rule:
+     columns WIDER  than the container -> the middle scrolls, first and last stay pinned
+     columns NARROWER                  -> the LAST column absorbs the slack, no dead gap
+   `flex: 1 0 auto` is the whole mechanism, and each of the three parts is deliberate:
+     grow 1   — take the leftover width. This is the part that does the work.
+     shrink 0 — DEFENSIVE only. It reads as "never give the declared width back when the table
+                overflows", but a row carrying `min-width: max-content` is never narrower than
+                its content, so no shrink factor can act on it. Verified adversarially:
+                `flex: 1 1 auto` behaves identically. Keep it for intent and for the day
+                someone drops that min-width — but do not describe it as load-bearing.
+     basis auto — start from the column's own declared width, not from zero
+   A trailing spacer cell would also close the gap; it is the wrong answer, because it puts an
+   empty cell between the last real column and the table edge and the actions then stop short
+   of the border the user is looking at. */
+.cs-table__row > .cs-table__head-cell:last-child,
+.cs-table__row > .cs-table__cell:last-child {
+  flex: 1 0 auto;
+}
+.cs-table__row > .cs-table__head-cell:first-child,
+.cs-table__row > .cs-table__cell:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;                                   /* above the scrolling cells */
+}
+.cs-table__row > .cs-table__head-cell:last-child,
+.cs-table__row > .cs-table__cell:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+}
+/* OPAQUE, and stated explicitly rather than inherited: a sticky cell sits OVER the
+   scrolling ones, so a transparent background lets them slide through it. Head and
+   body carry different fills, exactly as [CS-TBL-02] and [CS-TBL-08] define them. */
+.cs-table__row > .cs-table__head-cell:first-child,
+.cs-table__row > .cs-table__head-cell:last-child {
+  background: var(--surface-tertiary);
+}
+.cs-table__row > .cs-table__cell:first-child,
+.cs-table__row > .cs-table__cell:last-child {
+  background: var(--field-bg-default);
+}
+/* The seam that tells the reader the middle moved. A border, not a shadow — the DS
+   defines no elevation for this, and inventing one would be a new design value. */
+.cs-table__row > .cs-table__head-cell:first-child,
+.cs-table__row > .cs-table__cell:first-child {
+  border-right: 1px solid var(--border-subtle);
+}
+.cs-table__row > .cs-table__head-cell:last-child,
+.cs-table__row > .cs-table__cell:last-child {
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* ============================================================================
+   [CS-TBL-14] COLUMN WIDTHS — every column FILLS by default, inside a min/max
+   band chosen by what the column HOLDS.
+
+   AUTHORITY: Singh's ruling, 2026-08-26, given as a generic design-system rule
+   rather than a per-table decision, with the instruction to record it here:
+   "these is the generic rule of my design system, add this to universal rules
+   also related to table structure and also add by default all columns must be
+   in fill dimensions."
+
+   ══ SUPERSEDED 2026-09-02 — Singh renamed and re-valued all three bands ══
+   HIS WORDS, verbatim: "So let me defien here and same must be complied on
+   Golabal (universal) html and css rules. A- column-size=L (this will be
+   default) Minimum width 140px, max width 240px. B- column-size=M : Minimum
+   width 80px, max width 140px. C- column-size=XL : Minimum width 240px, max
+   width 400px."
+
+   THE THREE BANDS, as ruled. Pick by CONTENT, not by column name:
+
+     column-size=M    80px .. 140px   short values — numbers, phone numbers,
+                                      dates, tags, chips, short codes, statuses
+     column-size=L   140px .. 240px   ** THE DEFAULT ** — names, locations,
+                                      address line 1, and other single-line
+                                      values that routinely run long
+     column-size=XL  240px .. 400px   notes, briefs, descriptions, free text
+
+   THREE THINGS CHANGED, and the third one changes how existing tables render:
+     1. NAMES. generic/wide/longform are retired in favour of M/L/XL, which is
+        the same vocabulary as the Figma variant property `column-size` — so a
+        designer and a developer now say the identical word. That was the point
+        of the rename.
+     2. VALUES. Every boundary moved: M's max 160→140, L's min 120→140,
+        XL's min 120→240. The bands are now CONTIGUOUS and non-overlapping
+        (80-140-240-400) where the old three overlapped each other; that is a
+        real improvement, because an overlapping band gave two defensible
+        answers for the same column.
+     3. ⚠ THE DEFAULT MOVED UP A SIZE, and this is the one to watch. The old
+        default was the SMALLEST band (80px min). The new default is L (140px
+        min). So every column that carries no explicit size gets a 60px larger
+        minimum than it did before. On a table that previously just fitted its
+        viewport, that can push it into horizontal scroll — which [CS-TBL-13]
+        handles correctly, so nothing breaks, but the table starts scrolling
+        where it used to sit still. Worth re-checking any existing banded table
+        after adopting this.
+
+   WHY BANDS EXIST AT ALL. Fixed pixel widths do not survive a change of screen
+   size or a change in the number of columns. The same 87px Location column that
+   fitted a 6-column frame held only 22 of 97 real values once the table shipped
+   9 columns — the text cut off mid-word and nothing told the reader it had. A
+   width band lets a column give and take space with the viewport while
+   guaranteeing it never collapses below readable and never eats the table.
+
+   FILL IS THE DEFAULT, not an opt-in. A column takes `flex: 1 1 auto` with its
+   band as `min-width`/`max-width`. A column that must not grow says so
+   explicitly; silence means fill.
+
+   INTERACTION WITH THE OTHER TABLE RULES — these do not conflict, and each
+   handles a different case:
+     - [CS-TBL-13] first/last column stay frozen when the columns out-measure
+       the viewport, and the LAST column absorbs slack when they do not. The
+       bands here decide how the middle distributes; CS-TBL-13 decides what
+       happens at the two edges.
+     - The ACTIONS column is exempt from the bands. It is sized by its controls,
+       it carries no title, and CS-TBL-13 already governs it.
+
+   TRUNCATION IS NOT OPTIONAL. A banded column can still hit its max, so every
+   cell that can overflow MUST ellipsise AND expose its full value on hover.
+   Note that `text-overflow: ellipsis` is INERT on a flex container — the text
+   becomes an anonymous flex item and the property has nothing to act on — so
+   the ellipsis must live on a real inner element. This was a shipped defect,
+   twice, in two different tables. */
+:root {
+  --cs-col-m-min:   80px;
+  --cs-col-m-max:  140px;
+  --cs-col-l-min:  140px;   /* the DEFAULT band */
+  --cs-col-l-max:  240px;
+  --cs-col-xl-min: 240px;
+  --cs-col-xl-max: 400px;
+}
+/* THE SIZE IS DECLARED AS AN ATTRIBUTE, not a BEM class, and that is deliberate:
+   this file's convention is BEM classes for STRUCTURAL modifiers, but a data
+   attribute for a VARIANT AXIS — exactly as the design system already does with
+   `data-theme` and `data-density`. Column size is a variant axis, and naming the
+   attribute `column-size` makes the CSS read the same as the Figma variant
+   property Singh named. A designer says column-size=L; the markup says
+   column-size="L". */
+/* L IS THE DEFAULT — every cell in a banded table gets it with no attribute at
+   all. Only M and XL need declaring. */
+.cs-table--banded .cs-table__head-cell,
+.cs-table--banded .cs-table__cell {
+  flex: 1 1 auto;
+  min-width: var(--cs-col-l-min);
+  max-width: var(--cs-col-l-max);
+}
+.cs-table--banded [data-column-size="M"] {
+  min-width: var(--cs-col-m-min);
+  max-width: var(--cs-col-m-max);
+}
+.cs-table--banded [data-column-size="L"] {
+  min-width: var(--cs-col-l-min);
+  max-width: var(--cs-col-l-max);
+}
+.cs-table--banded [data-column-size="XL"] {
+  min-width: var(--cs-col-xl-min);
+  max-width: var(--cs-col-xl-max);
+}
+/* ⚠ DEPRECATED 2026-09-02 — the pre-rename class names, kept ONLY so the one
+   existing consumer (Wound Management) does not break silently on adoption.
+   They map to the nearest new band, and the mapping is NOT lossless:
+     .cs-table__col--wide      was 120..240  ->  L  140..240  (min +20px)
+     .cs-table__col--longform  was 120..400  ->  XL 240..400  (min +120px — a
+                               long-form column can no longer be narrow)
+   Migrate to data-column-size and delete these. Do not use them in new work. */
+.cs-table--banded .cs-table__col--wide {
+  min-width: var(--cs-col-l-min);
+  max-width: var(--cs-col-l-max);
+}
+.cs-table--banded .cs-table__col--longform {
+  min-width: var(--cs-col-xl-min);
+  max-width: var(--cs-col-xl-max);
+}
+/* The actions column is sized by its controls, not by a band. [CS-TBL-13] owns it. */
+.cs-table--banded .cs-table__head-cell.cs-table__col--actions,
+.cs-table--banded .cs-table__cell.cs-table__col--actions {
+  flex: 1 0 auto;
+  min-width: auto;
+  max-width: none;
+}
+
+/* ── COLUMN-SIZE REGISTRY — Singh 2026-09-02 ──────────────────────────────────
+   A column's width TIER is a PROPERTY OF THE COLUMN, not of one table: once a column
+   is assigned a size it travels with that column wherever it is placed, so any tool
+   rendering it knows the default width without re-deciding. Singh: "I will keep
+   defining the width to that column ... next time if i will palce that column anywhere
+   so AI agents shoudl know what default width is defiend for that column ... all these
+   thigns msut be deifned on Universal and Github rules."
+
+   Assign with data-column-size="M|L|XL" (L is the default -> no attribute). Record every
+   assignment HERE and mirror it to the design-system GitHub repo, so the registry is one
+   shared source per portal/feature:
+
+     WOUND MANAGEMENT (Agency, C360-45862) — Singh, 2026-09-02:
+       Wound No.                frozen (CS-TBL-13, not banded)
+       Wound Stage              M
+       Name                     XL
+       Type                     L  (default)
+       Location                 L    <- Singh, thread 9b7bea2c
+       Status                   L    (a status chip cannot truncate; needs the >=L floor)
+       Last Status Reported By  L    <- Singh, thread 9b7bea2c
+       Last Status Reported On  L    <- Singh, thread 9b7bea2c
+       Date Reported            M
+       Date Healed              M
+       Actions                  fill (CS-TBL-15, not banded)
+
+   DS-LANE / GITHUB: this registry currently lives only here. The design-system lane
+   should promote it to the GitHub repo as the canonical column->size registry so every
+   portal shares one source. Flagged 2026-09-02. */
+
+/* ============================================================================
+   [CS-TBL-15] ROW ACTIONS ARE ALWAYS LEFT-ALIGNED, AND THE ACTIONS COLUMN ALWAYS FILLS.
+   These are ONE rule in two halves. Written 2026-08-26 on Singh's instruction, after he
+   reported the same symptom three separate times on three different builds.
+
+   HIS WORDS: "the last column which is actions should be with fill properties with conditions
+   which I already explained, that should be the universal rule, and should be complied
+   everywhere" and "as I mentioned in universal rules, the actions will be always left aligned."
+
+   HONESTY NOTE ON PROVENANCE. The left-alignment half was NOT previously written down here.
+   Singh believed it was; I searched `01-universal/*.md` and `02-components/*.css` for
+   actions / align / justify-content and found nothing, and said so rather than pretending to
+   copy a rule that did not exist. It is recorded now, on his authority, so the next build can
+   copy it instead of re-deriving it. The fill half DID exist - as the second clause of
+   [CS-TBL-13] - but it had been applied to a single table rather than universally, which is
+   the failure this entry is meant to stop repeating.
+
+   WHY THE TWO HALVES BELONG TOGETHER, and this is the part worth understanding rather than
+   just obeying: a FILLING column is wider than the controls inside it. Measured on a real
+   build at 1900px wide - the actions column grew to 263px to close the gap, while its controls
+   occupied 60px. Without an explicit alignment the controls sit wherever the default puts them
+   and drift away from the column title. Left alignment is what keeps them under their own
+   header and lined up down the page, whatever width the column ends up at.
+
+   THE THIRD PART, and the one most easily missed: the column filling is not enough on its own.
+   The CELLS must fill it too. A cell left at the column's old fixed width leaves the rest of
+   the column with no cell background and no cell border - a row that visibly stops short of
+   the table edge. Declare the floor ONCE, as the column's min-width, and let header and cells
+   take the full width. */
+.cs-table__col--actions {
+  flex: 1 0 auto;                 /* absorb whatever the scrollable middle leaves behind */
+  min-width: 60px;                /* the floor lives HERE, once - never on the cells */
+  width: auto;
+}
+/* Header and every data cell fill the column they sit in. */
+.cs-table__col--actions > .cs-table__head-cell,
+.cs-table__col--actions > .cs-table__cell {
+  width: 100%;
+}
+/* THE CONTROLS SIT AT THE COLUMN'S RIGHT EDGE, at every column width.
+   CORRECTED 2026-08-26, hours after this rule was first written, and the correction is the
+   instructive part. The rule originally said "hard left", from Singh's instruction "make all
+   the actions left aligned". At that moment the actions column was a FIXED 60px and its icons
+   were CENTRED - left-aligning moved them 2px and was right.
+   Then the fill clause above made the column absorb the row's slack, and at a 1900px viewport
+   it grew to 263px. Left alignment stranded the icons 238px from the table's right edge,
+   floating in empty space. Singh, seeing the rendered result: "the action icons should be
+   right aligned i told you many times."
+   The two instructions are not in conflict once the column width is held constant. The stable
+   rule, which survives BOTH column widths, is: row actions belong at the table's right edge and
+   must never be centred. Recorded this way so the next reader inherits the rule rather than the
+   argument.
+   NOTE FOR THE CELL: a `.ctx`-style truncation wrapper inside the cell will silently cancel
+   this. Such a wrapper is display:block and fills the cell, leaving the cell's own
+   justify-content nothing to distribute - the cell measures as right-aligned while the icons
+   stay left. If the cell has a wrapper, the wrapper carries the alignment. */
+.cs-table__col--actions .cs-table__cell,
+.cs-table__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;      /* NOT center, NOT flex-start, and never left to the default */
+}
+
+/* ============================================================================
+   [CS-TBL-16] THE CANONICAL TABLE VOCABULARY IS `cs-table__*`.
+   Singh's ruling, 2026-08-26, when shown that one product had grown THREE class
+   vocabularies for the same component:
+
+     .cs-table__row / __head-cell / __cell   <- the design system's own, and the one
+                                                the published contract and these rules
+                                                describe. THIS IS CANONICAL.
+     .tbl2 / .hd / .cell                     <- a second, private vocabulary
+     .atbl / .ahd / .acell                   <- a third, private vocabulary
+
+   Measured on the Agency Wound Management build: only 5.5% of rendered table cells used
+   the canonical class. The cost is not cosmetic. Every rule written here has to be
+   re-expressed three times to take effect, which is precisely how [CS-TBL-13]'s
+   "last column fills" clause ended up live in one table and absent from the other two.
+   Three vocabularies means three chances to forget.
+
+   THE RULE, in two parts, because a rewrite and a stop-the-bleeding measure are different
+   commitments and Singh scoped them differently:
+
+   1. NO NEW TABLE MAY INTRODUCE A FOURTH VOCABULARY, and no new table may use one of the
+      two private ones. New work uses `cs-table__*`. This part is binding immediately.
+
+   2. THE EXISTING TWO CONVERGE ONTO `cs-table__*`. Singh ruled the direction on
+      2026-08-26 and deliberately scheduled the work AFTER the C360-45862 delivery,
+      because converging a green, shipping build on a delivery day trades a real risk for
+      an invisible benefit. Recorded here so the direction is not re-litigated, and so the
+      remaining divergence reads as SCHEDULED rather than as an oversight.
+
+   WHEN CONVERGING, the freezing mechanism is a genuine difference and not duplication:
+   [CS-TBL-13] permits both row-major sticky cells and column-major panes. Converging the
+   NAMES does not mean converging the mechanism. */

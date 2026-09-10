@@ -1,0 +1,123 @@
+/* =============================================================================
+   FILE BRIEF: The generic search field for EVERY CareSmartz360 feature — the
+   30px soft-filled input with a leading search glyph. A COPY-FROM reference,
+   not an import (00-README.md).
+   SPEC SOURCE: SPEC-10-dropdown-filter-and-upload.md §6d
+   FIGMA SOURCE: `Nav Search` 10290:15285
+   CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
+            reference-repository ruling.
+   STATUS: ASSEMBLED — Singh ratification pending.
+   =============================================================================
+
+   WHAT THE DESIGN SYSTEM ACTUALLY PROVIDES
+   One node, transcribed verbatim in SPEC-10 §6d: background action/soft/bg,
+   height 30 (min AND max), padding 0 8px, gap 4px, radius border-radius/rounded,
+   width 140px in the instance, a search icon at 18px, and a placeholder set in
+   Inter MEDIUM 500 at 12/16 in field/value-placeholder. That is the whole
+   component. Everything below is that node and nothing more.
+
+   BARE LITERALS IN THIS FILE (Figma has NO token for these):
+     30px  height (also min-height and max-height — hard-locked)   §6d
+     18px  search glyph box                                        §6d
+   No raw hex anywhere in this file.
+
+   STATES THE DESIGN SYSTEM DOES NOT HAVE — named, not invented.
+   `Nav Search` has ONE variant. There is no hover, no focus, no filled, no
+   disabled and no error treatment for it anywhere in SPEC-10. This file
+   therefore ships none. Two consequences worth stating plainly:
+   • The focus indicator is a real accessibility obligation (WCAG 2.4.7) that the
+     DS cannot currently satisfy — accessibility.md rates it OPEN-REGISTER O-2:
+     "No conforming token exists … no rule can be written until Singh names the
+     token, width and offset." Copying buttons.css's focus ring here would be
+     borrowing a binding that was read on the BUTTON, which is exactly the
+     "read something that USED a component and generalise" mistake
+     README-SPEC-RELIABILITY.md names as one of two process lessons.
+   • A search field with a typed value has no specified value colour. Use
+     field/value-primary as the field components do and FLAG it — do not treat
+     the absence as licence.
+
+   ONE MORE THING THE DS DOES NOT DEFINE: the clear / dismiss affordance. No
+   node in SPEC-10 carries one. If a design shows an ✕, it is not from here.
+   ============================================================================= */
+
+
+/* -----------------------------------------------------------------------------
+   [CS-SRCH-01]  .cs-search — the search field container.
+   TOKENS BOUND: --spacing-sm (gap) · --spacing-none / --spacing-md (padding)
+                 --border-radius-rounded (4) · --action-soft-bg (fill)
+   STATES: none exist — see the file header.
+   SPEC: SPEC-10 §6d, `Nav Search` 10290:15285 (verbatim transcription).
+   Note the fill is an ACTION token, not a field token: the search field is
+   painted with action/soft/bg, and it carries NO border. That is deliberate in
+   the DS and it is what distinguishes a search box from a text input at a glance.
+   Height is hard-locked (height + min-height + max-height all 30) — reproduce all
+   three. Width is NOT set here; the 140px in Figma is the instance width, and the
+   container that places the search field owns its width.
+   -------------------------------------------------------------------------- */
+.cs-search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                       /* 4 */
+  height: 30px;                                 /* bare literal in Figma, no token exists */
+  min-height: 30px;                             /* bare literal in Figma, no token exists */
+  max-height: 30px;                             /* bare literal in Figma, no token exists */
+  padding: var(--spacing-none) var(--spacing-md);  /* 0 vertical / 8 horizontal */
+  background: var(--action-soft-bg);
+  border-radius: var(--border-radius-rounded);  /* 4 */
+  box-sizing: border-box;
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-SRCH-02]  .cs-search__icon — the leading search glyph.
+   TOKENS BOUND: none — 18px is a bare literal, and SPEC-10 §6d records no colour
+                 token for this glyph.
+   STATES: none.
+   SPEC: SPEC-10 §6d ("`search` icon 18px").
+   COLOUR IS DELIBERATELY UNSET. The transcription gives a size and no fill, so
+   the glyph inherits `currentColor` from the container and a feature can bind
+   icon/secondary (or whatever its design shows) at the point of use. Typing a
+   colour here would be inventing one. Named in 00-README.md's gap list.
+   -------------------------------------------------------------------------- */
+.cs-search__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;                                  /* bare literal in Figma, no token exists */
+  height: 18px;                                 /* bare literal in Figma, no token exists */
+  overflow: clip;
+}
+.cs-search__icon > svg { width: 100%; height: 100%; display: block; fill: currentColor; }
+
+/* -----------------------------------------------------------------------------
+   [CS-SRCH-03]  .cs-search__input — the input itself and its placeholder.
+   TOKENS BOUND: --font-family-primary · --font-weight-body-strong (500)
+                 --font-size-caption (12) · --line-height-caption (16)
+                 --field-value-placeholder · tracking with 0px fallback
+   STATES: none in the DS. The value colour when text is typed is UNSPECIFIED —
+           see the file header before choosing one.
+   SPEC: SPEC-10 §6d (placeholder Inter Medium 500, field/value-placeholder,
+         12/16).
+   ⚠ THE WEIGHT IS 500, NOT 400. Every other placeholder in the system
+   (.cs-field__value, .cs-fieldset__value) is Inter Regular 400; the search
+   placeholder is Inter MEDIUM. It looks like a typo and it is not — it is what
+   the node binds. Do not normalise it.
+   The border/background reset exists because the visible box is the CONTAINER,
+   not the input.
+   -------------------------------------------------------------------------- */
+.cs-search__input {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-family-primary), Inter, sans-serif;
+  font-weight: var(--font-weight-body-strong);  /* 500 — Medium, unlike every other placeholder */
+  font-size: var(--font-size-caption);          /* 12 */
+  line-height: var(--line-height-caption);      /* 16 */
+  letter-spacing: 0;
+  color: var(--field-value-placeholder);
+}
+.cs-search__input::placeholder {
+  color: var(--field-value-placeholder);
+}

@@ -1,0 +1,56 @@
+/* =============================================================================
+   FILE BRIEF: Skeleton placeholder blocks for EVERY CareSmartz360 feature.
+   This is a COPY-FROM reference, not an import — a feature copies the blocks it
+   needs into its own stylesheet (see 00-README.md). Nothing here is
+   wound-specific, page-specific or portal-specific.
+
+   WHAT IT IS: a skeleton is a neutral grey placeholder shown where a real
+   component's design has not been decided yet (or, at runtime, while content
+   loads). Singh's ruling 2026-09-02 (Wound Management artifact threads 578e7804
+   "define this header as skeleton only, No infroamtion" + c24bd257 "make this
+   side navigation as skeleton approach ... update ... to the github and the
+   universal rules"): when a piece of chrome is a PLACEHOLDER whose real design
+   comes later from the design-system session, render it as skeleton — keep the
+   container's footprint, drop all real content, show grey blocks.
+
+   RULE: [UIG-085] context (artifact chrome) + this component.
+   CREATOR: Opus (Claude), Wound Management session, 2026-09-02.
+   STATUS: DS-LANE / GITHUB PROMOTION FLAGGED — promote `.cs-skeleton` and its
+           modifiers to the design-system GitHub repo so every portal shares one
+           source. Until then this file is the canonical reference.
+
+   HOW TO USE
+   - Keep the real container (its width/height/padding) so layout does not shift.
+   - Replace the container's CONTENT with `.cs-skeleton` blocks — one per shape
+     the real component would show (an avatar, a line of text, a button, a dot).
+   - Never put real text, names, or values inside a skeleton — that defeats it.
+
+   NAMING: `.cs-skeleton` block, `--modifier` variants (per [UIG-084] BEM). It is
+   a COMPONENT name, not a variable name.
+   TOKENS ONLY: the block colour is `--surface-tertiary` (a neutral surface). No
+   raw colour, no `!important`. Circle geometry uses `border-radius:50%` (shape,
+   not colour), consistent with the avatar elsewhere in the system.
+   ============================================================================= */
+
+/* the block ---------------------------------------------------------------- */
+.cs-skeleton{
+  background: var(--surface-tertiary);
+  border-radius: var(--border-radius-rounded-sm);
+  display: inline-block;
+  flex: none;
+}
+
+/* shape modifiers — size to the real thing the skeleton stands in for -------- */
+.cs-skeleton--dot      { width:20px; height:20px; border-radius:50%; }       /* an icon */
+.cs-skeleton--avatar   { width:56px; height:56px; border-radius:50%; }       /* a profile pic */
+.cs-skeleton--avatar-sm{ width:28px; height:28px; border-radius:50%; }       /* a small avatar */
+.cs-skeleton--crumbs   { width:200px; height:12px; }                         /* a breadcrumb */
+.cs-skeleton--search   { width:200px; height:24px; border-radius:var(--border-radius-rounded-md);}/* a search field */
+.cs-skeleton--btn      { width:120px; height:30px; }                         /* a button */
+.cs-skeleton--line     { height:12px; width:100%; display:block; }           /* a line of text */
+.cs-skeleton--line-sm  { width:60%; }                                        /* a short line */
+
+/* layout helpers for stacking skeleton lines inside a kept container --------- */
+/* (example: a client card, a facts list, a nav list) */
+.cs-skeleton-stack{ display:flex; flex-direction:column; gap:var(--spacing-md); }
+.cs-skeleton-stack--center{ align-items:center; gap:var(--spacing-sm); }

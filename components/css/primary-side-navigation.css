@@ -1,0 +1,230 @@
+/* =============================================================================
+   FILE BRIEF: The "Primary Side Navigation" — the app's BLUE left rail, present
+   on every page. A white logo header, a collapse toggle, a list of section
+   nav-links (icon + label), and a copyright block pinned at the bottom. It
+   collapses from a 158px labelled rail to a 48px icon-only rail. This is the
+   APP-level nav; it sits to the LEFT of the record-level Profile Side Navigation.
+   A COPY-FROM reference, not an import (00-README.md).
+   FIGMA SOURCE (Design System Agency V2.0, file 4bh29laapcuKBTghfaRXF0):
+     structure   `Primary side nav structure` 27337:73592
+                 (Expanded=Yes 27337:73593 = 158px · Expanded=No 27337:73615 = 48px)
+     nav link    `primary side nav navigation links` 10441:17045 (6 variants)
+     copyright   `primary side nav copyright bottom`  22906:5650 (2 variants)
+     icon set    `priamry side nav icons` 10883:20899 (41 variants, 24px)
+   CREATOR: Claude (DESIGN-SYSTEM lane), on Singh's 2026-09-04 request.
+   STATUS: ASSEMBLED — Singh ratification pending; GitHub contract twin staged.
+
+   ══ SYNC LINK ══
+   PAIRED CONTRACT: portals/agency/components/primary-side-navigation.md + .json.
+   PATTERN: portals/agency/patterns/side-navigation.md ties this BLUE app rail
+   together with the grey record-level Profile Side Navigation.
+
+   ══ TOKENS — repo-resolvable semantic vars (verified 2026-09-04 against
+      src/styles/2-semantics/_theme-light.scss). The rail uses the INVERSE /
+      sidebar family (white on blue). Raw values ONLY where no token exists, each
+      flagged at its line + in defects: the white #ffffff logo header (T2), its
+      translucent hairline rgba(51,74,101,.1) (T2), and the link-hover,
+      now MEASURED = var(--surface-brand-hover) (T1 resolved 2026-09-08). NO !important. ══
+
+   ══ FORENSIC SPACING MAP (expanded, 158x900, MEASURED) ══
+     logo        y0   h102   (white box + logo image + inset hairline)
+     gap 8 (--spacing-md, the top frame's gap)
+     toggle      y110 h44    (10px pad, right-aligned 24px icon)
+     gap 8
+     nav-links   y162 h360   (9 links x 40px, no gap)
+     …flexible space…
+     copyright   y826 h74    (pinned bottom; px8 py16)
+   Collapsed (48x900): logo 48x52 · toggle icon centred · links icon-only 40px · copyright 60px.
+
+   ══ ANATOMY ══
+   .cs-pnav                       the blue rail (158px)
+     .cs-pnav__top                  logo + toggle + links (gap --spacing-md)
+       .cs-pnav__logo                 white logo header (clickable → home)
+       .cs-pnav__toggle                collapse/expand button row
+       .cs-pnav__links                 the nav-link list
+         .cs-pnav__link                 one section link (Default / Selected)
+           .cs-pnav__link-icon            24px icon
+           .cs-pnav__link-label           section name
+     .cs-pnav__bottom               copyright block, pinned bottom
+   .cs-pnav--collapsed            the 48px icon-only rail
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   [CS-PNAV-01]  .cs-pnav — the rail. Blue, full height, top block + pinned bottom.
+   TOKENS: --sidebar-primary-bg (fill #0077ff).
+   -------------------------------------------------------------------------- */
+.cs-pnav {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;                /* top block up, copyright pinned down */
+  width: 158px;                                  /* measured; bare literal, no responsive token */
+  height: 100%;
+  background: var(--sidebar-primary-bg);         /* the blue rail */
+  overflow: hidden;
+}
+
+/* [CS-PNAV-02]  top block — logo + toggle + links, 8px (--spacing-md) gaps. */
+.cs-pnav__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);                        /* 8 — between logo, toggle, links */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PNAV-03]  .cs-pnav__logo — WHITE logo header (not blue). 102px tall
+   (52 collapsed). Holds the CareSmartz360 logo (object-contain), clickable → home.
+   The right+bottom inset hairline is a RAW translucent value (no token exists) —
+   kept as a box-shadow so it does not add to the box height.
+   -------------------------------------------------------------------------- */
+.cs-pnav__logo {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 102px;                                 /* measured */
+  background: #ffffff;                           /* RAW: the logo header is white; no sidebar-surface token exists — flag T2 */
+  box-shadow: inset -1px 0 0 0 rgba(51, 74, 101, 0.1), inset 0 -1px 0 0 rgba(51, 74, 101, 0.1);  /* RAW hairline, no token */
+  cursor: pointer;
+}
+.cs-pnav__logo > img { max-height: 100%; max-width: 100%; object-fit: contain; }
+
+/* -----------------------------------------------------------------------------
+   [CS-PNAV-04]  .cs-pnav__toggle — the collapse/expand row. 10px padding,
+   right-aligned 24px icon button (white). Expanded points ≡< (collapse);
+   collapsed points >≡ (expand) and centres.
+   -------------------------------------------------------------------------- */
+.cs-pnav__toggle {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);                        /* 4 */
+  padding: 10px;                                 /* measured; bare literal, no 10px token */
+}
+.cs-pnav__toggle-btn {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--sidebar-icon);                    /* white toggle glyph */
+  cursor: pointer;
+}
+.cs-pnav__toggle-btn > .mi { width: 24px; height: 24px; }
+
+/* -----------------------------------------------------------------------------
+   [CS-PNAV-05]  .cs-pnav__links + .cs-pnav__link — section nav-links.
+   TOKENS: --spacing-md (py 8), --spacing-lg (pl 12), --spacing-md (pr 8),
+           --sidebar-text (label + default icon), --sidebar-ring (Selected bg).
+   Each link 40px tall, no gap between links. 24px icon + 4px gap + label.
+   Type: Fields/header — Inter Medium 14 / line-height 20.
+   Default = transparent (blue rail shows through), OUTLINE icon, white text.
+   Selected = --sidebar-ring (#2499ff) fill, FILLED icon, white text.
+   -------------------------------------------------------------------------- */
+.cs-pnav__links { display: flex; flex-direction: column; }
+.cs-pnav__link {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);                        /* 4 — icon↔label */
+  min-height: 40px;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-lg);  /* 8 8 8 12 */
+  background: transparent;                        /* default: the blue rail shows through */
+  color: var(--sidebar-text);                    /* white */
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-body-base, 14px);
+  font-weight: var(--font-weight-heading-base, 500);
+  line-height: var(--line-height-body-base, 20px);
+  text-decoration: none;
+  cursor: pointer;
+}
+.cs-pnav__link-icon { flex: 0 0 auto; width: 24px; height: 24px; color: var(--sidebar-icon); }
+.cs-pnav__link-icon > .mi { width: 24px; height: 24px; }
+.cs-pnav__link-label { flex: 1 1 auto; min-width: 0; white-space: nowrap; }
+/* icon=No (label-only) variant: omit the .cs-pnav__link-icon element — the label (flex:1) fills the row. */
+
+.cs-pnav__link:hover { background: var(--surface-brand-hover); }  /* MEASURED 2026-09-08: official Figma hover — 3 variants 27364:6859/7900/7908 bind surface/brand-hover (Light #005CE6). Replaces the ADDED translucent white; T1 resolved. ⚠ T7: contrast vs sidebar/text passes ONLY in Light (5.72:1) — Dark 1.16, HC 1.10, HC Light 1.38 (icon 1.00 = invisible), Warm Dark 1.66. Follows Figma until a rail-specific sidebar/primary-hover token is added and re-bound. */
+.cs-pnav__link--selected,
+.cs-pnav__link[aria-current="page"] {
+  background: var(--sidebar-ring);               /* #2499ff lighter-blue highlight */
+  color: var(--sidebar-text);                    /* label = its own token (kept distinct from the icon's --sidebar-icon-active so the two can diverge per theme) */
+}
+.cs-pnav__link--selected .cs-pnav__link-icon,
+.cs-pnav__link[aria-current="page"] .cs-pnav__link-icon {
+  color: var(--sidebar-icon-active);             /* selected icon = FILLED glyph in its own token */
+}
+
+/* -----------------------------------------------------------------------------
+   [CS-PNAV-06]  .cs-pnav__bottom — copyright, pinned at the bottom.
+   TOKENS: --spacing-md (px 8), --spacing-xl (py 16), --text-inverse (text).
+   Type: Body/micro — Inter Regular 10 / line-height 14. Centred. The
+   "CareSmartz360" word is an underlined link.
+   -------------------------------------------------------------------------- */
+.cs-pnav__bottom {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-md);  /* 16 8 */
+  color: var(--text-inverse);
+  font-family: var(--font-family-primary, Inter), sans-serif;
+  font-size: var(--font-size-micro, 10px);
+  font-weight: var(--font-weight-body-base, 400);
+  line-height: var(--line-height-micro, 14px);
+  text-align: center;
+}
+.cs-pnav__bottom a { color: inherit; text-decoration: underline; }
+
+/* -----------------------------------------------------------------------------
+   [CS-PNAV-07]  .cs-pnav--collapsed — the 48px icon-only rail.
+   Logo shrinks to 52px, toggle centres, links become icon-only (24px centred,
+   px --spacing-lg), copyright stacks to "© / 2026".
+   Toggle state is app-owned (add/remove --collapsed on .cs-pnav).
+   -------------------------------------------------------------------------- */
+.cs-pnav--collapsed { width: 48px; }
+.cs-pnav--collapsed .cs-pnav__logo {           /* FIX 2026-09-08: live 27337:73617 keeps the SLOT at 48x102 and shrinks only
+                                                  the white rectangle inside it to 48x52 (27337:73618) — collapsing the whole
+                                                  slot to 52 pulled the toggle and every icon 50px too high. */
+  height: 102px;
+  align-items: flex-start;
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+}
+.cs-pnav--collapsed .cs-pnav__logo::before {     /* the 52px white surface + its hairline, inside the 102px slot */
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 52px;
+  background: #ffffff;                           /* RAW — same T2 flag as the expanded logo surface */
+  box-shadow: inset -1px 0 0 0 rgba(51, 74, 101, 0.1), inset 0 -1px 0 0 rgba(51, 74, 101, 0.1); /* RAW hairline, T2 */
+}
+.cs-pnav--collapsed .cs-pnav__logo > img { position: relative; max-height: 52px; }
+.cs-pnav--collapsed .cs-pnav__toggle { justify-content: center; }
+.cs-pnav--collapsed .cs-pnav__link {
+  justify-content: center;
+  gap: var(--spacing-none);
+  padding: var(--spacing-md) var(--spacing-lg);  /* 8 12 */
+}
+.cs-pnav--collapsed .cs-pnav__link-label { display: none; }
+.cs-pnav__link--label-only { min-height: 36px; } /* FIX 2026-09-08: the Icon=No variants are 158x36 in Figma (10441:17046 /
+                                                  27364:6859 / 10441:17048); the blanket 40px floor above is the Icon=Yes
+                                                  height. Add this modifier on links rendered without an icon. */
+
+/* -----------------------------------------------------------------------------
+   [CS-PNAV-08]  A11Y — added beyond the Figma render.
+   • The link list is a <nav aria-label="Primary"> of real links; the current
+     section carries aria-current="page" (drives --selected).
+   • The collapse toggle is a real <button aria-expanded aria-label="Collapse/Expand navigation">.
+   • Collapsed icon-only links MUST keep an accessible name (aria-label or a
+     tooltip) since the visible label is hidden.
+   • Icons are decorative when a text label is present (aria-hidden); in the
+     collapsed rail the icon carries the name, so it needs the aria-label above.
+   • Contrast: white text/icons on --sidebar-primary-bg (#0077ff) and on the
+     --sidebar-ring (#2499ff) selected highlight — confirm the selected state
+     still meets 4.5:1 (white on #2499ff ≈ 3.0:1 — LARGE-text/again UI only; flag T3).
+   -------------------------------------------------------------------------- */
+.cs-pnav :focus-visible { outline: 2px solid var(--sidebar-text); outline-offset: -2px; }  /* white ring — DISTINCT from --sidebar-ring so focus stays visible even on a Selected row (WCAG 2.4.7) */

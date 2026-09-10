@@ -1,0 +1,41 @@
+<!--
+=============================================================================
+COMPONENT SKELETON: Data Table (.cs-table)
+PAIRED CSS: ../css/table.css
+Figma Code Connect: code-connect/table/
+RESOLVES: RULE-FLAGS.md [F-015]
+=============================================================================
+-->
+
+<div class="cs-table-container">
+  <table class="cs-table">
+    <thead>
+      <tr class="cs-table__head-row">
+        <th class="cs-table__th cs-table__th--checkbox">
+          <input type="checkbox" class="cs-checkbox" aria-label="Select all rows" />
+        </th>
+        <th class="cs-table__th" scope="col">Name</th>
+        <th class="cs-table__th" scope="col">Status</th>
+        <th class="cs-table__th" scope="col">Date</th>
+        <th class="cs-table__th cs-table__th--actions" scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="cs-table__row">
+        <td class="cs-table__td cs-table__td--checkbox">
+          <input type="checkbox" class="cs-checkbox" aria-label="Select row" />
+        </td>
+        <td class="cs-table__td cs-table__td--primary">John Doe</td>
+        <td class="cs-table__td">
+          <span class="c360-tag c360-tag--success">Active</span>
+        </td>
+        <td class="cs-table__td">2026-09-10</td>
+        <td class="cs-table__td cs-table__td--actions">
+          <button type="button" class="cs-btn cs-btn--ghost cs-btn--icon-only cs-btn--compact" aria-label="More actions">
+            <svg class="cs-btn__icon" aria-hidden="true"><use href="/assets/icons/sprite.svg#more_vert"></use></svg>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
