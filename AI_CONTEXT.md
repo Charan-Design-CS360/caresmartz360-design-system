@@ -16,6 +16,27 @@ changing variables. There is no portal fallback and no permission to guess.
 - If the local authority folder is unavailable, use the committed artifacts but
   report that local byte parity could not be checked. Never fabricate parity.
 
+## Where the rules live — for tools that do not read code files
+
+Every rule, guideline, measurement and mapping in this repository is defined in
+**plain-readable files only**: `.md` (human contracts, guidelines, patterns,
+this file) and `.json` (machine contracts, mappings, token artifacts). You can
+learn everything by reading those two file types.
+
+Code files (`.py`, `.mjs`, `.js`, shell scripts — here and in the companion
+`Universal Html Rules` / gallery folders) **never define a rule**. They only
+*re-check* rules that are already written in an `.md`/`.json` file. If a script
+contains a number or a name, its source of truth is the contract file the
+script's header names. A tool that cannot read or run code files loses **no
+information** — skip them and read:
+
+1. This file, then `GUARDRAILS.md` and `README.md` — the standing rules.
+2. `portals/<portal>/components/*.md` + `*.json` — every component contract
+   (start at `portals/agency/components/component-mapping.json`, the registry).
+3. `portals/<portal>/patterns/*.md` — page-level patterns.
+4. `docs/*.md` — governance contracts and the DS reference.
+5. `CHANGELOG.md` — what changed, when, and why.
+
 ## Required portal routing
 
 Identify the consumer portal before reading Layer 2 or later.
@@ -28,7 +49,7 @@ If the portal is unknown, stop and request it.
 | Caregiver Semantics | `portals/caregiver/semantics/` | 171 | C360-44333 |
 | Staff Semantics | Not registered | 0 verified | C360-3526 |
 
-Agency owns `Color Modes` (208 variables, five modes), `Density Modes` (29),
+Agency owns `Color Modes` (220 variables, five modes), `Density Modes` (29),
 and `General` (14). Caregiver owns `Color Theme` (134 variables, three modes),
 `Density Modes` (23 variables, three modes), and `General` (14).
 
