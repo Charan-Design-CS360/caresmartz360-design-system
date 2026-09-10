@@ -4,6 +4,7 @@
     "component": "Primary Side Navigation — the app's blue left rail",
     "portal": "agency",
     "contractVersion": "1.2.0",
+    "figmaGuidelinesFrame": { "nodeId": "27382:21565", "name": "Page Layout Patterns — Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21565", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma MCP never reports a file key. Taken from the URL Singh supplied (Design System Agency V2.0).",
     "figmaNodes": {

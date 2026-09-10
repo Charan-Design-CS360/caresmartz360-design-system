@@ -71,3 +71,7 @@ Both styles must be built as a proper **tablist**: the current tab marked select
 ## 6. What I did NOT change
 
 No live Angular code touched. This is the spec + the copy-from CSS. The GitHub update goes through the proper branch → PR flow (never a direct push to `main`).
+
+## Figma Guidelines
+
+Designer guideline frame: **Tabs — Component Guidelines** — [`27382:21453`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21453) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

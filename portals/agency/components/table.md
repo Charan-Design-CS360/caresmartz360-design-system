@@ -292,3 +292,7 @@ closes seven.
 | 2026-08-25 | **2.0.0** — four owner rulings applied. `table_head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
 | 2026-08-25 | **1.1.0** — recorded that TWO live header components exist (`table_head` 26938:61726 vs `Head / Tiltes for tables` 5865:162, both 34px), plus a third that is formally dead; and that this section's own sample layout uses the other one. Found while syncing against the local stylesheet. |
 | 2026-08-25 | 1.0.0 — first table contract in this repo. Both sets measured from section `26955:66556`, cross-checked against the local copy-from stylesheet and the owner's variable export. Created because the absence of any published table geometry was blocking feature work. | Owner instruction, 2026-08-25 |
+
+## Figma Guidelines
+
+Designer guideline frame: **table — Component Guidelines** — [`27382:20152`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20152) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

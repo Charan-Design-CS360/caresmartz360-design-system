@@ -3,7 +3,11 @@
   "$meta": {
     "component": "Fields type 1",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
+    "figmaGuidelinesFrame": { "nodeId": "27401:30526", "name": "Form Fields — Component Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
+    "supersededBy": "./form-fields.json",
+    "supersededOn": "2026-09-10",
+    "supersededWhy": "Figma renamed field-set-type1 → form-field-primary and restructured it: height 62→66 (header row 26→30), header became the real field-header-primary component (required/help/AI icons now available), disabled variant now binds field/bg-disabled. This file stays as the 2026-08-24 historical measurement; build from form-fields.json.",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaComponentSetNodeId": "26938:65997",

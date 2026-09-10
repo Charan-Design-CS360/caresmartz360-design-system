@@ -4,6 +4,7 @@
     "component": "Tabs — Primary (underline) + Secondary (segmented)",
     "portal": "agency",
     "contractVersion": "1.0.0",
+    "figmaGuidelinesFrame": { "nodeId": "27382:21453", "name": "Tabs — Component Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21453", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP never reports a file key. Taken from the URLs Singh supplied (Design System Agency V2.0).",
     "figmaNodes": {

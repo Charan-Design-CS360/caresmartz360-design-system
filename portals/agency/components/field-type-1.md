@@ -19,6 +19,16 @@ SOURCE: component set 26938:65997 "field-set-type1"
 =============================================================================
 -->
 
+> **⚠️ SUPERSEDED 2026-09-10 → [form-fields.md](./form-fields.md).** Figma renamed this set
+> `field-set-type1` → **form-field-primary** and restructured it: height **62→66** (header row
+> 26→30), the header became the real `field-header-primary` component (required marker, help and
+> AI icons now exist), and the disabled variant now binds `field/bg-disabled`. Three of the
+> defects below are resolved by that drift. This file remains the 2026-08-24 historical
+> measurement — **build from the family contracts**, not from here:
+> [form-fields.md](./form-fields.md) (index) · [field-type-2.md](./field-type-2.md) (SECONDARY)
+> · [field-type-3.md](./field-type-3.md) (TERTIARY) · [field-atoms.md](./field-atoms.md) (shared
+> atoms incl. field-input and the 6-type field-message).
+
 # Fields type 1 — Agency component contract
 
 Canonical Jira parent: **C360-44737**. Component Jira: **C360-44847**.
@@ -259,3 +269,7 @@ top-row gap are all **[RAW]**. Under the 3-consumer promotion rule, 34px current
 has **2** consumers (this input row + the table header) — **below the threshold**,
 so it stays component-local rather than becoming a global token. Any change is
 gated by `Design-System/00-TOKEN-LAYER-GATE.md`.
+
+## Figma Guidelines
+
+Designer guideline frame: **Form Fields — Component Guidelines** — [`27401:30526`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

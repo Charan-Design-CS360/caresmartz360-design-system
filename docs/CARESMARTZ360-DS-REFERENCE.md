@@ -1,8 +1,8 @@
 # CareSmartz360 Design System — AI Handoff Reference
 
-**Version:** 2.5.0  
+**Version:** 3.0.0 (aligned with the repo version — C360-47329)  
 **Figma File:** `$-Primitives (CS360) V2.0` (**ID:** `DJBpjoXPMEw6bBAByIQaAy`)  
-**Last Updated:** 2026-06-30  
+**Last Updated:** 2026-09-10  
 **Stack:** Angular 19 + **Angular Material M3** + Tailwind CSS + SCSS
 
 ---
@@ -11,7 +11,7 @@
 
 This document serves as the authoritative reference for AI-assisted development, design handoff, and component implementation for the CareSmartz360 product design system.
 
-**Stack (v2.5.0 CORRECTED):**
+**Stack (corrected in the 2.5.0 pass, carried into 3.0.0):**
 
 | Layer | Technology | Priority |
 |-------|-----------|----------|
@@ -71,7 +71,7 @@ Meaning-based tokens referencing primitives.
 | `semantic.status.warning` | `yellow.500` | Warning states, caution |
 | `semantic.status.error` | `red.600` | Error states, destructive actions |
 | `semantic.status.info` | `blue.700` | Info states |
-| `semantic.text.primary` | `gray.00` | Disabled text |
+| `semantic.text.primary` | `neutral.800` → `#1E293B` (checked against the owner exports 2026-09-10; the old row said "gray.00 / Disabled text" — wrong on both counts) | Primary text |
 | `semantic.surface.default` | `white` | Main content areas |
 
 ---
@@ -228,6 +228,13 @@ export class ButtonComponent {
 
 ### Form Field (Angular Material M3)
 
+> **⚠️ 2026-09-10 — the measured Form Fields system lives at
+> `portals/agency/components/form-fields.json` / `.md` (10 components: field-label, three
+> field-headers, field-input, field-message, form-section-header, and the three form-field
+> molecules — Jira C360-47183).** The mat-form-field snippet below is a legacy sketch:
+> `appearance="outline"` structurally cannot produce the measured stacked-header-inside-one-border
+> layout (see the implementationRisk in field-type-1.json). Read the portal contract first.
+
 ```html
 <mat-form-field appearance="outline" class="cs-field w-full">
   <mat-label>{{ label }}</mat-label>
@@ -302,7 +309,7 @@ export class ButtonComponent {
 
 ## Related Files
 
-- **Token Manifest:** `ds-tokens-v2.5.0.json`
+- **Token Manifest:** `ds-tokens-v2.6.4.json` (v2.5.0 never existed in this repo — corrected per C360-47329)
 - **Material Overrides:** `_material-theme-overrides.scss`
 - **Agency Tokens:** `design-tokens/agency-styles.scss`
 - **Tailwind Config:** `tailwind.config.js`

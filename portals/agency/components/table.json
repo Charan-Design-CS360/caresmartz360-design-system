@@ -4,6 +4,7 @@
     "component": "Table — head cell & data cell",
     "portal": "agency",
     "contractVersion": "3.0.0",
+    "figmaGuidelinesFrame": { "nodeId": "27382:20152", "name": "table — Component Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20152", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP never reports a file key. Taken from portals/agency/portal-manifest.json and the URL supplied by the design owner.",
     "figmaSectionNodeId": "26955:66556",

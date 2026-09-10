@@ -1,0 +1,63 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Fields type 2 (SECONDARY — edit mode)",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
+    "figmaComponentSetNodeId": "27062:7663",
+    "figmaSectionNodeId": "26955:66554",
+    "figmaGuidelinesFrame": { "nodeId": "27401:30526", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526" },
+    "measuredOn": "2026-09-10 (morning; set re-confirmed unchanged in the afternoon re-read)",
+    "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
+    "jiraSource": "C360-47325",
+    "familyIndex": "./form-fields.json",
+    "atomsContract": "./field-atoms.json",
+    "humanContract": "./field-type-2.md"
+  },
+
+  "purpose": "Complete EDIT-mode field: popups, forms, modals. Header + bordered input + message row on validation states. The counterpart of field-type-1 (view mode) and field-type-3 (settings).",
+
+  "variantAxis": { "name": "state", "count": 6, "values": ["default", "focus", "error", "success", "warning", "disabled"] },
+  "variantNodes": { "default": "27062:7664", "focus": "27062:7669", "error": "27062:7674", "success": "27062:7679", "warning": "27062:7684", "disabled": "27062:7689" },
+
+  "geometry": {
+    "sizeWithoutMessage": { "w": 360, "h": 56, "states": ["default", "focus"], "marker": ["MEASURED"] },
+    "sizeWithMessage": { "w": 360, "h": 76, "states": ["error", "success", "warning", "disabled"], "marker": ["MEASURED"] },
+    "rows": {
+      "header": { "component": "field-header-secondary", "y": [0, 26] },
+      "input": { "component": "field-input (30px embed)", "y": [26, 56] },
+      "message": { "component": "field-message (20px)", "y": [56, 76], "optional": true }
+    },
+    "rowGap": 0,
+    "widthRule": "360 is the variant's own width; treat as 100% of parent"
+  },
+
+  "fieldHeaderSecondary": {
+    "nodeId": "27388:29316", "type": "COMPONENT", "tier": "atom", "size": { "w": 186, "h": 26 },
+    "structure": {
+      "labelInstance": { "component": "field-label", "x": 0, "y": 5, "w": 160, "h": 16, "marker": ["MEASURED"] },
+      "aiIcon": { "x": 168, "y": 4, "box": 18, "marker": ["MEASURED"] }
+    },
+    "behavior": "AI icon appears only on AI-assisted fields; required marker / help ride on field-label."
+  },
+
+  "statesBindTokens": "input row binds field/bg-<state> + field/border-<state> (danger pair for error); message row type matches the state. See field-atoms.json → field-input for the full state/token map and ./form-fields.json → sharedTokens for the alias chain (colors/neutral-*, never gray/*).",
+
+  "behavior": "The editable form control. Message row appears with validation. In product flows a primary (view) field switches to this on edit.",
+
+  "defects": [
+    "disabled variant is 76px (implies a message row in disabled state) — intended copy unspecified; flagged, not invented",
+    "no hover state exists on the axis — building one would be an invention"
+  ],
+
+  "accessibility": {
+    "inputRow": { "value": 30, "wcag258AA": "PASS", "floor": "24 CSS px" },
+    "labelAssociation": "field-header-secondary's label is a real row — use <label for> / aria-labelledby",
+    "errorState": "aria-invalid + aria-describedby pointing at the field-message row",
+    "disabled": "disabled + aria-disabled; readonly is inert on <select> — emit disabled there"
+  },
+
+  "notVerified": ["dark / high-contrast / warm-dark / hc-light values", "focus ring beyond the border-colour change"]
+}

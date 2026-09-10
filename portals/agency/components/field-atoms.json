@@ -1,0 +1,91 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "Field Atoms (shared)",
+    "portal": "agency",
+    "contractVersion": "1.0.0",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
+    "figmaSectionNodeId": "26955:66554",
+    "figmaGuidelinesFrame": { "nodeId": "27401:30526", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526" },
+    "measuredOn": "2026-09-10 (morning pass + afternoon re-verification after Figma-side changes)",
+    "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
+    "jiraSource": "C360-47325",
+    "familyIndex": "./form-fields.json",
+    "humanContract": "./field-atoms.md",
+    "readThisFirst": "field-message changed in Figma on the afternoon of 2026-09-10: typography moved from Body/micro 10/14 to caption 12/16 on ALL variants, every variant is now 20px tall, and a 6th variant type=comments was added. Everything below is the post-change state, re-measured live."
+  },
+
+  "field-label": {
+    "nodeId": "27062:10162", "type": "COMPONENT", "tier": "sub-atom", "size": { "w": 158, "h": 16 },
+    "purpose": "Label text + optional required marker + optional help icon. The sub-atom every header builds on.",
+    "structure": {
+      "labelText": { "typography": "Fields/label 12/16 Medium", "colour": { "token": "text/primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+      "requiredMarker": { "box": { "w": 8, "h": 16 }, "innerIcon": { "w": 8, "h": 8 }, "gapAfterLabel": 4, "gapToken": "spacing/sm", "fill": { "token": "icon/danger", "hex": "#ef4444" }, "marker": ["MEASURED"] },
+      "helpIcon": { "box": { "w": 16, "h": 16 }, "gapAfterRequired": 4, "fill": { "token": "icon/brand", "hex": "#0077ff" }, "marker": ["MEASURED"] }
+    },
+    "behavior": "Static. Help icon opens per-form guidance (tooltip content out of contract)."
+  },
+
+  "field-header-primary": {
+    "nodeId": "27388:28274", "type": "COMPONENT", "tier": "atom", "size": { "w": 358, "h": 30 },
+    "purpose": "LEFT/RIGHT split header row for the PRIMARY (view-mode) field: label cluster left, status-icon rail right.",
+    "structure": {
+      "left": { "x": 0, "y": 5, "w": 270, "h": 24, "labelInsetLeft": 8, "labelInsetLeftToken": "spacing/md", "marker": ["MEASURED"] },
+      "right": { "x": 280, "y": 4, "w": 78, "h": 26, "iconSlots": [
+        { "name": "error", "box": 18, "innerIcon": 16, "fill": "icon/danger" },
+        { "name": "help", "box": 18, "innerIcon": 16, "fill": "icon/brand" },
+        { "name": "ai", "box": 18, "innerIcon": 18 }
+      ], "slotGap": 4, "marker": ["MEASURED"] }
+    },
+    "behavior": "Icons are per-state affordances: error icon in error/warning states, help opens guidance, AI marks auto-populated values."
+  },
+
+  "field-input": {
+    "nodeId": "27062:8145", "type": "COMPONENT_SET", "tier": "atom",
+    "variantAxis": { "name": "state", "values": ["default", "focus", "error", "success", "warning", "disabled"] },
+    "variantNodes": { "default": "27062:8093", "focus": "27062:8066", "error": "27062:8075", "success": "27062:8084", "warning": "27062:8155", "disabled": "27062:8164" },
+    "purpose": "The shared bordered input control. SECONDARY and TERTIARY molecules embed it; PRIMARY does not (view mode has no input box).",
+    "geometry": {
+      "baseSize": { "w": 358, "h": 34, "marker": ["MEASURED"] },
+      "embeddedHeights": { "inFieldType2": 30, "inFieldType3": 34, "marker": ["MEASURED"] },
+      "paddingLeft": 8, "paddingLeftToken": "spacing/md",
+      "trailingControlSlot": { "w": 30, "h": 30, "name": "Global/Atom/Fields Toys", "marker": ["MEASURED"] },
+      "border": { "width": 1, "style": "solid" },
+      "borderRadius": { "value": 4, "token": "border-radius/rounded", "marker": ["MEASURED"] },
+      "tertiaryConstraints": { "minWidth": 120, "maxWidth": 400, "marker": ["ASSERTED"], "source": "C360-47183 #633283/#633288 — auto-layout constraint props not machine-readable this pass" }
+    },
+    "statesBindTokens": "field/bg-<state> + field/border-<state> (danger pair for error). Editable default border = field/border-hard #94a3b8 (live 27062:8093); field/border-default #e2e8f0 is the container/read-only border.",
+    "typography": { "value": "Fields/value 12/16 Regular", "placeholder": { "token": "field/value-placeholder", "hex": "#64748b" }, "marker": ["MEASURED"] },
+    "behavior": "Single-line text entry; trailing 30×30 slot hosts pickers/steppers/clear (12 'Fields Toys' variants not yet enumerated)."
+  },
+
+  "field-message": {
+    "nodeId": "11116:25116", "type": "COMPONENT_SET", "tier": "atom",
+    "variantAxis": { "name": "type", "count": 6, "values": ["Error", "Help", "Warning", "Success", "AI autopopulated", "comments"] },
+    "purpose": "The message row under or beside a field: icon + short text. comments carries a field-level comment count (tertiary left stack).",
+    "changeLog2026-09-10": "Figma-side change verified live: typography Body/micro 10/14 → caption 12/16 on ALL variants; all variants now 20px tall; type=comments added (icon corrected 14→16 by Figma-AI the same afternoon).",
+    "sharedGeometry": { "height": 20, "iconBox": 16, "iconTextGap": 4, "gapToken": "spacing/sm", "paddingBlock": 2, "paddingBlockToken": "spacing/xs", "typography": "caption 12/16 Regular (Fields/value / Body/small)", "marker": ["MEASURED"], "note": "AI + comments additionally: min-width 80, border-radius 4 (border-radius/rounded), content centered" },
+    "variants": [
+      { "type": "Error",   "nodeId": "11116:24791",  "w": 138, "icon": { "glyph": "warning (Alert)", "fill": "icon/danger" },  "text": { "token": "text/danger",    "hex": "#dc2626" }, "copy": "This field is required.", "marker": ["MEASURED"] },
+      { "type": "Help",    "nodeId": "16549:388669", "w": 115, "icon": { "glyph": "info (Alert)", "fill": "icon/soft" },       "text": { "token": "text/secondary", "hex": "#475569" }, "copy": "Field information", "marker": ["MEASURED"] },
+      { "type": "Warning", "nodeId": "16549:388678", "w": 185, "icon": { "glyph": "warning (Alert)", "fill": "icon/warning" }, "text": { "token": "text/warning",   "hex": "#ca8a04" }, "copy": "This is the warning message.", "marker": ["MEASURED"] },
+      { "type": "Success", "nodeId": "11116:25115",  "w": 185, "icon": { "glyph": "task_alt (Alert success)", "fill": "icon/success" }, "text": { "token": "text/success", "hex": "#16a34a" }, "copy": "Field validation is successful.", "marker": ["MEASURED"] },
+      { "type": "AI autopopulated", "nodeId": "27291:41761", "w": 225, "icon": { "component": "Button / AI suggestion 27297:41879", "buttonBox": 14, "glyph": "AI-Sparkle", "fill": "action/ai/text-hard", "hex": "#9333ea" }, "text": { "token": "text/secondary", "hex": "#475569" }, "copy": "Auto-populated from [source_name]", "minWidth": 80, "marker": ["MEASURED"] },
+      { "type": "comments", "nodeId": "27507:56752", "w": 93, "icon": { "glyph": "mark_unread_chat_alt", "box": 16, "nodeId": "27507:56768" }, "text": { "token": "text/links", "hex": "#0077ff", "aliasTarget": "colors/Brandblue-600", "aliasVerified": "byte-for-byte against Variables/Agency/Color Modes.zip 2026-09-10" }, "copy": "0 Comments", "minWidth": 80, "marker": ["MEASURED"] }
+    ],
+    "figmaSideBugs": [
+      "type=comments (27507:56752) carries a copy-pasted DESCRIPTION — it repeats the AI-autopopulated text instead of describing comments. Prose bug only; the node itself is correct.",
+      "hover/pressed states for the comments link do not exist (text/links-hover and text/links-visited exist in the exports but are unbound here)"
+    ],
+    "behavior": "One message row per field state; AI + Error + comments can co-exist in the tertiary left stack. The comments row opens the field's annotation/discussion surface (interaction target not designed yet)."
+  },
+
+  "notVerified": [
+    "field-label re-read this afternoon (morning measurement; the afternoon Figma changes did not name it)",
+    "field-input tertiary min/max width constraints (asserted by ticket; auto-layout props unreadable via metadata this pass)",
+    "the 12 'Fields Toys' trailing-control variants",
+    "dark / high-contrast / warm-dark / hc-light values",
+    "icon SVG path data (boxes and fill tokens verified; paths not archived)"
+  ]
+}

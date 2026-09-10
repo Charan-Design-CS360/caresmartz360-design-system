@@ -1,0 +1,94 @@
+{
+  "patternId": "page-layout-shell",
+  "portal": "agency",
+  "maturity": "draft",
+  "owner": "Charanjeet Singh (design-system owner)",
+  "contractVersion": "1.0.0",
+  "jiraSource": "C360-47184",
+  "jiraPattern": "C360-45159",
+  "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+  "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
+  "figmaSectionId": "27337:74297",
+  "measuredOn": "2026-09-10",
+  "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
+  "humanContract": "./page-layout-patterns.md",
+  "shellDefinition": "./page-setup.md — the ratification-pending grid contract measured from pattern-page-data-table on 2026-09-04; re-confirmed 2026-09-10",
+
+  "userGoal": "Give every Agency content page the same skeleton: primary side nav + global header + user-profile rail + tabs + page header + a Middle Matter area that alone changes per pattern.",
+  "whenToUse": ["any full content page in the Agency portal"],
+  "whenNotToUse": ["modals/popups (no shell)", "print/report layouts", "Caregiver or Staff portal pages (portal isolation)"],
+
+  "shellComponents": [
+    { "role": "primary side nav", "contract": "portals/agency/components/primary-side-navigation.json", "nodeId": "27337:73592", "measuredWidths": { "collapsed": 48, "expanded": 158 } },
+    { "role": "global header", "height": 52, "leftActions": { "x": 12, "y": 8, "h": 36 }, "rightActions": { "h": 30, "y": 11 } },
+    { "role": "user profile rail", "width": 240, "note": "contract: portals/agency/components/profile-side-navigation.json" },
+    { "role": "tab container", "height": 50, "firstTabInsetLeft": 12, "contract": "portals/agency/components/tabs.json" },
+    { "role": "page header", "contract": "portals/agency/components/page-header.json", "measuredHeights": { "withFilterToolbar": 110, "withoutToolbar": 68 } },
+    { "role": "middle matter", "contentPadding": 12, "paddingToken": "spacing/lg" }
+  ],
+
+  "variants": [
+    {
+      "name": "pattern-page-data-table",
+      "figmaNodeId": "27337:73093",
+      "middleMatter": "data-table-with-filters",
+      "measured": {
+        "canvas": "1440x900", "navState": "collapsed (48)", "shellRightWidth": 1392, "pageContentWidth": 1152,
+        "pageHeaderHeight": 110, "pageHeaderNote": "includes the filter toolbar row — the only variant with filters",
+        "table": { "headerRowHeight": 34, "dataRowHeight": 30, "rowOverlap": "rows step by 29 — 1px shared border", "columnWidth": 200, "actionsColumnWidth": 330, "actionCellIcons": "more_vert 18 + edit 24 in 30x30 slots, right-aligned" },
+        "pageInfoFooter": { "height": 136, "messageBlock": "800x112 at inset 12" }
+      },
+      "componentsUsed": ["page-header (toolbar variant)", "table (portals/agency/components/table.json)", "filters (portals/agency/components/filters.json)", "column-arrangement trigger"],
+      "useCase": "patient records, schedule grids, caregiver lists — data-dense listing with inline editing"
+    },
+    {
+      "name": "pattern-page-empty-state",
+      "figmaNodeId": "27401:30856",
+      "middleMatter": "empty-state-message",
+      "measured": {
+        "canvas": "1440x900", "navState": "expanded (158)", "shellRightWidth": 1282, "pageContentWidth": 1042,
+        "pageHeaderHeight": 68, "pageHeaderNote": "no filter toolbar",
+        "emptyState": { "size": "800x154", "position": "x=121 within Middle Matter, inset 12 top", "contract": "portals/agency/components/empty-states.json" }
+      },
+      "componentsUsed": ["page-header (no toolbar)", "empty-states"],
+      "useCase": "first-time experience, empty filtered results, cleared data state"
+    },
+    {
+      "name": "pattern-page-form-grid",
+      "figmaNodeId": "27401:31504",
+      "middleMatter": "form-field-primary-grid",
+      "measured": {
+        "canvas": "1440x900", "navState": "expanded (158)", "shellRightWidth": 1282, "pageContentWidth": 1042,
+        "pageHeaderHeight": 68, "pageHeaderNote": "no filter toolbar",
+        "grid": { "instances": 12, "columns": 4, "rows": 3, "cellSize": "254.5x66", "inset": 12, "columnGap": 0, "rowGap": 0, "arithmetic": "12 + 4x254.5 + 12 = 1042" }
+      },
+      "componentsUsed": ["page-header (no toolbar)", "form-field-primary (portals/agency/components/form-fields.json)", "field-header-primary"],
+      "useCase": "patient demographics, profile detail views — read-first data display"
+    }
+  ],
+
+  "semanticDependencies": ["portals/agency/semantics (surface/*, border/*, text/*, field/*, spacing/*)"],
+  "states": ["nav collapsed vs expanded (shell width 1392 vs 1282 at 1440 canvas)", "page header with vs without filter toolbar (110 vs 68)"],
+  "contentRules": ["Middle Matter is the ONLY region that changes per pattern", "content insets are 12px (spacing/lg) inside Middle Matter"],
+  "responsiveBehavior": "Measured at 1440x900 only; breakpoint behaviour is UNVERIFIED and not designed in these frames.",
+  "accessibility": {
+    "keyboard": "shell order: nav → header actions → tabs → page-header actions → content; per-component a11y in each component contract",
+    "screenReader": "landmarks: nav / banner / main; tabs need role=tablist per tabs contract",
+    "focus": "focus-visible styles per component contracts; no pattern-level overrides",
+    "touch": "nav links 36-40px, table rows 30px (see table contract for the 24px WCAG floor discussion)"
+  },
+  "successSignal": "any AI tool reproduces the same shell from this file + page-setup.md without re-measuring Figma",
+  "evidence": {
+    "jiraIssue": "C360-47184",
+    "snapshotRef": "UNVERIFIED — no attested Figma snapshot yet (maturity draft)",
+    "usedInFlows": []
+  },
+
+  "ticketDiscrepancies": {
+    "jiraTicket": "C360-47184",
+    "notes": [
+      "Ticket's shell diagram shows patterns sharing one shell — measured: pattern 1 uses the COLLAPSED 48px nav (shell 1392/page 1152) while patterns 2–3 use the EXPANDED 158px nav (shell 1282/page 1042). Same skeleton, two nav states; recorded as a state, not a divergence.",
+      "Ticket's page-header row is one block — measured heights differ: 110 with filter toolbar (pattern 1) vs 68 without (patterns 2–3)."
+    ]
+  }
+}

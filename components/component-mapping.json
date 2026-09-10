@@ -1,264 +1,175 @@
 {
-  "$version": "2.3.1",
+  "$schema": "../schemas/component-mapping.schema.json",
+  "$version": "3.0.0",
   "$metadata": {
-    "figmaFile": "DJBpjoXPMEw6bBAByIQaAy",
-    "description": "Maps component names to Figma node IDs and implementation details",
-    "warning": "2026-07-13: all shadcnComponent fields removed (shadcn banned since v2.4.0) — replaced with unverified componentLibrary placeholders. ALSO: every figmaNodeId below (1:100, 1:200, 1:300... in clean round hundreds) looks fabricated, not pulled from a real Figma file — real node IDs are never this uniform. None of this file's node IDs have been confirmed against live Figma. Needs a full regeneration pass: open the real component library in Figma desktop and re-pull actual node IDs per component. See VERIFICATION-LOG.md."
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileUrl": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/",
+    "pageId": "26581:38709",
+    "pageIdProvenance": "reported by the Figma-AI enumeration (C360-47327); consistent with the Dev-Mode link recorded in portals/agency/components/field-type-1.md",
+    "lastGrounded": "2026-09-10",
+    "regeneratedFor": "C360-47327 — this file previously carried self-declared round-number node IDs pointing at a different Figma file; every ID below is grounded: measured in a portal contract, measured live on 2026-09-10, or existence-probed live the same day (provenance noted per section)",
+    "authority": "portals/agency/components/component-mapping.json and the per-component contracts are the authoritative portal-scoped mapping; this root file is the cross-section INDEX for discovery"
   },
-  "components": {
-    "Button": {
-      "figmaNodeId": "1:100",
-      "variants": [
-        "primary",
-        "secondary",
-        "ghost",
-        "danger",
-        "link"
+  "sections": [
+    {
+      "name": "Form Fields",
+      "sectionNodeId": "26955:66554",
+      "guidelinesNodeId": "27401:30526",
+      "provenance": "measured live 2026-09-10 (morning + evening passes)",
+      "contractPaths": [
+        "portals/agency/components/form-fields.md",
+        "portals/agency/components/field-type-1.md",
+        "portals/agency/components/field-type-2.md",
+        "portals/agency/components/field-type-3.md",
+        "portals/agency/components/field-atoms.md"
       ],
-      "sizes": [
-        "sm",
-        "md",
-        "lg"
+      "componentSets": [
+        { "name": "form-field-primary", "nodeId": "26938:65997", "variants": 7 },
+        { "name": "form-field-secondary", "nodeId": "27062:7663", "variants": 6 },
+        { "name": "field-input", "nodeId": "27062:8145", "variants": 6 },
+        { "name": "field-message", "nodeId": "11116:25116", "variants": 6 },
+        { "name": "field-header-tertiary", "nodeId": "27290:41702", "variants": 3 }
       ],
-      "states": [
-        "default",
-        "hover",
-        "active",
-        "disabled",
-        "loading"
+      "components": [
+        { "name": "form-field-tertiary", "nodeId": "27395:30147" },
+        { "name": "field-header-primary", "nodeId": "27388:28274" },
+        { "name": "field-header-secondary", "nodeId": "27388:29316" },
+        { "name": "field-label", "nodeId": "27062:10162" },
+        { "name": "form-section-header", "nodeId": "27395:30130" }
       ],
-      "tokens": {
-        "background": "semantic.brand.primary",
-        "text": "semantic.text.inverse",
-        "border": "semantic.border.default",
-        "radius": "primitives.radius.md"
-      },
-      "tailwindClasses": "btn btn-primary",
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+      "referenceFrames": [
+        { "name": "left section structure", "nodeId": "27507:56751", "provenance": "measured live 2026-09-10" },
+        { "name": "Design Structure and Patterns", "nodeId": "27395:29530", "provenance": "reported by Figma-AI enumeration, not independently read" },
+        { "name": "Form Field Tertiary section", "nodeId": "27395:29519", "provenance": "reported by Figma-AI enumeration, not independently read" }
+      ]
     },
-    "Input": {
-      "figmaNodeId": "1:200",
-      "variants": [
-        "default",
-        "error",
-        "success",
-        "disabled"
-      ],
-      "sizes": [
-        "sm",
-        "md",
-        "lg"
-      ],
-      "states": [
-        "default",
-        "focus",
-        "filled",
-        "error",
-        "disabled"
-      ],
-      "tokens": {
-        "background": "semantic.surface.default",
-        "border": "semantic.border.default",
-        "borderFocus": "semantic.border.focus",
-        "borderError": "semantic.border.error",
-        "text": "semantic.text.primary",
-        "placeholder": "semantic.text.disabled",
-        "radius": "primitives.radius.md"
-      },
-      "tailwindClasses": "input",
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+    {
+      "name": "Filters",
+      "sectionNodeId": "27356:74769",
+      "sectionNote": "the measured 'filters compoents' section (contract source); the Figma-AI enumeration also lists a Filters section 26955:66555 — existence-probed live 2026-09-10, both exist",
+      "guidelinesNodeId": "27382:19966",
+      "provenance": "sets measured in filters.json (2026-09-08); guidelines frame existence-probed 2026-09-10",
+      "contractPaths": ["portals/agency/components/filters.md"],
+      "componentSets": [
+        { "name": "Filter_dropdown", "nodeId": "26360:67677", "variants": 3 },
+        { "name": "Filter_Toggle", "nodeId": "26938:65213", "variants": 3 },
+        { "name": "Filter_checkbox", "nodeId": "26938:65443", "variants": 3 }
+      ]
     },
-    "Badge": {
-      "figmaNodeId": "1:300",
-      "variants": [
-        "default",
-        "success",
-        "warning",
-        "error",
-        "info",
-        "outline"
-      ],
-      "sizes": [
-        "sm",
-        "md"
-      ],
-      "tokens": {
-        "successBg": "semantic.status.success",
-        "warningBg": "semantic.status.warning",
-        "errorBg": "semantic.status.error",
-        "infoBg": "semantic.status.info",
-        "radius": "primitives.radius.full"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+    {
+      "name": "table",
+      "sectionNodeId": "26955:66556",
+      "guidelinesNodeId": "27382:20152",
+      "provenance": "measured in table.md v3.0.0; guidelines frame existence-probed 2026-09-10",
+      "contractPaths": ["portals/agency/components/table.md"],
+      "componentSets": [
+        { "name": "table_cell", "nodeId": "26938:61725", "variants": 1 },
+        { "name": "table_head", "nodeId": "26938:61726", "variants": 1 }
+      ]
     },
-    "Card": {
-      "figmaNodeId": "1:400",
-      "variants": [
-        "default",
-        "outlined",
-        "elevated"
-      ],
-      "tokens": {
-        "background": "semantic.surface.default",
-        "border": "semantic.border.default",
-        "radius": "primitives.radius.lg",
-        "shadow": "primitives.shadow.md"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+    {
+      "name": "empty states",
+      "sectionNodeId": "27218:64329",
+      "guidelinesNodeId": "27382:20443",
+      "generalGuidelinesNodeId": "27226:44320",
+      "provenance": "measured in empty-states.json; guideline frames existence-probed 2026-09-10",
+      "contractPaths": ["portals/agency/components/empty-states.md"],
+      "componentSets": [
+        { "name": "empty states", "nodeId": "11380:24914", "variants": 8 },
+        { "name": "popups empty states", "nodeId": "5775:5916", "variants": 3 },
+        { "name": "Icons", "nodeId": "12428:28265", "variants": 6 }
+      ]
     },
-    "Modal": {
-      "figmaNodeId": "1:500",
-      "variants": [
-        "default",
-        "wide",
-        "fullscreen"
+    {
+      "name": "page headers",
+      "sectionNodeId": "27232:63236",
+      "guidelinesNodeId": "27382:21784",
+      "provenance": "measured in page-header.json v1.2.0; guidelines frame existence-probed 2026-09-10",
+      "contractPaths": ["portals/agency/components/page-header.md"],
+      "componentSets": [
+        { "name": "page-heading", "nodeId": "14160:189662", "variants": 4 }
       ],
-      "tokens": {
-        "background": "semantic.surface.default",
-        "overlay": "semantic.surface.overlay",
-        "border": "semantic.border.default",
-        "radius": "primitives.radius.xl"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+      "components": [
+        { "name": "page-header", "nodeId": "27232:65833" },
+        { "name": "page-header-toolbar", "nodeId": "27232:65760" }
+      ]
     },
-    "Select": {
-      "figmaNodeId": "1:600",
-      "variants": [
-        "default",
-        "error",
-        "disabled"
+    {
+      "name": "Inline Dropdown Patterns",
+      "sectionNodeId": "27245:67562",
+      "guidelinesNodeId": "27382:20718",
+      "provenance": "measured in ddm-dropdown-menu.json + column-arrangement.json; guidelines frame existence-probed 2026-09-10",
+      "contractPaths": ["portals/agency/components/ddm-dropdown-menu.md", "portals/agency/components/column-arrangement.md"],
+      "componentSets": [
+        { "name": "ddm rows - checkboxes", "nodeId": "7926:11855", "variants": 5 },
+        { "name": "atom/radio / Dropdown selections", "nodeId": "7926:11856", "variants": 4 },
+        { "name": "ddm rows - checkboxes + drag feature", "nodeId": "13095:43335", "variants": 6 },
+        { "name": "Columns action button trigger", "nodeId": "10373:16081", "variants": 4 }
       ],
-      "tokens": {
-        "background": "semantic.surface.default",
-        "border": "semantic.border.default",
-        "text": "semantic.text.primary",
-        "radius": "primitives.radius.md"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
-    },
-    "Checkbox": {
-      "figmaNodeId": "1:700",
-      "variants": [
-        "unchecked",
-        "checked",
-        "indeterminate",
-        "disabled"
+      "components": [
+        { "name": "Dropdown/Menu (group heading)", "nodeId": "1728:1" },
+        { "name": "Dropdown Heading primary", "nodeId": "1678:633" },
+        { "name": "Dropdown/Menu (group heading Side by side)", "nodeId": "10296:16501" },
+        { "name": "Dropdown/Menu (radio)", "nodeId": "11961:30613" },
+        { "name": "drag_indicator_black_18dp", "nodeId": "10391:14128" }
       ],
-      "tokens": {
-        "border": "semantic.border.default",
-        "checkedBg": "semantic.brand.primary",
-        "radius": "primitives.radius.sm"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+      "relatedSection": { "name": "Column Settings", "nodeId": "27352:74681", "provenance": "existence-probed live 2026-09-10; the column-arrangement contract's measured pattern node is 27311:46254" }
     },
-    "Toggle": {
-      "figmaNodeId": "1:800",
-      "variants": [
-        "off",
-        "on",
-        "disabled"
+    {
+      "name": "info chips",
+      "sectionNodeId": "27255:69606",
+      "guidelinesNodeId": "27382:20942",
+      "provenance": "measured live 2026-09-10 (info-chips.json 1.0.0)",
+      "contractPaths": ["portals/agency/components/info-chips.md"],
+      "componentSets": [
+        { "name": "page messages", "nodeId": "11315:24274", "variants": 9 }
+      ]
+    },
+    {
+      "name": "user profile side navigation",
+      "sectionNodeId": "27328:70399",
+      "guidelinesNodeId": "27382:21080",
+      "provenance": "component nodes measured in profile-side-navigation.json; section + guidelines frame existence-probed 2026-09-10",
+      "contractPaths": ["portals/agency/components/profile-side-navigation.md"],
+      "componentSets": [
+        { "name": "user profile card", "nodeId": "27325:69934", "variants": 2 },
+        { "name": "top actions", "nodeId": "27325:70122", "variants": 2 },
+        { "name": "Nav Item", "nodeId": "5847:7801", "variants": 3 },
+        { "name": "user profile preview", "nodeId": "27337:74189", "variants": 2, "provenance": "reported by Figma-AI enumeration; its instances (27337:74190, 27401:30864) were measured in the pattern pages" }
       ],
-      "tokens": {
-        "offBg": "semantic.neutral.300",
-        "onBg": "semantic.brand.primary",
-        "thumb": "semantic.surface.default"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+      "components": [
+        { "name": "Nav Divider", "nodeId": "5847:8404" },
+        { "name": "Nav Header", "nodeId": "5847:6636" },
+        { "name": "Nav Project", "nodeId": "5847:8401" }
+      ]
     },
-    "Alert": {
-      "figmaNodeId": "1:900",
-      "variants": [
-        "info",
-        "success",
-        "warning",
-        "error"
-      ],
-      "tokens": {
-        "infoBg": "primitives.colors.blue.50",
-        "successBg": "primitives.colors.green.50",
-        "warningBg": "primitives.colors.yellow.50",
-        "errorBg": "primitives.colors.red.50"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
+    {
+      "name": "Tabs",
+      "sectionNodeId": "27329:70491",
+      "guidelinesNodeId": "27382:21453",
+      "provenance": "sets measured in tabs.json; section + guidelines frame existence-probed 2026-09-10",
+      "contractPaths": ["portals/agency/components/tabs.md"],
+      "componentSets": [
+        { "name": "primary tab", "nodeId": "5775:8556", "variants": 5 },
+        { "name": "secondary tab", "nodeId": "27329:70805", "variants": 12 }
+      ]
     },
-    "Avatar": {
-      "figmaNodeId": "1:1000",
-      "variants": [
-        "image",
-        "initials",
-        "icon"
-      ],
-      "sizes": [
-        "xs",
-        "sm",
-        "md",
-        "lg",
-        "xl"
-      ],
-      "tokens": {
-        "background": "semantic.surface.muted",
-        "radius": "primitives.radius.full"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
-    },
-    "Tooltip": {
-      "figmaNodeId": "1:1100",
-      "variants": [
-        "default",
-        "info"
-      ],
-      "tokens": {
-        "background": "semantic.surface.overlay",
-        "text": "semantic.text.inverse",
-        "radius": "primitives.radius.md"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
-    },
-    "Table": {
-      "figmaNodeId": "1:1200",
-      "variants": [
-        "default",
-        "compact"
-      ],
-      "tokens": {
-        "headerBg": "semantic.surface.subtle",
-        "rowBg": "semantic.surface.default",
-        "border": "semantic.border.default",
-        "text": "semantic.text.primary"
-      },
-      "zebraStriping": "RULED OUT 2026-08-25 by the design-system owner (ruling TBL-R4, portals/agency/components/table.json): 'Zebra we are not following.' The striped variant and stripedBg token were removed from this entry and from src/styles/3-components/_tables.scss. Do not re-add. NOTE: this whole entry is still legacy placeholder data — figmaNodeId 1:1200 is fabricated; the real sets are table_head 26938:61726 and table_cell 26938:61725."
-    },
-    "Tabs": {
-      "figmaNodeId": "1:1300",
-      "variants": [
-        "default",
-        "pills",
-        "underline"
-      ],
-      "tokens": {
-        "activeColor": "semantic.brand.primary",
-        "inactiveColor": "semantic.text.secondary",
-        "activeBorder": "semantic.brand.primary"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
-    },
-    "Breadcrumb": {
-      "figmaNodeId": "1:1400",
-      "tokens": {
-        "activeColor": "semantic.text.primary",
-        "inactiveColor": "semantic.text.secondary",
-        "linkColor": "semantic.text.brand"
-      },
-      "componentLibrary": "Angular Material M3 — verify real mapping, not yet checked"
-    },
-    "Pagination": {
-      "figmaNodeId": "1:1500",
-      "tokens": {
-        "activeBg": "semantic.brand.primary",
-        "activeText": "semantic.text.inverse",
-        "border": "semantic.border.default",
-        "radius": "primitives.radius.md"
-      }
+    {
+      "name": "Page Layout Patterns",
+      "sectionNodeId": "27337:74297",
+      "guidelinesNodeId": "27382:21565",
+      "provenance": "patterns measured live 2026-09-10; section + guidelines frame existence-probed the same day",
+      "contractPaths": ["portals/agency/components/primary-side-navigation.md", "portals/agency/patterns/page-layout-patterns.md", "portals/agency/patterns/page-setup.md"],
+      "componentSets": [
+        { "name": "Primary side nav structure", "nodeId": "27337:73592", "variants": 2 },
+        { "name": "primary side nav navigation links", "nodeId": "10441:17045", "variants": 9 },
+        { "name": "primary side nav copyright bottom", "nodeId": "22906:5650", "variants": 2 }
+      ]
     }
-  }
+  ],
+  "patterns": [
+    { "name": "pattern-page-data-table", "nodeId": "27337:73093", "section": "Page Layout Patterns" },
+    { "name": "pattern-page-empty-state", "nodeId": "27401:30856", "section": "Page Layout Patterns" },
+    { "name": "pattern-page-form-grid", "nodeId": "27401:31504", "section": "Page Layout Patterns" }
+  ]
 }

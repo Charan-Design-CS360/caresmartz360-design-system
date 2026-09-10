@@ -150,3 +150,7 @@ header → page**.
 | 2026-09-04 | **1.1.0 — complete-header gutter.** The complete-header molecule now owns a uniform 12px (`--spacing-lg`) padding on all sides; the atom stays 0-padding. Pages must not double-pad. Measured live from Figma. | Singh ruling, 2026-09-04 |
 | 2026-08-25 | **1.0.0 — complete.** All four variants measured via `get_design_context` after the Figma stall cleared. Type mapping per size resolved; all four heights independently reconciled by arithmetic; five optional-element props and six new defects recorded. | Owner instruction, 2026-08-25 |
 | 2026-08-25 | 0.1.0 — partial. Structure and tokens only; interior geometry unread after `get_design_context` failed four times. | Owner instruction, 2026-08-25 |
+
+## Figma Guidelines
+
+Designer guideline frame: **page headers — Component Guidelines** — [`27382:21784`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21784) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

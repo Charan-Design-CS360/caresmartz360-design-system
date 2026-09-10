@@ -163,3 +163,7 @@ Stated plainly so nothing here reads as more certain than it is:
 | Date | Change | Authority |
 |---|---|---|
 | 2026-08-25 | Initial contract. 11 variants measured live (8 inline + 3 popup) from section `27218:64329`, at the design owner's direct request. | Owner instruction, 2026-08-25 |
+
+## Figma Guidelines
+
+Designer guideline frame: **empty states — Component Guidelines** — [`27382:20443`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20443) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).
