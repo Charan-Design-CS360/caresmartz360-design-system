@@ -9,6 +9,7 @@
     "figmaSectionNodeId": "26955:66554",
     "figmaSectionName": "Form Fields",
     "measuredOn": "2026-09-10",
+    "secondPass": "2026-09-10 later — ticket comments #633267/#633270 incorporated: field-message 6th variant 'comments' (existence+size re-verified live), tertiary min/max width + left-stack items 5 recorded as ASSERTED pending a live read (the Figma tab closed mid-verification)",
     "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
     "jiraSource": "C360-47183",
     "jiraParent": "C360-44737",
@@ -108,6 +109,22 @@
         { "size": "L", "nodeId": "27290:41714", "w": 560, "h": 90, "titleRowH": 24, "titleTypography": { "style": "Fields/header-large 16/24", "marker": ["DERIVED"] }, "descriptionH": 16, "descriptionTypography": { "style": "Body/small 12/16", "marker": ["DERIVED"] }, "rows": { "title": [0, 24], "description": [28, 44], "aiMessage": [48, 66], "errorMessage": [70, 90] }, "rowGap": 4, "rowGapToken": "spacing/sm", "marker": ["MEASURED"] }
       ],
       "typographyDerivation": "Title/description styles are DERIVED from row-height ↔ line-height arithmetic (16→caption, 20→body-base, 24→body-strong line heights) plus the styles present in the set's bound variables (Fields/label, Fields/header, Fields/header-large, Body/small, Body/micro). Per-text-node style reads were not taken.",
+      "responsiveConstraints": {
+        "minWidth": 200, "maxWidth": 400, "layoutSizingHorizontal": "FILL", "layoutSizingVertical": "HUG",
+        "marker": ["ASSERTED"], "source": "C360-47183 #633270 (Figma-side change 2026-09-10)",
+        "note": "NOT re-verified live — the Figma tab closed before these auto-layout properties could be read; the variants measured 560 wide at rest this morning, which sits outside the asserted 200–400 range, so verify before building responsive behaviour from this. Height auto-grows as optional rows show/hide (consistent with the measured S/M/L heights)."
+      },
+      "leftSectionStack": {
+        "purpose": "The tertiary left column is an extensible vertical stack (gap 4 / spacing/sm, measured).",
+        "items": [
+          { "n": 1, "item": "title row (Field_Title-S/M/L + required marker)", "optional": false, "marker": ["MEASURED"] },
+          { "n": 2, "item": "description", "optional": true, "marker": ["MEASURED"] },
+          { "n": 3, "item": "field-message type=AI autopopulated", "optional": true, "marker": ["MEASURED"] },
+          { "n": 4, "item": "field-message type=Error/Warning", "optional": true, "marker": ["MEASURED"] },
+          { "n": 5, "item": "field-comment frame (chat icon + comment count) — extended pattern, not in the published S/M/L variants", "optional": true, "marker": ["ASSERTED"], "source": "#633267; reference frame 27507:56751 NOT read live (tab closed)" }
+        ],
+        "extensibilityRule": "future rows follow the same icon + text pattern (16×16 icon, Inter Regular 12px) — ASSERTED (#633267)"
+      },
       "behavior": "Required marker sits inline after the title (8×8 icon). AI message and error message rows are optional per state."
     },
 
@@ -129,17 +146,22 @@
 
     "field-message": {
       "nodeId": "11116:25116", "type": "COMPONENT_SET",
-      "variantAxis": { "name": "type", "values": ["Error", "Help", "Warning", "Success", "AI autopopulated"] },
-      "purpose": "The message row under a field: icon + short text.",
+      "variantAxis": { "name": "type", "values": ["Error", "Help", "Warning", "Success", "AI autopopulated", "comments"], "count": 6, "note": "6th variant 'comments' added Figma-side 2026-09-10 (ticket C360-47183 #633270); its EXISTENCE and size were re-verified live the same day before the Figma tab closed." },
+      "purpose": "The message row under a field: icon + short text. The comments variant carries a field-level comment count for the tertiary left stack.",
       "variants": [
         { "type": "Error",   "nodeId": "11116:24791",   "h": 20, "icon": { "box": 16, "fill": "icon/danger" },  "text": { "token": "text/danger",    "hex": "#dc2626" } },
         { "type": "Help",    "nodeId": "16549:388669",  "h": 20, "icon": { "box": 16, "fill": "icon/soft" },    "text": { "token": "text/secondary", "hex": "#475569" } },
         { "type": "Warning", "nodeId": "16549:388678",  "h": 20, "icon": { "box": 16, "fill": "icon/warning" }, "text": { "token": "text/warning",   "hex": "#ca8a04" } },
         { "type": "Success", "nodeId": "11116:25115",   "h": 20, "icon": { "box": 16, "fill": "icon/success" }, "text": { "token": "text/success",   "hex": "#16a34a" } },
-        { "type": "AI autopopulated", "nodeId": "27291:41761", "h": 18, "icon": { "box": 14, "fill": "action/ai/text-hard", "hex": "#9333ea" }, "text": { "token": "text/secondary", "hex": "#475569" }, "copyPattern": "Auto-populated from [source_name]" }
+        { "type": "AI autopopulated", "nodeId": "27291:41761", "h": 18, "icon": { "box": 14, "fill": "action/ai/text-hard", "hex": "#9333ea" }, "text": { "token": "text/secondary", "hex": "#475569" }, "copyPattern": "Auto-populated from [source_name]", "minWidth": { "value": 80, "marker": ["ASSERTED"], "source": "C360-47183 #633270 — not yet read live" } },
+        { "type": "comments", "nodeId": "27507:56752", "w": 80, "h": 18, "marker": ["MEASURED"], "measuredNote": "existence + 80×18 size read live 2026-09-10 from set 11116:25116 (set frame grew 216→254 to hold it)",
+          "icon": { "kind": "chat", "marker": ["ASSERTED"], "source": "#633270" },
+          "text": { "expected": "text/secondary (gray/neutral per ticket)", "marker": ["UNVERIFIED"], "note": "token bindings NOT read — the Figma tab closed before the per-variant read; do not build the colour from this row until verified" },
+          "copyPattern": "0 Comments",
+          "minWidth": { "value": 80, "marker": ["ASSERTED"], "source": "#633270; consistent with the measured 80px natural width" } }
       ],
-      "geometry": { "iconTextGap": 4, "gapToken": "spacing/sm", "typography": "Body/micro 10/14", "marker": ["MEASURED"] },
-      "behavior": "One message row per field state; AI row can co-exist with an Error row (tertiary header shows both)."
+      "geometry": { "iconTextGap": 4, "gapToken": "spacing/sm", "typography": "Body/micro 10/14", "marker": ["MEASURED"], "typographyNote": "verified on the first 5 variants; comments variant presumed same (18h matches the AI variant) but UNVERIFIED" },
+      "behavior": "One message row per field state; AI row can co-exist with an Error row (tertiary header shows both). The comments row opens the field's annotation/discussion surface (interaction target not designed yet)."
     },
 
     "form-section-header": {
@@ -241,6 +263,9 @@
   ],
 
   "notVerified": [
+    "field-message type=comments internals: icon geometry, text token, typography (existence + 80×18 verified; the Figma tab closed before the per-variant read)",
+    "field-header-tertiary min-width 200 / max-width 400 / FILL / HUG (asserted by #633270; at-rest width measured 560 this morning — reconcile live)",
+    "left-section reference frame 27507:56751 and the field-comment extended pattern (asserted by #633267)",
     "dark / high-contrast / warm-dark / hc-light values (light mode only)",
     "icon SVG path data (box sizes and fill tokens verified; path geometry not archived)",
     "the 12 variants of Global/Atom/Fields Toys (trailing controls)",

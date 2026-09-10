@@ -46,7 +46,7 @@ shared `field-input`, `field-message`, `form-section-header` (atoms) → the thr
 - **field-header-primary** `27388:28274` — 358×**30**; label cluster left (inset 8), icon rail right: error 18 / help 18 / AI 18, gaps 4.
 - **field-header-secondary** `27388:29316` — 186×**26**; field-label + right AI icon 18.
 - **field-header-tertiary** `27290:41702` — S 560×80 / M 560×86 / L 560×90; rows title → description → AI message → error message, all gaps 4 (`spacing/sm`). Title styles S/M/L = Fields/label 12/16 · Fields/header 14/20 · Fields/header-large 16/24 [DERIVED from row-height arithmetic].
-- **field-message** `11116:25116` — 20h (Error/Help/Warning/Success, icon 16) or 18h (AI, icon 14); icon-text gap 4; Body/micro 10/14. Colours: danger #dc2626 / secondary #475569 / warning #ca8a04 / success #16a34a / AI icon `action/ai/text-hard` #9333ea with secondary text.
+- **field-message** `11116:25116` — now **6 variants**: 20h (Error/Help/Warning/Success, icon 16) or 18h (AI, icon 14; **comments** `27507:56752`, 80×18 — added Figma-side 10 Sept, existence+size re-verified live); icon-text gap 4; Body/micro 10/14. Colours: danger #dc2626 / secondary #475569 / warning #ca8a04 / success #16a34a / AI icon `action/ai/text-hard` #9333ea with secondary text. Comments variant ("0 Comments", chat icon, gray) internals are **UNVERIFIED** — the Figma tab closed before the token read.
 - **field-label** `27062:10162` — 16h; Fields/label 12/16 Medium `text/primary`; required marker 8×16 `icon/danger`; help 16×16 `icon/brand`; gaps 4.
 - **form-section-header** `27395:30130` — 1036×**80**; padding 12; title Fields/header 14/20 + 2-line description Body/small 12/16 (gap 4) on `surface/tertiary` #F1F5F9 with `field/border-default` border.
 
@@ -90,6 +90,16 @@ The ticket's `gray/*` names exist in **no** Agency export.
 - Required: `aria-required` + the 8×16 marker (now available via headers).
 - Disabled: `disabled` + `aria-disabled`; `readonly` is inert on `<select>` — emit `disabled` there.
 - Focus ring beyond the border-colour change: [UNVERIFIED].
+
+## Second pass — ticket comments #633267 / #633270 (2026-09-10, later)
+
+The Figma-AI lane changed the file after the morning measurement. Verified vs asserted, honestly split:
+
+- **VERIFIED live:** `field-message` gained a 6th variant `type=comments` (`27507:56752`, 80×18; the set frame grew 216→254 to hold it).
+- **ASSERTED, not yet re-verified (the Figma tab closed mid-read):** the comments variant's internals (chat icon, gray "0 Comments" text); min-width 80 on the AI + comments variants; `field-header-tertiary` min-width **200** / max-width **400** / FILL / HUG (note: at-rest width measured **560** this morning — outside that range, reconcile live); the left-section reference frame `27507:56751` with the 5-item extensible stack incl. the `field-comment` extended pattern.
+- The tertiary left column is documented as an extensible 4px-gap stack: title → description → AI message → error message (all measured) → comments (extended pattern, asserted).
+
+**To finish verification:** open the Agency file in Figma and say so — three targeted reads close every ASSERTED/UNVERIFIED marker above.
 
 ## Open items (flagged, not invented)
 

@@ -19,6 +19,11 @@ Q1 tickets **C360-47183** (Form Fields) and **C360-47184** (Page Layout Patterns
 - **field-type-1 → 1.1.0, SUPERSEDED** by form-fields.json — Figma renamed `field-set-type1` → `form-field-primary` and restructured it (62→**66**, real header component with required/help/AI icons, `field/bg-disabled` now bound — three v1.0.0 defects resolved by drift). File kept as the 2026-08-24 historical measurement.
 - `docs/CARESMARTZ360-DS-REFERENCE.md` — Form Field section now points at the portal contract and marks the mat-form-field snippet as a legacy sketch (structural incompatibility stands).
 
+### Second pass (same day) — ticket comments #633267/#633270 incorporated
+- **field-message → 6 variants**: new `type=comments` (`27507:56752`, 80×18) — existence + size **re-verified live**; internals (chat icon, gray text) and the AI/comments 80px min-widths recorded as **ASSERTED** pending a live read.
+- **field-header-tertiary**: min-width 200 / max-width 400 / FILL / HUG recorded as **ASSERTED** (#633270) with an explicit reconcile flag (at-rest width measured 560 the same morning); tertiary left column documented as the extensible 4px stack (title → description → AI → error → comments-extended, ref frame `27507:56751` asserted).
+- The Figma tab closed mid-verification — every unread value is marked, none invented.
+
 ### Corrections vs the source tickets (recorded per §"verify, don't trust")
 - C360-47183's token table names `gray/200|600|900` primitives — **no `gray/*` exists in any Agency export**; real aliases are `colors/neutral-200|500|800|0` (verified byte-for-byte against `Variables/Agency/Color Modes.zip`).
 - The ticket-promised `docs/FORM-FIELDS-SYSTEM.md` (268 lines) and `components/form-field-mapping.json` (214 lines) exist nowhere; this release is the reconciled replacement. The legacy root `components/component-mapping.json` (self-declared fabricated node IDs) stays untouched — the portal contract is the authoritative mapping.
