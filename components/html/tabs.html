@@ -1,6 +1,6 @@
 <!--
 =============================================================================
-COMPONENT SKELETON: Tabs (.cs-tabs)
+COMPONENT SKELETON: Tabs (.cs-tabs / .cs-segtab)
 PAIRED CSS: ../css/tabs.css
 Figma Code Connect: code-connect/tabs/
 RESOLVES: RULE-FLAGS.md [F-015]
@@ -8,30 +8,22 @@ RESOLVES: RULE-FLAGS.md [F-015]
 -->
 
 <!-- Primary Underlined Tabs -->
-<nav class="cs-tabs" aria-label="Page Sections" data-component="primary-tab">
-  <button type="button" class="cs-tab cs-tab--active" aria-selected="true" role="tab">
-    <svg class="cs-tab__icon" aria-hidden="true"><use href="/assets/icons/sprite.svg#person"></use></svg>
-    <span class="cs-tab__label">Profile</span>
+<div class="cs-tabs" role="tablist">
+  <button type="button" class="cs-tabs__tab cs-tabs__tab--selected" role="tab" aria-selected="true">
+    <span class="cs-tabs__tab-label">Profile</span>
   </button>
-  <button type="button" class="cs-tab" aria-selected="false" role="tab">
-    <svg class="cs-tab__icon" aria-hidden="true"><use href="/assets/icons/sprite.svg#calendar_today"></use></svg>
-    <span class="cs-tab__label">Schedule</span>
+  <button type="button" class="cs-tabs__tab" role="tab" aria-selected="false">
+    <span class="cs-tabs__tab-label">Schedule</span>
   </button>
-  <button type="button" class="cs-tab" aria-selected="false" role="tab">
-    <svg class="cs-tab__icon" aria-hidden="true"><use href="/assets/icons/sprite.svg#description"></use></svg>
-    <span class="cs-tab__label">Documents</span>
+  <button type="button" class="cs-tabs__tab" role="tab" aria-selected="false">
+    <span class="cs-tabs__tab-label">Documents</span>
   </button>
-</nav>
+  <div class="cs-tabs__filler"></div>
+</div>
 
-<!-- Secondary Segmented / Pill Tabs -->
-<div class="cs-tabs cs-tabs--secondary" data-component="secondary-tab">
-  <button type="button" class="cs-tab-pill cs-tab-pill--active" aria-pressed="true">
-    Day
-  </button>
-  <button type="button" class="cs-tab-pill" aria-pressed="false">
-    Week
-  </button>
-  <button type="button" class="cs-tab-pill" aria-pressed="false">
-    Month
-  </button>
+<!-- Secondary Segmented Tabs -->
+<div class="cs-segtab">
+  <button type="button" class="cs-segtab__item cs-segtab__item--active">Day</button>
+  <button type="button" class="cs-segtab__item">Week</button>
+  <button type="button" class="cs-segtab__item">Month</button>
 </div>

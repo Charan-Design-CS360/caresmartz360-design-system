@@ -1,41 +1,35 @@
 <!--
 =============================================================================
-COMPONENT SKELETON: Tags & Status Chips (.c360-tag / .chip)
+COMPONENT SKELETON: Tags & Status (.cs-tag / .cs-status)
 PAIRED CSS: ../css/tags-chips.css
 Figma Source: Status (node 26535:26277)
 RESOLVES: RULE-FLAGS.md [F-012, F-015]
 =============================================================================
 -->
 
-<!-- Status Chip — Active / Success (Green) -->
-<span class="c360-tag c360-tag--success">
-  Active
+<!-- Status with Dot (Figma 26535:26277) -->
+<span class="cs-status">
+  <span class="cs-status__dot"></span>
+  <span class="cs-status__label">Active</span>
 </span>
 
-<!-- Status Chip — Inactive / Error (Red) -->
-<span class="c360-tag c360-tag--danger">
-  Inactive
+<!-- Status Tags with Hues -->
+<span class="cs-tag cs-tag--green">
+  <span class="cs-tag__label">Active</span>
 </span>
 
-<!-- Status Chip — Pending / Alert (Yellow) -->
-<span class="c360-tag c360-tag--warning">
-  Pending
+<span class="cs-tag cs-tag--red">
+  <span class="cs-tag__label">Inactive</span>
 </span>
 
-<!-- Status Chip — Neutral (Gray) -->
-<span class="c360-tag c360-tag--neutral">
-  Draft
+<span class="cs-tag cs-tag--yellow">
+  <span class="cs-tag__label">Pending</span>
 </span>
 
-<!-- Status Chip — Clinical Blue (Healing / Info per F-012) -->
-<span class="c360-tag c360-tag--blue">
-  Healing
+<span class="cs-tag cs-tag--purple">
+  <span class="cs-tag__label">Special</span>
 </span>
 
-<!-- Interactive Action Chip (With Remove Icon) -->
-<span class="chip chip-action">
-  <span class="chip-label">Filter Tag</span>
-  <button type="button" class="chip-remove" aria-label="Remove filter">
-    <svg class="icon icon-14" aria-hidden="true"><use href="/assets/icons/sprite.svg#close"></use></svg>
-  </button>
+<span class="cs-tag cs-tag--borderless">
+  <span class="cs-tag__label">Neutral</span>
 </span>

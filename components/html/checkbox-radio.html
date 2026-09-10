@@ -1,24 +1,27 @@
 <!--
 =============================================================================
-COMPONENT SKELETON: Checkbox & Radio (.cs-checkbox / .cs-radio)
+COMPONENT SKELETON: Checkbox & Radio (.cs-control-row / .cs-checkbox / .cs-radio / .cs-toggle)
 PAIRED CSS: ../css/checkbox-radio.css
 RESOLVES: RULE-FLAGS.md [F-015]
 =============================================================================
 -->
 
-<!-- Custom Checkbox -->
-<label class="cs-checkbox-label">
-  <input type="checkbox" class="cs-checkbox" />
-  <span class="cs-checkbox-text">Option Label</span>
-</label>
+<!-- Custom Checkbox Row -->
+<div class="cs-control-row">
+  <input type="checkbox" class="cs-checkbox" id="chk-demo" />
+  <label class="cs-control-row__label" for="chk-demo">Option Label</label>
+</div>
 
-<!-- Custom Radio -->
-<label class="cs-radio-label">
-  <input type="radio" name="demo-radio" class="cs-radio" checked />
-  <span class="cs-radio-text">Default Option</span>
-</label>
+<!-- Custom Radio Row -->
+<div class="cs-control-row">
+  <input type="radio" name="demo-radio" class="cs-radio" id="rad-1" checked />
+  <label class="cs-control-row__label" for="rad-1">Primary Option</label>
+</div>
 
-<label class="cs-radio-label">
-  <input type="radio" name="demo-radio" class="cs-radio" />
-  <span class="cs-radio-text">Secondary Option</span>
-</label>
+<!-- Switch Toggle -->
+<div class="cs-toggle">
+  <input type="checkbox" class="cs-toggle__input" id="tog-demo" />
+  <label class="cs-toggle__track" for="tog-demo">
+    <span class="cs-toggle__dot"></span>
+  </label>
+</div>

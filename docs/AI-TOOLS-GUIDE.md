@@ -144,7 +144,7 @@ export class ButtonComponent {
 
 // ❌ WRONG — never hardcode
 .btn--primary {
-  background-color: #2563EB;
+  background-color: #123456; /* NEVER hardcode raw hex values */
   color: white;
 }
 ```

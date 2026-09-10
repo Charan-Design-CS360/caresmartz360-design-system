@@ -72,6 +72,12 @@
   --border-radius-rounded-3xl: var(--rounded-3xl);
   --border-radius-rounded-full: var(--rounded-full);
   --radius-rounded: var(--rounded);
+
+  // ── LOCAL TOKEN PARITY EXTENSIONS ──
+  --action-destructive-text-hard: var(--color-status-error, #dc2626);
+  --field-border-hard: var(--color-border-default, #d1d5db);
+  --field-bg-ai: #fbf8ff;
+  --field-border-ai: #c084fc;
 }
 
 // Agency density modes verified in Figma AI Token SSO, frame 13:1121.
