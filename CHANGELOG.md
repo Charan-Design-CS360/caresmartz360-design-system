@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.6.2] — 2026-09-11 (control-height binding, prepared)
+
+Singh approved **Option A** and asked for the details to be double-checked against the locally saved
+exports first. Both done; **nothing bound yet** — the binding is blocked on the export refresh only.
+
+### Verified (the double-check he asked for)
+Re-scanned **all 7 export collections**, every JSON inside every zip, for any token name containing
+`control` / `height` / `size` / `dimension` / `track`: **41 matches, none of them `control/*`.** The
+Agency exports are still dated **24 Aug 2026** — no refresh has landed. `control/height-default = 30`
+re-confirmed **live in Figma** the same day. So the values are real and the export is simply behind.
+
+### Added
+- `docs/PLAN-control-height-binding.md` — the full binding plan: **17 confirmed sites** across kit CSS,
+  gallery CSS and the Button contract, each classified and then **adversarially re-verified** by an
+  independent pass instructed to reject. Ships with an explicit **exclusion list of 8 sites** that a
+  blind find-and-replace would have broken — two of them are `min-width` (widths, not heights), one is
+  a 30px icon box, four are table cells, one is a skeleton placeholder. `spacing/3xl` is also 24, which
+  is exactly why this was verified rather than scripted.
+- `Design-System/00-EXPORT-INSTRUCTION-control-height-tokens.md` — the 2-minute export step, written so
+  it lands right the first time (which collection, exact file path, what I do next).
+
+### Raised for the owner
+- **Naming conflict:** Figma has `control/height-default` / `control/height-compact`; `button.json`'s
+  `openTokenDecision` proposes `control/min-height` / `control/min-height-compact` for the same two
+  values. Recommendation: **keep Figma's names** (already bound to live components) and retire the
+  contract's competing proposal. Corroboration worth noting — `button.json` independently concluded
+  these belong in the **Density Modes collection, scope WIDTH_HEIGHT**, matching the recommendation
+  reached from the opposite direction.
+- **Two more candidate tokens** in that same proposal — `control/min-width` = 80 and
+  `control/min-width-label` = 60 — **not verified live in Figma**; flagged so they can ride along in
+  the same export if Singh wants them, instead of a second round trip.
+- **Cross-portal warning** (OPEN-REGISTER O-14 / CONTRADICTIONS S4): Agency's button is 30px while
+  CGPortal's `--btn-min-height` is 32px, still unresolved. These bindings are **Agency-only**; a
+  Caregiver copy must not silently inherit 30.
+
+---
+
 ## [3.6.1] — 2026-09-11 (owner rulings)
 
 Two items that were flagged-not-guessed yesterday came back with owner rulings.
