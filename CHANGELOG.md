@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.6.1] — 2026-09-11 (owner rulings)
+
+Two items that were flagged-not-guessed yesterday came back with owner rulings.
+
+### Changed — page header is HUG, not a fixed height (Singh, 2026-09-11)
+`page-setup.md` published a fixed **98px** complete header and a fixed `Data Container 214 = 98 + 116`.
+Both are retired. The 98 had dropped the header's 12px **bottom** padding, and stating any of it as
+fixed contradicted the component's actual behaviour. Now published as the rule the owner gave:
+
+- **Page header = HUG**, derived as `sum(visible rows + 12px row gaps) + 24` (12 top + 12 bottom).
+  - with the search & filters row → `44 + 12 + 30 + 24` = **110**
+  - without it → `44 + 24` = **68**
+- **Data Container = HUG** (`page-header + middle matter`). The demo page's `tab 50 + data 400 +
+  page-info 136 = 586` is now published as a **measured sample, not a constraint**.
+- Ruling recorded in `page-header.json` (→ **1.3.0**), `page-layout-patterns.json/.md` and
+  `page-setup.md`, so it binds rather than living in prose.
+
+### Added — proposal for the missing control-height tokens
+`docs/PROPOSAL-control-height-tokens.md`. `control/height-default` (30) and `control/height-compact`
+(24) are bound in Figma but exist in **no** exported collection — verified across all 7 collections.
+Seven contracts flag the gap independently and the kit hard-codes the literals in 12+ places across
+4 stylesheets. Recommendation: they belong in **Agency › Density Modes** (which already holds the
+density-sensitive font/line-height/spacing family), and the fix is an export refresh, not a new
+value. **No token added and nothing bound — awaiting Singh's ruling.**
+
+---
+
 ## [3.6.0] — 2026-09-11
 
 Owner-flagged naming correction — and the real defect hiding behind it.
