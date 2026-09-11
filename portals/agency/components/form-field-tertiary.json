@@ -1,9 +1,9 @@
 {
   "$schema": "../../../schemas/component-contract.schema.json",
   "$meta": {
-    "component": "Fields type 3 (TERTIARY — settings/responsive)",
+    "component": "form-field-tertiary (TERTIARY — settings/responsive)",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaComponentNodeId": "27395:30147",
@@ -16,7 +16,8 @@
     "jiraSource": "C360-47325",
     "familyIndex": "./form-fields.json",
     "atomsContract": "./field-atoms.json",
-    "humanContract": "./field-type-3.md",
+    "humanContract": "./form-field-tertiary.md",
+    "renamedFrom": "field-type-3.json — renamed 2026-09-11 to match the live Figma component name.",
     "readThisFirst": "Figma-AI restructured this family on 2026-09-10 between the morning and afternoon passes. Verified live in the afternoon: header column now 400 wide with min 200 / max 400; message rows 20px (12/16 text); form-section-header rebuilt at 64px around a Size=M header instance. Claims that could NOT be machine-read (WRAP flag, field_info/input min-widths) are marked ASSERTED with their Jira source — do not treat them as measured."
   },
 

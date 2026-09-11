@@ -3,7 +3,7 @@
 COMPONENT CONTRACT — Fields type 3 / TERTIARY (Agency portal)
 The SETTINGS-mode field: info column left, input right, responsive wrap.
 Measured LIVE 2026-09-10 AFTERNOON — after the same-day Figma restructure;
-supersedes all morning numbers. Machine contract: ./field-type-3.json.
+supersedes all morning numbers. Machine contract: ./form-field-tertiary.json.
 CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47325
 =============================================================================
 -->

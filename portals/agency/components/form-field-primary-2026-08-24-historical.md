@@ -1,3 +1,14 @@
+> # ⛔ HISTORICAL RECORD — DO NOT BUILD FROM THIS FILE
+>
+> This is the **2026-08-24 measurement**, kept only for provenance. Its geometry
+> (**62px total, 26px header row**) was correct when taken and is **WRONG for the live
+> component**, which Figma restructured to **66px total / 30px header row**.
+>
+> **The live contract is [form-field-primary.md](./form-field-primary.md).**
+> Renamed 2026-09-11: this component is `form-field-primary` in Figma; the
+> "Fields type 1 / type 2 / type 3" vocabulary was legacy repo naming that never
+> followed Figma's rename.
+
 <!--
 =============================================================================
 COMPONENT CONTRACT — Fields type 1 (Agency portal)

@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.6.0] — 2026-09-11
+
+Owner-flagged naming correction — and the real defect hiding behind it.
+
+### Fixed — the repo was shipping the WRONG primary-field height
+`field-type-1.json` was marked "superseded" on 2026-09-10 but **never received the corrected
+numbers**, so the repo's only machine-readable geometry for the view-mode field stayed at the
+2026-08-24 value of **62px** while the live Figma component is **66px** (header row 26 → 30).
+There was no live contract for `form-field-primary` at all — the correct measurement existed only
+in CHANGELOG prose and the local gallery. Anything built from the repo was 4px short.
+**`form-field-primary.json` is now a live 2.0.0 contract** with the measured 66px, all 7 state
+token bindings, and the two defects Figma has since resolved (required/help icons now exist via the
+real `field-header-primary`; `field/bg-disabled` now bound). Independently corroborated by
+Antigravity's V4b live re-measurement the same day.
+
+### Changed — contract names now match Figma
+The "Fields type 1 / 2 / 3" vocabulary was legacy repo naming that never followed Figma's rename:
+
+| was | now | Figma node |
+|---|---|---|
+| `field-type-1.*` | `form-field-primary.*` | `26938:65997` |
+| `field-type-2.*` | `form-field-secondary.*` | `27062:7663` |
+| `field-type-3.*` | `form-field-tertiary.*` | `27395:30147` |
+
+Every cross-reference updated: both mapping registries, the family index, the components README,
+DS-REFERENCE, the patterns, and the local gallery registry. The superseded 62px measurement is kept
+for provenance at `form-field-primary-2026-08-24-historical.md` behind a do-not-build banner.
+
+---
+
 ## [3.5.1] — 2026-09-10 (self-audit pass)
 
 A 5-dimension consistency audit (node-ids · arithmetic/markers · token names · patterns-vs-shell ·

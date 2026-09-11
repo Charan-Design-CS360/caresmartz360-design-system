@@ -5,7 +5,7 @@
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileUrl": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/",
     "pageId": "26581:38709",
-    "pageIdProvenance": "reported by the Figma-AI enumeration (C360-47327); consistent with the Dev-Mode link recorded in portals/agency/components/field-type-1.md",
+    "pageIdProvenance": "reported by the Figma-AI enumeration (C360-47327); consistent with the Dev-Mode link recorded in portals/agency/components/form-field-primary.md",
     "lastGrounded": "2026-09-10",
     "regeneratedFor": "C360-47327 — this file previously carried self-declared round-number node IDs pointing at a different Figma file; every ID below is grounded: measured in a portal contract, measured live on 2026-09-10, or existence-probed live the same day (provenance noted per section)",
     "authority": "portals/agency/components/component-mapping.json and the per-component contracts are the authoritative portal-scoped mapping; this root file is the cross-section INDEX for discovery"
@@ -27,9 +27,9 @@
       "provenance": "measured live 2026-09-10 (morning + evening passes)",
       "contractPaths": [
         "portals/agency/components/form-fields.md",
-        "portals/agency/components/field-type-1.md",
-        "portals/agency/components/field-type-2.md",
-        "portals/agency/components/field-type-3.md",
+        "portals/agency/components/form-field-primary.md",
+        "portals/agency/components/form-field-secondary.md",
+        "portals/agency/components/form-field-tertiary.md",
         "portals/agency/components/field-atoms.md"
       ],
       "componentSets": [

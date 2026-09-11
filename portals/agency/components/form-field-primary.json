@@ -1,0 +1,115 @@
+{
+  "$schema": "../../../schemas/component-contract.schema.json",
+  "$meta": {
+    "component": "form-field-primary (PRIMARY — view/display mode)",
+    "portal": "agency",
+    "contractVersion": "2.0.0",
+    "renamedFrom": "field-type-1.json / \"Fields type 1\" — renamed 2026-09-11 to match the live Figma component name. The old file name and the 'type 1/2/3' vocabulary were legacy: Figma renamed the set to form-field-primary, and the repo never followed.",
+    "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+    "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
+    "figmaComponentSetNodeId": "26938:65997",
+    "figmaComponentSetName": "form-field-primary",
+    "figmaSectionNodeId": "26955:66554",
+    "figmaGuidelinesFrame": { "nodeId": "27401:30526", "name": "Form Fields — Component Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526" },
+    "measuredOn": "2026-09-10",
+    "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
+    "independentlyVerified": "Antigravity V4b, 2026-09-10: 360×66, rows 30+34, 7 states — measured live and matched.",
+    "jiraSource": "C360-47183 + C360-47325",
+    "familyIndex": "./form-fields.json",
+    "atomsContract": "./field-atoms.json",
+    "humanContract": "./form-field-primary.md",
+    "historicalRecord": "./form-field-primary-2026-08-24-historical.md — the superseded 62px measurement kept for provenance.",
+    "readThisFirst": "2.0.0 REPLACES the 62px geometry that shipped in field-type-1 1.x. That file was marked superseded on 2026-09-10 but never carried the corrected numbers, so the repo's only machine-readable primary-field height stayed WRONG (62) while the live component was 66. Build from the geometry below."
+  },
+
+  "purpose": "Complete VIEW-mode field: data grids, tables, list views. Read-first — the value row has no input border of its own; the state colour lives on the container.",
+
+  "variantAxis": {
+    "name": "state",
+    "count": 7,
+    "values": ["default", "focus", "error", "success", "warning", "ai", "disabled"],
+    "absentAxes": ["Size", "Compact", "Required", "Help"],
+    "note": "Figma's generated docs for this set claim 6 variants and omit state=ai. The 7 are measured from the set's symbol children — trust the nodes, not the prose."
+  },
+
+  "geometry": {
+    "size": { "w": 360, "h": 66, "marker": ["MEASURED"], "note": "all 7 variants are exactly 360 × 66", "supersedes": "62 (measured 2026-08-24, before Figma grew the header row 26 → 30)" },
+    "display": "grid",
+    "gridRows": { "header": 30, "value": 34, "marker": ["MEASURED"], "arithmetic": "1 (border) + 30 + 34 + 1 (border) = 66" },
+    "headerInstance": { "component": "field-header-primary", "nodeId": "27388:28274", "x": 1, "y": 1, "w": 358, "h": 30, "marker": ["MEASURED"] },
+    "valueRow": { "x": 1, "y": 31, "w": 358, "h": 34, "textInsetLeft": 8, "textInsetLeftToken": "spacing/md", "textBoxHeight": 20, "textY": 7, "marker": ["MEASURED"] },
+    "padding": { "value": 0, "token": "spacing/none", "marker": ["MEASURED"] },
+    "border": { "width": 1, "style": "solid", "alignment": "inside", "marker": ["MEASURED"] },
+    "borderRadius": { "value": 0, "token": "border-radius/rounded-none", "cssVar": "--border-radius-rounded-none", "marker": ["MEASURED"] },
+    "widthRule": "360 is the variant's own width; treat as 100% of parent. pattern-page-form-grid instances it at 254.5px.",
+    "transition": { "properties": ["background-color", "border-color", "color"], "duration": "150ms", "easing": "ease", "marker": ["MEASURED"] }
+  },
+
+  "states": [
+    { "state": "default",  "nodeId": "26938:65991", "bg": { "token": "field/bg-default",  "hex": "#ffffff" }, "border": { "token": "field/border-default", "hex": "#e2e8f0" }, "valueText": { "token": "field/value-placeholder", "hex": "#64748b" }, "marker": ["MEASURED"] },
+    { "state": "focus",    "nodeId": "26938:65992", "bg": { "token": "field/bg-focus",    "hex": "#f0f7ff" }, "border": { "token": "field/border-focus",   "hex": "#0077ff" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "error",    "nodeId": "26938:65993", "bg": { "token": "field/bg-danger",   "hex": "#fef2f2" }, "border": { "token": "field/border-danger",  "hex": "#ef4444" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "success",  "nodeId": "26938:65994", "bg": { "token": "field/bg-success",  "hex": "#f0fdf4" }, "border": { "token": "field/border-success", "hex": "#15803d" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "warning",  "nodeId": "26938:65995", "bg": { "token": "field/bg-warning",  "hex": "#fefce8" }, "border": { "token": "field/border-warning", "hex": "#facc15" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    { "state": "ai",       "nodeId": "27079:10664", "bg": { "token": "field/bg-ai",       "hex": "#faf5ff" }, "border": { "token": "field/border-ai",      "hex": "#9333ea" }, "valueText": { "token": "field/value-primary", "hex": "#1e293b" }, "marker": ["MEASURED"],
+      "figmaSideDefect": "the master's sample value text reads \"Warning input value\" — a copy-paste slip in Figma (confirmed live by Antigravity on node 27079:10668). Cosmetic, Figma-side." },
+    { "state": "disabled", "nodeId": "26938:65996", "bg": { "token": "field/bg-disabled", "hex": "#f1f5f9" }, "border": { "token": "field/border-default", "hex": "#e2e8f0" }, "valueText": { "token": "field/value-disabled", "hex": "#64748b" }, "marker": ["MEASURED"],
+      "resolvedDefect": "1.x recorded 'disabled emits NO background'. Figma now binds field/bg-disabled — the defect is RESOLVED, do not carry the old warning forward." }
+  ],
+
+  "structureIsIdenticalAcrossStates": true,
+  "stateChangeIsTokenSwapOnly": true,
+
+  "typography": {
+    "label": { "style": "Fields/label", "family": "Inter", "weightName": "Medium", "fontSize": 12, "fontSizeToken": "font-size/caption", "lineHeight": 16, "lineHeightToken": "line-height/caption", "fontWeight": 500, "letterSpacing": 0, "letterSpacingToken": "fonts/tracking/X-tracking-0", "colour": { "token": "text/primary", "hex": "#1e293b" }, "marker": ["MEASURED"] },
+    "value": { "style": "Fields/value", "family": "Inter", "weightName": "Regular", "fontSize": 12, "lineHeight": 16, "fontWeight": 400, "letterSpacing": 0, "marker": ["MEASURED"] },
+    "contradictsFigmaProse": {
+      "figmaProseClaims": "line-height 120%, letter-spacing -0.24px",
+      "boundVariablesSay": "line-height/caption = 16, X-tracking-0 = 0",
+      "arithmetic": "120% of 12px = 14.4px, not 16px",
+      "resolution": "The bound variables win. Figma's prose is stale."
+    }
+  },
+
+  "header": {
+    "component": "field-header-primary",
+    "nodeId": "27388:28274",
+    "contract": "./field-atoms.json",
+    "resolvedDefect": "1.x recorded 'required marker and help icon are OFF in all 7 variants — a hard blocker for clinical forms'. Figma replaced the hand-built header with the real field-header-primary component, which carries required / help / error / AI icon slots. RESOLVED.",
+    "marker": ["MEASURED"]
+  },
+
+  "behavior": "Display-mode field. In product flows, entering edit switches the context to form-field-secondary. The ai state marks auto-populated values and pairs with the header's AI icon and an AI field-message. No hover state exists on the axis — building one would be an invention.",
+
+  "defects": [
+    "no message row of its own — the error state is fill + border only, with nowhere to put the message. Use form-field-secondary when a message must show.",
+    "no hover state on the axis",
+    "state=ai sample copy reads 'Warning input value' (Figma-side copy slip)"
+  ],
+
+  "accessibility": {
+    "valueRowSize": { "value": 34, "wcag258AA": "PASS", "floor": "24 CSS px" },
+    "labelAssociation": "the label is a real row — use <label for> or aria-labelledby",
+    "errorState": "aria-invalid + aria-describedby, BUT this component has no message row to point at (see defects) — point at a sibling, or use form-field-secondary",
+    "required": "aria-required + the header's required marker (now available)",
+    "disabled": "disabled + aria-disabled. readonly is INERT on <select> — emit disabled there",
+    "focusRing": { "value": null, "marker": ["UNVERIFIED"], "note": "only a border-colour + background change is specified; whether an additional ring is intended is unknown" }
+  },
+
+  "implementationRisk": {
+    "severity": "HIGHEST",
+    "issue": "A Material mat-form-field appearance=\"outline\" CANNOT produce this layout.",
+    "why": "Material renders the label as a floating notch that INTERRUPTS the top border. This component renders it as a static full-width row stacked ABOVE the value, inside an UNBROKEN border. Different structures, not different skins.",
+    "consequence": "No amount of token overriding converts one into the other.",
+    "decisionRequired": "Either build a custom control, or redraw the design to match Material. Decide BEFORE producing an implementation diff."
+  },
+
+  "notVerified": [
+    "dark / high-contrast / warm-dark / hc-light values (light mode only)",
+    "focus ring in addition to the border-colour change",
+    "textarea / multi-line behaviour",
+    "read-only vs disabled as distinct states",
+    "icon SVG path data (box sizes and fill tokens verified; path geometry is not archived)",
+    "the 12 variants of Global/Atom/Fields Toys (trailing controls)"
+  ]
+}
