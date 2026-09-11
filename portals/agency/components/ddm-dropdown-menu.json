@@ -4,7 +4,12 @@
     "component": "DDM — Dropdown Menu",
     "portal": "agency",
     "contractVersion": "1.1.0",
-    "figmaGuidelinesFrame": { "nodeId": "27382:20718", "name": "Inline Dropdown Patterns — Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20718", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
+    "figmaGuidelinesFrame": {
+      "nodeId": "27382:20718",
+      "name": "Inline Dropdown Patterns — Guidelines",
+      "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20718",
+      "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read"
+    },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP server never reports a file key. Taken from portals/agency/portal-manifest.json and from Figma AI's own audit on C360-40765, which cites the same key.",
     "figmaSectionNodeId": "27245:67562",
@@ -22,7 +27,8 @@
       "RAW": "real value but NOT bound to any token present in the owner's variable export",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "UPDATE 2026-08-25 (v1.1.0): the row-height inconsistency this contract reported is now FIXED IN FIGMA, and fixed the right way. The owner changed the radio row's vertical padding from spacing/sm (4px) to spacing/xs (2px) and LEFT min-height:30 in place, so all row types now render at 30px while keeping the min-height mechanism that lets a row grow for a long label. Re-measured on node 18384:9431 to confirm the padding token changed rather than a fixed height being set. Figma AI's original recommendation on C360-40765 (\"standardize to a single row height\") would have removed that mechanism; the padding fix preserves it. STILL OPEN: the two Figma name typos, the differing selected-state treatment between checkbox and radio rows, the missing max-height on the radio row, and the X-tracking-0 legacy token."
+    "readThisFirst": "UPDATE 2026-08-25 (v1.1.0): the row-height inconsistency this contract reported is now FIXED IN FIGMA, and fixed the right way. The owner changed the radio row's vertical padding from spacing/sm (4px) to spacing/xs (2px) and LEFT min-height:30 in place, so all row types now render at 30px while keeping the min-height mechanism that lets a row grow for a long label. Re-measured on node 18384:9431 to confirm the padding token changed rather than a fixed height being set. Figma AI's original recommendation on C360-40765 (\"standardize to a single row height\") would have removed that mechanism; the padding fix preserves it. STILL OPEN: the two Figma name typos, the differing selected-state treatment between checkbox and radio rows, the missing max-height on the radio row, and the X-tracking-0 legacy token.",
+    "controlHeightTokenStatus": "RESOLVED 2026-09-11 — the owner exported control/height-default (30) and control/height-compact (24) into Agency Density Modes (aliased to size/size-30 / size/size-24 in Agency General). They are real tokens now; the 'absent from the export' caveat below is historical."
   },
   "anatomy": {
     "layers": "Figma AI's 3-layer atomic read is confirmed: row atoms -> single components -> assembled menus.",

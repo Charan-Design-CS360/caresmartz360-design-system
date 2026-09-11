@@ -73,6 +73,14 @@
   --border-radius-rounded-full: var(--rounded-full);
   --radius-rounded: var(--rounded);
 
+  // ── CONTROL HEIGHT (Agency Density Modes, exported 2026-09-11) ──
+  // Figma: control/height-default -> size/size-30, control/height-compact -> size/size-24.
+  // Density-scoped on purpose: a compact density is expected to re-value these.
+  --size-30: 30px;
+  --size-24: 24px;
+  --control-height-default: var(--size-30);
+  --control-height-compact: var(--size-24);
+
   // ── LOCAL TOKEN PARITY EXTENSIONS ──
   --action-destructive-text-hard: var(--color-status-error, #dc2626);
   --field-border-hard: var(--color-border-default, #d1d5db);

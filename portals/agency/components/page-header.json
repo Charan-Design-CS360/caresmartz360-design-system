@@ -28,7 +28,8 @@
       "UNVERIFIED": "not read — do not build from it"
     },
     "readThisFirst": "Figma's own component description for this set is INCOMPLETE in one direction and the file is richer than it claims: the description says '4 sizes with optional description text, left/right action icons, help tooltip, and timezone info' but does not say that size S supports NONE of those options, nor that the timezone chip exists on L and XL but not M. Trust the measured variant props below, not the prose. Separately: FIVE bound token names do not exist in the owner's 2026-08-24 export — three are Figma-side naming errors whose correct name IS in the authority. See defects.",
-    "ownerRuling_2026_09_11": "Singh: the page header is HUG (auto height), NOT a fixed height. Consumers must derive it as sum(visible rows + 12px row gaps) + 24 (12 top + 12 bottom padding), never hard-code a pixel height. The two shipped shapes measured live: 110 WITH the search & filters row (44+12+30+24), 68 WITHOUT it (44+24). This also retires the fixed 98 that portals/agency/patterns/page-setup.md published — that figure dropped the bottom padding."
+    "ownerRuling_2026_09_11": "Singh: the page header is HUG (auto height), NOT a fixed height. Consumers must derive it as sum(visible rows + 12px row gaps) + 24 (12 top + 12 bottom padding), never hard-code a pixel height. The two shipped shapes measured live: 110 WITH the search & filters row (44+12+30+24), 68 WITHOUT it (44+24). This also retires the fixed 98 that portals/agency/patterns/page-setup.md published — that figure dropped the bottom padding.",
+    "controlHeightTokenStatus": "RESOLVED 2026-09-11 — the owner exported control/height-default (30) and control/height-compact (24) into Agency Density Modes (aliased to size/size-30 / size/size-24 in Agency General). They are real tokens now; the 'absent from the export' caveat below is historical."
   },
   "anatomy": {
     "elements": [

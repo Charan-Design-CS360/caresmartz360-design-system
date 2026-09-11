@@ -139,7 +139,7 @@
   align-items: center;
   gap: var(--spacing-sm);                       /* 4 */
   width: 100%;
-  height: 30px;                                 /* pinned — min AND max, genuinely fixed, not a floor */
+  height: var(--control-height-default);                                 /* pinned — min AND max, genuinely fixed, not a floor */
   padding: var(--spacing-none) var(--spacing-md);  /* 0 8 */
   background: var(--action-soft-bg);
   border-radius: var(--border-radius-rounded);                /* 4 */
