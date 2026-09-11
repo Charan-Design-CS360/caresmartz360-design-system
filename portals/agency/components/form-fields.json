@@ -3,81 +3,215 @@
   "$meta": {
     "component": "Form Fields (family index)",
     "portal": "agency",
-    "contractVersion": "2.0.0",
+    "contractVersion": "2.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaSectionNodeId": "26955:66554",
     "figmaSectionName": "Form Fields",
-    "figmaGuidelinesFrame": { "nodeId": "27401:30526", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526" },
+    "figmaGuidelinesFrame": {
+      "nodeId": "27401:30526",
+      "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27401-30526"
+    },
     "measuredOn": "2026-09-10 (morning pass + afternoon re-verification after same-day Figma changes)",
     "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
     "jiraSource": "C360-47183 + C360-47325",
     "humanContract": "./form-fields.md",
     "v2Note": "1.0.0 was a single family file carrying every measurement. 2.0.0 splits the detail into per-type contracts (the packaging C360-47325 asked for) and keeps this file as the INDEX: hierarchy, shared tokens, drift record. No measured value lives in two files.",
     "memberContracts": {
-      "primary": "./field-type-1.json (historical 2026-08-24 record; geometry drift noted there — the live component is form-field-primary, re-measured 2026-09-10 with per-state bindings recorded in CHANGELOG 3.4.0 and the gallery example)",
-      "secondary": "./field-type-2.json",
-      "tertiary": "./field-type-3.json",
+      "primary": "./form-field-primary.json (LIVE 2.0.0 — 66px, 7 states; the superseded 62px 2026-08-24 record is ./form-field-primary-2026-08-24-historical.md)",
+      "secondary": "./form-field-secondary.json",
+      "tertiary": "./form-field-tertiary.json",
       "sharedAtoms": "./field-atoms.json"
-    }
+    },
+    "renameNote": "2026-09-11: member contracts renamed field-type-1/2/3 -> form-field-primary/secondary/tertiary to match Figma. form-field-primary was also REBUILT as a live 2.0.0 contract — the repo had been shipping the superseded 62px geometry with no live primary contract at all."
   },
-
   "atomicHierarchy": {
-    "subAtoms": ["field-label (27062:10162)"],
-    "atoms": ["field-header-primary (27388:28274)", "field-header-secondary (27388:29316)", "field-header-tertiary (27290:41702)", "field-input (27062:8145)", "field-message (11116:25116, 6 types)", "form-section-header (27395:30130)"],
-    "molecules": ["form-field-primary (26938:65997, 7 states)", "form-field-secondary (27062:7663, 6 states)", "form-field-tertiary (27395:30147)"],
+    "subAtoms": [
+      "field-label (27062:10162)"
+    ],
+    "atoms": [
+      "field-header-primary (27388:28274)",
+      "field-header-secondary (27388:29316)",
+      "field-header-tertiary (27290:41702)",
+      "field-input (27062:8145)",
+      "field-message (11116:25116, 6 types)",
+      "form-section-header (27395:30130)"
+    ],
+    "molecules": [
+      "form-field-primary (26938:65997, 7 states)",
+      "form-field-secondary (27062:7663, 6 states)",
+      "form-field-tertiary (27395:30147)"
+    ],
     "typeModel": {
-      "PRIMARY":   { "purpose": "view/display", "context": "grids, tables, list views", "contract": "./field-type-1.json", "height": 66 },
-      "SECONDARY": { "purpose": "edit/input",  "context": "popups, forms, modals",     "contract": "./field-type-2.json", "height": "56 / 76 with message" },
-      "TERTIARY":  { "purpose": "settings",    "context": "settings/config panels",    "contract": "./field-type-3.json", "height": "112 at rest, HUG" }
+      "PRIMARY": {
+        "purpose": "view/display",
+        "context": "grids, tables, list views",
+        "contract": "./form-field-primary.json",
+        "height": 66
+      },
+      "SECONDARY": {
+        "purpose": "edit/input",
+        "context": "popups, forms, modals",
+        "contract": "./form-field-secondary.json",
+        "height": "56 / 76 with message"
+      },
+      "TERTIARY": {
+        "purpose": "settings",
+        "context": "settings/config panels",
+        "contract": "./form-field-tertiary.json",
+        "height": "112 at rest, HUG"
+      }
     }
   },
-
   "sharedTokens": {
     "note": "Alias chain verified byte-for-byte against Variables/Agency/Color Modes.zip → Light Mode (Default).tokens.json on 2026-09-10. The semantic token is the binding; the primitive is its alias target. The source tickets' gray/* names exist in NO Agency export.",
     "bindings": [
-      { "semantic": "field/bg-default",        "hex": "#ffffff", "primitive": "colors/neutral-0" },
-      { "semantic": "field/border-default",    "hex": "#e2e8f0", "primitive": "colors/neutral-200" },
-      { "semantic": "field/border-hard",       "hex": "#94a3b8", "primitive": "colors/neutral-400" },
-      { "semantic": "field/value-placeholder", "hex": "#64748b", "primitive": "colors/neutral-500" },
-      { "semantic": "field/value-primary",     "hex": "#1e293b", "primitive": "colors/neutral-800" },
-      { "semantic": "field/value-disabled",    "hex": "#64748b", "primitive": "colors/neutral-500" },
-      { "semantic": "field/bg-focus",          "hex": "#f0f7ff", "primitive": "colors/Brandblue-50" },
-      { "semantic": "field/border-focus",      "hex": "#0077ff", "primitive": "colors/Brandblue-600" },
-      { "semantic": "field/bg-danger",         "hex": "#fef2f2", "primitive": "colors/red-50" },
-      { "semantic": "field/border-danger",     "hex": "#ef4444", "primitive": "colors/red-500" },
-      { "semantic": "field/bg-success",        "hex": "#f0fdf4", "primitive": "colors/green-50" },
-      { "semantic": "field/border-success",    "hex": "#15803d", "primitive": "colors/green-700" },
-      { "semantic": "field/bg-warning",        "hex": "#fefce8", "primitive": "colors/yellow-50" },
-      { "semantic": "field/border-warning",    "hex": "#facc15", "primitive": "colors/yellow-400" },
-      { "semantic": "field/bg-ai",             "hex": "#faf5ff", "primitive": "colors/purple-50" },
-      { "semantic": "field/border-ai",         "hex": "#9333ea", "primitive": "colors/purple-600" },
-      { "semantic": "field/bg-disabled",       "hex": "#f1f5f9", "primitive": "colors/neutral-100" },
-      { "semantic": "text/links",              "hex": "#0077ff", "primitive": "colors/Brandblue-600", "usedBy": "field-message type=comments" }
+      {
+        "semantic": "field/bg-default",
+        "hex": "#ffffff",
+        "primitive": "colors/neutral-0"
+      },
+      {
+        "semantic": "field/border-default",
+        "hex": "#e2e8f0",
+        "primitive": "colors/neutral-200"
+      },
+      {
+        "semantic": "field/border-hard",
+        "hex": "#94a3b8",
+        "primitive": "colors/neutral-400"
+      },
+      {
+        "semantic": "field/value-placeholder",
+        "hex": "#64748b",
+        "primitive": "colors/neutral-500"
+      },
+      {
+        "semantic": "field/value-primary",
+        "hex": "#1e293b",
+        "primitive": "colors/neutral-800"
+      },
+      {
+        "semantic": "field/value-disabled",
+        "hex": "#64748b",
+        "primitive": "colors/neutral-500"
+      },
+      {
+        "semantic": "field/bg-focus",
+        "hex": "#f0f7ff",
+        "primitive": "colors/Brandblue-50"
+      },
+      {
+        "semantic": "field/border-focus",
+        "hex": "#0077ff",
+        "primitive": "colors/Brandblue-600"
+      },
+      {
+        "semantic": "field/bg-danger",
+        "hex": "#fef2f2",
+        "primitive": "colors/red-50"
+      },
+      {
+        "semantic": "field/border-danger",
+        "hex": "#ef4444",
+        "primitive": "colors/red-500"
+      },
+      {
+        "semantic": "field/bg-success",
+        "hex": "#f0fdf4",
+        "primitive": "colors/green-50"
+      },
+      {
+        "semantic": "field/border-success",
+        "hex": "#15803d",
+        "primitive": "colors/green-700"
+      },
+      {
+        "semantic": "field/bg-warning",
+        "hex": "#fefce8",
+        "primitive": "colors/yellow-50"
+      },
+      {
+        "semantic": "field/border-warning",
+        "hex": "#facc15",
+        "primitive": "colors/yellow-400"
+      },
+      {
+        "semantic": "field/bg-ai",
+        "hex": "#faf5ff",
+        "primitive": "colors/purple-50"
+      },
+      {
+        "semantic": "field/border-ai",
+        "hex": "#9333ea",
+        "primitive": "colors/purple-600"
+      },
+      {
+        "semantic": "field/bg-disabled",
+        "hex": "#f1f5f9",
+        "primitive": "colors/neutral-100"
+      },
+      {
+        "semantic": "text/links",
+        "hex": "#0077ff",
+        "primitive": "colors/Brandblue-600",
+        "usedBy": "field-message type=comments"
+      }
     ],
     "typographyStyles": [
-      { "style": "Fields/label",        "spec": "Inter Medium 12/16" },
-      { "style": "Fields/value",        "spec": "Inter Regular 12/16" },
-      { "style": "Fields/header",       "spec": "Inter Medium 14/20" },
-      { "style": "Fields/header-large", "spec": "Inter Medium 16/24" },
-      { "style": "Body/small",          "spec": "Inter Regular 12/16" },
-      { "style": "Body/micro",          "spec": "Inter Regular 10/14 (Size=S descriptions only)" }
+      {
+        "style": "Fields/label",
+        "spec": "Inter Medium 12/16"
+      },
+      {
+        "style": "Fields/value",
+        "spec": "Inter Regular 12/16"
+      },
+      {
+        "style": "Fields/header",
+        "spec": "Inter Medium 14/20"
+      },
+      {
+        "style": "Fields/header-large",
+        "spec": "Inter Medium 16/24"
+      },
+      {
+        "style": "Body/small",
+        "spec": "Inter Regular 12/16"
+      },
+      {
+        "style": "Body/micro",
+        "spec": "Inter Regular 10/14 (Size=S descriptions only)"
+      }
     ]
   },
-
   "driftLog": [
-    { "when": "before 2026-09-10", "what": "field-set-type1 renamed → form-field-primary; 62→66 (header 26→30); header became field-header-primary with required/help/AI icons; disabled binds field/bg-disabled. Resolved 3 of field-type-1 1.0.0's defects.", "recordedIn": "./field-type-1.json (supersededWhy) + CHANGELOG 3.4.0" },
-    { "when": "2026-09-10 afternoon (between the morning and evening passes)", "what": "field-message: typography Body/micro 10/14 → caption 12/16 on all variants, all now 20h; 6th variant type=comments added (icon 16, text/links); field-header-tertiary: min 200 / max 400, variants now 400w (82/88/92); form-field-tertiary re-composed at 1036×112; form-section-header rebuilt 80→64 around a Size=M header instance.", "recordedIn": "./field-atoms.json + ./field-type-3.json + CHANGELOG 3.5.0", "verification": "every change re-measured live the same evening; the two ticket claims that failed verification (a 'light blue' section-header fill; 10px comments text, self-corrected by #633284) are recorded as corrections" }
+    {
+      "when": "before 2026-09-10",
+      "what": "field-set-type1 renamed → form-field-primary; 62→66 (header 26→30); header became field-header-primary with required/help/AI icons; disabled binds field/bg-disabled. Resolved 3 of the old field-type-1 1.0.0 defects.",
+      "recordedIn": "./form-field-primary.json (supersededWhy) + CHANGELOG 3.4.0"
+    },
+    {
+      "when": "2026-09-10 afternoon (between the morning and evening passes)",
+      "what": "field-message: typography Body/micro 10/14 → caption 12/16 on all variants, all now 20h; 6th variant type=comments added (icon 16, text/links); field-header-tertiary: min 200 / max 400, variants now 400w (82/88/92); form-field-tertiary re-composed at 1036×112; form-section-header rebuilt 80→64 around a Size=M header instance.",
+      "recordedIn": "./field-atoms.json + ./form-field-tertiary.json + CHANGELOG 3.5.0",
+      "verification": "every change re-measured live the same evening; the two ticket claims that failed verification (a 'light blue' section-header fill; 10px comments text, self-corrected by #633284) are recorded as corrections"
+    }
   ],
-
   "ticketDiscrepancies": {
-    "jiraTickets": ["C360-47183", "C360-47325"],
+    "jiraTickets": [
+      "C360-47183",
+      "C360-47325"
+    ],
     "wrongInTickets": [
       "gray/200|500|600|800|900 primitives — no gray/* exists in any Agency export; real aliases are colors/neutral-*",
       "docs/FORM-FIELDS-SYSTEM.md and components/form-field-mapping.json (the root paths, incl. the '268-line/214-line' claims and #633288's re-request) — never existed; the portal contracts named in memberContracts are the authoritative replacement, and the portal + root component-mapping files index them",
       "form-section-header 'light blue fill / darker blue stroke' (#633282) — live bindings are surface/tertiary #f1f5f9 + field/border-default #e2e8f0",
-      "Angular Material M3 integration code — out of DS-lane scope; the structural mat-form-field incompatibility recorded in field-type-1.json stands"
+      "Angular Material M3 integration code — out of DS-lane scope; the structural mat-form-field incompatibility recorded in form-field-primary.json stands"
     ],
-    "unverifiedFromTickets": ["component description lengths (1,499–6,268 chars)", "'Old guideline frames deleted' housekeeping claims"]
+    "unverifiedFromTickets": [
+      "component description lengths (1,499–6,268 chars)",
+      "'Old guideline frames deleted' housekeeping claims"
+    ]
   }
 }

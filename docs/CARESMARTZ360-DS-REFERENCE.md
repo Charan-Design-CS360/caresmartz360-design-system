@@ -1,6 +1,6 @@
 # CareSmartz360 Design System — AI Handoff Reference
 
-**Version:** 3.0.0 (aligned with the repo version — C360-47329)  
+**Version:** 3.5.0 (tracks the repo/README version, not its own scheme — C360-47329)  
 **Figma File:** `$-Primitives (CS360) V2.0` (**ID:** `DJBpjoXPMEw6bBAByIQaAy`)  
 **Last Updated:** 2026-09-10  
 **Stack:** Angular 19 + **Angular Material M3** + Tailwind CSS + SCSS
@@ -233,7 +233,7 @@ export class ButtonComponent {
 > field-headers, field-input, field-message, form-section-header, and the three form-field
 > molecules — Jira C360-47183).** The mat-form-field snippet below is a legacy sketch:
 > `appearance="outline"` structurally cannot produce the measured stacked-header-inside-one-border
-> layout (see the implementationRisk in field-type-1.json). Read the portal contract first.
+> layout (see the implementationRisk in form-field-primary.json). Read the portal contract first.
 
 ```html
 <mat-form-field appearance="outline" class="cs-field w-full">

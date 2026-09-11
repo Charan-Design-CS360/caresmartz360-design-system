@@ -96,7 +96,7 @@
       "padding": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
       "gapBetweenBlocks": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
       "identityGap": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
-      "avatar": { "size": 70, "unit": "px", "radius": "border-radius/rounded-full", "cssVar": "--rounded-full", "marker": ["MEASURED"] },
+      "avatar": { "size": 70, "unit": "px", "radius": "border-radius/rounded-full", "cssVar": "--border-radius-rounded-full", "marker": ["MEASURED"] },
       "avatarCollapsed": { "size": 40, "unit": "px", "marker": ["MEASURED"] },
       "cameraBadge": { "size": 18, "glyph": 12, "background": "action/secondary/bg (#f0f7ff)", "cssVarBg": "--action-secondary-bg", "glyphColor": "action/secondary/text (#005ce6)", "cssVarColor": "--action-secondary-text", "position": "bottom-right of the avatar", "marker": ["MEASURED"] },
       "name": { "style": "Heading/h5 — Inter Medium 16 / line-height 24 / letter-spacing -0.24", "colorToken": "text/primary", "cssVar": "--text-primary", "marker": ["MEASURED"] },
@@ -134,7 +134,7 @@
       "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
       "paddingBlock": { "value": 0, "unit": "px", "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"] },
       "gap": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"], "note": "icon↔label; icon optional (showIcon)." },
-      "radius": { "value": 4, "unit": "px", "token": "border-radius/rounded", "cssVar": "--rounded", "marker": ["MEASURED"] },
+      "radius": { "value": 4, "unit": "px", "token": "border-radius/rounded", "cssVar": "--border-radius-rounded", "marker": ["MEASURED"] },
       "labelStyle": { "value": "Inter Medium 14 / line-height 16 / letter-spacing -0.24", "marker": ["MEASURED"] },
       "icon": { "value": "18x18 Material Symbol Rounded, OPTIONAL — the assembled example is text-only (showIcon=false).", "marker": ["MEASURED"] },
       "states": {

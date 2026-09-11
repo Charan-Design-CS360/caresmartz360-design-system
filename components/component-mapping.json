@@ -5,12 +5,21 @@
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileUrl": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/",
     "pageId": "26581:38709",
-    "pageIdProvenance": "reported by the Figma-AI enumeration (C360-47327); consistent with the Dev-Mode link recorded in portals/agency/components/field-type-1.md",
+    "pageIdProvenance": "reported by the Figma-AI enumeration (C360-47327); consistent with the Dev-Mode link recorded in portals/agency/components/form-field-primary.md",
     "lastGrounded": "2026-09-10",
     "regeneratedFor": "C360-47327 — this file previously carried self-declared round-number node IDs pointing at a different Figma file; every ID below is grounded: measured in a portal contract, measured live on 2026-09-10, or existence-probed live the same day (provenance noted per section)",
     "authority": "portals/agency/components/component-mapping.json and the per-component contracts are the authoritative portal-scoped mapping; this root file is the cross-section INDEX for discovery"
   },
   "sections": [
+    {
+      "name": "Button",
+      "sectionNodeId": "26938:66536",
+      "provenance": "measured live 2026-08-24 (button.json 1.0.0) — added to the root index 2026-09-10, the audit found it missing entirely despite being registered in the portal mapping",
+      "contractPaths": ["portals/agency/components/button.md"],
+      "components": [
+        { "name": "Button (AI Button component)", "nodeId": "26938:66536" }
+      ]
+    },
     {
       "name": "Form Fields",
       "sectionNodeId": "26955:66554",
@@ -18,9 +27,9 @@
       "provenance": "measured live 2026-09-10 (morning + evening passes)",
       "contractPaths": [
         "portals/agency/components/form-fields.md",
-        "portals/agency/components/field-type-1.md",
-        "portals/agency/components/field-type-2.md",
-        "portals/agency/components/field-type-3.md",
+        "portals/agency/components/form-field-primary.md",
+        "portals/agency/components/form-field-secondary.md",
+        "portals/agency/components/form-field-tertiary.md",
         "portals/agency/components/field-atoms.md"
       ],
       "componentSets": [
@@ -90,8 +99,9 @@
         { "name": "page-heading", "nodeId": "14160:189662", "variants": 4 }
       ],
       "components": [
-        { "name": "page-header", "nodeId": "27232:65833" },
-        { "name": "page-header-toolbar", "nodeId": "27232:65760" }
+        { "name": "page-header (contracts call this 'complete header')", "nodeId": "27232:65833" },
+        { "name": "page-header-toolbar", "nodeId": "27232:65760" },
+        { "name": "pageheader component (added 2026-09-10 — the audit found it in page-header.json but missing from every mapping)", "nodeId": "27232:65797" }
       ]
     },
     {
@@ -104,7 +114,7 @@
         { "name": "ddm rows - checkboxes", "nodeId": "7926:11855", "variants": 5 },
         { "name": "atom/radio / Dropdown selections", "nodeId": "7926:11856", "variants": 4 },
         { "name": "ddm rows - checkboxes + drag feature", "nodeId": "13095:43335", "variants": 6 },
-        { "name": "Columns action button trigger", "nodeId": "10373:16081", "variants": 4 }
+        { "name": "Columns action button trigger", "nodeId": "10373:16081", "variants": 6, "variantsNote": "corrected 2026-09-10: was recorded as 4 (a miscount of the 4 documented States); column-arrangement.json states Figma reports 6 variants (State x Open) for this set." }
       ],
       "components": [
         { "name": "Dropdown/Menu (group heading)", "nodeId": "1728:1" },

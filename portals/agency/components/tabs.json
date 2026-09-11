@@ -71,7 +71,7 @@
         "height": { "value": 24, "unit": "px", "marker": ["MEASURED", "RAW"] },
         "minWidth": { "value": 40, "unit": "px", "marker": ["MEASURED", "RAW"] },
         "paddingInline": { "value": 8, "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
-        "cornerRadius": { "value": 4, "token": "border-radius/rounded", "cssVar": "--rounded", "marker": ["MEASURED"], "note": "Only at the row Start (first) and End (last); Mid segments are square." },
+        "cornerRadius": { "value": 4, "token": "border-radius/rounded", "cssVar": "--border-radius-rounded", "marker": ["MEASURED"], "note": "Only at the row Start (first) and End (last); Mid segments are square." },
         "labelType": { "value": "Fields/value — Inter Regular 12 / line-height 16", "marker": ["MEASURED"] }
       },
       "states": {

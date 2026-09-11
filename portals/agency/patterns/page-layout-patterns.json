@@ -13,32 +13,96 @@
   "measuredBy": "Claude DESIGN-SYSTEM lane (C360-3526)",
   "humanContract": "./page-layout-patterns.md",
   "shellDefinition": "./page-setup.md — the ratification-pending grid contract measured from pattern-page-data-table on 2026-09-04; re-confirmed 2026-09-10",
-
   "userGoal": "Give every Agency content page the same skeleton: primary side nav + global header + user-profile rail + tabs + page header + a Middle Matter area that alone changes per pattern.",
-  "whenToUse": ["any full content page in the Agency portal"],
-  "whenNotToUse": ["modals/popups (no shell)", "print/report layouts", "Caregiver or Staff portal pages (portal isolation)"],
-
-  "shellComponents": [
-    { "role": "primary side nav", "contract": "portals/agency/components/primary-side-navigation.json", "nodeId": "27337:73592", "measuredWidths": { "collapsed": 48, "expanded": 158 } },
-    { "role": "global header", "height": 52, "leftActions": { "x": 12, "y": 8, "h": 36 }, "rightActions": { "h": 30, "y": 11 } },
-    { "role": "user profile rail", "width": 240, "note": "contract: portals/agency/components/profile-side-navigation.json" },
-    { "role": "tab container", "height": 50, "firstTabInsetLeft": 12, "contract": "portals/agency/components/tabs.json" },
-    { "role": "page header", "contract": "portals/agency/components/page-header.json", "measuredHeights": { "withFilterToolbar": 110, "withoutToolbar": 68 } },
-    { "role": "middle matter", "contentPadding": 12, "paddingToken": "spacing/lg" }
+  "whenToUse": [
+    "any full content page in the Agency portal"
   ],
-
+  "whenNotToUse": [
+    "modals/popups (no shell)",
+    "print/report layouts",
+    "Caregiver or Staff portal pages (portal isolation)"
+  ],
+  "shellComponents": [
+    {
+      "role": "primary side nav",
+      "contract": "portals/agency/components/primary-side-navigation.json",
+      "nodeId": "27337:73592",
+      "measuredWidths": {
+        "collapsed": 48,
+        "expanded": 158
+      }
+    },
+    {
+      "role": "global header",
+      "height": 52,
+      "leftActions": {
+        "x": 12,
+        "y": 8,
+        "h": 36
+      },
+      "rightActions": {
+        "h": 30,
+        "y": 11
+      }
+    },
+    {
+      "role": "user profile rail",
+      "width": 240,
+      "note": "contract: portals/agency/components/profile-side-navigation.json"
+    },
+    {
+      "role": "tab container",
+      "height": 50,
+      "firstTabInsetLeft": 12,
+      "contract": "portals/agency/components/tabs.json"
+    },
+    {
+      "role": "page header",
+      "contract": "portals/agency/components/page-header.json",
+      "measuredHeights": {
+        "withFilterToolbar": 110,
+        "withoutToolbar": 68,
+        "note": "measured instances of the hug, not fixed constraints"
+      },
+      "heightBehavior": "HUG — owner ruling (Singh 2026-09-11). Derive as sum(visible rows + 12px gaps) + 24; never hard-code."
+    },
+    {
+      "role": "middle matter",
+      "contentPadding": 12,
+      "paddingToken": "spacing/lg"
+    }
+  ],
   "variants": [
     {
       "name": "pattern-page-data-table",
       "figmaNodeId": "27337:73093",
       "middleMatter": "data-table-with-filters",
       "measured": {
-        "canvas": "1440x900", "navState": "collapsed (48)", "shellRightWidth": 1392, "pageContentWidth": 1152,
-        "pageHeaderHeight": 110, "pageHeaderNote": "includes the filter toolbar row — the only variant with filters",
-        "table": { "headerRowHeight": 34, "dataRowHeight": 30, "rowOverlap": "rows step by 29 — 1px shared border", "columnWidth": 200, "actionsColumnWidth": 330, "actionCellIcons": "more_vert 18 + edit 24 in 30x30 slots, right-aligned" },
-        "pageInfoFooter": { "height": 136, "messageBlock": "800x112 at inset 12" }
+        "canvas": "1440x900",
+        "navState": "collapsed (48)",
+        "shellRightWidth": 1392,
+        "pageContentWidth": 1152,
+        "pageHeaderHeight": 110,
+        "pageHeaderNote": "includes the filter toolbar row — the only variant with filters",
+        "table": {
+          "headerRowHeight": 34,
+          "dataRowHeight": 30,
+          "rowOverlap": "rows step by 29 — 1px shared border",
+          "columnWidth": 200,
+          "actionsColumnWidth": 330,
+          "actionCellIcons": "more_vert 18 + edit 24 in 30x30 slots, right-aligned"
+        },
+        "pageInfoFooter": {
+          "height": 136,
+          "messageBlock": "800x112 at inset 12"
+        }
       },
-      "componentsUsed": ["page-header (toolbar variant)", "table (portals/agency/components/table.json)", "filters (portals/agency/components/filters.json)", "column-arrangement trigger"],
+      "componentsUsed": [
+        "page-header (toolbar variant)",
+        "table (portals/agency/components/table.json)",
+        "filters (portals/agency/components/filters.json)",
+        "column-arrangement trigger"
+      ],
       "useCase": "patient records, schedule grids, caregiver lists — data-dense listing with inline editing"
     },
     {
@@ -46,11 +110,22 @@
       "figmaNodeId": "27401:30856",
       "middleMatter": "empty-state-message",
       "measured": {
-        "canvas": "1440x900", "navState": "expanded (158)", "shellRightWidth": 1282, "pageContentWidth": 1042,
-        "pageHeaderHeight": 68, "pageHeaderNote": "no filter toolbar",
-        "emptyState": { "size": "800x154", "position": "x=121 within Middle Matter, inset 12 top", "contract": "portals/agency/components/empty-states.json" }
+        "canvas": "1440x900",
+        "navState": "expanded (158)",
+        "shellRightWidth": 1282,
+        "pageContentWidth": 1042,
+        "pageHeaderHeight": 68,
+        "pageHeaderNote": "no filter toolbar",
+        "emptyState": {
+          "size": "800x154",
+          "position": "x=121 within Middle Matter, inset 12 top",
+          "contract": "portals/agency/components/empty-states.json"
+        }
       },
-      "componentsUsed": ["page-header (no toolbar)", "empty-states"],
+      "componentsUsed": [
+        "page-header (no toolbar)",
+        "empty-states"
+      ],
       "useCase": "first-time experience, empty filtered results, cleared data state"
     },
     {
@@ -58,18 +133,42 @@
       "figmaNodeId": "27401:31504",
       "middleMatter": "form-field-primary-grid",
       "measured": {
-        "canvas": "1440x900", "navState": "expanded (158)", "shellRightWidth": 1282, "pageContentWidth": 1042,
-        "pageHeaderHeight": 68, "pageHeaderNote": "no filter toolbar",
-        "grid": { "instances": 12, "columns": 4, "rows": 3, "cellSize": "254.5x66", "inset": 12, "columnGap": 0, "rowGap": 0, "arithmetic": "12 + 4x254.5 + 12 = 1042" }
+        "canvas": "1440x900",
+        "navState": "expanded (158)",
+        "shellRightWidth": 1282,
+        "pageContentWidth": 1042,
+        "pageHeaderHeight": 68,
+        "pageHeaderNote": "no filter toolbar",
+        "grid": {
+          "instances": 12,
+          "columns": 4,
+          "rows": 3,
+          "cellSize": "254.5x66",
+          "inset": 12,
+          "columnGap": 0,
+          "rowGap": 0,
+          "arithmetic": "12 + 4x254.5 + 12 = 1042"
+        }
       },
-      "componentsUsed": ["page-header (no toolbar)", "form-field-primary (portals/agency/components/form-fields.json)", "field-header-primary"],
+      "componentsUsed": [
+        "page-header (no toolbar)",
+        "form-field-primary (portals/agency/components/form-fields.json)",
+        "field-header-primary"
+      ],
       "useCase": "patient demographics, profile detail views — read-first data display"
     }
   ],
-
-  "semanticDependencies": ["portals/agency/semantics (surface/*, border/*, text/*, field/*, spacing/*)"],
-  "states": ["nav collapsed vs expanded (shell width 1392 vs 1282 at 1440 canvas)", "page header with vs without filter toolbar (110 vs 68)"],
-  "contentRules": ["Middle Matter is the ONLY region that changes per pattern", "content insets are 12px (spacing/lg) inside Middle Matter"],
+  "semanticDependencies": [
+    "portals/agency/semantics (surface/*, border/*, text/*, field/*, spacing/*)"
+  ],
+  "states": [
+    "nav collapsed vs expanded (shell width 1392 vs 1282 at 1440 canvas)",
+    "page header hugs its content — 110 with the filter toolbar row, 68 without (owner ruling 2026-09-11: HUG, not fixed)"
+  ],
+  "contentRules": [
+    "Middle Matter is the ONLY region that changes per pattern",
+    "content insets are 12px (spacing/lg) inside Middle Matter"
+  ],
   "responsiveBehavior": "Measured at 1440x900 only; breakpoint behaviour is UNVERIFIED and not designed in these frames.",
   "accessibility": {
     "keyboard": "shell order: nav → header actions → tabs → page-header actions → content; per-component a11y in each component contract",
@@ -83,7 +182,6 @@
     "snapshotRef": "UNVERIFIED — no attested Figma snapshot yet (maturity draft)",
     "usedInFlows": []
   },
-
   "ticketDiscrepancies": {
     "jiraTicket": "C360-47184",
     "notes": [

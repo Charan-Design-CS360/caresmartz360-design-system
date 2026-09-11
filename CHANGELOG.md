@@ -7,6 +7,193 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.7.0] — 2026-09-11 (shareable-repo pass)
+
+Prepared the repo to be handed to other team members. One of the checks found a gate that had been
+silently not doing its job.
+
+### Fixed — `verify:variables` was running blind
+`scripts/verify-owner-variable-exports.mjs` still defaulted to `…/Documents/Variables`, the path
+**abandoned in the 2026-08-24 move**. The sync script was corrected on 2026-09-09; the verify script
+never was. Consequence: the gate fell back to `verificationMode: "manifest-only"` — checking the
+committed token files against **their own recorded hashes** (circular) instead of against the owner's
+real exports. **Drift between Figma exports and the published repo could not have been caught by the
+gate.** It now runs in `authority-and-manifest` mode.
+
+**Result of the first real run:** all **15 token artifacts are byte-identical** across export → repo →
+manifest. **No token drift** — the published tokens were correct all along; the gate simply wasn't
+proving it. Six `.zip` **archive** hashes differed (zip wrappers are not byte-reproducible — re-saving
+identical content yields different bytes); those were recomputed from the real files. Content hashes
+were untouched.
+
+### Fixed — stale + duplicated authority paths
+- `config/variable-export-manifest.json` recorded the **old** `sourceFolder`; corrected.
+- `sync-owner-variable-exports.mjs` carried a **second** hard-coded path literal that could drift from
+  the first; it now records the resolved `sourceRoot`.
+
+### Changed — repo is portable for other contributors
+The repo is **public**, and 16 files told every reader that the variable authority lives at a path on
+one person's laptop — meaningless to anyone else. Twelve documentation files now reference the
+**`DS_VARIABLE_SOURCE_DIR`** environment variable instead (the scripts already supported it). The
+scripts keep a working local default so nothing breaks; CHANGELOG history is left intact as the record.
+
+### Verified for sharing
+Deterministic scan for credential patterns across `origin/main`: **no keys, tokens, `.env` files or
+private keys**. Two scanner hits were false positives — `"token":` matches are design tokens
+(`spacing/md`), and `sk-` matched inside `--status-ta`**`sk-`**`completed`.
+
+---
+
+## [3.6.2] — 2026-09-11 (control-height binding, prepared)
+
+Singh approved **Option A** and asked for the details to be double-checked against the locally saved
+exports first. Both done; **nothing bound yet** — the binding is blocked on the export refresh only.
+
+### Verified (the double-check he asked for)
+Re-scanned **all 7 export collections**, every JSON inside every zip, for any token name containing
+`control` / `height` / `size` / `dimension` / `track`: **41 matches, none of them `control/*`.** The
+Agency exports are still dated **24 Aug 2026** — no refresh has landed. `control/height-default = 30`
+re-confirmed **live in Figma** the same day. So the values are real and the export is simply behind.
+
+### Added
+- `docs/PLAN-control-height-binding.md` — the full binding plan: **17 confirmed sites** across kit CSS,
+  gallery CSS and the Button contract, each classified and then **adversarially re-verified** by an
+  independent pass instructed to reject. Ships with an explicit **exclusion list of 8 sites** that a
+  blind find-and-replace would have broken — two of them are `min-width` (widths, not heights), one is
+  a 30px icon box, four are table cells, one is a skeleton placeholder. `spacing/3xl` is also 24, which
+  is exactly why this was verified rather than scripted.
+- `Design-System/00-EXPORT-INSTRUCTION-control-height-tokens.md` — the 2-minute export step, written so
+  it lands right the first time (which collection, exact file path, what I do next).
+
+### Raised for the owner
+- **Naming conflict:** Figma has `control/height-default` / `control/height-compact`; `button.json`'s
+  `openTokenDecision` proposes `control/min-height` / `control/min-height-compact` for the same two
+  values. Recommendation: **keep Figma's names** (already bound to live components) and retire the
+  contract's competing proposal. Corroboration worth noting — `button.json` independently concluded
+  these belong in the **Density Modes collection, scope WIDTH_HEIGHT**, matching the recommendation
+  reached from the opposite direction.
+- **Two more candidate tokens** in that same proposal — `control/min-width` = 80 and
+  `control/min-width-label` = 60 — **not verified live in Figma**; flagged so they can ride along in
+  the same export if Singh wants them, instead of a second round trip.
+- **Cross-portal warning** (OPEN-REGISTER O-14 / CONTRADICTIONS S4): Agency's button is 30px while
+  CGPortal's `--btn-min-height` is 32px, still unresolved. These bindings are **Agency-only**; a
+  Caregiver copy must not silently inherit 30.
+
+---
+
+## [3.6.1] — 2026-09-11 (owner rulings)
+
+Two items that were flagged-not-guessed yesterday came back with owner rulings.
+
+### Changed — page header is HUG, not a fixed height (Singh, 2026-09-11)
+`page-setup.md` published a fixed **98px** complete header and a fixed `Data Container 214 = 98 + 116`.
+Both are retired. The 98 had dropped the header's 12px **bottom** padding, and stating any of it as
+fixed contradicted the component's actual behaviour. Now published as the rule the owner gave:
+
+- **Page header = HUG**, derived as `sum(visible rows + 12px row gaps) + 24` (12 top + 12 bottom).
+  - with the search & filters row → `44 + 12 + 30 + 24` = **110**
+  - without it → `44 + 24` = **68**
+- **Data Container = HUG** (`page-header + middle matter`). The demo page's `tab 50 + data 400 +
+  page-info 136 = 586` is now published as a **measured sample, not a constraint**.
+- Ruling recorded in `page-header.json` (→ **1.3.0**), `page-layout-patterns.json/.md` and
+  `page-setup.md`, so it binds rather than living in prose.
+
+### Added — proposal for the missing control-height tokens
+`docs/PROPOSAL-control-height-tokens.md`. `control/height-default` (30) and `control/height-compact`
+(24) are bound in Figma but exist in **no** exported collection — verified across all 7 collections.
+Seven contracts flag the gap independently and the kit hard-codes the literals in 12+ places across
+4 stylesheets. Recommendation: they belong in **Agency › Density Modes** (which already holds the
+density-sensitive font/line-height/spacing family), and the fix is an export refresh, not a new
+value. **No token added and nothing bound — awaiting Singh's ruling.**
+
+---
+
+## [3.6.0] — 2026-09-11
+
+Owner-flagged naming correction — and the real defect hiding behind it.
+
+### Fixed — the repo was shipping the WRONG primary-field height
+`field-type-1.json` was marked "superseded" on 2026-09-10 but **never received the corrected
+numbers**, so the repo's only machine-readable geometry for the view-mode field stayed at the
+2026-08-24 value of **62px** while the live Figma component is **66px** (header row 26 → 30).
+There was no live contract for `form-field-primary` at all — the correct measurement existed only
+in CHANGELOG prose and the local gallery. Anything built from the repo was 4px short.
+**`form-field-primary.json` is now a live 2.0.0 contract** with the measured 66px, all 7 state
+token bindings, and the two defects Figma has since resolved (required/help icons now exist via the
+real `field-header-primary`; `field/bg-disabled` now bound). Independently corroborated by
+Antigravity's V4b live re-measurement the same day.
+
+### Changed — contract names now match Figma
+The "Fields type 1 / 2 / 3" vocabulary was legacy repo naming that never followed Figma's rename:
+
+| was | now | Figma node |
+|---|---|---|
+| `field-type-1.*` | `form-field-primary.*` | `26938:65997` |
+| `field-type-2.*` | `form-field-secondary.*` | `27062:7663` |
+| `field-type-3.*` | `form-field-tertiary.*` | `27395:30147` |
+
+Every cross-reference updated: both mapping registries, the family index, the components README,
+DS-REFERENCE, the patterns, and the local gallery registry. The superseded 62px measurement is kept
+for provenance at `form-field-primary-2026-08-24-historical.md` behind a do-not-build banner.
+
+---
+
+## [3.5.1] — 2026-09-10 (self-audit pass)
+
+A 5-dimension consistency audit (node-ids · arithmetic/markers · token names · patterns-vs-shell ·
+governance docs) ran across the whole repo, every finding adversarially re-derived before being
+trusted (one dimension's verification pass ran out of budget mid-run — its raw findings are listed
+below without a second confirmation, marked accordingly). 15 confirmed defects; fixed the safe
+ones, flagged the two that need a decision rather than guessing one.
+
+### Fixed
+- **Dead CSS variables in 4 contracts:** `tabs.json`, `profile-side-navigation.json`,
+  `column-arrangement.json` referenced `--rounded` / `--rounded-full`, which do not exist in the
+  shipped kit — the kit was renamed to `--border-radius-rounded*` during KIT-01 (2026-09-02) and
+  these contracts were never updated. Corrected to the real names, verified against
+  `Universal Html Rules/02-components/*.css` and the generated token layer.
+- **table.json's own divergence note was inverted** — it claimed `--border-radius-rounded-none`
+  was undefined and `--rounded`/`--rounded-xl` were correct; it was the other way round (stale
+  since before KIT-01). Corrected with the live evidence.
+- **Wrong variable-authority path in 3 files:** `AI_CONTEXT.md`, `GUARDRAILS.md`, `README.md` all
+  pointed at `/Users/netsmartz/Documents/Variables`, which has not existed since the 2026-08-24
+  move to `/Users/netsmartz/Documents/Design-System/Variables`. Any tool trusting the stated
+  authority path literally could not have found the exports. Fixed in all three.
+- **Root index missing Button entirely** (published, in the portal mapping, contract exists) —
+  added. Also added the previously-unmapped `27232:65797` ("pageheader component") node and noted
+  the page-header naming split (root said "page-header", every contract says "complete header").
+- **Column trigger variant count wrong** in the root index (said 4, contract says Figma reports
+  6) — corrected with a note.
+- **field-input / "Field Atoms (shared)" node-id collision** — the portal mapping's Field Atoms
+  row used field-input's own node id (27062:8145) as if it represented the whole 4-atom family;
+  the family has no single container node. Added `atomNodeIds` listing all four so the row
+  resolves correctly instead of silently hiding 3 of the 4 atoms.
+- **Portal mapping's own entry/null counts were wrong** (said 15/13, file actually has 16/14) —
+  corrected in the file's `$note` and in this CHANGELOG's own 3.5.0 entry above.
+- **`COMPONENT-MAPPING-CONTRACT.md` contradicted the registry it governs** — it required every
+  record to carry a verified component key and rejected `null`/placeholder values outright, with
+  no provision for the Plugin-API-only limitation this session hit. Added an explicit amendment
+  permitting a documented PENDING state pre-pilot.
+- **Version drift:** README (`v3.0.0`) and DS-REFERENCE (`3.0.0`) both lagged the actual latest
+  release; both bumped to track this file.
+
+### Flagged, not guessed (need a decision, not a fix)
+- **`portals/agency/patterns/page-setup.md`'s page-header height (98) contradicts the
+  contract-measured 110** (`page-header.json`, `page-layout-patterns.json` both say 110 for the
+  same node) — the 98 looks like a dropped 12px bottom-padding term, but page-setup.md's own
+  header says it is "ratification pending (visual sign-off)" and the error cascades into its Data
+  Container/content-stack sums. Rewriting cascading arithmetic without Singh's sign-off risks
+  compounding the error — needs a live re-check, not a silent patch.
+- **`control/height-default` and `control/height-compact`** are bound in 3 contracts
+  (column-arrangement.json, profile-side-navigation.json, page-header.json) but exist in **no**
+  export, no generated token file, anywhere — not a naming mismatch, the token itself appears
+  fabricated or the export is missing it. Needs Singh/Figma-AI to confirm which.
+- Arithmetic-markers dimension's raw findings (contract internal math + marker discipline) did
+  not get a second adversarial pass — the verify agents ran out of session budget. Nothing from
+  that batch was applied; treat it as reported-not-confirmed until re-run.
+
+---
+
 ## [3.5.0] — 2026-09-10 (evening)
 
 Five Figma-AI tickets executed in their stated order (C360-47325 + 47326 → 47328 → 47327 → 47329), plus the C360-47183 afternoon comments synced. **Every Figma claim was validated live before it entered a contract** — the afternoon Figma-side changes are real (typography 10/14→12/16 on all field messages, new `comments` type, header-tertiary min 200/max 400, form-section-header rebuilt at 64px); three claims failed validation and are recorded as corrections (a "light blue" section-header fill that is actually `surface/tertiary`; the comments variant's copy-pasted Figma description; the purple Change info-chip surface being un-bound — new defect **F-016**).
@@ -19,7 +206,7 @@ Five Figma-AI tickets executed in their stated order (C360-47325 + 47326 → 473
 
 ### Changed
 - **form-fields → 2.0.0 (family INDEX)** — detail moved into the four member contracts; index keeps hierarchy, the export-verified token chain, and the drift log. field-type-1 banner now routes to all four.
-- **Portal `component-mapping.json` 2 → 15 entries** (C360-47328) — every nodeId grounded (contract-measured or existence-probed live). `componentKey` for 13 entries is **null/PENDING**: Figma's 40-hex component keys are Plugin-API-only — enumeration requested from Figma-AI; no keys were invented.
+- **Portal `component-mapping.json` 2 → 16 entries** (C360-47328; corrected from an earlier 15/13 miscount the same day — self-audit caught it) — every nodeId grounded (contract-measured or existence-probed live). `componentKey` for 14 entries is **null/PENDING**: Figma's 40-hex component keys are Plugin-API-only — enumeration requested from Figma-AI; no keys were invented.
 - **Root `components/component-mapping.json` regenerated as 3.0.0** (C360-47327) — the self-declared round-number IDs and wrong file key replaced by a grounded 10-section index (28 sets/components + 3 patterns + guideline frames), provenance noted per section. It indexes; the portal files stay authoritative.
 - **Guideline frames wired in** (C360-47329) — `figmaGuidelinesFrame` added to 9 existing contracts + a Guidelines section in each `.md` (all 11 frame ids existence-probed live). **DS-REFERENCE → 3.0.0**: token manifest ref corrected to `ds-tokens-v2.6.4.json` (v2.5.0 never existed), `semantic.text.primary` fixed (was "gray.00 / Disabled text"; is `neutral.800 #1E293B` / Primary text).
 

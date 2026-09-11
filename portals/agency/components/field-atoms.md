@@ -20,10 +20,10 @@ Fields/label 12/16 Medium `text/primary` + optional required marker (8×16 slot,
 
 ## field-header-primary `27388:28274` (atom, 358×30)
 Label cluster left (inset 8) + right icon rail: error 18 / help 18 / AI 18, gaps 4.
-Used only by form-field-primary ([field-type-1.md](./field-type-1.md)).
+Used only by form-field-primary ([form-field-primary.md](./form-field-primary.md)).
 
 ## field-input `27062:8145` (atom, 6 states)
-- Base variants 358×**34**; embedded at **30** in field-type-2, **34** in field-type-3.
+- Base variants 358×**34**; embedded at **30** in form-field-secondary, **34** in form-field-tertiary.
 - Text inset 8 (`spacing/md`); trailing 30×30 control slot ("Fields Toys"); radius **4** (`border-radius/rounded`).
 - Editable default border = `field/border-hard` #94A3B8; container/read-only border = `field/border-default` #E2E8F0.
 - States bind `field/bg-<state>` + `field/border-<state>` (danger pair = error state).

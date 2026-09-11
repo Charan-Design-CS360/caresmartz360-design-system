@@ -7,7 +7,7 @@
 2. Only `shared/primitives` is shared.
 3. Agency, Caregiver, Staff, and future portals own separate Layers 2–4.
 4. A portal must never import, alias, copy, or fall back to another portal.
-5. `/Users/netsmartz/Documents/Variables` is the only variable input authority.
+5. The owner-maintained export folder is the only variable input authority. Its location is configured by `DS_VARIABLE_SOURCE_DIR` (the design owner's local `Design-System/Variables`); never hard-code a machine path.
 6. GitHub publishes reviewed exact copies; Jira records evidence and status.
 7. No AI tool may guess, synthesize, rename, or silently repair variable data.
 

@@ -1,9 +1,9 @@
 {
   "$schema": "../../../schemas/component-contract.schema.json",
   "$meta": {
-    "component": "Fields type 2 (SECONDARY — edit mode)",
+    "component": "form-field-secondary (SECONDARY — edit mode)",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaComponentSetNodeId": "27062:7663",
@@ -14,10 +14,11 @@
     "jiraSource": "C360-47325",
     "familyIndex": "./form-fields.json",
     "atomsContract": "./field-atoms.json",
-    "humanContract": "./field-type-2.md"
+    "humanContract": "./form-field-secondary.md",
+    "renamedFrom": "field-type-2.json — renamed 2026-09-11 to match the live Figma component name; the 'type 1/2/3' vocabulary was legacy repo naming."
   },
 
-  "purpose": "Complete EDIT-mode field: popups, forms, modals. Header + bordered input + message row on validation states. The counterpart of field-type-1 (view mode) and field-type-3 (settings).",
+  "purpose": "Complete EDIT-mode field: popups, forms, modals. Header + bordered input + message row on validation states. The counterpart of form-field-primary (view mode) and form-field-tertiary (settings).",
 
   "variantAxis": { "name": "state", "count": 6, "values": ["default", "focus", "error", "success", "warning", "disabled"] },
   "variantNodes": { "default": "27062:7664", "focus": "27062:7669", "error": "27062:7674", "success": "27062:7679", "warning": "27062:7684", "disabled": "27062:7689" },

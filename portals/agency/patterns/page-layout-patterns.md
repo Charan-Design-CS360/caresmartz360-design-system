@@ -26,7 +26,7 @@ Matter**, the only region that changes.
 | Node | `27337:73093` | `27401:30856` | `27401:31504` |
 | Nav state | **collapsed 48** | expanded 158 | expanded 158 |
 | Shell / page width | 1392 / 1152 | 1282 / 1042 | 1282 / 1042 |
-| Page header | **110** (with filter toolbar) | 68 | 68 |
+| Page header (**HUG**) | **110** (with filter toolbar) | 68 | 68 |
 | Middle Matter | table: 34 header + 30 rows (step 29, shared 1px border), 200 columns, 330 actions column | `empty states` 800×154, inset 12 | 12× `form-field-primary` in a 4×3 grid, cells **254.5×66**, inset 12, no gaps |
 | Footer | page-info 136 (message 800×112) | — | — |
 | Use case | records/schedules/lists with inline editing | first-run, empty results | demographics, read-first detail |

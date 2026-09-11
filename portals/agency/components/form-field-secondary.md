@@ -2,8 +2,8 @@
 =============================================================================
 COMPONENT CONTRACT — Fields type 2 / SECONDARY (Agency portal)
 The EDIT-mode form field: header + bordered input + validation message.
-Measured LIVE 2026-09-10. Machine contract: ./field-type-2.json.
-Family: field-type-1 (view) · field-type-2 (edit) · field-type-3 (settings).
+Measured LIVE 2026-09-10. Machine contract: ./form-field-secondary.json.
+Family: form-field-primary (view) · form-field-secondary (edit) · form-field-tertiary (settings).
 CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47325
 =============================================================================
 -->
@@ -14,8 +14,8 @@ Jira: **C360-47325** · set `27062:7663` · atoms in [field-atoms.md](./field-at
 index [form-fields.md](./form-fields.md) · guidelines `27401:30526`.
 
 **Purpose:** the editable field for popups, forms and modals — label above a bordered input,
-message row on validation states. View-mode counterpart: [field-type-1](./field-type-1.md);
-settings counterpart: [field-type-3](./field-type-3.md).
+message row on validation states. View-mode counterpart: [form-field-primary](./form-field-primary.md);
+settings counterpart: [form-field-tertiary](./form-field-tertiary.md).
 
 ## Measured geometry (2026-09-10)
 

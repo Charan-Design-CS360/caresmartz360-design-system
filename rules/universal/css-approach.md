@@ -102,7 +102,7 @@ quoted evidence — never as a value to use.
 - **Assertion:** every `--token` defined in `:root` maps to a real token name in the portal's variables export.
 - **How a script tests it:** parse each `--x-y-z` back to `x/y-z` candidates; each must appear in the export's name list (for Agency: the 263-name list, SPEC-07 §C.3). Report the unmatched set.
 - **Severity:** BLOCK
-- **Authority note:** names validate against the **variables export, never the pinned commit** — the pinned `fc7de14` is missing 12 exported names including `field/border-hard`, the very token the live Figma binds to the input border. See **CONTRADICTIONS S2** (RULED) and SPEC-07 §C.4 (TC-1). The export lives at `/Users/netsmartz/Documents/Design-System/Variables` (Singh's recorded canonical location, memory `design-system-variables-source`, 2026-08-03).
+- **Authority note:** names validate against the **variables export, never the pinned commit** — the pinned `fc7de14` is missing 12 exported names including `field/border-hard`, the very token the live Figma binds to the input border. See **CONTRADICTIONS S2** (RULED) and SPEC-07 §C.4 (TC-1). The export lives in the owner's export folder, located via `DS_VARIABLE_SOURCE_DIR` (Singh's recorded canonical location, 2026-08-03).
 - **Source:** SPEC-07 §G.1 UIG-005 (L797); SPEC-07 §C.2 rule 2; §C.4 recommendation (L570-572).
 
 ### UIG-006 — namespace whitelist

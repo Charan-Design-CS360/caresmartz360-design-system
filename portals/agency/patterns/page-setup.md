@@ -25,7 +25,7 @@ published components and the grid below, taken from the repo.
 │  48      │ ├──────────────┬────────────────────────────────────────────┤ │
 │  or 158  │ │ PROFILE nav  │ PAGE CONTENT (1152)                         │ │
 │  (full   │ │ (grey) 240   │  ├ Tab Container      (50h)                 │ │
-│  height) │ │              │  ├ Data Container      (Header 98 + Table)  │ │
+│  height) │ │              │  ├ Data Container      (Header HUG + Table) │ │
 │          │ │              │  └ Page Info           (messages)           │ │
 │          │ │              │                                             │ │
 │          │ └──────────────┴────────────────────────────────────────────┘ │
@@ -34,7 +34,7 @@ published components and the grid below, taken from the repo.
 ```
 
 **Horizontal (@1440):** `primary 48 + shell 1392 = 1440`; inside the body, `profile 240 + content 1152 = 1392`.
-**Vertical (@900):** `global header 52 + body 848 = 900`; content stack `tab 50 + data 214 + page-info 136 = 400` (page height fills below).
+**Vertical (@900):** `global header 52 + body 848 = 900`. Inside page content the blocks **HUG their content** — they are not fixed heights. Measured instance, the data-table demo page (`27337:73093`, live 2026-09-10): `tab 50 + data container 400 + page info 136 = 586`, where the data container is itself `page-header 110 + middle matter 290`. **Treat those as one sample, not as constraints** — a header with no filter toolbar hugs to 68, and the middle matter grows with its rows.
 
 - **Primary side nav** is OUTERMOST and **full height** (left of everything, incl. the header). 48 collapsed / 158 expanded.
 - **Global header** (52) spans the **shell** width only (right of the primary nav), above the body.
@@ -60,8 +60,11 @@ The header's two rows are **12px** apart; the table's cells follow the table con
 
 ## 4. The Data Container + table
 
-- **Data Container (214)** = **Header complete (98)** + **Middle Matter / table (116)**.
-- Header complete (98) = header row (44) + 12px gap + search & filters row (30), inside the 12px gutter — this is the `completeHeader` molecule (page-header.json).
+- **Data Container = HUG** — it is `page-header (hug) + middle matter (hug)`. **Owner ruling, Singh 2026-09-11: the page header is HUG (auto height), never fixed.** Do not hard-code either block.
+- **Header complete = HUG**, derived as `sum(visible rows + 12px row gaps) + 24` (12 top + 12 bottom padding). This is the `completeHeader` molecule (page-header.json). The two shipped shapes:
+  - **with** the search & filters row → `44 + 12 + 30 + 24` = **110** (live on `27232:65833` and the data-table demo page).
+  - **without** it → `44 + 24` = **68** (live on the empty-state and form-grid pattern pages).
+- ⚠️ **Correction 2026-09-11:** this section previously published a fixed **98** for the complete header and a fixed `Data Container 214 = 98 + 116`. The 98 dropped the header's 12px *bottom* padding, and stating either as fixed contradicted the hug behaviour. Replaced by the formulas above; live values are 110 (with toolbar) / 68 (without).
 - The **search & filters row (30)** = Nav Search (140) + Filters group [dropdown 158 · toggle 118 · checkbox 112 · Apply · Reset, 4px apart] on the left, and the **Columns** trigger pinned right. The filter pills are the `filters.*` component (Filter atom → Search & Filters row → complete header); the Columns trigger is `column-arrangement.*`.
 - The table is **frozen-left + scrollable middle + frozen-right** — the shipped table rule (CS-TBL-13: first & last columns frozen, middle scrolls). Header row 34, data rows 30 (adjacent cells share their 1px border). **Sample widths on the demo page as of 2026-09-08 (live Figma):** frozen-left `table_column` **200** @ the 12px gutter · scrollable `sample-layout_table` **598** (3 × 200) · frozen-right `Table/Master Actions` **330** (History + Edit per row) = 1128 + 24 gutter = 1152. *(Measured 2026-09-04 as 115 / 953 / 60 — the Figma-AI lane re-laid the sample table between 4 and 7 Sep; the rule did not change, only the sample.)*
 

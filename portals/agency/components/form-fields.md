@@ -20,13 +20,15 @@ re-verification after same-day Figma changes).
 | Purpose | **view/display** | **edit/input** | **settings/config** |
 | Context | grids, tables, lists | popups, forms, modals | settings panels |
 | Height | 66 | 56 / 76 with message | 112 at rest (HUG) |
-| Contract | [field-type-1.md](./field-type-1.md)¹ | [field-type-2.md](./field-type-2.md) | [field-type-3.md](./field-type-3.md) |
+| Contract | [form-field-primary.md](./form-field-primary.md)¹ | [form-field-secondary.md](./form-field-secondary.md) | [form-field-tertiary.md](./form-field-tertiary.md) |
 
 **Shared atoms** (field-label, field-header-primary, field-input, field-message incl. the new
 `comments` type): [field-atoms.md](./field-atoms.md).
 
-¹ field-type-1 is the 2026-08-24 historical record with a drift banner; the live component
-(`form-field-primary`, 7 states, 360×66) is re-verified in CHANGELOG 3.4.0 and the local gallery.
+¹ **2.0.0 as of 2026-09-11** — a live contract carrying the measured **66px** (7 states, 360×66).
+Until then the repo shipped only the superseded **62px** record under the old `field-type-1` name;
+that record is kept for provenance at
+[form-field-primary-2026-08-24-historical.md](./form-field-primary-2026-08-24-historical.md).
 
 ## Hierarchy
 
@@ -45,7 +47,7 @@ Fields/header-large 16/24 M · Body/small 12/16 · Body/micro 10/14 (Size=S desc
 ## Drift log
 
 1. **Pre-2026-09-10:** field-set-type1 → form-field-primary (62→66, real header with
-   required/help/AI, disabled bg bound) — three 1.0.0 defects resolved. See field-type-1 banner.
+   required/help/AI, disabled bg bound) — three 1.0.0 defects resolved. See the form-field-primary 2.0.0 banner.
 2. **2026-09-10 afternoon:** field-message 10/14 → **12/16**, all variants 20h, new
    **type=comments**; field-header-tertiary min 200/max 400 (400w, 82/88/92);
    form-field-tertiary 1036×112; form-section-header rebuilt 80→**64**. All re-measured live the

@@ -2,7 +2,7 @@
 
 ## Authority rule
 
-The owner-maintained exports in `/Users/netsmartz/Documents/Variables` are the
+The owner-maintained exports (located via `DS_VARIABLE_SOURCE_DIR`) are the
 only input authority for primitive and semantic variable values. AI tools must
 not query Figma to infer or correct variable values.
 

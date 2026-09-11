@@ -1,8 +1,8 @@
-# CareSmartz360 Design System (v3.0.0)
+# CareSmartz360 Design System (v3.5.0)
 
 Reviewed, versioned delivery source for the CareSmartz360 design system. Its
 variable input authority is the owner-maintained export folder
-`/Users/netsmartz/Documents/Variables`; exact copies and checksums are published
+set by `DS_VARIABLE_SOURCE_DIR` (default: the design owner's local `Design-System/Variables`); exact copies and checksums are published
 here for Angular, React Native, and other consumers.
 
 ---

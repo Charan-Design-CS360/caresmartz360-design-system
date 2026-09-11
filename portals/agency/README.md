@@ -13,7 +13,7 @@ Layers 2–4; it must never depend on Caregiver or Staff artifacts.
 | **Logical total** | **251** |  |  |
 
 These JSON files are exact members of the owner-maintained archives under
-`/Users/netsmartz/Documents/Variables/Agency`. Their checksums are recorded in
+the owner's export folder under `Agency/` (`DS_VARIABLE_SOURCE_DIR`). Their checksums are recorded in
 `config/variable-export-manifest.json`.
 
 ## AI routing rule
