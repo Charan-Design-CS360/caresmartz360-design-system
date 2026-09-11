@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [3.7.0] — 2026-09-11 (shareable-repo pass)
+
+Prepared the repo to be handed to other team members. One of the checks found a gate that had been
+silently not doing its job.
+
+### Fixed — `verify:variables` was running blind
+`scripts/verify-owner-variable-exports.mjs` still defaulted to `…/Documents/Variables`, the path
+**abandoned in the 2026-08-24 move**. The sync script was corrected on 2026-09-09; the verify script
+never was. Consequence: the gate fell back to `verificationMode: "manifest-only"` — checking the
+committed token files against **their own recorded hashes** (circular) instead of against the owner's
+real exports. **Drift between Figma exports and the published repo could not have been caught by the
+gate.** It now runs in `authority-and-manifest` mode.
+
+**Result of the first real run:** all **15 token artifacts are byte-identical** across export → repo →
+manifest. **No token drift** — the published tokens were correct all along; the gate simply wasn't
+proving it. Six `.zip` **archive** hashes differed (zip wrappers are not byte-reproducible — re-saving
+identical content yields different bytes); those were recomputed from the real files. Content hashes
+were untouched.
+
+### Fixed — stale + duplicated authority paths
+- `config/variable-export-manifest.json` recorded the **old** `sourceFolder`; corrected.
+- `sync-owner-variable-exports.mjs` carried a **second** hard-coded path literal that could drift from
+  the first; it now records the resolved `sourceRoot`.
+
+### Changed — repo is portable for other contributors
+The repo is **public**, and 16 files told every reader that the variable authority lives at a path on
+one person's laptop — meaningless to anyone else. Twelve documentation files now reference the
+**`DS_VARIABLE_SOURCE_DIR`** environment variable instead (the scripts already supported it). The
+scripts keep a working local default so nothing breaks; CHANGELOG history is left intact as the record.
+
+### Verified for sharing
+Deterministic scan for credential patterns across `origin/main`: **no keys, tokens, `.env` files or
+private keys**. Two scanner hits were false positives — `"token":` matches are design tokens
+(`spacing/md`), and `sk-` matched inside `--status-ta`**`sk-`**`completed`.
+
+---
+
 ## [3.6.2] — 2026-09-11 (control-height binding, prepared)
 
 Singh approved **Option A** and asked for the details to be double-checked against the locally saved

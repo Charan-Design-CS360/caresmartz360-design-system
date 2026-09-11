@@ -17,7 +17,7 @@ Templates must not reference another portal.
 
 ## Authority and evidence
 
-- Owner-maintained exports in `/Users/netsmartz/Documents/Variables` are the
+- Owner-maintained exports (located via `DS_VARIABLE_SOURCE_DIR`) are the
   only input authority for primitive and semantic variable values.
 - Figma evidence remains applicable to visual designs, components, and patterns;
   AI tools do not query it for variable truth.

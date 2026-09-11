@@ -120,7 +120,7 @@ const manifest = {
   schemaVersion: 1,
   authority: {
     input: "Owner-maintained exports downloaded from Figma",
-    sourceFolder: "/Users/netsmartz/Documents/Design-System/Variables",
+    sourceFolder: sourceRoot,
     comparisonRule: "Repository variable files must byte-match the listed source members.",
     figmaQueryRequired: false,
   },

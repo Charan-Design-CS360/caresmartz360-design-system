@@ -142,7 +142,7 @@ logged, those lines stand and remain cited as sources below.
   a portal prefix like `--agency-`.
 - **Assertion:** every `--token` defined in `:root` (or `[data-theme]`) maps, by the
   slash→hyphen transform, to a real variable name in the owner-downloaded export
-  (`/Users/netsmartz/Documents/Design-System/Variables`); no legacy portal prefixes.
+  (the owner's export folder, `DS_VARIABLE_SOURCE_DIR`); no legacy portal prefixes.
   The source states it as (SPEC-07 §C.2 rule 4, L498–501, verbatim): Agency
   `group/name` → `--group-name` (`field/border-default` → `--field-border-default`;
   `spacing/lg` → `--spacing-lg`; `border-radius/rounded` → `--border-radius-rounded`) —

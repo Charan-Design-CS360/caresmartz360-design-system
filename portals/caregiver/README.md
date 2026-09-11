@@ -14,7 +14,7 @@ Staff artifacts.
 | **Logical total** | **171** |  |  |
 
 These JSON files are exact members of the owner-maintained archives under
-`/Users/netsmartz/Documents/Variables/Caregiver`. Their checksums are recorded
+the owner's export folder under `Caregiver/` (`DS_VARIABLE_SOURCE_DIR`). Their checksums are recorded
 in `config/variable-export-manifest.json`.
 
 ## AI routing rule

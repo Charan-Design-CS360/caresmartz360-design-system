@@ -8,7 +8,7 @@ const root = path.resolve(
   process.env.DS_REPOSITORY_ROOT ?? path.join(path.dirname(fileURLToPath(import.meta.url)), ".."),
 );
 const sourceRoot = path.resolve(
-  process.env.DS_VARIABLE_SOURCE_DIR ?? "/Users/netsmartz/Documents/Variables",
+  process.env.DS_VARIABLE_SOURCE_DIR ?? "/Users/netsmartz/Documents/Design-System/Variables",
 );
 const manifest = JSON.parse(
   fs.readFileSync(path.join(root, "config", "variable-export-manifest.json"), "utf8"),

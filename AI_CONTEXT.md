@@ -5,7 +5,7 @@ changing variables. There is no portal fallback and no permission to guess.
 
 ## Authority
 
-- `/Users/netsmartz/Documents/Design-System/Variables` is the only variable input authority (corrected 2026-09-10 — the folder moved 2026-08-24; this line still pointed at the pre-move path, which does not exist).
+- The **owner-maintained export folder** is the only variable input authority. Its path is configured by the `DS_VARIABLE_SOURCE_DIR` environment variable (default: the design owner's local `Design-System/Variables`). Never hard-code a machine path — it differs per contributor.
   It contains owner-maintained exports downloaded from Figma.
 - Published delivery authority: reviewed GitHub artifacts and
   `config/variable-export-manifest.json`.

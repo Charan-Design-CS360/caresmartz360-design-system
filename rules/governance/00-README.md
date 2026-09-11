@@ -18,7 +18,7 @@ CareSmartz360: how classes are named, which CSS approach each portal follows, ho
 iconography works, how typography works, plus the anatomy of the **basic shared
 components** (buttons, table cell structure, checkbox, radio, dropdown, tags/chips…).
 
-It sits at document level beside `/Users/netsmartz/Documents/Design-System/Variables` — deliberately
+It sits at document level beside the owner's Variables export folder — deliberately
 outside any feature or workspace folder — for the same reason Variables does: so every
 project reads one copy instead of restating its own.
 
@@ -44,7 +44,7 @@ project reads one copy instead of restating its own.
 3. Figma-vs-GitHub conflicts are not resolved here — they go to Figma AI on Jira
    (design-system epic C360-3526 routing).
 
-For variable **values**, the input authority is `/Users/netsmartz/Documents/Design-System/Variables`
+For variable **values**, the input authority is the owner's export folder (`DS_VARIABLE_SOURCE_DIR`)
 (owner-downloaded exports) and the delivery authority is the GitHub design-system repo —
 per the epic's own authority block. This folder never states token values; it states which
 tokens to bind and how.

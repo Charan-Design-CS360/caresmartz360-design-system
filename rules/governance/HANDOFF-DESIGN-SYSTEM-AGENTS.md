@@ -135,7 +135,7 @@ Registered as Q6 in `Wound Management/02-Conflicts/OPEN-QUERIES.json`.
   `poc-design-system`) share a near-identical `src/styles` tree; only the poc copy has the
   working `tools/check-token-contract.mjs`. `SYSTEM-FILE-MANIFEST.md:50` already logs this as an
   open §20 single-clone violation.
-- **Universal Html Rules** (`/Users/netsmartz/Universal Html Rules/` — document level) is
+- **Universal Html Rules** (the owner's local document-level kit folder) is
   scaffolded: the 8 mandatory rules transcribed from epic C360-3526, CONTRADICTIONS (C1–C10 +
   S1–S11), OPEN register (O-1…O-18), RULE-FLAGS (F-001…F-006), EXCEPTIONS (EX-001…003), and six
   rule files in `01-universal/`. **Four of those six are written but UNVERIFIED** — their
