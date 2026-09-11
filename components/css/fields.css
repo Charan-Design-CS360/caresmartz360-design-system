@@ -235,7 +235,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: var(--control-height-default);                                 /* bare literal in Figma, no token exists — Compact=Yes */
+  height: var(--control-height-default);                                 /* control/height-default — bound 2026-09-11, Compact=Yes */
   padding-left: var(--spacing-md);              /* 8 */
   padding-right: var(--spacing-none);           /* 0 — flush */
   padding-block: var(--spacing-none);           /* 0 */
