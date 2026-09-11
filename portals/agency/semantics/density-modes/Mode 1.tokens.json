@@ -357,6 +357,40 @@
       }
     }
   },
+  "control": {
+    "height-default": {
+      "$type": "number",
+      "$value": 30,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27211:1279",
+        "com.figma.scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:a03647502ff906436a68d631e30c7e7222268328/-1:-1",
+          "targetVariableName": "size/size-30",
+          "targetVariableSetId": "VariableCollectionId:32dfadab8f244061b59e1106ce6390563d70244e/-1:-1",
+          "targetVariableSetName": "General"
+        }
+      }
+    },
+    "height-compact": {
+      "$type": "number",
+      "$value": 24,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:27211:1280",
+        "com.figma.scopes": [
+          "WIDTH_HEIGHT"
+        ],
+        "com.figma.aliasData": {
+          "targetVariableId": "VariableID:2ef0b63a6b1ec078ccd9cc33d73cfd0d993e4875/-1:-1",
+          "targetVariableName": "size/size-24",
+          "targetVariableSetId": "VariableCollectionId:32dfadab8f244061b59e1106ce6390563d70244e/-1:-1",
+          "targetVariableSetName": "General"
+        }
+      }
+    }
+  },
   "$extensions": {
     "com.figma.modeName": "Mode 1"
   }

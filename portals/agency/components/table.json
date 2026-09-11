@@ -4,7 +4,12 @@
     "component": "Table — head cell & data cell",
     "portal": "agency",
     "contractVersion": "3.0.0",
-    "figmaGuidelinesFrame": { "nodeId": "27382:20152", "name": "table — Component Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20152", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
+    "figmaGuidelinesFrame": {
+      "nodeId": "27382:20152",
+      "name": "table — Component Guidelines",
+      "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20152",
+      "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read"
+    },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP never reports a file key. Taken from portals/agency/portal-manifest.json and the URL supplied by the design owner.",
     "figmaSectionNodeId": "26955:66556",
@@ -61,7 +66,8 @@
       "CORRECTED 2026-09-10 (Figma-AI ticket batch audit): this entry previously claimed the opposite of reality — it said var(--border-radius-rounded-none) was undefined and that --rounded/--rounded-xl were the repo's real names. Re-checked live against Universal Html Rules/02-components/*.css and catalog/styles/tokens.agency-light.css: the kit was renamed during KIT-01 (2026-09-02) to the canonical --border-radius-rounded* family, and that family IS what ships. --rounded/--rounded-xl/--rounded-full do NOT exist anywhere in the current kit or generated tokens. This contract's own border-radius (--border-radius-rounded-none) was always correct; the divergence note was stale documentation from before the KIT-01 rename and was never updated. Also corrected: tabs.json, profile-side-navigation.json, column-arrangement.json carried the same stale --rounded/--rounded-full cssVar names — all fixed to --border-radius-rounded / --border-radius-rounded-full the same day.",
       "Density: the ruled 8px padding binds spacing/md, which this repo re-values per density mode (6px compact, 12px comfortable), so TBL-R2's 8px holds only at default density. And swapping type from font-size/body-base to the MEASURED font-size/caption made the table density-invariant, because caption is re-valued by no density mode. Both are unruled and going to the owner.",
       "Verification note, 2026-08-25: an adversarial review of the rewritten repo stylesheet raised 2 BLOCK findings, both about the height mechanism, and both were CONFIRMED by empirical measurement in headless Chrome rather than argument — see geometry.headCell.minHeight.alsoDeclare. Both are fixed in both stylesheets and in this contract. Partial coverage caveat: 7 of the 40 verification agents died on a session limit, all in the browser-correctness lens, so that lens's lower-severity findings were never independently judged."
-    ]
+    ],
+    "controlHeightTokenStatus": "RESOLVED 2026-09-11 — the owner exported control/height-default (30) and control/height-compact (24) into Agency Density Modes (aliased to size/size-30 / size/size-24 in Agency General). They are real tokens now; the 'absent from the export' caveat below is historical."
   },
   "anatomy": {
     "componentSets": [

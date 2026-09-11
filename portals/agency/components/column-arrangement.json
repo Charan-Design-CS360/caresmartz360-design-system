@@ -25,7 +25,8 @@
     },
     "readThisFirst": "Singh ruled on all four open questions from v1.0.0 the same day it was measured, and gave a standing instruction that applies to every future contract, not just this one: \"Make sure with every component you have complete behavioural and action related information and how it works, and what's the purpose of this component.\" Everything under `behavior` below exists because of that instruction. Two structural changes from v1.0.0: the stray ungrouped row is GONE — Singh confirmed it was a Figma authoring mistake and removed it live, re-verified directly against Figma (now hidden=true, not deleted, in the node tree). And the frozen-column behavior is NOT a new concept — it is [CS-TBL-13] from Universal Html Rules/02-components/table.css, ruled by Singh on 2026-08-26 and already shipped and tested in Wound Management, applied here through this picker's own mechanism: whichever column a user drags to position 1 in the 'Selected columns' group becomes the table's frozen-left column.",
     "ruledOn": "2026-09-01",
-    "ruledBy": "Singh (design-system owner)"
+    "ruledBy": "Singh (design-system owner)",
+    "controlHeightTokenStatus": "RESOLVED 2026-09-11 — the owner exported control/height-default (30) and control/height-compact (24) into Agency Density Modes (aliased to size/size-30 / size/size-24 in Agency General). They are real tokens now; the 'absent from the export' caveat below is historical."
   },
   "anatomy": {
     "elements": [
@@ -108,20 +109,58 @@
       "resolvedHistory": "v1.0.0 recorded a stray ungrouped checkbox row above the first group heading, with its meaning unresolved. Singh, 2026-09-01: \"The top checkbox alongside the header is the one was by mistake, Removed now.\" Re-verified live the same day: the two Figma instances that formed it (27311:46260, 27311:46261) are now both hidden=true in the node tree — not deleted, just switched off. Do not build this row; do not re-open its purpose as an open question."
     }
   },
-
   "triggerButton": {
     "note": "The 'Column(s)' button that OPENS this panel — Figma 'Columns action button tigger' 10373:16081 (layer-name typo 'tigger'). It lives in a table's Search & Filters row (right side) and toggles the column-arrangement panel. MEASURED 2026-09-04 (Singh asked to add proper guidelines to the table column-settings design 27352:74681). NOT previously in this contract — added v2.1.0. It is the same field-style button shown as 'Client Columns (Finalized)' in the page-setup demo.",
-    "geometry": { "value": "field-style button, height 30 (control/height-default), min-height 30, inline padding spacing/md (8), gap spacing/sm (4), radius border-radius/rounded (4); label 'Column(s)' (Button/label = Inter Medium 12 / line-height 16) + a 20px 'toc' (list) icon on the right.", "marker": ["MEASURED"] },
+    "geometry": {
+      "value": "field-style button, height 30 (control/height-default), min-height 30, inline padding spacing/md (8), gap spacing/sm (4), radius border-radius/rounded (4); label 'Column(s)' (Button/label = Inter Medium 12 / line-height 16) + a 20px 'toc' (list) icon on the right.",
+      "marker": [
+        "MEASURED"
+      ]
+    },
     "states": {
-      "default":        { "bg": "field/bg-default (#fff)", "cssVarBg": "--field-bg-default", "border": "field/border-default (#e2e8f0)", "cssVarBorder": "--field-border-default", "text": "field/value-primary (#1e293b)", "cssVarText": "--field-value-primary", "marker": ["MEASURED"] },
-      "hover":          { "bg": "field/bg-focus (#f0f7ff, light blue)", "cssVarBg": "--field-bg-focus", "border": "field/border-default", "text": "field/value-primary", "marker": ["MEASURED"] },
-      "activeSelected": { "bg": "field/bg-focus (#f0f7ff)", "cssVarBg": "--field-bg-focus", "border": "field/border-focus (#0077ff, blue)", "cssVarBorder": "--field-border-focus", "text": "blue (field/border-focus / text/brand)", "marker": ["MEASURED"], "note": "The state WHILE the panel is OPEN — the button stays highlighted blue to show the panel it controls is active." },
-      "disabled":       { "value": "greyed, non-interactive (action/disabled family) — used when no columns are configurable for the table.", "marker": ["MEASURED"] }
+      "default": {
+        "bg": "field/bg-default (#fff)",
+        "cssVarBg": "--field-bg-default",
+        "border": "field/border-default (#e2e8f0)",
+        "cssVarBorder": "--field-border-default",
+        "text": "field/value-primary (#1e293b)",
+        "cssVarText": "--field-value-primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "hover": {
+        "bg": "field/bg-focus (#f0f7ff, light blue)",
+        "cssVarBg": "--field-bg-focus",
+        "border": "field/border-default",
+        "text": "field/value-primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "activeSelected": {
+        "bg": "field/bg-focus (#f0f7ff)",
+        "cssVarBg": "--field-bg-focus",
+        "border": "field/border-focus (#0077ff, blue)",
+        "cssVarBorder": "--field-border-focus",
+        "text": "blue (field/border-focus / text/brand)",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "The state WHILE the panel is OPEN — the button stays highlighted blue to show the panel it controls is active."
+      },
+      "disabled": {
+        "value": "greyed, non-interactive (action/disabled family) — used when no columns are configurable for the table.",
+        "marker": [
+          "MEASURED"
+        ]
+      }
     },
     "statesAxis": "State (Default / Hover / Active-Selected / disabled) × Open (False measured; Open=True is the panel-open case, which renders as Active/Selected). Figma reports 6 variants.",
-    "marker": ["MEASURED"]
+    "marker": [
+      "MEASURED"
+    ]
   },
-
   "geometry": {
     "panel": {
       "width": {
@@ -591,7 +630,10 @@
     "triggerButton": {
       "action": "Click the 'Column(s)' button (in the table's Search & Filters row).",
       "effect": "Opens this column-arrangement panel. While the panel is open the button stays highlighted (Active/Selected, blue border + blue text). Clicking it again — or Apply / Cancel / close — dismisses the panel and the button returns to Default. Disabled when the table has no configurable columns.",
-      "marker": ["MEASURED", "ASSUMED"],
+      "marker": [
+        "MEASURED",
+        "ASSUMED"
+      ],
       "note": "The open/dismiss trigger. The panel's own Apply/Cancel/close are documented below."
     },
     "searchField": {

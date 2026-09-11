@@ -4,7 +4,12 @@
     "component": "Profile Side Navigation — record sidebar (top actions + profile card + section nav)",
     "portal": "agency",
     "contractVersion": "1.1.0",
-    "figmaGuidelinesFrame": { "nodeId": "27382:21080", "name": "user profile side nav — Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21080", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
+    "figmaGuidelinesFrame": {
+      "nodeId": "27382:21080",
+      "name": "user profile side nav — Guidelines",
+      "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21080",
+      "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read"
+    },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Taken from the URLs Singh supplied (Design System Agency V2.0).",
     "figmaNodes": {
@@ -34,7 +39,8 @@
     },
     "readThisFirst": "This is a NEW global component finalized on Singh's 2026-09-03 request: 'we need to make a consistent global component for same so everywhere in the system we will use the same approach.' It is used as the left sidebar of a RECORD (Client, Caregiver, Staff, …): it shows who the record is and lets the user move between that record's sections. Singh ruled three scope points the same day — see the `RULED` markers on collapse (behavior.collapseExpand), the flat-list-with-header/divider-reserved-for-future (anatomy.navList), and single-or-multiple top actions (geometry.topActions). Per Singh's standing instruction on every contract — 'with every component you have complete behavioural and action related information and how it works, and what's the purpose' — the `behavior` and `purpose` blocks below are mandatory, not optional.",
     "ruledOn": "2026-09-03",
-    "ruledBy": "Singh (design-system owner)"
+    "ruledBy": "Singh (design-system owner)",
+    "controlHeightTokenStatus": "RESOLVED 2026-09-11 — the owner exported control/height-default (30) and control/height-compact (24) into Agency Density Modes (aliased to size/size-30 / size/size-24 in Agency General). They are real tokens now; the 'absent from the export' caveat below is historical."
   },
   "purpose": "The left sidebar of any record in the product. It answers two things at once: WHO this record is — photo, name, timezone, address, email, phone, date of birth, office, and a shortcut to their notes — and WHERE you can go within that record — a list of its sections (for a Client: Main Details, Schedule, Clinical Evaluation, Billing…; each item opens that whole section). It is ONE component reused for every record type so the profile-plus-section-nav experience is identical everywhere. It collapses to a thin avatar-only rail to give the content area more room, and re-opens on a tap.",
   "anatomy": {
@@ -48,7 +54,10 @@
     "topActions": {
       "role": "One or more icon actions for the record context. Measured instance: back (arrow_circle_left, filled circle) on the left, person_search (search users) on the right.",
       "countRule": "SINGLE or MULTIPLE — Singh, 2026-09-03: 'the top portion is the top actions which can be single or multiple.' Figma ships both a 'Single Action' and a '2 actions' variant.",
-      "marker": ["MEASURED", "RULED"]
+      "marker": [
+        "MEASURED",
+        "RULED"
+      ]
     },
     "userProfileCard": {
       "role": "Identity + contact + notes shortcut.",
@@ -59,123 +68,598 @@
       ],
       "linkRows": "Address, Email and Phone render as blue actionable links (text/links, text/brand). Date of birth and Office render as static grey text (text/secondary).",
       "expandedCollapsed": "Two variants: Expanded=Yes (full 240px card, 280px tall) and Expanded=No (collapsed 44px rail inside the card; in-context the whole panel is a 50px rail showing only a 40px avatar).",
-      "marker": ["MEASURED"]
+      "marker": [
+        "MEASURED"
+      ]
     },
     "navList": {
       "role": "The record's sections. Each item opens one whole section.",
       "arrangementRule": "FLAT list of Nav Items for v1. Singh, 2026-09-03: 'the list also supported separator and header, that is for future — if case will come I will apply.' So Nav Header and Nav Divider are SPECCED and kept ready, but not rendered by default.",
-      "marker": ["MEASURED", "RULED"]
+      "marker": [
+        "MEASURED",
+        "RULED"
+      ]
     },
     "composedFrom": [
-      { "name": "avartar_user", "nodeId": "5537:4593", "role": "user photo (43 variants across sizes/shapes/status)", "reuse": "EXISTING published atom — reference, do not redefine.", "marker": ["MEASURED"] },
-      { "name": "update_image (camera edit badge)", "nodeId": "10618:18947", "role": "edit-photo affordance on the avatar (18px / 12px glyph)", "reuse": "EXISTING published atom.", "marker": ["MEASURED"] },
-      { "name": "Button/Primary", "nodeId": "5703:7087", "role": "the View Notes button (48 variants)", "reuse": "EXISTING published atom — reference, do not redefine.", "marker": ["MEASURED"] },
-      { "name": "arrow_circle_left_black_24dp", "nodeId": "10661:18067", "role": "back action (24px filled circle)", "reuse": "EXISTING published icon.", "marker": ["MEASURED"] },
-      { "name": "person_search", "nodeId": "in top-actions 27325:70130", "role": "search-users action (24px)", "reuse": "Material Symbol Rounded.", "marker": ["MEASURED"] },
-      { "name": "Nav Item", "nodeId": "5847:7801", "role": "one section row, 3 states", "reuse": "EXISTING published component.", "marker": ["MEASURED"] },
-      { "name": "id_info icons", "nodeId": "location_on / alternate_email / call / cake / local_police (18px)", "role": "leading icons for the 5 contact rows", "reuse": "Material Symbols Rounded.", "marker": ["MEASURED"] }
+      {
+        "name": "avartar_user",
+        "nodeId": "5537:4593",
+        "role": "user photo (43 variants across sizes/shapes/status)",
+        "reuse": "EXISTING published atom — reference, do not redefine.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "update_image (camera edit badge)",
+        "nodeId": "10618:18947",
+        "role": "edit-photo affordance on the avatar (18px / 12px glyph)",
+        "reuse": "EXISTING published atom.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "Button/Primary",
+        "nodeId": "5703:7087",
+        "role": "the View Notes button (48 variants)",
+        "reuse": "EXISTING published atom — reference, do not redefine.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "arrow_circle_left_black_24dp",
+        "nodeId": "10661:18067",
+        "role": "back action (24px filled circle)",
+        "reuse": "EXISTING published icon.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "person_search",
+        "nodeId": "in top-actions 27325:70130",
+        "role": "search-users action (24px)",
+        "reuse": "Material Symbol Rounded.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "Nav Item",
+        "nodeId": "5847:7801",
+        "role": "one section row, 3 states",
+        "reuse": "EXISTING published component.",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      {
+        "name": "id_info icons",
+        "nodeId": "location_on / alternate_email / call / cake / local_police (18px)",
+        "role": "leading icons for the 5 contact rows",
+        "reuse": "Material Symbols Rounded.",
+        "marker": [
+          "MEASURED"
+        ]
+      }
     ]
   },
   "geometry": {
     "panel": {
-      "widthExpanded": { "value": 240, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "No responsive/breakpoint variant measured — see notVerified." },
-      "widthCollapsed": { "value": 50, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"], "note": "Collapsed rail. Card variant reports 44/50 depending on frame; in-context rail = 50." },
-      "display": { "value": "flex column", "marker": ["MEASURED"] },
-      "gapBetweenSections": { "value": 0, "unit": "px", "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"], "note": "Sections butt together; each owns its padding." },
-      "background": { "value": "#f8fafc", "token": "sidebar/secondary-bg", "cssVar": "--sidebar-secondary-bg", "marker": ["MEASURED"], "note": "Resolves in repo to var(--neutral-50), with dark/hc/warm variants — verified 2026-09-03." },
-      "border": { "value": "none", "marker": ["MEASURED"] }
+      "widthExpanded": {
+        "value": 240,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "No responsive/breakpoint variant measured — see notVerified."
+      },
+      "widthCollapsed": {
+        "value": 50,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ],
+        "note": "Collapsed rail. Card variant reports 44/50 depending on frame; in-context rail = 50."
+      },
+      "display": {
+        "value": "flex column",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gapBetweenSections": {
+        "value": 0,
+        "unit": "px",
+        "token": "spacing/none",
+        "cssVar": "--spacing-none",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Sections butt together; each owns its padding."
+      },
+      "background": {
+        "value": "#f8fafc",
+        "token": "sidebar/secondary-bg",
+        "cssVar": "--sidebar-secondary-bg",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "Resolves in repo to var(--neutral-50), with dark/hc/warm variants — verified 2026-09-03."
+      },
+      "border": {
+        "value": "none",
+        "marker": [
+          "MEASURED"
+        ]
+      }
     },
     "topActions": {
-      "height": { "value": 48, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
-      "padding": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
-      "gap": { "value": 4, "unit": "px", "token": "spacing/sm", "cssVar": "--spacing-sm", "marker": ["MEASURED"] },
-      "actionIcon": { "value": "24x24 Material Symbol Rounded", "colorToken": "icon/primary", "cssVar": "--icon-primary", "marker": ["MEASURED"] },
-      "layout": { "value": "leading action is flex-1 (pushes trailing actions to the right).", "marker": ["MEASURED"] }
+      "height": {
+        "value": 48,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ]
+      },
+      "padding": {
+        "value": 12,
+        "unit": "px",
+        "token": "spacing/lg",
+        "cssVar": "--spacing-lg",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gap": {
+        "value": 4,
+        "unit": "px",
+        "token": "spacing/sm",
+        "cssVar": "--spacing-sm",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "actionIcon": {
+        "value": "24x24 Material Symbol Rounded",
+        "colorToken": "icon/primary",
+        "cssVar": "--icon-primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "layout": {
+        "value": "leading action is flex-1 (pushes trailing actions to the right).",
+        "marker": [
+          "MEASURED"
+        ]
+      }
     },
     "card": {
-      "padding": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
-      "gapBetweenBlocks": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
-      "identityGap": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
-      "avatar": { "size": 70, "unit": "px", "radius": "border-radius/rounded-full", "cssVar": "--border-radius-rounded-full", "marker": ["MEASURED"] },
-      "avatarCollapsed": { "size": 40, "unit": "px", "marker": ["MEASURED"] },
-      "cameraBadge": { "size": 18, "glyph": 12, "background": "action/secondary/bg (#f0f7ff)", "cssVarBg": "--action-secondary-bg", "glyphColor": "action/secondary/text (#005ce6)", "cssVarColor": "--action-secondary-text", "position": "bottom-right of the avatar", "marker": ["MEASURED"] },
-      "name": { "style": "Heading/h5 — Inter Medium 16 / line-height 24 / letter-spacing -0.24", "colorToken": "text/primary", "cssVar": "--text-primary", "marker": ["MEASURED"] },
-      "timezone": { "style": "Fields/value — Inter Regular 12 / line-height 16", "colorToken": "text/secondary", "cssVar": "--text-secondary", "marker": ["MEASURED"] },
+      "padding": {
+        "value": 12,
+        "unit": "px",
+        "token": "spacing/lg",
+        "cssVar": "--spacing-lg",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gapBetweenBlocks": {
+        "value": 12,
+        "unit": "px",
+        "token": "spacing/lg",
+        "cssVar": "--spacing-lg",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "identityGap": {
+        "value": 12,
+        "unit": "px",
+        "token": "spacing/lg",
+        "cssVar": "--spacing-lg",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "avatar": {
+        "size": 70,
+        "unit": "px",
+        "radius": "border-radius/rounded-full",
+        "cssVar": "--border-radius-rounded-full",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "avatarCollapsed": {
+        "size": 40,
+        "unit": "px",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "cameraBadge": {
+        "size": 18,
+        "glyph": 12,
+        "background": "action/secondary/bg (#f0f7ff)",
+        "cssVarBg": "--action-secondary-bg",
+        "glyphColor": "action/secondary/text (#005ce6)",
+        "cssVarColor": "--action-secondary-text",
+        "position": "bottom-right of the avatar",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "name": {
+        "style": "Heading/h5 — Inter Medium 16 / line-height 24 / letter-spacing -0.24",
+        "colorToken": "text/primary",
+        "cssVar": "--text-primary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "timezone": {
+        "style": "Fields/value — Inter Regular 12 / line-height 16",
+        "colorToken": "text/secondary",
+        "cssVar": "--text-secondary",
+        "marker": [
+          "MEASURED"
+        ]
+      },
       "viewNotesButton": {
-        "background": "action/primary/bg (#0077ff)", "cssVarBg": "--action-primary-bg",
-        "label": "View Notes", "labelStyle": "Button/label — Inter Medium 12 / line-height 16", "labelColor": "action/primary/text-neutral (#ffffff)", "cssVarLabel": "--action-primary-text-neutral",
-        "minHeight": 24, "minHeightToken": "control/height-compact", "paddingInline": 12, "paddingInlineToken": "spacing/lg", "radius": 4, "radiusToken": "border-radius/rounded (--rounded)", "width": "full",
-        "marker": ["MEASURED"]
+        "background": "action/primary/bg (#0077ff)",
+        "cssVarBg": "--action-primary-bg",
+        "label": "View Notes",
+        "labelStyle": "Button/label — Inter Medium 12 / line-height 16",
+        "labelColor": "action/primary/text-neutral (#ffffff)",
+        "cssVarLabel": "--action-primary-text-neutral",
+        "minHeight": 24,
+        "minHeightToken": "control/height-compact",
+        "paddingInline": 12,
+        "paddingInlineToken": "spacing/lg",
+        "radius": 4,
+        "radiusToken": "border-radius/rounded (--rounded)",
+        "width": "full",
+        "marker": [
+          "MEASURED"
+        ]
       },
       "infoRows": {
-        "rowGap": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
-        "iconTextGap": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
-        "icon": { "value": "18x18 Material Symbol Rounded", "colorToken": "icon/soft (#475569)", "cssVar": "--icon-soft", "marker": ["MEASURED"] },
-        "valueStyle": { "value": "Fields/value — Inter Regular 12 / line-height 16", "marker": ["MEASURED"] },
+        "rowGap": {
+          "value": 8,
+          "unit": "px",
+          "token": "spacing/md",
+          "cssVar": "--spacing-md",
+          "marker": [
+            "MEASURED"
+          ]
+        },
+        "iconTextGap": {
+          "value": 8,
+          "unit": "px",
+          "token": "spacing/md",
+          "cssVar": "--spacing-md",
+          "marker": [
+            "MEASURED"
+          ]
+        },
+        "icon": {
+          "value": "18x18 Material Symbol Rounded",
+          "colorToken": "icon/soft (#475569)",
+          "cssVar": "--icon-soft",
+          "marker": [
+            "MEASURED"
+          ]
+        },
+        "valueStyle": {
+          "value": "Fields/value — Inter Regular 12 / line-height 16",
+          "marker": [
+            "MEASURED"
+          ]
+        },
         "rows": [
-          { "row": "Address", "icon": "location_on", "colorToken": "text/links (#0077ff)", "cssVar": "--text-links", "kind": "link (map)" },
-          { "row": "Email", "icon": "alternate_email", "colorToken": "text/links (#0077ff)", "cssVar": "--text-links", "kind": "link (mailto:)" },
-          { "row": "Phone", "icon": "call", "colorToken": "text/brand (#0077ff)", "cssVar": "--text-brand", "kind": "link (tel:)" },
-          { "row": "Date of birth", "icon": "cake", "colorToken": "text/secondary (#475569)", "cssVar": "--text-secondary", "kind": "static text" },
-          { "row": "Office", "icon": "local_police", "colorToken": "text/secondary (#475569)", "cssVar": "--text-secondary", "kind": "static text" }
+          {
+            "row": "Address",
+            "icon": "location_on",
+            "colorToken": "text/links (#0077ff)",
+            "cssVar": "--text-links",
+            "kind": "link (map)"
+          },
+          {
+            "row": "Email",
+            "icon": "alternate_email",
+            "colorToken": "text/links (#0077ff)",
+            "cssVar": "--text-links",
+            "kind": "link (mailto:)"
+          },
+          {
+            "row": "Phone",
+            "icon": "call",
+            "colorToken": "text/brand (#0077ff)",
+            "cssVar": "--text-brand",
+            "kind": "link (tel:)"
+          },
+          {
+            "row": "Date of birth",
+            "icon": "cake",
+            "colorToken": "text/secondary (#475569)",
+            "cssVar": "--text-secondary",
+            "kind": "static text"
+          },
+          {
+            "row": "Office",
+            "icon": "local_police",
+            "colorToken": "text/secondary (#475569)",
+            "cssVar": "--text-secondary",
+            "kind": "static text"
+          }
         ],
-        "marker": ["MEASURED"]
+        "marker": [
+          "MEASURED"
+        ]
       }
     },
     "navList": {
-      "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
-      "paddingBlock": { "value": 12, "unit": "px", "token": "spacing/lg", "cssVar": "--spacing-lg", "marker": ["MEASURED"] },
-      "gapBetweenItems": { "value": 2, "unit": "px", "token": "spacing/xs", "cssVar": "--spacing-xs", "marker": ["MEASURED"] },
-      "fill": { "value": "flex-1 (takes remaining height)", "marker": ["MEASURED"] },
-      "scroll": { "value": "overflow-y auto (ADDED — no max-height measured; a record can have many sections)", "marker": ["ASSUMED"] }
+      "paddingInline": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "paddingBlock": {
+        "value": 12,
+        "unit": "px",
+        "token": "spacing/lg",
+        "cssVar": "--spacing-lg",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gapBetweenItems": {
+        "value": 2,
+        "unit": "px",
+        "token": "spacing/xs",
+        "cssVar": "--spacing-xs",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "fill": {
+        "value": "flex-1 (takes remaining height)",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "scroll": {
+        "value": "overflow-y auto (ADDED — no max-height measured; a record can have many sections)",
+        "marker": [
+          "ASSUMED"
+        ]
+      }
     },
     "navItem": {
-      "minHeight": { "value": 30, "unit": "px", "token": null, "marker": ["MEASURED", "RAW"] },
-      "paddingInline": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"] },
-      "paddingBlock": { "value": 0, "unit": "px", "token": "spacing/none", "cssVar": "--spacing-none", "marker": ["MEASURED"] },
-      "gap": { "value": 8, "unit": "px", "token": "spacing/md", "cssVar": "--spacing-md", "marker": ["MEASURED"], "note": "icon↔label; icon optional (showIcon)." },
-      "radius": { "value": 4, "unit": "px", "token": "border-radius/rounded", "cssVar": "--border-radius-rounded", "marker": ["MEASURED"] },
-      "labelStyle": { "value": "Inter Medium 14 / line-height 16 / letter-spacing -0.24", "marker": ["MEASURED"] },
-      "icon": { "value": "18x18 Material Symbol Rounded, OPTIONAL — the assembled example is text-only (showIcon=false).", "marker": ["MEASURED"] },
+      "minHeight": {
+        "value": 30,
+        "unit": "px",
+        "token": null,
+        "marker": [
+          "MEASURED",
+          "RAW"
+        ]
+      },
+      "paddingInline": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "paddingBlock": {
+        "value": 0,
+        "unit": "px",
+        "token": "spacing/none",
+        "cssVar": "--spacing-none",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "gap": {
+        "value": 8,
+        "unit": "px",
+        "token": "spacing/md",
+        "cssVar": "--spacing-md",
+        "marker": [
+          "MEASURED"
+        ],
+        "note": "icon↔label; icon optional (showIcon)."
+      },
+      "radius": {
+        "value": 4,
+        "unit": "px",
+        "token": "border-radius/rounded",
+        "cssVar": "--border-radius-rounded",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "labelStyle": {
+        "value": "Inter Medium 14 / line-height 16 / letter-spacing -0.24",
+        "marker": [
+          "MEASURED"
+        ]
+      },
+      "icon": {
+        "value": "18x18 Material Symbol Rounded, OPTIONAL — the assembled example is text-only (showIcon=false).",
+        "marker": [
+          "MEASURED"
+        ]
+      },
       "states": {
-        "default": { "background": "action/soft/bg (#f8fafc)", "cssVarBg": "--action-soft-bg", "text": "text/primary (#1e293b)", "cssVarText": "--text-primary", "marker": ["MEASURED"] },
-        "hover": { "background": "action/ghost/hover (#f1f5f9)", "cssVarBg": "--action-ghost-hover", "text": "action/ghost/text-hard (#005ce6)", "cssVarText": "--action-ghost-text-hard", "marker": ["MEASURED"] },
-        "active": { "background": "action/ghost/pressed (#e2e8f0)", "cssVarBg": "--action-ghost-pressed", "text": "action/ghost/text-hard (#005ce6)", "cssVarText": "--action-ghost-text-hard", "marker": ["MEASURED"], "note": "Active = the current section. Hover and Active share the same blue text; ONLY the background separates them (#f1f5f9 vs #e2e8f0) — see defect D4." }
+        "default": {
+          "background": "action/soft/bg (#f8fafc)",
+          "cssVarBg": "--action-soft-bg",
+          "text": "text/primary (#1e293b)",
+          "cssVarText": "--text-primary",
+          "marker": [
+            "MEASURED"
+          ]
+        },
+        "hover": {
+          "background": "action/ghost/hover (#f1f5f9)",
+          "cssVarBg": "--action-ghost-hover",
+          "text": "action/ghost/text-hard (#005ce6)",
+          "cssVarText": "--action-ghost-text-hard",
+          "marker": [
+            "MEASURED"
+          ]
+        },
+        "active": {
+          "background": "action/ghost/pressed (#e2e8f0)",
+          "cssVarBg": "--action-ghost-pressed",
+          "text": "action/ghost/text-hard (#005ce6)",
+          "cssVarText": "--action-ghost-text-hard",
+          "marker": [
+            "MEASURED"
+          ],
+          "note": "Active = the current section. Hover and Active share the same blue text; ONLY the background separates them (#f1f5f9 vs #e2e8f0) — see defect D4."
+        }
       }
     },
     "navHeaderFuture": {
-      "style": "Label/overline — Inter Semi Bold 10 / line-height 14 / UPPERCASE", "colorToken": "text/tertiary (#64748b)", "cssVar": "--text-tertiary",
-      "padding": "pt 12 / pb 8 / inline 8 (spacing/lg, spacing/md)", "marker": ["MEASURED"]
+      "style": "Label/overline — Inter Semi Bold 10 / line-height 14 / UPPERCASE",
+      "colorToken": "text/tertiary (#64748b)",
+      "cssVar": "--text-tertiary",
+      "padding": "pt 12 / pb 8 / inline 8 (spacing/lg, spacing/md)",
+      "marker": [
+        "MEASURED"
+      ]
     },
     "navDividerFuture": {
-      "line": "2px, background sidebar/border (#e2e8f0)", "cssVar": "--sidebar-border", "radius": "1px", "blockPadding": "12 (spacing/lg)", "width": "full", "marker": ["MEASURED"]
+      "line": "2px, background sidebar/border (#e2e8f0)",
+      "cssVar": "--sidebar-border",
+      "radius": "1px",
+      "blockPadding": "12 (spacing/lg)",
+      "width": "full",
+      "marker": [
+        "MEASURED"
+      ]
     },
     "collapsedRail": {
-      "width": { "value": 50, "unit": "px", "marker": ["MEASURED"] },
+      "width": {
+        "value": 50,
+        "unit": "px",
+        "marker": [
+          "MEASURED"
+        ]
+      },
       "content": "ONLY the avatar (40px), vertically centred; top actions, card body and nav list are hidden.",
-      "marker": ["MEASURED"]
+      "marker": [
+        "MEASURED"
+      ]
     }
   },
   "typography": {
     "note": "No new type styles. Reuses Heading/h5 (name), Fields/value (timezone + contact values), Button/label (View Notes), Nav-item body (Inter Medium 14/16), Label/overline (future nav header).",
-    "marker": ["MEASURED"]
+    "marker": [
+      "MEASURED"
+    ]
   },
   "colourFormula": {
     "pattern": "Panel = sidebar/secondary-bg. Text splits three ways: text/primary (name, default nav item), text/secondary (timezone, DOB, office), text/tertiary (future header). Links = text/links (address, email) and text/brand (phone). Icons = icon/primary (top actions) and icon/soft (contact rows). Interactive nav item = action/soft/bg → action/ghost/hover → action/ghost/pressed, with action/ghost/text-hard on hover+active. View Notes = action/primary/bg + action/primary/text-neutral. Camera badge = action/secondary/bg + action/secondary/text. EVERY one resolves in the repo semantic layer with dark/hc/warm variants — verified 2026-09-03.",
-    "marker": ["MEASURED"]
+    "marker": [
+      "MEASURED"
+    ]
   },
   "variantAxes": {
-    "topActions": { "values": ["Single Action", "2 actions"], "rule": "single or multiple — RULED", "marker": ["MEASURED", "RULED"] },
-    "userProfileCard": { "values": ["Expanded=Yes", "Expanded=No"], "marker": ["MEASURED"] },
-    "navItem": { "values": ["Default", "Hover", "Active"], "activeMeaning": "current section (aria-current)", "marker": ["MEASURED"] },
-    "panel": { "values": ["expanded (240px)", "collapsed (50px rail)"], "rule": "whole panel collapses — RULED", "marker": ["MEASURED", "RULED"] }
+    "topActions": {
+      "values": [
+        "Single Action",
+        "2 actions"
+      ],
+      "rule": "single or multiple — RULED",
+      "marker": [
+        "MEASURED",
+        "RULED"
+      ]
+    },
+    "userProfileCard": {
+      "values": [
+        "Expanded=Yes",
+        "Expanded=No"
+      ],
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "navItem": {
+      "values": [
+        "Default",
+        "Hover",
+        "Active"
+      ],
+      "activeMeaning": "current section (aria-current)",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "panel": {
+      "values": [
+        "expanded (240px)",
+        "collapsed (50px rail)"
+      ],
+      "rule": "whole panel collapses — RULED",
+      "marker": [
+        "MEASURED",
+        "RULED"
+      ]
+    }
   },
   "accessibility": {
-    "navSemantics": { "value": "The nav list is a <nav aria-label> of real links/buttons; the current section carries aria-current=\"page\" (this drives the Active visual, not a manual class).", "marker": ["ASSUMED"] },
-    "collapsedExpandTrigger": { "value": "Singh's rule is 'tap ANYWHERE on the rail to expand.' For keyboard users that whole-rail target must be a REAL focusable control (e.g. a <button aria-expanded aria-label=\"Expand profile\"> wrapping the rail). A bare <div> click is mouse-only and fails WCAG 2.1 SC 2.1.1.", "marker": ["ASSUMED"], "severity": "must-fix for an accessible build" },
-    "contactLinks": { "value": "Address → map link, Email → mailto:, Phone → tel:. DOB and Office are plain text, not links. Leading icons are decorative (aria-hidden) — the text carries the meaning.", "marker": ["ASSUMED"] },
-    "contrast": { "value": "action/ghost/text-hard resolves to blue-700 in the repo, already contrast-verified 5.72:1 AA (token comment, _theme-light.scss:112). Nav-item hover/active text therefore passes on its grey backgrounds.", "marker": ["MEASURED"] },
-    "focusVisible": { "value": "Every interactive element (top actions, View Notes, contact links, nav items, expand trigger, camera badge) needs a visible focus ring — do not remove the kit's :focus-visible outline.", "marker": ["ASSUMED"] }
+    "navSemantics": {
+      "value": "The nav list is a <nav aria-label> of real links/buttons; the current section carries aria-current=\"page\" (this drives the Active visual, not a manual class).",
+      "marker": [
+        "ASSUMED"
+      ]
+    },
+    "collapsedExpandTrigger": {
+      "value": "Singh's rule is 'tap ANYWHERE on the rail to expand.' For keyboard users that whole-rail target must be a REAL focusable control (e.g. a <button aria-expanded aria-label=\"Expand profile\"> wrapping the rail). A bare <div> click is mouse-only and fails WCAG 2.1 SC 2.1.1.",
+      "marker": [
+        "ASSUMED"
+      ],
+      "severity": "must-fix for an accessible build"
+    },
+    "contactLinks": {
+      "value": "Address → map link, Email → mailto:, Phone → tel:. DOB and Office are plain text, not links. Leading icons are decorative (aria-hidden) — the text carries the meaning.",
+      "marker": [
+        "ASSUMED"
+      ]
+    },
+    "contrast": {
+      "value": "action/ghost/text-hard resolves to blue-700 in the repo, already contrast-verified 5.72:1 AA (token comment, _theme-light.scss:112). Nav-item hover/active text therefore passes on its grey backgrounds.",
+      "marker": [
+        "MEASURED"
+      ]
+    },
+    "focusVisible": {
+      "value": "Every interactive element (top actions, View Notes, contact links, nav items, expand trigger, camera badge) needs a visible focus ring — do not remove the kit's :focus-visible outline.",
+      "marker": [
+        "ASSUMED"
+      ]
+    }
   },
   "defects": [
     "D1 — LAYER-NAME TYPOS in Figma: 'profiel navigation preview' (27325:70008) and 'profiel navigation cllapsed preview' (27331:70994) — 'profiel'/'cllapsed'. Cosmetic, but these become component names; flag to Figma AI for a rename before this is published as a library component.",
@@ -200,40 +684,55 @@
       "action": "Collapse / expand the whole sidebar.",
       "effect": "The ENTIRE panel collapses to a ~50px rail showing only the avatar; tapping ANYWHERE on the rail re-expands it to the full 240px panel.",
       "source": "Singh, 2026-09-03, verbatim: 'The profile entire side section is collapsible … and on tapping on anywhere on the side bar it will open again.'",
-      "marker": ["RULED"],
+      "marker": [
+        "RULED"
+      ],
       "note": "State is app-owned (add/remove --collapsed). The whole-rail tap target must be keyboard-reachable — see accessibility.collapsedExpandTrigger."
     },
     "navItemClick": {
       "action": "Click a section in the nav list.",
       "effect": "Opens that whole section of the record in the content area and marks the item Active (current). Only one item is Active at a time.",
       "source": "Singh, 2026-09-03, verbatim: 'each tab will unbox the entire section details.'",
-      "marker": ["RULED"]
+      "marker": [
+        "RULED"
+      ]
     },
     "navItemStates": {
       "action": "Hover / focus / current.",
       "effect": "Default = grey row, dark text. Hover = light-blue row, blue text. Active = deeper grey-blue row, blue text (the current section).",
-      "marker": ["MEASURED"]
+      "marker": [
+        "MEASURED"
+      ]
     },
     "viewNotes": {
       "action": "Press View Notes.",
       "effect": "Opens the person's notes. (In Figma the button links to the notes prototype flow.)",
-      "marker": ["MEASURED"]
+      "marker": [
+        "MEASURED"
+      ]
     },
     "contactLinks": {
       "action": "Tap Address / Email / Phone.",
       "effect": "Address opens a map, Email opens a mail composer (mailto:), Phone starts a call (tel:). Date of birth and Office are informational only, not tappable.",
-      "marker": ["ASSUMED"],
+      "marker": [
+        "ASSUMED"
+      ],
       "note": "Standard conventions for these row types; the blue link colour in Figma confirms address/email/phone are actionable, DOB/office are grey/static."
     },
     "editPhoto": {
       "action": "Tap the camera badge on the avatar.",
       "effect": "Opens the change/upload-photo flow for this record.",
-      "marker": ["ASSUMED"]
+      "marker": [
+        "ASSUMED"
+      ]
     },
     "topActions": {
       "action": "Back / search (and any context-specific action).",
       "effect": "Back returns to the previous screen (the list the record was opened from); search (person_search) opens user search. The bar carries one action or several depending on context.",
-      "marker": ["MEASURED", "RULED"]
+      "marker": [
+        "MEASURED",
+        "RULED"
+      ]
     }
   }
 }

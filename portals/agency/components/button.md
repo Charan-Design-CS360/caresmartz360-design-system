@@ -83,7 +83,7 @@ Read from `5703:7088` (Primary · Default · Leading · Compact=No · Outline=No
 
 | Property | Value | Figma token | CSS custom property | Marker |
 |---|---|---|---|---|
-| `min-height`, standard | **30px** | *(none)* | — | **[MEASURED] [RAW]** |
+| `min-height`, standard | **30px** | `control/height-default` | `--control-height-default` | **[MEASURED]** (bound 2026-09-11) |
 | `min-height`, compact | **24px** | *(none)* | — | **[MEASURED] [RAW]** |
 | `min-width`, icon + label | 80px | *(none)* | — | **[MEASURED] [RAW]** |
 | `min-width`, label only | 60px | *(none)* | — | **[MEASURED] [RAW]** |

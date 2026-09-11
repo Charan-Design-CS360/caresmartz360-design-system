@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.0.0] — 2026-09-11 — control-height tokens LANDED and BOUND
+
+The owner re-exported. Option A is complete: the two most-repeated raw numbers in the system
+(**30** and **24**) are now real tokens, and every genuine control-height site binds them.
+
+### Added — the export brought 19 new variables, not 2
+Agency now matches Figma exactly (**General 16 · Color Modes 223 · Density Modes 31**):
+- `control/height-default` = **30** → aliases `size/size-30`
+- `control/height-compact` = **24** → aliases `size/size-24`
+- `size/size-30`, `size/size-24` (Agency **General** — the alias targets)
+- `popover/primary-bg`, `popover/primary-foreground`, `surface/overlay-soft` (× all 5 colour modes)
+
+**agencySemantics 263 → 270**, recomputed from the published files; `AI_CONTEXT.md` and the routing
+test updated to match. Nothing removed.
+
+### Changed — 15 raw literals replaced by tokens
+`buttons.css` (30 + 24), `fields.css` (30), `column-arrangement.css` (30) in the kit; the four
+matching gallery stylesheets plus `search-field.css` (height/min/max) and `select.css`;
+`button.json` `geometry.minHeight` and the `button.md` table row.
+
+Both token layers now define them — `src/styles/2-semantics/_density.scss` and the gallery's
+generated token file — **density-scoped on purpose**, so a future compact density re-values them in
+one place.
+
+### The 8 excluded traps — deliberately still raw
+`buttons.css:161,191` are **`min-width`** (widths, not heights); `fields.css` `.cs-field__toy` is a
+30px **icon box**; `table.css:426,427` and `_tables.scss:100,101` are **table cells**, not
+interactive controls; `skeleton.css:49` is a **placeholder**. `spacing/3xl` is also 24 — a blind
+find-and-replace would have broken all of these. Each was classified, then re-checked by an
+independent pass instructed to reject.
+
+### Corrected — an earlier warning of mine was wrong
+I had said Primitives needed re-exporting because the aliases pointed at a missing `size/*` group.
+Wrong: `size/size-30` and `size/size-24` live in **Agency General**, which the owner's export
+included. **No Primitives re-export was needed.**
+
+### Resolved
+`button.json`'s `openTokenDecision` is closed — Figma's names (`control/height-*`, aliased) win over
+its older `control/min-height` raw-number proposal. Six contracts that independently flagged "absent
+from the export" are annotated resolved. Still open and untouched: `control/min-width` (80) and
+`control/min-width-label` (60) remain RAW — never exported, owner's call.
+
+---
+
 ## [3.7.0] — 2026-09-11 (shareable-repo pass)
 
 Prepared the repo to be handed to other team members. One of the checks found a gate that had been

@@ -70,7 +70,7 @@
   align-items: center;
   justify-content: center;
 
-  min-height: 30px;                             /* bare literal in Figma, no token exists (SPEC-07b §3, §10.1) */
+  min-height: var(--control-height-default);                             /* bare literal in Figma, no token exists (SPEC-07b §3, §10.1) */
   min-width: 80px;                              /* bare literal in Figma, no token exists — icon+label width floor (§3.1) */
 
   padding-block: var(--spacing-none);           /* 0 — height comes from min-height, never from padding */
@@ -185,7 +185,7 @@
          ways). Padding, gap, width floor, radius and type size ALL stay put.
    -------------------------------------------------------------------------- */
 .cs-btn--compact {
-  min-height: 24px;                             /* bare literal in Figma, no token exists */
+  min-height: var(--control-height-compact);                             /* bare literal in Figma, no token exists */
 }
 .cs-btn--compact.cs-btn--icon-only {
   min-width: 24px;                              /* bare literal in Figma, no token exists — stays square */
