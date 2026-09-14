@@ -6,6 +6,14 @@
 > older root-file examples in this guide are historical and must not be used as
 > current variable truth.
 
+> **⚠️ Ruled-over content notice (2026-09-14):** several statements below were
+> RULED WRONG in `rules/universal/CONTRADICTIONS.md` — that register wins:
+> icons are **inline SVG**, never the Material Symbols web font (C1, Singh
+> 2026-06-17) · brand blue is **#0077FF**, not #2563EB (C2) · styling is
+> **portal-scoped, never blanket** — NO Tailwind in AgencyWebApp (C4) ·
+> prototypes are self-contained, no CDN `<link>` (C5) · `!important` is never
+> used (C9). Read the register before acting on any stack rule in this file.
+
 > Version: 2.5.0 | Stack: Angular 19 + Angular Material M3 (PRIMARY) + Tailwind CSS + SCSS
 
 This guide provides AI assistants and developers with structured context for working with the CareSmartz360 design system. Read this before generating any component code.

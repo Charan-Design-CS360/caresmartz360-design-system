@@ -27,11 +27,58 @@ const maturityValues = new Set([
 const reports = [];
 const strictErrors = [];
 
+
+function auditRootIndex(file, document) {
+  const errors = [];
+  const seenSectionNodes = new Set();
+
+  for (const [index, section] of (document.sections ?? []).entries()) {
+    const label = section.name || `section[${index}]`;
+    if (!section.name) errors.push(`${label}: missing name`);
+    if (!nodeIdPattern.test(section.sectionNodeId ?? "")) {
+      errors.push(`${label}: invalid sectionNodeId`);
+    }
+    if (roundPlaceholderPattern.test(section.sectionNodeId ?? "")) {
+      errors.push(`${label}: placeholder sectionNodeId`);
+    }
+    if (seenSectionNodes.has(section.sectionNodeId)) {
+      errors.push(`${label}: duplicate sectionNodeId`);
+    }
+    seenSectionNodes.add(section.sectionNodeId);
+    for (const contractPath of section.contractPaths ?? []) {
+      if (!fs.existsSync(path.join(repositoryRoot, contractPath))) {
+        errors.push(`${label}: contractPath missing on disk: ${contractPath}`);
+      }
+    }
+    for (const set of section.componentSets ?? []) {
+      if (!nodeIdPattern.test(set.nodeId ?? "")) {
+        errors.push(`${label}/${set.name}: invalid nodeId`);
+      }
+    }
+  }
+
+  reports.push({
+    file,
+    format: "root-index",
+    sectionCount: (document.sections ?? []).length,
+    errors,
+    releaseEligible: errors.length === 0,
+  });
+  for (const error of errors) strictErrors.push(`${file}: ${error}.`);
+}
 function auditLegacy(file) {
   const filePath = path.join(repositoryRoot, file);
   if (!fs.existsSync(filePath)) return;
 
   const document = readJson(filePath);
+
+  // The root file was regenerated (C360-47327) as the grounded cross-section
+  // INDEX ($version >= 3): audit it as such instead of as a legacy dump.
+  if (Array.isArray(document.sections)) {
+    auditRootIndex(file, document);
+    return;
+  }
+
   const entries = Object.entries(document.components ?? {});
   let placeholderNodeIds = 0;
   let placeholderTextRecords = 0;
@@ -86,7 +133,16 @@ function auditPortal(manifest, filePath) {
 
   for (const [index, component] of components.entries()) {
     const label = component.name || `component[${index}]`;
-    if (!componentKeyPattern.test(component.componentKey ?? "")) {
+    // componentKey: a 40-hex key, or null while componentKeyStatus documents the
+    // pending Figma-AI enumeration (COMPONENT-MAPPING-CONTRACT amendment 2026-09-10).
+    const keyIsPending =
+      component.componentKey === null &&
+      typeof component.componentKeyStatus === "string" &&
+      component.componentKeyStatus.length > 0;
+    if (
+      !keyIsPending &&
+      !componentKeyPattern.test(component.componentKey ?? "")
+    ) {
       errors.push(`${label}: invalid componentKey`);
     }
     if (!nodeIdPattern.test(component.nodeId ?? "")) {
@@ -95,13 +151,15 @@ function auditPortal(manifest, filePath) {
     if (roundPlaceholderPattern.test(component.nodeId ?? "")) {
       errors.push(`${label}: placeholder nodeId`);
     }
-    if (seenKeys.has(component.componentKey)) {
-      errors.push(`${label}: duplicate componentKey`);
+    if (component.componentKey !== null) {
+      if (seenKeys.has(component.componentKey)) {
+        errors.push(`${label}: duplicate componentKey`);
+      }
+      seenKeys.add(component.componentKey);
     }
     if (seenNodes.has(component.nodeId)) {
       errors.push(`${label}: duplicate nodeId`);
     }
-    seenKeys.add(component.componentKey);
     seenNodes.add(component.nodeId);
 
     if (!maturityValues.has(component.maturity)) {
