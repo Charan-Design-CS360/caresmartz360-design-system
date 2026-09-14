@@ -3,18 +3,33 @@
 Every AI tool and human contributor must read this file before using or
 changing variables. There is no portal fallback and no permission to guess.
 
-## Authority
+## Authority (Singh's ruling, 2026-09-14 — supersedes the 2026-08-03 order)
 
-- The **owner-maintained export folder** is the only variable input authority. Its path is configured by the `DS_VARIABLE_SOURCE_DIR` environment variable (default: the design owner's local `Design-System/Variables`). Never hard-code a machine path — it differs per contributor.
-  It contains owner-maintained exports downloaded from Figma.
+Variable values are defined in Figma and exported by the owner. The reading
+order for any AI tool or contributor is:
+
+1. **Live Figma first** — Figma is where the owner defines every variable, so
+   it is always the latest. Read it when it is available (MCP/Dev Mode).
+2. **Owner-maintained export folder second** — the fallback when Figma is not
+   reachable. Path via `DS_VARIABLE_SOURCE_DIR` (default: the owner's local
+   `Design-System/Variables`). Never hard-code a machine path.
+3. **If both are available and DISAGREE → HARD ALERT to the owner. Never pick
+   a side silently.** The fix is always the same: the owner re-exports the
+   latest variables from Figma, then `sync:variables` republishes. Record the
+   alert (what differs, where seen) in Jira.
+
+Unchanged rules:
+
 - Published delivery authority: reviewed GitHub artifacts and
-  `config/variable-export-manifest.json`.
+  `config/variable-export-manifest.json` — the repo is what the team consumes,
+  and it must stay synced with the exports (gates enforce byte parity).
 - Jira: governance, status, decisions, and evidence only. Jira never overrides
   a variable value.
-- AI tools must not query Figma, infer a value, merge portals, or use a stale
-  root-level token file as variable truth.
-- If the local authority folder is unavailable, use the committed artifacts but
-  report that local byte parity could not be checked. Never fabricate parity.
+- AI tools must never *infer or fabricate* a value, merge portals, or use a
+  stale root-level token file as variable truth.
+- If neither Figma nor the local authority folder is available, use the
+  committed artifacts but report that parity could not be checked. Never
+  fabricate parity.
 
 ## Where the rules live — for tools that do not read code files
 

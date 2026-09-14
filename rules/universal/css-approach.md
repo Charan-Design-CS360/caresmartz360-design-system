@@ -570,6 +570,12 @@ non-US locale*, never by reading the value back.
 
 ## [UIG-083] Resolve a border variable by the COMPONENT'S TYPE — and verify the variable + value in Figma every time
 
+> **Reconciled with the variable-authority rule (Singh, 2026-09-14):** UIG-083's live-Figma
+> read STANDS — Figma is the FIRST authority for variable values, owner exports are the
+> fallback when Figma is unavailable. If Figma and the exports disagree, raise a **hard
+> alert** to Singh instead of picking a side; he re-exports the latest from Figma. See
+> `AI_CONTEXT.md` → Authority.
+
 **Singh's ruling, 2026-09-02.** At the semantic layer the *same border name* can exist under
 several sections (a `field` border, a `button`/`action` border, a general `border/*` border,
 a `tags/*` border…). Picking one by eye — or asking the owner "bordered or not?" — is exactly

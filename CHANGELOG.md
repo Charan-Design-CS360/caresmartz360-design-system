@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.2.1] — 2026-09-14 — RULING: variable-value reading order (Figma first)
+
+**Singh's ruling (2026-09-14), supersedes the 2026-08-03 authority order:** read variable
+values from **live Figma first** (he defines them there — always the latest); the owner's
+local exports are the **fallback** when Figma is unavailable; if both are available and
+**disagree → HARD ALERT to Singh** (he re-exports the latest from Figma) — never resolve a
+mismatch silently. GitHub stays the synced, team-shared delivery of those variables, and the
+repo must carry Figma node links + Jira links for design-system items (enforced by
+`validate:links` + the mapping audit's Jira-key check).
+
+Updated: `AI_CONTEXT.md` Authority, `docs/VARIABLE-AUTHORITY-WORKFLOW.md`,
+`rules/universal/CONTRADICTIONS.md` C6 → RULED, UIG-083 reconciliation note in
+`rules/universal/css-approach.md`. Fabricating or inferring values remains forbidden.
+
 ## [4.2.0] — 2026-09-14 — enforcement: strict CI + the links-must-work gate
 
 Approved by Singh 2026-09-14 ("help me to get this done"). Closes forensic findings P2, L1-L4

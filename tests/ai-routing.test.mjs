@@ -11,8 +11,13 @@ const manifest = JSON.parse(
 );
 
 test("AI entrypoint declares exact authority and logical totals", () => {
-  assert.match(context, /only variable input authority/i);
-  assert.match(context, /AI tools must not query Figma/i);
+  // Singh's 2026-09-14 ruling: Figma first, owner exports fallback,
+  // disagreement between the two = hard alert, never silently resolved.
+  assert.match(context, /Live Figma first/i);
+  assert.match(context, /export folder second/i);
+  assert.match(context, /HARD ALERT/);
+  assert.match(context, /DS_VARIABLE_SOURCE_DIR/);
+  assert.match(context, /never \*infer or fabricate\* a value/i);
   assert.match(context, /Shared Primitives[^\n]*264/);
   assert.match(context, /Agency Semantics[^\n]*270/);
   assert.match(context, /Caregiver Semantics[^\n]*171/);
