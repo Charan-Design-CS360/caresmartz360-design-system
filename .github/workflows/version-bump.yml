@@ -1,13 +1,17 @@
 name: Design System Version Bump
 
+# 2026-09-14 forensic fix: this workflow was minting a new legacy root token dump
+# (ds-tokens-v2.6.X.json — frozen at the deprecated 204-token era) on EVERY
+# component-mapping.json change, stamping stale data with fresh versions
+# (v2.6.5-2.6.8 were all created this way). Root token files are ruled
+# non-authoritative (AI_CONTEXT.md). Trigger now fires only on deliberate edits
+# to the legacy token files themselves. Full retirement of the legacy files is
+# a separate decision for Singh.
 on:
   push:
     branches: [ main ]
     paths:
       - 'ds-tokens-latest.json'
-      - 'ds-tokens-v*.json'
-      - 'components/component-mapping.json'
-      - 'tailwind.config.js'
 
 jobs:
   version-bump:
