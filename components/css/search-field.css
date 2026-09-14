@@ -6,7 +6,7 @@
                 `Nav Search` set 14170:190109 (all four variants).
    FIGMA SOURCE: `Nav Search` 14170:190109 — four variants:
        Type=Default  10290:15285   soft fill, no border
-       Type=border   27618:71554   transparent, 1px field/border-default
+       Type=outlined   27618:71554   transparent, 1px field/border-default
        Type=Active   14229:210714  focus fill + focus border
        Type=Edit     14170:190108  focused, has a typed value + a "Clear" button
    CREATOR: Opus (Claude), Wound Management session (Default), on Singh's
@@ -74,13 +74,13 @@
 }
 
 /* -----------------------------------------------------------------------------
-   [CS-SRCH-02]  .cs-search--border — the bordered variant.
+   [CS-SRCH-02]  .cs-search--outlined — the bordered variant.
    TOKENS BOUND: --field-border-default (stroke). NO fill (transparent).
-   SPEC: `Type=border` 27618:71554. This variant carries NO soft fill — it is a
+   SPEC: `Type=outlined` 27618:71554. This variant carries NO soft fill — it is a
    1px field/border-default outline on whatever surface hosts it. Use it where the
    action/soft/bg of the Default would disappear (e.g. on a tinted panel).
    -------------------------------------------------------------------------- */
-.cs-search--border {
+.cs-search--outlined {
   background: transparent;
   border-color: var(--field-border-default);
 }
