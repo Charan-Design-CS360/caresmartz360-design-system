@@ -153,4 +153,4 @@ header → page**.
 
 ## Figma Guidelines
 
-Designer guideline frame: **page headers — Component Guidelines** — [`27382:21784`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21784) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).
+Designer guideline frame: **Page Headers — Component Guidelines** — [`27382:21784`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21784) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

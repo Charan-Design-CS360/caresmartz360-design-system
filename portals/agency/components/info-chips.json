@@ -7,7 +7,7 @@
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaComponentSetNodeId": "11315:24274",
-    "figmaComponentSetName": "page messages",
+    "figmaComponentSetName": "page-message",
     "figmaSectionNodeId": "27255:69606",
     "figmaGuidelinesFrame": { "nodeId": "27382:20942", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20942", "existenceVerified": "variable-defs probe 2026-09-10" },
     "measuredOn": "2026-09-10",
@@ -21,7 +21,7 @@
   "variantAxis": { "name": "Type", "count": 9 },
   "anatomyGroups": {
     "messageBars": {
-      "sharedGeometry": { "width": 800, "widthRule": "100% of content area in patterns (page messages instance measured 800×112 in pattern-page-data-table)", "padding": 8, "paddingToken": "spacing/md", "iconColumn": { "w": 20, "h": 20 }, "contentX": 36, "borderRadius": { "value": 8, "token": "border-radius/rounded-lg" }, "marker": ["MEASURED"], "internalNote": "row-by-row internals measured on the Information variant (81:32): title 20h at y0, description 40h (2 lines) at y28, action label 20h at y76; the 96h variants carry the same anatomy one description line shorter — their internals were not individually measured" },
+      "sharedGeometry": { "width": 800, "widthRule": "100% of content area in patterns (page-message instance measured 800×112 in pattern-page-data-table)", "padding": 8, "paddingToken": "spacing/md", "iconColumn": { "w": 20, "h": 20 }, "contentX": 36, "borderRadius": { "value": 8, "token": "border-radius/rounded-lg" }, "marker": ["MEASURED"], "internalNote": "row-by-row internals measured on the Information variant (81:32): title 20h at y0, description 40h (2 lines) at y28, action label 20h at y76; the 96h variants carry the same anatomy one description line shorter — their internals were not individually measured" },
       "closeButton": { "box": 20, "hidden": true, "marker": ["MEASURED"], "note": "optional close exists in the master (21280:1557) but ships hidden" },
       "typography": { "title": { "fonts": "Inter Medium-weight rendering at 12px on a 20px line (bindings: font-size/caption + line-height/body-base)", "colour": "text/primary", "marker": ["DERIVED"], "note": "style-level name not read per text node" }, "body": { "style": "Body/small 12/16", "colour": "text/secondary", "marker": ["MEASURED"] }, "actionLink": { "colour": "text/brand #0077ff", "marker": ["MEASURED"] } },
       "variants": [

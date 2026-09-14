@@ -25,7 +25,7 @@
    ✅ BOTH PREVIOUSLY-OPEN ITEMS WERE RULED BY SINGH ON 2026-08-25. His words are
    quoted verbatim below so no later session re-opens them from inference.
 
-   RULING 1 — CANONICAL HEADER IS `table_head` 26938:61726, variant 26938:52865.
+   RULING 1 — CANONICAL HEADER IS `table-head` 26938:61726, variant 26938:52865.
    Singh linked that exact node and said it "include all actions what it needed to
    show and hide example, Sorting, Information etc." `Head / Tiltes for tables`
    5865:162 — which THIS file was originally built from — is therefore RETIRED as
@@ -216,7 +216,7 @@
                  --font-weight-heading-base (500) · --text-primary
    STATES: default (here) · empty [CS-TBL-04]. Sorting is a state of the sort
            affordance [CS-TBL-06], not of the cell.
-   SPEC: SPEC-08b §3 + §3.1 + §5. CANONICAL NODE: `table_head` 26938:61726,
+   SPEC: SPEC-08b §3 + §3.1 + §5. CANONICAL NODE: `table-head` 26938:61726,
    variant 26938:52865, ruled by Singh 2026-08-25. `Head / Tiltes for tables`
    5865:162 is retired as an alias of it; `X-Head old` is dead.
    THE 34px IS A MINIMUM, NOT A SUM — corrected by Singh's padding ruling:
@@ -400,7 +400,7 @@
    TOKENS BOUND: --spacing-none / --spacing-md (padding 0 / 8) · --border-subtle
                  (border) · --border-radius-rounded-none (0) ·
                  --font-weight-body-base (400) · --text-primary
-   CANONICAL NODE: `table_cell` 26938:61725, variant 26938:52924.
+   CANONICAL NODE: `table-cell` 26938:61725, variant 26938:52924.
    ⚠ 30px IS A FLOOR, NOT A FIXED HEIGHT — ruled by Singh 2026-08-25: "It can
    increase but this will increase the entire row height not a cell
    independently." A real <table> gives that for free: in the CSS table model

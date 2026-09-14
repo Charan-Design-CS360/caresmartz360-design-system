@@ -1,6 +1,6 @@
 {
   "contract": "avatar",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "maturity": "draft",
   "portal": "agency",
   "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
@@ -11,7 +11,7 @@
   "provenance": {
     "specAuthor": "Figma-AI (2026-09-14)",
     "inventoryVerified": "2026-09-14 live desktop-MCP get_metadata — section, 6 set nodeIds, variant counts 24/6/3/2/5/3 all match",
-    "notMeasured": "geometry, spacing, token bindings — do not build pixel-exact yet (open item AV-01)",
+    "notMeasured": "CLOSED 2026-09-14 PM — representative variants of all 6 sets measured live (see avatar.md §Measured geometry); residual: per-size update_image scaling in 70-120px avatars",
     "componentKeysStatus": "provided by Figma-AI, NOT independently verified (AV-03)"
   },
   "componentSets": [
@@ -21,11 +21,32 @@
       "componentKeyUnverified": "d6dea972cd6ea8438fc168515eb1d430818a7a51",
       "variants": 24,
       "axes": {
-        "Size": ["24px", "28x", "40px", "70px", "100px", "120px"],
-        "Status": ["Default", "Online", "None"],
-        "Presence": ["None", "Edit", "Add New"],
-        "Edit": ["Yes", "No"],
-        "Img Type": ["Default", "No Image"]
+        "Size": [
+          "24px",
+          "28x",
+          "40px",
+          "70px",
+          "100px",
+          "120px"
+        ],
+        "Status": [
+          "Default",
+          "Online",
+          "None"
+        ],
+        "Presence": [
+          "None",
+          "Edit",
+          "Add New"
+        ],
+        "Edit": [
+          "Yes",
+          "No"
+        ],
+        "Img Type": [
+          "Default",
+          "No Image"
+        ]
       }
     },
     {
@@ -33,28 +54,56 @@
       "nodeId": "5537:4602",
       "componentKeyUnverified": "a0b8d9274124d81ef6c155d4be33858b04c88460",
       "variants": 6,
-      "axes": { "Size": ["16px", "24px", "32px", "40px", "96px", "128px"] }
+      "axes": {
+        "Size": [
+          "16px",
+          "24px",
+          "32px",
+          "40px",
+          "96px",
+          "128px"
+        ]
+      }
     },
     {
       "figmaName": "avatar_group",
       "nodeId": "5537:4604",
       "componentKeyUnverified": "894036934e2db02366ede3fba3a365bc7370249d",
       "variants": 3,
-      "axes": { "Size": ["24px", "32px", "40px"] }
+      "axes": {
+        "Size": [
+          "24px",
+          "32px",
+          "40px"
+        ]
+      }
     },
     {
       "figmaName": "update_image",
       "nodeId": "10618:18947",
       "componentKeyUnverified": "14757c3e6c0ce92e3aa8571fe91fdfa025a39014",
       "variants": 2,
-      "axes": { "Property 1": ["Frame 26x", "Frame 18x"] }
+      "axes": {
+        "Property 1": [
+          "Frame 26x",
+          "Frame 18x"
+        ]
+      }
     },
     {
       "figmaName": "Icons_avatars-status",
       "nodeId": "23507:9111",
       "componentKeyUnverified": "02f3d82024880eabc9dc7d2e3979bf34b2793bf0",
       "variants": 5,
-      "axes": { "Type": ["Online", "Matched", "Preferred", "Attenshion Required", "Not compatible"] }
+      "axes": {
+        "Type": [
+          "Online",
+          "Matched",
+          "Preferred",
+          "Attenshion Required",
+          "Not compatible"
+        ]
+      }
     },
     {
       "figmaName": "more_action",
@@ -62,17 +111,37 @@
       "componentKeyUnverified": "ccbae9b23b8953e088355d86365096e2464e9755",
       "variants": 3,
       "axes": {
-        "Property 1": ["More button (24px)", "More button (32px)", "More button (40px)"],
-        "Property 2": ["Default"]
+        "Property 1": [
+          "More button (24px)",
+          "More button (32px)",
+          "More button (40px)"
+        ],
+        "Property 2": [
+          "Default"
+        ]
       },
       "note": "Property 2 axis exists in Figma; omitted by the Figma-AI spec"
     }
   ],
   "openItems": [
-    "AV-01 geometry/token measurement pass before build",
+    "AV-01 CLOSED 2026-09-14 (measured live)",
     "AV-02 status colours are styles not variables (Figma-AI note)",
     "AV-03 componentKeys unverified",
     "AV-04 Figma naming out of kebab-case policy (avartar_user, Attenshion Required)",
-    "AV-05 Code Connect files intentionally not created (plan-blocked C360-47337; selectors unverified)"
-  ]
+    "AV-05 Code Connect files intentionally not created (plan-blocked C360-47337; selectors unverified)",
+    "AV-06 description promises an initials fallback but NO initials variant exists (all No-Image variants are camera placeholders) — reconcile with Figma-AI/Singh"
+  ],
+  "measuredTokens": {
+    "radiusUser": "border-radius/rounded-full",
+    "radiusEntity": "border-radius/rounded (4px)",
+    "uploadPlaceholderBg": "action/secondary/bg (#f0f7ff)",
+    "groupGap40": "spacing/sm (4px, positive — no overlap)",
+    "groupOverlap24": "-4px margin stack",
+    "morePillBg": "action/soft/bg (#f8fafc)",
+    "morePillText": "action/soft/text-neutral (#475569)",
+    "statusBadgeBg": "surface/base",
+    "statusBadgeBorder": "border/subtle 2px",
+    "statusOnlineDot": "icon/success (#22c55e)",
+    "typography": "font-family/primary; 40px tier body-base 14/20 heading-base 500; 24px tier caption 12/16 body-strong 500"
+  }
 }

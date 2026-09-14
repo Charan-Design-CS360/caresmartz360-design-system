@@ -6,15 +6,15 @@
     "contractVersion": "1.0.0",
     "figmaGuidelinesFrame": {
       "nodeId": "27382:20443",
-      "name": "empty states — Component Guidelines",
+      "name": "Empty States — Component Guidelines",
       "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20443",
       "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read"
     },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Value taken from portals/agency/portal-manifest.json (figma.fileKey) and from the URL the design owner supplied when commissioning this contract. Must be confirmed by the design owner.",
     "figmaSectionNodeId": "27218:64329",
-    "figmaSectionName": "empty states",
-    "nodeIdRelationship": "27218:64329 is the SECTION. It contains frame 27218:64326 ('section sample'), which contains two independent component sets — 11380:24914 (inline empty states, 8 variants) and 5775:5916 (popup empty states, 3 variants) — plus a shared icon set 12428:28265. The section CONTAINS the sets; they are not alternatives.",
+    "figmaSectionName": "Empty States",
+    "nodeIdRelationship": "27218:64329 is the SECTION. It contains frame 27218:64326 ('section sample'), which contains two independent component sets — 11380:24914 (inline Empty States, 8 variants) and 5775:5916 (popup Empty States, 3 variants) — plus a shared icon set 12428:28265. The section CONTAINS the sets; they are not alternatives.",
     "measuredOn": "2026-08-25",
     "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
     "measurementMethod": "figma-desktop MCP live reads: get_metadata on 27218:64329, get_design_context on 11380:24914 and 5775:5916, get_variable_defs on 11380:24914, get_screenshot on 11380:24914 for visual confirmation of all 8 inline variants.",
@@ -318,7 +318,7 @@
       "willNotScaleWithDensity": true
     },
     "actionButtons": {
-      "note": "Buttons inside both families reuse the Button component. Only what these empty states actually bind is recorded here; the full button contract is authoritative for everything else.",
+      "note": "Buttons inside both families reuse the Button component. Only what these Empty States actually bind is recorded here; the full button contract is authoritative for everything else.",
       "minHeight": {
         "value": 30,
         "unit": "px",

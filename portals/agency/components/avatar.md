@@ -27,7 +27,7 @@ photo-upload affordance, presence/status badges, and the "+N" overflow pill.
 | Variant counts 24/6/3/2/5/3 | ✅ verified live 2026-09-14 — match exactly |
 | componentKeys (6) | ⚠️ provided by Figma-AI, **not independently verified** (needs REST `GET /v1/files/4bh29laapcuKBTghfaRXF0/components`) |
 | Descriptions & usage rules | ⚠️ Figma-AI-authored (written into Figma descriptions 2026-09-14), not re-derived |
-| Geometry, spacing, token bindings | ❌ **not measured** — do not build pixel-exact from this contract yet |
+| Geometry, spacing, token bindings | ✅ **measured live 2026-09-14 PM** (§Measured geometry below) — representative variants of all 6 sets |
 | Angular selectors (`<cs-avatar-*>`) | ❌ **proposed names only** — they exist in no codebase |
 
 ## Component sets (all verified live)
@@ -76,10 +76,39 @@ avatar_group
 avatar_entity (standalone)
 ```
 
+## Measured geometry [LIVE 2026-09-14 PM — nodes 244:217, 11867:25335, 1473:2187, 1473:2501, 23507:9111, 257:1997]
+
+- **`avartar_user` (photo):** exact square at the variant size (24/28/40/70/100/120),
+  radius `border-radius/rounded-full` (9999), image `object-cover`. Photo fills come from
+  the `Avatars/Caregivers/*` image styles.
+- **`avartar_user` (upload placeholder — No Image + Add New):** circular, bg
+  `action/secondary/bg` (#f0f7ff), centered 20×20 Material `add_a_photo` icon (icon 20 at
+  the 40px size; the 26/18 frames of `update_image` cover the large/small avatar tiers).
+- **`avatar_entity`:** rounded-square, radius `border-radius/rounded` (**4px**), logo
+  `object-cover` at 90% opacity over an rgba(0,0,0,0.2) scrim.
+- **`avatar_group`:** 40px group = flex row with **positive `spacing/sm` (4px) gap** (no
+  overlap); 24px group = **overlapping stack, −4px margin per avatar**, z-order front→back
+  left→right, `more_action` last at z-1. Group height = avatar size.
+- **`more_action`:** outer frame = avatar size + 4 (28/36/44). Pill: bg `action/soft/bg`
+  (#f8fafc), text `action/soft/text-neutral` (#475569), radius 40, `font-family/primary`
+  Inter Medium; 40px tier → `font-size/body-base` 14 / `line-height/body-base` 20 /
+  `font-weight/heading-base` 500, padding 12.5×10, pill 40×40; 24px tier →
+  `font-size/caption` 12 / `line-height/caption` 16 / `font-weight/body-strong` 500,
+  padding 4.5×2. "+N" is a text override.
+- **`Icons_avatars-status`:** container bg `surface/base` (white), **2px border
+  `border/subtle` (#e2e8f0)**, circular; Online = 14px badge with `icon/success` (#22c55e)
+  dot; the other four types = 18px badge with a Material SVG (check_circle, stars, error,
+  do_not_disturb_on). Position: bottom-right overlay on the avatar.
+
 ## Open items (flagged, not invented)
 
-1. **AV-01** — full geometry/token measurement pass (surfaces, borders, initials
-   typography, group overlap offsets) before any build.
+1. **AV-01 — CLOSED 2026-09-14 PM** (measured live; see §Measured geometry). Residual: only
+   representative variants measured — per-size icon scaling of `update_image` inside 70-120px
+   avatars not individually verified.
+1b. **AV-06 (NEW)** — the Figma description promises an **initials fallback** ("EW" on white
+   with subtle border), but **no initials variant exists in the set**: all six `Img Type=No
+   Image` variants render the camera-upload placeholder. Description overpromises, or a
+   variant is missing — Figma-AI/Singh to reconcile.
 2. **AV-02** — status colours are Figma styles, not variables (Figma-AI's own note);
    variable migration needed before token binding.
 3. **AV-03** — componentKeys await independent verification (REST or Figma-AI

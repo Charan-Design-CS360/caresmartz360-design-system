@@ -133,7 +133,7 @@ canvas margin in Figma, not part of the component.** Don't build a 900px panel.
    Singh removed it on 2026-09-01, confirmed live: it's now hidden in the file, not deleted.
 
 2. **Still open — two Figma components share one name.** The atom Singh originally linked
-   (`13095:43335`) is the OLDER of two components both called *"ddm rows - checkboxes + drag
+   (`13095:43335`) is the OLDER of two components both called *"ddm-row-checkbox + drag
    feature."* The pattern still uses the NEWER one (`27307:43097`) for the six "Not selected" rows.
    Build from the linked atom alone and you'd be missing half the pattern.
 

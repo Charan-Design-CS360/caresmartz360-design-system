@@ -6,7 +6,8 @@
     "figmaFileUrl": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/",
     "pageId": "26581:38709",
     "pageIdProvenance": "reported by the Figma-AI enumeration (C360-47327); consistent with the Dev-Mode link recorded in portals/agency/components/form-field-primary.md",
-    "lastGrounded": "2026-09-10",
+    "lastGrounded": "2026-09-14",
+    "renameSync": "2026-09-14: all section and component-set names re-verified against a LIVE full-page metadata read (page 26581:38709) and synced to Figma's 2026-09-10 rename wave (filter-*, table-cell/head, ddm-row-*, page-message, Dropdown Menu, Alerts & Messages, Profile Sidebar, Primary Sidebar, Filter Components, Page Headers, Empty States). Node ids unchanged.",
     "regeneratedFor": "C360-47327 — this file previously carried self-declared round-number node IDs pointing at a different Figma file; every ID below is grounded: measured in a portal contract, measured live on 2026-09-10, or existence-probed live the same day (provenance noted per section)",
     "authority": "portals/agency/components/component-mapping.json and the per-component contracts are the authoritative portal-scoped mapping; this root file is the cross-section INDEX for discovery"
   },
@@ -55,14 +56,14 @@
     {
       "name": "Filters",
       "sectionNodeId": "27356:74769",
-      "sectionNote": "the measured 'filters compoents' section (contract source); the Figma-AI enumeration also lists a Filters section 26955:66555 — existence-probed live 2026-09-10, both exist",
+      "sectionNote": "the measured 'Filter Components' section (contract source); the Figma-AI enumeration also lists a Filters section 26955:66555 — existence-probed live 2026-09-10, both exist",
       "guidelinesNodeId": "27382:19966",
       "provenance": "sets measured in filters.json (2026-09-08); guidelines frame existence-probed 2026-09-10",
       "contractPaths": ["portals/agency/components/filters.md"],
       "componentSets": [
-        { "name": "Filter_dropdown", "nodeId": "26360:67677", "variants": 3 },
-        { "name": "Filter_Toggle", "nodeId": "26938:65213", "variants": 3 },
-        { "name": "Filter_checkbox", "nodeId": "26938:65443", "variants": 3 }
+        { "name": "filter-dropdown", "nodeId": "26360:67677", "variants": 3 },
+        { "name": "filter-toggle", "nodeId": "26938:65213", "variants": 3 },
+        { "name": "filter-checkbox", "nodeId": "26938:65443", "variants": 3 }
       ]
     },
     {
@@ -72,25 +73,25 @@
       "provenance": "measured in table.md v3.0.0; guidelines frame existence-probed 2026-09-10",
       "contractPaths": ["portals/agency/components/table.md"],
       "componentSets": [
-        { "name": "table_cell", "nodeId": "26938:61725", "variants": 1 },
-        { "name": "table_head", "nodeId": "26938:61726", "variants": 1 }
+        { "name": "table-cell", "nodeId": "26938:61725", "variants": 1 },
+        { "name": "table-head", "nodeId": "26938:61726", "variants": 1 }
       ]
     },
     {
-      "name": "empty states",
+      "name": "Empty States",
       "sectionNodeId": "27218:64329",
       "guidelinesNodeId": "27382:20443",
       "generalGuidelinesNodeId": "27226:44320",
       "provenance": "measured in empty-states.json; guideline frames existence-probed 2026-09-10",
       "contractPaths": ["portals/agency/components/empty-states.md"],
       "componentSets": [
-        { "name": "empty states", "nodeId": "11380:24914", "variants": 8 },
-        { "name": "popups empty states", "nodeId": "5775:5916", "variants": 3 },
+        { "name": "Empty States", "nodeId": "11380:24914", "variants": 8 },
+        { "name": "popups Empty States", "nodeId": "5775:5916", "variants": 3 },
         { "name": "Icons", "nodeId": "12428:28265", "variants": 6 }
       ]
     },
     {
-      "name": "page headers",
+      "name": "Page Headers",
       "sectionNodeId": "27232:63236",
       "guidelinesNodeId": "27382:21784",
       "provenance": "measured in page-header.json v1.2.0; guidelines frame existence-probed 2026-09-10",
@@ -105,15 +106,15 @@
       ]
     },
     {
-      "name": "Inline Dropdown Patterns",
+      "name": "Dropdown Menu",
       "sectionNodeId": "27245:67562",
       "guidelinesNodeId": "27382:20718",
       "provenance": "measured in ddm-dropdown-menu.json + column-arrangement.json; guidelines frame existence-probed 2026-09-10",
       "contractPaths": ["portals/agency/components/ddm-dropdown-menu.md", "portals/agency/components/column-arrangement.md"],
       "componentSets": [
-        { "name": "ddm rows - checkboxes", "nodeId": "7926:11855", "variants": 5 },
+        { "name": "ddm-row-checkbox", "nodeId": "7926:11855", "variants": 5 },
         { "name": "atom/radio / Dropdown selections", "nodeId": "7926:11856", "variants": 4 },
-        { "name": "ddm rows - checkboxes + drag feature", "nodeId": "13095:43335", "variants": 6 },
+        { "name": "ddm-row-checkbox + drag feature", "nodeId": "13095:43335", "variants": 6 },
         { "name": "Columns action button trigger", "nodeId": "10373:16081", "variants": 6, "variantsNote": "corrected 2026-09-10: was recorded as 4 (a miscount of the 4 documented States); column-arrangement.json states Figma reports 6 variants (State x Open) for this set." }
       ],
       "components": [
@@ -126,17 +127,17 @@
       "relatedSection": { "name": "Column Settings", "nodeId": "27352:74681", "provenance": "existence-probed live 2026-09-10; the column-arrangement contract's measured pattern node is 27311:46254" }
     },
     {
-      "name": "info chips",
+      "name": "Alerts & Messages",
       "sectionNodeId": "27255:69606",
       "guidelinesNodeId": "27382:20942",
       "provenance": "measured live 2026-09-10 (info-chips.json 1.0.0)",
       "contractPaths": ["portals/agency/components/info-chips.md"],
       "componentSets": [
-        { "name": "page messages", "nodeId": "11315:24274", "variants": 9 }
+        { "name": "page-message", "nodeId": "11315:24274", "variants": 9 }
       ]
     },
     {
-      "name": "user profile side navigation",
+      "name": "Profile Sidebar",
       "sectionNodeId": "27328:70399",
       "guidelinesNodeId": "27382:21080",
       "provenance": "component nodes measured in profile-side-navigation.json; section + guidelines frame existence-probed 2026-09-10",
@@ -165,7 +166,7 @@
       ]
     },
     {
-      "name": "Page Layout Patterns",
+      "name": "Primary Sidebar",
       "sectionNodeId": "27337:74297",
       "guidelinesNodeId": "27382:21565",
       "provenance": "patterns measured live 2026-09-10; section + guidelines frame existence-probed the same day",
@@ -192,8 +193,8 @@
     }
   ],
   "patterns": [
-    { "name": "pattern-page-data-table", "nodeId": "27337:73093", "section": "Page Layout Patterns" },
-    { "name": "pattern-page-empty-state", "nodeId": "27401:30856", "section": "Page Layout Patterns" },
-    { "name": "pattern-page-form-grid", "nodeId": "27401:31504", "section": "Page Layout Patterns" }
+    { "name": "pattern-page-data-table", "nodeId": "27337:73093", "section": "Primary Sidebar" },
+    { "name": "pattern-page-empty-state", "nodeId": "27401:30856", "section": "Primary Sidebar" },
+    { "name": "pattern-page-form-grid", "nodeId": "27401:31504", "section": "Primary Sidebar" }
   ]
 }

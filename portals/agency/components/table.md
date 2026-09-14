@@ -67,14 +67,14 @@ borders double up.
 
 ## 3b. ✅ Which header is canonical — settled
 
-**Build from `table_head` — set `26938:61726`, variant `26938:52865`.**
+**Build from `table-head` — set `26938:61726`, variant `26938:52865`.**
 
 Ruled by the design-system owner on 2026-08-25. He linked that exact node and said it *"include all
 actions what it needed to show and hide example, Sorting, Information etc."*
 
 | Component | Node | Status |
 |---|---|---|
-| `table_head` | `26938:61726` / `26938:52865` | ✅ **CANONICAL — build from this** |
+| `table-head` | `26938:61726` / `26938:52865` | ✅ **CANONICAL — build from this** |
 | `Head / Tiltes for tables` | `5865:162` | ⛔ **Retired** — an alias of the above. The local `table.css` used to call this one canonical; it has been corrected. |
 | `X-Head old` | — | ⛔ **Dead.** Figma's own description reads, verbatim: "Do not cosider this compoent". |
 
@@ -289,8 +289,8 @@ closes seven.
 | 2026-09-02 | **3.0.0** — three column-width bands ruled and published for the first time (M 80-140, **L 140-240 default**, XL 240-400), named to match the Figma `column-size` variant. Supersedes the local `[CS-TBL-14]` bands on both naming and values, and moves the default up a size. Density confirmed as working-as-designed for padding (TBL-R6); the type-scale half left open. Table states checked on the owner's instruction and formally flagged as a genuine design gap, not a documentation one. | **Owner ruling, 2026-09-01** |
 | 2026-08-25 | **2.1.1** — adversarial review found the 34px header floor was enforced by `min-height`, which browsers may ignore on a table cell; measured at **17px** in Chrome, shorter than its own 30px rows. Fixed to `height` in both stylesheets, and this contract's `neverUse: "height"` corrected — as written it would have made a future session undo the fix. Also retracted a false claim that declaring both properties made real and div-based tables behave alike. | Verification, 2026-08-25 |
 | 2026-08-25 | **2.1.0** — recorded that TWO stylesheets implement this contract, and rewrote the repo's own `src/styles/3-components/_tables.scss` against it (it predated the measurement by six weeks and had no row heights at all). Also recorded four **namespace divergences** that were previously papered over, including a dead `--border-radius-*` variable family that is live on Button and Empty States and produces square corners where 4px and 12px were intended. | Owner instruction, 2026-08-25 |
-| 2026-08-25 | **2.0.0** — four owner rulings applied. `table_head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
-| 2026-08-25 | **1.1.0** — recorded that TWO live header components exist (`table_head` 26938:61726 vs `Head / Tiltes for tables` 5865:162, both 34px), plus a third that is formally dead; and that this section's own sample layout uses the other one. Found while syncing against the local stylesheet. |
+| 2026-08-25 | **2.0.0** — four owner rulings applied. `table-head` `26938:61726` declared **canonical** and `Head / Tiltes for tables` `5865:162` retired. Padding ruled **8px sides / 0 top-bottom on both cells**. The data cell's 30px becomes a **minimum**, with growth at **row** level, and its `nowrap` removed. **Zebra striping ruled out.** Cell hover and selected/sorted-active deferred — nothing exists at the semantic layer to follow. Three of these put this contract **ahead of live Figma**; five Figma-side changes raised. | **Owner ruling, 2026-08-25** |
+| 2026-08-25 | **1.1.0** — recorded that TWO live header components exist (`table-head` 26938:61726 vs `Head / Tiltes for tables` 5865:162, both 34px), plus a third that is formally dead; and that this section's own sample layout uses the other one. Found while syncing against the local stylesheet. |
 | 2026-08-25 | 1.0.0 — first table contract in this repo. Both sets measured from section `26955:66556`, cross-checked against the local copy-from stylesheet and the owner's variable export. Created because the absence of any published table geometry was blocking feature work. | Owner instruction, 2026-08-25 |
 
 ## Figma Guidelines

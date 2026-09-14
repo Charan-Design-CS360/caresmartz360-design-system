@@ -105,7 +105,7 @@ spec was silent, the gap is named in the file and listed below.
 | `buttons.css` | `Button/Primary` 5703:7087 + Secondary 27098:1282, Ghost 5703:7709, Soft 5703:8495, Warning 26781:44955, Destructive 5703:7501, Success 10356:17309 (8 sets, 360 variants) | **SPEC-07b** §3, §3.1, §3.2, §4, §5.1–§5.4, §10 | **No** — SPEC-07b post-dates the verification pass |
 | `fields.css` part 1 | `2023/ New-Text field` 14345:224740 · `atom/text_field lables` 10495:19313 · `Genric Fields new 2025` 14465:221801 · `Field / Alerts` 11116:25116 | **SPEC-12** §3, §4, §5, §7 | Yes (one of the 8) |
 | `fields.css` part 2 | `field-set-type1` 26938:65997 (7 state variants, no compact axis) | **SPEC-17** §4, §5, §6a–§6e, §7 | **No** — SPEC-17 post-dates the pass |
-| `select.css` | `Filter_dropdown` 26360:67677 · `Dropdown/Menu / simple` 14593:268077 · `atom/DDM` 20163:6103 | **SPEC-10** §4, §5c, §6a, §6b | Yes |
+| `select.css` | `filter-dropdown` 26360:67677 · `Dropdown/Menu / simple` 14593:268077 · `atom/DDM` 20163:6103 | **SPEC-10** §4, §5c, §6a, §6b | Yes |
 | `checkbox-radio.css` | checkbox 5699:8332 · radio 13149:52616 · toggle 26942:4537 · pairing 16025:366400 | **SPEC-11** §3, §4, §5, §6, §7, §8 | Yes — and the verifier FIXED a real defect in it (the toggle-off knob colour) |
 | `tags-chips.css` | `badges/other` 14357:226258 · `Status/info` 10313:14623 | **SPEC-08a** §5.1–§5.3, §6.2 | Yes — the tag claim is marked **CONFIRMED**, and the status dot was RESTORED by the verifier |
 | `search-field.css` | `Nav Search` 10290:15285 | **SPEC-10** §6d | Yes |

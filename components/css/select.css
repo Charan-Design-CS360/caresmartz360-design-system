@@ -3,7 +3,7 @@
    the closed trigger, the open panel, and the menu item. A COPY-FROM reference,
    not an import (00-README.md).
    SPEC SOURCE: SPEC-10-dropdown-filter-and-upload.md
-   FIGMA SOURCE: `Filter_dropdown` 26360:67677 (the canonical trigger) ·
+   FIGMA SOURCE: `filter-dropdown` 26360:67677 (the canonical trigger) ·
                  `Dropdown/Menu / simple` 14593:268077 (the current menu item) ·
                  `atom/DDM` 20163:6103 (the chevron atom)
    CREATOR: Opus (Claude), Wound Management session, on Singh's 2026-08-24
@@ -15,7 +15,7 @@
    SPEC-10 documents FOUR dropdown families. Only one of them is token-bound, and
    only that one is here:
 
-     KEPT   `Filter_dropdown` 26360:67677 — 30px, radius 4px, every colour bound
+     KEPT   `filter-dropdown` 26360:67677 — 30px, radius 4px, every colour bound
             to a field/* or icon/* token. This is the generic select trigger.
      LEFT OUT  ` Element before` 8327:334 and `Choices` 5699:5945 (the legacy
             `Cell Structure=No` families). Their fills are raw alpha colours with
@@ -66,7 +66,7 @@
                  --field-bg-default
    STATES: default (here) · active [CS-SEL-04]. Nothing else exists — see the
            file header.
-   SPEC: SPEC-10 §4 (canonical `Filter_dropdown` 26360:67677 anatomy).
+   SPEC: SPEC-10 §4 (canonical `filter-dropdown` 26360:67677 anatomy).
    The height is hard-locked in Figma as height + min-height + max-height all 30,
    i.e. it is NOT derived from padding; reproduce all three so a long value cannot
    grow the control. Width hugs its contents (measured instances 106×30, 158×30).

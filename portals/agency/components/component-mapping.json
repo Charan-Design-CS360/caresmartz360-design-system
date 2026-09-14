@@ -104,7 +104,7 @@
       "componentKey": null,
       "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
       "nodeId": "27356:74769",
-      "nodeIdNote": "the measured 'filters compoents' section; the Figma-AI enumeration also lists a Filters section 26955:66555 (existence-probed 2026-09-10) — both exist",
+      "nodeIdNote": "the measured 'Filter Components' section; the Figma-AI enumeration also lists a Filters section 26955:66555 (existence-probed 2026-09-10) — both exist",
       "maturity": "draft",
       "semanticDependencies": [
         "shared/primitives",

@@ -137,4 +137,4 @@ convention.
 
 ## Figma Guidelines
 
-Designer guideline frame: **Inline Dropdown Patterns — Guidelines** — [`27382:20718`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20718) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).
+Designer guideline frame: **Dropdown Menu — Guidelines** — [`27382:20718`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20718) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

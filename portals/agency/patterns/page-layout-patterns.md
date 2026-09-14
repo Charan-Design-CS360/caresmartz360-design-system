@@ -1,6 +1,6 @@
 <!--
 =============================================================================
-LAYER-4 PATTERN — Page Layout Patterns (Agency portal)
+LAYER-4 PATTERN — Primary Sidebar (Agency portal)
 
 The three documented page-level layouts. All share ONE shell (see
 ./page-setup.md for the ratified grid); only "Middle Matter" changes.
@@ -12,7 +12,7 @@ CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira source: C360-47184
 =============================================================================
 -->
 
-# Page Layout Patterns — Agency (Layer 4)
+# Primary Sidebar — Agency (Layer 4)
 
 Jira: **C360-47184** · pattern epic **C360-45159** · shell grid: [page-setup.md](./page-setup.md).
 
@@ -28,7 +28,7 @@ Matter**, the only region that changes.
 | Nav state | **collapsed 48** | expanded 158 | expanded 158 |
 | Shell / page width | 1392 / 1152 | 1282 / 1042 | 1282 / 1042 |
 | Page header (**HUG**) | **110** (with filter toolbar) | 68 | 68 |
-| Middle Matter | table: 34 header + 30 rows (step 29, shared 1px border), 200 columns, 330 actions column | `empty states` 800×154, inset 12 | 12× `form-field-primary` in a 4×3 grid, cells **254.5×66**, inset 12, no gaps |
+| Middle Matter | table: 34 header + 30 rows (step 29, shared 1px border), 200 columns, 330 actions column | `Empty States` 800×154, inset 12 | 12× `form-field-primary` in a 4×3 grid, cells **254.5×66**, inset 12, no gaps |
 | Footer | page-info 136 (message 800×112) | — | — |
 | Use case | records/schedules/lists with inline editing | first-run, empty results | demographics, read-first detail |
 
