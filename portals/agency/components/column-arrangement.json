@@ -9,7 +9,7 @@
     "figmaPatternNodeId": "27311:46254",
     "figmaPatternNodeName": "columnarrangement",
     "figmaAtomNodeId": "13095:43335",
-    "figmaAtomNodeName": "ddm rows - checkboxes + drag feature",
+    "figmaAtomNodeName": "ddm-row-checkbox + drag feature",
     "nodeIdRelationship": "27311:46254 is the composed PATTERN — a full side-panel flyout. It reuses four already-published Agency atoms/molecules (Popover Header 2025, Nav Search, Dropdown Heading primary, Button/Secondary + Button/Primary) plus the row atom Singh linked (13095:43335). Critically, the pattern does NOT use only the atom Singh linked — see defect D1.",
     "measuredOn": "2026-09-01",
     "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
@@ -67,7 +67,7 @@
         ]
       },
       {
-        "name": "ddm rows - checkboxes + drag feature",
+        "name": "ddm-row-checkbox + drag feature",
         "nodeId": "13095:43335 AND 27307:43097",
         "role": "one row = one column: checkbox to show/hide, 6-dot handle to reorder",
         "reuse": "TWO DIFFERENT Figma components with the identical name are both used in this one pattern — see defect D1. Do not treat them as interchangeable without reading D1 first.",
@@ -603,7 +603,7 @@
     }
   },
   "defects": [
-    "D1 — TWO DIFFERENT FIGMA COMPONENTS SHARE THE IDENTICAL NAME 'ddm rows - checkboxes + drag feature': node 13095:43335 (the one Singh linked — older, references legacy checkbox nodes 77:16/72:599, always renders checked+draggable with no exposed toggle in this usage) and node 27307:43097 (newer, references current Checkbox atom 27194:66388, has the confusingly-named unChecked toggle — see D3). The pattern uses BOTH in the same list: 27307:43097 for the top ungrouped row and the six 'available' rows, 13095:43335 for the twelve 'visible' rows. Any tool building from 'the atom Singh linked' alone would build only half the pattern correctly. Needs Figma AI to either retire one as an alias of the other, or document why two exist. STILL OPEN as of 2026-09-01 — re-verified live: node 27307:43097 is still in active use for the six 'Not selected' rows even after the top-row mistake was fixed.",
+    "D1 — TWO DIFFERENT FIGMA COMPONENTS SHARE THE IDENTICAL NAME 'ddm-row-checkbox + drag feature': node 13095:43335 (the one Singh linked — older, references legacy checkbox nodes 77:16/72:599, always renders checked+draggable with no exposed toggle in this usage) and node 27307:43097 (newer, references current Checkbox atom 27194:66388, has the confusingly-named unChecked toggle — see D3). The pattern uses BOTH in the same list: 27307:43097 for the top ungrouped row and the six 'available' rows, 13095:43335 for the twelve 'visible' rows. Any tool building from 'the atom Singh linked' alone would build only half the pattern correctly. Needs Figma AI to either retire one as an alias of the other, or document why two exist. STILL OPEN as of 2026-09-01 — re-verified live: node 27307:43097 is still in active use for the six 'Not selected' rows even after the top-row mistake was fixed.",
     "D2 — RESOLVED 2026-09-01. Was: a code-vs-render discrepancy on the ungrouped top row (generated code implied a drag handle; the screenshot showed none). Moot — Singh has since confirmed that row was a Figma authoring mistake and removed it. No further action.",
     "D3 — THE 'unChecked' VARIANT PROPERTY IS NAMED BACKWARDS on node 13095:43335. 'unChecked=Yes' (the default) renders a CHECKED row; 'unChecked=No' renders an UNCHECKED row. Confirmed directly from the six variant names in the component set (State=Default/Active/Hover x unChecked=Yes/No) cross-read against the generated JSX's conditional branches. This is the same class of defect as inverted booleans found elsewhere in this system (e.g. the DDM checkbox/radio selected-state work) — flag to Figma AI, do not propagate the backwards name into any built implementation.",
     "D4 — fonts/tracking/X-tracking-0 is bound throughout (header title, search placeholder, row labels, group heading, footer buttons) — the same legacy name found system-wide this session, now confirmed present in an 8th place. One Figma rename still closes all of them.",

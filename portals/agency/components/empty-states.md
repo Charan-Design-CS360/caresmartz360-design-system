@@ -1,7 +1,7 @@
 # Empty States — Agency component contract
 
 **Portal:** Agency · **Layer:** 3 (Components) · **Jira parent:** C360-44737
-**Measured:** 2026-08-25, live Figma · **Section:** `27218:64329` "empty states"
+**Measured:** 2026-08-25, live Figma · **Section:** `27218:64329` "Empty States"
 **Machine twin:** [`empty-states.json`](./empty-states.json) — every value there carries a provenance marker.
 
 ---
@@ -31,7 +31,7 @@ is bound to it) rather than a **missing-token** problem — which is a materiall
 
 Two separate families of "there's nothing here yet" designs.
 
-**Inline empty states** — 8 versions. Four situations × two backgrounds (grey or white):
+**Inline Empty States** — 8 versions. Four situations × two backgrounds (grey or white):
 
 | Situation | Shows | Heading |
 |---|---|---|
@@ -42,7 +42,7 @@ Two separate families of "there's nothing here yet" designs.
 
 These drop into an empty table, a blank calendar, a section with no data yet.
 
-**Popup empty states** — 3 versions. These are modal dialogs that appear when the user must fill
+**Popup Empty States** — 3 versions. These are modal dialogs that appear when the user must fill
 something in before continuing. Per Figma's own note they are **non-dismissible** — they stay until
 the user presses a button.
 
@@ -166,4 +166,4 @@ Stated plainly so nothing here reads as more certain than it is:
 
 ## Figma Guidelines
 
-Designer guideline frame: **empty states — Component Guidelines** — [`27382:20443`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20443) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).
+Designer guideline frame: **Empty States — Component Guidelines** — [`27382:20443`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20443) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

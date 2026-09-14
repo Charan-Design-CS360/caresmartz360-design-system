@@ -83,4 +83,4 @@ No live Angular code touched. Spec + copy-from CSS. GitHub via branch → PR (ne
 
 ## Figma Guidelines
 
-Designer guideline frame: **Page Layout Patterns — Guidelines** — [`27382:21565`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21565) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).
+Designer guideline frame: **Primary Sidebar — Guidelines** — [`27382:21565`](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21565) (existence probed live 2026-09-10; content not transcribed here — the frame is the designer-authored usage reference alongside this contract).

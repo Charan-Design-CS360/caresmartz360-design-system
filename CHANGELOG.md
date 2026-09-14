@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.3.1] — 2026-09-14 — Avatar measured (AV-01 closed) + ratification one-pager
+
+- **avatar contract → 1.1.0:** geometry/token bindings measured live for all 6 sets
+  (radii, upload-placeholder bg `action/secondary/bg`, group gap/overlap, more-pill and
+  status-badge tokens/typography). AV-01 closed. **NEW AV-06:** the Figma description
+  promises an initials fallback, but the set contains no initials variant — every
+  `No Image` variant is a camera placeholder. Needs Figma-AI/Singh reconciliation.
+- `docs/RATIFICATION-ONE-PAGER-2026-09-14.md` — plain-words summary of the 7 pending
+  rulebook files for Singh's ratification decision.
+
+## [4.3.0] — 2026-09-14 — rename debt CLOSED from a live Figma read
+
+The 2026-09-10 Figma rename wave is now fully reflected in the repo — without waiting for
+Figma-AI's list: every current section and component-set name was read LIVE from the file
+(one full-page metadata read, page `26581:38709`) and applied to every load-bearing field.
+
+### Changed — 27 files, old → live names
+- Sections: `table`→`Table` · `empty states`→`Empty States` · `page headers`→`Page Headers` ·
+  `Inline Dropdown Patterns`→`Dropdown Menu` · `info chips`→`Alerts & Messages` ·
+  `user profile side navigation`→`Profile Sidebar` · `Page Layout Patterns`→`Primary Sidebar` ·
+  `filters compoents`→`Filter Components`
+- Component sets: `Filter_dropdown/Filter_Toggle/Filter_checkbox`→`filter-dropdown/-toggle/-checkbox` ·
+  `table_cell/table_head`→`table-cell/table-head` · `ddm rows - *`→`ddm-row-checkbox/-radio/-checkbox-drag` ·
+  `page messages`→`page-message`
+- Touched: both mappings, filters/table/info-chips/ddm/column-arrangement/empty-states/
+  page-header/profile- & primary-side-navigation contracts, both pattern docs, kit CSS
+  provenance headers, `00-README-COMPONENTS.md`, Layer-4 contract. History files
+  (CHANGELOG, historical contract, forensic report) deliberately untouched.
+- Still snake_case IN FIGMA (not repo debt): `column_actions`, `sample-layout_table`,
+  `columnarrangement`, avatar sets (queued to Figma-AI as AV-04 / C360-44235 #633964).
+
 ## [4.2.1] — 2026-09-14 — RULING: variable-value reading order (Figma first)
 
 **Singh's ruling (2026-09-14), supersedes the 2026-08-03 authority order:** read variable

@@ -14,7 +14,7 @@
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the MCP never reports a file key. Taken from portals/agency/portal-manifest.json and the URL supplied by the design owner.",
     "figmaSectionNodeId": "26955:66556",
     "figmaSectionName": "table",
-    "nodeIdRelationship": "26955:66556 is the SECTION 'table'. It contains sub-section 27002:73582 ('components and sample') holding the two component sets — table_cell 26938:61725 (variant 26938:52924) and table_head 26938:61726 (variant 26938:52865) — plus column_actions 26938:61850 and a 3-column sample layout 27002:78668. It also contains a generated guidelines frame 26938:66226.",
+    "nodeIdRelationship": "26955:66556 is the SECTION 'table'. It contains sub-section 27002:73582 ('components and sample') holding the two component sets — table-cell 26938:61725 (variant 26938:52924) and table-head 26938:61726 (variant 26938:52865) — plus column_actions 26938:61850 and a 3-column sample layout 27002:78668. It also contains a generated guidelines frame 26938:66226.",
     "measuredOn": "2026-08-25",
     "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
     "measurementMethod": "figma-desktop MCP: get_metadata on section 26955:66556 (full structure, all node ids, rendered sizes); get_design_context on both variants 26938:52865 (head) and 26938:52924 (cell). Cross-checked against the local copy-from stylesheet Universal Html Rules/02-components/table.css and against the owner's Agency variable export (2026-08-24).",
@@ -57,7 +57,7 @@
       "RAW": "real value but NOT bound to any token present in the owner's variable export",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "✅ THE HEADER QUESTION IS SETTLED. The canonical table header is `table_head` 26938:61726, variant 26938:52865 — ruled by the design-system owner on 2026-08-25, who linked that exact node and said it \"include all actions what it needed to show and hide example, Sorting, Information etc.\" `Head / Tiltes for tables` 5865:162 is RETIRED as an alias of it, and `X-Head old` stays formally dead. Build from 26938:61726. Do not re-open this from the fact that the section's own sample layout (27002:78668) still instantiates the retired name — that is a Figma-side cleanup item, not evidence of a live competing component. Three more rulings landed the same day and are all recorded in `ownerRulings` below: padding is 8px inline / 0px block on BOTH cells; the data cell's 30px is a MINIMUM and a long value grows the WHOLE ROW; zebra striping is ruled out entirely. One thing is deliberately still open — cell hover — because the Agency semantic layer has no hover token for a field or table surface to follow. It is deferred to the owner, not invented here.",
+    "readThisFirst": "✅ THE HEADER QUESTION IS SETTLED. The canonical table header is `table-head` 26938:61726, variant 26938:52865 — ruled by the design-system owner on 2026-08-25, who linked that exact node and said it \"include all actions what it needed to show and hide example, Sorting, Information etc.\" `Head / Tiltes for tables` 5865:162 is RETIRED as an alias of it, and `X-Head old` stays formally dead. Build from 26938:61726. Do not re-open this from the fact that the section's own sample layout (27002:78668) still instantiates the retired name — that is a Figma-side cleanup item, not evidence of a live competing component. Three more rulings landed the same day and are all recorded in `ownerRulings` below: padding is 8px inline / 0px block on BOTH cells; the data cell's 30px is a MINIMUM and a long value grows the WHOLE ROW; zebra striping is ruled out entirely. One thing is deliberately still open — cell hover — because the Agency semantic layer has no hover token for a field or table surface to follow. It is deferred to the owner, not invented here.",
     "ruledOn": "2026-09-02",
     "ruledBy": "Singh (design-system owner)",
     "knownNamespaceDivergences": [
@@ -72,7 +72,7 @@
   "anatomy": {
     "componentSets": [
       {
-        "name": "table_head",
+        "name": "table-head",
         "setNodeId": "26938:61726",
         "variantNodeId": "26938:52865",
         "variants": 1,
@@ -81,7 +81,7 @@
         "marker": [
           "MEASURED"
         ],
-        "figmaDescription": "Table header cell component. Styled for the header row with distinct background and typography treatment. 1 variant: type=Default. Composable with table_cell to build full data tables. Part of the Table component family.",
+        "figmaDescription": "Table header cell component. Styled for the header row with distinct background and typography treatment. 1 variant: type=Default. Composable with table-cell to build full data tables. Part of the Table component family.",
         "children": [
           "Title row (26938:52850, h=24)",
           "label text (26938:52851)",
@@ -91,7 +91,7 @@
         ]
       },
       {
-        "name": "table_cell",
+        "name": "table-cell",
         "setNodeId": "26938:61725",
         "variantNodeId": "26938:52924",
         "variants": 1,
@@ -100,7 +100,7 @@
         "marker": [
           "MEASURED"
         ],
-        "figmaDescription": "Table body data cell component. Standard cell for table rows displaying data values. 1 variant: type=Default. Composable with table_head to build full data tables. Part of the Table component family.",
+        "figmaDescription": "Table body data cell component. Standard cell for table rows displaying data values. 1 variant: type=Default. Composable with table-head to build full data tables. Part of the Table component family.",
         "children": [
           "value text (26938:52922), single line, ellipsis-truncated"
         ]
@@ -540,7 +540,7 @@
   },
   "defects": [
     "NO TABLE CONTRACT EXISTED IN THIS REPO UNTIL NOW, while the repo's only table stylesheet (src/styles/3-components/_tables.scss, 33 lines) contains ZERO height declarations. Every AI tool is instructed to read GitHub for component truth, so every tool asking 'how tall is a table row?' got no answer. This is the most likely cause of a feature session being unable to build tables to the design system.",
-    "RESOLVED 2026-08-25 (owner ruling TBL-R1). Was: two live header components, possibly three. table_head 26938:61726 is now canonical; 'Head / Tiltes for tables' 5865:162 is retired as an alias; 'X-Head old' is dead. One residual Figma-side cleanup remains — the section's sample layout still instantiates the retired name.",
+    "RESOLVED 2026-08-25 (owner ruling TBL-R1). Was: two live header components, possibly three. table-head 26938:61726 is now canonical; 'Head / Tiltes for tables' 5865:162 is retired as an alias; 'X-Head old' is dead. One residual Figma-side cleanup remains — the section's sample layout still instantiates the retired name.",
     "RESOLVED 2026-08-25 (owner ruling TBL-R3). Was: the data cell used a FIXED height:30 while the head cell used min-height:34, so a data cell could not grow. 30px is now a MINIMUM and growth is row-level, bringing the family in line with the rest of the system. Figma still binds the fixed height and is scheduled to be updated — this contract follows the ruling, not the stale measurement.",
     "Figma's generated payload prints WRONG padding fallbacks on the head cell: 9px where spacing/md is 8, and 1px where spacing/none is 0. The sibling data cell prints the same tokens correctly as 8 and 0. So the same two tokens print correctly in one component and incorrectly in the other.",
     "Two token namespaces for the same border colour: head binds border/subtle, data cell binds field/border-default, both #e2e8f0.",
@@ -567,7 +567,7 @@
   },
   "notVerified": [
     "The Figma file key was not measured.",
-    "'Head / Tiltes for tables' 5865:162 — the header the document-level stylesheet calls canonical — was NOT measured by this contract. Its 34px is quoted from that stylesheet, not read from Figma. Whether it and table_head are token-identical is unknown.",
+    "'Head / Tiltes for tables' 5865:162 — the header the document-level stylesheet calls canonical — was NOT measured by this contract. Its 34px is quoted from that stylesheet, not read from Figma. Whether it and table-head are token-identical is unknown.",
     "The masters behind the sample layout's header instances (27002:78670, 27002:78681, 27002:78692) were inferred from their layer NAME matching 'Head / Tiltes for tables'. The instance→master link was not read, so the identification is by name, not proven.",
     "column_actions (26938:61850) and its two 20x20 icons (26938:61851 filter_list, 26938:61854 drag_indicator) — structure and sizes only, no token bindings read.",
     "The Sort control's four variants (set 5865:154). Only the default rendering inside the head cell was seen — the ascending/descending/active states were not read.",
@@ -585,7 +585,7 @@
   ],
   "competingHeaderComponents": {
     "status": "RESOLVED 2026-08-25 by owner ruling TBL-R1.",
-    "canonical": "table_head — set 26938:61726, variant 26938:52865",
+    "canonical": "table-head — set 26938:61726, variant 26938:52865",
     "retired": [
       {
         "name": "Head / Tiltes for tables",
@@ -600,7 +600,7 @@
     ],
     "candidatesAsMeasured": [
       {
-        "name": "table_head",
+        "name": "table-head",
         "setNodeId": "26938:61726",
         "variantNodeId": "26938:52865",
         "height": 34,
@@ -633,7 +633,7 @@
         "note": "Formally dead — Figma's own component description reads verbatim 'Do not cosider this compoent'. Listed only so the count is honest."
       }
     ],
-    "residualFigmaCleanup": "Section 26955:66556's own sample layout (27002:78668) still instantiates nodes named 'Head / Tiltes for tables' (27002:78670, 27002:78681, 27002:78692) rather than its own table_head set. That is now a Figma-side cleanup task, NOT evidence of a live competing component — see figmaSideChangesRequired.",
+    "residualFigmaCleanup": "Section 26955:66556's own sample layout (27002:78668) still instantiates nodes named 'Head / Tiltes for tables' (27002:78670, 27002:78681, 27002:78692) rather than its own table-head set. That is now a Figma-side cleanup task, NOT evidence of a live competing component — see figmaSideChangesRequired.",
     "marker": [
       "RULED"
     ]
@@ -647,7 +647,7 @@
         "id": "TBL-R1",
         "subject": "canonical header",
         "quote": "this is the exact header selection link which include alla ctiosn what it needed to show and hdie example, Sorting, Information etc.",
-        "decision": "`table_head` 26938:61726 (variant 26938:52865) is canonical. `Head / Tiltes for tables` 5865:162 is retired as an alias. `X-Head old` is dead.",
+        "decision": "`table-head` 26938:61726 (variant 26938:52865) is canonical. `Head / Tiltes for tables` 5865:162 is retired as an alias. `X-Head old` is dead.",
         "effect": "Resolves competingHeaderComponents. No geometry changed — both headers measured 34px, so this is a provenance fix, not a visual one."
       },
       {
@@ -716,13 +716,13 @@
       {
         "id": "FIG-TBL-1",
         "nodeId": "5865:162",
-        "change": "Retire or explicitly alias 'Head / Tiltes for tables' to the canonical table_head 26938:61726. Also fix the typo 'Tiltes' if the node survives as an alias.",
+        "change": "Retire or explicitly alias 'Head / Tiltes for tables' to the canonical table-head 26938:61726. Also fix the typo 'Tiltes' if the node survives as an alias.",
         "ruling": "TBL-R1"
       },
       {
         "id": "FIG-TBL-2",
         "nodeId": "27002:78668 (children 27002:78670, 27002:78681, 27002:78692)",
-        "change": "Re-point the section's own sample layout at its own table_head set instead of the retired 'Head / Tiltes for tables'. Today the section that defines the canonical header does not use it in its own example.",
+        "change": "Re-point the section's own sample layout at its own table-head set instead of the retired 'Head / Tiltes for tables'. Today the section that defines the canonical header does not use it in its own example.",
         "ruling": "TBL-R1"
       },
       {

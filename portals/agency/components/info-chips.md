@@ -1,7 +1,7 @@
 <!--
 =============================================================================
 COMPONENT CONTRACT — Info Chips / Page Messages (Agency portal)
-9-variant "page messages" set: 6 full-width message bars + 3 setting chips.
+9-variant "page-message" set: 6 full-width message bars + 3 setting chips.
 Measured LIVE 2026-09-10 — the last Figma section with zero GitHub presence.
 Machine contract: ./info-chips.json.
 CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47326

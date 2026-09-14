@@ -8,10 +8,10 @@
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma MCP serves whatever tab is active and never reports a file key. Taken from the URL supplied by the design owner (Singh, 2026-09-04) and portals/agency/portal-manifest.json. Confirm before relying on it.",
     "figmaSectionNodeId": "27356:74769",
-    "figmaSectionName": "filters compoents",
+    "figmaSectionName": "Filter Components",
     "measuredOn": "2026-09-04",
     "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
-    "measurementMethod": "Figma MCP live reads. get_metadata on 27356:74769 (section) + each atom frame + each state symbol for interior geometry; get_screenshot on the section and each atom frame; get_variable_defs on the section and on every state symbol of Filter_dropdown (default 26360:67681, active 26360:67693, hover 27352:74661) and the Active symbols of Filter_Toggle (26938:65220) and Filter_checkbox (26938:65447). Per-state tokens read directly, not inferred. Width sums cross-checked by arithmetic.",
+    "measurementMethod": "Figma MCP live reads. get_metadata on 27356:74769 (section) + each atom frame + each state symbol for interior geometry; get_screenshot on the section and each atom frame; get_variable_defs on the section and on every state symbol of filter-dropdown (default 26360:67681, active 26360:67693, hover 27352:74661) and the Active symbols of filter-toggle (26938:65220) and filter-checkbox (26938:65447). Per-state tokens read directly, not inferred. Width sums cross-checked by arithmetic.",
     "jiraParent": "C360-44737",
     "humanContract": "./filters.md",
     "markerLegend": {
@@ -20,15 +20,15 @@
       "RAW": "real value but NOT bound to any token in the owner's variable export",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "Three sibling filter atoms — Filter_dropdown, Filter_Toggle, Filter_checkbox — share ONE container spec and ONE per-state colour model. RULED by Singh 2026-09-04: the three types are FINAL — follow the design exactly. The DROPDOWN is the default filter (multi-value; shows its selected value inline as ' : [Value]'). TOGGLE and CHECKBOX are SPECIAL-CASE filters, used ONLY when the value is a single binary with active/inactive states — the control's own on/off (checked/unchecked) IS the value. The container's State (Default/Active/Hover) marks whether the filter is applied or hovered and is a SEPARATE concern from the control's value. See usageGuidance and criticalFinding (resolved)."
+    "readThisFirst": "Three sibling filter atoms — filter-dropdown, filter-toggle, filter-checkbox — share ONE container spec and ONE per-state colour model. RULED by Singh 2026-09-04: the three types are FINAL — follow the design exactly. The DROPDOWN is the default filter (multi-value; shows its selected value inline as ' : [Value]'). TOGGLE and CHECKBOX are SPECIAL-CASE filters, used ONLY when the value is a single binary with active/inactive states — the control's own on/off (checked/unchecked) IS the value. The container's State (Default/Active/Hover) marks whether the filter is applied or hovered and is a SEPARATE concern from the control's value. See usageGuidance and criticalFinding (resolved)."
   },
 
   "purpose": "A row of compact, single-line filter controls that sit in a table's Search & Filters bar and let someone narrow the rows below. Each atom names ONE filter and carries the control appropriate to that filter's value type: a dropdown (pick one of many), a toggle (on/off), or a checkbox (include/exclude). They do not filter on their own — the row's Apply button commits them; Reset clears them.",
 
   "atoms": [
-    { "name": "Filter_dropdown", "nodeId": "26360:67677", "control": "expand_more chevron", "valueDisplay": "shows the chosen value inline as ' : [Value]' when a value is applied", "widthDefault": 106, "widthApplied": 158, "marker": ["MEASURED"] },
-    { "name": "Filter_Toggle", "nodeId": "26938:65213", "control": "Toggle (switch)", "valueDisplay": "none — label stays 'Filter_Name'; only the container restyles", "widthDefault": 118, "widthApplied": 118, "marker": ["MEASURED"] },
-    { "name": "Filter_checkbox", "nodeId": "26938:65443", "control": "Checkbox (square)", "valueDisplay": "none — label stays 'Filter_Name'; only the container restyles", "widthDefault": 112, "widthApplied": 112, "marker": ["MEASURED"] }
+    { "name": "filter-dropdown", "nodeId": "26360:67677", "control": "expand_more chevron", "valueDisplay": "shows the chosen value inline as ' : [Value]' when a value is applied", "widthDefault": 106, "widthApplied": 158, "marker": ["MEASURED"] },
+    { "name": "filter-toggle", "nodeId": "26938:65213", "control": "Toggle (switch)", "valueDisplay": "none — label stays 'Filter_Name'; only the container restyles", "widthDefault": 118, "widthApplied": 118, "marker": ["MEASURED"] },
+    { "name": "filter-checkbox", "nodeId": "26938:65443", "control": "Checkbox (square)", "valueDisplay": "none — label stays 'Filter_Name'; only the container restyles", "widthDefault": 112, "widthApplied": 112, "marker": ["MEASURED"] }
   ],
 
   "propertyModel": {
@@ -56,7 +56,7 @@
   },
 
   "stateColourModel": {
-    "note": "The whole point of the component. Verified per-state on the Filter_dropdown symbols; the identical model is confirmed on Filter_Toggle and Filter_checkbox Active symbols. bg = fill; border = 1px stroke.",
+    "note": "The whole point of the component. Verified per-state on the filter-dropdown symbols; the identical model is confirmed on filter-toggle and filter-checkbox Active symbols. bg = fill; border = 1px stroke.",
     "states": {
       "Default": {
         "meaning": "No value applied — resting.",
@@ -132,9 +132,9 @@
           { "name": "Nav Search", "nodeId": "27232:64879", "width": 140, "x": 0, "note": "The search field — its own component (field family), not defined here." },
           { "name": "Filters group", "nodeId": "27232:64880", "width": 524, "x": 148, "gapFromSearch": 8, "gapFromSearchToken": "spacing/md",
             "children": [
-              { "name": "Filter_dropdown", "instance": "27232:65737", "width": 158, "x": 0 },
-              { "name": "Filter_Toggle", "instance": "27232:65738", "width": 118, "x": 162 },
-              { "name": "Filter_checkbox", "instance": "27232:65739", "width": 112, "x": 284 },
+              { "name": "filter-dropdown", "instance": "27232:65737", "width": 158, "x": 0 },
+              { "name": "filter-toggle", "instance": "27232:65738", "width": 118, "x": 162 },
+              { "name": "filter-checkbox", "instance": "27232:65739", "width": 112, "x": 284 },
               { "name": "Apply", "instance": "27232:64885", "component": "Button/Primary", "width": 60, "x": 400 },
               { "name": "Reset", "instance": "27232:65279", "component": "Button/Soft", "width": 60, "x": 464 }
             ],
@@ -183,7 +183,7 @@
   "openQuestions": [
     { "id": "q1", "question": "On toggle and checkbox filters, should the control reflect the applied value, or is the container's blue styling the only cue?", "status": "RESOLVED 2026-09-04 (Singh): the three types are final — follow exactly. Dropdown is the default multi-value filter; toggle/checkbox are special-case binary filters (single value, active/inactive) whose own control state IS the value. See usageGuidance + criticalFinding." },
     { "id": "q2", "question": "Is there a Hover state for a filter with NO value applied ((Hover, No))? Only (Hover, Yes) is published. A no-value filter presumably still needs hover feedback.", "gate": "Design-owner ruling / Figma-side addition." },
-    { "id": "q3", "question": "The three atoms are named Filter_dropdown / Filter_Toggle / Filter_checkbox with placeholder 'Filter_Name'. What real filter names/value types map to each in the Agency product?", "gate": "BA / product content — not a design-system decision." }
+    { "id": "q3", "question": "The three atoms are named filter-dropdown / filter-toggle / filter-checkbox with placeholder 'Filter_Name'. What real filter names/value types map to each in the Agency product?", "gate": "BA / product content — not a design-system decision." }
   ],
 
   "defects": [

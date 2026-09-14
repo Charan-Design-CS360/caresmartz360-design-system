@@ -6,16 +6,16 @@
     "contractVersion": "1.3.0",
     "figmaGuidelinesFrame": {
       "nodeId": "27382:21784",
-      "name": "page headers — Component Guidelines",
+      "name": "Page Headers — Component Guidelines",
       "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21784",
       "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read"
     },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves whatever tab is active and never reports a file key. Taken from portals/agency/portal-manifest.json (figma.fileKey) and the URL supplied by the design owner. Must be confirmed.",
     "figmaSectionNodeId": "27232:63236",
-    "figmaSectionName": "page headers",
+    "figmaSectionName": "Page Headers",
     "figmaComponentSetNodeId": "14160:189662",
-    "nodeIdRelationship": "27232:63236 is the SECTION 'page headers'. It contains the component set 14160:189662 'page header' (4 size variants, measured here) plus three composed symbols: 27232:65797 'pageheader component', 27232:65760 'Search & Filetrs', 27232:65833 'complete header'. The section CONTAINS these; they are not alternatives.",
+    "nodeIdRelationship": "27232:63236 is the SECTION 'Page Headers'. It contains the component set 14160:189662 'page header' (4 size variants, measured here) plus three composed symbols: 27232:65797 'pageheader component', 27232:65760 'Search & Filetrs', 27232:65833 'complete header'. The section CONTAINS these; they are not alternatives.",
     "measuredOn": "2026-08-25",
     "measuredBy": "Claude (DESIGN-SYSTEM lane, C360-3526)",
     "measurementMethod": "figma-desktop MCP live reads. get_metadata on 27232:63236 + 14160:189662; get_variable_defs on 14160:189662 + 27232:65833; get_screenshot on all four variants and the three composed symbols; get_design_context on all four variants (14160:189673, 14160:189692, 14160:189722, 26077:19290). Heights independently cross-checked by arithmetic against the measured frame heights — all four reconcile exactly.",
@@ -45,7 +45,7 @@
       "info/timezone chip (optional)"
     ],
     "note": "Two stacked rows: a title row and an optional description. All four sizes share one container spec. Everything that varies is the title's type scale, the title-row gap, and which optional elements the size exposes.",
-    "figmaDescription": "Page header atom component. Positioned in the top-left section of page headers, this serves as the title and description block within the complete header layout. Available in 4 sizes (S, M, L, XL) with optional description text, left/right action icons, help tooltip, and timezone info.",
+    "figmaDescription": "Page header atom component. Positioned in the top-left section of Page Headers, this serves as the title and description block within the complete header layout. Available in 4 sizes (S, M, L, XL) with optional description text, left/right action icons, help tooltip, and timezone info.",
     "composedForms": [
       {
         "name": "pageheader component",

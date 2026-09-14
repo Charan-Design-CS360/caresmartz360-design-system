@@ -6,7 +6,7 @@
     "contractVersion": "1.1.0",
     "figmaGuidelinesFrame": {
       "nodeId": "27382:20718",
-      "name": "Inline Dropdown Patterns — Guidelines",
+      "name": "Dropdown Menu — Guidelines",
       "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-20718",
       "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read"
     },
@@ -34,7 +34,7 @@
     "layers": "Figma AI's 3-layer atomic read is confirmed: row atoms -> single components -> assembled menus.",
     "rowAtoms": [
       {
-        "name": "ddm rows - checkboxes",
+        "name": "ddm-row-checkbox",
         "setNodeId": "7926:11855",
         "variants": 5,
         "renderedRowHeight": 30,
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "name": "ddm rows - checkboxes + drag feature",
+        "name": "ddm-row-checkbox + drag feature",
         "setNodeId": "13095:43335",
         "variants": 6,
         "renderedRowHeight": 30,
@@ -568,7 +568,7 @@
     "Component name is misspelled in Figma: 'atom/radio / Dropdown sleections' (7926:11856).",
     "Checkbox-row variant properties are four independent booleans for three mutually exclusive states, permitting undrawn combinations.",
     "Radio-row properties encode selection twice (State=Selected and Selected=Yes).",
-    "Naming conventions differ across the five components in one section: 'ddm rows - checkboxes' (lowercase-dashes), 'atom/radio / Dropdown sleections' (mixed case, spaced slashes), 'Dropdown/Menu (group heading)' (title case, slashes, parens).",
+    "Naming conventions differ across the five components in one section: 'ddm-row-checkbox' (lowercase-dashes), 'atom/radio / Dropdown sleections' (mixed case, spaced slashes), 'Dropdown/Menu (group heading)' (title case, slashes, parens).",
     "fonts/tracking/X-tracking-0 bound again — legacy name, absent from the export, correct name fonts/tracking/tracking-0. SIXTH component family.",
     "No variant in any of the three sets carries a description, so a consumer cannot tell from Figma what 'Active' versus 'Hover' is meant to mean.",
     "STILL OPEN — the checkbox row has max-height 36; the radio row still has no max-height. Both now share min-height 30 and spacing/xs padding, so this is the last remaining geometric asymmetry between them."

@@ -1,7 +1,7 @@
 # Filters — Agency component contract
 
 **Portal:** Agency · **Layer:** 3 (Component) · **Jira parent:** C360-44737
-**Measured:** 2026-09-04, live Figma · **Section node:** `27356:74769` "filters compoents"
+**Measured:** 2026-09-04, live Figma · **Section node:** `27356:74769` "Filter Components"
 **Contract version:** `1.1.0` — Singh's usage ruling: dropdown is the default, toggle/checkbox are the special binary case (§3). Supersedes `1.0.0`.
 **Machine twin:** [`filters.json`](./filters.json)
 
@@ -13,9 +13,9 @@ A row of compact filter controls that sit in a table's **Search & Filters** bar 
 narrow the rows below without a developer changing anything. Each atom names **one** filter and
 carries the control that fits that filter's value:
 
-- **Filter_dropdown** — pick one value from many (shows the chosen value inline).
-- **Filter_Toggle** — an on/off filter.
-- **Filter_checkbox** — an include/exclude filter.
+- **filter-dropdown** — pick one value from many (shows the chosen value inline).
+- **filter-toggle** — an on/off filter.
+- **filter-checkbox** — an include/exclude filter.
 
 They do not filter on their own. The row's **Apply** button commits them; **Reset** clears them.
 
@@ -28,7 +28,7 @@ left and a **control** on the right (a chevron, a switch, or a checkbox). They s
 container spec and **one** colour model; the only real differences are which control they carry and
 whether they show the value.
 
-| | Filter_dropdown | Filter_Toggle | Filter_checkbox |
+| | filter-dropdown | filter-toggle | filter-checkbox |
 |---|---|---|---|
 | Control | chevron (expand_more) | toggle switch | square checkbox |
 | Control size | 18×18 | 30×16 | 24×24 |

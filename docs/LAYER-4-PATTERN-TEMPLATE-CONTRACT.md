@@ -71,7 +71,7 @@ One-off screens are not automatically Patterns or Templates.
 
 The first patterns published under this contract (2026-09-10, Jira C360-47184):
 
-- **Agency — Page Layout Patterns** (`page-layout-shell`, maturity **draft**):
+- **Agency — Primary Sidebar** (`page-layout-shell`, maturity **draft**):
   `portals/agency/patterns/page-layout-patterns.json` / `.md` — the shared page
   shell plus three Middle-Matter variants (`pattern-page-data-table`,
   `pattern-page-empty-state`, `pattern-page-form-grid`), measured live from
