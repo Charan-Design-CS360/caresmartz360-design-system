@@ -52,5 +52,9 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Validate manifests, isolation, snapshots, and negative tests
-        run: npm run validate
+      - name: Validate (strict) — gates fail on real errors, not NOTICEs
+        # ci:check = release:check minus DS_REQUIRE_FRESH_SNAPSHOTS: no attested
+        # snapshot exists yet for any portal (pending Figma-AI's first one), so
+        # requiring freshness would block every PR on a mechanism that has never
+        # run. Flip to release:check once snapshots exist.
+        run: npm run ci:check

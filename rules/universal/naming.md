@@ -241,10 +241,11 @@ Which single name wins is a Singh decision (component doc lane), not a checker's
 - **Agency portal (SCSS):** every authored class is a component class and all rules
   apply. The `--`-as-element pattern listed under UHR-101 is Agency's known debt; fixing
   it is repo-lane work (Opus), not a checker's call.
-- **Prefixes on classes:** ECOSYSTEM-RULES §10's own examples carry team prefixes
-  (`.cs-checkbox`, `.ds-filter`). The C3 prefix-free ruling applies to **custom
-  properties**, not classes — class prefixes like `cs-` are permitted by the regex and
-  currently unregulated.
+- **Prefixes on classes:** RULED — no longer unregulated. **[UIG-084] (Singh, 2026-09-02,
+  `css-approach.md`) requires the `.cs-` prefix in BEM form** for every reusable component
+  class: `.cs-<block>`, `.cs-<block>--<variant>`, `.cs-<block>__<part>`. The C3 prefix-free
+  ruling still applies to **custom properties** only. (This bullet previously said class
+  prefixes were "currently unregulated" — corrected 2026-09-14; UIG-084 postdates it and wins.)
 
 ---
 

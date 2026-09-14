@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.2.0] — 2026-09-14 — enforcement: strict CI + the links-must-work gate
+
+Approved by Singh 2026-09-14 ("help me to get this done"). Closes forensic findings P2, L1-L4
+(gate), and the componentKey rule-vs-reality defect.
+
+### Added
+- **`scripts/validate-links.mjs`** (`npm run validate:links`, part of `validate`): every mapped
+  contract must exist, carry a Figma deep link with the correct file key, and have zero dead
+  relative links. Proven with a planted-defect test (missing file -> exit 1). 19 contracts green.
+- **`npm run ci:check`** — strict gates minus snapshot freshness (no attested snapshot exists
+  yet for any portal; flip CI to `release:check` once Figma-AI posts the first one).
+
+### Changed
+- **CI now fails on real errors:** `.github/workflows/design-system-validate.yml` runs
+  `ci:check` (strict) instead of the NOTICE-only `validate`.
+- `scripts/audit-component-mappings.mjs`: `componentKey: null` is accepted ONLY with a
+  `componentKeyStatus` note (the documented 2026-09-10 amendment — schema now agrees, with an
+  if/then requiring the status); null keys are excluded from the duplicate check; the root
+  `components/component-mapping.json` is audited as the grounded cross-section index
+  ($version 3.x: section node-id patterns, contractPaths on disk) instead of being
+  unconditionally failed as a "legacy unscoped mapping".
+- `schemas/component-mapping.schema.json`: componentKey nullable + `componentKeyStatus`,
+  `nodeIdNote`, `atomNodeIds`, `$note` fields legalised (they were already in real use).
+
+### Fixed (rulebook contradictions already answered by Singh's rulings)
+- `rules/universal/naming.md` no longer claims class prefixes are "unregulated" — UIG-084
+  (Singh 2026-09-02) mandates `.cs-` BEM naming and postdates that bullet.
+- `docs/AI-TOOLS-GUIDE.md` now carries a ruled-over-content banner listing the five points
+  the CONTRADICTIONS register already overrules (icons/brand/Tailwind/CDN/!important).
+
+### Gallery (outside this repo)
+The local gallery catalog got its own local-only git history (33 files, no remote — nothing
+can reach the internet), closing forensic finding P4's loss risk while keeping Singh's
+gallery-stays-local ruling.
+
 ## [4.1.0] — 2026-09-14 — Jira routing fixed + Avatar family registered
 
 ### Fixed — AI tools no longer misroute Jira comments
