@@ -1,10 +1,14 @@
 # Variable authority workflow
 
-## Authority rule
+## Authority rule (Singh's ruling, 2026-09-14 — supersedes the 2026-08-03 order)
 
-The owner-maintained exports (located via `DS_VARIABLE_SOURCE_DIR`) are the
-only input authority for primitive and semantic variable values. AI tools must
-not query Figma to infer or correct variable values.
+Reading order for variable values: **(1) live Figma first** (the owner defines
+variables there, so it is always the latest), **(2) the owner-maintained
+exports** (via `DS_VARIABLE_SOURCE_DIR`) when Figma is unavailable. **If both
+are available and disagree, raise a HARD ALERT to the owner and stop — never
+resolve the mismatch yourself.** The remedy is always: owner re-exports the
+latest from Figma, then the sync republishes. AI tools still must never
+*infer, guess, or fabricate* a variable value from memory or screenshots.
 
 - Primitives are shared once across all portals.
 - Agency semantics belong only to Agency.
