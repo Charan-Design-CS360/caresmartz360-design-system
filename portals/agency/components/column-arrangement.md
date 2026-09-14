@@ -1,7 +1,7 @@
 # Column Arrangement — Agency pattern contract
 
 **Portal:** Agency · **Layer:** 4 (Pattern, filed under Components — see layer4Classification) · **Jira parent:** C360-44737
-**Measured:** 2026-09-01, live Figma · **Ruled:** 2026-09-01, Singh · **Pattern node:** `27311:46254` · **Linked atom:** `13095:43335`
+**Measured:** 2026-09-01, live Figma · **Ruled:** 2026-09-01, Singh · **Pattern node:** `27311:46254` ([open](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27311-46254)) · **Linked atom:** `13095:43335`
 **Contract version:** `2.1.0` — adds the **"Column(s)" trigger button** that opens the panel (Singh, 2026-09-04). Supersedes `2.0.0`.
 **Machine twin:** [`column-arrangement.json`](./column-arrangement.json)
 

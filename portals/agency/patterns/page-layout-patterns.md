@@ -4,7 +4,8 @@ LAYER-4 PATTERN — Page Layout Patterns (Agency portal)
 
 The three documented page-level layouts. All share ONE shell (see
 ./page-setup.md for the ratified grid); only "Middle Matter" changes.
-Measured LIVE 2026-09-10 from section 27337:74297. Machine contract:
+Measured LIVE 2026-09-10 from section 27337:74297
+(https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27337-74297). Machine contract:
 ./page-layout-patterns.json. Maturity: DRAFT (no attested snapshot yet).
 
 CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira source: C360-47184

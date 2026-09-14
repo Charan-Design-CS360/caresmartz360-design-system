@@ -8,9 +8,9 @@ CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47325
 =============================================================================
 -->
 
-# Fields type 2 (SECONDARY) — Agency component contract
+# form-field-secondary (SECONDARY) — Agency component contract
 
-Jira: **C360-47325** · set `27062:7663` · atoms in [field-atoms.md](./field-atoms.md) · family
+Jira: **C360-47325** · set `27062:7663` ([open](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27062-7663)) · atoms in [field-atoms.md](./field-atoms.md) · family
 index [form-fields.md](./form-fields.md) · guidelines `27401:30526`.
 
 **Purpose:** the editable field for popups, forms and modals — label above a bordered input,

@@ -12,7 +12,7 @@ CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47183 + C360-47325
 
 # form-field-primary — Agency component contract
 
-Set `26938:65997` · section `26955:66554` · guidelines `27401:30526` ·
+Set `26938:65997` ([open](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=26938-65997)) · section `26955:66554` · guidelines `27401:30526` ·
 family index [form-fields.md](./form-fields.md) · atoms [field-atoms.md](./field-atoms.md).
 
 > **⚠️ What changed in 2.0.0 — read this before building.** The repo shipped **62px** for this

@@ -250,6 +250,21 @@
       "contractPath": "portals/agency/components/primary-side-navigation.md",
       "jiraIssue": "C360-44027",
       "snapshotRef": "measured-live-figma-2026-09-09 (contract 1.2.0)"
+    },
+    {
+      "name": "Avatar (family)",
+      "componentKey": null,
+      "componentKeyStatus": "6 keys provided by Figma-AI 2026-09-14 (recorded in avatar.json as componentKeyUnverified) — pending independent verification (AV-03)",
+      "nodeId": "27607:9247",
+      "maturity": "draft",
+      "semanticDependencies": [
+        "shared/primitives",
+        "portals/agency/semantics/color-modes",
+        "portals/agency/semantics/density-modes"
+      ],
+      "contractPath": "portals/agency/components/avatar.md",
+      "jiraIssue": "C360-44235",
+      "snapshotRef": "inventory-verified-live-2026-09-14; geometry not measured"
     }
   ]
 }

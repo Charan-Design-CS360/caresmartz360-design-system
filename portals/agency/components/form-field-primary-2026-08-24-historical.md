@@ -36,8 +36,8 @@ SOURCE: component set 26938:65997 "field-set-type1"
 > AI icons now exist), and the disabled variant now binds `field/bg-disabled`. Three of the
 > defects below are resolved by that drift. This file remains the 2026-08-24 historical
 > measurement — **build from the family contracts**, not from here:
-> [form-fields.md](./form-fields.md) (index) · [field-type-2.md](./field-type-2.md) (SECONDARY)
-> · [field-type-3.md](./field-type-3.md) (TERTIARY) · [field-atoms.md](./field-atoms.md) (shared
+> [form-fields.md](./form-fields.md) (index) · [form-field-secondary.md](./form-field-secondary.md) (SECONDARY,
+> ex field-type-2) · [form-field-tertiary.md](./form-field-tertiary.md) (TERTIARY, ex field-type-3) · [field-atoms.md](./field-atoms.md) (shared
 > atoms incl. field-input and the 6-type field-message).
 
 # Fields type 1 — Agency component contract

@@ -3,7 +3,8 @@
 LAYER-4 PATTERN: Page Setup — the basic page skeleton every content page uses.
 Defines the grid, gutters, and how the shipped components compose, so any AI
 tool reproduces the SAME structure from the repo instead of reinventing it.
-Measured live from Figma demo page 27337:73093 (1440x900) on 2026-09-04, and
+Measured live from Figma demo page 27337:73093
+(https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27337-73093) (1440x900) on 2026-09-04, and
 validated by a dimensional dry-run (AI-Ecosystem/validate-page-setup-dryrun.sh,
 16/16). CREATOR: Claude (DESIGN-SYSTEM lane), Singh request. STATUS: assembled,
 ratification pending (visual sign-off).

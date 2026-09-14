@@ -18,6 +18,7 @@ HOW TO READ IT — every value carries one of these markers, always:
 
 CREATOR: Fable-DESIGN-SYSTEM (C360-3526) | 2026-08-24
 SOURCE: Figma section 26938:66536 "AI Button component"
+  https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=26938-66536
         File key: ASSERTED as 4bh29laapcuKBTghfaRXF0 — see "Provenance limits".
 =============================================================================
 -->
