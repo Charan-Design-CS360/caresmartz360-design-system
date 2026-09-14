@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.3.2] — 2026-09-14 — stopped the legacy token-dump minting; search-field completed
+
+- **version-bump.yml defused:** it was creating a NEW root `ds-tokens-v2.6.X.json` (data
+  frozen at the deprecated 204-token era) with a fresh version stamp on every
+  `component-mapping.json` change — v2.6.5–v2.6.8 were all minted this way, live-confirming
+  the audit's "legacy dual pipeline" finding. Trigger now fires only on deliberate
+  `ds-tokens-latest.json` edits. Whether to retire the 9 legacy dumps entirely = Singh's call.
+- **PR #23 (search-field Nav Search set) reviewed, corrected, merged:** all 3 claimed nodes
+  verified live; every introduced token var exists; one fix — Figma names the variant
+  `Type=outlined` (27618:71554), not "Type=border", so the class is `.cs-search--outlined`.
+
 ## [4.3.1] — 2026-09-14 — Avatar measured (AV-01 closed) + ratification one-pager
 
 - **avatar contract → 1.1.0:** geometry/token bindings measured live for all 6 sets
