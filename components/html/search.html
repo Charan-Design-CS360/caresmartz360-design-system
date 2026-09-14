@@ -1,0 +1,41 @@
+<!-- =============================================================================
+     search.html — COPY-FROM skeleton for the search field (search-field.css).
+     Source: `Nav Search` 14170:190109 (four variants). Pair each block with the
+     [CS-SRCH-*] rule of the same name. The leading glyph is shown as an inline
+     SVG placeholder; swap it for the host's own 18px search icon. Width is set by
+     the placing container, never by the component.
+     ============================================================================= -->
+
+<!-- [CS-SRCH-01] Default — soft fill, no border -->
+<div class="cs-search">
+  <span class="cs-search__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+  </span>
+  <input class="cs-search__input" type="text" placeholder="Search" aria-label="Search">
+</div>
+
+<!-- [CS-SRCH-02] border — transparent, 1px field/border-default -->
+<div class="cs-search cs-search--border">
+  <span class="cs-search__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+  </span>
+  <input class="cs-search__input" type="text" placeholder="Search" aria-label="Search">
+</div>
+
+<!-- [CS-SRCH-03] Active — focus fill + focus border (also applied automatically via :focus-within) -->
+<div class="cs-search cs-search--active">
+  <span class="cs-search__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+  </span>
+  <input class="cs-search__input" type="text" placeholder="Search" aria-label="Search">
+</div>
+
+<!-- [CS-SRCH-06] Edit — focused, has a typed value + a trailing "Clear" button.
+     The Clear button is present only while the field holds a value. -->
+<div class="cs-search cs-search--active">
+  <span class="cs-search__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+  </span>
+  <input class="cs-search__input" type="text" value="text" aria-label="Search">
+  <button type="button" class="cs-search__clear">Clear</button>
+</div>
