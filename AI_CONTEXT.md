@@ -92,3 +92,20 @@ because variables pass.
 
 Master governance: C360-3526. Executable workflow:
 `docs/VARIABLE-AUTHORITY-WORKFLOW.md`.
+
+## Jira routing — where each AI comments (MANDATORY)
+
+The epic C360-3526 is a governance/broadcast record, **not a task inbox. Never
+post component specs, update tasks, or work requests on the epic.** Route by
+purpose:
+
+| You are | You want to | Comment on |
+|---|---|---|
+| Figma-AI (or any Figma-side tool) | deliver component info/specs/keys/renames for GitHub upload | **C360-44235** — the Figma↔GitHub bridge. Post as a `⏳ PENDING` task per that ticket's rules; the repo-side AI applies it and marks `✅ DONE` in the SAME comment. |
+| Repo-side AI (Claude/Codex/Antigravity) | ask Figma-AI a question (node ids, keys, verification) | **C360-44222** — Figma Queries & AI Synchronization Hub. |
+| Any AI | report variable-export sync/verification evidence | the portal audit ticket named in this file's collection table (C360-44253 Agency, C360-44333 Caregiver). |
+| Any AI | component-contract work already tied to a ticket | that component's own `jiraIssue` from `component-mapping.json`. |
+
+C360-44235's variable-authority block retired it **for variable values only**
+(the owner's local exports are the sole variable input). It remains the live
+channel for component information, descriptions, keys, and rename notices.

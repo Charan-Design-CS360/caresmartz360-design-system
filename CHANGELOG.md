@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.1.0] — 2026-09-14 — Jira routing fixed + Avatar family registered
+
+### Fixed — AI tools no longer misroute Jira comments
+Figma-AI posted its Avatar component spec on the **epic** (C360-3526 #633902) because the
+repo named only the epic prominently and gave no routing instruction. Now:
+- `AI_CONTEXT.md` carries the canonical **"Jira routing"** table: Figma-AI → GitHub component
+  tasks go to **C360-44235** (the bridge, `⏳ PENDING`/`✅ DONE` same-comment lifecycle);
+  questions to Figma-AI go to **C360-44222**; the epic is governance/broadcasts only.
+- `README.md` carries a "READ BEFORE COMMENTING" pointer to that table.
+- C360-44235's description clarified the same day: retired for variable **values** only,
+  LIVE for component information.
+
+### Added — Avatar component family (draft, inventory-verified)
+From the Figma-AI spec, validated live before upload:
+- `portals/agency/components/avatar.md` + `avatar.json` — 6 component sets, 43 variants;
+  section/set node IDs and variant counts verified against live Figma 2026-09-14;
+  geometry/tokens NOT yet measured (AV-01); componentKeys recorded as unverified (AV-03).
+- Root `components/component-mapping.json` → 3.1.0 (12th section: Avatar); portal mapping
+  gains the Avatar row.
+- **Deliberately not created:** the spec's 6 Code Connect files — publishing is plan-blocked
+  (C360-47337) and its `<cs-avatar-*>` Angular selectors exist in no codebase (AV-05).
+
+### Fixed — stale README counts
+Portal registry row said 263 vars (220/29/14); corrected to **270** (Color Modes 223 ×
+5 modes · Density Modes 31 · General 16), matching AI_CONTEXT.md and the manifest.
+
+### Fixed — forensic-audit repairs (full report: `docs/FORENSIC-AUDIT-FIGMA-GITHUB-LINKING-2026-09-14.md`)
+- **`scripts/sync-owner-variable-exports.mjs` hardcoded `agencySemantics: 263`** — the next
+  sync run would have regressed the manifest to 263 and broken the test suite. Now 270.
+- **8 contracts had no Figma deep link at all** (button, form-fields, form-field-primary/
+  secondary/tertiary, column-arrangement, page-layout-patterns, page-setup) — each now links
+  its own measured node.
+- `form-field-primary-2026-08-24-historical.md` still hyperlinked the dead
+  `field-type-2/3.md` paths (404 since the 2026-09-11 rename) — repointed.
+- `form-field-secondary/tertiary.md` H1s still said "Fields type 2/3" — renamed to match
+  their files and live Figma.
+- Audit headline (not yet fixable repo-side): the 28 Figma descriptions written 2026-09-10
+  teach 62px geometry, a resolved defect, and 404 GitHub links — a refresh task is queued to
+  Figma-AI on C360-44235; the rename sweep stays blocked on Figma-AI's authoritative list.
+
+---
+
 ## [4.0.0] — 2026-09-11 — control-height tokens LANDED and BOUND
 
 The owner re-exported. Option A is complete: the two most-repeated raw numbers in the system

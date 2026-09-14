@@ -11,7 +11,7 @@ here for Angular, React Native, and other consumers.
 
 | Portal | Scope | Figma Collection | Total Vars | Status | Directory | Jira |
 |--------|-------|------------------|------------|--------|-----------|------|
-| **Agency Portal** | Web App | `Color Modes`, `Density Modes`, `General` | 263 vars across 3 collections (Color Modes 220 × 5 modes, Density Modes 29 × 1 mode, General 14 × 1 mode) | Active audit | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
+| **Agency Portal** | Web App | `Color Modes`, `Density Modes`, `General` | 270 vars across 3 collections (Color Modes 223 × 5 modes, Density Modes 31 × 1 mode, General 16 × 1 mode) | Active audit | `portals/agency/` | [C360-44253](https://netsmartz.atlassian.net/browse/C360-44253) |
 | **Caregiver Portal** | Web + Mobile | `Color Theme` | 171 vars (3 modes) | ✅ Active (v3.0) | `portals/caregiver/` | [C360-44333](https://netsmartz.atlassian.net/browse/C360-44333) |
 | **Staff Portal** | Web App | *TBD* | *In Progress* | 🟡 Planned | `portals/staff/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
 | **Client Portal** | Mobile App | *TBD* | *In Progress* | 🟡 Planned | `portals/client/` | [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526) |
@@ -93,10 +93,21 @@ See [GUARDRAILS.md](GUARDRAILS.md) for full compliance guidelines.
 
 ---
 
+## 🧭 Jira Routing — READ BEFORE COMMENTING (all AI tools)
+
+**The epic C360-3526 is NOT a task inbox.** Component specs, update tasks, and
+work requests posted there are misrouted. The canonical routing table lives in
+[AI_CONTEXT.md → "Jira routing"](AI_CONTEXT.md). Short version:
+
+- **Figma-AI delivering component info for GitHub upload** → comment on
+  [C360-44235](https://netsmartz.atlassian.net/browse/C360-44235) (the Figma↔GitHub bridge) as a `⏳ PENDING` task.
+- **Repo-side AI asking Figma-AI a question** → [C360-44222](https://netsmartz.atlassian.net/browse/C360-44222) (Figma Query Hub).
+- **Work on a specific component** → the `jiraIssue` listed for it in `component-mapping.json`.
+
 ## 🔗 Key References
 
-- **Design System Epic:** [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526)
-- **Figma AI Bridge Ticket:** [C360-44235](https://netsmartz.atlassian.net/browse/C360-44235)
+- **Design System Epic (governance/broadcasts only — see routing above):** [C360-3526](https://netsmartz.atlassian.net/browse/C360-3526)
+- **Figma AI Bridge Ticket (Figma-AI's task inbox for GitHub updates):** [C360-44235](https://netsmartz.atlassian.net/browse/C360-44235)
 - **Color Audit Ticket:** [C360-44027](https://netsmartz.atlassian.net/browse/C360-44027)
 - **Figma Master File (Agency):** [CareSmartz360 V2](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0)
 - **Figma Master File (Caregiver):** [CareSmartz360 V2 — Caregiver](https://www.figma.com/design/TSOq0ugv6zfr6gFZh5zYrP)

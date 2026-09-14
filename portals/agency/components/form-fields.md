@@ -10,7 +10,7 @@ CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47183 + C360-47325
 
 # Form Fields — Agency family index
 
-Section `26955:66554` · guidelines `27401:30526` · measured live 2026-09-10 (morning + evening
+Section `26955:66554` ([open](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=26955-66554)) · guidelines `27401:30526` · measured live 2026-09-10 (morning + evening
 re-verification after same-day Figma changes).
 
 ## The three field types → member contracts

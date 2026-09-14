@@ -8,9 +8,9 @@ CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47325
 =============================================================================
 -->
 
-# Fields type 3 (TERTIARY) — Agency component contract
+# form-field-tertiary (TERTIARY) — Agency component contract
 
-Jira: **C360-47325** · molecule `27395:30147` · atoms in [field-atoms.md](./field-atoms.md) ·
+Jira: **C360-47325** · molecule `27395:30147` ([open](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27395-30147)) · atoms in [field-atoms.md](./field-atoms.md) ·
 family index [form-fields.md](./form-fields.md) · guidelines `27401:30526` · left-section
 reference `27507:56751`.
 
