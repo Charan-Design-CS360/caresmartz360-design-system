@@ -8,7 +8,7 @@
   },
   "logicalTotals": {
     "sharedPrimitives": 264,
-    "agencySemantics": 270,
+    "agencySemantics": 280,
     "caregiverSemantics": 171
   },
   "artifacts": [
@@ -24,52 +24,52 @@
     {
       "authority": "agency-semantics",
       "sourceArchive": "Agency/Color Modes.zip",
-      "sourceArchiveSha256": "f249d7effe55ac762ad327c7e915fc9955ca3474cde6ec515509a4a909b0d7be",
+      "sourceArchiveSha256": "71ba3385c66bfc3212130ee938706cc70704f59c873b28e8391912ef49ede9f8",
       "sourceMember": "Light Mode (Default).tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/Light Mode (Default).tokens.json",
-      "sha256": "5125fc6b6d60fc5b4401eac7e8e7e38c45124832c0a87d2a0d49f72ca53752eb",
-      "tokenDefinitions": 223
+      "sha256": "b521199ebed200e7cf05ace85b167bf401e49fb69d18d5b13ba919b40d268229",
+      "tokenDefinitions": 233
     },
     {
       "authority": "agency-semantics",
       "sourceArchive": "Agency/Color Modes.zip",
-      "sourceArchiveSha256": "f249d7effe55ac762ad327c7e915fc9955ca3474cde6ec515509a4a909b0d7be",
+      "sourceArchiveSha256": "71ba3385c66bfc3212130ee938706cc70704f59c873b28e8391912ef49ede9f8",
       "sourceMember": "Dark Theme.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/Dark Theme.tokens.json",
-      "sha256": "c0a8bb0a075c43590b1fd1f82b5072a9e3d73ac24d7ac794837f2a0b93fa8237",
-      "tokenDefinitions": 223
+      "sha256": "82d7f12416ada56ec1c705aa0fe3689155d1eae06e83d6879c80fe4cbe5d2759",
+      "tokenDefinitions": 233
     },
     {
       "authority": "agency-semantics",
       "sourceArchive": "Agency/Color Modes.zip",
-      "sourceArchiveSha256": "f249d7effe55ac762ad327c7e915fc9955ca3474cde6ec515509a4a909b0d7be",
+      "sourceArchiveSha256": "71ba3385c66bfc3212130ee938706cc70704f59c873b28e8391912ef49ede9f8",
       "sourceMember": "High Contrast.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/High Contrast.tokens.json",
-      "sha256": "bccc820ef42768ae3c7a3cc0b549a2d916c8d7a13d1c7bae94ac65e830465424",
-      "tokenDefinitions": 223
+      "sha256": "1f42e8707ec342d511dc73cbaee4a049a5e2904c1bd237890845276abe1a72f4",
+      "tokenDefinitions": 233
     },
     {
       "authority": "agency-semantics",
       "sourceArchive": "Agency/Color Modes.zip",
-      "sourceArchiveSha256": "f249d7effe55ac762ad327c7e915fc9955ca3474cde6ec515509a4a909b0d7be",
+      "sourceArchiveSha256": "71ba3385c66bfc3212130ee938706cc70704f59c873b28e8391912ef49ede9f8",
       "sourceMember": "Warm Dark.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/Warm Dark.tokens.json",
-      "sha256": "d5ff63f002a81d15695035815ecbe12ad7ed50add59cb7009272fbde8fca5f81",
-      "tokenDefinitions": 223
+      "sha256": "23526a16eda63a29bf2ecb25f1449f8b7e6e19c22c58cec19926069577eb0f27",
+      "tokenDefinitions": 233
     },
     {
       "authority": "agency-semantics",
       "sourceArchive": "Agency/Color Modes.zip",
-      "sourceArchiveSha256": "f249d7effe55ac762ad327c7e915fc9955ca3474cde6ec515509a4a909b0d7be",
+      "sourceArchiveSha256": "71ba3385c66bfc3212130ee938706cc70704f59c873b28e8391912ef49ede9f8",
       "sourceMember": "HC Light.tokens.json",
       "repositoryPath": "portals/agency/semantics/color-modes/HC Light.tokens.json",
-      "sha256": "63255fee475e5c9cf2bed6ba484fb1710b86f97408075ab1622f215a4703c186",
-      "tokenDefinitions": 223
+      "sha256": "c5e4e89473b561c3b7799fb1ce193d756c4307d54fbf077ebb9dfd790a9b4e6a",
+      "tokenDefinitions": 233
     },
     {
       "authority": "agency-semantics",
       "sourceArchive": "Agency/Density Modes.zip",
-      "sourceArchiveSha256": "3598dd43326dcd517fa22fb625dc17a28910c5c751a33004905df13d71ec9691",
+      "sourceArchiveSha256": "760ae049246bfa08469bafdbeefe0a0d3883ceddab10f7646ff70ddc6a768ccd",
       "sourceMember": "Mode 1.tokens.json",
       "repositoryPath": "portals/agency/semantics/density-modes/Mode 1.tokens.json",
       "sha256": "1f6a39279d81af8da4da5d624cb11df25e2a8a711d8242563fd21105ceb33401",
@@ -78,7 +78,7 @@
     {
       "authority": "agency-semantics",
       "sourceArchive": "Agency/General.zip",
-      "sourceArchiveSha256": "a9fb85a1790682d8dee2892a307ad0510662cdc1c700337226a030394d1dfa7b",
+      "sourceArchiveSha256": "597389902c0244b52a53950664cdca76f5a894bc2a114942266d3b8e7c24c621",
       "sourceMember": "Mode 1.tokens.json",
       "repositoryPath": "portals/agency/semantics/general/Mode 1.tokens.json",
       "sha256": "a66501572f155ba77ac12c08f7cbfe0eea06f7837eda3025ce2e91a2915280b1",

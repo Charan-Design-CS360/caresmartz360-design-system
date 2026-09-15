@@ -19,11 +19,11 @@ test("AI entrypoint declares exact authority and logical totals", () => {
   assert.match(context, /DS_VARIABLE_SOURCE_DIR/);
   assert.match(context, /never \*infer or fabricate\* a value/i);
   assert.match(context, /Shared Primitives[^\n]*264/);
-  assert.match(context, /Agency Semantics[^\n]*270/);
+  assert.match(context, /Agency Semantics[^\n]*280/);
   assert.match(context, /Caregiver Semantics[^\n]*171/);
   assert.deepEqual(manifest.logicalTotals, {
     sharedPrimitives: 264,
-    agencySemantics: 270,
+    agencySemantics: 280,
     caregiverSemantics: 171,
   });
 });

@@ -126,7 +126,7 @@ const manifest = {
   },
   logicalTotals: {
     sharedPrimitives: 264,
-    agencySemantics: 270,
+    agencySemantics: 280,
     caregiverSemantics: 171,
   },
   artifacts,

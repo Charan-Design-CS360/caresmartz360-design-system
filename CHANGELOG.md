@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.5.0] — 2026-09-15 — Agency re-export synced: 280 variables (avatar palette landed)
+
+Singh re-exported Agency the same evening AV-07 was raised. Verified before syncing: the
+export's `avatar/bg-blue` #2499FF matches the live Figma read exactly — no mismatch alert.
+- Agency **Color Modes 223 → 233** (the 10 new `avatar/bg-*` colors, in all 5 modes);
+  Density 31 and General 16 byte-identical. Agency total **270 → 280**.
+- Every pinned count updated in the same pass: sync script, tests, AI_CONTEXT, README
+  (registry row + comparison matrix, which had still said 263). verify:variables exit 0.
+- avatar contract: AV-07 closed.
+
 ## [4.4.2] — 2026-09-15 — avatar 1.2.0: initials fallback landed (AV-06 closed); NEW avatar/bg-* variables flagged
 
 Figma-AI built the missing initials mode and Claude verified every claim live before recording:

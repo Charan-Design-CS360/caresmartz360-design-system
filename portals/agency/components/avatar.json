@@ -148,7 +148,7 @@
     "AV-05 Code Connect files intentionally not created (plan-blocked C360-47337; selectors unverified)",
     "AV-04 PARTIALLY CLOSED 2026-09-15: avatar-user renamed (typo fixed) + 28x->28px verified live; Icons_avatars-status, update_image, more_action, avatar_group/entity and 'Attenshion Required' still old-style in Figma",
     "AV-06 CLOSED 2026-09-15: 6 Img Type=Initials variants exist (27648:3457..3477), verified live; fallback order photo -> initials -> add-photo prompt",
-    "AV-07 NEW: initials variants bind NEW avatar/bg-* Agency variables (avatar/bg-blue #2499ff verified; Figma-AI reports 10 total) that are NOT in the 2026-09-11 export - Singh to re-export Agency, then sync"
+    "AV-07 CLOSED 2026-09-15: owner re-exported Agency same evening; all 10 avatar/bg-* now in the exports and synced to the repo (Color Modes 223->233); export value avatar/bg-blue #2499FF matches live Figma exactly"
   ],
   "measuredTokens": {
     "radiusUser": "border-radius/rounded-full",
