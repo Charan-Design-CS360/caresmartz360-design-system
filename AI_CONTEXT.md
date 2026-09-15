@@ -60,11 +60,11 @@ If the portal is unknown, stop and request it.
 | Scope | Canonical repository path | Logical variables | Jira |
 | --- | --- | ---: | --- |
 | Shared Primitives | `shared/primitives/tokens/` | 264 | C360-43755 |
-| Agency Semantics | `portals/agency/semantics/` | 270 | C360-44253 |
+| Agency Semantics | `portals/agency/semantics/` | 280 | C360-44253 |
 | Caregiver Semantics | `portals/caregiver/semantics/` | 171 | C360-44333 |
 | Staff Semantics | Not registered | 0 verified | C360-3526 |
 
-Agency owns `Color Modes` (223 variables, five modes), `Density Modes` (31),
+Agency owns `Color Modes` (233 variables, five modes), `Density Modes` (31),
 and `General` (16). Caregiver owns `Color Theme` (134 variables, three modes),
 `Density Modes` (23 variables, three modes), and `General` (14).
 
