@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.6.0] — 2026-09-15 — shared/brand/: logo contract 1.0.0 (bridge T10)
+
+From Figma-AI's T10 payload (C360-44235 #634267) — the first bridge task delivered with its
+full content inline. Verified live before applying: section 27645:45788 "Logo" + all 3
+variant nodes exist (compact 504×160 matches its 3.15:1 claim). Added:
+- `shared/brand/logo.json` (contract 1.0.0: 4 variants, brand colors, clearspace/min-size/
+  background/misuse guidelines) + `shared/brand/README.md` + `schemas/brand-asset.schema.json`
+  (the payload referenced a schema that didn't exist — created).
+- Honesty markers: componentKeys + artwork hexes Figma-AI-provided (unverified — live color
+  read failed mid-call); **asset binaries not yet committed** (paths are declared targets);
+  wordmark variant has no Figma node yet.
+- ⚠️ recorded caution: wordmark blue #1C83C6 = logo artwork, NOT the UI Brandblue #0077FF.
+- Figma-AI's "Layer 0: Brand Identity" framing recorded as **PROPOSED** — the four-layer
+  architecture is Singh's to change; README diagram untouched.
+
 ## [4.5.0] — 2026-09-15 — Agency re-export synced: 280 variables (avatar palette landed)
 
 Singh re-exported Agency the same evening AV-07 was raised. Verified before syncing: the
