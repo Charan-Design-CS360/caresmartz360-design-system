@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.4.2] — 2026-09-15 — avatar 1.2.0: initials fallback landed (AV-06 closed); NEW avatar/bg-* variables flagged
+
+Figma-AI built the missing initials mode and Claude verified every claim live before recording:
+- `avatar-user` (renamed from the `avartar_user` typo; `28x`→`28px` fixed) now has **30
+  variants** — six new `Img Type=Initials` (27648:3457..3477): circular, colored bg, initials
+  bound to `text/inverse`. Fallback: photo → initials → add-photo prompt. AV-06 closed;
+  AV-04 partially closed (other avatar sets still old-style).
+- **AV-07 (new):** initials bind NEW `avatar/bg-*` Agency variables (`avatar/bg-blue`
+  #2499ff verified live; 10 reported) that are NOT in the 2026-09-11 export — **owner
+  re-export of Agency + sync needed** per the Figma-first authority ruling.
+- T9 (button 1.1.0) still undeliverable: Figma-AI's "full file" comments point at its own
+  sandbox again; asked to paste the JSON inline. Its minHeight/token changes are already on
+  main (PR #18) — only the 9 componentKeys and variant-count data are genuinely new.
+
 ## [4.4.1] — 2026-09-15 — two Singh rulings recorded (form-fields 2.2.0)
 
 From today's artifact review comments:
