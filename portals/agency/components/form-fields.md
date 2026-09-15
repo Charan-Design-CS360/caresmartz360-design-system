@@ -13,6 +13,16 @@ CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Jira: C360-47183 + C360-47325
 Section `26955:66554` ([open](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=26955-66554)) · guidelines `27401:30526` · measured live 2026-09-10 (morning + evening
 re-verification after same-day Figma changes).
 
+## Owner rulings — 2026-09-15 (from the artifact review)
+
+1. **Which type is "the standard"? — all three stay; context picks.** PRIMARY = view-first
+   contexts · SECONDARY = edit cases · TERTIARY = special cases like settings and form design
+   where the user needs speed and the information must scale. None is retired.
+2. **Notes/description (multiline) box:** show an **8000-character limit as the standard for
+   now** — the final limit belongs to the developer + BA team. The component itself is still
+   unbuilt/unmeasured (tracked as artifact issue D2); this ruling sets its counter standard,
+   not its geometry.
+
 ## The three field types → member contracts
 
 | | PRIMARY | SECONDARY | TERTIARY |
