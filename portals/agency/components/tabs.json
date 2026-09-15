@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Tabs — Primary (underline) + Secondary (segmented)",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.0.1",
     "figmaGuidelinesFrame": { "nodeId": "27382:21453", "name": "Tabs — Component Guidelines", "url": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27382-21453", "provenance": "existence probed live 2026-09-10 (C360-47329); frame content not read" },
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP never reports a file key. Taken from the URLs Singh supplied (Design System Agency V2.0).",
@@ -11,7 +11,7 @@
       "tabsSection": "27329:70491  (name: 'Tabs')",
       "primary": "5775:8556  (name: 'primary tab' — states: Default 2134:1185 · Hover 7876:7143 · Selected 2134:1209 · disabled 27334:72865 · Empty 25991:46733)",
       "primaryPreview": "27329:70502",
-      "secondary": "27329:70805  (name: 'secondary tab' — axes: Size=S · Active=No/Yes · Status=Start/Mid/End · State=Default/Hover; 27 variants total)",
+      "secondary": "27329:70805  (live name 2026-09-15: 'tab-secondary' — axes: Size=S · Active=No/Yes · Status=Start/Mid/End · State=Default/Hover/disabled; 12 variants total — the original 27 was wrong, corrected from a live full-set read)",
       "secondaryPreview": "27329:70869"
     },
     "measuredOn": "2026-09-03",
@@ -43,7 +43,10 @@
     "secondary": {
       "role": "Segmented pill group for nested / sub / filter tabs.",
       "parts": ["group", "each segment = centered label; corners round only at the row's Start and End"],
-      "axes": "Size=S · Active=No/Yes · Status=Start/Mid/End · State=Default/Hover",
+      "axes": "Size=S · Active=No/Yes · Status=Start/Mid/End · State=Default/Hover/disabled",
+      "variantCount": { "value": 12, "was": 27, "correctedOn": "2026-09-15", "provenance": "Figma-AI Phase D (C360-44235 #634255); re-verified live by Claude same day — get_metadata on 27329:70805 lists exactly 12 symbols" },
+      "activeYesPruning": "Active=No carries 9 variants (Default/Hover/disabled × Start/Mid/End); Active=Yes carries only 3 (Default × Start/Mid/End) — hover/disabled are not drawn for the active segment. 9 + 3 = 12.",
+      "disabledStateNote": "3 disabled variants exist on Active=No: 27334:72872 (Start), 27334:72874 (Mid), 27334:72876 (End) — SECONDARY has a disabled state too, not only Primary.",
       "marker": ["MEASURED", "RULED"]
     }
   },
@@ -103,7 +106,7 @@
   "defects": [
     "T1 — DISABLED LABEL VALUE MISMATCH (Primary). The new disabled variant (27334:72865) binds action/disabled/text-neutral, whose Figma-resolved value reads #475569 — identical to text/secondary, i.e. a disabled tab's label would look the same colour as a normal Default tab's label. The repo, however, resolves --action-disabled-text-neutral to neutral-300 (a lighter grey), which is the more sensible disabled look. Figma and the repo disagree on this token's value. The CSS binds the TOKEN name (correct); Singh / Figma AI must reconcile the intended value. Do not hardcode either side.",
     "T2 — LEGACY TOKEN NAME: letter-spacing binds fonts/tracking/X-tracking-0 (X- legacy prefix) on both styles — the same system-wide legacy-name cleanup already tracked. Do not propagate the X- name; the kit uses semantic vars.",
-    "T3 — SECONDARY 'badge indicators' NOT MEASURED. The component reports 27 variants 'covering states and badge indicators', but only Size=S × Active × Status × Default/Hover were read. Any count-badge variant on a segment was not captured — read it before using badges on secondary tabs.",
+    "T3 — RESOLVED 2026-09-15: the '27 variants with badge indicators' premise was wrong. A live full-set read shows exactly 12 variants and NO badge variants exist on the secondary set. The count is corrected in variantAxes.secondary.variantCount.",
     "T4 — SECONDARY is size S only in the read set. If a larger (M/L) segmented size is needed, it was not found and must be measured.",
     "T5 — SECONDARY has no measured Active+Hover combo and no disabled segment; PRIMARY has no measured Active+Hover-of-a-different-tab nuance. States beyond those listed are not defined in Figma — treat as out of scope until drawn."
   ],

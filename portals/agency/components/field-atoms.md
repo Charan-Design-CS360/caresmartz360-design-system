@@ -22,12 +22,12 @@ Fields/label 12/16 Medium `text/primary` + optional required marker (8×16 slot,
 Label cluster left (inset 8) + right icon rail: error 18 / help 18 / AI 18, gaps 4.
 Used only by form-field-primary ([form-field-primary.md](./form-field-primary.md)).
 
-## field-input `27062:8145` (atom, 6 states)
+## field-input `27062:8145` (atom, 7 states)
 - Base variants 358×**34**; embedded at **30** in form-field-secondary, **34** in form-field-tertiary.
 - Text inset 8 (`spacing/md`); trailing 30×30 control slot ("Fields Toys"); radius **4** (`border-radius/rounded`).
 - Editable default border = `field/border-hard` #94A3B8; container/read-only border = `field/border-default` #E2E8F0.
 - States bind `field/bg-<state>` + `field/border-<state>` (danger pair = error state).
-- Variant nodes: default `27062:8093` · focus `27062:8066` · error `27062:8075` · success `27062:8084` · warning `27062:8155` · disabled `27062:8164`.
+- Variant nodes: default `27062:8093` · focus `27062:8066` · error `27062:8075` · success `27062:8084` · warning `27062:8155` · **AI Autocompleted `27599:79798`** (added in Figma, verified live 2026-09-15: bg `field/bg-ai` #FAF5FF · border `field/border-ai` #9333EA · text `field/value-primary`) · disabled `27062:8164`.
 - Tertiary min-width 120 / max-width 400: **ASSERTED** (ticket #633283) — auto-layout props not machine-readable this pass.
 
 ## field-message `11116:25116` (atom, **6 types** — changed in Figma 2026-09-10 PM, re-verified live)

@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Field Atoms (shared)",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaSectionNodeId": "26955:66554",
@@ -43,8 +43,9 @@
 
   "field-input": {
     "nodeId": "27062:8145", "type": "COMPONENT_SET", "tier": "atom",
-    "variantAxis": { "name": "state", "values": ["default", "focus", "error", "success", "warning", "disabled"] },
-    "variantNodes": { "default": "27062:8093", "focus": "27062:8066", "error": "27062:8075", "success": "27062:8084", "warning": "27062:8155", "disabled": "27062:8164" },
+    "variantAxis": { "name": "state", "values": ["default", "focus", "error", "success", "warning", "AI Autocompleted", "disabled"] },
+    "variantNodes": { "default": "27062:8093", "focus": "27062:8066", "error": "27062:8075", "success": "27062:8084", "warning": "27062:8155", "AI Autocompleted": "27599:79798", "disabled": "27062:8164" },
+    "stateTokenDetail": { "AI Autocompleted": { "bg": { "token": "field/bg-ai", "hex": "#FAF5FF" }, "border": { "token": "field/border-ai", "hex": "#9333EA" }, "valueText": { "token": "field/value-primary", "hex": "#1E293B" }, "marker": ["MEASURED"], "provenance": "Figma-AI Phase D diff (C360-44235 #634255); node + all 3 token values independently re-verified live by Claude 2026-09-15 (get_metadata 27062:8145 = 7 variants; token hexes byte-checked against Light Mode export)" } },
     "purpose": "The shared bordered input control. SECONDARY and TERTIARY molecules embed it; PRIMARY does not (view mode has no input box).",
     "geometry": {
       "baseSize": { "w": 358, "h": 34, "marker": ["MEASURED"] },

@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.4.0] — 2026-09-15 — bridge pipeline round-trip: Figma-AI diffs T7/T8 validated and applied
+
+First full run of the designed loop: Figma-AI posted contract diffs as a PENDING task on
+C360-44235 (#634255) → Claude validated every claim against live Figma + the exports → applied
+→ DONE-marked. Nothing was blind-copied.
+
+### field-atoms 1.1.0 (T7)
+- field-input gains its 7th state **AI Autocompleted** (`27599:79798`) — node verified live
+  (set now lists 7 variants) and all three claimed token values byte-checked against the
+  Light Mode export: `field/bg-ai` #FAF5FF · `field/border-ai` #9333EA · `field/value-primary` #1E293B.
+
+### tabs 1.0.1 (T8)
+- Secondary tab variant count corrected **27 → 12** (live full-set read lists exactly 12);
+  Active=Yes pruning documented (9 + 3); **secondary HAS disabled states** (27334:72872/74/76)
+  — the old "disabled is Primary-only" note was wrong; defect T3 resolved (no badge variants
+  exist — the 27-variant premise was the error). Live set name is now `tab-secondary`.
+
+### Deferred
+- T9 (button 1.1.0 from Phase C) — Figma-AI lost the prepared files in a session transition;
+  awaiting re-extraction through the bridge. Phase C itself is verified real (test page
+  `_TEST: GitHub Contract Validation` exists; findings F-01..F-05 on C360-44256).
+
 ## [4.3.2] — 2026-09-14 — stopped the legacy token-dump minting; search-field completed
 
 - **version-bump.yml defused:** it was creating a NEW root `ds-tokens-v2.6.X.json` (data
