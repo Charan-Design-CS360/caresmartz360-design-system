@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.4.1] — 2026-09-15 — two Singh rulings recorded (form-fields 2.2.0)
+
+From today's artifact review comments:
+1. **Field-type usage RULED:** all three types stay — PRIMARY view-first · SECONDARY edit
+   cases · TERTIARY settings/dense forms needing speed + information scalability. The
+   "which is the standard" question (artifact issue D1) is closed: context picks the type.
+2. **Notes/description box:** 8000-character limit is the standard FOR NOW (final limit =
+   developer + BA call). Component still unbuilt — the ruling sets the counter standard only.
+
 ## [4.4.0] — 2026-09-15 — bridge pipeline round-trip: Figma-AI diffs T7/T8 validated and applied
 
 First full run of the designed loop: Figma-AI posted contract diffs as a PENDING task on

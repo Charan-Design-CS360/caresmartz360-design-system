@@ -3,7 +3,9 @@
   "$meta": {
     "component": "Form Fields (family index)",
     "portal": "agency",
-    "contractVersion": "2.1.0",
+    "contractVersion": "2.2.0",
+    "ownerRuling_2026_09_15_usage": "Singh (artifact comment thread 5b99bcc0, 2026-09-15): all three field types stay — PRIMARY for view-first contexts, SECONDARY for edit cases, TERTIARY for special cases like settings and form design where the user needs speed and the information must scale. This closes the 'which one is the standard' question: context picks the type; none is retired.",
+    "ownerRuling_2026_09_15_notesBox": "Singh (artifact comment thread e811337d, 2026-09-15): the notes/description (multiline) box shows an 8000-character limit as the standard FOR NOW; the final limit is the developer + BA team's call. The component itself is still to be designed/measured — do not invent geometry from this ruling.",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key.",
     "figmaSectionNodeId": "26955:66554",
