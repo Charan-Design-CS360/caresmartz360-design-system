@@ -36,7 +36,7 @@
       "componentSets": [
         { "name": "form-field-primary", "nodeId": "26938:65997", "variants": 7 },
         { "name": "form-field-secondary", "nodeId": "27062:7663", "variants": 6 },
-        { "name": "field-input", "nodeId": "27062:8145", "variants": 6 },
+        { "name": "field-input", "nodeId": "27062:8145", "variants": 7 },
         { "name": "field-message", "nodeId": "11116:25116", "variants": 6 },
         { "name": "field-header-tertiary", "nodeId": "27290:41702", "variants": 3 }
       ],
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "name": "table",
+      "name": "Table",
       "sectionNodeId": "26955:66556",
       "guidelinesNodeId": "27382:20152",
       "provenance": "measured in table.md v3.0.0; guidelines frame existence-probed 2026-09-10",
@@ -183,7 +183,7 @@
       "provenance": "Figma-AI spec 2026-09-14 (C360-3526 #633902); section + set nodeIds and variant counts verified live same day; geometry not yet measured (avatar.json AV-01)",
       "contractPaths": ["portals/agency/components/avatar.md"],
       "componentSets": [
-        { "name": "avartar_user", "nodeId": "5537:4593", "variants": 24 },
+        { "name": "avatar-user", "nodeId": "5537:4593", "variants": 30, "note": "renamed from avartar_user + 6 Initials variants added by Figma-AI 2026-09-15, verified live" },
         { "name": "avatar_entity", "nodeId": "5537:4602", "variants": 6 },
         { "name": "avatar_group", "nodeId": "5537:4604", "variants": 3 },
         { "name": "update_image", "nodeId": "10618:18947", "variants": 2 },

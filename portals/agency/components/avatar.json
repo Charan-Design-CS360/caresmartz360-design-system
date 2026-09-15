@@ -1,6 +1,6 @@
 {
   "contract": "avatar",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "maturity": "draft",
   "portal": "agency",
   "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
@@ -16,14 +16,14 @@
   },
   "componentSets": [
     {
-      "figmaName": "avartar_user",
+      "figmaName": "avatar-user",
       "nodeId": "5537:4593",
       "componentKeyUnverified": "d6dea972cd6ea8438fc168515eb1d430818a7a51",
-      "variants": 24,
+      "variants": 30,
       "axes": {
         "Size": [
           "24px",
-          "28x",
+          "28px",
           "40px",
           "70px",
           "100px",
@@ -45,8 +45,26 @@
         ],
         "Img Type": [
           "Default",
-          "No Image"
+          "No Image",
+          "Initials"
         ]
+      },
+      "renamedFrom": "avartar_user (typo fixed by Figma-AI 2026-09-15, rename verified live same day)",
+      "initialsVariants": {
+        "addedBy": "Figma-AI 2026-09-15 (C360-44235 #634258), verified live by Claude same day",
+        "nodeIds": {
+          "120px": "27648:3457",
+          "100px": "27648:3461",
+          "70px": "27648:3465",
+          "40px": "27648:3469",
+          "28px": "27648:3473",
+          "24px": "27648:3477"
+        },
+        "bindings": {
+          "text": "text/inverse (#f8fafc)",
+          "bgSample": "avatar/bg-blue (#2499ff) — one of the NEW avatar/bg-* variables; NOT in the 2026-09-11 Agency export yet (owner re-export pending)"
+        },
+        "codeRule": "background picked from the avatar palette by a deterministic hash of the user name; initials text is a per-instance override"
       }
     },
     {
@@ -127,9 +145,10 @@
     "AV-01 CLOSED 2026-09-14 (measured live)",
     "AV-02 status colours are styles not variables (Figma-AI note)",
     "AV-03 componentKeys unverified",
-    "AV-04 Figma naming out of kebab-case policy (avartar_user, Attenshion Required)",
     "AV-05 Code Connect files intentionally not created (plan-blocked C360-47337; selectors unverified)",
-    "AV-06 description promises an initials fallback but NO initials variant exists (all No-Image variants are camera placeholders) — reconcile with Figma-AI/Singh"
+    "AV-04 PARTIALLY CLOSED 2026-09-15: avatar-user renamed (typo fixed) + 28x->28px verified live; Icons_avatars-status, update_image, more_action, avatar_group/entity and 'Attenshion Required' still old-style in Figma",
+    "AV-06 CLOSED 2026-09-15: 6 Img Type=Initials variants exist (27648:3457..3477), verified live; fallback order photo -> initials -> add-photo prompt",
+    "AV-07 NEW: initials variants bind NEW avatar/bg-* Agency variables (avatar/bg-blue #2499ff verified; Figma-AI reports 10 total) that are NOT in the 2026-09-11 export - Singh to re-export Agency, then sync"
   ],
   "measuredTokens": {
     "radiusUser": "border-radius/rounded-full",

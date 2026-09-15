@@ -11,7 +11,7 @@ CREATOR: Claude DESIGN-SYSTEM lane (C360-3526) | Bridge: C360-44235
 =============================================================================
 -->
 
-# Avatar — Agency component contract (1.0.0, draft)
+# Avatar — Agency component contract (1.2.0, draft)
 
 Section `27607:9247` "avatar" ([open](https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27607-9247)) · page `26581:38709`.
 
@@ -34,7 +34,7 @@ photo-upload affordance, presence/status badges, and the "+N" overflow pill.
 
 | Set (Figma name, verbatim) | nodeId | Variants | Role |
 |---|---|---|---|
-| `avartar_user` *(sic — Figma typo)* | `5537:4593` | 24 | Circular user avatar: photo, or initials fallback |
+| `avatar-user` *(renamed from `avartar_user` 2026-09-15)* | `5537:4593` | 30 | Circular user avatar: photo, initials fallback, or add-photo prompt |
 | `avatar_entity` | `5537:4602` | 6 | Rounded-square avatar for orgs/teams/projects |
 | `avatar_group` | `5537:4604` | 3 | Overlapping stack of user avatars |
 | `update_image` | `10618:18947` | 2 | Camera overlay for photo upload/update |
@@ -105,10 +105,13 @@ avatar_entity (standalone)
 1. **AV-01 — CLOSED 2026-09-14 PM** (measured live; see §Measured geometry). Residual: only
    representative variants measured — per-size icon scaling of `update_image` inside 70-120px
    avatars not individually verified.
-1b. **AV-06 (NEW)** — the Figma description promises an **initials fallback** ("EW" on white
-   with subtle border), but **no initials variant exists in the set**: all six `Img Type=No
-   Image` variants render the camera-upload placeholder. Description overpromises, or a
-   variant is missing — Figma-AI/Singh to reconcile.
+1b. **AV-06 — CLOSED 2026-09-15.** Figma-AI added six `Img Type=Initials` variants
+   (27648:3457/3461/3465/3469/3473/3477, all sizes — verified live): circular, colored bg,
+   centered initials bound to `text/inverse`. Fallback order: photo → initials → add-photo
+   prompt. **AV-07 (NEW):** the initials bg binds NEW `avatar/bg-*` Agency variables
+   (`avatar/bg-blue` #2499ff verified live; Figma-AI reports 10) that are **not in the
+   2026-09-11 export** — owner re-export + sync needed before token gates can see them.
+   In code the bg is a deterministic hash of the user name over the avatar palette.
 2. **AV-02** — status colours are Figma styles, not variables (Figma-AI's own note);
    variable migration needed before token binding.
 3. **AV-03** — componentKeys await independent verification (REST or Figma-AI
