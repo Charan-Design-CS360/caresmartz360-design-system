@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://caresmartz360.com/design-system/brand-asset.schema.json",
+  "title": "CareSmartz360 brand asset contract",
+  "type": "object",
+  "required": [
+    "$meta",
+    "variants"
+  ],
+  "properties": {
+    "$meta": {
+      "type": "object",
+      "required": [
+        "name",
+        "version",
+        "figmaSource"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "figmaSource": {
+          "type": "object",
+          "required": [
+            "fileKey",
+            "sectionId"
+          ],
+          "properties": {
+            "fileKey": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sectionId": {
+              "type": "string",
+              "pattern": "^[0-9]+:[0-9]+$"
+            }
+          }
+        },
+        "lastAudit": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "active",
+            "deprecated",
+            "draft"
+          ]
+        },
+        "verification": {
+          "type": "object"
+        }
+      }
+    },
+    "variants": {
+      "type": "object"
+    },
+    "brandColors": {
+      "type": "object"
+    },
+    "guidelines": {
+      "type": "object"
+    },
+    "construction": {
+      "type": "object"
+    }
+  }
+}

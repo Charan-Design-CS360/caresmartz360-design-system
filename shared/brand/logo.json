@@ -1,0 +1,203 @@
+{
+  "$schema": "../../schemas/brand-asset.schema.json",
+  "$meta": {
+    "name": "logo",
+    "displayName": "CareSmartz360 Logo",
+    "category": "brand",
+    "version": "1.0.0",
+    "figmaSource": {
+      "fileKey": "4bh29laapcuKBTghfaRXF0",
+      "sectionId": "27645:45788"
+    },
+    "lastAudit": "2026-09-15",
+    "status": "active",
+    "verification": {
+      "verifiedLive_2026_09_15": "Section 27645:45788 'Logo' + all 3 variant nodes existence-verified via desktop MCP get_metadata: logo-full-compact 13848:180579 (504x160 — matches the 3.15:1 claim), logo-full 27657:3457 (1024x1024 frame), logo-monogram 27657:3458 (1024x1024 frame)",
+      "unverified": [
+        "componentKeys (3) — Figma-AI-provided, Plugin API only (same status as the mapping's key debt)",
+        "brandColors hex values — Figma-AI-provided artwork fills; live color read failed (Figma MCP dropped mid-call); re-verify before any recolor work",
+        "aspectRatios for logo-full/monogram — artwork ratio inside a square 1024 export frame, not the frame ratio"
+      ],
+      "assetsStatus": "PENDING EXPORT — the svg/png/pdf paths below are declared targets; no binary has been committed yet. Export from Figma (export settings are configured on the nodes) and commit under shared/brand/assets/ to make them real.",
+      "brandBlueCaution": "The WORDMARK blue #1C83C6 is the logo ARTWORK color. It is NOT the UI Brandblue token (#0077FF, locked by ruling). Never 'correct' one to the other."
+    }
+  },
+  "variants": {
+    "logo-full": {
+      "description": "Complete logo: monogram icon + CareSmartz360 wordmark + tagline",
+      "figmaNodeId": "27657:3457",
+      "componentKey": "f11f28f66596967a55a16867ccbb32a917cb86ef",
+      "usage": [
+        "hero-sections",
+        "login-screens",
+        "print-headers",
+        "splash-screens"
+      ],
+      "minWidth": "200px",
+      "aspectRatio": "4.83:1",
+      "assets": {
+        "svg": "assets/svg/logo-full.svg",
+        "png": [
+          "assets/png/logo-full@1x.png",
+          "assets/png/logo-full@2x.png",
+          "assets/png/logo-full@3x.png"
+        ],
+        "pdf": "assets/pdf/logo-full.pdf"
+      }
+    },
+    "logo-full-compact": {
+      "description": "Compact full logo for navigation bars and headers",
+      "figmaNodeId": "13848:180579",
+      "componentKey": "bab188e13113e60c8f7709931bd0742b79193e5c",
+      "usage": [
+        "navigation-bar",
+        "sidebar-header",
+        "email-signature"
+      ],
+      "minWidth": "120px",
+      "aspectRatio": "3.15:1",
+      "assets": {
+        "svg": "assets/svg/logo-full-compact.svg",
+        "png": [
+          "assets/png/logo-full-compact@1x.png",
+          "assets/png/logo-full-compact@2x.png",
+          "assets/png/logo-full-compact@3x.png"
+        ]
+      }
+    },
+    "logo-monogram": {
+      "description": "Standalone monogram — three stylized human figures representing care, connection, and wellness",
+      "figmaNodeId": "27657:3458",
+      "componentKey": "7ec093c716bac1b7708393845f2893fb9f7e1ad7",
+      "usage": [
+        "favicon",
+        "app-icon",
+        "avatar-fallback",
+        "watermark",
+        "loading-spinner"
+      ],
+      "minWidth": "24px",
+      "aspectRatio": "1.09:1",
+      "assets": {
+        "svg": "assets/svg/logo-monogram.svg",
+        "png": [
+          "assets/png/logo-monogram@1x.png",
+          "assets/png/logo-monogram@2x.png",
+          "assets/png/logo-monogram@3x.png"
+        ],
+        "pdf": "assets/pdf/logo-monogram.pdf"
+      }
+    },
+    "logo-wordmark": {
+      "description": "Text-only wordmark: CareSmartz360 without monogram icon",
+      "figmaNodeId": null,
+      "componentKey": null,
+      "usage": [
+        "breadcrumb",
+        "footer-copyright",
+        "compact-nav"
+      ],
+      "minWidth": "100px",
+      "assets": {
+        "svg": "assets/svg/logo-wordmark.svg",
+        "png": [
+          "assets/png/logo-wordmark@1x.png",
+          "assets/png/logo-wordmark@2x.png",
+          "assets/png/logo-wordmark@3x.png"
+        ]
+      }
+    }
+  },
+  "brandColors": {
+    "monogram": {
+      "pink": {
+        "hex": "#F386A1",
+        "role": "Figure 1 — person (pink)"
+      },
+      "magenta": {
+        "hex": "#E33D8A",
+        "role": "Figure 1 — accent overlap"
+      },
+      "green": {
+        "hex": "#83C994",
+        "role": "Figure 2 — person (green)"
+      },
+      "skyBlue": {
+        "hex": "#4FC6E0",
+        "role": "Figure 3 — person (blue)"
+      },
+      "teal": {
+        "hex": "#00A4C4",
+        "role": "Overlap accent"
+      }
+    },
+    "wordmark": {
+      "brandBlue": {
+        "hex": "#1C83C6",
+        "role": "CareSmartz text color"
+      },
+      "darkGray": {
+        "hex": "#232323",
+        "role": "360 numeral + tagline"
+      },
+      "mediumGray": {
+        "hex": "#808285",
+        "role": "Tagline secondary"
+      }
+    }
+  },
+  "guidelines": {
+    "clearSpace": {
+      "rule": "Minimum clear space equals the height of one monogram figure on all sides",
+      "marker": [
+        "DERIVED"
+      ]
+    },
+    "minimumSize": {
+      "print": {
+        "monogram": "12mm",
+        "fullLogo": "25mm wide"
+      },
+      "digital": {
+        "monogram": "24px",
+        "fullLogo": "120px wide"
+      }
+    },
+    "backgrounds": {
+      "approved": [
+        "white",
+        "light-gray (#F5F5F5 or lighter)",
+        "brand-blue (#1C83C6)"
+      ],
+      "requiresReversed": [
+        "dark backgrounds (< 40% luminance)"
+      ],
+      "prohibited": [
+        "busy photographs without overlay",
+        "patterned backgrounds",
+        "low-contrast same-hue backgrounds"
+      ]
+    },
+    "modifications": {
+      "prohibited": [
+        "Do not rotate the logo",
+        "Do not change individual colors of the monogram figures",
+        "Do not separate monogram from wordmark in the full logo variant",
+        "Do not add effects (shadows, gradients, outlines) to the logo",
+        "Do not stretch or skew — always scale proportionally",
+        "Do not rearrange the figure positions in the monogram",
+        "Do not use the logo at less than minimum size"
+      ]
+    },
+    "colorVariants": {
+      "fullColor": "Default — use on white/light backgrounds",
+      "reversed": "White monogram + white text — use on dark/brand-color backgrounds",
+      "monochrome": "All black or all white — for single-color print, embossing, watermarks"
+    }
+  },
+  "construction": {
+    "monogram": "3 overlapping stylized human figures in pink (#F386A1), green (#83C994), and sky blue (#4FC6E0) with magenta (#E33D8A) and teal (#00A4C4) at overlap intersections. All paths are vector.",
+    "wordmark": "'CareSmartz' in brand blue (#1C83C6) + '360' in dark gray (#232323). Tagline 'A BETTER WAY TO CARE' in medium gray (#808285) below.",
+    "ring": "White rectangle background behind compact variant (504x160px) for clearspace protection."
+  }
+}
