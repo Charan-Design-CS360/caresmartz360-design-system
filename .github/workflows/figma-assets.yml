@@ -1,0 +1,66 @@
+# Fetch brand asset binaries from the Figma Images API and open a PR (T12 fallback,
+# C360-44235 #634452/#634453 — the Figma sandbox cannot push; this runs with the
+# FIGMA_TOKEN secret inside CI instead). Manual dispatch only. Never merges itself.
+name: Figma Brand Asset Fetch
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  FIGMA_FILE_KEY: 4bh29laapcuKBTghfaRXF0
+
+jobs:
+  fetch-logo-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch export URLs and download assets
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+        run: |
+          set -euo pipefail
+          IDS="27657:3457,13848:180579,27657:3458"
+          mkdir -p shared/brand/assets/svg shared/brand/assets/png
+          declare -A NAMES=( ["27657:3457"]="logo-full" ["13848:180579"]="logo-full-compact" ["27657:3458"]="logo-monogram" )
+          for FMT in svg png; do
+            EXTRA=""; [ "$FMT" = "png" ] && EXTRA="&scale=2"
+            RESP=$(curl -sf -H "X-Figma-Token: $FIGMA_TOKEN" \
+              "https://api.figma.com/v1/images/$FIGMA_FILE_KEY?ids=$IDS&format=$FMT$EXTRA")
+            ERR=$(echo "$RESP" | jq -r '.err // empty')
+            if [ -n "$ERR" ]; then echo "::error::Images API error ($FMT): $ERR"; exit 1; fi
+            for ID in ${IDS//,/ }; do
+              URL=$(echo "$RESP" | jq -r --arg id "$ID" '.images[$id] // empty')
+              if [ -z "$URL" ]; then echo "::error::No render URL for $ID ($FMT)"; exit 1; fi
+              NAME="${NAMES[$ID]}"
+              if [ "$FMT" = "svg" ]; then OUT="shared/brand/assets/svg/$NAME.svg"; else OUT="shared/brand/assets/png/$NAME@2x.png"; fi
+              curl -sf -o "$OUT" "$URL"
+              echo "fetched $OUT ($(wc -c < "$OUT") bytes)"
+            done
+          done
+          # sanity: SVGs must parse as XML, PNGs must carry the PNG magic
+          for f in shared/brand/assets/svg/*.svg; do head -c 200 "$f" | grep -q "<svg" || { echo "::error::$f is not SVG"; exit 1; }; done
+          for f in shared/brand/assets/png/*.png; do [ "$(head -c 4 "$f" | xxd -p)" = "89504e47" ] || { echo "::error::$f is not PNG"; exit 1; }; done
+
+      - name: Open PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          BRANCH="figma-assets/logo-$(date +%Y%m%d-%H%M%S)"
+          git config user.name "figma-sync[bot]"
+          git config user.email "figma-sync[bot]@caresmartz360.com"
+          git checkout -b "$BRANCH"
+          git add shared/brand/assets
+          git commit -m "[Brand] logo asset binaries fetched from the Figma Images API (T12 fallback)"
+          git push origin "$BRANCH"
+          gh pr create --title "[Brand] logo asset binaries (T12)" \
+            --body "Fetched via the Figma Images API inside CI (T12 fallback — the Figma sandbox cannot push; C360-44235 #634453). SVG XML-checked and PNG magic-checked in the fetch step. Repo-side validates against logo.json's declared paths before merge." \
+            --label figma-sync --base main --head "$BRANCH"
