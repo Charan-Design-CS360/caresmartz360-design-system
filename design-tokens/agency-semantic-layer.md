@@ -259,7 +259,7 @@ The semantic layer automatically adapts to Light/Dark themes via data attributes
 
 ## Related Files
 
-- **Token Manifest:** `ds-tokens-v2.4.0.json`
+- **Token Manifest:** `config/variable-export-manifest.json` (legacy `ds-tokens-*.json` files deleted 2026-09-16)
 - **SCSS Implementation:** `design-tokens/agency-styles.scss`
 - **Tailwind Config:** `tailwind.config.js`
 - **Main Reference:** `CARESMARTZ360-DS-REFERENCE.md`

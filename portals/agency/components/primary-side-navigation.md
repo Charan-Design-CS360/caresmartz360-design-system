@@ -1,9 +1,9 @@
 <!--
 =============================================================================
 PAIRED CONTRACT (human twin) for primary-side-navigation.json. Plain-language
-spec; the .json is the machine spec; the CSS is Universal Html Rules/
-02-components/primary-side-navigation.css. Measured live from Figma 2026-09-04
-by Claude (DESIGN-SYSTEM lane), on Singh's request. STATUS: assembled,
+spec; the .json is the machine spec; the CSS is components/css/primary-side-navigation.css
+(formerly Universal Html Rules/02-components/primary-side-navigation.css, ARCHIVED 2026-09-11 → Design-System/_archive/).
+Measured live from Figma 2026-09-04 by Claude (DESIGN-SYSTEM lane), on Singh's request. STATUS: assembled,
 Singh ratification pending.
 =============================================================================
 -->

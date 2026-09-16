@@ -36,7 +36,7 @@ Two independent attributes on `<html>` or `<body>`, so any combination works:
 
 A few things worth adding as this matures, roughly in priority order:
 
-**Stop hand-syncing three formats.** Right now the same values are typed out separately in this SCSS tree, in `ds-tokens-latest.json`, and in `tailwind.config.js` — which is exactly how the `#2563EB` vs `#1976D2` vs `#0077FF` conflict happened in the first place. A token pipeline tool (Style Dictionary is the standard choice) that generates all three outputs from one source would make that class of bug structurally impossible instead of something to catch in review.
+**Stop hand-syncing three formats.** Historically, the same values were typed out separately in this SCSS tree, in `ds-tokens-latest.json` (deleted 2026-09-16), and in `tailwind.config.js` — which is exactly how the `#2563EB` vs `#1976D2` vs `#0077FF` conflict happened in the first place. Canonical variable truth is now generated directly via `config/variable-export-manifest.json` and `portals/<portal>/semantics/`. A token pipeline tool (Style Dictionary is the standard choice) that generates all outputs from one source makes that class of bug structurally impossible instead of something to catch in review.
 
 **Icon tokens as their own tier-2 file.** Size scale and library name are semantic decisions (`--icon-size-sm/md/lg`, `--icon-library: material-symbols-rounded`), not primitives or components — they don't have a home yet.
 

@@ -93,8 +93,8 @@ with better presentation."*
    task, then your portal's folder in `03-portals/`.
 2. **A file is only authoritative if it says so.** Sentinel files marked
    `NO CONTENT YET — do not cite` are placeholders; citing one as authority is the exact
-   decoy failure this ecosystem has been burned by twice (`ds-tokens-latest.json`,
-   `design-tokens-export.scss`).
+   decoy failure this ecosystem has been burned by twice (e.g. legacy `ds-tokens-latest.json`,
+   `design-tokens-export.scss`, both deleted 2026-09-16).
 3. Rules here are stated with: ID · assertion · how a script tests it · severity · source —
    plus a plain-language summary, so both Singh (no code background) and developers can
    read them.

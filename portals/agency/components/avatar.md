@@ -43,7 +43,7 @@ photo-upload affordance, presence/status badges, and the "+N" overflow pill.
 
 ## Variant axes
 
-- **`avartar_user`** — Size: 24 / 28 / 40 / 70 / 100 / 120 px · Status: Default, Online,
+- **`avatar-user`** *(renamed from `avartar_user` 2026-09-16)* — Size: 24 / 28 / 40 / 70 / 100 / 120 px · Status: Default, Online,
   None · Presence: None, Edit, Add New · Edit: Yes/No · Img Type: Default (photo),
   No Image (initials). Note: the 28px size is literally named `28x` in Figma.
 - **`avatar_entity`** — Size: 16 / 24 / 32 / 40 / 96 / 128 px.
@@ -68,7 +68,7 @@ photo-upload affordance, presence/status badges, and the "+N" overflow pill.
 
 ```
 avatar_group
-  ├── avartar_user[] (stacked)
+  ├── avatar-user[] (stacked, renamed from avartar_user 2026-09-16)
   │     ├── photo fill OR initials text
   │     ├── Icons_avatars-status (optional)
   │     └── update_image (optional)
@@ -78,10 +78,10 @@ avatar_entity (standalone)
 
 ## Measured geometry [LIVE 2026-09-14 PM — nodes 244:217, 11867:25335, 1473:2187, 1473:2501, 23507:9111, 257:1997]
 
-- **`avartar_user` (photo):** exact square at the variant size (24/28/40/70/100/120),
+- **`avatar-user` (photo, renamed from `avartar_user` 2026-09-16):** exact square at the variant size (24/28/40/70/100/120),
   radius `border-radius/rounded-full` (9999), image `object-cover`. Photo fills come from
   the `Avatars/Caregivers/*` image styles.
-- **`avartar_user` (upload placeholder — No Image + Add New):** circular, bg
+- **`avatar-user` (upload placeholder — No Image + Add New):** circular, bg
   `action/secondary/bg` (#f0f7ff), centered 20×20 Material `add_a_photo` icon (icon 20 at
   the 40px size; the 26/18 frames of `update_image` cover the large/small avatar tiers).
 - **`avatar_entity`:** rounded-square, radius `border-radius/rounded` (**4px**), logo
@@ -116,7 +116,7 @@ avatar_entity (standalone)
    variable migration needed before token binding.
 3. **AV-03** — componentKeys await independent verification (REST or Figma-AI
    re-confirmation on C360-44235).
-4. **AV-04** — Figma naming out of policy: `avartar_user` typo, snake_case, and
+4. **AV-04 — PARTIALLY RESOLVED 2026-09-16:** Figma fixed the `avartar_user` typo (renamed to `avatar-user` 2026-09-16). Remaining snake_case (`avatar_entity`, `avatar_group`) and
    `Attenshion Required` predate the 2026-09-10 kebab-case rename wave — queue
    renames with Figma-AI (blocked from repo side by the Agency naming lock C360-44253 #622188 — Figma-side rename is Figma-AI's to make).
 5. **AV-05** — Code Connect files from the spec were **deliberately not created**:

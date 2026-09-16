@@ -5,6 +5,8 @@ All notable changes to the CareSmartz360 Design System will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+> **How updates are recorded (the UPDATE-ACK protocol):** This file is the single canonical remark stream on GitHub. Every update flows through three complete stamps: a CHANGELOG entry here (GitHub ack), a comment on the owning ticket per the routing table (Jira ack), and the regenerated description stamp `Source: contract@version · main@sha` in Figma (Figma ack). See `AI_CONTEXT.md` §UPDATE-ACK PROTOCOL.
+
 ---
 
 ## [5.3.0] — 2026-09-16 — logo asset binaries DELIVERED (T12); direct-push experiment answered

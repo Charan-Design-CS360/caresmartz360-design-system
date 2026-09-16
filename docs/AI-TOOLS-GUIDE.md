@@ -29,8 +29,8 @@ Before generating any code, these rules are **non-negotiable**:
 | Rule | Status |
 |------|--------|
 | Framework | Angular 19 standalone components ONLY |
-| Styling | Tailwind CSS + SCSS custom properties ONLY |
-| Icons | Google Material Symbols Rounded ONLY |
+| Styling | Portal-scoped: SCSS custom properties in AgencyWebApp (NO Tailwind per CONTRADICTIONS C4); Tailwind in Caregiver ONLY |
+| Icons | Google Material Symbols Rounded via inline SVG sprite ONLY (web font deprecated per CONTRADICTIONS C1) |
 | Inline styles | NEVER use |
 | Hardcoded hex values | NEVER use |
 | React / JSX | NEVER use |
@@ -48,16 +48,21 @@ Before generating any code, these rules are **non-negotiable**:
 caresmartz360-design-system/
 ├── README.md                      # Project overview
 ├── CHANGELOG.md                   # Version history
-├── AI-TOOLS-GUIDE.md              # This file
-├── CARESMARTZ360-DS-REFERENCE.md  # Full AI handoff reference
-├── ds-tokens-latest.json          # Latest token export (always current)
-├── ds-tokens-v2.4.0.json          # Versioned token snapshot
-├── tailwind.config.js             # Tailwind CSS v4 configuration
+├── AI_CONTEXT.md                  # Ecosystem context & variable routing
+├── docs/
+│   ├── AI-TOOLS-GUIDE.md          # This guide
+│   └── CARESMARTZ360-DS-REFERENCE.md # Full AI handoff reference
+├── config/
+│   └── variable-export-manifest.json # Variable exports manifest
+├── portals/
+│   ├── agency/                    # Agency portal components & semantics
+│   └── caregiver/                 # Caregiver portal semantics
+├── tailwind.config.js             # Tailwind CSS configuration (Caregiver)
 ├── components/
 │   └── component-mapping.json     # Component → Figma node ID map
 └── .github/
     └── workflows/
-        └── version-bump.yml       # Auto version bump workflow
+        └── figma-sync.yml         # Figma sync workflow
 ```
 
 ---

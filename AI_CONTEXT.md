@@ -122,8 +122,26 @@ purpose:
 | Any AI | component-contract work already tied to a ticket | that component's own `jiraIssue` from `component-mapping.json`. |
 
 C360-44235's variable-authority block retired it **for variable values only**
-(the owner's local exports are the sole variable input). It remains the live
+(variable values follow the Authority hierarchy: live Figma first, owner's local exports fallback). It remains the live
 channel for component information, descriptions, keys, and rename notices.
+
+## UPDATE-ACK PROTOCOL — Three-System Synchronization Thread
+
+Every update made by the owner flows with complete acknowledgement through all three systems (GitHub, Jira, Figma):
+
+1. **Owner updates Figma (design/variables):**
+   - Ingested via sync pipeline (`figma-sync.yml` cron for metadata) or owner-downloaded export (`sync:variables` for variables).
+   - PR merged into repository `main`.
+   - **GitHub Ack:** Descriptive entry recorded in `CHANGELOG.md` (the canonical remark stream).
+   - **Jira Ack:** Evidence comment posted on the correct owning portal/audit ticket per the Jira Routing table.
+   - **Figma Ack:** If the change alters a component contract, the regenerated description stamp (`Source: <contract>@<version> · main@<sha>`) confirms Figma synchronization.
+2. **Owner rules in chat/artifact comments:**
+   - Repo records the ruling in the affected contract/rule file and in `CHANGELOG.md`.
+   - Jira evidence comment is posted on the owning ticket.
+   - Any Figma-side change is queued to Figma-AI on bridge ticket `C360-44235`.
+3. **Closing Condition:**
+   - Every update cycle ends ONLY when all three stamps are present. Policed continuously by the daily watcher and weekly Monday board-vs-reality sweep.
+
 ## Figma-GitHub Sync Pipeline
 
 ### Channel Routing

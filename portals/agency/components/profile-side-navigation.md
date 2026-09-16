@@ -2,9 +2,9 @@
 =============================================================================
 PAIRED CONTRACT (human twin) for profile-side-navigation.json.
 This file is the PLAIN-LANGUAGE spec; the .json is the machine spec; the CSS is
-Universal Html Rules/02-components/profile-side-navigation.css. Keep all three
-in sync. Measured live from Figma (Design System Agency V2.0) on 2026-09-03 by
-Claude (DESIGN-SYSTEM lane), on Singh's request. STATUS: assembled, Singh
+components/css/profile-side-navigation.css (formerly Universal Html Rules/02-components/profile-side-navigation.css,
+ARCHIVED 2026-09-11 → Design-System/_archive/). Keep all three in sync. Measured live from Figma (Design System Agency
+V2.0) on 2026-09-03 by Claude (DESIGN-SYSTEM lane), on Singh's request. STATUS: assembled, Singh
 ratification pending.
 =============================================================================
 -->

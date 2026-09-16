@@ -311,7 +311,7 @@ export class ButtonComponent {
 
 ## Related Files
 
-- **Token Manifest:** `ds-tokens-v2.6.4.json` (v2.5.0 never existed in this repo — corrected per C360-47329)
+- **Token Manifest:** `config/variable-export-manifest.json` (legacy `ds-tokens-*.json` files deleted 2026-09-16; v2.5.0 never existed per C360-47329)
 - **Material Overrides:** `_material-theme-overrides.scss`
 - **Agency Tokens:** `design-tokens/agency-styles.scss`
 - **Tailwind Config:** `tailwind.config.js`
