@@ -9,7 +9,7 @@ Contested values are never encoded — they test the uncontested invariant and
 cite the CONTRADICTIONS/OPEN-REGISTER row. This file SUPERSEDES the overlapping
 lines of ECOSYSTEM-RULES §10 and MASTER-AI-INSTRUCTIONS §3 (cited as sources).
 CREATOR: Fable-WOUND-MGMT | 2026-08-24
-STATUS: ASSEMBLED — Singh ratification pending
+STATUS: RATIFIED by Singh 2026-09-16 (chat ruling: "Ratify all 7") — binding for every AI tool
 =============================================================================
 -->
 

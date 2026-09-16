@@ -9,7 +9,7 @@ items carry their decision-sheet / register IDs and are never encoded as
 settled. Live-code evidence was re-verified against the actual files on
 2026-08-24 — every file:line below was opened, not remembered.
 CREATOR: Fable-WOUND-MGMT | 2026-08-24
-STATUS: ASSEMBLED — Singh ratification pending
+STATUS: RATIFIED by Singh 2026-09-16 (chat ruling: "Ratify all 7") — binding for every AI tool
 =============================================================================
 -->
 
@@ -127,7 +127,7 @@ logged, those lines stand and remain cited as sources below.
   uppercase letters, spaces, and underscores; check pattern frames carry the reserved
   names above; report deviations.
 - **Severity:** INFO (proposed — matches SPEC-07's INFO rating of the same `[FG]` Naming
-  Conventions source in UIG-070; Singh ratification pending).
+  Conventions source in UIG-070; RATIFIED by Singh 2026-09-16).
 - **Source:** SPEC-07 §B.9 L454–456, verbatim.
 - **⚠️ Internal tension in the source, reported not adjudicated:** the same verbatim
   bullet list both reserves the name `field-base_bed` (an underscore) and demands
@@ -202,7 +202,7 @@ logged, those lines stand and remain cited as sources below.
 - **How a script tests it:** build set A = class names referenced in `.ts`/`.js` string
   literals used for DOM selection/toggling; set B = class selectors in authored
   stylesheets; report the intersection with both locations.
-- **Severity:** WARN (proposed — ratification pending; ECOSYSTEM-RULES §10 states the
+- **Severity:** WARN (RATIFIED 2026-09-16 as WARN; ECOSYSTEM-RULES §10 states the
   rule without a severity scale).
 - **Source:** ECOSYSTEM-RULES §10 L336 ("Keep behavioural/JS hook classes separate and
   style-free").

@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.0.0] — 2026-09-16 — Singh's decision batch: rulebook RATIFIED, legacy dumps deleted, disabled colour ruled, Jira rules adopted, sync pipeline approved
+
+Five owner decisions, given one-by-one in chat on 2026-09-16, all applied the same day:
+
+1. **Rulebook RATIFIED** ("Ratify all 7"): the 6 universal rule files + the 8 AI mandatory
+   rules are now BINDING — every pending banner replaced with the ratification stamp.
+   Violations are defects, not opinions.
+2. **Disabled colour RULED** ("always just follow Figma and variables I defined"):
+   `--action-disabled-text-neutral` = **#475569** (the Figma/export value) everywhere; the
+   repo's lighter neutral-300 deviation removed from `_theme-light.scss`; tabs defect T1
+   closed; kit tabs.css flag resolved. The ruling generalizes: the repo never keeps a
+   "better" value that deviates from the owner's Figma variables.
+3. **Legacy dumps DELETED** ("Delete all 9 + latest"): `ds-tokens-v2.6.0…v2.6.8.json` +
+   `ds-tokens-latest.json` removed (outdated 204-token July data; git history preserves
+   them), `version-bump.yml` deleted with them (its only job was stamping those files),
+   `config/token-sources.json` fallback repointed at the real semantics files, removal
+   banners added to the five docs that referenced the dumps.
+4. **Jira rules ADOPTED** (all 3): owner-required at creation, done-includes-status, weekly
+   board-vs-reality sweep — recorded in Office_Work governance + a weekly scheduled sweep.
+5. **Sync pipeline APPROVED** (T11): green-lit to go live once Figma-AI delivers its 2
+   missing files, the figmaNodeId→nodeId bug is fixed, and Singh completes the one-time
+   token setup. Nothing deployed yet.
+
 ## [4.6.0] — 2026-09-15 — shared/brand/: logo contract 1.0.0 (bridge T10)
 
 From Figma-AI's T10 payload (C360-44235 #634267) — the first bridge task delivered with its

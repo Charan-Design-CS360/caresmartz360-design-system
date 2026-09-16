@@ -1,3 +1,5 @@
+> **Legacy token dumps removed 2026-09-16 (Singh's ruling):** every `ds-tokens-*.json` root file was deleted — they carried outdated July-era data. Variable truth: `portals/<portal>/semantics/` + `config/variable-export-manifest.json` (git history preserves the old files).
+
 # AI Tools Guide — CareSmartz360 Design System
 
 > **Variable authority notice:** `AI_CONTEXT.md`,

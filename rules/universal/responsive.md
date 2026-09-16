@@ -9,7 +9,7 @@ UIG-xxx ids; genuinely new universal rules use UHR-141..143.
 This file SUPERSEDES the overlapping lines of ECOSYSTEM-RULES.md §10 and
 MASTER-AI-INSTRUCTIONS.md §3 for responsive/HTML-CSS layout topics.
 CREATOR: Fable-WOUND-MGMT | 2026-08-24
-STATUS: ASSEMBLED — Singh ratification pending
+STATUS: RATIFIED by Singh 2026-09-16 (chat ruling: "Ratify all 7") — binding for every AI tool
 =============================================================================
 -->
 

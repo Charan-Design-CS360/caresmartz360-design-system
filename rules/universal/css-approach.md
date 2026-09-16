@@ -10,7 +10,7 @@ bullets of ECOSYSTEM-RULES §10 (L332-336) and MASTER-AI-INSTRUCTIONS §3
 (L73-74) — both remain cited as sources. Contested values are NOT encoded
 here; they live in CONTRADICTIONS.md / OPEN-REGISTER.md by ID.
 CREATOR: Fable-WOUND-MGMT | 2026-08-24
-STATUS: ASSEMBLED — Singh ratification pending
+STATUS: RATIFIED by Singh 2026-09-16 (chat ruling: "Ratify all 7") — binding for every AI tool
 =============================================================================
 -->
 
