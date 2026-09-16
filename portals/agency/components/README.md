@@ -57,8 +57,8 @@ portal release readiness. Do not read the legacy file for Agency work.
 
 ## Paired copy-from code
 
-Some contracts have a matching copy-from stylesheet in the document-level
-`Universal Html Rules/02-components/` folder, which is what a project pastes into its own CSS.
+Some contracts have a matching copy-from stylesheet in the in-repo
+`components/css/` folder (formerly the document-level `Universal Html Rules/02-components/`, ARCHIVED 2026-09-11 → Design-System/_archive/), which is what a project pastes into its own CSS.
 Where that pairing exists the contract records it in `$meta.cssReference` with the class IDs that
 implement it.
 

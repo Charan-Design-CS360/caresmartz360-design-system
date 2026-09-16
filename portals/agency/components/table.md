@@ -2,7 +2,7 @@
 
 **Portal:** Agency · **Layer:** 3 (Components) · **Jira parent:** C360-44737
 **Measured:** 2026-08-25, live Figma · **Section:** `26955:66556` "table"
-**Machine twin:** [`table.json`](./table.json) · **Copy-from code:** `Universal Html Rules/02-components/table.css` `[CS-TBL-01..03]`
+**Machine twin:** [`table.json`](./table.json) · **Copy-from code:** `components/css/table.css` (formerly `Universal Html Rules/02-components/table.css`, ARCHIVED 2026-09-11 → Design-System/_archive/) `[CS-TBL-01..03]`
 
 ---
 
@@ -92,7 +92,7 @@ example. Raised to Figma AI. It is a cleanup task — **not** a reason to re-ope
 There was one open disagreement. Your ruling on 2026-08-25 closed it, and applying it turned up two
 more problems that were never disagreements at all — just gaps.
 
-**The table below is about the copy-from kit** (`Universal Html Rules/02-components/table.css`) — the
+**The table below is about the copy-from kit** (`components/css/table.css`, formerly in `Universal Html Rules/02-components/table.css`, ARCHIVED 2026-09-11 → Design-System/_archive/) — the
 file a developer pastes into a project. The repo's own stylesheet
 (`src/styles/3-components/_tables.scss`) is a **separate file** and was rewritten the same day; see §4c.
 

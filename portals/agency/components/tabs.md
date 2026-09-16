@@ -1,8 +1,9 @@
 <!--
 =============================================================================
 PAIRED CONTRACT (human twin) for tabs.json. This is the PLAIN-LANGUAGE spec;
-the .json is the machine spec; the CSS is Universal Html Rules/02-components/
-tabs.css. Keep all three in sync. Measured live from Figma (Design System Agency
+the .json is the machine spec; the CSS is components/css/tabs.css (formerly
+Universal Html Rules/02-components/tabs.css, ARCHIVED 2026-09-11 → Design-System/_archive/).
+Keep all three in sync. Measured live from Figma (Design System Agency
 V2.0) on 2026-09-03 by Claude (DESIGN-SYSTEM lane), on Singh's request.
 STATUS: assembled, Singh ratification pending.
 =============================================================================

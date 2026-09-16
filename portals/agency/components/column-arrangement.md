@@ -74,7 +74,7 @@ the left edge while the rest of the table scrolls. Singh, 2026-09-01: *"The firs
 top will be always the freezed column in the table."*
 
 **This is not new.** Your table system already has this rule — `[CS-TBL-13]` in
-`Universal Html Rules/02-components/table.css`, which you ruled on 2026-08-26: *"in every table, the
+`components/css/table.css` (formerly `Universal Html Rules/02-components/table.css`, ARCHIVED 2026-09-11 → Design-System/_archive/), which you ruled on 2026-08-26: *"in every table, the
 first and last column must always be freezed."* It's already built and tested in Wound Management.
 **This picker is simply how someone CHOOSES which column that is** — drag any column to the top of
 the Selected list, and it becomes the frozen one.
