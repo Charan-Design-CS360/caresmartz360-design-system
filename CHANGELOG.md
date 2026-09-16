@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.3.0] — 2026-09-16 — logo asset binaries DELIVERED (T12); direct-push experiment answered
+
+Singh's experiment ("can Figma push to GitHub directly?") got a definitive NO — the Figma
+sandbox cannot reach GitHub (git smart HTTP → Cloudflare 520; no GH token; evidence C360-44235
+#634453). The fallback shipped the assets anyway:
+- New `figma-assets.yml` workflow fetched all 3 logos (SVG + PNG@2x) via the Figma Images API
+  inside CI — sizes matched Figma-AI's claims; SVG XML + PNG magic verified; merged PR #36.
+- `logo.json` assets flipped pending → DELIVERED (PDF renders stay pending — the Images API
+  has no pdf format; wordmark awaits its Figma node).
+- Discovered + accommodated: the ORG blocks Actions-created PRs — both workflows now push
+  their branch and warn instead of failing; a human/repo-side AI opens the PR.
+
 ## [5.2.0] — 2026-09-16 — componentKey debt RETIRED (C360-47328): every mapping row keyed
 
 Figma-AI's full Plugin-API extraction (C360-44235 #634434) landed after validation:

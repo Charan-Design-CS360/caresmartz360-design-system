@@ -61,6 +61,9 @@ jobs:
           git add shared/brand/assets
           git commit -m "[Brand] logo asset binaries fetched from the Figma Images API (T12 fallback)"
           git push origin "$BRANCH"
+          # Org policy blocks Actions-created PRs (verified 2026-09-16, HTTP 409/GraphQL).
+          # The branch push above is the deliverable; PR creation is best-effort — on
+          # refusal we emit a notice instead of failing, and a human/repo-side AI opens the PR.
           gh pr create --title "[Brand] logo asset binaries (T12)" \
             --body "Fetched via the Figma Images API inside CI (T12 fallback — the Figma sandbox cannot push; C360-44235 #634453). SVG XML-checked and PNG magic-checked in the fetch step. Repo-side validates against logo.json's declared paths before merge." \
-            --label figma-sync --base main --head "$BRANCH"
+            --label figma-sync --base main --head "$BRANCH" || echo "::warning::PR creation blocked by org policy — branch $BRANCH pushed; open the PR manually (repo-side AI watches for these)."
