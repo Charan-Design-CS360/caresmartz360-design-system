@@ -1,270 +1,329 @@
 {
-  "schemaVersion": "1.0.0",
-  "portal": "agency",
-  "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
-  "$note": "Expanded 2→16 entries on 2026-09-10 (C360-47328; count corrected from an earlier 15/13 miscount the same day). Every nodeId is grounded: measured in its contract or existence-probed live the same day. componentKey (Figma's 40-hex component key) is only obtainable via the Plugin API — the 14 entries carrying componentKey: null await Figma-AI's enumeration (requested on C360-47328); nodeId is the working identifier until then. RENAMED 2026-09-11: field-type-1/2/3 -> form-field-primary/secondary/tertiary, matching the live Figma component names (the 'type N' vocabulary was legacy repo naming Figma had already moved past).",
-  "components": [
-    {
-      "name": "Button",
-      "componentKey": "3db16e6d1c87cd2bbf26189ef94be6a24eb872a9",
-      "nodeId": "26938:66536",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/button.md",
-      "jiraIssue": "C360-44256",
-      "snapshotRef": "measured-live-figma-2026-08-24"
-    },
-    {
-      "name": "Form Fields (family index)",
-      "componentKey": "e2b8bc625076cfbb42c55490a0f023be6ff8152c",
-      "nodeId": "26955:66554",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/form-fields.md",
-      "jiraIssue": "C360-47183",
-      "snapshotRef": "measured-live-figma-2026-09-10"
-    },
-    {
-      "name": "form-field-primary (PRIMARY — view mode)",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "26938:65997",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/form-field-primary.md",
-      "jiraIssue": "C360-47183",
-      "snapshotRef": "measured-live-figma-2026-09-10 (contract 2.0.0)"
-    },
-    {
-      "name": "form-field-secondary (SECONDARY — edit mode)",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27062:7663",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/form-field-secondary.md",
-      "jiraIssue": "C360-47325",
-      "snapshotRef": "measured-live-figma-2026-09-10"
-    },
-    {
-      "name": "form-field-tertiary (TERTIARY — settings)",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27395:30147",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/form-field-tertiary.md",
-      "jiraIssue": "C360-47325",
-      "snapshotRef": "measured-live-figma-2026-09-10-pm"
-    },
-    {
-      "name": "Field Atoms (shared)",
-      "nodeIdNote": "corrected 2026-09-10 (audit finding): this row's nodeId names only ONE of the four atoms in field-atoms.md (field-input) — it has no single container node in Figma. The other three atoms live at 27062:10162 (field-label), 27388:28274 (field-header-primary), 11116:25116 (field-message). Use this row to find the contract; use the four node ids above to resolve a specific atom.",
-      "atomNodeIds": {
-        "field-label": "27062:10162",
-        "field-header-primary": "27388:28274",
-        "field-input": "27062:8145",
-        "field-message": "11116:25116"
-      },
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27062:8145",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/field-atoms.md",
-      "jiraIssue": "C360-47325",
-      "snapshotRef": "measured-live-figma-2026-09-10-pm"
-    },
-    {
-      "name": "Filters",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27356:74769",
-      "nodeIdNote": "the measured 'Filter Components' section; the Figma-AI enumeration also lists a Filters section 26955:66555 (existence-probed 2026-09-10) — both exist",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/filters.md",
-      "jiraIssue": "C360-3526",
-      "snapshotRef": "measured-live-figma-2026-09-08"
-    },
-    {
-      "name": "Table",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "26955:66556",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/table.md",
-      "jiraIssue": "C360-44737",
-      "snapshotRef": "measured-live-figma-2026-09-01"
-    },
-    {
-      "name": "Empty States",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27218:64329",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/empty-states.md",
-      "jiraIssue": "C360-3526",
-      "snapshotRef": "measured-live-figma-2026-09-05"
-    },
-    {
-      "name": "Page Header",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27232:63236",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/page-header.md",
-      "jiraIssue": "C360-3526",
-      "snapshotRef": "measured-live-figma-2026-09-09"
-    },
-    {
-      "name": "DDM Dropdown Menu",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27245:67562",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/ddm-dropdown-menu.md",
-      "jiraIssue": "C360-3526",
-      "snapshotRef": "measured-live-figma-2026-09-05"
-    },
-    {
-      "name": "Column Arrangement",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27311:46254",
-      "nodeIdNote": "the measured columnarrangement pattern node; the Figma-AI enumeration lists a Column Settings section 27352:74681 (existence-probed 2026-09-10)",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/column-arrangement.md",
-      "jiraIssue": "C360-3526",
-      "snapshotRef": "measured-live-figma-2026-09-06"
-    },
-    {
-      "name": "Info Chips / Page Messages",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "11315:24274",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/info-chips.md",
-      "jiraIssue": "C360-47326",
-      "snapshotRef": "measured-live-figma-2026-09-10"
-    },
-    {
-      "name": "Profile Side Navigation",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27328:70399",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/profile-side-navigation.md",
-      "jiraIssue": "C360-3526",
-      "snapshotRef": "measured-live-figma-2026-09-08; section id existence-probed 2026-09-10"
-    },
-    {
-      "name": "Tabs",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27329:70491",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/tabs.md",
-      "jiraIssue": "C360-3526",
-      "snapshotRef": "measured-live-figma-2026-09-08; section id existence-probed 2026-09-10"
-    },
-    {
-      "name": "Primary Side Navigation",
-      "componentKey": null,
-      "componentKeyStatus": "PENDING Figma-AI enumeration (Plugin API node.key)",
-      "nodeId": "27337:73592",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/primary-side-navigation.md",
-      "jiraIssue": "C360-44027",
-      "snapshotRef": "measured-live-figma-2026-09-09 (contract 1.2.0)"
-    },
-    {
-      "name": "Avatar (family)",
-      "componentKey": null,
-      "componentKeyStatus": "6 keys provided by Figma-AI 2026-09-14 (recorded in avatar.json as componentKeyUnverified) — pending independent verification (AV-03)",
-      "nodeId": "27607:9247",
-      "maturity": "draft",
-      "semanticDependencies": [
-        "shared/primitives",
-        "portals/agency/semantics/color-modes",
-        "portals/agency/semantics/density-modes"
-      ],
-      "contractPath": "portals/agency/components/avatar.md",
-      "jiraIssue": "C360-44235",
-      "snapshotRef": "inventory-verified-live-2026-09-14; geometry not measured"
-    }
-  ]
+ "schemaVersion": "1.0.0",
+ "portal": "agency",
+ "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
+ "$note": "Expanded 2→16 entries on 2026-09-10 (C360-47328; count corrected from an earlier 15/13 miscount the same day). Every nodeId is grounded: measured in its contract or existence-probed live the same day. componentKey (Figma's 40-hex component key) is only obtainable via the Plugin API — the 14 entries carrying componentKey: null await Figma-AI's enumeration (requested on C360-47328); nodeId is the working identifier until then. RENAMED 2026-09-11: field-type-1/2/3 -> form-field-primary/secondary/tertiary, matching the live Figma component names (the 'type N' vocabulary was legacy repo naming Figma had already moved past). || componentKeys filled 2026-09-16 from Figma-AI's Plugin-API extraction (C360-44235 #634434), accepted by exact nodeId match; note: that comment's 'oldNodeId' column lists ids that never existed in this file — its 'all nodeIds stale' claim was false, and its 'new' ids equal the ids this mapping has carried (live-verified) since 2026-09-10/14.",
+ "components": [
+  {
+   "name": "Button",
+   "componentKey": "3db16e6d1c87cd2bbf26189ef94be6a24eb872a9",
+   "nodeId": "26938:66536",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/button.md",
+   "jiraIssue": "C360-44256",
+   "snapshotRef": "measured-live-figma-2026-08-24",
+   "componentKeyNote": "CONFLICT recorded 2026-09-16: this row keeps its 2026-08-24 key 3db16e6d…; Figma-AI's #634434 reports c1e1a0e3073dd5e1e7fc31dc47c4654614a1a0b7 for the same section node. Sections have no stable key semantics — the authoritative per-SET keys live in button.json $meta.componentKeys. Unresolved, harmless."
+  },
+  {
+   "name": "Form Fields (family index)",
+   "componentKey": "e2b8bc625076cfbb42c55490a0f023be6ff8152c",
+   "nodeId": "26955:66554",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/form-fields.md",
+   "jiraIssue": "C360-47183",
+   "snapshotRef": "measured-live-figma-2026-09-10",
+   "componentKeyNote": "CONFLICT recorded 2026-09-16: row keeps its recorded e2b8bc62… key; Figma-AI #634434 says null for the section and provides member keys instead (they live on the member rows + field-atoms)."
+  },
+  {
+   "name": "form-field-primary (PRIMARY — view mode)",
+   "componentKey": "917fa5da1872c6edbd940528351ae576fdc759ec",
+   "componentKeyStatus": "Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "26938:65997",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/form-field-primary.md",
+   "jiraIssue": "C360-47183",
+   "snapshotRef": "measured-live-figma-2026-09-10 (contract 2.0.0)"
+  },
+  {
+   "name": "form-field-secondary (SECONDARY — edit mode)",
+   "componentKey": "3731f44f052582e0d75bedd472829070a5ee6dd2",
+   "componentKeyStatus": "Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27062:7663",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/form-field-secondary.md",
+   "jiraIssue": "C360-47325",
+   "snapshotRef": "measured-live-figma-2026-09-10"
+  },
+  {
+   "name": "form-field-tertiary (TERTIARY — settings)",
+   "componentKey": "7cf8801c17ad3da0ce31bc619dfd009e6f7b3a88",
+   "componentKeyStatus": "Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27395:30147",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/form-field-tertiary.md",
+   "jiraIssue": "C360-47325",
+   "snapshotRef": "measured-live-figma-2026-09-10-pm"
+  },
+  {
+   "name": "Field Atoms (shared)",
+   "nodeIdNote": "corrected 2026-09-10 (audit finding): this row's nodeId names only ONE of the four atoms in field-atoms.md (field-input) — it has no single container node in Figma. The other three atoms live at 27062:10162 (field-label), 27388:28274 (field-header-primary), 11116:25116 (field-message). Use this row to find the contract; use the four node ids above to resolve a specific atom.",
+   "atomNodeIds": {
+    "field-label": "27062:10162",
+    "field-header-primary": "27388:28274",
+    "field-input": "27062:8145",
+    "field-message": "11116:25116"
+   },
+   "componentKey": "df954272c64fa7996ae1485b37da10350908bf11",
+   "componentKeyStatus": "Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27062:8145",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/field-atoms.md",
+   "jiraIssue": "C360-47325",
+   "snapshotRef": "measured-live-figma-2026-09-10-pm",
+   "atomComponentKeys": {
+    "field-label (27062:10162)": "806dbc1b800b59d9ebfc78b71b5f3bce5f648cd9",
+    "field-header-primary (27388:28274)": "8d5035ef15e0c97aca55476d0c6a46004cbf5f88",
+    "field-message (11116:25116)": "d7cd4015dbee59022c2c0024b7a6a66c45f8f82f",
+    "field-input (27062:8145)": "df954272c64fa7996ae1485b37da10350908bf11"
+   }
+  },
+  {
+   "name": "Filters",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27356:74769",
+   "nodeIdNote": "the measured 'Filter Components' section; the Figma-AI enumeration also lists a Filters section 26955:66555 (existence-probed 2026-09-10) — both exist",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/filters.md",
+   "jiraIssue": "C360-3526",
+   "snapshotRef": "measured-live-figma-2026-09-08",
+   "componentKeys": {
+    "filter-dropdown (26360:67677)": "550179701b6812992f91be165ce9d0adbd9516d8",
+    "filter-toggle (26938:65213)": "30b8eb9c3c57a7c06cfa1f26d96f5cf544d92065",
+    "filter-checkbox (26938:65443)": "470b517b04e72bc15bd19479ca1a2cbd9e0f57d0"
+   }
+  },
+  {
+   "name": "Table",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "26955:66556",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/table.md",
+   "jiraIssue": "C360-44737",
+   "snapshotRef": "measured-live-figma-2026-09-01",
+   "componentKeys": {
+    "table-cell (26938:61725)": "c09479de771c285bc60ab9d62cbe3ca62e7ec1fe",
+    "table-head (26938:61726)": "d07523bdcb119d96165bb7648bcaa35b19f10529"
+   }
+  },
+  {
+   "name": "Empty States",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27218:64329",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/empty-states.md",
+   "jiraIssue": "C360-3526",
+   "snapshotRef": "measured-live-figma-2026-09-05",
+   "componentKeys": {
+    "status-icon (12428:28265)": "fe4dd789ac083b20e7c51f3ea02bb35a93cd5a6b",
+    "empty-state-inline (11380:24914)": "7fd23f25907c527e3e2e62482f0ce2856ca6ef4d",
+    "empty-state-popup (5775:5916)": "2d64e76a66b041f8ffc3cdad15bf44279329313d"
+   }
+  },
+  {
+   "name": "Page Header",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27232:63236",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/page-header.md",
+   "jiraIssue": "C360-3526",
+   "snapshotRef": "measured-live-figma-2026-09-09",
+   "componentKeys": {
+    "page-heading (14160:189662)": "d7099dded17696219375586c420a356316193fd9",
+    "page-header (27232:65833)": "707f4fda0cd52db4a44871d36c5328879e78560b",
+    "page-header-toolbar (27232:65760)": "ba28ea5fd431da1dcaf9279d05794b02851638f0",
+    "page-header-bar (27232:65797)": "f4d5fb0745b99827f0d550ccef6ab3c18c961cb4"
+   }
+  },
+  {
+   "name": "DDM Dropdown Menu",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27245:67562",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/ddm-dropdown-menu.md",
+   "jiraIssue": "C360-3526",
+   "snapshotRef": "measured-live-figma-2026-09-05",
+   "componentKeys": {
+    "ddm-row-checkbox (7926:11855)": "d9d176dd6cde641bfcce5d8134e66bb6e336712f",
+    "ddm-row-radio (7926:11856)": "6d847e1b0529fb5b479fb5f9d4249c1466ecfd37",
+    "ddm-row-checkbox-drag (13095:43335)": "60fd4ee312d8c9a02aefcb8250adf907d185db60",
+    "column-settings-trigger (10373:16081)": "c7af9c94d7503de2f7b6b46694cdffff93aef0f4",
+    "Dropdown/Menu group heading (1728:1)": "f50183146e6ea9f27f94efecde26802a103f0b8a",
+    "Dropdown Heading primary (1678:633)": "479cfd1d327e1e2bc2cca10f3d5e5402d891af90",
+    "Dropdown/Menu side-by-side (10296:16501)": "6e5610271953fe8cda073df24f7bb2feec3f328a",
+    "Dropdown/Menu radio (11961:30613)": "87c5b095d538cac4b190fb2fd8655d64db1defb5"
+   }
+  },
+  {
+   "name": "Column Arrangement",
+   "componentKey": null,
+   "componentKeyStatus": "no key exists — 27311:46254 is a plain FRAME (Figma-AI #634434 concurs). Row STAYS: it is a Singh-ruled measured PATTERN contract (v2.1.0), not a component set; removal was proposed by Figma-AI and REJECTED repo-side.",
+   "nodeId": "27311:46254",
+   "nodeIdNote": "the measured columnarrangement pattern node; the Figma-AI enumeration lists a Column Settings section 27352:74681 (existence-probed 2026-09-10)",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/column-arrangement.md",
+   "jiraIssue": "C360-3526",
+   "snapshotRef": "measured-live-figma-2026-09-06"
+  },
+  {
+   "name": "Info Chips / Page Messages",
+   "componentKey": "3231cd9cfa9e1117e0016d4e09847ff989eefc15",
+   "componentKeyStatus": "Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "11315:24274",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/info-chips.md",
+   "jiraIssue": "C360-47326",
+   "snapshotRef": "measured-live-figma-2026-09-10"
+  },
+  {
+   "name": "Profile Side Navigation",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27328:70399",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/profile-side-navigation.md",
+   "jiraIssue": "C360-3526",
+   "snapshotRef": "measured-live-figma-2026-09-08; section id existence-probed 2026-09-10",
+   "componentKeys": {
+    "profile-card (27325:69934)": "73ba09e9571d9e9d0552ed0d3c4bdddc24a5bd7c",
+    "profile-top-actions (27325:70122)": "141447db5233429944d36be3e4d3f9e883360903",
+    "sidebar-nav-item (5847:7801)": "db9833bed4eea3ba3d35da75f90fb7faa78e1086",
+    "profile-sidebar (27337:74189)": "b537b55ad82fa86f0ecd63653f524b2e21c70d9d",
+    "Nav Divider (5847:8404)": "7af1bd4f3189b631e0b0f52b502d7f0fb3102a39",
+    "Nav Header (5847:6636)": "8cdeaecd03d4a7cbe166a5e66a08fd1dac2144f6",
+    "Nav Project (5847:8401)": "3dc38d625d31a53eef2c23dd5b9f7fb5b8f87414"
+   }
+  },
+  {
+   "name": "Tabs",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27329:70491",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/tabs.md",
+   "jiraIssue": "C360-3526",
+   "snapshotRef": "measured-live-figma-2026-09-08; section id existence-probed 2026-09-10",
+   "componentKeys": {
+    "tab-primary (5775:8556)": "8fe447caa9d68382a71a2449d629025a1c87146e",
+    "tab-secondary (27329:70805)": "3bfdcec7227fc594a6d6eee3c4fe3a4e2219d91a"
+   }
+  },
+  {
+   "name": "Primary Side Navigation",
+   "componentKey": "e7839344003a01e156087b3108effa9b6d13c593",
+   "componentKeyStatus": "Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27337:73592",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/primary-side-navigation.md",
+   "jiraIssue": "C360-44027",
+   "snapshotRef": "measured-live-figma-2026-09-09 (contract 1.2.0)"
+  },
+  {
+   "name": "Avatar (family)",
+   "componentKey": null,
+   "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
+   "nodeId": "27607:9247",
+   "maturity": "draft",
+   "semanticDependencies": [
+    "shared/primitives",
+    "portals/agency/semantics/color-modes",
+    "portals/agency/semantics/density-modes"
+   ],
+   "contractPath": "portals/agency/components/avatar.md",
+   "jiraIssue": "C360-44235",
+   "snapshotRef": "inventory-verified-live-2026-09-14; geometry not measured",
+   "componentKeys": {
+    "avatar-user (5537:4593)": "d6dea972cd6ea8438fc168515eb1d430818a7a51",
+    "avatar-entity (5537:4602)": "a0b8d9274124d81ef6c155d4be33858b04c88460",
+    "avatar-group (5537:4604)": "894036934e2db02366ede3fba3a365bc7370249d",
+    "update-image (10618:18947)": "14757c3e6c0ce92e3aa8571fe91fdfa025a39014",
+    "avatar-status-icon (23507:9111)": "02f3d82024880eabc9dc7d2e3979bf34b2793bf0",
+    "more-action (26929:50408)": "ccbae9b23b8953e088355d86365096e2464e9755"
+   }
+  }
+ ]
 }
