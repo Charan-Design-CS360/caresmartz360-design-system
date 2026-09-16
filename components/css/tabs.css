@@ -25,10 +25,10 @@
      • BOTH styles are in scope, officially named PRIMARY (underline, 5775:8556)
        and SECONDARY (segmented, 27329:70805).
      • Singh added a DISABLED state to PRIMARY (27334:72865).
-   ⚠ FLAG (defect T1): Figma's disabled label value reads #475569 (same as a
-     normal tab), but the repo token --action-disabled-text-neutral resolves to
-     the lighter neutral-300. This CSS binds the TOKEN (correct); the value
-     mismatch is for Singh / Figma AI to reconcile — see tabs.md §Defects.
+   ✓ RESOLVED (defect T1, Singh 2026-09-16): "always just follow Figma and the
+     variables I defined" — --action-disabled-text-neutral now resolves to the
+     export value #475569 everywhere; the repo's lighter neutral-300 deviation
+     was removed. Disabled is distinguished by baseline + cursor, not label shade.
 
    ══ TOKENS — every value below is a repo-resolvable semantic var (verified
       2026-09-03 against src/styles/2-semantics/_theme-light.scss + _spacing).

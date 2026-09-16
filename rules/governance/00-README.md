@@ -78,7 +78,7 @@ with better presentation."*
 
 | Path | Holds | State |
 |---|---|---|
-| `00-AI-MANDATORY-RULES.md` | the 8 mandatory rules from epic C360-3526, on disk at last | transcribed, awaiting Singh ratification |
+| `00-AI-MANDATORY-RULES.md` | the 8 mandatory rules from epic C360-3526, on disk at last | **RATIFIED by Singh 2026-09-16** |
 | `01-universal/` | naming, CSS approach, iconography, typography, responsive, accessibility | being assembled |
 | `02-components/` | basic shared components ONLY — one doc per atom, per-element comments | being assembled |
 | `03-portals/` | per-portal bindings; empty portals carry a NO-CONTENT sentinel | scaffolded |

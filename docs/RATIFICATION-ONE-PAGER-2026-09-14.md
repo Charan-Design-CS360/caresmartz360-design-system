@@ -1,3 +1,5 @@
+> **DECIDED: Singh ratified all 7 on 2026-09-16** ("Ratify all 7"). Stamps applied the same day; this page is now the record of what was approved.
+
 # The rulebook waiting for your approval — one page, plain words
 
 **For:** Singh · **From:** Claude (DESIGN-SYSTEM lane) · 2026-09-14

@@ -139,7 +139,7 @@
 
   // ── ACTIONS — DISABLED ──
   --action-disabled-bg: var(--neutral-100);
-  --action-disabled-text-neutral: var(--neutral-300);
+  --action-disabled-text-neutral: #475569; // RULED Singh 2026-09-16: always follow Figma — export value #475569 (was var(--neutral-300), a repo-side deviation; defect T1 closed)
   --action-disabled-border: var(--opacity-0);
 
   // ── ACTIONS — FOCUS ──

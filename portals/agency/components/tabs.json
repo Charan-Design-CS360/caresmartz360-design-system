@@ -104,7 +104,7 @@
     "focusVisible": { "value": "Every tab/segment keeps a visible focus ring.", "marker": ["ADDED"] }
   },
   "defects": [
-    "T1 — DISABLED LABEL VALUE MISMATCH (Primary). The new disabled variant (27334:72865) binds action/disabled/text-neutral, whose Figma-resolved value reads #475569 — identical to text/secondary, i.e. a disabled tab's label would look the same colour as a normal Default tab's label. The repo, however, resolves --action-disabled-text-neutral to neutral-300 (a lighter grey), which is the more sensible disabled look. Figma and the repo disagree on this token's value. The CSS binds the TOKEN name (correct); Singh / Figma AI must reconcile the intended value. Do not hardcode either side.",
+    "T1 — RESOLVED (RULED Singh 2026-09-16: always follow Figma and the owner-defined variables). --action-disabled-text-neutral = #475569, the export/Figma value, everywhere; the repo's neutral-300 deviation was removed from _theme-light.scss the same day. A disabled tab is distinguished by its baseline + non-interactive cursor, not by a lighter label.",
     "T2 — LEGACY TOKEN NAME: letter-spacing binds fonts/tracking/X-tracking-0 (X- legacy prefix) on both styles — the same system-wide legacy-name cleanup already tracked. Do not propagate the X- name; the kit uses semantic vars.",
     "T3 — RESOLVED 2026-09-15: the '27 variants with badge indicators' premise was wrong. A live full-set read shows exactly 12 variants and NO badge variants exist on the secondary set. The count is corrected in variantAxes.secondary.variantCount.",
     "T4 — SECONDARY is size S only in the read set. If a larger (M/L) segmented size is needed, it was not found and must be measured.",

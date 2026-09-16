@@ -1,3 +1,5 @@
+> **Legacy token dumps removed 2026-09-16 (Singh's ruling):** every `ds-tokens-*.json` root file was deleted — they carried outdated July-era data. Variable truth: `portals/<portal>/semantics/` + `config/variable-export-manifest.json` (git history preserves the old files).
+
 # CareSmartz360 — 3-Tier SCSS Architecture
 
 This folder implements the 3-tier structure defined in `AI_CONTEXT.md` (Primitives → Semantics → Components), as a portal-agnostic, prefix-free token system per that file's Rule 3.

@@ -4,22 +4,37 @@
       "id": "shared-primitives",
       "portal": "shared",
       "file": "primitives/Primitives.CS360.V2.0.tokens.json",
-      "roots": ["$document"],
+      "roots": [
+        "$document"
+      ],
       "claimedTotal": 264
     },
     {
       "id": "agency-semantics",
       "portal": "agency",
-      "file": "ds-tokens-latest.json",
-      "roots": ["semantic"],
-      "modeNames": ["light", "dark", "high-contrast", "warm-dark", "hc-light"],
-      "claimedTotalPath": "$metadata.totalVariables"
+      "file": "portals/agency/semantics/color-modes/Light Mode (Default).tokens.json",
+      "roots": [
+        "$document"
+      ],
+      "modeNames": [
+        "light",
+        "dark",
+        "high-contrast",
+        "warm-dark",
+        "hc-light"
+      ],
+      "claimedTotal": 233,
+      "note": "repointed 2026-09-16 when the legacy root dumps (ds-tokens-*.json) were deleted per Singh's ruling; this config is only the fallback when variable-export-manifest.json is absent"
     },
     {
       "id": "caregiver-semantics",
       "portal": "caregiver",
       "file": "portals/caregiver/semantic-tokens.json",
-      "roots": ["colorTheme", "densityModes", "general"],
+      "roots": [
+        "colorTheme",
+        "densityModes",
+        "general"
+      ],
       "modeNames": [
         "light",
         "soothing-dark",
@@ -31,5 +46,6 @@
       ],
       "claimedTotalPath": "$metadata.totalVariables"
     }
-  ]
+  ],
+  "$note": "FALLBACK ONLY \u2014 audit-token-contract uses config/variable-export-manifest.json when present (it always is). Legacy root token dumps were deleted 2026-09-16 (Singh: 'Delete all 9 + latest'); git history preserves them."
 }

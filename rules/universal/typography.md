@@ -8,7 +8,7 @@ Feature-parameterised pixel values from SPEC-07 §G.2 are NOT restated here as
 universal. This file SUPERSEDES the typography-adjacent lines of
 ECOSYSTEM-RULES §10 and MASTER-AI-INSTRUCTIONS §3 (cited below as sources).
 CREATOR: Fable-WOUND-MGMT | 2026-08-24
-STATUS: ASSEMBLED — Singh ratification pending
+STATUS: RATIFIED by Singh 2026-09-16 (chat ruling: "Ratify all 7") — binding for every AI tool
 =============================================================================
 -->
 

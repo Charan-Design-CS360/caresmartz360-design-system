@@ -9,7 +9,7 @@ Built from Office_Work/memory/icons.md + the verified Wound Management
 implementation (vendor-icons.py, PROVENANCE.md, verify-build.py §5b,
 verify-icons-render.mjs) + DS-FIGMA-NODE-INDEX.md.
 CREATOR: Fable-WOUND-MGMT | 2026-08-24
-STATUS: ASSEMBLED — Singh ratification pending
+STATUS: RATIFIED by Singh 2026-09-16 (chat ruling: "Ratify all 7") — binding for every AI tool
 =============================================================================
 -->
 

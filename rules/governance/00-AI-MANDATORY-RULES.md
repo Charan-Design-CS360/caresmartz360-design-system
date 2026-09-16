@@ -59,4 +59,6 @@ then the divergence gets a row in `RULE-FLAGS.md`, because a drifted copy is a d
 
 | Date | Change | Authority |
 |---|---|---|
-| 2026-08-24 | Initial verbatim transcription from epic C360-3526 | Singh's approved assembly plan (decision: transcribe, ratify against fetched text) — **ratification pending** |
+| 2026-08-24 | Initial verbatim transcription from epic C360-3526 | Singh's approved assembly plan (decision: transcribe, ratify against fetched text) — **RATIFIED by Singh 2026-09-16** |
+
+| 2026-09-16 | **RATIFIED by Singh** (chat ruling: "Ratify all 7") — the 8 rules are binding for every AI tool; violations are defects, not opinions. | Singh chat ruling, 2026-09-16 |
