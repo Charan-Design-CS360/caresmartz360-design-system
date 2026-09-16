@@ -25,6 +25,34 @@ SOURCE: Figma section 26938:66536 "AI Button component"
 
 # Button — Agency component contract
 
+> **Contract version 1.1.0** — updated 2026-09-16.  
+> Added `$meta.componentKeys` (9 SHA1 keys), `$meta.validationHistory`, `variantCounts` block.  
+> Reduced `notVerified` 8 → 6 (geometry and variant gap confirmed).
+
+## Component Keys (SHA1 — Figma-stable)
+
+| Type | Node ID | Component Key |
+|---|---|---|
+| button-primary | `5703:7087` | `48933add2d3d3fb41487818535e0259f72b76764` |
+| button-secondary | `27098:1282` | `7a846f7953f83f614226fe3ac65e8a50dcb70363` |
+| button-ghost | `5703:7709` | `ebac866eb81df33da978dbab98f463681ee59dbc` |
+| button-soft | `5703:8495` | `5b509d8fa03d1c8af3356e3aaa14d0ead1ce2c61` |
+| button-warning | `26781:44955` | `8e41b61211e067aa638d6b7004cdaa27102923ca` |
+| button-destructive | `5703:7501` | `8938b62a5b850eb9797274f6dd50b181eb315e3c` |
+| button-success | `10356:17309` | `b249800e664dec77b2bca1643180866b133d8876` |
+| button-split | `26767:45640` | `b68b1e91e91f091e462a2c0e684c037567d9aa89` |
+| button-ai | `27116:1359` | `837b6a58dd37102d790cc9c69105686076a4943c` |
+
+**Total variants: 392** (primary 48, secondary 48, ghost 40, soft 48, warning 56, destructive 56, success 56, split 8, AI 32)
+
+## Validation History
+
+| Phase | Date | Result | Method |
+|---|---|---|---|
+| D | 2026-09-14 | 118/118 PASS | Plugin API property-level diff |
+| E | 2026-09-15 | re-confirmed via deep validation | geometry + typography + token binding verification |
+
+
 Canonical Jira parent: **C360-44737**. Component Jira: **C360-44256**.
 
 ## ⚠️ Read this first: trust the variables, not the prose

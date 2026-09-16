@@ -3,7 +3,7 @@
   "$meta": {
     "component": "Button",
     "portal": "agency",
-    "contractVersion": "1.0.0",
+    "contractVersion": "1.1.0",
     "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
     "figmaFileKeyProvenance": "ASSERTED, NOT MEASURED — the Figma desktop MCP serves the active tab and never reports a file key. Value taken from the repo's own Agency component mapping. Must be confirmed by Singh.",
     "figmaSectionNodeId": "26938:66536",
@@ -21,7 +21,60 @@
       "RAW": "real value but NOT bound to any Figma design token",
       "UNVERIFIED": "not read — do not build from it"
     },
-    "readThisFirst": "Figma's own descriptions for this component are provably wrong (they advertise an S/M/L size axis and a 'loading' state that do not exist). Read bound variables and node structure; treat Figma prose as unverified."
+    "readThisFirst": "Figma's own descriptions for this component are provably wrong (they advertise an S/M/L size axis and a 'loading' state that do not exist). Read bound variables and node structure; treat Figma prose as unverified.",
+    "componentKeys": {
+      "button-primary": {
+        "nodeId": "5703:7087",
+        "componentKey": "48933add2d3d3fb41487818535e0259f72b76764"
+      },
+      "button-secondary": {
+        "nodeId": "27098:1282",
+        "componentKey": "7a846f7953f83f614226fe3ac65e8a50dcb70363"
+      },
+      "button-ghost": {
+        "nodeId": "5703:7709",
+        "componentKey": "ebac866eb81df33da978dbab98f463681ee59dbc"
+      },
+      "button-soft": {
+        "nodeId": "5703:8495",
+        "componentKey": "5b509d8fa03d1c8af3356e3aaa14d0ead1ce2c61"
+      },
+      "button-warning": {
+        "nodeId": "26781:44955",
+        "componentKey": "8e41b61211e067aa638d6b7004cdaa27102923ca"
+      },
+      "button-destructive": {
+        "nodeId": "5703:7501",
+        "componentKey": "8938b62a5b850eb9797274f6dd50b181eb315e3c"
+      },
+      "button-success": {
+        "nodeId": "10356:17309",
+        "componentKey": "b249800e664dec77b2bca1643180866b133d8876"
+      },
+      "button-split": {
+        "nodeId": "26767:45640",
+        "componentKey": "b68b1e91e91f091e462a2c0e684c037567d9aa89"
+      },
+      "button-ai": {
+        "nodeId": "27116:1359",
+        "componentKey": "837b6a58dd37102d790cc9c69105686076a4943c"
+      }
+    },
+    "validationHistory": [
+      {
+        "phase": "D",
+        "date": "2026-09-14",
+        "result": "118/118 PASS",
+        "method": "Plugin API property-level diff"
+      },
+      {
+        "phase": "E",
+        "date": "2026-09-15",
+        "result": "re-confirmed via deep validation",
+        "method": "geometry + typography + token binding verification"
+      }
+    ],
+    "appliedBy": "Claude repo-side 2026-09-16 from C360-44235 #634394 — structural diff vs main showed a strict superset (nothing lost); 9 componentKey nodeIds cross-checked against the Phase B table; keys themselves Plugin-API-sourced (not independently verifiable repo-side)"
   },
   "anatomy": {
     "elements": [
@@ -409,7 +462,7 @@
       "note": "NEWLY DISCOVERED 2026-08-24 — absent from every prior spec. 20 variants at 27116:1155..1351.",
       "defects": [
         "fill is a raw two-stop gradient #7c3aed -> #2563eb, not a token",
-        "contains a nested <button> inside its icon slot — invalid HTML",
+        "contains a nested button inside its icon slot — invalid HTML",
         "binds only 1 of the 8 action/ai/* tokens"
       ]
     }
@@ -484,14 +537,13 @@
     }
   },
   "notVerified": [
-    "focus-ring stroke alignment (inside vs outside) — CHANGES LAYOUT",
+    "focus-ring stroke alignment (inside vs outside) — CHANGES LAYOUT (re-added by repo-side 2026-09-16: Figma-AI's v1.1.0 dropped it without evidence; its 118-property diff did not cover stroke alignment)",
     "Type=Soft CSS for warning/destructive/success (26882:17447, 26879:9525, 26882:17369)",
     "the 20 Type=AI variants beyond Default/Leading",
     "per-state token mapping for the 7 non-Primary types (set-level binding IS measured; state-by-state was read for Primary only, and the one non-Primary state checked — Success hover — broke the inferred pattern)",
     "dark / high-contrast / warm-dark / hc-light theme values (light :root only)",
     "behaviour: transition timing, keyboard interaction, loading",
-    "Split internal padding and Outline=Yes composition",
-    "the 32-symbol gap between SPEC-07b's 360 total and the live 392"
+    "Split internal padding and Outline=Yes composition"
   ],
   "openTokenDecision": {
     "status": "RESOLVED 2026-09-11",
@@ -499,5 +551,19 @@
     "proposal": "4 raw number tokens in the Density Modes collection, scope WIDTH_HEIGHT, zero primitives and zero aliases: control/min-height=30, control/min-height-compact=24, control/min-width=80, control/min-width-label=60",
     "untilApproved": "This contract records 30px as a measured, UNBOUND design-system gap. It does NOT authorise hardcoding it in Tier 3.",
     "resolution": "Singh exported the tokens. Figma's names WIN over this file's earlier proposal: the live tokens are control/height-default and control/height-compact (aliased to size/* primitives), NOT the control/min-height / control/min-height-compact raw-number scheme proposed here. The height half of this proposal is delivered and bound. Still unproposed/unexported: control/min-width (80) and control/min-width-label (60) — those remain RAW and are the owner's call."
+  },
+  "variantCounts": {
+    "total": 392,
+    "byType": {
+      "primary": 48,
+      "secondary": 48,
+      "ghost": 40,
+      "soft": 48,
+      "warning": 56,
+      "destructive": 56,
+      "success": 56,
+      "split": 8,
+      "ai": 32
+    }
   }
 }
