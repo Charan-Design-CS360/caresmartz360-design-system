@@ -124,3 +124,22 @@ purpose:
 C360-44235's variable-authority block retired it **for variable values only**
 (the owner's local exports are the sole variable input). It remains the live
 channel for component information, descriptions, keys, and rename notices.
+## Figma-GitHub Sync Pipeline
+
+### Channel Routing
+| Data Type | Channel | Method |
+|---|---|---|
+| Component keys, names, descriptions | Channel 1 (REST) | GitHub Action cron |
+| Published styles | Channel 1 (REST) | GitHub Action cron |
+| Node geometry | Channel 1 (REST) | GitHub Action cron |
+| Variable values | Channel 2 (Plugin API) | Figma AI → Jira → repo AI |
+| Token bindings | Channel 2 (Plugin API) | Figma AI → Jira → repo AI |
+| Cross-component refs | Channel 2 (Plugin API) | Figma AI → Jira → repo AI |
+
+### For AI Tools
+- **Figma file key:** `4bh29laapcuKBTghfaRXF0`
+- **Jira bridge issue:** C360-44235
+- **Sync state file:** `.figma-sync-state.json`
+- **Component mapping field:** `nodeId` (NOT `figmaNodeId`)
+- **Workflow dispatch:** `gh workflow run figma-sync.yml`
+- **Sync docs:** `docs/FIGMA_GITHUB_SYNC.md`

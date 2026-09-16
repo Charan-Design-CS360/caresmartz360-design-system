@@ -1,0 +1,205 @@
+# Figma → GitHub automated sync (T11, C360-44235 #634269 rev2). Authored by Figma-AI,
+# applied by repo-side Claude 2026-09-16 with one fix: the mapping path (repo root has no
+# component-mapping.json — it lives at portals/agency/components/). Secret FIGMA_TOKEN was
+# added by Singh 2026-09-16; approved by Singh the same day ("Approve the sync pipeline").
+# Docs: docs/FIGMA_GITHUB_SYNC.md
+# ---------------------------------------------------------------------------
+# Figma Design-System Sync
+# ---------------------------------------------------------------------------
+# Pulls component and style data from the Figma REST API, runs the local
+# sync script, and opens a PR when design-token drift is detected.
+#
+# Triggers:
+#   - Cron: every 6 hours on weekdays (Mon-Fri)
+#   - Manual: workflow_dispatch with scope / component / dry-run inputs
+#   - External: repository_dispatch event type "figma-sync"
+# ---------------------------------------------------------------------------
+
+name: Figma Design-System Sync
+
+on:
+  schedule:
+    - cron: "0 */6 * * 1-5"
+
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: "Sync scope — pass 'all' or a specific subsystem name"
+        required: false
+        default: "all"
+        type: string
+      component:
+        description: "Single component to sync (optional)"
+        required: false
+        type: string
+      dry-run:
+        description: "Run without writing changes"
+        required: false
+        default: false
+        type: boolean
+
+  repository_dispatch:
+    types: [figma-sync]
+
+concurrency:
+  group: figma-sync
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  FIGMA_FILE_KEY: ${{ secrets.FIGMA_FILE_KEY }}
+  FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+
+jobs:
+  sync:
+    name: Sync Figma tokens
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch Figma file metadata
+        run: |
+          set -euo pipefail
+          HTTP_CODE=$(curl -s -o /tmp/figma-meta.json -w "%{http_code}" \
+            -H "X-Figma-Token: $FIGMA_TOKEN" \
+            "https://api.figma.com/v1/files/$FIGMA_FILE_KEY")
+          if [[ "$HTTP_CODE" -ne 200 ]]; then
+            echo "::error::Figma API returned HTTP $HTTP_CODE"
+            cat /tmp/figma-meta.json
+            exit 1
+          fi
+          echo "File: $(jq -r '.name' /tmp/figma-meta.json)"
+          echo "Last modified: $(jq -r '.lastModified' /tmp/figma-meta.json)"
+
+      - name: Check for upstream changes (smart skip)
+        id: skip-check
+        run: |
+          set -euo pipefail
+          FIGMA_LAST_MODIFIED=$(jq -r '.lastModified' /tmp/figma-meta.json)
+          if [[ -f .figma-sync-state.json ]]; then
+            CACHED_LAST_MODIFIED=$(jq -r '.lastModified // empty' .figma-sync-state.json)
+          else
+            CACHED_LAST_MODIFIED=""
+          fi
+          if [[ "${{ github.event_name }}" == "schedule" \
+                && -n "$CACHED_LAST_MODIFIED" \
+                && "$CACHED_LAST_MODIFIED" == "$FIGMA_LAST_MODIFIED" ]]; then
+            echo "No upstream changes since last sync — skipping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # CRITICAL: field is `nodeId` — NOT `figmaNodeId`
+      - name: Extract component node IDs
+        if: steps.skip-check.outputs.skip != 'true'
+        id: node-ids
+        run: |
+          set -euo pipefail
+          if [[ ! -f portals/agency/components/component-mapping.json ]]; then
+            echo "::error::portals/agency/components/component-mapping.json not found"
+            exit 1
+          fi
+          # Field is `nodeId` — NOT `figmaNodeId`
+          NODE_IDS=$(jq -r '[.components[]?.nodeId // empty] | join(",")' portals/agency/components/component-mapping.json)
+          if [[ -z "$NODE_IDS" ]]; then
+            echo "::warning::No component node IDs found"
+          fi
+          echo "node_ids=$NODE_IDS" >> "$GITHUB_OUTPUT"
+
+      - name: Fetch component data
+        if: steps.skip-check.outputs.skip != 'true' && steps.node-ids.outputs.node_ids != ''
+        run: |
+          set -euo pipefail
+          NODE_IDS="${{ steps.node-ids.outputs.node_ids }}"
+          HTTP_CODE=$(curl -s -o /tmp/figma-nodes.json -w "%{http_code}" \
+            -H "X-Figma-Token: $FIGMA_TOKEN" \
+            "https://api.figma.com/v1/files/$FIGMA_FILE_KEY/nodes?ids=${NODE_IDS}")
+          if [[ "$HTTP_CODE" -ne 200 ]]; then
+            echo "::error::Figma nodes API returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Fetch published styles
+        if: steps.skip-check.outputs.skip != 'true'
+        run: |
+          set -euo pipefail
+          HTTP_CODE=$(curl -s -o /tmp/figma-styles.json -w "%{http_code}" \
+            -H "X-Figma-Token: $FIGMA_TOKEN" \
+            "https://api.figma.com/v1/files/$FIGMA_FILE_KEY/styles")
+          if [[ "$HTTP_CODE" -ne 200 ]]; then
+            echo "::error::Figma styles API returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Run figma-sync script
+        if: steps.skip-check.outputs.skip != 'true'
+        run: |
+          set -euo pipefail
+          SCOPE="${{ inputs.scope || 'all' }}"
+          CMD="node scripts/figma-sync.mjs"
+          CMD+=" --figma-components /tmp/figma-components.json"
+          CMD+=" --figma-styles /tmp/figma-styles.json"
+          CMD+=" --figma-nodes /tmp/figma-nodes.json"
+          CMD+=" --scope $SCOPE --portal agency"
+          COMPONENT="${{ inputs.component }}"
+          if [[ -n "$COMPONENT" ]]; then CMD+=" --component $COMPONENT"; fi
+          if [[ "${{ inputs.dry-run }}" == "true" ]]; then CMD+=" --dry-run"; fi
+          echo "Executing: $CMD"
+          eval "$CMD"
+
+      - name: Update sync state
+        if: steps.skip-check.outputs.skip != 'true' && inputs.dry-run != 'true'
+        run: |
+          set -euo pipefail
+          FIGMA_LAST_MODIFIED=$(jq -r '.lastModified' /tmp/figma-meta.json)
+          jq -n --arg lm "$FIGMA_LAST_MODIFIED" --arg sa "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg tr "${{ github.event_name }}" \
+            '{lastModified:$lm, syncedAt:$sa, trigger:$tr}' > .figma-sync-state.json
+
+      - name: Check for changes
+        if: steps.skip-check.outputs.skip != 'true' && inputs.dry-run != 'true'
+        id: changes
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            git diff --cached --stat
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create pull request
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TS=$(date -u +"%Y-%m-%d-%H%M%S")
+          BRANCH="figma-sync/${TS}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git commit -m "chore(design-tokens): sync from Figma ($TS)"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "[Figma Sync] Design token drift detected — $(date -u +%Y-%m-%d)" \
+            --body "Automated sync detected design-token drift. Trigger: ${{ github.event_name }}" \
+            --base main --head "$BRANCH" \
+            --label "figma-sync" --label "automated"

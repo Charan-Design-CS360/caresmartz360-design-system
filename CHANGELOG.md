@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.1.0] — 2026-09-16 — T9 landed (button 1.1.0 + 9 componentKeys) and T11 sync pipeline DEPLOYED
+
+Figma-AI's re-posted payloads were finally complete-inline; everything validated before landing:
+
+### button 1.1.0 (T9 — C360-44235 #634394/#634395)
+- Structural diff vs main proved a strict superset — nothing regressed; the only shared-key
+  changes were the version, an HTML-escape cleanup, and two removed notVerified items (one
+  evidenced by the new per-set variantCounts totalling 392; the unevidenced focus-ring item
+  was RE-ADDED repo-side). **9 componentKeys land** (nodeIds cross-checked against the Phase B
+  table; the keys themselves are Plugin-API-sourced). button.md gains the 1.1.0 section.
+
+### Sync pipeline (T11 — Singh-approved; secret FIGMA_TOKEN added by Singh, verified live)
+- `.github/workflows/figma-sync.yml` (cron 6h weekdays + manual dispatch) +
+  `scripts/figma-sync.mjs` + `docs/FIGMA_GITHUB_SYNC.md` + AI_CONTEXT sync section.
+- Verified before landing: figmaNodeId bug fixed in rev2 (live code uses `nodeId`); script is
+  complete, syntax-valid, and dry-runs clean locally; ONE new bug found+fixed repo-side in
+  both files: the mapping path (repo root → `portals/agency/components/`).
+- Also: Figma-AI's "logo keys rotated" alert (#634399) was a false alarm — the repo already
+  carries the claimed new keys; no change.
+
 ## [5.0.0] — 2026-09-16 — Singh's decision batch: rulebook RATIFIED, legacy dumps deleted, disabled colour ruled, Jira rules adopted, sync pipeline approved
 
 Five owner decisions, given one-by-one in chat on 2026-09-16, all applied the same day:
