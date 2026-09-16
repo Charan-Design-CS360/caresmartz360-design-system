@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.2.0] — 2026-09-16 — componentKey debt RETIRED (C360-47328): every mapping row keyed
+
+Figma-AI's full Plugin-API extraction (C360-44235 #634434) landed after validation:
+- **Accepted by exact nodeId match only** — every key's nodeId equals the id this mapping has
+  carried (live-verified) since 2026-09-10/14. Its "oldNodeId/all-stale" claim was FALSE: that
+  column lists ids that never existed in this file; recorded in the mapping $note.
+- 6 COMPONENT_SET rows get their componentKey; 8 section/family rows get per-set
+  `componentKeys` maps (34 keys total); field-atoms gets `atomComponentKeys`; avatar's 6 keys
+  are upgraded unverified → CONFIRMED (second independent extraction, byte-identical).
+- Two conflicts recorded, not resolved (Button and Form-Fields-family section keys differ from
+  the 2026-08/09 records — sections have no stable key semantics; per-set keys are authoritative).
+- Column Arrangement row STAYS (Figma-AI proposed removal; it is a Singh-ruled measured
+  PATTERN, and 27311:46254 is confirmed a frame — status note added).
+- avatar 1.2.1: update-image/more-action axes renamed in Figma (Property 1→Size, Property 2→State).
+- `audit:components` NOTICE count: 14 → **0**.
+
 ## [5.1.0] — 2026-09-16 — T9 landed (button 1.1.0 + 9 componentKeys) and T11 sync pipeline DEPLOYED
 
 Figma-AI's re-posted payloads were finally complete-inline; everything validated before landing:

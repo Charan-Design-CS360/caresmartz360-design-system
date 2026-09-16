@@ -1,6 +1,6 @@
 {
   "contract": "avatar",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "maturity": "draft",
   "portal": "agency",
   "figmaFileKey": "4bh29laapcuKBTghfaRXF0",
@@ -12,13 +12,12 @@
     "specAuthor": "Figma-AI (2026-09-14)",
     "inventoryVerified": "2026-09-14 live desktop-MCP get_metadata — section, 6 set nodeIds, variant counts 24/6/3/2/5/3 all match",
     "notMeasured": "CLOSED 2026-09-14 PM — representative variants of all 6 sets measured live (see avatar.md §Measured geometry); residual: per-size update_image scaling in 70-120px avatars",
-    "componentKeysStatus": "provided by Figma-AI, NOT independently verified (AV-03)"
+    "componentKeysStatus": "CONFIRMED 2026-09-16 — Figma-AI's second, independent Plugin-API extraction (#634434) returned byte-identical keys for all 6 sets"
   },
   "componentSets": [
     {
       "figmaName": "avatar-user",
       "nodeId": "5537:4593",
-      "componentKeyUnverified": "d6dea972cd6ea8438fc168515eb1d430818a7a51",
       "variants": 30,
       "axes": {
         "Size": [
@@ -65,12 +64,12 @@
           "bgSample": "avatar/bg-blue (#2499ff) — one of the NEW avatar/bg-* variables; NOT in the 2026-09-11 Agency export yet (owner re-export pending)"
         },
         "codeRule": "background picked from the avatar palette by a deterministic hash of the user name; initials text is a per-instance override"
-      }
+      },
+      "componentKey": "d6dea972cd6ea8438fc168515eb1d430818a7a51"
     },
     {
       "figmaName": "avatar_entity",
       "nodeId": "5537:4602",
-      "componentKeyUnverified": "a0b8d9274124d81ef6c155d4be33858b04c88460",
       "variants": 6,
       "axes": {
         "Size": [
@@ -81,12 +80,12 @@
           "96px",
           "128px"
         ]
-      }
+      },
+      "componentKey": "a0b8d9274124d81ef6c155d4be33858b04c88460"
     },
     {
       "figmaName": "avatar_group",
       "nodeId": "5537:4604",
-      "componentKeyUnverified": "894036934e2db02366ede3fba3a365bc7370249d",
       "variants": 3,
       "axes": {
         "Size": [
@@ -94,24 +93,25 @@
           "32px",
           "40px"
         ]
-      }
+      },
+      "componentKey": "894036934e2db02366ede3fba3a365bc7370249d"
     },
     {
       "figmaName": "update_image",
       "nodeId": "10618:18947",
-      "componentKeyUnverified": "14757c3e6c0ce92e3aa8571fe91fdfa025a39014",
       "variants": 2,
       "axes": {
-        "Property 1": [
-          "Frame 26x",
-          "Frame 18x"
+        "Size": [
+          "26px",
+          "18px"
         ]
-      }
+      },
+      "axesRenamed": "Figma-AI 2026-09-16: Property 1=Frame 26x/18x -> Size=26px/18px",
+      "componentKey": "14757c3e6c0ce92e3aa8571fe91fdfa025a39014"
     },
     {
       "figmaName": "Icons_avatars-status",
       "nodeId": "23507:9111",
-      "componentKeyUnverified": "02f3d82024880eabc9dc7d2e3979bf34b2793bf0",
       "variants": 5,
       "axes": {
         "Type": [
@@ -121,24 +121,26 @@
           "Attenshion Required",
           "Not compatible"
         ]
-      }
+      },
+      "componentKey": "02f3d82024880eabc9dc7d2e3979bf34b2793bf0"
     },
     {
       "figmaName": "more_action",
       "nodeId": "26929:50408",
-      "componentKeyUnverified": "ccbae9b23b8953e088355d86365096e2464e9755",
       "variants": 3,
       "axes": {
-        "Property 1": [
-          "More button (24px)",
-          "More button (32px)",
-          "More button (40px)"
+        "Size": [
+          "24px",
+          "32px",
+          "40px"
         ],
-        "Property 2": [
+        "State": [
           "Default"
         ]
       },
-      "note": "Property 2 axis exists in Figma; omitted by the Figma-AI spec"
+      "note": "Property 2 axis exists in Figma; omitted by the Figma-AI spec",
+      "axesRenamed": "Figma-AI 2026-09-16: Property 1=More button (Npx) -> Size=Npx; Property 2 -> State",
+      "componentKey": "ccbae9b23b8953e088355d86365096e2464e9755"
     }
   ],
   "openItems": [
