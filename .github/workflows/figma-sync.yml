@@ -198,8 +198,11 @@ jobs:
           git checkout -b "$BRANCH"
           git commit -m "chore(design-tokens): sync from Figma ($TS)"
           git push origin "$BRANCH"
+          # Org policy blocks Actions-created PRs (verified 2026-09-16, HTTP 409/GraphQL).
+          # The branch push above is the deliverable; PR creation is best-effort — on
+          # refusal we emit a notice instead of failing, and a human/repo-side AI opens the PR.
           gh pr create \
             --title "[Figma Sync] Design token drift detected — $(date -u +%Y-%m-%d)" \
             --body "Automated sync detected design-token drift. Trigger: ${{ github.event_name }}" \
             --base main --head "$BRANCH" \
-            --label "figma-sync" --label "automated"
+            --label "figma-sync" --label "automated" || echo "::warning::PR creation blocked by org policy — branch $BRANCH pushed; open the PR manually (repo-side AI watches for these)."

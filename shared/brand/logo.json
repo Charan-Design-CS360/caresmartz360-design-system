@@ -18,8 +18,9 @@
         "brandColors hex values — Figma-AI-provided artwork fills; live color read failed (Figma MCP dropped mid-call); re-verify before any recolor work",
         "aspectRatios for logo-full/monogram — artwork ratio inside a square 1024 export frame, not the frame ratio"
       ],
-      "assetsStatus": "PENDING EXPORT — the svg/png/pdf paths below are declared targets; no binary has been committed yet. Export from Figma (export settings are configured on the nodes) and commit under shared/brand/assets/ to make them real.",
-      "brandBlueCaution": "The WORDMARK blue #1C83C6 is the logo ARTWORK color. It is NOT the UI Brandblue token (#0077FF, locked by ruling). Never 'correct' one to the other."
+      "assetsStatus": "DELIVERED 2026-09-16 — 3 SVG + 3 PNG@2x fetched via the Figma Images API inside CI (workflow figma-assets.yml, run 35087984205), format-checked (SVG XML + PNG magic) and merged in PR #36; sizes matched Figma-AI's claims. logo-wordmark assets remain pending (no Figma node yet).",
+      "brandBlueCaution": "The WORDMARK blue #1C83C6 is the logo ARTWORK color. It is NOT the UI Brandblue token (#0077FF, locked by ruling). Never 'correct' one to the other.",
+      "assetsNote": "PDF renders were NOT fetched (the Figma Images API exposes svg/png/jpg only); the two declared .pdf paths stay pending — export manually from Figma if ever needed."
     }
   },
   "variants": {
