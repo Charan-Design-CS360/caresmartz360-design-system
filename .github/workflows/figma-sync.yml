@@ -160,12 +160,12 @@ jobs:
           CMD+=" --scope $SCOPE --portal agency"
           COMPONENT="${{ inputs.component }}"
           if [[ -n "$COMPONENT" ]]; then CMD+=" --component $COMPONENT"; fi
-          if [[ "${{ inputs.dry-run }}" == "true" ]]; then CMD+=" --dry-run"; fi
+          if [[ "${{ inputs.dry-run }}" == "true" ]]; then CMD+=" --dry-run"; fi  # string form is fine inside bash
           echo "Executing: $CMD"
           eval "$CMD"
 
       - name: Update sync state
-        if: steps.skip-check.outputs.skip != 'true' && inputs.dry-run != 'true'
+        if: steps.skip-check.outputs.skip != 'true' && inputs.dry-run != true
         run: |
           set -euo pipefail
           FIGMA_LAST_MODIFIED=$(jq -r '.lastModified' /tmp/figma-meta.json)
@@ -174,7 +174,7 @@ jobs:
             '{lastModified:$lm, syncedAt:$sa, trigger:$tr}' > .figma-sync-state.json
 
       - name: Check for changes
-        if: steps.skip-check.outputs.skip != 'true' && inputs.dry-run != 'true'
+        if: steps.skip-check.outputs.skip != 'true' && inputs.dry-run != true
         id: changes
         run: |
           git add -A
