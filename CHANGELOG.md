@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.5.1] — 2026-09-21 — Filters canonical node repointed to the family (owner ruling)
+
+Owner ruling (Singh: "proceed with filters"). The Filters family row's canonical `nodeId` is
+now the outer family section **`26955:66555`** (Figma-AI's recommendation, C360-44235/C360-44907),
+was `27356:74769`. `figmaUrl` updated to match.
+
+The nested "Filter Components" section `27356:74769` — where `filters.md` / `filters.json`
+geometry was measured live 2026-09-08 — **stays the contract's `figmaSectionNodeId` (unchanged)**;
+the row's `nodeIdNote` records the two-level relationship. No gate cross-checks mapping-nodeId
+against the contract section node, so the layers can differ correctly. Child atom keys in
+`componentKeys` unchanged.
+
+Gate green: agency 17 rows releaseEligible, `validate:links` 19/19, tests 30/30.
+
 ## [5.5.0] — 2026-09-21 — child-key fields consolidated to one canonical map + CI gate
 
 Roots out the duplicate-field smell 5.4.0 introduced (and the blind spot behind the Filters
