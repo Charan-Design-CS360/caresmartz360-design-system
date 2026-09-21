@@ -4,23 +4,29 @@
     "name": "logo",
     "displayName": "CareSmartz360 Logo",
     "category": "brand",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "figmaSource": {
       "fileKey": "4bh29laapcuKBTghfaRXF0",
       "sectionId": "27645:45788"
     },
-    "lastAudit": "2026-09-15",
+    "lastAudit": "2026-09-21",
     "status": "active",
     "verification": {
       "verifiedLive_2026_09_15": "Section 27645:45788 'Logo' + all 3 variant nodes existence-verified via desktop MCP get_metadata: logo-full-compact 13848:180579 (504x160 — matches the 3.15:1 claim), logo-full 27657:3457 (1024x1024 frame), logo-monogram 27657:3458 (1024x1024 frame)",
       "unverified": [
-        "componentKeys (3) — Figma-AI-provided, Plugin API only (same status as the mapping's key debt)",
         "brandColors hex values — Figma-AI-provided artwork fills; live color read failed (Figma MCP dropped mid-call); re-verify before any recolor work",
         "aspectRatios for logo-full/monogram — artwork ratio inside a square 1024 export frame, not the frame ratio"
       ],
       "assetsStatus": "DELIVERED 2026-09-16 — 3 SVG + 3 PNG@2x fetched via the Figma Images API inside CI (workflow figma-assets.yml, run 35087984205), format-checked (SVG XML + PNG magic) and merged in PR #36; sizes matched Figma-AI's claims. logo-wordmark assets remain pending (no Figma node yet).",
       "brandBlueCaution": "The WORDMARK blue #1C83C6 is the logo ARTWORK color. It is NOT the UI Brandblue token (#0077FF, locked by ruling). Never 'correct' one to the other.",
-      "assetsNote": "PDF renders were NOT fetched (the Figma Images API exposes svg/png/jpg only); the two declared .pdf paths stay pending — export manually from Figma if ever needed."
+      "componentKeys_verified_2026_09_21": "The 3 componentKeys (logo-full f11f28…, logo-full-compact bab188…, logo-monogram 7ec093…) were reconfirmed live by Figma-AI on 2026-09-21 (C360-44235 / C360-44907) — no longer Plugin-API-only.",
+      "deliveredAssets": "DELIVERED & truthful in this file: SVG + PNG@2x for the 3 keyed variants (logo-full, logo-full-compact, logo-monogram). Verified on disk.",
+      "pendingAssets": [
+        "PDF (logo-full, logo-monogram): the Figma Images API exposes svg/png/jpg only — export by hand from Figma into assets/pdf/ if ever needed.",
+        "@1x / @3x PNG: the figma-assets workflow fetches @2x only; extend it if other scales are needed.",
+        "logo-wordmark: no Figma node exists yet — blocked until one is created.",
+        "brandColors hex: the 2026-09-15 live colour read dropped mid-call; re-verify from Figma before any recolor work."
+      ]
     }
   },
   "variants": {
@@ -39,11 +45,8 @@
       "assets": {
         "svg": "assets/svg/logo-full.svg",
         "png": [
-          "assets/png/logo-full@1x.png",
-          "assets/png/logo-full@2x.png",
-          "assets/png/logo-full@3x.png"
-        ],
-        "pdf": "assets/pdf/logo-full.pdf"
+          "assets/png/logo-full@2x.png"
+        ]
       }
     },
     "logo-full-compact": {
@@ -60,9 +63,7 @@
       "assets": {
         "svg": "assets/svg/logo-full-compact.svg",
         "png": [
-          "assets/png/logo-full-compact@1x.png",
-          "assets/png/logo-full-compact@2x.png",
-          "assets/png/logo-full-compact@3x.png"
+          "assets/png/logo-full-compact@2x.png"
         ]
       }
     },
@@ -82,11 +83,8 @@
       "assets": {
         "svg": "assets/svg/logo-monogram.svg",
         "png": [
-          "assets/png/logo-monogram@1x.png",
-          "assets/png/logo-monogram@2x.png",
-          "assets/png/logo-monogram@3x.png"
-        ],
-        "pdf": "assets/pdf/logo-monogram.pdf"
+          "assets/png/logo-monogram@2x.png"
+        ]
       }
     },
     "logo-wordmark": {
@@ -99,14 +97,8 @@
         "compact-nav"
       ],
       "minWidth": "100px",
-      "assets": {
-        "svg": "assets/svg/logo-wordmark.svg",
-        "png": [
-          "assets/png/logo-wordmark@1x.png",
-          "assets/png/logo-wordmark@2x.png",
-          "assets/png/logo-wordmark@3x.png"
-        ]
-      }
+      "assets": null,
+      "pending": "No Figma node yet — create the wordmark node in Figma, then the figma-assets workflow can fetch it."
     }
   },
   "brandColors": {
