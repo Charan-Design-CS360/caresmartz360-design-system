@@ -102,6 +102,7 @@
             }
           },
           "componentKeys": {
+            "$comment": "CANONICAL child-key map for SECTION/family rows: label -> 40-hex Figma componentKey. The single source of truth for child keys (consolidation 2026-09-21). Do NOT add a parallel key field; the component auditor rejects `atomComponentKeys`.",
             "type": "object",
             "additionalProperties": {
               "type": "string",
@@ -110,13 +111,6 @@
           },
           "componentKeyNote": {
             "type": "string"
-          },
-          "atomComponentKeys": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string",
-              "pattern": "^[a-f0-9]{40}$"
-            }
           },
           "type": {
             "$comment": "Figma node kind for this row (Figma-AI enhanced mapping, 2026-09-21).",
