@@ -146,8 +146,8 @@
       "name": "Filters",
       "componentKey": null,
       "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
-      "nodeId": "27356:74769",
-      "nodeIdNote": "Filters is a two-level hierarchy (resolved 2026-09-21, Figma-AI on C360-44235 16:56 + C360-44907): 26955:66555 = outer Filters family section; 27356:74769 = nested 'Filter Components' section (this row's nodeId, where filters.md geometry was measured 2026-09-08). Figma-AI recommends family-level mapping use 26955:66555 — owner decision pending on whether to repoint this row's canonical nodeId (kept as 27356:74769 for now, consistent with the contract + snapshot). The 2026-09-16 18:36 enhanced-mapping spec listed spurious child ids 7926:11853/11854/11852 with non-hex stub keys; those are SUPERSEDED. Real child component-set keys were already committed here (PR #34, #634434) and reconfirmed live by Figma-AI 2026-09-21 — see componentKeys.",
+      "nodeId": "26955:66555",
+      "nodeIdNote": "Owner ruling 2026-09-21 (Singh: proceed) — the canonical registry node for the Filters family is the outer family section 26955:66555 (Figma-AI recommendation, C360-44235 16:56 / C360-44907). The nested 'Filter Components' section 27356:74769 is where filters.md / filters.json geometry was measured live 2026-09-08 and remains the contract's figmaSectionNodeId (unchanged). Child atom component-set keys are in componentKeys (filter-dropdown 26360:67677, filter-toggle 26938:65213, filter-checkbox 26938:65443). The 2026-09-16 18:36 enhanced-mapping spec's child ids 7926:11853/11854/11852 were spurious and are SUPERSEDED.",
       "maturity": "draft",
       "semanticDependencies": [
         "shared/primitives",
@@ -166,7 +166,7 @@
       "figmaName": "Filters",
       "pageId": "26581:38709",
       "pageName": "AI components and Sample Mockups",
-      "figmaUrl": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27356-74769"
+      "figmaUrl": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=26955-66555"
     },
     {
       "name": "Table",
