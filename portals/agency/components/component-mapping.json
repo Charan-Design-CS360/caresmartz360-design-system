@@ -147,7 +147,7 @@
       "componentKey": null,
       "componentKeyStatus": "section/family rows carry no single key — per-set keys in componentKeys. Figma-AI Plugin-API extraction 2026-09-16 (C360-44235 #634434); accepted because the payload's nodeIds matched this mapping's live-verified nodeIds exactly. Keys themselves are Plugin-API-sourced.",
       "nodeId": "27356:74769",
-      "nodeIdNote": "the measured 'Filter Components' section; the Figma-AI enumeration also lists a Filters section 26955:66555 (existence-probed 2026-09-10) — both exist [2026-09-21] Figma-AI enhanced-mapping (C360-44235, comment 2026-09-16 18:36) placed Filters at node 26955:66555 with childComponents whose componentKeys were non-hex stand-in stubs (a1.../b2.../c3..., not valid 40-char keys). This registry row's live-checked nodeId is 27356:74769. CONFLICT NOT RESOLVED: navigation + child keys deliberately NOT applied — Figma-AI must re-extract real keys via REST for containing_frame 26955:66555 and reconcile which node is canonical. Hard-alerted to owner.",
+      "nodeIdNote": "Filters is a two-level hierarchy (resolved 2026-09-21, Figma-AI on C360-44235 16:56 + C360-44907): 26955:66555 = outer Filters family section; 27356:74769 = nested 'Filter Components' section (this row's nodeId, where filters.md geometry was measured 2026-09-08). Figma-AI recommends family-level mapping use 26955:66555 — owner decision pending on whether to repoint this row's canonical nodeId (kept as 27356:74769 for now, consistent with the contract + snapshot). The 2026-09-16 18:36 enhanced-mapping spec listed spurious child ids 7926:11853/11854/11852 with non-hex stub keys; those are SUPERSEDED. Real child component-set keys were already committed here (PR #34, #634434) and reconfirmed live by Figma-AI 2026-09-21 — see componentKeys.",
       "maturity": "draft",
       "semanticDependencies": [
         "shared/primitives",
@@ -161,7 +161,12 @@
         "filter-dropdown (26360:67677)": "550179701b6812992f91be165ce9d0adbd9516d8",
         "filter-toggle (26938:65213)": "30b8eb9c3c57a7c06cfa1f26d96f5cf544d92065",
         "filter-checkbox (26938:65443)": "470b517b04e72bc15bd19479ca1a2cbd9e0f57d0"
-      }
+      },
+      "type": "SECTION",
+      "figmaName": "Filters",
+      "pageId": "26581:38709",
+      "pageName": "AI components and Sample Mockups",
+      "figmaUrl": "https://www.figma.com/design/4bh29laapcuKBTghfaRXF0/?node-id=27356-74769"
     },
     {
       "name": "Table",
