@@ -117,6 +117,33 @@
               "type": "string",
               "pattern": "^[a-f0-9]{40}$"
             }
+          },
+          "type": {
+            "$comment": "Figma node kind for this row (Figma-AI enhanced mapping, 2026-09-21).",
+            "enum": [
+              "SECTION",
+              "COMPONENT_SET",
+              "COMPONENT"
+            ]
+          },
+          "figmaName": {
+            "$comment": "Verbatim Figma layer name (may differ from this row's human name).",
+            "type": "string",
+            "minLength": 1
+          },
+          "pageId": {
+            "$comment": "Figma page node this component lives on.",
+            "type": "string",
+            "pattern": "^[0-9]+:[0-9]+$"
+          },
+          "pageName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "figmaUrl": {
+            "$comment": "Deep link to this row's nodeId; derived from figmaFileKey + nodeId.",
+            "type": "string",
+            "pattern": "^https://www\\.figma\\.com/design/"
           }
         },
         "if": {
@@ -135,6 +162,29 @@
     },
     "$note": {
       "type": "string"
+    },
+    "$meta": {
+      "$comment": "File-level provenance + Figma page index (Figma-AI enhanced mapping, 2026-09-21).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fileKey": { "type": "string", "minLength": 1 },
+        "lastEnriched": { "type": "string" },
+        "source": { "type": "string" },
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "pageId": { "type": "string", "pattern": "^[0-9]+:[0-9]+$" },
+              "pageName": { "type": "string", "minLength": 1 },
+              "componentCount": { "type": "integer", "minimum": 0 }
+            },
+            "required": ["pageId", "pageName"]
+          }
+        }
+      }
     }
   }
 }

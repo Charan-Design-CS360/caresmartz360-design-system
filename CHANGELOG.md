@@ -9,6 +9,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.4.0] — 2026-09-21 — component-mapping enriched: nav links, page IDs, 34 child componentKeys
+
+Applied Figma-AI's enhanced-mapping delivery (C360-44235, comment 2026-09-16 18:36) to the
+Agency registry after an independent nodeId cross-check — as a **merge, not the "replace the
+file" the comment asked for**, because the delivered JSON dropped every repo governance field
+(contractPath, jiraIssue, maturity, snapshotRef, semanticDependencies) and carried non-hex stub
+keys. What landed:
+
+- **14 rows** gained `type`, `figmaName`, `pageId`, `pageName`, and a `figmaUrl` deep link
+  (derived from each row's own authoritative nodeId, so links can't drift from the registry).
+- **34 child componentKeys** folded into `atomComponentKeys` across 9 SECTION rows (Button,
+  Table, Empty States, Page Header, DDM, Profile Side Nav, Tabs, Primary Side Nav, Avatar) —
+  every key a validated 40-hex SHA1; existing `atomNodeIds` preserved.
+- **Schema extended** (`schemas/component-mapping.schema.json`): optional `type`/`figmaName`/
+  `pageId`/`pageName`/`figmaUrl` per row + a root `$meta` page index. `additionalProperties:
+  false` kept; registry verified conformant.
+- **NOT applied (hard-alerted to owner):**
+  - *Filters* — spec's node `26955:66555` disagrees with the registry's live-checked
+    `27356:74769`, and its 3 child keys were non-hex stubs. Conflict recorded in the row's
+    `nodeIdNote`; Figma-AI must re-extract real keys and reconcile the canonical node.
+  - *Logo* — spec adds it as a new section (3 child keys) with no registry row; a row needs a
+    contractPath/jiraIssue that isn't Claude's to invent. Logo already ships as a brand asset
+    (`logo.json`). Left for an owner decision.
+  - *Column Arrangement* and *Form Fields (family index)* — not in the spec; left untouched.
+
 ## [5.3.0] — 2026-09-16 — logo asset binaries DELIVERED (T12); direct-push experiment answered
 
 Singh's experiment ("can Figma push to GitHub directly?") got a definitive NO — the Figma
