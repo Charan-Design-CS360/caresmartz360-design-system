@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.6.0] — 2026-09-21 — logo.json made truthful; keys marked verified
+
+`logo.json` had been declaring assets that don't exist on disk (@1x/@3x PNG, `.pdf` paths, and
+the whole `logo-wordmark`) — a dead-reference smell like the old documentation links. Nothing
+reads those paths (the sync only reads componentKeys), so no gate caught it. Made the file honest:
+
+- Each keyed variant (logo-full, logo-full-compact, logo-monogram) now declares only what is
+  delivered and verified on disk: **SVG + PNG@2x**.
+- `logo-wordmark` assets set to `null` with a `pending` note (no Figma node exists yet).
+- The 3 componentKeys marked **verified** — reconfirmed live by Figma-AI 2026-09-21
+  (C360-44235 / C360-44907), no longer Plugin-API-only.
+- `$meta.verification.pendingAssets` now lists exactly what still needs a **manual Figma
+  operation** and why: PDF (Images API has no PDF format), @1x/@3x PNG (workflow fetches @2x
+  only), the wordmark node, and a brandColors hex re-verify (the 09-15 live read dropped).
+- Version 1.0.0 → 1.1.0.
+
+Gate green: audit clean, `validate:links` 19/19, tests 30/30.
+
 ## [5.5.1] — 2026-09-21 — Filters canonical node repointed to the family (owner ruling)
 
 Owner ruling (Singh: "proceed with filters"). The Filters family row's canonical `nodeId` is
