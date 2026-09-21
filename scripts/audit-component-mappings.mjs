@@ -190,6 +190,37 @@ function auditPortal(manifest, filePath) {
     if (placeholderPattern.test(JSON.stringify(component))) {
       errors.push(`${label}: placeholder text remains`);
     }
+    // Child component keys. `componentKeys` is the single canonical child-key map
+    // (consolidation 2026-09-21). `atomComponentKeys` is retired: flag any return
+    // of it so a parallel key field can never silently drift again.
+    if (component.atomComponentKeys !== undefined) {
+      errors.push(
+        `${label}: atomComponentKeys is retired — child keys belong in componentKeys`,
+      );
+    }
+    if (component.componentKeys !== undefined) {
+      const childKeys = component.componentKeys;
+      if (
+        typeof childKeys !== "object" ||
+        childKeys === null ||
+        Array.isArray(childKeys)
+      ) {
+        errors.push(`${label}: componentKeys must be an object`);
+      } else {
+        const seenChildKeys = new Set();
+        for (const [childLabel, childKey] of Object.entries(childKeys)) {
+          if (!componentKeyPattern.test(childKey ?? "")) {
+            errors.push(`${label}: invalid child componentKey for ${childLabel}`);
+          } else if (seenChildKeys.has(childKey)) {
+            errors.push(
+              `${label}: duplicate child componentKey ${childKey.slice(0, 8)}… (${childLabel})`,
+            );
+          } else {
+            seenChildKeys.add(childKey);
+          }
+        }
+      }
+    }
   }
 
   reports.push({

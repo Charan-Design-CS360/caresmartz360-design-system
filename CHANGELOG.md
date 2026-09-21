@@ -9,6 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.5.0] — 2026-09-21 — child-key fields consolidated to one canonical map + CI gate
+
+Roots out the duplicate-field smell 5.4.0 introduced (and the blind spot behind the Filters
+false-conflict). The registry carried child componentKeys in TWO look-alike fields —
+`componentKeys` and `atomComponentKeys` — identical on 6 rows and **divergent on DDM (8 vs 6)**.
+No tool read either (Figma sync keys off each component contract's own `$meta.componentKeys`,
+not this registry), so the drift went unnoticed — a latent trap for the future Code Connect work.
+
+- **One canonical field:** `atomComponentKeys` retired; all child keys now live in
+  `componentKeys`. Merge was lossless — DDM's `componentKeys` (8) already contained every
+  `atomComponentKeys` hash (the 6 were reworded-label duplicates); Button, Field Atoms, and
+  Primary Side Nav moved their keys over. 11 rows now carry `componentKeys`.
+- **CI gate (the durable fix):** `audit:components` now validates every child key (40-hex),
+  rejects duplicate hashes within a row, and **hard-fails any return of `atomComponentKeys`** —
+  so a parallel key field can never silently drift again. Self-tested against injected
+  dup/malformed/retired-field defects: all caught.
+- **Schema:** `atomComponentKeys` removed; `componentKeys` documented as the single source of
+  truth. `atomNodeIds` (child node ids) unchanged.
+
+Gate green: agency 17 rows releaseEligible, `validate:links` 19/19, tests 30/30.
+
 ## [5.4.1] — 2026-09-21 — Filters row resolved (hierarchy, not conflict); nav fields applied
 
 Follow-up to 5.4.0. Figma-AI resolved the Filters node question (C360-44235 16:56 + C360-44907):
