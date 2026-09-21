@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.6.1] — 2026-09-21 — variable-export manifest re-synced to owner's recognized Agency export
+
+`verify:variables` was failing: the manifest's 3 Agency `sourceArchiveSha256` fingerprints
+(from the 2026-09-15 sync, `e054c48`) no longer matched the local export zips. Investigation
+found the zips had been re-created 2026-09-16 19:38 by an **unidentified** process — content
+byte-identical to what's published, but provenance the owner did not recognise. Per the owner's
+call, the mystery files were **not** recorded; the owner re-exported the Agency collections fresh
+(2026-09-21 19:13) and this syncs the manifest to those recognised files.
+
+- Only `config/variable-export-manifest.json` changed — the 3 Agency archive fingerprints
+  (Color Modes ×5, Density Modes, General) → the recognised 2026-09-21 export.
+- **Zero token/value changes** — every member verified byte-identical to the published files
+  (same 280 Agency variables). Not a value update, purely a provenance repair.
+- Full `npm run validate` green again (was exit 1 in verify:variables).
+
 ## [5.6.0] — 2026-09-21 — logo.json made truthful; keys marked verified
 
 `logo.json` had been declaring assets that don't exist on disk (@1x/@3x PNG, `.pdf` paths, and
