@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.4.1] — 2026-09-21 — Filters row resolved (hierarchy, not conflict); nav fields applied
+
+Follow-up to 5.4.0. Figma-AI resolved the Filters node question (C360-44235 16:56 + C360-44907):
+`26955:66555` = outer Filters family section, `27356:74769` = nested "Filter Components"
+section — a **two-level hierarchy, not the conflict 5.4.0 called it**. The real child keys it
+"supplied" were **already committed** in this row's `componentKeys` (PR #34, #634434) and match
+byte-for-byte; nothing to re-add.
+
+- Applied the nav fields 5.4.0 had over-cautiously withheld from Filters (`type`, `figmaName`,
+  `pageId`, `pageName`, `figmaUrl` from the row's own nodeId).
+- Rewrote the row's `nodeIdNote` from "CONFLICT NOT RESOLVED / re-extract keys" to the resolved
+  hierarchy; marked the 18:36 spec's spurious child ids `7926:11853/11854/11852` + stub keys
+  SUPERSEDED.
+- **Owner decision still open:** whether to repoint this row's canonical nodeId to the outer
+  family `26955:66555` (Figma-AI's recommendation) — kept at `27356:74769` for now, consistent
+  with `filters.md` + the 2026-09-08 snapshot.
+
 ## [5.4.0] — 2026-09-21 — component-mapping enriched: nav links, page IDs, 34 child componentKeys
 
 Applied Figma-AI's enhanced-mapping delivery (C360-44235, comment 2026-09-16 18:36) to the
