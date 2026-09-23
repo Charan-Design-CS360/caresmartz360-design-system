@@ -164,21 +164,17 @@ Create `_material-theme-overrides.scss`:
 ### Icon Setup
 
 ```html
-<!-- index.html -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+<!-- index.html — Inter web font for TEXT is fine; icons do NOT use a web font. -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 ```
 
-```typescript
-// icon usage
-import { MatIconModule } from '@angular/material/icon';
-
-@Component({
-  imports: [MatIconModule],
-  template: `
-    <mat-icon fontSet="material-symbols-rounded">filter_list</mat-icon>
-  `
-})
+```html
+<!-- Icon usage — Material Symbols Rounded via INLINE SVG SPRITE ONLY.
+     The Material Symbols web font is forbidden (CONTRADICTIONS C1, Singh 2026-06-17:
+     avoid CDN web fonts so text never leaks on a network dropout). -->
+<svg class="icon icon-20 text-icon-primary" aria-hidden="true">
+  <use href="/assets/icons/sprite.svg#filter_list"></use>
+</svg>
 ```
 
 ---
@@ -190,12 +186,11 @@ import { MatIconModule } from '@angular/material/icon';
 ```typescript
 import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'cs-button',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule],
   template: `
     <button
       mat-flat-button
@@ -203,7 +198,10 @@ import { MatIconModule } from '@angular/material/icon';
       [disabled]="disabled"
       class="cs-button">
       @if (icon) {
-        <mat-icon fontSet="material-symbols-rounded">{{ icon }}</mat-icon>
+        <!-- inline SVG sprite, NOT the Material Symbols web font (CONTRADICTIONS C1) -->
+        <svg class="icon icon-20" aria-hidden="true">
+          <use [attr.href]="'/assets/icons/sprite.svg#' + icon"></use>
+        </svg>
       }
       <span>{{ label }}</span>
     </button>
@@ -222,7 +220,7 @@ export class ButtonComponent {
 // button.component.scss
 .cs-button {
   min-height: 40px;
-  border-radius: var(--radius-lg) !important;
+  border-radius: var(--radius-lg);
   font-size: var(--font-size-body-base);
   font-weight: var(--font-weight-medium);
 }
@@ -313,7 +311,7 @@ export class ButtonComponent {
 
 - **Token Manifest:** `config/variable-export-manifest.json` (legacy `ds-tokens-*.json` files deleted 2026-09-16; v2.5.0 never existed per C360-47329)
 - **Material Overrides:** `_material-theme-overrides.scss`
-- **Agency Tokens:** `design-tokens/agency-styles.scss`
+- **Agency Tokens (canonical):** `portals/agency/semantics/{color-modes,density-modes,general}/` + `config/variable-export-manifest.json` — the byte-parity-gated source of truth. (`design-tokens/agency-styles.scss` is C3-ruled legacy pending purge; do not treat it as authority.)
 - **Tailwind Config:** `tailwind.config.js`
 - **AI Guide:** `AI-TOOLS-GUIDE.md`
 

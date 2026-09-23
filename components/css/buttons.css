@@ -419,11 +419,11 @@
 }
 .cs-btn--ai:hover:not(:disabled) {
   background: linear-gradient(to right, #8b4ff6, #3875f4);
-  color: #ffffff;
+  color: var(--action-ai-text-neutral, #ffffff);
 }
 .cs-btn--ai:active:not(:disabled) {
   background: linear-gradient(to right, #6b29db, #1a52db);
-  color: #ffffff;
+  color: var(--action-ai-text-neutral, #ffffff);
 }
 .cs-btn--ai:disabled {
   background: var(--action-disabled-bg, #f1f5f9);

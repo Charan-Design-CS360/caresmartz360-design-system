@@ -9,6 +9,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.6.2] — 2026-09-23 — stack-rule violations fixed (forensic audit follow-up)
+
+Fixes the concrete rule violations surfaced by the 2026-09-21 forensic verification. Each is
+evidence-backed and re-validated (full `npm run validate` green, tests 30/30, links 19/19):
+
+- **Icons (C1):** `docs/CARESMARTZ360-DS-REFERENCE.md` no longer teaches the forbidden Material
+  Symbols **web font** — the Icon Setup + button examples now use the inline SVG sprite
+  (`<svg><use href="…/sprite.svg#icon">`), matching `AI-TOOLS-GUIDE.md`. Dropped the Google Fonts
+  Material Symbols `<link>` and `MatIconModule`/`<mat-icon fontSet>`.
+- **`!important` (C9):** removed the `!important` from the doc's button SCSS example.
+- **Legacy-as-authority:** the "Agency Tokens" reference now points at the canonical, gated
+  `portals/agency/semantics/` + manifest, and explicitly marks `design-tokens/agency-styles.scss`
+  as C3 legacy pending purge (not authority).
+- **Raw hex (Agency CSS):** `components/css/buttons.css` `.cs-btn--ai` hover/active now use
+  `var(--action-ai-text-neutral, #ffffff)` for consistency with the base rule (visual no-op).
+- **Mapping metadata:** `component-mapping.json` `$note` reconciled to the real 17-row count with
+  the verified Figma-page distribution (1 Button / 14 AI-page / 2 untagged).
+
+**Flagged, NOT changed (need an owner/build ruling — not guessed):** the `!important` inside the
+*legacy* `design-tokens/agency-styles.scss`; the root `tailwind.config.js` spacing-authority note
+(a documented deferred developer decision); and the build's primitives source
+(`config/token-sources.json` points at `primitives/Primitives.CS360.V2.0.tokens.json` while the
+parity gate tracks `shared/primitives/tokens/Mode 1.tokens.json` — byte-identical today, latent
+drift risk, needs a single-source decision).
+
 ## [5.6.1] — 2026-09-21 — variable-export manifest re-synced to owner's recognized Agency export
 
 `verify:variables` was failing: the manifest's 3 Agency `sourceArchiveSha256` fingerprints
